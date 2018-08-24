@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS FAQ / Trouble Shooting Guide &mdash; FAQ and Trouble Shooting Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. 全般" href="generic.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> FAQ and Trouble Shooting Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="generic.html">1. 全般</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">2. 動作環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">3. 性能・諸元</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baas_server.html">4. BaaSサーバ運用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">5. MongoDB 関連</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">9. Push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">10. Cloud Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">11. JavaScript 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="android.html">12. Android 開発</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">FAQ and Trouble Shooting Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS FAQ / Trouble Shooting Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-faq-trouble-shooting-guide">
+<h1>NEC BaaS FAQ / Trouble Shooting Guide<a class="headerlink" href="#nec-baas-faq-trouble-shooting-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generic.html">1. 全般</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic.html#id21">1.1. 海外で利用することはできますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic.html#id22">1.2. 国際化対応はしていますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic.html#rest-api">1.3. REST API を直接使用しなければならないのでしょうか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic.html#id">1.4. アプリケーションID はどのような用途で使い分ければよいのでしょうか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">2. 動作環境</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="requirements.html#windows">2.1. (サーバ) Windows で動作しますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="requirements.html#java-9">2.2. (サーバ) Java 9 以降で動作しますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="requirements.html#node-red-node-red">2.3. (Node-RED) Node-RED 環境を構築する際に注意すべき点はありますか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">3. 性能・諸元</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#id21">3.1. サイジング: サーバ台数はどのように見積もればよいでしょうか。</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#id22">3.2. 諸元値を超えた運用をしたいのですが可能でしょうか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#id23">3.3. 各種上限値・制限値や使用できる文字種などを教えてください</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#jmeter-non-http-response-code">3.4. JMeterによる性能テストで Non HTTP response code 系の例外が多発します</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="baas_server.html">4. BaaSサーバ運用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#ssl">4.1. SSL証明書の取得は必須でしょうか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#id1">4.2. 自己署名SSL証明書を使用していますが、接続できません</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#api-console-sse-push-cloud-functions">4.3. 各サーバ(API/Console/SSE Push/Cloud Functions) は別々のサーバにインストールしなければなりませんか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#web">4.4. Webアプリを配置するサーバは別途用意する必要がありますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#id2">4.5. 静止画などのコンテンツはどこに配置すればよいですか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#id3">4.6. バージョンアップはどのように行えばよいですか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#ap-tomcat">4.7. APサーバ(Tomcat)が起動しません</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#cloudfn-server-manager-systemd-exit-code-143">4.8. cloudfn-server-manager サービスの停止後、systemd のログに exit code 143 エラーが出力されてしまう</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#selinux-enforcing-rabbitmq-server">4.9. SELinux のEnforcing 動作モードでは、RabbitMQ Serverのサービスが起動しない</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#baas-sse-push-cloud-functions">4.10. 各サーバ（BaaS/SSE Push/Cloud Functions）のミドルウェアとそれらの使用ポート一覧はありますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#id5">4.11. 各サーバ（BaaS/SSE Push/Cloud Functions）のアンインストール手順はありますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#https">4.12. リバースプロキシで HTTPS 終端している場合に、コンソールサーバにアクセスできない</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#tomcat">4.13. Tomcat サーバが突然クラッシュする</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_server.html#id7">4.14. BaaSサーバのバージョンはどこを見れば分かりますか</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">5. MongoDB 関連</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mongodb.html#write-concern">5.1. Write Concern の値は何を使用していますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb.html#id21">5.2. バックアップはどのように行えばよいですか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb.html#id22">5.3. MongoDB への最大接続数を変更できますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb.html#mongodb3-63-6">5.4. MongoDBを3.6に更新しましたが、3.6でサポートする機能が使用できません</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb.html#mongodb-atlas-mlab">5.5. MongoDB Atlas や mLab は使用できますか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#id2">6.1. ログイン認証のセッション有効期限はありますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#id3">6.2. 認証時に発行されるセッショントークンはどこに保存されますか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#mongodb-timestamp">7.1. MongoDB の Timestamp は使用できますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#bit">7.2. 64bit 整数値は使用できますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id21">7.3. ドキュメント挿入・更新時のバリデーション機能はありますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id22">7.4. クエリ時の検索数に上限はありますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#sort">7.5. 大量データをクエリすると 500 エラーになります (sort条件あり)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id2">8.1. アップロードできるファイルサイズの上限はありますか</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">9. Push</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="push.html#id20">9.1. Push メッセージの配送保証はされますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#id21">9.2. オフライン状態の端末に Push を送信した場合はどうなりますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#id22">9.3. メッセージ配信の頻度に制限はありますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#id23">9.4. サーバ側に記録されているインスタレーションは自動的に削除されるのでしょうか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#id24">9.5. 特定ユーザに Push を送るには</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#id25">9.6. ユーザと Push 対象端末の紐付けはどのように行えばよいか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#gcm">9.7. GCM用に取得したキーが利用できません</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#id26">9.8. FCM の「通知メッセージ」「データメッセージ」どちらも送信できますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html#apns">9.9. APNs のトークン認証は使用できますか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">10. Cloud Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html#baas-api">10.1. BaaS API サーバへのアクセスがエラーになります</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">11. JavaScript 開発</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html#err-insecure-response">11.1. クロスドメインアクセス時に ERR_INSECURE_RESPONSE エラーになります</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html#api-501-not-implemented">11.2. 更新・削除系の API が 501 Not Implemented エラーになります</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html#ie11-javascript-sdk">11.3. IE11 でイントラネットの JavaScript SDK を使用したコンテンツにアクセスすると、うまく動作しません</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html#ie11-localstorage">11.4. IE11 で LocalStorage のデータにアクセスできない場合があります</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="android.html">12. Android 開発</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="android.html#android-emulator-https-ssl23-get-server-hello-unknown-protocol">12.1. Android Emulator から HTTPSの接続時にエラーが発生します(SSL23_GET_SERVER_HELLO:unknown protocol)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="generic.html" class="btn btn-neutral float-right" title="1. 全般" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

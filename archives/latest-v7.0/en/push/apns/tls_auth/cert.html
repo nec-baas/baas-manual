@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.3.1. APNs証明書の取得手順 &mdash; Push Notification Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.3.2. モバイルバックエンド基盤サーバへの APNs 証明書の設定" href="setup_console.html" />
+    <link rel="prev" title="3.3. TLS認証" href="index.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Push Notification Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">1. Push通知機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../send_console.html">2. コンソールからのPush送信方法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. iOS Push (APNs)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../auth_type.html">3.1. 認証方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../token_auth/index.html">3.2. トークン認証</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.3. TLS認証</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.3.1. APNs証明書の取得手順</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app-id">App ID の登録</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">証明書の取得</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="setup_console.html">3.3.2. モバイルバックエンド基盤サーバへの APNs 証明書の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../impl.html">3.4. Pushを受信するための実装</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../fcm/index.html">4. Android Push (FCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sse/index.html">5. SSE Push (Server-Sent Event Push)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../send/index.html">6. クライアントからの Push 送信</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Push Notification Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">3. iOS Push (APNs)</a> &raquo;</li>
+        
+          <li><a href="index.html">3.3. TLS認証</a> &raquo;</li>
+        
+      <li>3.3.1. APNs証明書の取得手順</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="apns">
+<h1>3.3.1. APNs証明書の取得手順<a class="headerlink" href="#apns" title="Permalink to this headline">¶</a></h1>
+<p>TLS認証を使用するには、最初に証明書を取得する必要があります。</p>
+<div class="section" id="app-id">
+<h2>App ID の登録<a class="headerlink" href="#app-id" title="Permalink to this headline">¶</a></h2>
+<p>Apple Developer サイトにて、アプリケーション登録を行い App ID を取得します。</p>
+<p>Apple Developer サイト → Certificates, Identifiers &amp; Profiles → Identifiers → App IDs</p>
+<p>Note: App ID は Wildcard にしないでください。</p>
+</div>
+<div class="section" id="id1">
+<h2>証明書の取得<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>App ID を取得できたら、次に Push 証明書を作成します。</p>
+<div class="section" id="csr">
+<h3>CSR の作成<a class="headerlink" href="#csr" title="Permalink to this headline">¶</a></h3>
+<p>最初に CSR (Certificate Signing Request, 証明書署名要求) を作成します。</p>
+<p>ブラウザから iOS Dev Center にアクセスし、該当 App ID を選択して Edit を押してください。
+以下のように Push Notifications の設定が現れます。</p>
+<a class="reference internal image-reference" href="../../_images/Push1.png"><img alt="../../_images/Push1.png" src="../../_images/Push1.png" style="width: 558.4px; height: 323.20000000000005px;" /></a>
+<p>開発用と本番用の２種類の証明書を作成できます。いずれかの “Create Certificate…”
+を選択してください。</p>
+<a class="reference internal image-reference" href="../../_images/Push2.png"><img alt="../../_images/Push2.png" src="../../_images/Push2.png" style="width: 565.6px; height: 430.40000000000003px;" /></a>
+<p>上記画面の指示に従い、CSR を作成します。</p>
+<p>Mac を起動し、「キーチェーンアクセス」アプリケーションを起動します。</p>
+<a class="reference internal image-reference" href="../../_images/Push3.png"><img alt="../../_images/Push3.png" src="../../_images/Push3.png" style="width: 593.6px; height: 237.60000000000002px;" /></a>
+<p>メニューの「キーチェーンアクセス」から「署名書アシスタント」→「照明曲に証明書を要求…」を選択します。</p>
+<a class="reference internal image-reference" href="../../_images/Push4.png"><img alt="../../_images/Push4.png" src="../../_images/Push4.png" style="width: 497.6px; height: 353.6px;" /></a>
+<p>メールアドレスと通称(CommonName)を入力します。
+メールアドレスは申請者のメールアドレスを入力します。
+通称は何を入れても構いませんが、わかりやすい名前にすることを推奨します。
+CAのメールアドレスは空欄にしてください。</p>
+<p>「ディスクに保存」を選択し、「続ける」をクリックして CSR ファイルを保存してください。</p>
+</div>
+<div class="section" id="id2">
+<h3>CSR ファイルのアップロードと証明書のダウンロード<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/Push5.png"><img alt="../../_images/Push5.png" src="../../_images/Push5.png" style="width: 559.2px; height: 393.6px;" /></a>
+<p>つづいて、iOS Dev Center の証明書作成画面に戻り、CSR ファイルをアップロードします。</p>
+<a class="reference internal image-reference" href="../../_images/Push6.png"><img alt="../../_images/Push6.png" src="../../_images/Push6.png" style="width: 562.4px; height: 489.6px;" /></a>
+<p>証明書の作成が完了すると上記の画面になります。Download をクリックして証明書をダウンロードし、
+ダブルクリックすると「キーチェーンアクセス」アプリに自動的に証明書が取り込まれます。</p>
+</div>
+<div class="section" id="pkcs-12">
+<h3>PKCS#12 証明書のエクスポート<a class="headerlink" href="#pkcs-12" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../../_images/Push7.png"><img alt="../../_images/Push7.png" src="../../_images/Push7.png" style="width: 663.2px; height: 432.8px;" /></a>
+<p>キーチェーンアクセスの「自分の証明書」に、証明書が格納されていることを確認します。
+本番用は “Apple Production IOS Push Services: …”、開発用は “Apple Development IOS Push Services:…”
+という名前になっています。</p>
+<a class="reference internal image-reference" href="../../_images/Push8.png"><img alt="../../_images/Push8.png" src="../../_images/Push8.png" style="width: 806.4000000000001px; height: 443.20000000000005px;" /></a>
+<p>証明書を右クリックし「書き出す」をクリックし、個人情報交換 (.p12) ファイルを書き出します。</p>
+<a class="reference internal image-reference" href="../../_images/Push11.png"><img alt="../../_images/Push11.png" src="../../_images/Push11.png" style="width: 360.0px; height: 243.20000000000002px;" /></a>
+<p>.p12 ファイルを暗号化するため、パスワードを入力する必要があります。
+このパスワードは、NEC BaaS サーバに証明書を登録する際に必要になります。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="setup_console.html" class="btn btn-neutral float-right" title="3.3.2. モバイルバックエンド基盤サーバへの APNs 証明書の設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="3.3. TLS認証" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../../_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

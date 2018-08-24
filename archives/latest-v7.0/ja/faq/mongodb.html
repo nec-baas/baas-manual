@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. MongoDB 関連 &mdash; FAQ and Trouble Shooting Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="6. 認証" href="auth.html" />
+    <link rel="prev" title="4. BaaSサーバ運用" href="baas_server.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FAQ and Trouble Shooting Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic.html">1. 全般</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">2. 動作環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">3. 性能・諸元</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baas_server.html">4. BaaSサーバ運用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. MongoDB 関連</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#write-concern">5.1. Write Concern の値は何を使用していますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">5.2. バックアップはどのように行えばよいですか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">5.3. MongoDB への最大接続数を変更できますか</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mongodb3-63-6">5.4. MongoDBを3.6に更新しましたが、3.6でサポートする機能が使用できません</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mongodb-atlas-mlab">5.5. MongoDB Atlas や mLab は使用できますか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">9. Push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">10. Cloud Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">11. JavaScript 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="android.html">12. Android 開発</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FAQ and Trouble Shooting Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. MongoDB 関連</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>5. MongoDB 関連<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="write-concern">
+<h2>5.1. Write Concern の値は何を使用していますか<a class="headerlink" href="#write-concern" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>デフォルトの ACKNOWLEDGED (1) となっています。</p>
+<p>これは、レプリカセットのプライマリに書き込みが完了したことのみを確認します。
+ただし、disk 上の journal への書き込みまでは確認しません(memory のみ)。
+また、セカンダリへの書き込みは確認しません。</p>
+</div>
+<div class="section" id="id21">
+<h2>5.2. バックアップはどのように行えばよいですか<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>いくつか方法がありますが、mongodump を使用してダンプするのが一般的です。</p>
+<p>詳細は <a class="reference external" href="https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/">Back Up and Restore with MongoDB Tools</a> を参照してください。</p>
+<p>AWS や NECCI を使用している場合は、インスタンスのスナップショットを取る
+方法でもバックアップが可能です。</p>
+<p>いずれの場合でも、バックアップ対象となるホストをレプリカセットから一旦切り離して
+からバックアップを実施してください。</p>
+</div>
+<div class="section" id="id22">
+<h2>5.3. MongoDB への最大接続数を変更できますか<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaS サーバの XML 設定ファイルの mongo.maxConnectionsPerHost で変更可能です。</p>
+<p>詳細は <a class="reference external" href="../server/configure/configure.html">その他の設定</a> を参照してください。</p>
+</div>
+<div class="section" id="mongodb3-63-6">
+<h2>5.4. MongoDBを3.6に更新しましたが、3.6でサポートする機能が使用できません<a class="headerlink" href="#mongodb3-63-6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDBのシェルから、お使いの環境の featureCompatibilityVersion をご確認下さい。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">adminCommand</span><span class="p">(</span> <span class="p">{</span> <span class="n">getParameter</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">featureCompatibilityVersion</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>featureCompatibilityVersion が3.6でない場合、古いバージョン相当の機能に制限が行われています。</p>
+<p>MongoDB 3.6 を新規にインストールするか、MongoDBのシェルから以下のコマンドを入力し、設定を変更して下さい。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">adminCommand</span><span class="p">(</span> <span class="p">{</span> <span class="n">setFeatureCompatibilityVersion</span><span class="p">:</span> <span class="s2">&quot;3.6&quot;</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>詳細は <a class="reference external" href="https://docs.mongodb.com/manual/release-notes/3.6-upgrade-standalone/">Upgrade a Standalone to 3.6</a> を参照してください。</p>
+</div>
+<div class="section" id="mongodb-atlas-mlab">
+<h2>5.5. MongoDB Atlas や mLab は使用できますか？<a class="headerlink" href="#mongodb-atlas-mlab" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://www.mongodb.com/cloud/atlas">MongoDB Atlas</a> については、v7.0 では使用できません。v7.5 で対応予定です。</p>
+<p><a class="reference external" href="https://mlab.com/">mLab</a> については対応しておりません。また対応予定もありません。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="auth.html" class="btn btn-neutral float-right" title="6. 認証" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="baas_server.html" class="btn btn-neutral" title="4. BaaSサーバ運用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

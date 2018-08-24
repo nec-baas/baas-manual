@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11. マイグレーションガイド &mdash; API Gateway Developer Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="10. CLIツール コマンドリファレンス" href="cli.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> API Gateway Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-http.html">3. API 定義の作成 (HTTP Proxy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-amqp.html">4. API 定義の作成 (RabbitMQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-register.html">5. API定義の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">6. リクエスト・レスポンスマッピング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">7. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exec.html">8. カスタムAPIの実行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xproxy.html">9. Swagger ベンダ拡張 リファレンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">10. CLIツール コマンドリファレンス</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-7-0-0">11.1. ver 6.5.0 → 7.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">11.1.1. テンプレート記法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-0-6-5-0">11.2. ver 6.0.0 → 6.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api">11.2.1. デベロッパーコンソール: API 定義編集機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json-patch-json-merge-patch">11.2.2. JSON Patch / JSON Merge Patch 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rabbitmq">11.2.3. RabbitMQ ボディ変換対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">11.2.4. テンプレート記法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#http-proxy-uri">11.2.5. HTTP Proxy 時の URI 相対パス記法追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#http-proxy">11.2.6. HTTP Proxy 大容量データ転送時の効率改善</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">API Gateway Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>11. マイグレーションガイド</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>11. マイグレーションガイド<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>本章では、API Gateway の以前のバージョンからの
+API の変更点や移行方法について説明します。</p>
+<div class="section" id="ver-6-5-0-7-0-0">
+<h2>11.1. ver 6.5.0 → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-0-7-0-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>11.1.1. テンプレート記法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>テンプレートに引き渡される Model に以下のキーを追加しました。</p>
+<ul class="simple">
+<li>request.tenantId   : テナントID</li>
+<li>request.tenantName : テナント名</li>
+</ul>
+<p>詳細は <a class="reference internal" href="mapping.html#templating"><span class="std std-ref">テンプレート記法</span></a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="ver-6-0-0-6-5-0">
+<h2>11.2. ver 6.0.0 → 6.5.0 での変更点<a class="headerlink" href="#ver-6-0-0-6-5-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="api">
+<h3>11.2.1. デベロッパーコンソール: API 定義編集機能追加<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<p>ブラウザを使用してデベロッパーコンソール上で直接 API 定義(Swagger定義)の
+投入・編集・削除が行えるようになりました。</p>
+</div>
+<div class="section" id="json-patch-json-merge-patch">
+<h3>11.2.2. JSON Patch / JSON Merge Patch 対応<a class="headerlink" href="#json-patch-json-merge-patch" title="Permalink to this headline">¶</a></h3>
+<p>HTTP リクエスト/レスポンスボディ内の JSON を JSON Patch (RFC 6902), JSON Merge Patch (RFC 7386) で
+書き換えできるようになりました。</p>
+<p>詳細は <a class="reference internal" href="mapping.html#body-transform"><span class="std std-ref">ボディ変換規則</span></a> を参照してください。</p>
+</div>
+<div class="section" id="rabbitmq">
+<h3>11.2.3. RabbitMQ ボディ変換対応<a class="headerlink" href="#rabbitmq" title="Permalink to this headline">¶</a></h3>
+<p>RabbitMQ についても HTTP と同様ボディの変換が行えるようになりました。
+詳細は <a class="reference internal" href="mapping.html#body-transform"><span class="std std-ref">ボディ変換規則</span></a> を参照してください。</p>
+</div>
+<div class="section" id="id3">
+<h3>11.2.4. テンプレート記法<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>テンプレートに引き渡される Model に以下のキーを追加しました。</p>
+<ul class="simple">
+<li>request.sessionToken : セッショントークンの値</li>
+</ul>
+<p>詳細は <a class="reference internal" href="mapping.html#templating"><span class="std std-ref">テンプレート記法</span></a> を参照してください。</p>
+</div>
+<div class="section" id="http-proxy-uri">
+<h3>11.2.5. HTTP Proxy 時の URI 相対パス記法追加<a class="headerlink" href="#http-proxy-uri" title="Permalink to this headline">¶</a></h3>
+<p>HTTP Proxy の x-proxy に、relativePath 記法を追加しました。
+詳細は <a class="reference internal" href="xproxy.html#xproxy"><span class="std std-ref">x-proxy</span></a> を参照してください。</p>
+<p>転送先サーバ URI を相対パスで指定できるようになっています。</p>
+</div>
+<div class="section" id="http-proxy">
+<h3>11.2.6. HTTP Proxy 大容量データ転送時の効率改善<a class="headerlink" href="#http-proxy" title="Permalink to this headline">¶</a></h3>
+<p>従来の実装では、API Gateway (HTTP Proxy) でデータを転送する際、データ(HTTP Body)を一旦メモリ上に
+すべてロードしてから転送を実施するようになっていました(Store and Forward方式)。
+このため、データが大容量の場合はメモリの消費量が多くなっていました。</p>
+<p>本バージョンでは、データを無変換で転送する場合はメモリ上にデータをロードせず、
+ストリームのまま転送するように改善しました。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ボディ変換規則(template/jsonPatch/jsonMergeなど)を使用する場合は、従来どおり
+メモリ上にデータをすべてロードしてから変換する動作となりますので、注意してください。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="cli.html" class="btn btn-neutral" title="10. CLIツール コマンドリファレンス" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

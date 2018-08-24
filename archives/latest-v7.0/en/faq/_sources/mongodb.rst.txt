@@ -1,0 +1,61 @@
+.. include:: ../common/linkdef.rst
+
+======================
+MongoDB 関連
+======================
+
+Write Concern の値は何を使用していますか
+==========================================
+
+デフォルトの ACKNOWLEDGED (1) となっています。
+
+これは、レプリカセットのプライマリに書き込みが完了したことのみを確認します。
+ただし、disk 上の journal への書き込みまでは確認しません(memory のみ)。
+また、セカンダリへの書き込みは確認しません。
+
+バックアップはどのように行えばよいですか
+========================================
+
+いくつか方法がありますが、mongodump を使用してダンプするのが一般的です。
+
+詳細は `Back Up and Restore with MongoDB Tools`_ を参照してください。
+
+AWS や NECCI を使用している場合は、インスタンスのスナップショットを取る
+方法でもバックアップが可能です。
+
+いずれの場合でも、バックアップ対象となるホストをレプリカセットから一旦切り離して
+からバックアップを実施してください。
+
+MongoDB への最大接続数を変更できますか
+=======================================
+
+BaaS サーバの XML 設定ファイルの mongo.maxConnectionsPerHost で変更可能です。
+
+詳細は `その他の設定 <../server/configure/configure.html>`_ を参照してください。
+
+
+MongoDBを3.6に更新しましたが、3.6でサポートする機能が使用できません
+====================================================================
+
+MongoDBのシェルから、お使いの環境の featureCompatibilityVersion をご確認下さい。
+
+::
+
+    db.adminCommand( { getParameter: 1, featureCompatibilityVersion: 1 } )
+
+featureCompatibilityVersion が3.6でない場合、古いバージョン相当の機能に制限が行われています。
+
+MongoDB 3.6 を新規にインストールするか、MongoDBのシェルから以下のコマンドを入力し、設定を変更して下さい。
+
+::
+
+    db.adminCommand( { setFeatureCompatibilityVersion: "3.6" } )
+
+詳細は `Upgrade a Standalone to 3.6 <https://docs.mongodb.com/manual/release-notes/3.6-upgrade-standalone/>`_ を参照してください。
+
+MongoDB Atlas や mLab は使用できますか？
+========================================
+
+`MongoDB Atlas <https://www.mongodb.com/cloud/atlas>`_ については、v7.0 では使用できません。v7.5 で対応予定です。
+
+`mLab <https://mlab.com/>`_ については対応しておりません。また対応予定もありません。

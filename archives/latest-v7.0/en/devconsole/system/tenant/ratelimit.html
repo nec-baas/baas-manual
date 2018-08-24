@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>APIレートリミット(スロットリング) &mdash; Developer Console User Manual 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.3. 管理者管理" href="../administrator.html" />
+    <link rel="prev" title="LDAP連携" href="ldap.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../login.html">2. ログイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. システム管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../abstract.html">3.1. システム管理機能について</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. テナント管理</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tenant.html">テナントの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant_management.html">一般設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant_management.html#mongodb">MongoDB個別接続設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ldap.html">LDAP連携</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">APIレートリミット(スロットリング)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id20">テナント全体設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">カスタムAPI個別設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">レートリミットのアルゴリズム</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">レートリミット対象の API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administrator.html">3.3. 管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system_config.html">3.4. システム設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../saml_keyStore.html">3.5. SAML KeyStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">3.6. ライセンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../systemlog.html">3.7. システムログ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tenant/index.html">4. テナント管理</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">3. システム管理</a> &raquo;</li>
+        
+          <li><a href="index.html">3.2. テナント管理</a> &raquo;</li>
+        
+      <li>APIレートリミット(スロットリング)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api">
+<span id="index-0"></span><h1>APIレートリミット(スロットリング)<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<p>テナント毎に REST API のレートリミット(スロットリング)を設定することができます。</p>
+<p>レートリミットを設定するには、画面右上の「管理」から「テナント管理」を選択しテナント管理画面に移動してください。
+テナント管理画面で、該当テナントの「レートリミット」を選択すると、レートリミット設定画面に入ります。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ライセンスキーによりレートリミット制限がかかっている場合があります。
+この場合、ライセンスキー制限とデベロッパーコンソールで指定した値の両方が適用されます。
+具体的には、両者を比較して小さい(制限が厳しい)ほうの値が使用されます。</p>
+</div>
+<div class="section" id="id20">
+<h2>テナント全体設定<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<p>テナント全体に設定する REST API レートリミットを設定します。</p>
+<p>レートリミット値は、1分あたりに発行することが可能な REST API のコール数です。
+例えばこの値を 10,000 に設定した場合、このテナントについては1分毎に 10,000 回まで REST API を呼び出すことができます。</p>
+<p>制限値を超過した場合は、以降の REST API リクエストに対しては 429 Too Many Requests エラーが返却されます。</p>
+<p>0 を設定した場合は無制限となります。</p>
+</div>
+<div class="section" id="id21">
+<h2>カスタムAPI個別設定<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>API Gateway で登録したカスタム API については、API毎にレートリミット値を個別に設定することができます。</p>
+<p>設定値は JSON で記述し、API名称をキーに、1分毎のレートリミット値を指定します。
+以下に例を示します。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;api1&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="nt">&quot;api2&quot;</span><span class="p">:</span> <span class="mi">20000</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>この例では api1 については 10,000回/分、api2 については 20,000回/分のレートリミットを設定します。</p>
+<p>なお、テナント全体でレートリミット値を設定している場合、カスタムAPIと全体の両方のレートリミット値が適用されます。</p>
+</div>
+<div class="section" id="id22">
+<h2>レートリミットのアルゴリズム<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>レートリミットアルゴリズムは、単純な <a class="reference external" href="https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E3%83%90%E3%82%B1%E3%83%83%E3%83%88">トークンバケット</a> 方式となっています。</p>
+<ul class="simple">
+<li>レートリミット値と同じサイズのバケットを用意します。</li>
+<li>1分毎に1度、レートリミット値と同数のトークンがバケットに投入されます。
+(バケットサイズがレートリミット値と同じなので、実際にはバケットサイズ一杯にトークン数がリセットされることになります)</li>
+<li>API を1個実行するたびに、トークンが1個消費されます。</li>
+<li>API 呼び出し時にトークンがなくなっていた場合は、429 Too Many Requests エラーが返却されます。</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h2>レートリミット対象の API<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<p>原則、すべての REST API 呼び出しがレートリミットの対象となります。ただし、以下のものは除外されます。</p>
+<ul class="simple">
+<li>アプリケーションキー認証が失敗した場合 (テナントID/アプリケーションキーが不正)</li>
+<li>存在しない REST API に対する呼び出し</li>
+<li>システムログ取得 API</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../administrator.html" class="btn btn-neutral float-right" title="3.3. 管理者管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ldap.html" class="btn btn-neutral" title="LDAP連携" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../../_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

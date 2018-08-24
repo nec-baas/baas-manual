@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10. マイグレーションガイド &mdash; Cloud Functions Server User Manual 7.0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="9. ログ" href="logs.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Server User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">2. 必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_configuration.html">3. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dist.html">4. 配布物の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_auto.html">5. 自動インストール手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_manual.html">6. 手動インストール手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">7. 設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">8. 動作確認</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logs.html">9. ログ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-7-0-2">10.1. ver 7.0.0 → 7.0.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.1.1. 不具合修正</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.1.2. 機能追加</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-3-6-5-4">10.2. ver 6.5.3 → 6.5.4 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">10.2.1. 不具合修正</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.2.2. 機能追加</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-x-7-0-0">10.3. ver 6.5.x → 7.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-1-6-5-3">10.4. ver 6.5.1 → 6.5.3 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">10.4.1. 機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">10.4.2. 不具合修正</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-6-5-1">10.5. ver 6.5.0 → 6.5.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">10.5.1. 不具合修正</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-0-6-5-0">10.6. ver 6.0.0 → 6.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#java">10.6.1. Java ロジックサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-5-0-x-6-0-0">10.7. ver 5.0.x → 6.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">10.7.1. Java 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">10.7.2. Docker レス対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">10.7.3. 名称変更・ファイル名変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fluentd">10.7.4. fluentd 設定ファイル変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">10.7.5. 設定ファイル書式変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rabbitmq">10.7.6. RabbitMQ 関連</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Server User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>10. マイグレーションガイド</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>10. マイグレーションガイド<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>本章では、Cloud Functions サーバの以前のバージョンからの
+変更点や移行方法について説明します。</p>
+<div class="section" id="ver-7-0-0-7-0-2">
+<h2>10.1. ver 7.0.0 → 7.0.2 での変更点<a class="headerlink" href="#ver-7-0-0-7-0-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>10.1.1. 不具合修正<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>サーバマネージャに以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Java Functionを連続呼び出しするとエラーになる場合がある</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>10.1.2. 機能追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>サーバマネジャーのサービス起動設定に Java ヒープサイズ設定の追加</li>
+<li>起動時にバージョン番号をログに出力する</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-3-6-5-4">
+<h2>10.2. ver 6.5.3 → 6.5.4 での変更点<a class="headerlink" href="#ver-6-5-3-6-5-4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>10.2.1. 不具合修正<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>サーバマネージャに以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Java Functionを連続呼び出しするとエラーになる場合がある</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>10.2.2. 機能追加<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>サーバマネジャーのサービス起動設定に Java ヒープサイズ設定の追加</li>
+<li>起動時にバージョン番号をログに出力する</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-x-7-0-0">
+<h2>10.3. ver 6.5.x → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-x-7-0-0" title="Permalink to this headline">¶</a></h2>
+<p>内蔵する OSS の最新化を行いました。</p>
+<p>機能面での差異はありません。</p>
+</div>
+<div class="section" id="ver-6-5-1-6-5-3">
+<h2>10.4. ver 6.5.1 → 6.5.3 での変更点<a class="headerlink" href="#ver-6-5-1-6-5-3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>10.4.1. 機能追加<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>サーバマネージャに以下の機能追加を行いました。</p>
+<ul class="simple">
+<li>Fluentd 使用していないときでも、Function ログを記録できるようにした(Server Manager ログに合わせて記録)</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>10.4.2. 不具合修正<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>サーバマネージャ / Java ロジックサーバに以下の不具合修正を行いました。
+サーババージョンは v6.5.3 となります。</p>
+<ul class="simple">
+<li>クライアントからカスタムAPI呼び出しを連続して繰り返し実行するとエラーとなる</li>
+<li>重いファンクションを実行すると、他のファンクション呼び出しがブロックされる</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-0-6-5-1">
+<h2>10.5. ver 6.5.0 → 6.5.1 での変更点<a class="headerlink" href="#ver-6-5-0-6-5-1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>10.5.1. 不具合修正<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Java ロジックサーバ / Node ロジックサーバに以下の不具合修正を行いました。
+サーババージョンは v6.5.1 となります。</p>
+<ul class="simple">
+<li>Content-Type にパラメータ (;charset=utf-8など)が付与されているとエラーになる</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-0-0-6-5-0">
+<h2>10.6. ver 6.0.0 → 6.5.0 での変更点<a class="headerlink" href="#ver-6-0-0-6-5-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="java">
+<h3>10.6.1. Java ロジックサーバ<a class="headerlink" href="#java" title="Permalink to this headline">¶</a></h3>
+<p>内蔵する BaaS SDK のバージョンを 6.5.0 に更新しました。
+機能的な変更点はありません。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">v6以前で作成した Java ユーザコードはそのままでは動作しない場合があります。
+この場合、最新版の Java SDK / Cloud Functions SDK を使用して
+ユーザコードをビルドし直していただく必要があります。</p>
+</div>
+</div>
+</div>
+<div class="section" id="ver-5-0-x-6-0-0">
+<h2>10.7. ver 5.0.x → 6.0.0 での変更点<a class="headerlink" href="#ver-5-0-x-6-0-0" title="Permalink to this headline">¶</a></h2>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">Cloud Functions v6 サーバは、APIサーバ v5 との接続互換性がありません。
+全サーバを一斉にアップデートしていただく必要がありますので、ご注意ください。</p>
+</div>
+<div class="section" id="id9">
+<h3>10.7.1. Java 対応<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>Node.js に加え Java コード実行に対応しました。</p>
+<p>インストール手順に従って Java ロジックサーバをインストールすることで使用できるようになります。</p>
+</div>
+<div class="section" id="docker">
+<h3>10.7.2. Docker レス対応<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
+<p>Docker を使用せずにロジックサーバを起動できる機能を追加しました。</p>
+<p>設定手順は <a class="reference internal" href="configure.html#config-file"><span class="std std-ref">サーバマネージャ設定ファイル</span></a> を参照してください。</p>
+</div>
+<div class="section" id="id10">
+<h3>10.7.3. 名称変更・ファイル名変更<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>「コンテナマネージャ」は「サーバマネージャ」に名称が変更されました。
+これにともない、設定ファイル名が以下のように変更されています。</p>
+<ul class="simple">
+<li>container-manager-config.properties ⇒ cloudfn-server-manager-config.yaml</li>
+<li>container-manager-logback.properties ⇒ cloudfn-server-manager-logback.properties</li>
+</ul>
+<p>また、サーバの実行ファイル名なども変更となっています。
+以下のファイルはすべて削除してください。また起動中のサービスがある場合は停止してください。</p>
+<ul class="simple">
+<li>/etc/baas/container-manager*</li>
+<li>/opt/cloudfn/bin/container-manager.jar</li>
+<li>/etc/init.d/container-manager (CentOS/RHEL 6 の場合)</li>
+<li>/usr/lib/systemd/system/container-manager.service (CentOS/RHEL 7 の場合)</li>
+</ul>
+</div>
+<div class="section" id="fluentd">
+<h3>10.7.4. fluentd 設定ファイル変更<a class="headerlink" href="#fluentd" title="Permalink to this headline">¶</a></h3>
+<p>上記名称変更に伴い、fluentd の設定ファイル(td-agent.conf)の記述が１箇所変更になります。
+具体的には &lt;match nebula.customlogic&gt; という記述を &lt;match nebula.cloudfn&gt; という記述に変更する必要があります。</p>
+<p>詳細は <a class="reference internal" href="configure.html#fluentd-config"><span class="std std-ref">Fluentd の設定</span></a> を参照してください。</p>
+</div>
+<div class="section" id="id11">
+<h3>10.7.5. 設定ファイル書式変更<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>サーバマネージャ設定ファイルが Java プロパティファイル形式から YAML 形式に変更となりましたので、
+移行が必要です。</p>
+<p>詳細は <a class="reference internal" href="configure.html#config-file"><span class="std std-ref">サーバマネージャ設定ファイル</span></a> を参照してください。</p>
+</div>
+<div class="section" id="rabbitmq">
+<h3>10.7.6. RabbitMQ 関連<a class="headerlink" href="#rabbitmq" title="Permalink to this headline">¶</a></h3>
+<p>以下の改善を実施しました。</p>
+<ul class="simple">
+<li>起動時の RabbitMQ 接続をリトライするように改善</li>
+<li>ハートビート間隔を 30秒 ⇒ 10秒に短縮</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="logs.html" class="btn btn-neutral" title="9. ログ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.2',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+.. index::
+   single: リバースプロキシ
+   single: nginx
+   single: SSL証明書
+   single: HTTPS
+
+==============================================================
+ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定
+==============================================================
+
+.. include:: ../../common/linkdef.rst
+
+
+HAProxy によるリバースプロキシ
+==============================
+
+リバースプロキシを設置してHTTPS(SSL)接続を終端させ、後段のAPサーバにHTTPリクエストを転送するようにします。
+ここではリバースプロキシに `HAProxy`_ を使用する方法を示します。
+
+HAProxyをyum, apt-getなどでインストールします。
+設定ファイルは /etc/haproxy/haproxy.cfg に格納されています。
+
+.. code-block:: text
+
+    # global設定
+    global
+        log         127.0.0.1 local2
+
+        chroot      /var/lib/haproxy
+        pidfile     /var/run/haproxy.pid
+        maxconn     4000
+        user        haproxy
+        group       haproxy
+        daemon
+
+        # turn on stats unix socket
+        stats socket /var/lib/haproxy/stats
+
+    # default設定
+    defaults
+        mode   http
+        log    global
+        option httplog
+        option dontlognull
+        option http-server-close
+        option forwardfor       except 127.0.0.0/8
+        option redispatch
+        retries                 3
+        timeout http-request    10s
+        timeout queue           1m
+        timeout connect         10s
+        timeout client          1m
+        timeout server          1m
+        timeout http-keep-alive 10s
+        timeout check           10s
+        maxconn                 3000
+
+    # frontend設定
+    # サーバ証明書を指定
+    frontend  main *:443 ssl crt /etc/haproxy/test.example.com.pem
+        reqadd X-Forwarded-Proto:\ https
+
+        # /console でパスが開始する場合は console用サーバに転送
+        acl url_console   path_beg   -i /console
+        use_backend       console    if url_console
+        # それ以外はAPIサーバに転送
+        default_backend   api
+
+    # backend設定
+    backend console
+        balance roundrobin
+        server  console1 192.168.0.5:8080
+        server  console2 192.168.0.6:8080
+
+    backend api
+        balance roundrobin
+        server  api1 192.168.0.1:8080
+        server  api2 192.168.0.2:8080
+        server  api3 192.168.0.3:8080
+        server  api4 192.168.0.4:8080
+
+* APサーバのリストをbackend api 内に記述してください。
+* コンソールサーバのリストを backend console 内に記述してください。
+* frontendのパラメータとしてsslを指定するとSSLでの接続を受け付けます。
+* SSL 証明書および鍵ファイルは crt オプションで指定します。サーバ証明書と秘密鍵をcat等で結合したファイルを使用してください。
+* 後段の AP サーバで接続元の IP アドレスをログに記録できるようにするため、X-Forwarded-Proto などのヘッダを設定してください。
+
+証明書の作成手順については :doc:`sslcert` を参照してください。
+
+Nginx によるリバースプロキシ
+============================
+
+ここではリバースプロキシに Nginx を使用する方法を示します。
+
+nginx を apt-get などでインストールします。
+以下の設定例を参考に、/etc/nginx/sites-available/ に設定ファイルを作成し、sites-enabled にシンボリックリンクを設定してください。
+なお、デフォルトの設定ファイルは無効化してください。
+
+.. code-block:: text
+
+  # HTTPS 設定
+  server {
+    listen 443 ssl;
+    server_name localhost; # 適宜修正すること
+
+    access_log  /var/log/nginx/localhost.access.log;
+
+    root html;
+    index index.html index.htm;
+
+    ssl on;
+    ssl_certificate cert.pem;
+    ssl_certificate_key cert.key;
+
+    ssl_session_timeout 5m;
+
+    ssl_protocols SSLv3 TLSv1;
+    ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+    ssl_prefer_server_ciphers on;
+
+    # リバースプロキシ用の HTTP ヘッダ設定
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Server $host;
+
+    # APサーバ
+    location /api/ {
+      proxy_pass http://apservers/api/;
+      proxy_redirect http:// https://;
+    }
+
+    # コンソールサーバ
+    location /console/ {
+      proxy_pass http://console_servers/console/;
+      proxy_redirect http:// https://;
+    }
+  }
+
+  # APサーバ群の設定
+  upstream apservers {
+    server server1.example.com:8080;
+    server server2.example.com:8080;
+    server server3.example.com:8080;
+    keepalive 100;
+  }
+
+  # コンソールサーバ群の設定
+  upstream console_servers {
+    server server1.example.com:8080;
+  }
+
+* APサーバのURLリストを upstream apservers 内に記述してください。
+* コンソールサーバの URL を upstream console_servers 内に記述してください。
+* SSL 証明書および鍵ファイルは /etc/nginx 以下に配置します。ファイル名は上記設定ファイルの ssl_certificate および ssl_certificat_key で指定します。
+* 後段の AP サーバで接続元の IP アドレスをログに記録できるようにするため、X-Forwarded-For などのヘッダを設定してください。
+
+証明書の作成手順については :doc:`sslcert` を参照してください。
+
+リバースプロキシで HTTPS を終端する場合
+========================================
+
+ロードバランサ/リバースプロキシ(AWS ELB など)を使用して HTTPS(TLS) を終端して Tomcat に HTTP で転送を行う場合、
+Tomcat 側の Connector に設定が必要になる場合があります。
+これはリバースプロキシ側がリダイレクト時の Location ヘッダを書き換えてくれないためです。
+
+以下に例を示します。
+
+::
+
+    <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               URIEncoding="UTF-8"
+               redirectPort="8443"
+               proxyPort="443"
+               scheme="https"
+               secure="true" />
+
+proxyPort、scheme、secure の3属性を追加する必要があります。
+
+AWS ELS (Elastic Load Balander) を使用する場合
+----------------------------------------------
+
+AWSコンソールから、ELBへのSSL証明書の設定方法は、 `HTTPS リスナーを使用した Classic Load Balancer の作成`_ (「ステップ 3: セキュリティ設定の指定」)を参照してください。
+
+なお、購入SSL証明書によって、中間証明書を設定しないと、Androidやcurlからのアクセスで警告が出ることがあります。
+
+必要に応じで、下記のように中間証明書を設定してください。
+ロードバランサーの[Listener Configuration] -> [Certificate] -> [Certificate Chain]に中間証明書を設定します。
+
+
+ベースURIの設定
+================
+
+ロードバランサ・リバースプロキシを使用する場合は、ベースURIの設定を行う必要があります。
+これはロードバランサ・リバースプロキシ使用時は MBaaS サーバは外部の URI がわからないためで、
+MBaaS 内部での URL 生成（主にパスワードリセットの URL 生成)を正しく行うために外部 URI を教える必要があるためです。
+
+ベース URI は設定ファイルに設定するか、デベロッパーコンソールから設定します。
+設定ファイルについては :ref:`configuration_file` を参照してください。
+
+以下に設定例を示します。
+
+.. code-block:: text
+
+  <properties>
+      <!-- APIサーバ ベースURI 設定 -->
+      <entry key="api.baseUrl">https://baas.example.com/api</entry>
+
+      <!-- コンソールサーバ ベースURI 設定 -->
+      <entry key="console.baseUrl">https://baas.example.com/console</entry>
+
+

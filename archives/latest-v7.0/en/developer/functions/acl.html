@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.6. Security: ACL &mdash; Developer Manual 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.7. Cross Origin Resource Sharing (CORS)" href="cors.html" />
+    <link rel="prev" title="2.5. File Storage" href="file_storage.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="application.html">2.1. Tenants and applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_management.html">2.2. ユーザ管理・認証機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group_management.html">2.3. Group management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html">2.4. オブジェクトストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.5. File Storage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.6. Security: ACL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.6.1. ACL overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.6.2. Representation of the ACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contentacl">2.6.3. contentACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acl-contentacl">2.6.4. Relationship between data ACL and bucket content ACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.6.5. Special Bucket</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cors.html">2.7. Cross Origin Resource Sharing (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_offline.html">2.8. Offline functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html">2.9. Push notification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../limits.html">3. 制限値・スレショルド・文字制約</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">2. Features</a> &raquo;</li>
+        
+      <li>2.6. Security: ACL</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="acl">
+<h1>2.6. Security: ACL<a class="headerlink" href="#acl" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.6.1. ACL overview<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>BaaS uses ACL (Access Control List) for access control.</p>
+<p>You can set an ACL to each groups, object storage (bucket and object), file storage (bucket, files) and so on to restrict access.</p>
+<p>In the ACL, you can set owner of the data, readable/writable users and groups, administrator users and groups.</p>
+</div>
+<div class="section" id="id2">
+<h2>2.6.2. Representation of the ACL<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Since the representation format of the ACL is common to all services, so we will explain the format of the ACL here.</p>
+<p>The ACL is written in JSON format, and embed in the JSON of the target object. To embed the ACL in an object data of object storage, put it in “ACL” property of the target like as:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;xxxxxxx&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;itemName&quot;</span><span class="o">:</span> <span class="s2">&quot;Computer 12345&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">120000</span><span class="p">,</span>
+   <span class="s2">&quot;date&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-03-04&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+       <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;r&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;w&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;c&quot;</span> <span class="o">:</span> <span class="p">[],</span>
+       <span class="s2">&quot;u&quot;</span> <span class="o">:</span> <span class="p">[],</span>
+       <span class="s2">&quot;d&quot;</span> <span class="o">:</span> <span class="p">[],</span>
+       <span class="s2">&quot;admin&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span> <span class="p">],</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each property of the ACL has following meanings.</p>
+<ul class="simple">
+<li>owner: User id of the owner of the object. The owner has all permissions on the object.</li>
+<li>r: User ids and group names who has read permission of the object.</li>
+<li>w: User ids and group names who has write permission of the object. Includes “c”, “u” and “d” permissions.</li>
+<li>c: User ids and group names who has create permission of the object. Valid only for contentACL.</li>
+<li>u: User ids and group names who has update permission of the object.</li>
+<li>d: User ids and group names who has delete permission of the object.</li>
+<li>admin: User ids and group names who can change the ACL of the object.</li>
+</ul>
+<p>To specify group, the group name must be prefixed with “g:”.</p>
+<p>Also, you can use following special group names.</p>
+<ul class="simple">
+<li>anonymous: A group that includes all users, including unauthorized users.</li>
+<li>authenticated: The group contains all authorized users.</li>
+</ul>
+</div>
+<div class="section" id="contentacl">
+<h2>2.6.3. contentACL<a class="headerlink" href="#contentacl" title="Permalink to this headline">¶</a></h2>
+<p>For bucket, you can specify ACL for the bucket itself and contentACL for the contents of the bucket.</p>
+<p>The following is example of bucket information. You need to embed “ACL” and “contentACL” in the bucket JSON. The contentACL does not have owner and admin fields.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;BucketName&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;r&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;admin&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span> <span class="p">],</span>
+   <span class="p">},</span>
+   <span class="s2">&quot;contentACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;r&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;w&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="acl-contentacl">
+<h2>2.6.4. Relationship between data ACL and bucket content ACL<a class="headerlink" href="#acl-contentacl" title="Permalink to this headline">¶</a></h2>
+<p>When the BaaS server accesses the data, it checks ACL of the target itself and contentACL of the bucket containing the target.</p>
+<p>The access is granted only when <strong>both permission checks passed</strong>. Therefore, even if the data ACL allows access, access will be denied if contentACL does not allow.And even if the contentACL allows access, the access will be denied if ACL does not allow.</p>
+<a class="reference internal image-reference" href="../_images/ACL.png"><img alt="../_images/ACL.png" src="../_images/ACL.png" style="width: 576.0px; height: 432.0px;" /></a>
+</div>
+<div class="section" id="id3">
+<h2>2.6.5. Special Bucket<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>There are following three special bucktes other than normal buckets.</p>
+<ul class="simple">
+<li>_ROOT: The root bucket. It controls permissions to create object buckets and file buckets.</li>
+<li>_USERS: The users bucket. It controls read, add, modify and delete permissions of users.</li>
+<li>_GROUPS : The group bucket. It controls read, add, modify and delete permissions of groups.</li>
+</ul>
+<p>You can review and change the permissions of the special buckets on the Developer Console.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cors.html" class="btn btn-neutral float-right" title="2.7. Cross Origin Resource Sharing (CORS)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="file_storage.html" class="btn btn-neutral" title="2.5. File Storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

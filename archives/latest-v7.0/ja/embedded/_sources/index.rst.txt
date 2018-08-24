@@ -1,0 +1,27 @@
+NEC BaaS Embedded SDK Guide
+===========================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 3
+
+   intro
+   setup
+   initialize
+   basics
+   user
+   object_storage
+   object_query
+   file_storage
+   restrictions
+
+Index
+-----
+
+* :ref:`genindex`
+* :ref:`search`
+
+.. include:: ../common/back_to_index.rst

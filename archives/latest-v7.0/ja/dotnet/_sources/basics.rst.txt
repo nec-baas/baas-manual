@@ -1,0 +1,132 @@
+========================
+NEC BaaS .NET API の基本
+========================
+
+非同期呼び出し (async/await)
+============================
+
+ほとんどの NEC BaaS .NET API は、非同期呼び出しとなります。
+非同期呼び出し API は、メソッドの名の末尾が "Async" となっています。
+
+非同期処理は async/await キーワードを使用して記述できます。
+
+以下に、オブジェクトをクエリする場合の例を示します。
+
+.. code-block:: csharp
+
+    public async void TestQueryAsync() 
+    {
+        NbObjectBucket bucket = NbObjectBucket.New("bucket1");
+
+        try {
+            var objects = await bucket.QueryAsync(new NbQuery());
+            foreach (var object in objects) {
+                ...
+            }
+        }
+        catch (Exception e) {
+            // 例外処理
+        }
+    }
+
+非同期処理には、async / await を使用します。
+
+非同期処理を行うメソッドには async キーワードを付与します。
+.NET SDK の非同期 API (上記例は QueryAsync)を呼び出す際は await キーワードを付与します。
+await 以下に記述されたコードは、非同期に実行されます。
+
+非同期エラーはすべて例外で処理されます。
+非同期処理中にエラーが発生した場合、await の実行時に例外がスローされますので、
+try 節で適宜処理してください。
+
+非同期呼び出し (Task)
+=====================
+
+async / await を使わず Task で処理したい場合は以下のようになります。
+以下のコードは、上記 async/await を使用するコードと等価です。
+
+.. code-block:: csharp
+
+    public void TestQueryAsync() 
+    {
+        NbObjectBucket bucket = NbObjectBucket.New("bucket1");
+
+        var task = bucket.QueryAsync(new NbQuery());
+        task.ContinueWith(_ =>
+        {
+            try {
+                var objects = _.Result;
+                foreach (var object in objects) {
+                    ...
+                }
+            } catch (Exception e) {
+                // 例外処理
+            }
+        });
+    }
+
+非同期処理は ContinueWith 内に lambda 式で記述します。
+非同期エラーが発生している場合は Result を取得する際に例外がスローされますので、
+try 節で適宜処理してください。
+
+同期呼び出し
+============
+
+同期呼び出しをする場合は、以下のような処理になります。
+
+.. code-block:: csharp
+
+    public void TestQuerySync() 
+    {
+        NbObjectBucket bucket = NbObjectBucket.New("bucket1");
+
+        try {
+            var objects = bucket.QueryAsync(new NbQuery()).Result;
+            foreach (var object in objects) {
+                ...
+            }
+        } catch (Exception e) {
+            // 例外処理
+        }
+    }
+
+Task.Result を呼び出すことで、同期呼び出しとなります。
+結果を取得するまで、処理はブロッキングされます。
+
+非同期エラーが発生している場合は Result 取得時に例外がスローされますので、
+try 節で適宜処理してください。
+
+.. _http_timeout_cancel:
+
+HTTPリクエストタイムアウト・キャンセル
+======================================
+
+HTTPリクエストタイムアウト時間の変更
+-------------------------------------
+
+デフォルトでは HTTP リクエストのタイムアウト時間は無限大となっています。
+
+この値は NbService の HttpTimeout で変更することができます。
+以下に例を示します。
+
+.. code-block:: csharp
+
+    NbService service = NbService.GetInstance();
+
+    // タイムアウトを2分に変更
+    service.HttpTimeout = TimeSpan.FromMinutes(2);
+
+タイムアウトが発生すると、TaskCanceledException 例外が送出されます。
+
+なお、一度でも HTTP リクエストを発行したあとでタイムアウト値を変更すると、
+既存の HTTP(S) のコネクションは再利用されず、再接続となりますので注意してください。
+
+HTTPリクエストキャンセル
+------------------------
+
+NbService.CancelPendingRequest() を呼び出すことで、発行中の HTTP リクエストを
+すべてキャンセルすることができます。
+
+リクエストをキャンセルすると、リクエスト元には TaskCanceledException 
+例外が送出されます。
+

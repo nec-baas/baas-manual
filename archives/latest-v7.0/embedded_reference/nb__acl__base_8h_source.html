@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: nb_acl_base.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_67ddc83a51c7c70dde674a18e8d37b86.html">necbaas</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">nb_acl_base.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="nb__acl__base_8h.html">説明を見る。</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * COPYRIGHT (C) 2017 NEC CORPORATION</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * ALL RIGHTS RESERVED BY NEC CORPORATION,  THIS PROGRAM</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * MUST BE USED SOLELY FOR THE PURPOSE FOR WHICH IT WAS</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * FURNISHED BY NEC CORPORATION,  NO PART OF THIS PROGRAM</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * MAY BE REPRODUCED OR DISCLOSED TO OTHERS,  IN ANY FORM</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * WITHOUT THE PRIOR WRITTEN PERMISSION OF NEC CORPORATION.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * NEC CONFIDENTIAL AND PROPRIETARY</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef NECBAAS_NBACLBASE_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NECBAAS_NBACLBASE_H</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__acl__permission_8h.html">necbaas/nb_acl_permission.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__json__object_8h.html">necbaas/nb_json_object.h</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>necbaas {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbAclBase.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnecbaas_1_1NbAclBase.html">NbAclBase</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classnecbaas_1_1NbAclBase.html#ae47ee0b35dfddeb04396b034591e779c">NbAclBase</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a28dd5f148db48d04aaa1f65bfe9f855b">~NbAclBase</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a914e8bea72aa3fe6274ecc79cbfbfb68">AddEntry</a>(<a class="code" href="namespacenecbaas.html#ac76358fcfdbb3133a0f4b2ba0616a231">NbAclPermission</a> permission, <span class="keyword">const</span> std::string &amp;entry);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">const</span> std::list&lt;std::string&gt; &amp;<a class="code" href="classnecbaas_1_1NbAclBase.html#ac65f5c805da3fb41b6ca1f5b3037588f">GetCreate</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">const</span> std::list&lt;std::string&gt; &amp;<a class="code" href="classnecbaas_1_1NbAclBase.html#a2af5ade116818435c8fd06bb6e64585f">GetDelete</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> std::list&lt;std::string&gt; &amp;<a class="code" href="classnecbaas_1_1NbAclBase.html#a74384cab82d836f6275f63871f9a45f2">GetRead</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">const</span> std::list&lt;std::string&gt; &amp;<a class="code" href="classnecbaas_1_1NbAclBase.html#aafcaecf67ba045e37ef38ed83c69ec71">GetUpdate</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">const</span> std::list&lt;std::string&gt; &amp;<a class="code" href="classnecbaas_1_1NbAclBase.html#a6be5c0c1119b841fecaa8cea08d9149f">GetWrite</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a14362b5e1bd94ae62300699e43cb4a7d">RemoveEntry</a>(<a class="code" href="namespacenecbaas.html#ac76358fcfdbb3133a0f4b2ba0616a231">NbAclPermission</a> permission, <span class="keyword">const</span> std::string &amp;entry);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#afd5de4f61f80d4994331292928e87e30">SetCreate</a>(<span class="keyword">const</span> std::list&lt;std::string&gt; &amp;create);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#ae5e721bae6b73558488788b5c0d7e17a">SetDelete</a>(<span class="keyword">const</span> std::list&lt;std::string&gt; &amp;del);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a3369e867312a0bd8921ccabc79721172">SetRead</a>(<span class="keyword">const</span> std::list&lt;std::string&gt; &amp;read);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a2fd36fd9fc1a555aca32deeb2bfff6f4">SetUpdate</a>(<span class="keyword">const</span> std::list&lt;std::string&gt; &amp;update);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#ac0819dbdb120f33c1f2f787eeeb72e03">SetWrite</a>(<span class="keyword">const</span> std::list&lt;std::string&gt; &amp;write);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a89f71033dff3bc813501a3465e02b21b">SetJson</a>(<a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> json);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> <a class="code" href="classnecbaas_1_1NbAclBase.html#a81ab2b7590d38b952ddaf6378802c456">ToJsonObject</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classnecbaas_1_1NbAclBase.html#a80aabce3dc2a579b392fd7cf287f5d43">ToJsonString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;   <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a9d99f39ba4e0ff595c507fce890f534b">SortUnique</a>(std::list&lt;std::string&gt; *acl_list);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbAclBase.html#a7273979748c44c7407c6cff0f517fdbd">SetEntries</a>(<span class="keyword">const</span> std::list&lt;std::string&gt; &amp;entries, std::list&lt;std::string&gt; *acl_list);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keyword">virtual</span> std::list&lt;std::string&gt; &amp;<a class="code" href="classnecbaas_1_1NbAclBase.html#a80c162c3290eb917a8c146c8b687042e">GetListByPermission</a>(<a class="code" href="namespacenecbaas.html#ac76358fcfdbb3133a0f4b2ba0616a231">NbAclPermission</a> permission);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="comment">// 重複チェックするためにlistを使用</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    std::list&lt;std::string&gt; read_;   </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    std::list&lt;std::string&gt; write_;  </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    std::list&lt;std::string&gt; create_; </div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    std::list&lt;std::string&gt; update_; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    std::list&lt;std::string&gt; delete_; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;};</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;}  <span class="comment">// namespace necbaas</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#endif  // NECBAAS_NBACLBASE_H</span></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a81ab2b7590d38b952ddaf6378802c456"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a81ab2b7590d38b952ddaf6378802c456">necbaas::NbAclBase::ToJsonObject</a></div><div class="ttdeci">virtual NbJsonObject ToJsonObject() const </div><div class="ttdoc">Jsonオブジェクトに変換する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a14362b5e1bd94ae62300699e43cb4a7d"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a14362b5e1bd94ae62300699e43cb4a7d">necbaas::NbAclBase::RemoveEntry</a></div><div class="ttdeci">void RemoveEntry(NbAclPermission permission, const std::string &amp;entry)</div><div class="ttdoc">対象権限からユーザIDを削除する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a89f71033dff3bc813501a3465e02b21b"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a89f71033dff3bc813501a3465e02b21b">necbaas::NbAclBase::SetJson</a></div><div class="ttdeci">virtual void SetJson(NbJsonObject json)</div><div class="ttdoc">JsonからACLをセットする. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a3369e867312a0bd8921ccabc79721172"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a3369e867312a0bd8921ccabc79721172">necbaas::NbAclBase::SetRead</a></div><div class="ttdeci">void SetRead(const std::list&lt; std::string &gt; &amp;read)</div><div class="ttdoc">readを許可するユーザ・グループの一覧を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a6be5c0c1119b841fecaa8cea08d9149f"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a6be5c0c1119b841fecaa8cea08d9149f">necbaas::NbAclBase::GetWrite</a></div><div class="ttdeci">const std::list&lt; std::string &gt; &amp; GetWrite() const </div><div class="ttdoc">writeが許可されたユーザ・グループの一覧を取得する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_ac65f5c805da3fb41b6ca1f5b3037588f"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#ac65f5c805da3fb41b6ca1f5b3037588f">necbaas::NbAclBase::GetCreate</a></div><div class="ttdeci">const std::list&lt; std::string &gt; &amp; GetCreate() const </div><div class="ttdoc">createが許可されたユーザ・グループの一覧を取得する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_ae5e721bae6b73558488788b5c0d7e17a"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#ae5e721bae6b73558488788b5c0d7e17a">necbaas::NbAclBase::SetDelete</a></div><div class="ttdeci">void SetDelete(const std::list&lt; std::string &gt; &amp;del)</div><div class="ttdoc">deleteを許可するユーザ・グループの一覧を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a80aabce3dc2a579b392fd7cf287f5d43"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a80aabce3dc2a579b392fd7cf287f5d43">necbaas::NbAclBase::ToJsonString</a></div><div class="ttdeci">virtual std::string ToJsonString() const </div><div class="ttdoc">Json文字列に変換する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a9d99f39ba4e0ff595c507fce890f534b"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a9d99f39ba4e0ff595c507fce890f534b">necbaas::NbAclBase::SortUnique</a></div><div class="ttdeci">void SortUnique(std::list&lt; std::string &gt; *acl_list)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbJsonObject_html"><div class="ttname"><a href="classnecbaas_1_1NbJsonObject.html">necbaas::NbJsonObject</a></div><div class="ttdoc">Jsonオブジェクト. </div><div class="ttdef"><b>Definition:</b> nb_json_object.h:34</div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a28dd5f148db48d04aaa1f65bfe9f855b"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a28dd5f148db48d04aaa1f65bfe9f855b">necbaas::NbAclBase::~NbAclBase</a></div><div class="ttdeci">virtual ~NbAclBase()</div><div class="ttdoc">デストラクタ. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_ae47ee0b35dfddeb04396b034591e779c"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#ae47ee0b35dfddeb04396b034591e779c">necbaas::NbAclBase::NbAclBase</a></div><div class="ttdeci">NbAclBase()</div><div class="ttdoc">コンストラクタ. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a7273979748c44c7407c6cff0f517fdbd"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a7273979748c44c7407c6cff0f517fdbd">necbaas::NbAclBase::SetEntries</a></div><div class="ttdeci">void SetEntries(const std::list&lt; std::string &gt; &amp;entries, std::list&lt; std::string &gt; *acl_list)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a914e8bea72aa3fe6274ecc79cbfbfb68"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a914e8bea72aa3fe6274ecc79cbfbfb68">necbaas::NbAclBase::AddEntry</a></div><div class="ttdeci">void AddEntry(NbAclPermission permission, const std::string &amp;entry)</div><div class="ttdoc">対象権限にユーザ・グループを追加する. </div></div>
+<div class="ttc" id="namespacenecbaas_html_ac76358fcfdbb3133a0f4b2ba0616a231"><div class="ttname"><a href="namespacenecbaas.html#ac76358fcfdbb3133a0f4b2ba0616a231">necbaas::NbAclPermission</a></div><div class="ttdeci">NbAclPermission</div><div class="ttdoc">ACLで使用する権限種別の列挙型. </div><div class="ttdef"><b>Definition:</b> nb_acl_permission.h:21</div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html">necbaas::NbAclBase</a></div><div class="ttdoc">ACL基底クラス. </div><div class="ttdef"><b>Definition:</b> nb_acl_base.h:29</div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a80c162c3290eb917a8c146c8b687042e"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a80c162c3290eb917a8c146c8b687042e">necbaas::NbAclBase::GetListByPermission</a></div><div class="ttdeci">virtual std::list&lt; std::string &gt; &amp; GetListByPermission(NbAclPermission permission)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a2fd36fd9fc1a555aca32deeb2bfff6f4"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a2fd36fd9fc1a555aca32deeb2bfff6f4">necbaas::NbAclBase::SetUpdate</a></div><div class="ttdeci">void SetUpdate(const std::list&lt; std::string &gt; &amp;update)</div><div class="ttdoc">updateを許可するユーザ・グループの一覧を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_afd5de4f61f80d4994331292928e87e30"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#afd5de4f61f80d4994331292928e87e30">necbaas::NbAclBase::SetCreate</a></div><div class="ttdeci">void SetCreate(const std::list&lt; std::string &gt; &amp;create)</div><div class="ttdoc">createを許可するユーザ・グループの一覧を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_aafcaecf67ba045e37ef38ed83c69ec71"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#aafcaecf67ba045e37ef38ed83c69ec71">necbaas::NbAclBase::GetUpdate</a></div><div class="ttdeci">const std::list&lt; std::string &gt; &amp; GetUpdate() const </div><div class="ttdoc">updateが許可されたユーザ・グループの一覧を取得する. </div></div>
+<div class="ttc" id="nb__acl__permission_8h_html"><div class="ttname"><a href="nb__acl__permission_8h.html">nb_acl_permission.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a74384cab82d836f6275f63871f9a45f2"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a74384cab82d836f6275f63871f9a45f2">necbaas::NbAclBase::GetRead</a></div><div class="ttdeci">const std::list&lt; std::string &gt; &amp; GetRead() const </div><div class="ttdoc">readが許可されたユーザ・グループの一覧を取得する. </div></div>
+<div class="ttc" id="nb__json__object_8h_html"><div class="ttname"><a href="nb__json__object_8h.html">nb_json_object.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_ac0819dbdb120f33c1f2f787eeeb72e03"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#ac0819dbdb120f33c1f2f787eeeb72e03">necbaas::NbAclBase::SetWrite</a></div><div class="ttdeci">void SetWrite(const std::list&lt; std::string &gt; &amp;write)</div><div class="ttdoc">writeを許可するユーザ・グループの一覧を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAclBase_html_a2af5ade116818435c8fd06bb6e64585f"><div class="ttname"><a href="classnecbaas_1_1NbAclBase.html#a2af5ade116818435c8fd06bb6e64585f">necbaas::NbAclBase::GetDelete</a></div><div class="ttdeci">const std::list&lt; std::string &gt; &amp; GetDelete() const </div><div class="ttdoc">deleteが許可されたユーザ・グループの一覧を取得する. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

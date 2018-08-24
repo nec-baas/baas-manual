@@ -1,0 +1,260 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS System Requirements &mdash; System Requirements 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="1. サーバ" href="server.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> System Requirements
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="server.html">1. サーバ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_changes.html">2. サーバ: v6.5 との主な差異</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">3. クライアント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devenv.html">4. 開発に必要な環境</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">System Requirements</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS System Requirements</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-system-requirements">
+<h1>NEC BaaS System Requirements<a class="headerlink" href="#nec-baas-system-requirements" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="server.html">1. サーバ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="server.html#api">1.1. 基本サーバ (API/コンソール)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html#sse-push">1.2. SSE Push サーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html#cloud-functions">1.3. Cloud Functions サーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="server_changes.html">2. サーバ: v6.5 との主な差異</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="server_changes.html#api">2.1. 基本サーバ (API/コンソール)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_changes.html#cloud-functions">2.2. Cloud Functions サーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">3. クライアント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="client.html#javascript-sdk">3.1. JavaScript SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html#android-sdk">3.2. Android SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html#java-sdk">3.3. Java SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html#net-sdk">3.4. .NET SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html#ios-sdk">3.5. iOS SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html#embedded-sdk">3.6. Embedded SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="devenv.html">4. 開発に必要な環境</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#javascript-sdk">4.1. JavaScript SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#android-sdk">4.2. Android SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#java-sdk">4.3. Java SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#net-sdk">4.4. .NET SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#ios-sdk">4.5. iOS SDK(※β版提供)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#nebula-cli">4.6. Nebula CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#cloud-functions">4.7. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devenv.html#embedded-sdk">4.8. Embedded SDK</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="server.html" class="btn btn-neutral float-right" title="1. サーバ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

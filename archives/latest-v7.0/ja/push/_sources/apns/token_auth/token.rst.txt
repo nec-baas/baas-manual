@@ -1,0 +1,32 @@
+==============================
+トークン認証 署名鍵の取得手順
+==============================
+
+トークン認証を使用するには、最初に署名鍵(秘密鍵)を取得する必要があります。
+
+App ID の登録
+==============
+
+Apple Developer サイトにて、アプリケーション登録を行い App ID を取得します。
+
+Apple Develoepr サイト → Certificates, Identifiers & Profiles → Identifiers → App IDs
+
+Note: App ID は Wildcard にしないでください。
+
+署名鍵
+=======
+
+App ID を取得できたら、次に署名鍵を作成します。
+以下サイトにアクセスします。
+
+Apple Develoepr サイト → Certificates, Identifiers & Profiles → Keys → All
+
+"+" ボタンを押して、キーを作成してください。
+この際、"KeyServices" には "APNs" を指定してください。
+
+キーを作成したら、ファイルに保存します。拡張子は .p8 となります。
+また、Key ID の値が必要になりますので、メモしてください。
+
+.. attention::
+
+   キーファイルは1度しかダウンロードできませんので、必ずバックアップするようにしてください。

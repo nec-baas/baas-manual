@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.11. テナント設定 - 基本設定 &mdash; Developer Console User Manual 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.12. テナント設定 - 外部ストレージ設定" href="tenant_config_storage.html" />
+    <link rel="prev" title="4.10. テナント管理者管理" href="developer.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../login.html">2. ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">3. システム管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. テナント管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="abstract.html">4.1. テナント管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">4.2. アプリケーション管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">4.3. ユーザ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html">4.4. グループ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object.html">4.5. オブジェクトバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file.html">4.6. ファイルバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apigw.html">4.7. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">4.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_stats.html">4.9. API統計情報</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html">4.10. テナント管理者管理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.11. テナント設定 - 基本設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">概要</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">論理削除オブジェクト保持期間の設定について</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_storage.html">4.12. テナント設定 - 外部ストレージ設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_acl.html">4.13. テナント設定 - 特殊バケットのACL設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_template.html">4.14. テナント設定 - テンプレート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_oidc.html">4.15. テナント設定 - OpenID Connect設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_client_cert.html">4.16. テナント設定 - クライアント証明書</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. テナント管理</a> &raquo;</li>
+        
+      <li>4.11. テナント設定 - 基本設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4.11. テナント設定 - 基本設定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>テナント全体の設定を行うことができます。設定可能なのは以下の項目になります。</p>
+<ul class="simple">
+<li>テナントの説明文</li>
+<li>セッショントークン有効時間<ul>
+<li>ユーザログイン時に払い出されるセッショントークンの有効時間を指定します。(デフォルトは 24時間)</li>
+</ul>
+</li>
+<li>論理削除オブジェクト保持期間<ul>
+<li>オブジェクトストレージ上の論理削除状態のオブジェクトの保持期間を指定します。</li>
+</ul>
+</li>
+<li>デフォルト外部ストレージ<ul>
+<li>ファイルストレージでデフォルト使用する外部ストレージを指定します。
+詳細は <a class="reference internal" href="tenant_config_storage.html#external-storage"><span class="std std-ref">テナント設定 - 外部ストレージ設定</span></a> を参照してください。</li>
+</ul>
+</li>
+<li>ユーザパスワードポリシ<ul>
+<li>パスワードの必要最低文字数 (デフォルトは 8 文字)</li>
+<li>パスワードの最大文字数 (デフォルトは 100 文字)</li>
+<li>パスワードに含める英大文字・英小文字・数字・記号の必要最低文字数 (デフォルトはすべて 0 文字)</li>
+</ul>
+</li>
+<li>アカウントロックポリシ<ul>
+<li>アカウントをロックするまでのログイン失敗回数 (デフォルトは 5回)</li>
+<li>アカウントロック時間 (デフォルトは 10分)</li>
+</ul>
+</li>
+<li>ユーザ登録・更新時の本人確認メール設定<ul>
+<li>ユーザ登録・更新時に登録メールアドレス宛に本人確認メールを送付するかどうかを指定します。 (デフォルトは無効)</li>
+<li>ユーザ登録・更新完了時に登録メールアドレス宛に本人通知メールを送付するかどうかを指定します。 (デフォルトは無効)</li>
+<li>ユーザ登録・更新実行時に払い出される本人確認トークンの有効期間を指定します。
+この期間を過ぎると、本人確認メールからユーザ登録・更新が完了できません。 (デフォルトは 24時間)</li>
+</ul>
+</li>
+<li>CORS 設定<ul>
+<li>CORS有効・無効</li>
+<li>CORS許可ドメイン (デフォルトは ‘*’)</li>
+<li>Access-Control-Allow-Credentials ヘッダ有効・無効</li>
+<li>CORS の詳細は、 <a class="reference external" href="../../developer/index.html">デベロッパーマニュアル</a> の
+<a class="reference external" href="../../developer/functions/cors.html">Cross Origin Resource Sharing</a> を参照してください。</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id4">
+<h3>論理削除オブジェクト保持期間の設定について<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>論理削除オブジェクト保持期間は、以下のようなポリシで決定してください。</p>
+<ul class="simple">
+<li>オフライン同期機能を使用しない場合は、論理削除オブジェクトを保持しておく必要はありません。
+小さい値 (0.01 など)を設定してください。</li>
+<li>オフライン同期機能を使用する場合は、端末に許容するオフライン期間から決定してください。<ul>
+<li>例えば、全端末必ず1日1回は接続して同期する、という運用であれば、24以上(余裕をみて48など)に設定してください。</li>
+<li>ここで設定した時間を超えてオフライン状態が続いた後に同期すると、サーバ側ですでに削除されたデータが端末側で消されず残り続けることになります。</li>
+</ul>
+</li>
+<li>データの追加・削除を頻繁に繰り返すような状況であまり保持期間を長くし過ぎると、論理削除オブジェクトが溜まり続けるため、検索性能の低下やストレージ容量の圧迫を招きます。必要最低限の期間に設定してください。<ul>
+<li>逆にデータの削除をほとんどしないようなケースでは長くしても問題ありません。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tenant_config_storage.html" class="btn btn-neutral float-right" title="4.12. テナント設定 - 外部ストレージ設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="developer.html" class="btn btn-neutral" title="4.10. テナント管理者管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

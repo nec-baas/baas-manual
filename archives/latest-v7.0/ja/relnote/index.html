@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS Release Note &mdash; Release Note 7.0.3 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="ごあいさつ" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Release Note
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">ごあいさつ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_features.html">新機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">改訂履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">リリース物件の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">マニュアルの読み方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caution.html">注意事項・制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Release Note</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS Release Note</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-release-note">
+<h1>NEC BaaS Release Note<a class="headerlink" href="#nec-baas-release-note" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">ごあいさつ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_features.html">新機能</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#id2">ライセンスキー認証</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#id4">オブジェクトストレージ機能強化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#openid-connect">OpenID Connect認証 アカウントリンク対応</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#windows-server-2016">Windows Server 2016 対応</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#rest-api-url">REST API の URL にテナント名が利用可能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#id6">セキュリティ強化</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">改訂履歴</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-7-0-2-ver-7-0-3">ver 7.0.2 → ver 7.0.3 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-7-0-0-ver-7-0-2">ver 7.0.0 → ver 7.0.2 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-6-5-3-ver-6-5-4">ver 6.5.3 → ver 6.5.4 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-6-5-x-ver-7-0-0">ver 6.5.x → ver 7.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-6-5-2-ver-6-5-3">ver 6.5.2 → ver 6.5.3 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-6-5-1-ver-6-5-2">ver 6.5.1 → ver 6.5.2 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-6-5-0-ver-6-5-1">ver 6.5.0 → ver 6.5.1 での変更点</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">リリース物件の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">マニュアルの読み方</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#nec">NECモバイルバックエンド基盤の概要を知るには</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id4">クライアントアプリケーションの開発</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#id5">サーバの構築</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="caution.html">注意事項・制限事項</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="caution.html#id2">注意事項</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caution.html#id3">制限事項</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="ごあいさつ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.3',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

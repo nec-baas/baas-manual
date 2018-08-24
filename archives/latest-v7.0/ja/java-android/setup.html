@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. SDKセットアップ手順 &mdash; Java/Android SDK Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. 初期化処理の実装" href="initialize.html" />
+    <link rel="prev" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Java/Android SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. SDKセットアップ手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nec-baas-java-android-sdk">2.1. NEC BaaS Java/Android SDK 配布物の内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#android">2.2. Androidネイティブアプリケーションの場合</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">2.2.1. 事前準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">2.2.2. プロジェクトへの組み込み</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#permission">2.2.3. Permission の追加</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pure-java">2.3. Pure Java アプリケーションの場合</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Java API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">10. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">11. オフライン機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">13. マイグレーションガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">14. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java/Android SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. SDKセットアップ手順</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sdk">
+<span id="sdk-setup"></span><h1>2. SDKセットアップ手順<a class="headerlink" href="#sdk" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここでは、モバイルバックエンド基盤 Java/Android SDK (以下 NEC BaaS Java/Android SDK)
+をアプリケーションに組み込む方法について説明します。</p>
+<div class="section" id="nec-baas-java-android-sdk">
+<h2>2.1. NEC BaaS Java/Android SDK 配布物の内容<a class="headerlink" href="#nec-baas-java-android-sdk" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NEC BaaS Java/Android SDK 配布物には、以下のようなファイルが格納されています。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libs</span><span class="o">/</span>
+  <span class="n">baas</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">core</span><span class="o">-*.</span><span class="n">jar</span>    <span class="p">:</span> <span class="n">Pure</span> <span class="n">Java</span> <span class="n">SDK</span> <span class="n">ライブラリ</span>
+  <span class="n">baas</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">android</span><span class="o">-*.</span><span class="n">jar</span> <span class="p">:</span> <span class="n">Android</span> <span class="n">SDK</span> <span class="n">ライブラリ</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">v7.0 より、SSE Push ライブラリは別配布となっています。</p>
+</div>
+</div>
+<div class="section" id="android">
+<h2>2.2. Androidネイティブアプリケーションの場合<a class="headerlink" href="#android" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Android ネイティブアプリケーションへの NEC BaaS Java/Android SDK の組み込み手順について説明します。</p>
+<div class="section" id="id20">
+<h3>2.2.1. 事前準備<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Oracle Java SE Development Kit (以下JDK) 8 以上、
+および <a class="reference external" href="http://developer.android.com/sdk/index.html">Android Studio / Android SDK</a> をインストールしておく必要があります。</p>
+<p>また、Android SDK については、以下のコンポーネントをインストールする必要があります。</p>
+<ul class="simple">
+<li>Android SDK Tools</li>
+<li>Android SDK Platform-tools</li>
+<li>Android SDK Build-tools</li>
+<li>Android SDK Platform: 6.0 (API 23) 以上</li>
+<li>Local Maven repository for Support Libraries</li>
+<li>Google Repository</li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h3>2.2.2. プロジェクトへの組み込み<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>アプリケーションプロジェクトディレクトリの直下に、libs ディレクトリを作成します。
+NEC BaaS Java/Android SDK の libs/ 以下の baas-client-core-*.jar, baas-client-android-*.jar
+の２つのファイルを libs ディレクトリにコピーしてください。</p>
+<p>また、build.gradle を以下のとおり修正します。</p>
+<p>repositories に flatDir の記述を追加します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">repositories</span> <span class="p">{</span>
+    <span class="n">jcenter</span><span class="p">()</span>
+    <span class="n">google</span><span class="p">()</span>
+    <span class="n">flatDir</span> <span class="p">{</span> <span class="nb">dir</span> <span class="s1">&#39;libs&#39;</span> <span class="p">}</span> <span class="o">//</span> <span class="n">この行を追加</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>次に dependencies に以下のように依存関係を追記してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dependencies {
+    implementation fileTree(dir: &#39;libs&#39;, include: &#39;*.jar&#39;)
+
+    implementation &#39;com.squareup.okhttp3:okhttp:3.10.0&#39;
+    implementation &#39;com.fasterxml.jackson.core:jackson-core:2.9.4&#39;
+    implementation &#39;commons-codec:commons-codec:1.10&#39;
+
+    // 以下1行はオフライン機能を使用する場合のみ記述してください。
+    implementation &#39;net.zetetic:android-database-sqlcipher:3.5.6@aar&#39;
+}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">v6.5.0 より、httpclient の依存関係は不要となり、かわりに okhttp の指定が必要となりました。
+また、useLibrary 'org.apache.http.legacy' 指定は不要となります。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">利用するライブラリのバージョンは、プロジェクトの判断で適宜
+アップデートしてください。</p>
+</div>
+<p>さらに、android に compileOptions と packagingOptions の記述を追加してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">android</span> <span class="p">{</span>
+    <span class="o">...</span>
+
+    <span class="o">//</span> <span class="n">以下の記述を追加</span>
+    <span class="n">compileOptions</span> <span class="p">{</span>
+        <span class="n">sourceCompatibility</span> <span class="n">JavaVersion</span><span class="o">.</span><span class="n">VERSION_1_8</span>
+        <span class="n">targetCompatibility</span> <span class="n">JavaVersion</span><span class="o">.</span><span class="n">VERSION_1_8</span>
+    <span class="p">}</span>
+
+    <span class="n">packagingOptions</span> <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="o">//</span> <span class="n">以下の記述を追加</span>
+        <span class="n">exclude</span> <span class="s1">&#39;AndroidManifest.xml&#39;</span>
+        <span class="n">exclude</span> <span class="s1">&#39;META-INF/LICENSE.txt&#39;</span>
+        <span class="n">exclude</span> <span class="s1">&#39;META-INF/LICENSE&#39;</span>
+        <span class="n">exclude</span> <span class="s1">&#39;META-INF/NOTICE&#39;</span>
+        <span class="n">exclude</span> <span class="s1">&#39;LICENSE.txt&#39;</span>
+        <span class="n">exclude</span> <span class="s1">&#39;LICENSE&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="permission">
+<h3>2.2.3. Permission の追加<a class="headerlink" href="#permission" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>AndroidManifest.xml を編集し、uses-permission を追加してください。</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pure-java">
+<h2>2.3. Pure Java アプリケーションの場合<a class="headerlink" href="#pure-java" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Pure Java アプリケーション(Android以外)の場合は、libs ディレクトリ内にある
+baas-client-core-*.jar ファイルをクラスパスに追加してください。</p>
+<p>さらに、Maven や Gradle を使用している場合は、以下パッケージを dependency に追加してください。</p>
+<ul class="simple">
+<li>'com.squareup.okhttp3:okhttp:3.10.0'</li>
+<li>'com.fasterxml.jackson.core:jackson-core:2.9.4'</li>
+<li>'commons-codec:commons-codec:1.10'</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">v6.2.0 より httpclient は不要となり、かわりに okhttp が追加となります。</p>
+</div>
+<p>Maven / Gradle を使用していない場合は、上記パッケージに対応する JAR ファイルを個別
+にダウンロードしクラスパスに追加してください。</p>
+<p>Gradle を使用する場合の build.gradle に記載する dependency の例を示します。</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="c1">// jar ファイルを libs ディレクトリ配置した場合の例</span>
+    <span class="n">implementation</span> <span class="nf">fileTree</span><span class="o">(</span><span class="nl">dir:</span> <span class="s1">&#39;libs&#39;</span><span class="o">,</span> <span class="nl">include:</span> <span class="s1">&#39;baas-client-core-*.jar&#39;</span><span class="o">)</span>
+
+    <span class="n">implementation</span> <span class="s1">&#39;com.squareup.okhttp3:okhttp:3.10.0&#39;</span>
+    <span class="n">implementation</span> <span class="s1">&#39;com.fasterxml.jackson.core:jackson-core:2.9.4&#39;</span>
+    <span class="n">implementation</span> <span class="s1">&#39;commons-codec:commons-codec:1.10&#39;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Maven を使用する場合の pom.xml に記載する dependency の例を示します。</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!-- jar ファイルを libs ディレクトリに配置した場合の例 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.nec.baas<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>baas-client-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>7.0.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>system<span class="nt">&lt;/scope&gt;</span>
+  <span class="nt">&lt;systemPath&gt;</span>${basedir}/libs/baas-client-core-7.0.0.jar<span class="nt">&lt;/systemPath&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.squareup.okhttp3<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>okhttp<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.10.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jackson-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.9.4<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>commons-codec<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>commons-codec<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.10<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">利用するライブラリのバージョンは、プロジェクトの判断で適宜
+アップデートしてください。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="initialize.html" class="btn btn-neutral float-right" title="3. 初期化処理の実装" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="1. はじめに" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

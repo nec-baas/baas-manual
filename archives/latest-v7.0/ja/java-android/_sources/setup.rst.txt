@@ -1,0 +1,193 @@
+.. _sdk_setup:
+
+===================
+SDKセットアップ手順
+===================
+
+.. include:: ../common/linkdef.rst
+
+ここでは、モバイルバックエンド基盤 Java/Android SDK (以下 NEC BaaS Java/Android SDK)
+をアプリケーションに組み込む方法について説明します。
+
+NEC BaaS Java/Android SDK 配布物の内容
+======================================
+
+NEC BaaS Java/Android SDK 配布物には、以下のようなファイルが格納されています。
+
+::
+
+  libs/
+    baas-client-core-*.jar    : Pure Java SDK ライブラリ
+    baas-client-android-*.jar : Android SDK ライブラリ
+
+.. attention::
+
+   v7.0 より、SSE Push ライブラリは別配布となっています。
+
+Androidネイティブアプリケーションの場合
+=======================================
+
+Android ネイティブアプリケーションへの NEC BaaS Java/Android SDK の組み込み手順について説明します。
+
+事前準備
+--------
+
+Oracle Java SE Development Kit (以下JDK) 8 以上、
+および `Android Studio / Android SDK`_ をインストールしておく必要があります。
+
+また、Android SDK については、以下のコンポーネントをインストールする必要があります。
+
+* Android SDK Tools
+* Android SDK Platform-tools
+* Android SDK Build-tools
+* Android SDK Platform: 6.0 (API 23) 以上
+* Local Maven repository for Support Libraries
+* Google Repository
+
+プロジェクトへの組み込み
+------------------------
+
+アプリケーションプロジェクトディレクトリの直下に、libs ディレクトリを作成します。
+NEC BaaS Java/Android SDK の libs/ 以下の baas-client-core-\*.jar, baas-client-android-\*.jar
+の２つのファイルを libs ディレクトリにコピーしてください。
+
+また、build.gradle を以下のとおり修正します。
+
+repositories に flatDir の記述を追加します。
+
+
+::
+
+    repositories {
+        jcenter()
+        google()
+        flatDir { dir 'libs' } // この行を追加
+    }
+
+
+次に dependencies に以下のように依存関係を追記してください。
+
+::
+
+    dependencies {
+        implementation fileTree(dir: 'libs', include: '*.jar')
+
+        implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+        implementation 'com.fasterxml.jackson.core:jackson-core:2.9.4'
+        implementation 'commons-codec:commons-codec:1.10'
+
+        // 以下1行はオフライン機能を使用する場合のみ記述してください。
+        implementation 'net.zetetic:android-database-sqlcipher:3.5.6@aar'
+    }
+
+.. note::
+
+   v6.5.0 より、httpclient の依存関係は不要となり、かわりに okhttp の指定が必要となりました。
+   また、useLibrary 'org.apache.http.legacy' 指定は不要となります。
+
+.. note::
+
+   利用するライブラリのバージョンは、プロジェクトの判断で適宜
+   アップデートしてください。
+
+さらに、android に compileOptions と packagingOptions の記述を追加してください。
+
+::
+
+    android {
+        ...
+
+        // 以下の記述を追加
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        packagingOptions {
+            ...
+            // 以下の記述を追加
+            exclude 'AndroidManifest.xml'  
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/NOTICE'
+            exclude 'LICENSE.txt'
+            exclude 'LICENSE'
+        }
+    }
+
+
+Permission の追加
+-----------------
+
+AndroidManifest.xml を編集し、uses-permission を追加してください。
+
+.. code-block:: xml
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+Pure Java アプリケーションの場合
+================================
+
+Pure Java アプリケーション(Android以外)の場合は、libs ディレクトリ内にある
+baas-client-core-\*.jar ファイルをクラスパスに追加してください。
+
+さらに、Maven や Gradle を使用している場合は、以下パッケージを dependency に追加してください。
+
+* 'com.squareup.okhttp3:okhttp:3.10.0'
+* 'com.fasterxml.jackson.core:jackson-core:2.9.4'
+* 'commons-codec:commons-codec:1.10'
+
+.. note::
+
+   v6.2.0 より httpclient は不要となり、かわりに okhttp が追加となります。
+
+Maven / Gradle を使用していない場合は、上記パッケージに対応する JAR ファイルを個別
+にダウンロードしクラスパスに追加してください。
+
+Gradle を使用する場合の build.gradle に記載する dependency の例を示します。
+
+.. code-block:: groovy
+
+    dependencies {
+        // jar ファイルを libs ディレクトリ配置した場合の例
+        implementation fileTree(dir: 'libs', include: 'baas-client-core-*.jar')
+
+        implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+        implementation 'com.fasterxml.jackson.core:jackson-core:2.9.4'
+        implementation 'commons-codec:commons-codec:1.10'
+    }
+
+Maven を使用する場合の pom.xml に記載する dependency の例を示します。
+
+.. code-block:: xml
+
+    <!-- jar ファイルを libs ディレクトリに配置した場合の例 -->
+    <dependency>
+      <groupId>com.nec.baas</groupId>
+      <artifactId>baas-client-core</artifactId>
+      <version>7.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/libs/baas-client-core-7.0.0.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.10.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.9.4</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.10</version>
+    </dependency>
+
+.. note::
+
+   利用するライブラリのバージョンは、プロジェクトの判断で適宜
+   アップデートしてください。

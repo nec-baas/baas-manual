@@ -1,0 +1,135 @@
+.. _api_gateway:
+
+============
+API Gateway
+============
+
+ここでは、API Gateway に登録したカスタム REST API を呼び出す方法について説明します。
+
+CustomApi インスタンスの生成
+============================
+
+API 呼び出し前に CustomApi インスタンスを生成します。
+以下に例を示します。
+
+.. code-block:: javascript
+
+    var sayHello = new Nebula.CustomApi("hello", "GET", "sayHello");
+
+コンストラクタには３つの引数を指定します。
+
+* 第1引数: カスタムAPIの名前を指定します
+* 第2引数: HTTP メソッドを文字列で指定します。GET, POST, PUT, DELETE のいずれかを指定します。
+* 第3引数: カスタムAPI のサブパスを指定します。
+
+API の実行
+==========
+
+APIを呼び出すには execute() を使用します。
+
+.. code-block:: javascript
+
+    sayHello.execute({name: "Taro Nichiden"})
+        .then(function(response) {
+            // 成功時の処理
+            // response: レスポンス
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+            // errorにはエラー要因がJSON 形式で返る。内容は以下のとおり。
+            //  - status        : ステータスコード
+            //  - statusText    : エラーメッセージ
+            //  - responseText  : レスポンスメッセージ
+        });
+
+リクエストデータの指定
+-----------------------
+
+execute の引数には、サーバに引き渡すデータを指定します。
+データの指定方法は、HTTP メソッドにより異なります。
+
+メソッドが GET/DELETE の場合は、データはクエリパラメータに格納されます。
+データは JSON Object として用意してください。キー・値がそれぞれクエリパラメータの名前・値となります。
+
+メソッドが POST/PUT の場合は、データはリクエストボディに格納されます。
+
+* 文字列を指定した場合は、文字列がそのままボディに格納されます。
+* Object を指定した場合は、JSON文字列に変換されます。
+* Blob および Buffer を指定した場合は、バイナリデータが格納されます。
+
+Content-Type を指定したい場合は、setContentType で指定します。
+以下に JSON を送信する場合の例を示します。
+
+.. code-block:: javascript
+
+    var api = new Nebula.CustomApi("api1", "GET", "method1")
+        .setContentType("application/json");
+
+    api.execute({key1: 100, key2: 200})
+       .then(...)
+
+レスポンスデータの受信
+----------------------
+
+API呼び出しが成功した場合は、then() でレスポンスを受信します。
+
+* 受信データがテキストデータ(JSON含む)だった場合は文字列でレスポンスが渡されます。
+* 受信データがバイナリデータだった場合は、Blob (ブラウザの場合)または Buffer (Node.jsの場合)オブジェクトが渡されます。
+
+バイナリデータを受信したい場合は、API呼び出し時に setBinaryResponse() を指定する必要があります。
+以下に例を示します。
+
+.. code-block:: javascript
+
+    var api = new Nebula.CustomApi("api1", "GET", "get_file")
+        .setBinaryResponse();
+
+    api.execute({filename: "file1.jpg"})
+        .then(function(response) {
+            // response は blob または buffer
+        })
+        .catch(function(error) {
+            ...
+        });
+
+.. attention::
+
+  バイナリでデータを受け取る場合、エラー発生時はステータスコードのみが取得可能です。
+  (ステータステキストやレスポンステキストは取得不可)
+
+レスポンスヘッダの受信
+----------------------
+
+レスポンスヘッダを合わせて受信したい場合は、setReceiveResponseHeaders() を実施する
+必要があります。また、then() で受け取るレスポンスの形式が変更になります。
+
+以下に例を示します。
+
+.. code-block:: javascript
+
+    var api = new Nebula.CustomApi("hello", "GET", "sayHello")
+        .setReceiveResponseHeaders(true); // レスポンスヘッダを受信する設定
+
+    api.execute({filename: "file1.jpg"})
+        .then(function(response) {
+            var body = response.body; // ボディ
+            var headers = response.headers; // ヘッダ
+            var contentType = headers["content-type"];
+            ...
+        })
+        .catch(function(error) {
+            ...
+        });
+
+上記の通り、then() で受け取るレスポンスは、以下のようなオブジェクトとなります。
+headers に格納されるヘッダ名は全て小文字に正規化されます。
+
+.. code-block:: javascript
+
+    {
+        body: ...,  // ボディ(文字列, JSON, blob, buffer など)
+        headers: {  // ヘッダ
+            "content-type": "application/json",
+            ...
+        }
+    }

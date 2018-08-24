@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. ユーザ管理 &mdash; .NET SDK Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="6. グループ管理" href="group.html" />
+    <link rel="prev" title="4. NEC BaaS .NET API の基本" href="basics.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> .NET SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">1. 動作環境・必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS .NET API の基本</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. ユーザ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#login">5.2. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#onetime-token-login">5.3. ワンタイムトークンログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5.4. ログイン状態の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">5.5. ログアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">5.6. パスワードリセット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">5.7. オフラインログイン</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ: クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">10. オブジェクトストレージ(オフライン)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">11. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html">13. 注意事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">14. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">.NET SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. ユーザ管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. ユーザ管理<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではユーザ管理機能の利用方法について説明します。</p>
+<div class="section" id="id2">
+<h2>5.1. サインアップ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザを新規登録します。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">NbUser</span> <span class="n">user</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NbUser</span><span class="p">();</span>
+
+<span class="c1">// ユーザ名とE-mail アドレスを設定</span>
+<span class="c1">// (Email は必須、ユーザ名はオプション)</span>
+<span class="n">user</span><span class="p">.</span><span class="n">Username</span> <span class="p">=</span> <span class="s">&quot;taro_nichiden&quot;</span><span class="p">;</span>
+<span class="n">user</span><span class="p">.</span><span class="n">Email</span> <span class="p">=</span> <span class="s">&quot;taro@example.com&quot;</span><span class="p">;</span>
+
+<span class="c1">// サインアップ実行</span>
+<span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="k">await</span> <span class="n">user</span><span class="p">.</span><span class="n">SignUpAsync</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>まずはじめに NbUser のインスタンスを取得します。</p>
+<p>つぎに、username と email を設定し、SignUpAsync() を呼び出してサインアップを行います。
+登録が成功すると、登録された NbUser のインスタンスが返却されます。</p>
+</div>
+<div class="section" id="login">
+<span id="id3"></span><h2>5.2. ログイン<a class="headerlink" href="#login" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// username でログインする場合</span>
+<span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="k">await</span> <span class="n">NbUser</span><span class="p">.</span><span class="n">LoginWithUsernameAsync</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+
+<span class="c1">// email でログインする場合</span>
+<span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="k">await</span> <span class="n">NbUser</span><span class="p">.</span><span class="n">LoginWithEmailAsync</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>ログインが完了すると、ログイン状態(セッショントークン)がメモリ上に保存されます。</p>
+</div>
+<div class="section" id="onetime-token-login">
+<span id="id4"></span><h2>5.3. ワンタイムトークンログイン<a class="headerlink" href="#onetime-token-login" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>SAML/OIDCを使用したワンタイムトークンログインは以下のように実施します。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// ログイン用のパラメータ作成</span>
+<span class="kt">var</span> <span class="n">param</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NbUser</span><span class="p">.</span><span class="n">LoginParam</span><span class="p">()</span> <span class="p">{</span> <span class="n">Token</span> <span class="p">=</span> <span class="n">onetimeToken</span> <span class="p">};</span>
+
+<span class="c1">// ログイン</span>
+<span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="k">await</span> <span class="n">NbUser</span><span class="p">.</span><span class="n">LoginAsync</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">service</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>SAML/OIDCログインについては、 <a class="reference external" href="../auth/index.html">認証機能ガイド</a>
+の「ADFS/SAML認証」および「OpenID Connect認証」の「アプリケーションの開発」
+⇒「Nativeアプリケーション(C#)」を参照してください。</p>
+</div>
+<div class="section" id="id6">
+<h2>5.4. ログイン状態の取得<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザがログイン状態かどうかは IsLoggedIn() で確認できます。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">NbUser</span><span class="p">.</span><span class="n">IsLoggedIn</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// ログイン中</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>5.5. ログアウト<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログアウトは LogoutAsync() で行います。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">NbUser</span><span class="p">.</span><span class="n">LogoutAsync</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>5.6. パスワードリセット<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// username でリセットする場合</span>
+<span class="k">await</span> <span class="n">NbUser</span><span class="p">.</span><span class="n">ResetPasswordWithUsernameAsync</span><span class="p">(</span><span class="n">username</span><span class="p">);</span>
+
+<span class="c1">// email でリセットする場合</span>
+<span class="k">await</span> <span class="n">NbUser</span><span class="p">.</span><span class="n">ResetPasswordWithEmailAsync</span><span class="p">(</span><span class="n">email</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>username と email のいずれかを使ってパスワードをリセットします。
+パスワードリセットを実行すると、確認メールがユーザに送信されます。</p>
+</div>
+<div class="section" id="id9">
+<h2>5.7. オフラインログイン<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オフラインログイン機能を使用する場合は、NbUser の代わりに NbOfflineUser クラスを
+使用して下さい。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">user</span> <span class="p">=</span> <span class="k">await</span> <span class="n">NbOfflineUser</span><span class="p">.</span><span class="n">LoginWithUsernameAsync</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">LoginMode</span><span class="p">.</span><span class="n">Auto</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>第3引数に LoginMode を指定します。LoginMode には以下のいずれかの値を使用できます。</p>
+<ul class="simple">
+<li>LoginMode.Online : オンラインログインを行います。ログインに成功すると、ログインキャッシュが作成されます。</li>
+<li>LoginMode.Offline : オフラインログインを行います。ログインキャッシュが予め作成されている必要があります。</li>
+<li>LoginMode.Auto : ネットワークが接続されていればオンラインログイン、接続されていなければオフラインログインを行います。</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group.html" class="btn btn-neutral float-right" title="6. グループ管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="basics.html" class="btn btn-neutral" title="4. NEC BaaS .NET API の基本" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

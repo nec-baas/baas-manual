@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS Java / Android SDK Guide &mdash; Java/Android SDK Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Java/Android SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Java API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">10. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">11. オフライン機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">13. マイグレーションガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">14. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Java/Android SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS Java / Android SDK Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-java-android-sdk-guide">
+<h1>NEC BaaS Java / Android SDK Guide<a class="headerlink" href="#nec-baas-java-android-sdk-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#nec-baas-java-android-sdk">2.1. NEC BaaS Java/Android SDK 配布物の内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#android">2.2. Androidネイティブアプリケーションの場合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#pure-java">2.3. Pure Java アプリケーションの場合</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="initialize.html#nbservice">3.1. NbService の生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialize.html#id3">3.2. 動作モードの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialize.html#id4">3.3. 自己署名証明書を使用する場合の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Java API の基本</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#id1">4.1. 非同期呼び出し</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id2">5.1. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id3">5.2. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id4">5.3. ログイン状態の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id5">5.4. ログアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id6">5.5. パスワードリセット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id7">5.6. クライアント証明書認証</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id2">6.1. グループの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id3">6.2. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id4">6.3. グループの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id5">6.4. グループの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id6">6.5. グループの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id1">7.1. バケットの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id2">7.2. オブジェクトの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id4">7.3. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id5">7.4. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id6">7.5. オブジェクトの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id7">7.6. バッチリクエスト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ:クエリ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="object_query.html#id2">8.1. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_query.html#id3">8.2. クエリ条件の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_query.html#id6">8.3. ソート順序の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_query.html#id7">8.4. スキップ数・検索上限数の指定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="object_aggregation.html#id21">9.1. 集計条件の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_aggregation.html#id22">9.2. 集計の実行</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">10. ファイルストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id2">10.1. バケットの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id3">10.2. ファイルの新規アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id4">10.3. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id5">10.4. ファイル一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id6">10.5. ファイルのダウンロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id7">10.6. ファイルの公開</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">11. オフライン機能</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="object_offline.html#nec-baas-android-sdk">11.1. NEC BaaS Android SDK ライブラリの初期化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_offline.html#id2">11.2. オフラインログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_offline.html#id3">11.3. オブジェクトストレージ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_gateway.html#id1">12.1. API Gatewayの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_gateway.html#id2">12.2. ヘッダとクエリパラメータ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_gateway.html#id3">12.3. バイナリデータの取得</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">13. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-0-7-0-0">13.1. ver 6.5.0 → 7.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-0-0-6-5-0">13.2. ver 6.0.0 → 6.5.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-5-0-1-6-0-0">13.3. ver 5.0.1 → 6.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-5-0-0-5-0-1">13.4. ver 5.0.0 → 5.0.1 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-4-0-0-5-0-0">13.5. ver 4.0.0 → 5.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-3-0-0-4-0-0">13.6. ver 3.0.0 → 4.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-1-2-3-3-0-0">13.7. ver 1.2.3 →3.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-1-2-2-1-2-3">13.8. ver 1.2.2 → 1.2.3 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-1-2-1-1-2-2">13.9. ver 1.2.1 → 1.2.2 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-1-2-0-1-2-1">13.10. ver 1.2.0 → 1.2.1 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-1-1-0-1-2-0-api">13.11. ver 1.1.0 → 1.2.0 での API 変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-1-0-0-1-1-0-api">13.12. ver 1.0.0 → 1.1.0 での API 変更点</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">14. 制限事項</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="restrictions.html#id2">14.1. 同時コネクション数・スレッド数制限</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. はじめに" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

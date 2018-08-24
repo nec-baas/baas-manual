@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>14. マイグレーションガイド &mdash; .NET SDK Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="13. 注意事項" href="notes.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> .NET SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">1. 動作環境・必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS .NET API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ: クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">10. オブジェクトストレージ(オフライン)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">11. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html">13. 注意事項</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">14. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-7-0-0">14.1. ver 6.5.0 → 7.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api-gateway-api">14.1.1. API Gateway 実行用のAPI追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aggregation-api">14.1.2. Aggregation 実行用のAPI追加</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-4-0-1-6-5-0">14.2. ver 4.0.1 → 6.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#saml-openid-connect-api">14.2.1. SAML/OpenID Connect 認証用の API (ワンタイムトークンログイン) の追加</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-4-0-0-4-0-1">14.3. ver 4.0.0 → 4.0.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#restapi">14.3.1. RESTリクエストタイムアウト・キャンセルAPIの追加</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">.NET SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>14. マイグレーションガイド</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>14. マイグレーションガイド<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>本章では、.NET SDK の以前のバージョンからの
+API の変更点や移行方法について説明します。</p>
+<div class="section" id="ver-6-5-0-7-0-0">
+<h2>14.1. ver 6.5.0 → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-0-7-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="api-gateway-api">
+<h3>14.1.1. API Gateway 実行用のAPI追加<a class="headerlink" href="#api-gateway-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>API Gateway向けの呼び出しを行うための NbApiGatewayクラスを追加しました。
+詳細は、<a class="reference internal" href="api_gateway.html"><span class="doc">API Gateway</span></a> を参照下さい。</p>
+</div>
+<div class="section" id="aggregation-api">
+<h3>14.1.2. Aggregation 実行用のAPI追加<a class="headerlink" href="#aggregation-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>NbObjectBucketにAggregation(集計)実行用のAPI AggregateAsync() を追加しました。
+詳細は、 <a class="reference internal" href="object_aggregation.html"><span class="doc">オブジェクトの集計</span></a> を参照下さい。</p>
+</div>
+</div>
+<div class="section" id="ver-4-0-1-6-5-0">
+<h2>14.2. ver 4.0.1 → 6.5.0 での変更点<a class="headerlink" href="#ver-4-0-1-6-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="saml-openid-connect-api">
+<h3>14.2.1. SAML/OpenID Connect 認証用の API (ワンタイムトークンログイン) の追加<a class="headerlink" href="#saml-openid-connect-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ログインAPI NbUser.LoginAsync() を追加しました。
+詳細は、<a class="reference internal" href="user.html#onetime-token-login"><span class="std std-ref">ワンタイムトークンログイン</span></a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="ver-4-0-0-4-0-1">
+<h2>14.3. ver 4.0.0 → 4.0.1 での変更点<a class="headerlink" href="#ver-4-0-0-4-0-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="restapi">
+<h3>14.3.1. RESTリクエストタイムアウト・キャンセルAPIの追加<a class="headerlink" href="#restapi" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>HTTP REST リクエストのタイムアウト設定、およびリクエストキャンセルAPIを追加しました。
+詳細は、<a class="reference internal" href="basics.html#http-timeout-cancel"><span class="std std-ref">HTTPリクエストタイムアウト・キャンセル</span></a> を参照してください。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="notes.html" class="btn btn-neutral" title="13. 注意事項" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

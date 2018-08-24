@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. 公開サーバのセットアップ &mdash; Node-RED User Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="4. 利用パターン" href="patterns.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Node-RED User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_setting.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">3. 利用方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">4. 利用パターン</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. 公開サーバのセットアップ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">5.1. 事前準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">5.2. Node-RED のインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">5.3. Node-RED の起動確認</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nec-baas">5.4. NEC BaaS ノードのインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">5.5. Node-RED の自動起動</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">5.6. プロキシの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#server-setting-firewall">5.7. ファイアウォールの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id27">5.8. Node-RED の環境設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id28">5.9. その他</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Node-RED User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. 公開サーバのセットアップ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>5. 公開サーバのセットアップ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>下記内容は、 公開サーバとして Node-RED 検証環境を構築する場合のインストール手順です。 NECCI (RHEL7.1)　向けのセットアップを想定しています。検証/テスト環境を構築する場合等、必要な方のみ参照してください。
+(他 OS 環境の場合は、注釈に記載のURLを参照してください)</p>
+<div class="section" id="id21">
+<h2>5.1. 事前準備<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>開発環境のセットアップに記載の 「<a class="reference internal" href="dev_setting.html#dev-setting-preparation"><span class="std std-ref">事前準備</span></a>」 を参照してください。</p>
+</div>
+<div class="section" id="id22">
+<h2>5.2. Node-RED のインストール<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>開発環境のセットアップに記載の  「<a class="reference internal" href="dev_setting.html#dev-setting-installation"><span class="std std-ref">Node-RED のインストール</span></a>」  を参照してください。</p>
+</div>
+<div class="section" id="id23">
+<h2>5.3. Node-RED の起動確認<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>開発環境のセットアップに記載の 「<a class="reference internal" href="dev_setting.html#dev-setting-startup"><span class="std std-ref">Node-RED の起動確認</span></a>」 を参照してください。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Node-RED を公開サーバとして利用する場合、環境によっては Linux のファイアーウォール設定でポート開放を行う必要があります。詳細は後述の  「<a class="reference internal" href="#server-setting-firewall"><span class="std std-ref">ファイアウォールの設定</span></a>」 を参照してください。</p>
+</div>
+</div>
+<div class="section" id="nec-baas">
+<h2>5.4. NEC BaaS ノードのインストール<a class="headerlink" href="#nec-baas" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>開発環境のセットアップに記載の  「<a class="reference internal" href="dev_setting.html#dev-setting-baas-node"><span class="std std-ref">NEC BaaS ノードのインストール</span></a>」  を参照してください。</p>
+</div>
+<div class="section" id="id24">
+<h2>5.5. Node-RED の自動起動<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">本節以降は必要に応じて実施してください。</p>
+</div>
+<p>Node-RED を自動起動(サービス化)する方法はいくつかありますが、以下では PM2 を使用する例を記載します。
+PM2 は Node.js アプリ向けのプロセス管理ツール(サービスアプリ)です。</p>
+<p>PM2 をインストールします。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo npm install -g pm2
+</pre></div>
+</div>
+<p>Node-RED を自動起動するため、以下設定を行ってください。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pm2 start /usr/bin/node-red -- -v
+※ PM2 に node-red アプリの位置を指定<span class="o">(</span>which node-red コマンドで確認<span class="o">)</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>メモリ使用量に制約がある環境で Node-RED を動作させる場合は、 Node-RED が動作する Node.js プロセスにパラメータを渡す必要があります。以下は ヒープサイズ 制限を 128MB とした場合の例です。</p>
+<p class="last">$ pm2 start /usr/bin/node-red --node-args=&quot;--max-old-space-size=128&quot; -- -v</p>
+</div>
+<p>以下のコマンドを実行して画面に表示される指示に従ってください。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pm2 save
+$ pm2 startup
+</pre></div>
+</div>
+<p>systemd を利用するには以下のようにします。以下を実行後、画面に表示される指示に従ってください。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pm2 startup systemd
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">root 以外のユーザアカウントで PM2 をインストールした場合は、手動で
+/etc/init.d/pm2-init.sh ファイルを修正する必要があります。
+export PM2_HOME=&quot;/root/.pm2&quot;　を export PM2_HOME=&quot;/home/{youruser}/.pm2&quot;
+のように修正します。
+( systemd 等を使用しない場合は、上記修正が必要となる場合があります)</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">詳細は <a class="reference external" href="https://nodered.jp/docs/">Node-REDドキュメント</a> の「起動」を参照してください。</p>
+</div>
+<p>設定完了後、サーバの再起動等を行い、 Node-RED が自動起動することを確認してください。</p>
+<p>pm2 でよく使用するコマンドを以下に記載します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pm2 list
+※ 監視対象の Node.js アプリ一覧表示。
+
+$ pm2 start node-red
+※ 既に PM2 に Node-RED が登録済みの場合は上記で開始。
+
+$ pm2 restart node-red
+※ Node-RED を再起動。
+
+$ pm2 stop node-red
+※ Node-RED を停止。
+
+$ pm2 delete node-red
+※ PM2 に登録された Node-RED を解除。
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>5.6. プロキシの設定<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>開発環境のセットアップに記載の  「<a class="reference internal" href="dev_setting.html#dev-setting-proxy"><span class="std std-ref">プロキシの設定</span></a>」 を参照してください。</p>
+</div>
+<div class="section" id="server-setting-firewall">
+<span id="id26"></span><h2>5.7. ファイアウォールの設定<a class="headerlink" href="#server-setting-firewall" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Node-RED を公開サーバとして利用する場合(外部ネットワークからのアクセスを想定)、利用環境によっては Linux のファイアーウォール設定でポート開放を行う必要があります。
+以下は RHEL7(CentOS7) の環境で 1880/TCP ポートの開放を行う場合の例です。</p>
+<ul class="simple">
+<li>[--permanent]　を付けると再起動後も設定が維持されます。</li>
+<li>以下は公開サーバ( zone が public )の場合の例です。 zone を個別に設定する場合は適宜変更してください。詳細は <a class="reference external" href="https://fedoraproject.org/wiki/FirewallD/jp/">Fedora Wikiサイト</a> を参照してください。</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --get-active-zones <span class="c1"># interfaces に割り当てられている zone を確認。 public 等が表示される</span>
+$ sudo firewall-cmd --list-all --zone<span class="o">=</span>public <span class="c1"># 許可されているサービス/ポートの一覧表示</span>
+$ sudo firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span><span class="m">1880</span>/tcp --permanent  <span class="c1"># ゾーンpublicにTCPポート1880を永久に追加</span>
+$ sudo firewall-cmd --reload  <span class="c1"># 設定を反映</span>
+</pre></div>
+</div>
+<p>削除する場合は以下となります。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --remove-port<span class="o">=</span><span class="m">1880</span>/tcp --zone<span class="o">=</span>public --permanent  <span class="c1"># ゾーンpublicにTCPポート1880を永久に削除</span>
+$ sudo firewall-cmd --reload  <span class="c1"># 設定を反映</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h2>5.8. Node-RED の環境設定<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>開発環境のセットアップに記載の  「<a class="reference internal" href="dev_setting.html#dev-setting-nodered-env"><span class="std std-ref">Node-RED の環境設定</span></a>」 を参照してください。</p>
+</div>
+<div class="section" id="id28">
+<h2>5.9. その他<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>PM2 のアンインストール方法</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo npm uninstall -g pm2
+</pre></div>
+</div>
+<p>上記以外のアンインストール方法は、開発環境のセットアップに記載の 「<a class="reference internal" href="dev_setting.html#dev-setting-others"><span class="std std-ref">その他</span></a>」 を参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="patterns.html" class="btn btn-neutral" title="4. 利用パターン" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

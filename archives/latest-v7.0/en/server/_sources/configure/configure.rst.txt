@@ -1,0 +1,179 @@
+.. _configuration:
+
+============
+その他の設定
+============
+
+.. include:: ../../common/linkdef.rst
+
+メモリ使用量の設定
+==================
+
+BaaS サーバは、最低限 256MB のヒープ領域を必要とします。
+
+ヒープサイズは JVM のオプションで指定します。
+以下にオプション例を示します。
+::
+
+  -Xmx2048m -Xms1024m
+
+JVM オプションの設定手順については、使用する AP サーバのマニュアルを参照ください。
+
+ログレベルの設定
+================
+
+:ref:`config-loglevel` を参照してください。
+
+.. index::
+   single: プロファイル
+
+プロファイルの選択
+==================
+
+BaaS サーバは、本番・開発・テストの3種類のプロファイル(環境)を切り替えることができます。
+
+* production (本番) : 実運用時に使用するプロファイル
+* development (開発) : 開発時や評価時に使用するプロファイル
+* test (テスト) : 自動テスト実行時に使用するプロファイル
+
+データベースは、各プロファイル毎に個別に用意されます。
+従って、開発プロファイルで BaaS サーバを起動すれば、
+本番環境には影響せずテスト利用を行うことができます。
+
+プロファイルはデフォルトで "development" になっています。
+
+.. attention::
+
+  production と develop の間に機能の差異は全くありません。
+  使用する設定ファイルと MongoDB データベースの名前空間が別々になっているだけです。
+
+システムプロパティで指定する場合
+---------------------------------
+
+APサーバの JVM オプションでシステムプロパティ spring.profiles.active を設定
+することでプロファイルを変更することができます。
+
+::
+
+    -Dspring.profiles.active=production 
+
+Tomcat の場合、catalina.sh/catalina.bat を起動する際の環境変数 JAVA_OPTS に上記値が設定
+されるようにしてください。
+
+web.xml で指定する場合
+-----------------------
+
+web.xml ファイルでプロファイルを指定することが可能です。
+
+web.xml は、WARファイル内の WEB-INF/web.xml にあります。
+(ソースコード上は  ${SRCROOT}/api/src/main/webapp/WEB-INF/web.xml と 
+${SRCROOT}/console/src/main/webapp/WEB-INF/web.xml の２箇所にあります)
+
+web.xml に以下のように指定することで、プロファイルを固定できます。
+なお、web.xml で指定を行った場合、システムプロパティの値は参照されません。
+
+::
+
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>production</param-value>
+    </context-param>
+
+
+.. index::
+   single: MongoDB
+
+.. _config_mongodb:
+
+MongoDB の設定
+==============
+
+MongoDB の設定は、上記設定ファイルで行います。
+デフォルト設定は、シングルホストでlocalhost:27017 に接続、認証なしという設定となっています。
+
+シングルホストの場合
+--------------------
+
+シャーディング、レプリカセットいずれもなしの場合、mongo.servers プロパティに
+mongod を動作させるホスト名とポート番号を指定します。デフォルトは 'localhost:27017' と
+なっています。
+
+シャーディング環境の場合
+------------------------
+
+シャーディング環境の場合は、mongo.servers プロパティに mongos のホスト名、ポート番号
+を指定します。通常は、mongos は APサーバと同一ホストで動作させるので、
+デフォルトの 'localhost:27017' の指定のままで構いません。
+
+レプリカセット環境(シャーディングなし)の場合
+--------------------------------------------
+
+レプリカセット(シャーディングなし)の場合、mongo.servers プロパティに
+レプリカセットを構成する mongod ３台分のホスト名、ポート番号を
+カンマで区切って設定します。
+
+MongoDB 認証
+------------
+
+デフォルトでは MongoDB の認証は使用しない設定となっていますが、
+MongoDB を分離したネットワークで運用するのでなければ、
+セキュリティ上認証を使用するようにすべきです。
+
+認証の設定手順は以下のとおりです。
+
+まず最初に認証なしで mongod を起動します。
+
+ついで、mongod にアクセスするための管理権限アカウントを作成します。
+以下の手順で MongoDB の admin データベース上に root ロールを持つユーザを作成します。
+ユーザ名とパスワードは user: pwd: で指定します。値は適宜変更してください。
+
+.. code-block:: bash
+
+  $ mongo admin
+  > db.createUser({user: "baas",  pwd: "Passw0rD", roles: [{ role:"root", db:"admin" }]});
+  > exit
+
+次に、MongoDB 側の認証を有効にします。
+mongod.conf ファイルに以下の記述を追加します
+(MongoDB の設定ファイルの詳細は `Configuration File Options`_ を参照)。
+追記したら mongod を再起動してください。
+
+.. code-block:: yaml
+
+  security:
+    authorization: enabled
+
+.. note::
+
+  mongod.conf の形式が YAML 形式でない旧フォーマット(MongoDB 2.4 形式)の場合は、
+  'auth = true' という行を追加してください (詳細は `2.4 configuration file format`_ を参照)。
+
+
+次に、BaaS 側で MongoDB の認証の設定を行います。
+mongo.username, mongo.password プロパティにそれぞれユーザ名とパスワードを
+設定してください。
+
+システム設定
+=============
+
+いくつかの設定は、デベロッパーコンソールの「システム設定」で行ってください。
+詳細は `システム設定 <../../devconsole/system/system_config.html>`_ を参照してください。
+
+.. _config-alpn:
+
+ALPN 設定
+=========
+
+APNs Push (iOS Push) を使用する際、v6.0.x 以前のバージョンでは
+ALPN (Application Layer Protocol Negotiation) 拡張設定が必要でしたが、
+v6.2.0 より本設定は不要となりました。
+
+v6.0.x 以前からアップグレードした場合、Tomcat 起動時の -Xbootclasspath オプションでの
+alpn-boot-\*.jar ファイル指定は不要となりますので、削除してください。
+
+SSE Push サーバの設定
+=====================
+
+SSE Push 機能を使用する場合は設定が必要です。
+
+設定手順については、`Push通知ガイド <../../push/index.html>`_ の「SSE Push」の章を参照してください。

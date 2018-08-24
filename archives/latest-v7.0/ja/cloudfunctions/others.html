@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. その他補足情報 &mdash; Cloud Functions Developer Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="8. 制限事項" href="restrictions.html" />
+    <link rel="prev" title="6. 認証・セキュリティ" href="auth.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project-dir.html">3. プロジェクトディレクトリの作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodejs.html">4. Node.js での開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="java.html">5. Java での開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証・セキュリティ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. その他補足情報</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#node-js">7.1. 外部ライブラリの使用 (Node.js)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java">7.2. 外部ライブラリの使用 (Java)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">7.3. Docker コンテナの起動単位</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.4. タイムアウト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">8. 制限事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. その他補足情報</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>7. その他補足情報<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="node-js">
+<h2>7.1. 外部ライブラリの使用 (Node.js)<a class="headerlink" href="#node-js" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Node.js カスタムコードでは、外部のライブラリを使用することができます。</p>
+<p>npm で配布されている外部ライブラリを使用する場合は、
+&quot;npm install [パッケージ名] --save-dev&quot; としてパッケージを package.json に
+保存したうえで、&quot;bundledDependencies&quot; にパッケージ名を指定してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">外部ライブラリが依存するライブラリも含めすべて指定する必要があります。</p>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">サーバ側ではカスタムコード実行前に &quot;npm install&quot; は実行「しません」。
+したがって、必要なファイルはすべてコード内にパッケージングしておく必要があります。</p>
+</div>
+</div>
+<div class="section" id="java">
+<h2>7.2. 外部ライブラリの使用 (Java)<a class="headerlink" href="#java" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Java カスタムコードでは、外部のライブラリを使用することができます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">Cloud Functions にアップロードする JAR ファイルには、外部ライブラリも含めておく必要があります。</p>
+</div>
+<p>なお、以下のライブラリは Cloud Functions サーバ側に含まれますので、JARに含める必要はありません。</p>
+<ul class="simple">
+<li>Cloud Functions SDK ライブラリ</li>
+<li>Nebula クライアントライブラリ</li>
+<li>slf4j-api</li>
+<li>jackson-databind</li>
+</ul>
+</div>
+<div class="section" id="docker">
+<span id="docker-run"></span><h2>7.3. Docker コンテナの起動単位<a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Docker コンテナは、ファンクションの単位で起動されます。</p>
+<ul class="simple">
+<li>ファンクション定義が異なるリクエストは場合は、必ず異なる Docker コンテナで処理されます。</li>
+<li>ファンクション定義が同一のリクエストは、同一の Docker コンテナで処理される場合があります。<ul>
+<li>Cloud Functionsサーバが1台のみの場合は必ず同一のコンテナになります。複数台のサーバに負荷分散されている場合は、異なるサーバに分散されたリクエストはもちろん異なるコンテナで動作することになります。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>Node.js では、同一コンテナ上でリクエストを処理する場合は１つのプロセス上で複数のリクエストが同時に実行されます。
+このためグローバルオブジェクトを使用すると他のリクエストにも影響が及びますのでご注意ください。</p>
+<p class="last">なお、モバイルバックエンド基盤 JavaScript SDK のハンドラはリクエスト毎に空間を分離していますので、
+問題はありません。</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>7.4. タイムアウト<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>各ハンドラは、ファンクション定義で指定されたタイムアウト時間(env.timeout)
+以内に応答を返却しなければなりません。</p>
+<p>この時間が経過しても応答がなかった場合、動作中のファンクションは強制停止され、
+クライアントには 504 Gateway Timeout エラーを返却します。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="restrictions.html" class="btn btn-neutral float-right" title="8. 制限事項" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="auth.html" class="btn btn-neutral" title="6. 認証・セキュリティ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

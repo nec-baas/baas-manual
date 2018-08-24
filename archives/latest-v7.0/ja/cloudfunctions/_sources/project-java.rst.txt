@@ -1,0 +1,72 @@
+.. _java_setup:
+
+===============================
+Java プロジェクトのセットアップ
+===============================
+
+.. include:: ../common/linkdef.rst
+
+サンプルプロジェクト
+====================
+
+サンプルプロジェクトを別途配布しています。このサンプルを参考に、Java 開発用のプロジェクトを作成してください。
+
+ビルドツールには Maven を使用することを推奨します。
+
+pom.xml の設定
+==============
+
+Maven を使用する際、pom.xml には以下のような設定が必要です。
+(サンプルプロジェクトでは設定済み)
+
+プロジェクトのタイプ(packaging)は "jar" にしてください。
+(ビルド成果物として JAR ファイルが一個生成されるようにする)
+
+プロジェクトには以下２つのライブラリを追加する必要があります。
+
+* cloudfn-sdk-\*.jar : Cloud Functions Java クライアントライブラリ
+* baas-client-core-\*.jar : モバイルバックエンド基盤 Java クライアントライブラリ
+
+また、slf4j-api ライブラリが必要となります。
+
+Maven を使用する場合の pom.xml に記載する dependency の例を示します。
+
+.. code-block:: xml
+
+    <!-- jar ファイルを libs ディレクトリに配置した場合の例 -->
+    <dependency>
+      <groupId>com.nec.baas</groupId>
+      <artifactId>baas-client-core</artifactId>
+      <version>7.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/libs/baas-client-core-7.0.0.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.nec.baas.cloudfn.sdk</groupId>
+      <artifactId>cloudfn-sdksdk</artifactId>
+      <version>7.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/libs/cloudfn-sdk-7.0.0.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.10.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.9.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
+.. attention::
+
+  Cloud Functions Java クライアントライブラリおよび，モバイルバックエンド基盤 Java クライアントライブラリのバージョンは，モバイルバックエンド基盤サーバのバージョンと合わせる必要があります．
+
+  モバイルバックエンド基盤サーバのバージョンを上げた場合には，上記の２ライブラリのバージョンも上げていただいた上で，Cloud Functions のコードを再ビルド・再登録する必要があります．

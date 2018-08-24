@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.3. 動作概要 &mdash; Authentication Developer Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.4. システムの事前設定" href="setup_system.html" />
+    <link rel="prev" title="5.2. 用語" href="glossary.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. ADFS / SAML 認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">5.2. 用語</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.3. 動作概要</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#web">5.3.1. Web アプリケーションの場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.3.2. ネイティブアプリケーションの場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setup_system.html">5.4. システムの事前設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idp.html">5.5. IdP 側の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">5.6. BaaSサーバの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register.html">5.7. 認証時のユーザ・グループ自動登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devel.html">5.8. アプリケーションの開発</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attention.html">5.9. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. ADFS / SAML 認証</a> &raquo;</li>
+        
+      <li>5.3. 動作概要</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5.3. 動作概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここでは SAML 認証を利用する場合の動作シーケンスについて説明します。</p>
+<div class="section" id="web">
+<h2>5.3.1. Web アプリケーションの場合<a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Web アプリケーションの場合の動作シーケンスは以下のとおりです。
+ここで「コンテンツサーバ」は Web アプリケーションのコンテンツ(HTML + JavaScript)
+を提供するサーバです。</p>
+<a class="reference internal image-reference" href="../_images/SAML_Sequence_WebApp.png"><img alt="../_images/SAML_Sequence_WebApp.png" src="../_images/SAML_Sequence_WebApp.png" style="width: 604.8px; height: 469.2px;" /></a>
+<ol class="arabic simple">
+<li>ブラウザはコンテンツサーバにアクセスし、コンテンツを取得します。</li>
+<li>コンテンツサーバは、SAML 認証を行うタイミング(認証ボタンをおしたときなど)に、BaaS サーバの SAML 認証 URL にリダイレクトします。</li>
+<li>BaaS サーバは認証に必要な Cookie を発行した後、IdP にリダイレクトします。</li>
+<li>IdP は認証画面を出すなどして認証を実行します。</li>
+<li>認証が完了したら、IdP は認証情報を BaaS サーバにリダイレクトします。</li>
+<li>BaaS サーバは認証情報を確認した後、ログイン用のワンタイムトークンを URL に付加してコンテンツサーバにリダイレクトします。</li>
+<li>Web アプリケーションは URL からワンタイムトークンを取得し、これを使用して BaaS のログインAPIを呼び出します。</li>
+<li>ログインが完了すると BaaS はセッショントークンを払い出します。</li>
+</ol>
+<p>上記のうち、1, 2, 7 の処理については Web アプリケーション側で実装する必要があります。</p>
+</div>
+<div class="section" id="id2">
+<h2>5.3.2. ネイティブアプリケーションの場合<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ネイティブアプリケーション(Windows, Android, iOS)の場合の動作シーケンスは以下のとおりです。</p>
+<a class="reference internal image-reference" href="../_images/SAML_Sequence_NativeApp.png"><img alt="../_images/SAML_Sequence_NativeApp.png" src="../_images/SAML_Sequence_NativeApp.png" style="width: 730.1999999999999px; height: 503.4px;" /></a>
+<ol class="arabic simple">
+<li>SAML 認証結果を受け取るための Local Web Server(リスナー)を作成します (カスタムURIスキームを利用できない場合)。</li>
+<li>SAML 認証を行うために、ブラウザを起動して BaaS サーバの SAML 認証 URL にアクセスします。</li>
+<li>BaaS サーバは認証に必要な Cookie を発行した後、IdP にリダイレクトします。</li>
+<li>IdP は認証画面を出すなどして認証を実行します。</li>
+<li>認証が完了したら、IdP は認証情報を BaaS サーバにリダイレクトします。</li>
+<li>BaaS サーバは認証情報を確認した後、ログイン用のワンタイムトークンを URL に付加し、指定された URL にリダイレクトします。</li>
+<li>ネイティブアプリケーションはリダイレクトされた URL からワンタイムトークンを取得し、これを使用して SDK から BaaS のログインAPIを呼び出します。</li>
+<li>ログインが完了すると BaaS はセッショントークンを払い出します。</li>
+</ol>
+<p>上記のうち、1, 2, 7 の処理についてはネイティブアプリケーション側で実装する必要があります。</p>
+<p>リダイレクト URL の受け取り方法については以下の２通りがあります。</p>
+<ul class="simple">
+<li>カスタムURIスキームを使用する: Android, iOS の場合は、アプリケーション毎に定義したカスタムURIスキームを利用できます。</li>
+<li>ローカルWebサーバを使用する: PCのデスクトップアプリのようにカスタムURIスキームを使用できない場合は、アプリケーション内にローカルWebサーバを立ち上げ、<a class="reference external" href="http://">http://</a> でリダイレクトURIを受け取ります。</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="setup_system.html" class="btn btn-neutral float-right" title="5.4. システムの事前設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="glossary.html" class="btn btn-neutral" title="5.2. 用語" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

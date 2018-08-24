@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. Swagger ベンダ拡張 リファレンス &mdash; API Gateway Developer Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="10. CLIツール コマンドリファレンス" href="cli.html" />
+    <link rel="prev" title="8. カスタムAPIの実行" href="exec.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> API Gateway Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-http.html">3. API 定義の作成 (HTTP Proxy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-amqp.html">4. API 定義の作成 (RabbitMQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-register.html">5. API定義の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">6. リクエスト・レスポンスマッピング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">7. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exec.html">8. カスタムAPIの実行</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Swagger ベンダ拡張 リファレンス</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">9.1. ベンダ拡張の優先順位</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x-acl">9.2. x-acl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x-proxy">9.3. x-proxy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#type-http">9.3.1. type = http の場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-amqp-publish-amqp-consume">9.3.2. type = amqp-publish または amqp-consume の場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">10. CLIツール コマンドリファレンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">API Gateway Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>9. Swagger ベンダ拡張 リファレンス</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="swagger">
+<span id="vendor-extension"></span><span id="index-0"></span><h1>9. Swagger ベンダ拡張 リファレンス<a class="headerlink" href="#swagger" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>API Gateway では、Swagger に対してベンダ拡張を行っています。
+ベンダ拡張はすべて &quot;x-&quot; で始まる名称となります。</p>
+<div class="section" id="id1">
+<h2>9.1. ベンダ拡張の優先順位<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ベンダ拡張は Swagger のトップレベル、Path、Operation の３レベルに個別に指定することができます。
+複数指定した場合は、原則後者が優先となります。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">swagger</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.0&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">basePath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/hello</span>
+<span class="l l-Scalar l-Scalar-Plain">x-acl</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user1</span> <span class="c1"># トップレベル</span>
+<span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/sayHello</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">x-acl</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user2</span>  <span class="c1"># Path レベル</span>
+    <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">operationId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sayHello</span>
+      <span class="l l-Scalar l-Scalar-Plain">summary</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Hello world</span>
+      <span class="l l-Scalar l-Scalar-Plain">x-acl</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">user3</span> <span class="c1"># Operation レベル。この例ではこの値が使用される。</span>
+</pre></div>
+</div>
+<p>ただし、x-proxy については指定した Object の内容がマージされるようになっています。
+この場合も、各フィールドについてはトップレベル &lt; Path &lt; Operation の順に、後者が優先されるようにマージされます。</p>
+</div>
+<div class="section" id="x-acl">
+<h2>9.2. x-acl<a class="headerlink" href="#x-acl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>x-acl は、各 API に対するアクセス制御を行います。</p>
+<p>x-acl には API を実行可能なユーザID、グループ名の一覧を配列で指定します。
+グループ名を指定する場合は先頭に &quot;g:&quot; プレフィクスを付与します。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">swagger</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.0&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">basePath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/hello</span>
+<span class="l l-Scalar l-Scalar-Plain">produces</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+<span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/sayHello</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">operationId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sayHello</span>
+      <span class="l l-Scalar l-Scalar-Plain">summary</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Hello world</span>
+      <span class="l l-Scalar l-Scalar-Plain">x-acl</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">g:authenticated</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x-proxy">
+<span id="xproxy"></span><h2>9.3. x-proxy<a class="headerlink" href="#x-proxy" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>x-proxy にリクエストの proxy に必要な情報を Object 形式で記述します。</p>
+<p>proxy の &quot;type&quot; フィールドに proxy の種別を指定します。指定できる値は以下のいずれかです。
+省略時は &quot;http&quot; となります。</p>
+<ul class="simple">
+<li>&quot;http&quot; : HTTP Proxy を行う</li>
+<li>&quot;amqp-publish&quot;: RabbitMQ に送信(publish)を行う</li>
+<li>&quot;amqp-consume&quot;: RabbitMQ から受信(consume)を行う</li>
+</ul>
+<div class="section" id="type-http">
+<h3>9.3.1. type = http の場合<a class="headerlink" href="#type-http" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>HTTP Proxy の場合は、x-proxy に以下の値を記述します。</p>
+<ul class="simple">
+<li>uri (必須): Proxy 先の URI。http, https のみ使用可能です。</li>
+<li>relativePath (オプション): Proxy 先の URI相対パス。&quot;uri&quot; で指定された URI に連結されます。</li>
+<li>method (必須): HTTP Proxy 時のリクエストメソッド。GET/POST/PUT/DELETE のいずれか。</li>
+<li>request (オプション): リクエストのマッピング規則</li>
+<li>response (オプション): レスポンスのマッピング規則</li>
+</ul>
+<p>request, response の詳細については、<a class="reference internal" href="mapping.html#req-rsp-mapping"><span class="std std-ref">リクエスト・レスポンスマッピング</span></a> を参照してください。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">swagger</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.0&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">basePath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/api1</span>
+<span class="l l-Scalar l-Scalar-Plain">produces</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+<span class="l l-Scalar l-Scalar-Plain">x-proxy</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://api.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/products</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">x-proxy</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">relativePath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/products</span>
+        <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">GET</span>
+        <span class="l l-Scalar l-Scalar-Plain">request</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$pass</span>
+            <span class="l l-Scalar l-Scalar-Plain">mapping</span><span class="p p-Indicator">:</span>
+              <span class="l l-Scalar l-Scalar-Plain">Referrer</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$drop</span>
+              <span class="l l-Scalar l-Scalar-Plain">Accept</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+          <span class="l l-Scalar l-Scalar-Plain">queryParams</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$drop</span>
+            <span class="l l-Scalar l-Scalar-Plain">mapping</span><span class="p p-Indicator">:</span>
+              <span class="l l-Scalar l-Scalar-Plain">token</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">${request.queryParams.secret}</span>
+              <span class="l l-Scalar l-Scalar-Plain">query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">$pass</span>
+        <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">body</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">jsonPatch</span><span class="p p-Indicator">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">op</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">remove</span>
+                <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/secret</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="type-amqp-publish-amqp-consume">
+<h3>9.3.2. type = amqp-publish または amqp-consume の場合<a class="headerlink" href="#type-amqp-publish-amqp-consume" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RabbitMQ 接続の場合、x-proxy には以下の値を記述します。</p>
+<ul class="simple">
+<li>type (必須): 送信時は amqp-publish を、受信時は amqp-consume を指定します。</li>
+<li>addrs (必須): RabbitMQ クラスタのホスト/ポート番号の組を指定します。</li>
+<li>host (必須): RabbitMQ ホストを指定します。</li>
+<li>port (必須): RabbitMQ ポート番号を指定します。</li>
+<li>username (必須): RabbitMQ 認証ユーザ名を指定します。</li>
+<li>password (必須): RabbitMQ 認証パスワードを指定します。</li>
+<li>vhost (オプション): バーチャルホスト名を指定します。</li>
+</ul>
+<p>上記のうち、addrs または host/port のいずれかのみ必須(もう一方はオプション)です。</p>
+<ul class="simple">
+<li>addrs には [&quot;ホスト名:ポート番号&quot;, &quot;ホスト名:ポート番号&quot;] のように，ホスト名とポートの組をリストで指定します．</li>
+<li>addrs ではなく host, port を指定する場合はホストは１台しか指定できません。</li>
+</ul>
+<p>送信時(amqp-publish)には以下の値を指定します。</p>
+<ul class="simple">
+<li>exchange (必須): 送信先の Exchange 名を指定します。</li>
+<li>routingKey (必須): Routing Key を指定します。</li>
+<li>confirm (オプション): true を指定すると送信時 ack を待ちます。</li>
+</ul>
+<p>受信時(amqp-consume)には以下の値を指定します。</p>
+<ul class="simple">
+<li>queue (必須): キュー名を指定します。</li>
+<li>timeout (オプション): タイムアウト時間をミリ秒で指定します。指定がない場合はポーリングになります。</li>
+</ul>
+<p>以下に例を示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">swagger</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.0&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">basePath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/amqp</span>
+<span class="l l-Scalar l-Scalar-Plain">x-proxy</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">addrs</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">rabbitmq1.example.com:5672</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">rabbitmq2.example.com:5672</span>
+  <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+  <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">guest</span>
+  <span class="l l-Scalar l-Scalar-Plain">vhost</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">vhost1</span>
+<span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/publish/{id}</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">post</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">x-proxy</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">amqp-publish</span>
+        <span class="l l-Scalar l-Scalar-Plain">exchange</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">exchange1</span>
+        <span class="l l-Scalar l-Scalar-Plain">routingKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">${request.pathParams.id}</span>
+        <span class="l l-Scalar l-Scalar-Plain">confirm</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="l l-Scalar l-Scalar-Plain">/consume/{id}</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">x-proxy</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">amqp-consume</span>
+        <span class="l l-Scalar l-Scalar-Plain">queue</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">${request.pathParams.id}</span>
+        <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10000</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cli.html" class="btn btn-neutral float-right" title="10. CLIツール コマンドリファレンス" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="exec.html" class="btn btn-neutral" title="8. カスタムAPIの実行" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

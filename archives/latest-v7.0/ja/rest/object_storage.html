@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. オブジェクトストレージ &mdash; REST API Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="5. セキュリティ : ACL" href="acl.html" />
+    <link rel="prev" title="3. ユーザ管理機能" href="user_management.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">1. チュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">2. REST API の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_management.html">3. ユーザ管理機能</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. オブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">4.1. オブジェクトバケットの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">4.2. オブジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">4.3. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">4.4. オブジェクトの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">4.5. クエリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id26">4.5.1. 条件指定クエリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">4.5.2. 順序指定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#skip-limit">4.5.3. skip / limit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id28">4.6. 更新</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">4.6.1. 部分更新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">4.6.2. 完全上書き</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id31">4.7. 削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="acl.html">5. セキュリティ : ACL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">6. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">7. PUSH</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. オブジェクトストレージ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. オブジェクトストレージ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>JSON 形式でオブジェクトを保存、読み出しすることができます。</p>
+<p>オブジェクトは「バケット」毎に分類されます。
+バケットとは、SQL データベースでいうところの「テーブル」に該当する概念で、
+同一種類のオブジェクトを格納する入れ物です。</p>
+<p>オブジェクトストレージの API エンドポイントは以下の URL となります。</p>
+<blockquote>
+<div><a class="reference external" href="https:/">https:/</a>/{server}/api/1/{tenant}/objects/{bucketName}</div></blockquote>
+<div class="section" id="id21">
+<h2>4.1. オブジェクトバケットの作成<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトを格納する前に、オブジェクトバケットを作成しておく必要があります。</p>
+<p>バケットの作成はデベロッパーコンソールで行うことができます。
+また、REST API や各 SDK から実行することも可能です。</p>
+</div>
+<div class="section" id="id22">
+<h2>4.2. オブジェクトの作成<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \
+ <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;name&quot;:&quot;Foo&quot;, &quot;score&quot;:80}&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+<p>ここでは scores バケットに JSON オブジェクトを書き込んでいます。</p>
+<p>正常にオブジェクトが書き込まれると、200 OK が返り、以下のように作成されたオブジェクトが返却されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;521c36d4ac521e1ffa000007&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>'_id' にはオブジェクトのIDが入ります。</li>
+<li>'ACL' には、以下で説明する ACL が入ります。</li>
+<li>'createdAt はオブジェクトの作成時刻です</li>
+<li>'updatedAt はオブジェクトの更新時刻です</li>
+</ul>
+<p>主なステータスコードは以下の通り。</p>
+<ul class="simple">
+<li>200 OK : 正常登録した</li>
+<li>400 Bad Request : パラメータ/リクエストボディ不正</li>
+<li>401 Unauthorized : 認証エラー</li>
+<li>403 Forbidden :権限エラー</li>
+<li>404 Not Found : バケットが存在しない</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h2>4.3. アクセス制御<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトには ACL (Access Control List)を設定することで、アクセス制御
+を行うことができます。</p>
+<p>ACL は、オブジェクト作成時に 'ACL' キーを指定することで設定します。</p>
+<p>ACL キー内の 'owner' キーに、オブジェクトのオーナのユーザIDを指定します。
+オーナはオブジェクトの読み書きの権限がすべて与えられます。</p>
+<p>ACL キー内の 'r' に読み込み可能なユーザ一覧、'w' に書き込み・削除
+可能なユーザ一覧を配列で指定します。</p>
+<p>また、グループ名を指定することも可能です。グループ名を指定する場合は
+&quot;g:groupA&quot; のように先頭に &quot;g:&quot; を付与してください。</p>
+<p>なお、ログイン済み全ユーザを表す &quot;authenticated&quot; グループと、
+未ログインユーザ全員を表す &quot;anonymous&quot; グループも使用できます。</p>
+<p>ユーザ・グループ、いずれかの条件に合致すると、オブジェクトへのアクセスが
+許可されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;score&quot;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:groupA&quot;</span><span class="p">],</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上記の例では、誰でも読み込み可能で、書き込みは groupA が可能。
+オーナとなる 52116f01ac521e1742000001 ユーザはすべて可能という指定となります。</p>
+<p>なお、ACL を指定せずにオブジェクトを作成した場合は、以下のような動作となります。</p>
+<ul class="simple">
+<li>X-Session-Token ヘッダでセッショントークンを送信した状態でオブジェクトを作成すると、そのユーザIDでのみ読み書き可能な状態でオブジェクトが作成されます。</li>
+<li>X-Session-Token ヘッダが送信されない状態でオブジェクトを作成した場合、誰でも読み書き可能な状態でオブジェクトが作成されます。</li>
+<li>いずれの場合もグループは指定されません。</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h2>4.4. オブジェクトの取得<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトIDを指定することでデータを読み出します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span><span class="o">/</span><span class="mi">52117490</span><span class="n">ac521e5637000001</span>
+</pre></div>
+</div>
+<p>以下のように結果が得られます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="p">[]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>createdAt はオブジェクトの作成時刻、updatedAt はオブジェクトの更新時刻です。</p>
+<p>主なステータスコードは以下のとおりです:</p>
+<ul class="simple">
+<li>200 OK : 正常にオブジェクトを取得した</li>
+<li>400 Bad Request : リクエストが不正</li>
+<li>401 Unauthorized : 認証エラー</li>
+<li>403 Forbidden : 読み出し権限がない</li>
+<li>404 Not Found : 該当するオブジェクトがない、または読み込み権限がない</li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h2>4.5. クエリ<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下のようにすると、すべてのオブジェクトのリストを読み出します。
+ただし、読み出し権限がないオブジェクトは取得されません。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+<p>結果は、以下のよう、results 内に、配列でオブジェクトが格納された形で得られます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;results&quot;</span><span class="p">:[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span>
+      <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="p">[]</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id26">
+<h3>4.5.1. 条件指定クエリ<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>条件指定は where= パラメータで行う。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">G</span> \
+ <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;where={&quot;name&quot;:&quot;Foo&quot;}&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+<p>where には JSON でパラメータを指定します。</p>
+<p>特定のキーに対して完全一致させたい場合は、以下のように JSON で指定します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>比較を行う場合は、以下の演算子を利用できます。</p>
+<ul class="simple">
+<li>$lt, $gt : Less Than / Greater Than</li>
+<li>$lte, $gte : Less or Equal / Greater of Equal</li>
+<li>$ne : Not equal to</li>
+</ul>
+<p>例) score が 70 超のものを選択したい場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gt&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>その他の演算子。これらは MongoDB のクエリがそのまま使用できます。</p>
+<ul class="simple">
+<li>$in</li>
+<li>$nin</li>
+<li>$all</li>
+<li>$regex</li>
+<li>$exists</li>
+<li>$not</li>
+<li>$and</li>
+<li>$or</li>
+<li>$nor</li>
+</ul>
+</div>
+<div class="section" id="id27">
+<h3>4.5.2. 順序指定<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>順序指定は order パラメータで行います。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">G</span> \
+ <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;order=age&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+<p>order に指定したキーの昇順でソートされます。</p>
+<p>降順にしたい場合は &quot;order=-age&quot; のように &quot;-&quot; を付けてください。</p>
+</div>
+<div class="section" id="skip-limit">
+<h3>4.5.3. skip / limit<a class="headerlink" href="#skip-limit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>limit で検索件数上限、skip でスキップする検索数を指定できます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">G</span> \
+ <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;skip=100&#39;</span> \
+ <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;limit=50&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>4.6. 更新<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>PUT メソッドで、オブジェクトの URI を指定して更新を行います。
+オブジェクトの書き込み権限が必要です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \
+ <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;name&quot;:&quot;Foo&quot;, &quot;score&quot;:90}&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span><span class="o">/</span><span class="mi">52117490</span><span class="n">ac521e5637000001</span>
+</pre></div>
+</div>
+<p>上記書式の場合、指定したフィールドだけが更新されます。
+指定していないフィールドは、'updatedAt' 以外更新されません。
+('updatedAt' フィールドは現在時刻に更新されます)</p>
+<p>主なステータスコードは以下のとおりです:</p>
+<ul class="simple">
+<li>200 OK : 正常にオブジェクトを更新した</li>
+<li>401 Unauthorized : 認証エラー</li>
+<li>403 Forbidden : 書き込み権限がない</li>
+<li>404 Not Found : 該当するオブジェクトがない</li>
+</ul>
+<p>データの指定方法により、完全上書きと、一部更新の２通りを選択することができます。</p>
+<div class="section" id="id29">
+<h3>4.6.1. 部分更新<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトの一部のみを更新する方法です。</p>
+<p>以下は、score を 80 に変更する例です。
+指定していないフィールドは変更されません。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>$set 演算子を使用することも可能です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;$set&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>$inc 演算子を使用すると、インクリメントを行うことができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;$inc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>他に、 <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/">MongoDB の更新演算子</a> がすべて使用できます。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">updatedAt は、現在時刻で更新されます。
+また、etag は自動的に変更されます。</p>
+</div>
+</div>
+<div class="section" id="id30">
+<h3>4.6.2. 完全上書き<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>完全上書きを行う場合は $full_update 演算子を使用します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;$full_update&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Bar&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span> <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;owner&quot;</span><span class="p">:</span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">:[],</span> <span class="s2">&quot;w&quot;</span><span class="p">:[]}}}</span>
+</pre></div>
+</div>
+<p>この方法では、指定したデータでオブジェクトが置き換えられます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">指定されなかったフィールドは削除されます。
+また、ACL を指定しない場合は 400 Bad Request エラーとなります。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">updatedAt は、現在時刻で更新されます。
+createdAt は、指定しない限り元の値が維持されます。
+また、etag は自動的に変更されます。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id31">
+<h2>4.7. 削除<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>DELETE メソッドで、オブジェクトの URI を指定して削除を行います。
+オブジェクトの書き込み権限が必要です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span><span class="o">/</span><span class="mi">52117490</span><span class="n">ac521e5637000001</span>
+</pre></div>
+</div>
+<p>主なステータスコードは以下のとおりです:</p>
+<ul class="simple">
+<li>200 OK : 正常にオブジェクトを削除した</li>
+<li>401 Unauthorized : 認証エラー</li>
+<li>403 Forbidden : 書き込み権限がない</li>
+<li>404 Not Found : 該当するオブジェクトがない</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="acl.html" class="btn btn-neutral float-right" title="5. セキュリティ : ACL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_management.html" class="btn btn-neutral" title="3. ユーザ管理機能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

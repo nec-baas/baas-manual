@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.4. クライアントからのPush送信方法 (JavaScript 編) &mdash; Push Notification Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.5. クライアントからのPush送信方法(iOS編)" href="send_push_ios.html" />
+    <link rel="prev" title="6.3. クライアントからのPush送信方法 (.NET 編)" href="send_push_dotnet.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Push Notification Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. Push通知機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../send_console.html">2. コンソールからのPush送信方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apns/index.html">3. iOS Push (APNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fcm/index.html">4. Android Push (FCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sse/index.html">5. SSE Push (Server-Sent Event Push)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. クライアントからの Push 送信</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">6.1. クライアントからの Push 送信について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_java.html">6.2. クライアントからのPush送信方法 (Pure Java / Android編)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_dotnet.html">6.3. クライアントからのPush送信方法 (.NET 編)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.4. クライアントからのPush送信方法 (JavaScript 編)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#push">6.4.1. Push送信方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">6.4.2. オプションパラメータ設定方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gcm">GCMの場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apns">APNsの場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sse">SSEの場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_ios.html">6.5. クライアントからのPush送信方法(iOS編)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Push Notification Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">6. クライアントからの Push 送信</a> &raquo;</li>
+        
+      <li>6.4. クライアントからのPush送信方法 (JavaScript 編)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="push-javascript">
+<h1>6.4. クライアントからのPush送信方法 (JavaScript 編)<a class="headerlink" href="#push-javascript" title="Permalink to this headline">¶</a></h1>
+<p>JavaScript からのプッシュ送信方法を説明します．</p>
+<div class="section" id="push">
+<h2>6.4.1. Push送信方法<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Nebula.PushSender</span></code> クラスのオブジェクトを作成し， <code class="docutils literal notranslate"><span class="pre">send</span></code> メソッドを呼ぶことで，プッシュを送信できます。</p>
+<p>以下にコード例を示します．</p>
+<p>この例では，下記のようなプッシュを送ります．</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">TerminalInfo</span></code> チャネルを購読中のインスタレーションを宛先とします．</li>
+<li>受信者を，営業グループ( <code class="docutils literal notranslate"><span class="pre">g:eigyo</span></code> )と，企画グループ( <code class="docutils literal notranslate"><span class="pre">g:kikaku</span></code> )に限定します．</li>
+<li>メッセージとして， <code class="docutils literal notranslate"><span class="pre">&quot;Low</span> <span class="pre">battery.&quot;</span></code> を送ります．</li>
+</ul>
+<p>宛先を「インスタレーションを選択するためのクエリ条件(Clause)」として作成するのがポイントです．
+(クエリの詳細については， <a class="reference external" href="../../javascript/object_storage.html">オブジェクトのクエリ</a> を参照して下さい)</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">PushSender</span><span class="p">();</span>
+
+<span class="c1">// 宛先をセットする</span>
+<span class="nx">push</span><span class="p">.</span><span class="nx">clause</span> <span class="o">=</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">Clause</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="s2">&quot;_channels&quot;</span><span class="p">,</span> <span class="s2">&quot;TerminalInfo&quot;</span><span class="p">);</span>
+
+<span class="c1">// 受信者をセットする</span>
+<span class="nx">push</span><span class="p">.</span><span class="nx">allowedReceivers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;g:eigyo&quot;</span><span class="p">,</span> <span class="s2">&quot;g:kikaku&quot;</span><span class="p">];</span>
+
+<span class="c1">// メッセージをセットする</span>
+<span class="nx">push</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s2">&quot;Low battery.&quot;</span><span class="p">;</span>
+
+<span class="c1">// Push を送信する</span>
+<span class="nx">push</span><span class="p">.</span><span class="nx">send</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">numInstallations</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>6.4.2. オプションパラメータ設定方法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>GCM, APNs, SSEの各プッシュテクノロジ特有の，オプションパラメータは下記のように設定して下さい．</p>
+<div class="section" id="gcm">
+<h3>GCMの場合<a class="headerlink" href="#gcm" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// GCM</span>
+<span class="kd">var</span> <span class="nx">gcm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">PushSender</span><span class="p">.</span><span class="nx">GcmFields</span><span class="p">();</span>
+<span class="nx">gcm</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s2">&quot;title&quot;</span><span class="p">;</span>
+<span class="nx">gcm</span><span class="p">.</span><span class="nx">uri</span> <span class="o">=</span> <span class="s2">&quot;http://www.nebula.test.com&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">PushSender</span><span class="p">();</span>
+<span class="nx">push</span><span class="p">.</span><span class="nx">gcmFields</span> <span class="o">=</span> <span class="nx">gcm</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apns">
+<h3>APNsの場合<a class="headerlink" href="#apns" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// APNs</span>
+<span class="kd">var</span> <span class="nx">apns</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">PushSender</span><span class="p">.</span><span class="nx">ApnsFields</span><span class="p">();</span>
+<span class="nx">apns</span><span class="p">.</span><span class="nx">badge</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">apns</span><span class="p">.</span><span class="nx">sound</span> <span class="o">=</span> <span class="s2">&quot;sound.aiff&quot;</span><span class="p">;</span>
+<span class="nx">apns</span><span class="p">.</span><span class="nx">contentAvailable</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">apns</span><span class="p">.</span><span class="nx">category</span> <span class="o">=</span> <span class="s2">&quot;Information&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">PushSender</span><span class="p">();</span>
+<span class="nx">push</span><span class="p">.</span><span class="nx">apnsFields</span> <span class="o">=</span> <span class="nx">apns</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sse">
+<h3>SSEの場合<a class="headerlink" href="#sse" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// SSE</span>
+<span class="kd">var</span> <span class="nx">sse</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">PushSender</span><span class="p">.</span><span class="nx">SseFields</span><span class="p">();</span>
+<span class="nx">sse</span><span class="p">.</span><span class="nx">eventId</span> <span class="o">=</span> <span class="s2">&quot;event01&quot;</span><span class="p">;</span>
+<span class="nx">sse</span><span class="p">.</span><span class="nx">eventType</span> <span class="o">=</span> <span class="s2">&quot;message&quot;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">PushSender</span><span class="p">();</span>
+<span class="nx">push</span><span class="p">.</span><span class="nx">sseFields</span> <span class="o">=</span> <span class="nx">sse</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="send_push_ios.html" class="btn btn-neutral float-right" title="6.5. クライアントからのPush送信方法(iOS編)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="send_push_dotnet.html" class="btn btn-neutral" title="6.3. クライアントからのPush送信方法 (.NET 編)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

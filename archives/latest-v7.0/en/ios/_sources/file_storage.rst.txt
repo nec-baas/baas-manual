@@ -1,0 +1,103 @@
+==================
+ファイルストレージ
+==================
+
+ここではファイルストレージの利用方法について説明します。
+
+ファイルの新規アップロード
+==========================
+
+ファイルは NBFile クラスのインスタンスとして生成します。
+
+.. code-block:: objc
+
+    NBFile *fileObj = [NBFile objectWithBucketName:@"FileBucket1"];
+    fileObj.fileName = "sample1.jpg";
+
+バケット名を指定して objectWithBucketName メソッドを呼び出してファイルを生成します。
+ファイルには、ファイル名、ACL、Content-Typeを指定できます。
+
+ファイルを新規アップロードするには、 uploadNewFileInBackgroundWithURL メソッドを呼び出します。
+uploadNewFileInBackgroundWithURL には、アップロードするファイルのパスと、コールバックを渡します。
+また、 progressBlock で進捗を監視することができます。
+
+.. code-block:: objc
+
+    NSURL *fileURL = [NSURL fileURLWithPath:@"/Users/test/sample1.jpg"];
+    [fileObj uploadNewFileInBackgroundWithURL:fileURL resultBlock:^(NSDictionary *result, NSError *error) {
+        if (!error) {
+            // 成功時の処理
+        } else {
+            // エラー時の処理
+        }
+    } progressBlock:^(int64_t transferred, int64_t expected) {
+        // 進捗通知処理
+    }];
+
+アクセス制御
+============
+
+ファイル単位でアクセス制御を行うことができます。
+
+アクセス制御には、オブジェクトストレージと同様に NBAcl クラスを使用します。
+NBFile の acl プロパティに設定します。
+
+ファイル一覧の取得
+==================
+
+バケット内のファイル一覧の取得には、 NBFileBucket の queryFileInBackgroundWithConditions メソッドを使用します。
+
+.. code-block:: objc
+
+    // バケットインスタンス生成
+    NBFileBucket *fileBucket = [[NBFileBucket new] initWithName:@"FileBucket1"];
+
+    [fileBucket queryFileInBackgroundWithConditions:NBFileConditionNone block:^(NSArray *datalist, NSError *error) {
+        if (!error) {
+            // 成功時の処理
+        } else {
+            // エラー時の処理
+        }
+    }];
+
+取得したファイルの一覧は、 datalist に NBFile の配列で渡されます。
+
+ファイルのダウンロード
+======================
+
+ファイルをダウンロードするには、 NBFile の downloadFileInBackgroundWithURL メソッドを呼び出します。
+ダウンロードしたファイルは指定した url へ保存されます。
+
+.. code-block:: objc
+    
+    NSURL *requestUrl = [NSURL fileURLWithPath:@"/Users/test/download.jpg"];
+    [fileObj downloadFileInBackgroundWithURL:requestUrl downloadBlock:^(NSURL *url, NSError *error) {
+        if (!error) {
+            // 成功時の処理
+            NSData *downloadData = [NSData dataWithContentsOfURL:url]; // 例
+        } else {
+            // エラー時の処理
+        }
+     } progressBlock:nil];
+
+ファイルの公開
+==============
+
+ファイルをダウンロードするには、 NBFile の enablePublishFileInBackgroundWithBlock メソッドを呼び出します。
+ファイルを公開すると、そのファイルに一意な URL が自動的に割り当てられ、REST API 以外から
+無制限にアクセスができるようになります。
+
+.. code-block:: objc
+
+   [expect enablePublishFileInBackgroundWithBlock:^(NSDictionary *result, NSError *error) {
+        if (!error) {
+            // 成功時の処理
+            NBFile *resultFile = result[@"metaData"];
+            NSString publicUrl = resultFile.publicUrl; // 公開URL
+        } else {
+            // エラー時の処理
+        }
+    }];
+
+公開を停止するには disablePublishFileInBackgroundWithBlock メソッドを使用します。
+

@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. ファイルストレージ &mdash; iOS SDK Guide 5.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9. HTTPS通信について" href="https.html" />
+    <link rel="prev" title="7. オブジェクトストレージ" href="object_storage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> iOS SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                5.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS iOS API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. ファイルストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.1. ファイルの新規アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">8.2. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">8.3. ファイル一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">8.4. ファイルのダウンロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">8.5. ファイルの公開</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https.html">9. HTTPS通信について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swift.html">10. Swift の利用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">iOS SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>8. ファイルストレージ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>8. ファイルストレージ<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>ここではファイルストレージの利用方法について説明します。</p>
+<div class="section" id="id2">
+<h2>8.1. ファイルの新規アップロード<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ファイルは NBFile クラスのインスタンスとして生成します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBFile</span> <span class="o">*</span><span class="n">fileObj</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBFile</span> <span class="nl">objectWithBucketName</span><span class="p">:</span><span class="s">@&quot;FileBucket1&quot;</span><span class="p">];</span>
+<span class="n">fileObj</span><span class="p">.</span><span class="n">fileName</span> <span class="o">=</span> <span class="s">&quot;sample1.jpg&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>バケット名を指定して objectWithBucketName メソッドを呼び出してファイルを生成します。
+ファイルには、ファイル名、ACL、Content-Typeを指定できます。</p>
+<p>ファイルを新規アップロードするには、 uploadNewFileInBackgroundWithURL メソッドを呼び出します。
+uploadNewFileInBackgroundWithURL には、アップロードするファイルのパスと、コールバックを渡します。
+また、 progressBlock で進捗を監視することができます。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="bp">NSURL</span> <span class="o">*</span><span class="n">fileURL</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="s">@&quot;/Users/test/sample1.jpg&quot;</span><span class="p">];</span>
+<span class="p">[</span><span class="n">fileObj</span> <span class="nl">uploadNewFileInBackgroundWithURL</span><span class="p">:</span><span class="n">fileURL</span> <span class="nl">resultBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー時の処理</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="nl">progressBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="kt">int64_t</span> <span class="n">transferred</span><span class="p">,</span> <span class="kt">int64_t</span> <span class="n">expected</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 進捗通知処理</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>8.2. アクセス制御<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ファイル単位でアクセス制御を行うことができます。</p>
+<p>アクセス制御には、オブジェクトストレージと同様に NBAcl クラスを使用します。
+NBFile の acl プロパティに設定します。</p>
+</div>
+<div class="section" id="id4">
+<h2>8.3. ファイル一覧の取得<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>バケット内のファイル一覧の取得には、 NBFileBucket の queryFileInBackgroundWithConditions メソッドを使用します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="c1">// バケットインスタンス生成</span>
+<span class="n">NBFileBucket</span> <span class="o">*</span><span class="n">fileBucket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NBFileBucket</span> <span class="n">new</span><span class="p">]</span> <span class="nl">initWithName</span><span class="p">:</span><span class="s">@&quot;FileBucket1&quot;</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">fileBucket</span> <span class="nl">queryFileInBackgroundWithConditions</span><span class="p">:</span><span class="n">NBFileConditionNone</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">datalist</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー時の処理</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<p>取得したファイルの一覧は、 datalist に NBFile の配列で渡されます。</p>
+</div>
+<div class="section" id="id5">
+<h2>8.4. ファイルのダウンロード<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>ファイルをダウンロードするには、 NBFile の downloadFileInBackgroundWithURL メソッドを呼び出します。
+ダウンロードしたファイルは指定した url へ保存されます。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="bp">NSURL</span> <span class="o">*</span><span class="n">requestUrl</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="s">@&quot;/Users/test/download.jpg&quot;</span><span class="p">];</span>
+<span class="p">[</span><span class="n">fileObj</span> <span class="nl">downloadFileInBackgroundWithURL</span><span class="p">:</span><span class="n">requestUrl</span> <span class="nl">downloadBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSURL</span> <span class="o">*</span><span class="n">url</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+        <span class="bp">NSData</span> <span class="o">*</span><span class="n">downloadData</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSData</span> <span class="nl">dataWithContentsOfURL</span><span class="p">:</span><span class="n">url</span><span class="p">];</span> <span class="c1">// 例</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー時の処理</span>
+    <span class="p">}</span>
+ <span class="p">}</span> <span class="nl">progressBlock</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>8.5. ファイルの公開<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>ファイルをダウンロードするには、 NBFile の enablePublishFileInBackgroundWithBlock メソッドを呼び出します。
+ファイルを公開すると、そのファイルに一意な URL が自動的に割り当てられ、REST API 以外から
+無制限にアクセスができるようになります。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">expect</span> <span class="nl">enablePublishFileInBackgroundWithBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// 成功時の処理</span>
+         <span class="n">NBFile</span> <span class="o">*</span><span class="n">resultFile</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s">@&quot;metaData&quot;</span><span class="p">];</span>
+         <span class="bp">NSString</span> <span class="n">publicUrl</span> <span class="o">=</span> <span class="n">resultFile</span><span class="p">.</span><span class="n">publicUrl</span><span class="p">;</span> <span class="c1">// 公開URL</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="c1">// エラー時の処理</span>
+     <span class="p">}</span>
+ <span class="p">}];</span>
+</pre></div>
+</div>
+<p>公開を停止するには disablePublishFileInBackgroundWithBlock メソッドを使用します。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https.html" class="btn btn-neutral float-right" title="9. HTTPS通信について" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_storage.html" class="btn btn-neutral" title="7. オブジェクトストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'5.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

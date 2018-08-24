@@ -1,0 +1,55 @@
+============
+サーバ
+============
+
+基本サーバ (API/コンソール)
+===========================
+
+APIサーバ、デベロッパーコンソールサーバの動作環境は以下の通り。
+
+* OS: CentOS 7 または Red Hat Enterprise Linux 7 または Windows Server 2016
+* OpenJDK 8 または Oracle JDK 8
+* APサーバ: Tomcat 8.0.50 以上 (8.5.29 以上または 9.0.6 以上推奨)
+* DBサーバ: MongoDB 3.2 以上 (3.6以上推奨)
+
+.. attention::
+
+   OpenJDK 11 および Oracle JDK 11/LTS については、これらのリリース後に対応の予定です。
+   (モバイルバックエンド基盤 v7 以上での対応を予定)
+
+SSE Push サーバ
+===============
+
+基本サーバの動作環境に加え以下のものが必要。
+
+* RabbitMQサーバ: 3.6.1 以上
+
+Cloud Functions サーバ
+=======================
+
+全構成共通
+-----------
+
+* OS: CentOS 7 または Red Hat Enterprise Linux 7
+* OpenJDK 8 または Oracle JDK 8
+* RabbitMQ 3.6.1 以上
+* fluentd v1.0 / td-agent 3.1.x 以上
+
+.. attention::
+
+   Cloud Functions サーバはWindows では動作しませんのでご注意ください。
+
+.. attention::
+
+   OpenJDK 11 および Oracle JDK 11/LTS については、これらのリリース後に対応の予定です。
+   (モバイルバックエンド基盤 v7 以上での対応を予定)
+
+Docker使用構成時
+----------------
+
+* Docker 1.12 以上
+
+Dockerレス構成時
+----------------
+
+* Node.js v6.x.x 以上

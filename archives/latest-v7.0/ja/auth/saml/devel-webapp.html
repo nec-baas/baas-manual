@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.8.1. Web アプリケーション &mdash; Authentication Developer Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.8.2. Native アプリケーション (C#)" href="devel-native-dotnet.html" />
+    <link rel="prev" title="5.8. アプリケーションの開発" href="devel.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. ADFS / SAML 認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">5.2. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequence.html">5.3. 動作概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_system.html">5.4. システムの事前設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="idp.html">5.5. IdP 側の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">5.6. BaaSサーバの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register.html">5.7. 認証時のユーザ・グループ自動登録</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="devel.html">5.8. アプリケーションの開発</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.8.1. Web アプリケーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#saml">SAML認証開始</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">SAML認証完了時の処理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#baas">BaaS サーバへのログイン</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devel-native-dotnet.html">5.8.2. Native アプリケーション (C#)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devel-native-android.html">5.8.3. Native アプリケーション (Android)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="attention.html">5.9. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. ADFS / SAML 認証</a> &raquo;</li>
+        
+          <li><a href="devel.html">5.8. アプリケーションの開発</a> &raquo;</li>
+        
+      <li>5.8.1. Web アプリケーション</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="web">
+<h1>5.8.1. Web アプリケーション<a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>JavaScript を使った SAML 認証方法を記載します。</p>
+<p>大きく分けて、以下の3つの処理を実装します。</p>
+<ul class="simple">
+<li>SAML 認証開始 REST API の実行</li>
+<li>SAML 認証完了時の処理</li>
+<li>BaaS サーバへのログイン</li>
+</ul>
+<div class="section" id="saml">
+<h2>SAML認証開始<a class="headerlink" href="#saml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>SAML 認証開始の REST API を実行します。
+リクエストパラメータに、ランディングページの URL を指定します。</p>
+<p>REST API の URI は、以下のとおりです。</p>
+<blockquote>
+<div>{endpointUri}/1/{tenantId}/auth/saml/init?redirect={redirectUri}</div></blockquote>
+<p>以下にサンプルコードを示します。</p>
+<p>例： index.html</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="kd">function</span> <span class="nx">convertAbsUrl</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;a&gt;&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">,</span> <span class="nx">src</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">href</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">startSaml</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">redirectUri</span> <span class="o">=</span> <span class="nx">convertAbsUrl</span><span class="p">(</span><span class="s2">&quot;./landing.html&quot;</span><span class="p">);</span>
+
+    <span class="c1">// REST API 実行 (ページ移動)</span>
+    <span class="kd">var</span> <span class="nx">startUri</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">EndpointUri</span><span class="o">&gt;</span> <span class="o">+</span> <span class="s2">&quot;/1/&quot;</span> <span class="o">+</span> <span class="o">&lt;</span><span class="nx">tenantId</span><span class="o">&gt;</span> <span class="o">+</span> <span class="s2">&quot;/auth/saml/init?redirect=&quot;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">redirectUri</span><span class="p">);</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">startUri</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;startSaml();&quot;</span><span class="p">&gt;</span>Start authentication<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>SAML認証完了時の処理<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>SAML 認証が完了すると、指定したリダイレクト URI (ランディングページ)にリダイレクトされます。
+リダイレクト URI は以下のようにワンタイムトークンがクエリパラメータに格納された形になります。</p>
+<blockquote>
+<div><a class="reference external" href="file:///home/test/landing.html?token=123456789abcdef">file:///home/test/landing.html?token=123456789abcdef</a></div></blockquote>
+<p>ランディングページ(例： landing.html) はあらかじめ用意しておきます。</p>
+<p>リダイレクト URI からワンタイムトークンを取り出します。
+以下にサンプルコードを示します。</p>
+<p>例： landing.html</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// クエリパラメータからワンタイムトークンを取得</span>
+    <span class="kd">var</span> <span class="nx">getOneTimeToken</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">params</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">params</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">el</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">===</span> <span class="s2">&quot;token&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">el</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">oneTimeToken</span> <span class="o">=</span> <span class="nx">getOneTimeToken</span><span class="p">();</span>
+
+    <span class="c1">// BaaS サーバへのログイン実装(下記参照)</span>
+    <span class="c1">//・・・</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="baas">
+<h2>BaaS サーバへのログイン<a class="headerlink" href="#baas" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>JavaScript SDK のログイン API を使い、ワンタイムトークンを指定してログインします。</p>
+<p>サーバからセッショントークンが払いだされ、以降は本セッショントークンで認証が行われます。
+以下にサンプルコードを示します。</p>
+<p>例： landing.html</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+$(function() {
+    // SAML認証完了時の処理 (上記参照)
+    ・・・
+
+    // Nebula 初期化
+    Nebula.initialize(NebulaConfig);
+
+    // ワンタイムトークンを指定
+    var userInfo = {
+        token: oneTimeToken,
+        username: &quot;&quot;,
+        password: &quot;&quot;
+    };
+
+    // ログイン
+    Nebula.User.login(userInfo)
+        .then(function(user) {
+            // login ok
+            $(&quot;#result&quot;).text(&quot;Login succeeded: username=&quot; + user.username);
+        })
+        .catch(function(err) {
+            // login failure
+            $(&quot;#result&quot;).text(&quot;Login failed: &quot; + err);
+        });
+});
+
+&lt;/script&gt;
+
+Result:&lt;br/&gt;
+&lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+</pre></div>
+</div>
+<p>NebulaConfig には Nebula の設定情報を設定してください。</p>
+<p>詳しくは JavaScript SDK マニュアルを参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="devel-native-dotnet.html" class="btn btn-neutral float-right" title="5.8.2. Native アプリケーション (C#)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="devel.html" class="btn btn-neutral" title="5.8. アプリケーションの開発" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

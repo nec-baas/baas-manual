@@ -1,0 +1,487 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. チュートリアル1 : TODOアプリの実装 &mdash; Tutorials (Android) 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="4. チュートリアル2 : ログイン機能とアクセス制御" href="tutorial2.html" />
+    <link rel="prev" title="2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)" href="tutorial1.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (Android)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. チュートリアル1 : TODOアプリの実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nec-baas-android-sdk">3.1. NEC BaaS Android SDK ライブラリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application">3.2. Application クラス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mainactivity">3.3. MainActivity クラス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">3.3.1. 初期化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.3.2. バケットの取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.3.3. Todo 一覧の取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3.4. 画面更新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.3.5. Todo の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.3.6. Todo の削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">4. チュートリアル2 : ログイン機能とアクセス制御</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">5. チュートリアル3 : アルバムアプリ (ファイルストレージ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">6. チュートリアル4 : TODOアプリ(オフライン機能あり)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (Android)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. チュートリアル1 : TODOアプリの実装</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="todo">
+<h1>3. チュートリアル1 : TODOアプリの実装<a class="headerlink" href="#todo" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではチュートリアル1の実装について解説します。</p>
+<div class="section" id="nec-baas-android-sdk">
+<h2>3.1. NEC BaaS Android SDK ライブラリ<a class="headerlink" href="#nec-baas-android-sdk" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NEC BaaS Android SDK を利用するためには、アプリケーションに SDK のライブラリファイル
+群を追加する必要があります (チュートリアルではすでにセットアップ済みです)</p>
+<p>必要なライブラリファイルを libs ディレクトリ以下に格納し、build.gradle に依存関係を追記します。</p>
+<p>詳細手順については「Java / Android SDK ガイド」の「SDKセットアップ手順」の章を
+ご参照ください。</p>
+</div>
+<div class="section" id="application">
+<h2>3.2. Application クラス<a class="headerlink" href="#application" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Application を継承したクラスを実装し、この中で NEC BaaS Android SDK の初期化処理を行います。</p>
+<p>チュートリアル１では MainApplication クラスを実装しています。
+なお、本クラスは AndroidManifest.xml の application タグの name 属性に指定しておく
+必要があります。</p>
+<p>アプリケーションクラスの初期化処理を抜粋します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * アプリケーションクラス</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainApplication</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">NbService</span> <span class="n">mService</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;MainApplication&quot;</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">MainApplication</span> <span class="n">sApplication</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;onCreate&quot;</span><span class="o">);</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+
+        <span class="n">sApplication</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+
+        <span class="c1">// サーバ自己署名証明書を許可する。</span>
+        <span class="c1">// 呼び出しはNbServiceの生成前に行うこと。</span>
+        <span class="c1">// デバッグ用なので、本番時には使用しないこと!!!</span>
+        <span class="c1">// (本番時は正規のサーバ証明書を使用すること)</span>
+        <span class="c1">//NbttpClient.getInstance().setAllowSelfSignedCertificate(true);</span>
+
+        <span class="c1">// BaaS 初期化処理。NbService を生成する。</span>
+        <span class="n">mService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbAndroidServiceBuilder</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">Consts</span><span class="o">.</span><span class="na">TENANT_ID</span><span class="o">,</span> <span class="n">Consts</span><span class="o">.</span><span class="na">APP_ID</span><span class="o">,</span> <span class="n">Consts</span><span class="o">.</span><span class="na">APP_KEY</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">setEndPointUri</span><span class="o">(</span><span class="n">Consts</span><span class="o">.</span><span class="na">ENDPOINT_URI</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+<p>SDK を初期化するには、最初に NbAndroidServiceBuilder クラスを使用します。
+NbAndroidServiceBuilder のコンストラクタには、以下のパラメータを設定します。</p>
+<ul class="simple">
+<li>Context</li>
+<li>テナントID</li>
+<li>アプリケーションID</li>
+<li>アプリケーションキー</li>
+</ul>
+<p>また、setEndpointUri() でエンドポイントURIを指定してください。</p>
+<p>最後に、build() を呼び出すと NbService のインスタンスが得られます。
+以降の API 呼び出しでは、この NbService を中心に使用します。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">サーバ側が正規の証明書を使用していない場合(自己署名証明書)は、証明書の検証をスキップする必要があります。
+スキップする場合は setAllowSelfSignedCertificat() で設定します。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">オフライン機能を使用する場合には、NbAndroidServiceBuilder にオフライン機能の設定が必要です。
+本チュートリアルではオフライン機能は使用しませんので、省略しています。</p>
+</div>
+</div>
+<div class="section" id="mainactivity">
+<h2>3.3. MainActivity クラス<a class="headerlink" href="#mainactivity" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>アプリケーション本体は MainActivity クラスに実装します。
+本クラスは ListActivity を継承しており、Todo をリストで表示します。</p>
+<div class="section" id="id1">
+<h3>3.3.1. 初期化<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 初期化処理</span>
+<span class="cm"> */</span>
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+    <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+    <span class="c1">// NbService インスタンスを取得</span>
+    <span class="n">mService</span> <span class="o">=</span> <span class="n">MainApplication</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">getNebulaService</span><span class="o">();</span>
+
+    <span class="c1">// ListView のセットアップ</span>
+    <span class="n">mArrayAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayAdapter</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">,</span> <span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">simple_list_item_1</span><span class="o">,</span>
+            <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;());</span>
+    <span class="n">ListView</span> <span class="n">listView</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getListView</span><span class="o">();</span>
+    <span class="n">listView</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">mArrayAdapter</span><span class="o">);</span>
+    <span class="n">listView</span><span class="o">.</span><span class="na">setOnItemLongClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+    <span class="c1">// バケットを取得</span>
+    <span class="n">mBucket</span> <span class="o">=</span> <span class="n">mService</span><span class="o">.</span><span class="na">objectBucketManager</span><span class="o">().</span><span class="na">getBucket</span><span class="o">(</span><span class="s">&quot;TodoTutorial1&quot;</span><span class="o">);</span>
+
+    <span class="c1">// サーバから TODO データの読み込みを実行</span>
+    <span class="n">loadTodos</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>初期化は onCreate() で行います。</p>
+<p>最初に、MainApplication クラスが保持する NbService のインスタンスを取得し、mService に保存します。</p>
+<p>次に、ListView のセットアップを行います。本実装では、ArrayAdapter に Todo を文字列を格納します。</p>
+</div>
+<div class="section" id="id2">
+<h3>3.3.2. バケットの取得<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// バケットを取得</span>
+<span class="n">mBucket</span> <span class="o">=</span> <span class="n">mService</span><span class="o">.</span><span class="na">objectBucketManager</span><span class="o">().</span><span class="na">getBucket</span><span class="o">(</span><span class="s">&quot;TodoTutorial1&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>バケットの取得を行うには、オブジェクトバケットマネージャを使用します。
+NbService.objectBucketManager() でオブジェクトバケットマネージャを取得し、
+getBucket() を呼び出してバケットを取得します。</p>
+</div>
+<div class="section" id="id3">
+<h3>3.3.3. Todo 一覧の取得<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Todo データをサーバから取得する</span>
+<span class="cm"> */</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">loadTodos</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">NbQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbQuery</span><span class="o">();</span>
+    <span class="n">query</span><span class="o">.</span><span class="na">setSortOrder</span><span class="o">(</span><span class="s">&quot;updatedAt&quot;</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+
+    <span class="n">mBucket</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">query</span><span class="o">,</span> <span class="k">new</span> <span class="n">NbObjectCallback</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;</span> <span class="n">objects</span><span class="o">,</span> <span class="n">Number</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mTodoList</span> <span class="o">=</span> <span class="n">objects</span><span class="o">;</span>
+            <span class="n">refresh</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">,</span> <span class="n">NbErrorInfo</span> <span class="n">errorInfo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">showAlert</span><span class="o">(</span><span class="s">&quot;Load todo failed&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>loadTodos() で、サーバから Todo データの一覧を取得します。</p>
+<p>Todo データは NbObjectBucket.query() を使用して取得できます。
+クエリ(取得条件)は NbQuery クラスのインスタンスとして作成します。
+クエリでは、検索するオブジェクトの絞込み、ソート条件の指定、スキップ件数・件数上限の指定などが可能です。
+ここでは更新日時(updatedAt)フィールド昇順で、全件取得するというクエリを作成しています。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">件数上限はデフォルトで100件となっています。
+一回のクエリで 100件以上のデータを取得したい場合は、クエリ条件で件数上限値を明示的に指定する必要があります。</p>
+</div>
+<p>query() が成功すると、onSuccess() が呼ばれます。
+データは NbObject の List として取得されます。これを mTodoList に保存し、refresh() を
+呼び出して画面を更新します。</p>
+</div>
+<div class="section" id="id4">
+<h3>3.3.4. 画面更新<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * 画面更新</span>
+<span class="cm"> */</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">refresh</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">mArrayAdapter</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">mTodoList</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span> <span class="c1">// do nothing</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="n">NbObject</span> <span class="n">todo</span> <span class="o">:</span> <span class="n">mTodoList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">todo</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">,</span> <span class="s">&quot;-&quot;</span><span class="o">);</span>
+        <span class="n">mArrayAdapter</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>画面更新は refresh() で行います。</p>
+<p>サーバから取得した Todo データは mTodoList に格納されていますので、
+この中のデータを ArrayAdapter に順次格納します。</p>
+<p>NbObject 内のフィールドは getXxx メソッドで取得することができます。
+ここでは &quot;description&quot; フィールドに Todo のテキストを入れることを想定しています。</p>
+</div>
+<div class="section" id="id5">
+<h3>3.3.5. Todo の追加<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>画面右上の Add ボタンを押すと、Todo の追加処理に移ります。
+この処理は onAddTodo() 内で行っています(詳細は省略)。</p>
+<p>実際に Todo を追加する処理は、addTodo() で行います。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Todo 追加処理</span>
+<span class="cm"> * @param s</span>
+<span class="cm"> */</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">addTodo</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// オブジェクト生成</span>
+    <span class="n">NbObject</span> <span class="n">todo</span> <span class="o">=</span> <span class="n">mBucket</span><span class="o">.</span><span class="na">newObject</span><span class="o">();</span>
+
+    <span class="c1">// 値を設定</span>
+    <span class="n">todo</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">,</span> <span class="n">s</span><span class="o">);</span>
+
+    <span class="c1">// オブジェクト保存</span>
+    <span class="n">todo</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="n">NbObjectCallback</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;</span> <span class="n">objects</span><span class="o">,</span> <span class="n">Number</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// リロードする</span>
+            <span class="n">loadTodos</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">status</span><span class="o">,</span> <span class="n">NbErrorInfo</span> <span class="n">errorInfo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">showAlert</span><span class="o">(</span><span class="s">&quot;save object failed&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Todo データを NbObject として生成します。
+NbObject の生成は、NbBucket.newObject() で行います。</p>
+<p>つぎに、データの description フィールドに Todo のテキストをセットします。</p>
+<p>データの保存には save() メソッドを使用します。save() を呼び出すと、サーバにデータが送信されます。
+保存が成功したら onSuccess() が呼ばれますので、画面更新の処理を行います。
+(ここでは loadTodos() を呼び出して全データをリロードしています)。</p>
+</div>
+<div class="section" id="id6">
+<h3>3.3.6. Todo の削除<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Todo の削除処理</span>
+<span class="cm"> */</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onItemLongClick</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">parent</span><span class="o">,</span> <span class="n">View</span> <span class="n">view</span><span class="o">,</span>
+        <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">NbObject</span> <span class="n">todo</span> <span class="o">=</span> <span class="n">mTodoList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+
+    <span class="n">todo</span><span class="o">.</span><span class="na">deleteObject</span><span class="o">(</span><span class="k">new</span> <span class="n">NbResultCallback</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// Todo をリロードする</span>
+            <span class="n">loadTodos</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">,</span> <span class="n">NbErrorInfo</span> <span class="n">errorInfo</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">showAlert</span><span class="o">(</span><span class="s">&quot;delete failed&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+
+    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Todo の削除処理は、onItemLongClick() 内で行います。
+本処理は、Todo を長押ししたときに呼び出されます。</p>
+<p>mTodoList から、該当 NbObject インスタンスを取得し、
+deleteObject() を呼び出すと、サーバに削除指示が送信されます。</p>
+<p>削除が正常に完了すると onSuccess() が呼び出されますので、画面をリロードします。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial2.html" class="btn btn-neutral float-right" title="4. チュートリアル2 : ログイン機能とアクセス制御" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial1.html" class="btn btn-neutral" title="2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

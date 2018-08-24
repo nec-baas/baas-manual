@@ -1,0 +1,73 @@
+================
+開発に必要な環境
+================
+
+JavaScript SDK
+================
+
+ブラウザ 使用時
+----------------
+
+* OS: Windows, Linux, Mac OS X
+
+Node.js 使用時
+--------------
+
+* Node.js v6.x.x 以上
+
+Android SDK
+=============
+
+* OS: Windows, Linux, Mac OS X
+* Android Studio 3.1 以上
+* Java SE Development Kit 8 以上
+* Android SDK tools 一式
+
+Java SDK
+==========
+
+* OS: Windows, Linux, Mac OS X
+* Java SE Development Kit 8 以上または OpenJDK 8 以上
+
+.NET SDK
+==========
+
+* OS: Windows
+* Visual Studio 2013 以上
+
+iOS SDK(※β版提供)
+==================
+
+* OS: macOS 10.12 (Sierra) 以上
+* Xcode 8 以上
+
+Nebula CLI
+=============
+
+* Node.js v6.x.x 以上
+
+Cloud Functions
+================
+
+共通
+----
+
+* OS: Windows, Linux, Mac OS X
+* Nebula CLI v7.0.x
+
+Node.js開発時
+--------------
+
+* Node.js v6.x.x 以上
+
+Java開発時
+-----------
+
+* Java SE Development Kit 8 以上または OpenJDK 8 以上
+
+Embedded SDK
+=============
+
+* OS: Linux
+* GCC/G++ 4.7 以上 (C++11 をサポートすること)
+* CMake 3.1 以上

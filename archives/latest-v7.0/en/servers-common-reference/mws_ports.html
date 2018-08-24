@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 各サーバのミドルウェア・使用ポート &mdash; サーバ共通リファレンス 6.5.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. 各サーバのデータとその格納先" href="servers_data.html" />
+    <link rel="prev" title="サーバ共通リファレンス" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> サーバ共通リファレンス
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.5.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 各サーバのミドルウェア・使用ポート</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#middlewares-correspondence-table">1.1. ミドルウェア</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">1.2. ミドルウェアの使用ポート</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">1.2.1. Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">1.2.2. Fluentd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">1.2.3. RabbitMQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">1.2.4. MongoDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">1.2.5. Hazelcast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cloudfn-logic-server">1.2.6. Cloudfn Logic server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="servers_data.html">2. 各サーバのデータとその格納先</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servers_tuning.html">3. サーバのチューニング</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">サーバ共通リファレンス</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. 各サーバのミドルウェア・使用ポート</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>1. 各サーバのミドルウェア・使用ポート<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h1>
+<p>各サーバ(API/Console/SSE Push/Cloud Functions(以下 Cloudfn))で利用するミドルウエアとそれらの使用ポートについて説明します。</p>
+<div class="section" id="middlewares-correspondence-table">
+<span id="id21"></span><h2>1.1. ミドルウェア<a class="headerlink" href="#middlewares-correspondence-table" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ミドルウェア</th>
+<th class="head">概要</th>
+<th class="head">API</th>
+<th class="head">Console</th>
+<th class="head">SSE Push</th>
+<th class="head">Cloudfn</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Tomcat</td>
+<td>サーブレットコンテナ</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Fluentd 注1</td>
+<td>ログ収集</td>
+<td>Y</td>
+<td>Y</td>
+<td>&#160;</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>RabbitMQ</td>
+<td>メッセージング</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>MongoDB</td>
+<td>NoSQLデータベース</td>
+<td>Y</td>
+<td>Y</td>
+<td>&#160;</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Hazelcast</td>
+<td>インメモリデータグリッド</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Y</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Logic server</td>
+<td>Cloudfnのコード実行</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Y</td>
+</tr>
+<tr class="row-even"><td>Server Manager</td>
+<td>Logic serverの管理</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>Y</td>
+</tr>
+<tr class="row-odd"><td>Docker</td>
+<td>Cloudfnのコンテナー環境</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>注2</td>
+</tr>
+</tbody>
+</table>
+<p>凡例:</p>
+<ul class="simple">
+<li>Y：サーバが該当ミドルウェアを利用することを示します。</li>
+<li>注1: ログ収集を fluentd で行う場合のみ必須です。</li>
+<li>注2: Docker有り設定を行った場合のみ必須です。Dockerレス設定時は不要です。</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2>1.2. ミドルウェアの使用ポート<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id23">
+<h3>1.2.1. Tomcat<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>利用ポートの詳細については <a class="reference external" href="https://tomcat.apache.org/tomcat-8.5-doc/config/">Apache Tomcat 8 Configuration Reference</a> の “Server”, “Connectors” を参照してください。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="65%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ポート</th>
+<th class="head">説明</th>
+<th class="head">変更可</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>8080/TCP</td>
+<td>Default port</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>8005/TCP</td>
+<td>Shutdown port</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>8443/TCP</td>
+<td>TLSを使う場合</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>8009/TCP</td>
+<td>AJPを使う場合</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id24">
+<h3>1.2.2. Fluentd<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>利用ポートの詳細については <a class="reference external" href="https://docs.fluentd.org/v1.0/articles/in_forward">Fluentd Documentation - Forward Input Plugin</a> を参照してください。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="65%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ポート</th>
+<th class="head">説明</th>
+<th class="head">変更可</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>24224/TCP</td>
+<td>Default port</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id25">
+<h3>1.2.3. RabbitMQ<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>利用ポートの詳細については <a class="reference external" href="https://www.rabbitmq.com/networking.html">RabbitMQ Documentation - Networking</a> を参照してください。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="65%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ポート</th>
+<th class="head">説明</th>
+<th class="head">変更可</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>5672/TCP</td>
+<td>Default Node port</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>4369/TCP</td>
+<td>EPMD port</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>25672/TCP</td>
+<td>RabbitMQ DIST PORT</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id26">
+<h3>1.2.4. MongoDB<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p>利用ポートの詳細については <a class="reference external" href="https://docs.mongodb.com/manual/reference/default-mongodb-port/">MongoDB Documentation - Default MongoDB Port</a> を参照してください。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="65%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ポート</th>
+<th class="head">説明</th>
+<th class="head">変更可</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>27017/TCP</td>
+<td>Default port</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>27017-27019/TCP</td>
+<td>シャーディングを行う場合</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id27">
+<h3>1.2.5. Hazelcast<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>利用ポートの詳細については <a class="reference external" href="https://hazelcast.org/documentation/">Hazelcast Documentation</a> の “Production Docs (Reference Manual)” ⇒
+“Understanding Configuration” および “Setting Up Clusters” の章を参照してください。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="65%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ポート</th>
+<th class="head">説明</th>
+<th class="head">変更可</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>5701/TCP</td>
+<td>一台構成またはユニキャストのクラスタ構成</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>54327/DUP</td>
+<td>マルチキャストのクラスタ構成</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cloudfn-logic-server">
+<h3>1.2.6. Cloudfn Logic server<a class="headerlink" href="#cloudfn-logic-server" title="Permalink to this headline">¶</a></h3>
+<p>利用ポートは下記の通りです。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="65%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ポート</th>
+<th class="head">説明</th>
+<th class="head">変更可</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>30000-39999/TCP</td>
+<td>Logic サーバ起動時に、自動にポート番号を割り当て</td>
+<td>自動割り当て</td>
+</tr>
+<tr class="row-odd"><td>9000/TCP</td>
+<td><ul class="first last simple">
+<li>各コンテナ(各IPが異なる)のポート番号</li>
+<li>Dockerのホスト側で管理不要</li>
+</ul>
+</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="servers_data.html" class="btn btn-neutral float-right" title="2. 各サーバのデータとその格納先" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="サーバ共通リファレンス" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'6.5.4',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

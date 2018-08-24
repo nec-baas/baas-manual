@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.2.2. モバイルバックエンド基盤サーバへの署名鍵の設定 &mdash; Push Notification Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.3. TLS認証" href="../tls_auth/index.html" />
+    <link rel="prev" title="3.2.1. トークン認証 署名鍵の取得手順" href="token.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Push Notification Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">1. Push通知機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../send_console.html">2. コンソールからのPush送信方法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. iOS Push (APNs)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../auth_type.html">3.1. 認証方式</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. トークン認証</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="token.html">3.2.1. トークン認証 署名鍵の取得手順</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.2. モバイルバックエンド基盤サーバへの署名鍵の設定</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">アプリケーションの作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">署名鍵の登録</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tls_auth/index.html">3.3. TLS認証</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impl.html">3.4. Pushを受信するための実装</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../fcm/index.html">4. Android Push (FCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sse/index.html">5. SSE Push (Server-Sent Event Push)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../send/index.html">6. クライアントからの Push 送信</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Push Notification Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">3. iOS Push (APNs)</a> &raquo;</li>
+        
+          <li><a href="index.html">3.2. トークン認証</a> &raquo;</li>
+        
+      <li>3.2.2. モバイルバックエンド基盤サーバへの署名鍵の設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>3.2.2. モバイルバックエンド基盤サーバへの署名鍵の設定<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>アプリケーションの作成<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>APNs 証明書が作成できたら、モバイルバックエンド基盤サーバに証明書を登録します。</p>
+<p>デベロッパコンソールにログインし、アプリケーションを作成してください。</p>
+<p>モバイルバックエンド基盤上では、証明書ごとにアプリケーションをセットアップする必要があります。
+実質的に同一のアプリであっても、サーバ上では本番用と開発用では異なるアプリとして登録する必要があります。</p>
+</div>
+<div class="section" id="id3">
+<h2>署名鍵の登録<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>デベロッパコンソールのアプリケーションの編集画面に移動してください。</p>
+<img alt="../../_images/ConsoleApnsToken.png" src="../../_images/ConsoleApnsToken.png" />
+<p>APNs の認証種別に “Token Auth” を指定してください。</p>
+<p>APNs 署名鍵の登録フィールドが表示されますので、ここで署名鍵ファイル (.p8ファイル)
+を指定してアップロードしてください。この際、Key ID と、Team ID の値も入力が必要になります。</p>
+<p>また、種別には Development と Production の２種類がありますので、
+種別も選択してください。</p>
+<p>Topic には、アプリケーションの Bundle Identifier の値を入力してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">VoIP Push を行う場合は、Bundle Identifier の末尾に “.voip” を追加する必要があります。</p>
+</div>
+<p>また、クライアントからの Push 送信を許可する場合、「クライアントPush送信許可」
+にチェックを入れる必要があります。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tls_auth/index.html" class="btn btn-neutral float-right" title="3.3. TLS認証" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="token.html" class="btn btn-neutral" title="3.2.1. トークン認証 署名鍵の取得手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../../_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

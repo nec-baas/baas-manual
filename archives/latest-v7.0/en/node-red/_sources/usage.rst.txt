@@ -1,0 +1,215 @@
+=======================
+利用方法
+=======================
+
+.. include:: ../common/linkdef.rst
+
+NEC BaaS ノードの利用方法
+=========================
+
+NEC BaaS ノードを Node-RED の Flow エディタ画面上に配置後、ノード内の設定ダイアログで動作に必要な情報を設定する必要があります。
+
+.. note::
+    各設定値は設定ダイアログを使用せず、上流からノードへの **入力メッセージ** ( msg.payload 等)として指定できるものがあります。ノードの設定ダイアログと入力メッセージで同じ値を重複して指定した場合、後者の入力メッセージの値が優先されます。詳細は Node-RED ブラウザの右上に表示される各ノードの info タブを参照してください。
+
+認証ノード
+-----------------------------
+
+NEC BaaS への `認証(パスワード認証/クライアント証明書認証) <../developer/functions/user_management.html>`_ に使用するノードです。
+認証ノード(auth)の設定ダイアログを開き、以下を設定してください。  
+
+* パスワード認証を行う場合は、 **Action** 欄で **login** を選択してください。
+* パスワード認証に必要なアカウント情報を **Email**　(または **User**), **Password** 欄に入力してください。
+
+.. image:: ./images/login_dialog.png
+   :scale: 80 %
+   
+* クライアント証明書認証を行う場合は、 **Action** 欄で **Use Client Cert authentication** を選択してください。
+* クライアント証明書認証に使用する証明書形式を選択後、使用する証明書情報を指定してください。その際、証明書ファイルの絶対パスを **Filename** 欄に入力してください。
+   
+.. image:: ./images/login_cert.png
+   :scale: 80 %
+      
+* **Initialize?** をチェック後、接続先の NEC BaaS サーバ 情報を **Config** 欄に設定してください。 Base URI は必ず末尾を **/api** としてください。
+
+.. image:: ./images/login_config.png
+   :scale: 80 %
+
+.. attention::
+    **Initialize?** のチェックを有効にするノードは、 必ず Flow 画面(タブ)内で1つとしてください。接続先として異なるテナント/アプリを使用したい場合は、異なる Flow 画面(タブ)上に本ノードを配置し、 Config欄で **「新規にnebula-serverを追加...」** を選択して追加設定してください。 **「新規にnebula-serverを追加...」** 以外を選択した場合、追加ではなく更新設定になるためご注意ください。
+
+ユーザ取得ノード
+-----------------------------
+
+NEC BaaS に登録された `ユーザ情報を取得 <../javascript/user.html#id4>`_ するノードです。
+ユーザ取得ノード(user)の設定ダイアログを開き、以下を設定してください。 
+ 
+* **Action** 欄で操作を選択してください。
+
+========================== ===============================================
+操作                          Action 欄
+========================== ===============================================
+ログイン中のユーザ取得         Get the current user
+ユーザIDによるユーザ取得       Get the user by ID
+全てのユーザを取得            Get all users
+========================== ===============================================
+
+オブジェクトデータ保存ノード
+-----------------------------
+
+NEC BaaS のオブジェクトストレージに対して `データ保存や削除 <../developer/functions/object_storage.html>`_ を行うノードです。
+データ保存ノード(object)の設定ダイアログを開き、以下を設定してください。  
+
+* **Bucket Name** 欄に バケット名を入力してください。
+* **Action** 欄で操作を選択してください。
+
+===================== ===============================================
+操作                  Action 欄
+===================== ===============================================
+オブジェクトの保存       Save the object
+オブジェクトの削除       Delete the object
+オブジェクトの全削除     Delete all objects
+バケットの削除          Delete the bucket (注1)
+===================== ===============================================
+
+* 注1) バケットの削除を行う場合は、認証ノード Config 内の App Key 欄に `マスターキー <../rest/intro.html#id-id>`_ を設定する必要があります。
+
+オブジェクトデータ取得ノード
+-----------------------------
+
+NEC BaaS のオブジェクトストレージから `データを取得 <../developer/functions/object_storage.html>`_ するノードです。
+データ取得ノード(object)の設定ダイアログを開き、以下を設定してください。  
+
+* **Bucket Name** 欄にバケット名を入力してください。
+* 全てのオブジェクトデータを取得する場合は、 **Use Search conditions?** のチェックを無効にしてください。
+* 検索条件を指定する場合は、 **Use Search conditions?** のチェックを有効にして条件式を入力してください。条件式は 5 項目まで作成でき、 OR/AND 条件のいずれかを指定できます。
+　　　
+.. image:: ./images/object_in_condition.png
+   :scale: 80 %
+   
+.. attention::
+    検索条件で指定する値は、上記の赤円部分で値の型(文字列/数字等)を選択できます。例えば、上記のキー age に対して値の型を文字列とした場合は "30"、数字とした場合は 30 として扱われます。
+　　　
+* **Sort** 欄では、指定したキーに対して昇順/降順を指定できます。
+* **Skip Count** 欄では、指定した件数以降のオブジェクトデータを取得します。
+* **Upper Limit** 欄では、取得するオブジェクトデータの上限数を指定します。
+
+  - 上限数の値はデフォルトで 100 となっています。 上限数を無限大(制限なし)にしたい場合は -1 を指定します。
+
+* **Projection** 欄では、取得したオブジェクトに含まれるフィールドを指定します。
+
+  - 例えば、{"name":1} とした場合は、 取得したオブジェクトに name のフィールドのみ含まれます。
+  - Projection 欄では、フィールドの表示/非表示が混在する指定はできません。例えば、 {"name":1, "age":1}　のような指定はできますが、 {"name":1, "age":0} のような指定はエラーとなります。
+　　　
+Function ノード
+-----------------------------
+
+NEC BaaS が提供する様々な機能へのアクセス手段を JavaScript で実装できるノードです。
+**Function** 欄 に 実行するスクリプトを記述することで、他 NEC BaaS ノードでは対応できない複雑なロジック等を実装することができます。
+   
+.. attention::
+    **Initialize?** の設定方法は認証ノードと同じです。認証ノードと同じく、 **Initialize?** のチェックを有効にするノードは 必ず Flow 画面(タブ)内で1つとしてください。
+
+前述のデータ保存ノードと同様の機能を Function ノードで実装する場合は、
+以下のスクリプトを記述します。
+上流ノードから来た msg の payload をそのままバケットに書き込む例です。
+
+.. code-block:: bash
+
+    var Nebula = flow.get('Nebula'); 
+    var bucket = new Nebula.ObjectBucket('testBucket');
+    bucket.save(msg.payload)
+        .then(function(robj) {
+            node.send({payload: robj});
+        })
+        .catch (function(error) {
+            node.send({payload: error});
+        });
+    return;  
+
+Push 送信ノード
+-----------------------------
+
+NEC BaaS の管理下にあるクライアント端末に `Push 送信 <../push/index.html>`_ するノードです。
+Push 送信ノード(push)の設定ダイアログを開き、以下を設定してください。 
+ 
+* 特定の「チャネル」向けに Push 送信したい場合は、 **Channels** 欄に配信先チャネル名を入力してください。  
+        例) channel1, channel2, ...
+        
+* 特定の「ユーザ/グループ」向けに Push 送信したい場合は、 **Receivers** 欄に受信者を入力してください。  
+        例) user_id, g:group1, g:group2, ...
+        
+* Push 送信するメッセージ内容を **Message** 欄に入力してください。(必須)  
+* **Push Type** 欄で Push 送信方法を選択後、必要に応じて各送信方法の設定値を入力してください。
+
+API-GW ノード
+-----------------------------
+
+ユーザが定義した REST API を使用して `Cloud Functions 機能 <../cloudfunctions/index.html>`_ を呼び出すノードです。
+API-GW ノードの設定ダイアログを開き、以下を設定してください。
+    
+* 実行する API 情報として、 **API Name, Method, Subpath, API Data**　を入力してください。本パラメータに対応した API が実行されます。  
+      
+* API 実行のレスポンスをバイナリ(buffer)で受信する場合は、**Response** のチェックを有効にしてください。  
+
+* **Headers** 欄では API 実行要求時の Header を追加/削除できます。  
+
+.. note::
+    ユーザが定義した REST API 情報は、 `Nebula CLI ツール <../cloudfunctions/setup.html>`_ を使用して事前に NEC BaaS サーバへ登録する必要があります。
+    
+Device 送信ノード
+-----------------------------
+
+NEC BaaS サーバへ Device の reported データを送信するノードです。
+Device 送信ノードの設定ダイアログを開き、以下を設定してください。
+    
+* 実行に必要な情報として、 **API Name, Device ID, Device Type** を入力してください。
+
+  - Device ID が動的に変化する場合は、設定ダイアログを使用せずに入力メッセージ(msg.deviceId)として指定することもできます。
+  - Device Type は NEC BaaS サーバであらかじめ作成したバケット名を指定してください。
+  - reported データは設定ダイアログではなく、入力メッセージ(msg.reported)で指定します。
+    
+.. note::
+    本ノードは NEC BaaS の API-GW 機能を使用します。 `Nebula CLI ツール <../cloudfunctions/setup.html>`_ 等を使用して事前に NEC BaaS サーバへ API 定義情報を登録する必要があります。
+    
+Device 受信ノード
+-----------------------------
+
+NEC BaaS サーバで発生した desired 更新イベントを受信するノードです。
+Device 受信ノードの設定ダイアログを開き、以下を設定してください。
+    
+* 実行に必要な情報として、 **API Name, Device ID, Device Type** を入力してください。
+
+  - Device ID が動的に変化する場合は、設定ダイアログを使用せずに入力メッセージ(msg.deviceId)として指定することもできます。
+  - Device Type は NEC BaaS サーバであらかじめ作成したバケット名を指定してください。
+
+* Polling動作を行う場合は、 **Repeat?** を有効にしてください。
+
+  - 本ノードの Polling は、 LongPolling 動作になります。
+    
+.. note::
+    本ノードは NEC BaaS の API-GW 機能を使用します。 `Nebula CLI ツール <../cloudfunctions/setup.html>`_ 等を使用して事前に NEC BaaS サーバへ API 定義情報を登録する必要があります。
+    
+    
+
+補足事項
+==================
+
+NEC BaaS ライブラリ(baas.min.js)の使用
+-----------------------------------------
+
+Function ノード内にスクリプトを実装する際、 NEC BaaS ライブラリ(baas.min.js)を利用できます。 
+NEC BaaS ライブラリのインスタンスは、下記いずれかの方法で取得できます。
+
+.. code-block:: bash
+
+    var nb = flow.get('Nebula');  // Flow context を利用
+    var nb = nebula.get();        // 上記を簡易化したメソッド
+
+NEC BaaS の各ノード間で NEC BaaS ライブラリのコンテキストを共有するため、 `Flow context`_ を使用しています。 Flow context は同一タブ内にあるノード間で共有されます。
+
+NEC BaaS ライブラリのインスタンスは、認証ノードまたは Function ノードの初期化時(initialize 有効時)に生成されます。
+
+
+
+

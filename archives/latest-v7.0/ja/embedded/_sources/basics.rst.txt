@@ -1,0 +1,47 @@
+=============================
+NEC BaaS Embedded SDK の基本
+=============================
+
+同期呼び出し
+==============
+
+NEC BaaS Embedded API は、同期呼び出しとなります。 API の処理結果は、返り値で受け取る形になります。
+
+以下に、オブジェクトを検索する場合の例を示します。
+
+.. code-block:: c++
+
+    // オブジェクトのクエリ
+    NbObjectBucket bucket(service1, "testBucket");
+    bucket.SetTimeout(10);
+
+    NbQuery query;
+    NbResult<std::vector<NbObject>> result = bucket.Query(query);
+    if(result.IsSuccess()) {
+        // 処理成功
+        for(auto aObject : result.GetSuccessData()) {
+            // 検索にヒットしたオブジェクトにアクセス
+        }
+    } else if(result.IsRestError()){
+        // サーバからエラー応答を受信
+        auto restError = result.GetRestError();
+        std::cout << "RestError statusCode: " << restError.status_code << std::endl;
+        std::cout << "RestError reason    : " << restError.reason << std::endl;
+    } else {
+        // 処理失敗(タイムアウト、通信不可、その他処理異常)
+        auto resultCode = result.GetResultCode();
+        std::cout  << "Fatal error:" << static_cast<int>(resultCode) << std::endl;
+    }
+
+
+処理が成功した場合は result.IsSuccess() がtrueとなります。
+result.GetSuccessData()で、APIに応じた処理結果を取得することができます。
+
+サーバから処理失敗の応答を受けた場合、result.IsRestError()がtrueとなります。
+result.GetRestError()でサーバから受信したエラー情報が取得できます。
+
+またそれ以外のエラーの場合、result.IsFatalError()がtrueとなります。この場合サーバからは応答が得られていません。
+result.GetResultCode()で異常が発生した要因を示すエラーコードが取得できます。
+
+通信を行うインスタンスにはタイムアウトまでの時間を設定することができます。(defaultは60秒) タイムアウトが発生した場合、FatalErrorが返ります。
+

@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.2. Cloud Functionsコード実装 &mdash; Cloud Functions Developer Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="4.3. API/ファンクション定義の登録" href="api-function.html" />
+    <link rel="prev" title="4.1. Node.js プロジェクトのセットアップ" href="project-nodejs.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project-dir.html">3. プロジェクトディレクトリの作成</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nodejs.html">4. Node.js での開発</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project-nodejs.html">4.1. Node.js プロジェクトのセットアップ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. Cloud Functionsコード実装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#index-0">4.2.1. ハンドラ実装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.2.2. コードのパッケージングと登録</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api-function.html">4.3. API/ファンクション定義の登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exec.html">4.4. カスタムAPIの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-nebula-nodejs.html">4.5. ユーザコードからのモバイルバックエンド基盤の利用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-nodejs.html">4.6. コンテキスト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="java.html">5. Java での開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="others.html">7. その他補足情報</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">8. 制限事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="nodejs.html">4. Node.js での開発</a> &raquo;</li>
+        
+      <li>4.2. Cloud Functionsコード実装</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cloud-functions">
+<h1>4.2. Cloud Functionsコード実装<a class="headerlink" href="#cloud-functions" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="index-0">
+<span id="id1"></span><h2>4.2.1. ハンドラ実装<a class="headerlink" href="#index-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Cloud Functionsのコード実装を行います。</p>
+<p>ここでは、&quot;Hello world, [名前]!!!&quot; という応答を返す単純なロジックを作成してみます。
+(&quot;名前&quot; は引数として呼び出し時に引き渡します)</p>
+<p>エディタを開き index.js という名前のファイルを以下の内容で作成してください。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">sayHello</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">clientContext</span><span class="p">.</span><span class="nx">queryParams</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">name</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">clientContext</span><span class="p">.</span><span class="nx">queryParams</span><span class="p">.</span><span class="nx">name</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Hello world, &quot;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; !!!&quot;</span>
+    <span class="p">};</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">succeed</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>上記 sayHello が「ハンドラ」です。ハンドラがコードのエントリポイントになります。
+ハンドラ関数は exports で外部公開する必要があります。</p>
+<p>このハンドラでは、context.clientContext.queryParams.name[0] で名前を受け取り、メッセージを response.message に
+格納して返却しています。</p>
+<p>ハンドラには以下２つの引数が引き渡されます。</p>
+<ul class="simple" id="index-1">
+<li>event: 呼び出し元が指定したリクエストボディが格納されます。<ul>
+<li>Content-Type が &quot;application/json&quot; の場合、リクエストボディの JSON オブジェクトをパースしたものが引き渡されます。</li>
+<li>これ以外の場合は、リクエストボディを格納した Buffer が渡されます。</li>
+</ul>
+</li>
+<li>context: ランタイム情報が格納されます。</li>
+</ul>
+<p>context にはいくつかのメソッドやオブジェクトが定義されています。
+ハンドラの処理が正常に完了した場合は context.succeed() を、異常終了した場合は context.fail() を呼び出す必要があります。</p>
+<p>context の詳細は <a class="reference internal" href="context-nodejs.html#context"><span class="std std-ref">コンテキスト</span></a> を参照してください。</p>
+</div>
+<div class="section" id="id2">
+<h2>4.2.2. コードのパッケージングと登録<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>コードができたので、モバイルバックエンド基盤サーバに登録します。</p>
+<p>まず package.json ファイルを確認し、&quot;main&quot; プロパティに &quot;index.js&quot; が指定されていることを確認してください。
+サーバは main に指定されたコードを最初に実行します。</p>
+<p>確認したら以下手順でコードをパッキングします。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm pack
+</pre></div>
+</div>
+<p>&quot;hello-1.0.0.tgz&quot; というファイル名でコードが生成されるはずです。
+(ファイル名が異なる場合は、package.json の name, version の値を確認してください)</p>
+<p>次にコードをサーバに登録します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nebula create-code
+</pre></div>
+</div>
+<p>create-code コマンドを実行すると、package.json の内容に従い hello-1.0.0.tgz ファイルをサーバにアップロードします。</p>
+<p>コードはファイルバケットに格納されます。デフォルトでは &quot;CUSTOM_CODE&quot; という名前のバケットに格納されます。</p>
+<p>コードが登録されたかどうかは &quot;nebula list-code&quot; で確認できます。
+コードを削除したいときは &quot;nebula delete-code &lt;ファイル名&gt;&quot; で削除してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api-function.html" class="btn btn-neutral float-right" title="4.3. API/ファンクション定義の登録" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="project-nodejs.html" class="btn btn-neutral" title="4.1. Node.js プロジェクトのセットアップ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

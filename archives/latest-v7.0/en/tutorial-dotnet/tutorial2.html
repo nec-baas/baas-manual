@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. チュートリアル2 : ログイン機能とアクセス制御 &mdash; Tutorials (.NET) 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. チュートリアル4 : TODOアプリ (オフライン対応)" href="tutorial4.html" />
+    <link rel="prev" title="3. チュートリアル1 : TODOアプリの実装" href="tutorial1_code.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (.NET)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_code.html">3. チュートリアル1 : TODOアプリの実装</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. チュートリアル2 : ログイン機能とアクセス制御</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. サンプルの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.2. アクセス制御</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#todo">4.2.1. Todo のアクセス制御</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">5. チュートリアル4 : TODOアプリ (オフライン対応)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (.NET)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. チュートリアル2 : ログイン機能とアクセス制御</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. チュートリアル2 : ログイン機能とアクセス制御<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>チュートリアル2では、チュートリアル1の Todo アプリにユーザ登録・ログイン機能を追加します。</p>
+<a class="reference internal image-reference" href="_images/tutorial2.png"><img alt="_images/tutorial2.png" class="align-center" src="_images/tutorial2.png" style="width: 450px;" /></a>
+<p>チュートリアル1ではデータを全員で共有していましたが、
+チュートリアル2ではユーザごとにデータを管理するようにします。</p>
+<div class="section" id="id2">
+<h2>4.1. サンプルの実行<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>チュートリアル1と同じように、デベロッパコンソールからアプリケーションを新たに作成し、サンプルコードの変更を行ってください。</p>
+<p>また、デベロッパコンソールから、オブジェクトバケットを作成します。
+バケット名は “TodoTutorial2” としてください。
+なお、ACL はデフォルトのまま (認証ユーザのみ読み書き可能)で構いません。</p>
+<p>アプリを起動すると、ログイン画面が表示されます。
+最初に画面下部の Signup ボタンを押してサインアップ画面に遷移して下さい。
+E-mail アドレスとパスワード(8文字以上)を入力してサインアップします。</p>
+<p>サインアップが完了したらログインを行って下さい。
+チュートリアル1と同様のアプリ画面が表示されます。
+Todo を作成した後、画面上部の Logout を押下しログアウトしてください。</p>
+<a class="reference internal image-reference" href="_images/todolist.png"><img alt="_images/todolist.png" class="align-center" src="_images/todolist.png" style="width: 450px;" /></a>
+<p>ログイン画面に戻りますので、今度は違うユーザ名でサインアップを行い、ログインしてみてください。
+先ほど作成した Todo が、現在のユーザからは見えなくなっていることを確認してください。</p>
+</div>
+<div class="section" id="id3">
+<h2>4.2. アクセス制御<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="todo">
+<h3>4.2.1. Todo のアクセス制御<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
+<p>データの保存処理はチュートリアル1同様 SaveAsync() で行っています。</p>
+<p>ただし、ログイン中のユーザのみがアクセス可能となるように ACL 設定を行っています。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">async</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">obj</span> <span class="p">=</span> <span class="n">_bucket</span><span class="p">.</span><span class="n">NewObject</span><span class="p">();</span>
+    <span class="c1">// 現在のユーザのみアクセス可能とする</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">Acl</span> <span class="p">=</span> <span class="n">NbAcl</span><span class="p">.</span><span class="n">CreateAclForUser</span><span class="p">(</span><span class="n">NbUser</span><span class="p">.</span><span class="n">CurrentUser</span><span class="p">());</span>
+    <span class="n">obj</span><span class="p">[</span><span class="s">&quot;description&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="n">text</span><span class="p">;</span>
+
+    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">await</span> <span class="n">obj</span><span class="p">.</span><span class="n">SaveAsync</span><span class="p">();</span>
+    <span class="n">Reload</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>これにより、以下の ACL が設定されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&quot;オーナのユーザID&quot;</span><span class="p">,</span>
+    <span class="nx">r</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;オーナのユーザID&quot;</span><span class="p">],</span>
+    <span class="nx">w</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;オーナのユーザID&quot;</span><span class="p">],</span>
+    <span class="nx">c</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">u</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">d</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">admin</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;オーナのユーザID&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>このため、他のユーザが作成したデータは、同一のバケットに入っていても参照および変更ができません。</p>
+<p>なお、チュートリアル１のように未ログイン状態でデータを作成した場合は、
+以下のように誰でも読み書き可能な ACL が自動的に設定されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">r</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span>
+    <span class="nx">w</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span>
+    <span class="nx">c</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">u</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">d</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">admin</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial4.html" class="btn btn-neutral float-right" title="5. チュートリアル4 : TODOアプリ (オフライン対応)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial1_code.html" class="btn btn-neutral" title="3. チュートリアル1 : TODOアプリの実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

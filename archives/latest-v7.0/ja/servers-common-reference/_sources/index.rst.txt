@@ -1,0 +1,20 @@
+サーバ共通リファレンス
+===============================================
+
+目次
+----
+
+.. toctree::
+   :maxdepth: 3
+   :numbered: 3
+
+   mws_ports
+   servers_data
+   servers_tuning
+
+索引
+----
+
+* :ref:`genindex`
+* :ref:`search`
+

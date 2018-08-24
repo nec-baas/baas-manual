@@ -1,0 +1,180 @@
+.. index::
+   single: Swagger ベンダ拡張
+
+.. _vendor_extension:
+
+===============================
+Swagger ベンダ拡張 リファレンス
+===============================
+
+API Gateway では、Swagger に対してベンダ拡張を行っています。
+ベンダ拡張はすべて "x-" で始まる名称となります。
+
+ベンダ拡張の優先順位
+====================
+
+ベンダ拡張は Swagger のトップレベル、Path、Operation の３レベルに個別に指定することができます。
+複数指定した場合は、原則後者が優先となります。
+
+以下に例を示します。
+
+.. code-block:: yaml
+
+    swagger: '2.0'
+    basePath: /hello
+    x-acl:
+      - user1 # トップレベル
+    paths:
+      /sayHello:
+        x-acl:
+          - user2  # Path レベル
+        get:
+          operationId: sayHello
+          summary: Hello world
+          x-acl:
+            - user3 # Operation レベル。この例ではこの値が使用される。
+
+
+ただし、x-proxy については指定した Object の内容がマージされるようになっています。
+この場合も、各フィールドについてはトップレベル < Path < Operation の順に、後者が優先されるようにマージされます。
+
+x-acl
+=====
+
+x-acl は、各 API に対するアクセス制御を行います。
+
+x-acl には API を実行可能なユーザID、グループ名の一覧を配列で指定します。
+グループ名を指定する場合は先頭に "g:" プレフィクスを付与します。
+
+以下に例を示します。
+
+.. code-block:: yaml
+
+    swagger: '2.0'
+    basePath: /hello
+    produces:
+      - application/json
+    paths:
+      /sayHello:
+        get:
+          operationId: sayHello
+          summary: Hello world
+          x-acl:
+            - g:authenticated
+
+.. _xproxy:
+
+x-proxy
+=======
+
+x-proxy にリクエストの proxy に必要な情報を Object 形式で記述します。
+
+proxy の "type" フィールドに proxy の種別を指定します。指定できる値は以下のいずれかです。
+省略時は "http" となります。
+
+* "http" : HTTP Proxy を行う
+* "amqp-publish": RabbitMQ に送信(publish)を行う
+* "amqp-consume": RabbitMQ から受信(consume)を行う
+
+type = http の場合
+------------------
+
+HTTP Proxy の場合は、x-proxy に以下の値を記述します。
+
+* uri (必須): Proxy 先の URI。http, https のみ使用可能です。
+* relativePath (オプション): Proxy 先の URI相対パス。"uri" で指定された URI に連結されます。
+* method (必須): HTTP Proxy 時のリクエストメソッド。GET/POST/PUT/DELETE のいずれか。
+* request (オプション): リクエストのマッピング規則
+* response (オプション): レスポンスのマッピング規則
+
+request, response の詳細については、:ref:`req_rsp_mapping` を参照してください。
+
+以下に例を示します。
+
+.. code-block:: yaml
+
+    swagger: '2.0'
+    basePath: /api1
+    produces:
+      - application/json
+    x-proxy:
+      uri: https://api.example.com
+    paths:
+      /products:
+        get:
+          x-proxy:
+            relativePath: /products
+            method: GET
+            request:
+              headers:
+                default: $pass
+                mapping:
+                  Referrer: $drop
+                  Accept: application/json
+              queryParams:
+                default: $drop
+                mapping:
+                  token: ${request.queryParams.secret}
+                  query: $pass
+            response:
+              body:
+                jsonPatch:
+                  - op: remove
+                    path: /secret
+
+type = amqp-publish または amqp-consume の場合
+----------------------------------------------
+
+RabbitMQ 接続の場合、x-proxy には以下の値を記述します。
+
+* type (必須): 送信時は amqp-publish を、受信時は amqp-consume を指定します。
+* addrs (必須): RabbitMQ クラスタのホスト/ポート番号の組を指定します。
+* host (必須): RabbitMQ ホストを指定します。
+* port (必須): RabbitMQ ポート番号を指定します。
+* username (必須): RabbitMQ 認証ユーザ名を指定します。
+* password (必須): RabbitMQ 認証パスワードを指定します。
+* vhost (オプション): バーチャルホスト名を指定します。
+
+上記のうち、addrs または host/port のいずれかのみ必須(もう一方はオプション)です。
+
+* addrs には ["ホスト名:ポート番号", "ホスト名:ポート番号"] のように，ホスト名とポートの組をリストで指定します．
+* addrs ではなく host, port を指定する場合はホストは１台しか指定できません。
+
+送信時(amqp-publish)には以下の値を指定します。
+
+* exchange (必須): 送信先の Exchange 名を指定します。
+* routingKey (必須): Routing Key を指定します。
+* confirm (オプション): true を指定すると送信時 ack を待ちます。
+
+受信時(amqp-consume)には以下の値を指定します。
+
+* queue (必須): キュー名を指定します。
+* timeout (オプション): タイムアウト時間をミリ秒で指定します。指定がない場合はポーリングになります。
+
+以下に例を示します。
+
+.. code-block:: yaml
+
+    swagger: '2.0'
+    basePath: /amqp
+    x-proxy:
+      addrs:
+        - rabbitmq1.example.com:5672
+        - rabbitmq2.example.com:5672
+      username: guest
+      password: guest
+      vhost: vhost1
+    paths:
+      /publish/{id}:
+        post:
+          x-proxy:
+            type: amqp-publish
+            exchange: exchange1
+            routingKey: ${request.pathParams.id}
+            confirm: false
+      /consume/{id}:
+        get:
+          x-proxy:
+            type: amqp-consume
+            queue: ${request.pathParams.id}
+            timeout: 10000

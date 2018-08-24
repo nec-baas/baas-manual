@@ -1,0 +1,25 @@
+========================
+マイグレーションガイド
+========================
+
+本章では、NEC BaaS iOS SDK の以前のバージョンからの
+API の変更点や移行方法について説明します。
+
+ver 3.0.0 → 5.0.0 での変更点
+=============================
+
+Swift3 / Xcode8 対応 
+--------------------
+
+Swift3 / Xcode8 に対応しました。
+
+詳細は :ref:`swift` を参照してください。
+
+一部の enum / options 名称変更
+------------------------------
+
+一部の enum の名称を単数形に変更しました。
+
+* NBAclPermissions -> NBAclPermission
+* NBErrorCodes -> NBErrorCode
+* NBFileConditions -> NBFileCondition

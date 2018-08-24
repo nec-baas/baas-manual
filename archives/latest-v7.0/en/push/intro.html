@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Push通知機能 &mdash; Push Notification Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. コンソールからのPush送信方法" href="send_console.html" />
+    <link rel="prev" title="NEC BaaS Push Notification Guide" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Push Notification Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Push通知機能</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1.1. Push通知機能の概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.2. Push通知の概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2.1. インスタレーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#apns">APNs の場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fcm">FCM の場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sse-push">SSE Push の場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.3. 配信端末（インスタレーション)の指定方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1.3.1. 配信端末(インスタレーション)の絞り込み</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.3.2. チャネル</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">補足: チャネルの実体について</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">1.3.3. ユーザを指定して配信したい場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">1.3.4. クエリ式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="send_console.html">2. コンソールからのPush送信方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apns/index.html">3. iOS Push (APNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fcm/index.html">4. Android Push (FCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sse/index.html">5. SSE Push (Server-Sent Event Push)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="send/index.html">6. クライアントからの Push 送信</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Push Notification Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. Push通知機能</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="push">
+<h1>1. Push通知機能<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.1. Push通知機能の概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Push通知機能は、iOS / Android 端末に対して、ブラウザ・アプリ・外部システムから
+Push通知を送信する仕組みを提供するものです。</p>
+<p>NEC BaaS では以下の方式をサポートします。</p>
+<ul class="simple">
+<li>iOS : APNs (Apple Push Notification Service)</li>
+<li>Android : FCM (Firebase Cloud Messaging) (旧 GCM (Google Cloud Messaging))</li>
+<li>Android : SSE Push (Server Sent Events Push)</li>
+<li>.NET : SSE Push</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>1.2. Push通知の概念<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>1.2.1. インスタレーション<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>端末にインストールされたアプリのインスタンスのことを「インスタレーション」と呼びます。
+Push送信は、このインスタレーションに対して行います。</p>
+<p>APNs の場合はアプリインストール後に Device Token が、
+FCM の場合はアプリインストール後に Registration ID が OS側から払い出されます。
+クライアントは、この Device Token や Registration ID を BaaS サーバに
+送信してインスタレーションを登録します。</p>
+<p>SSE Push の場合はモバイルバックエンド基盤経由でサーバへ登録し、登録時の認証情報を元にPushサーバへ接続する流れとなります。</p>
+<div class="section" id="apns">
+<h4>APNs の場合<a class="headerlink" href="#apns" title="Permalink to this headline">¶</a></h4>
+<p><strong>APNs に対応するインスタレーションの登録</strong></p>
+<p>APNｓ のPush通知を利用するために、開発者が事前に証明書を登録します。</p>
+<ol class="arabic simple">
+<li>Push通知用の証明書を iOS Dev Center より取得する。</li>
+<li>取得した証明書を デベロッパーコンソール より登録する。</li>
+</ol>
+<p>その後、以下の手順でインスタレーションの登録を行います。</p>
+<ol class="arabic simple" start="3">
+<li>iOS端末へのアプリインストール後にDeviceTokenが払い出される。</li>
+<li>DeviceToken 情報を含むインスタレーションをモバイルバックエンド基盤へ登録する。</li>
+</ol>
+<a class="reference internal image-reference" href="_images/APNs_1_Regist.png"><img alt="_images/APNs_1_Regist.png" src="_images/APNs_1_Regist.png" style="width: 576.0px; height: 324.0px;" /></a>
+<p><strong>APNｓ 経由のPush通知</strong></p>
+<p>APNsに紐付くインスタレーションに対するPush通知は以下のように行われます。</p>
+<ol class="arabic simple">
+<li>送信者からモバイルバックエンド基盤へPush通知要求を行う。</li>
+<li>モバイルバックエンド基盤からAPNｓサーバへPush通知要求を行う。この要求には、証明書及びインスタレーションのDeviceToken情報が付加される。</li>
+<li>APNsサーバよりiOS端末へPush通知が送信される。</li>
+</ol>
+<a class="reference internal image-reference" href="_images/APNs_2_SendPush.png"><img alt="_images/APNs_2_SendPush.png" src="_images/APNs_2_SendPush.png" style="width: 576.0px; height: 324.0px;" /></a>
+</div>
+<div class="section" id="fcm">
+<h4>FCM の場合<a class="headerlink" href="#fcm" title="Permalink to this headline">¶</a></h4>
+<p><strong>FCM に対応するインスタレーション登録</strong></p>
+<p>FCM のPush通知を利用するために、開発者が事前にFCMのサーバーキーを登録します。</p>
+<ol class="arabic simple">
+<li>サーバーキーを Firebase コンソールより取得する</li>
+<li>取得したサーバーキーをモバイルバックエンド基盤デベロッパーコンソールに登録する</li>
+</ol>
+<p>その後、以下の手順でインスタレーションの登録を行います。</p>
+<ol class="arabic simple" start="3">
+<li>Android端末へのアプリインストール後に Registration ID が払い出される</li>
+<li>Registration ID 情報を含むインスタレーションをモバイルバックエンド基盤へ登録する</li>
+</ol>
+<a class="reference internal image-reference" href="_images/FCM_1_Register.png"><img alt="_images/FCM_1_Register.png" src="_images/FCM_1_Register.png" style="width: 576.0px; height: 324.0px;" /></a>
+<p><strong>FCM 経由のPush通知</strong></p>
+<p>FCMに紐付くインスタレーションに対するPush通知は以下のように行われます。</p>
+<ol class="arabic simple">
+<li>送信者からモバイルバックエンド基盤へPush通知要求を行う。</li>
+<li>モバイルバックエンド基盤からFCMサーバへPush通知要求を行う。この要求には、サーバーキー及びインスタレーションのRegistrationID情報が付加される。</li>
+<li>FCMサーバよりAndroid端末へPush通知が送信される。</li>
+</ol>
+<a class="reference internal image-reference" href="_images/FCM_2_SendPush.png"><img alt="_images/FCM_2_SendPush.png" src="_images/FCM_2_SendPush.png" style="width: 576.0px; height: 324.0px;" /></a>
+</div>
+<div class="section" id="sse-push">
+<h4>SSE Push の場合<a class="headerlink" href="#sse-push" title="Permalink to this headline">¶</a></h4>
+<p><strong>SSE Push に対応するインスタレーション登録</strong></p>
+<p>SSE Push通知を利用するためには、モバイルバックエンド基盤サーバ管理者の他に SSE Push サーバおよび
+RabbitMQ サーバを立ち上げ、接続設定を行っておく必要があります。</p>
+<p>設定の詳細は、「<a class="reference internal" href="sse/setup.html#ssepush-setup"><span class="std std-ref">SSE Push サーバセットアップ</span></a>」 を参照ください。</p>
+<p>その後、以下の手順でインスタレーションの登録を行います。</p>
+<ol class="arabic simple">
+<li>デバイス情報を記載したインスタレーションをモバイルバックエンド基盤へ登録</li>
+<li>モバイルバックエンド基盤から RabbitMQ を経由して SSE Pushサーバへデバイス/認証情報が登録される</li>
+<li>端末へ認証情報が返却され、SSE Pushサーバへの接続が可能となる</li>
+</ol>
+<a class="reference internal image-reference" href="_images/SSE_1_Register.png"><img alt="_images/SSE_1_Register.png" src="_images/SSE_1_Register.png" style="width: 576.0px; height: 324.0px;" /></a>
+<p><strong>SSE Push 経由のPush通知</strong></p>
+<p>SSE Push に紐付くインスタレーションに対するPush通知は以下のように行われます。</p>
+<ol class="arabic simple">
+<li>クライアントは事前に SSE Push サーバに対し接続を行っておく。</li>
+<li>送信者からモバイルバックエンド基盤へPush通知要求を行う。</li>
+<li>モバイルバックエンド基盤から SSE PushサーバへPush通知要求を行う。</li>
+<li>SSE PushサーバよりクライアントへPush通知が送信される。</li>
+</ol>
+<a class="reference internal image-reference" href="_images/SSE_2_SendPush.png"><img alt="_images/SSE_2_SendPush.png" src="_images/SSE_2_SendPush.png" style="width: 576.0px; height: 324.0px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>1.3. 配信端末（インスタレーション)の指定方法<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>1.3.1. 配信端末(インスタレーション)の絞り込み<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Pushを送信する際、配信対象となるインスタレーションの絞り込みを行うことができます。
+具体的には以下のような絞り込みが可能です。</p>
+<ul class="simple">
+<li>アプリを使用する全端末に配信</li>
+<li>特定の１つのインスタレーションに配信</li>
+<li>特定アプリバージョンのインスタレーションに配信</li>
+<li>特定の「チャネル」を購読しているインスタレーションに配信</li>
+</ul>
+<p>絞り込みは、インスタレーションに対する「クエリ」として実現しています。</p>
+</div>
+<div class="section" id="id6">
+<h3>1.3.2. チャネル<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>配信端末の絞り込みのために、「チャネル」という概念を用意しています。
+チャネルを使用することでいわゆる「Pub/Subモデル」型の配信を実現できます。</p>
+<p>チャネルは任意の文字列で表現することができ、各端末は任意のチャネルを
+「購読(Subscribe)」することができます。Push送信時はチャネルを指定して
+インスタレーションの絞り込みができます。</p>
+<p>チャネルを使用することで、特定の事項(例えば「東京都の天気」
+「山手線の運行情報」「特定製品の更新情報」など）に興味がある
+ユーザに対して配信を行うことが可能になります。</p>
+<p>以下の図では、channel1／channel2 というの２つのチャネルに対して送信する場合を示しています。
+チャネルを指定した場合、その購読を条件としてインスタレーションのクエリを行い、対象の端末を絞り込みます。</p>
+<ul class="simple">
+<li>channel1 を指定した場合、購読している「端末A」「端末B」へPush通知が行われます。</li>
+<li>channel2 を指定した場合、購読している「端末A」「端末C」へPush通知が行われます。</li>
+</ul>
+<a class="reference internal image-reference" href="_images/Push_Channels.png"><img alt="_images/Push_Channels.png" src="_images/Push_Channels.png" style="width: 720.0px; height: 405.0px;" /></a>
+<div class="section" id="id7">
+<h4>補足: チャネルの実体について<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>本 Push 通知における Pub/Sub モデルは、メッセージキュー(MQ)の Pub/Sub モデルとは
+少し異なります。
+MQ では「キュー」を用意して Publisher がここにメッセージを送信し、Subscribe に
+配信されます。キューの実体は MQ 内に存在しています。</p>
+<p>これに対し、本 Push 通知では、「チャネル」は実体としては存在していません。
+単に文字列としてインスタレーション内に記載されているだけの存在です。
+(したがって、チャネルを作成したりするような操作はありません)。
+Push を送信する際、モバイルバックエンド基盤サーバは
+指定されたチャネルが記述されているインスタレーション(MongoDB内にオブジェクトとして保存されている)を「クエリ」で検索し、
+見つかったインスタレーションに対して Push サーバ宛についてそれぞれ Push を送信するという動作になります。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>1.3.3. ユーザを指定して配信したい場合<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>特定の「ユーザ」向けに Push を配信したい場合は、以下のような方法があります。</p>
+<ul class="simple">
+<li>ユーザごとにチャネルを1つ用意する方法<ul>
+<li>例えばユーザのメールアドレスをチャネル名とし、そのチャネルに対して送信することで特定ユーザのみに配信ができます。</li>
+</ul>
+</li>
+<li>オプションフィールドを使用する方法<ul>
+<li>インスタレーションには任意のオプションフィールドをJSON形式で指定することができます。</li>
+<li>例えば {“email”: “<a class="reference external" href="mailto:foo&#37;&#52;&#48;example&#46;com">foo<span>&#64;</span>example<span>&#46;</span>com</a>”} のようにオプションを設定しておき、クエリ式(後述)を指定することで指定ユーザに配信を行うことができます。</li>
+</ul>
+</li>
+<li>allowedReceivers(受信可能ユーザ/グループ)を使用する方法<ul>
+<li>Push送信時に allowedReceives にユーザIDまたはグループ名を指定することで、特定のユーザまたは特定グループに所属するユーザに対して配信を行うことができます。</li>
+<li>この方法を使用する場合は、インスタレーションの登録時にログイン状態になっている必要があります。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h3>1.3.4. クエリ式<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>送信先は　MongoDB のクエリ式で指定します。</p>
+<p>いくつか例を示します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// チャネル &quot;chan1&quot; を指定する場合</span>
+<span class="p">{</span> <span class="s2">&quot;_channel&quot;</span><span class="o">:</span> <span class="s2">&quot;chan1&quot;</span> <span class="p">}</span>
+
+<span class="c1">// チャネル &quot;chan1&quot;, &quot;chan2&quot; の両方を指定する場合</span>
+<span class="p">{</span> <span class="s2">&quot;_channel&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$in&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;chan1&quot;</span><span class="p">,</span> <span class="s2">&quot;chan2&quot;</span><span class="p">]</span> <span class="p">}</span> <span class="p">}</span>
+
+<span class="c1">// オプションフィールド &quot;email&quot; に対する指定を行う場合</span>
+<span class="p">{</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;foo@example.com&quot;</span> <span class="p">}</span>
+
+<span class="c1">// Android 端末のみに送信する場合</span>
+<span class="p">{</span> <span class="s2">&quot;_osType&quot;</span><span class="o">:</span> <span class="s2">&quot;android&quot;</span> <span class="p">}</span>
+
+<span class="c1">// アプリバージョンコード 6 以下の端末を指定する場合</span>
+<span class="p">{</span> <span class="s2">&quot;_appVersionCode&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;$lte&quot;</span><span class="o">:</span> <span class="mi">6</span> <span class="p">}</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>“_” で始まるフィールドの詳細については、REST API リファレンスの「Push通知」-「インスタレーションの登録・再登録」の節に記載されていますのでそちらを参照してください。</p>
+<p>なお、allowedReceives はクエリ式ではなく別の方法で指定する形になります。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="send_console.html" class="btn btn-neutral float-right" title="2. コンソールからのPush送信方法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="NEC BaaS Push Notification Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

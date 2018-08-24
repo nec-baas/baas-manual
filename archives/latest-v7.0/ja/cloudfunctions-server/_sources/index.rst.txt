@@ -1,0 +1,28 @@
+NEC BaaS Cloud Functions Server User Manual
+===========================================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 3
+
+   intro
+   requirement
+   system_configuration
+   dist
+   install_auto
+   install_manual
+   configure
+   test
+   logs
+   migration
+
+Index
+-----
+
+* :ref:`genindex`
+* :ref:`search`
+
+.. include:: ../common/back_to_index.rst

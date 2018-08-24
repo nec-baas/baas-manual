@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 性能・諸元 &mdash; FAQ and Trouble Shooting Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. BaaSサーバ運用" href="baas_server.html" />
+    <link rel="prev" title="2. 動作環境" href="requirements.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FAQ and Trouble Shooting Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic.html">1. 全般</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">2. 動作環境</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 性能・諸元</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">3.1. サイジング: サーバ台数はどのように見積もればよいでしょうか。</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">3.2. 諸元値を超えた運用をしたいのですが可能でしょうか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">3.3. 各種上限値・制限値や使用できる文字種などを教えてください</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jmeter-non-http-response-code">3.4. JMeterによる性能テストで Non HTTP response code 系の例外が多発します</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="baas_server.html">4. BaaSサーバ運用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">5. MongoDB 関連</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">9. Push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">10. Cloud Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">11. JavaScript 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="android.html">12. Android 開発</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FAQ and Trouble Shooting Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. 性能・諸元</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>3. 性能・諸元<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id21">
+<h2>3.1. サイジング: サーバ台数はどのように見積もればよいでしょうか。<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>「サイジングガイドライン」を別途提供しています。
+入手方法についてはお問い合わせください。</p>
+</div>
+<div class="section" id="id22">
+<h2>3.2. 諸元値を超えた運用をしたいのですが可能でしょうか？<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>可能です。</p>
+<p>モバイルバックエンド基盤の諸元値は、開発元でテストを行い
+動作を確認した際の設定値になります。したがって、実際の
+性能や制限値に比べると控えめな数値となっています。
+また、ここに記載されている数値で上限値を設定しているわけではありません。</p>
+<p>実際の上限値は、ほぼ MongoDB 側の上限値になります。
+これらの値については、 <a class="reference external" href="https://docs.mongodb.com/manual/reference/limits/">MongoDB Limits and Thresholds</a> を参照ください。</p>
+</div>
+<div class="section" id="id23">
+<h2>3.3. 各種上限値・制限値や使用できる文字種などを教えてください<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="../developer/index.html">デベロッパーマニュアル</a> の「制限値・スレショルド・文字制約」を参照ください。</p>
+</div>
+<div class="section" id="jmeter-non-http-response-code">
+<h2>3.4. JMeterによる性能テストで Non HTTP response code 系の例外が多発します<a class="headerlink" href="#jmeter-non-http-response-code" title="Permalink to this headline">¶</a></h2>
+<p>Non HTTP response code 系の例外は高負荷テスト時によく発生する現象です。
+主な原因は JMeterとその実行環境の設定不備によるものが多いです。</p>
+<p>例えば、下記のような例外があります。</p>
+<ul class="simple">
+<li>Non HTTP response code: java.net.NoRouteToHostException, Non HTTP response message: No route to host<ul>
+<li>JMeterが利用しているポートが実行環境のポート数上限に達したため、新しいポートをアサインできないときに発生する</li>
+</ul>
+</li>
+<li>Non HTTP response code: java.net.ConnectException, Non HTTP response message: Connection timed out<ul>
+<li>APサーバの処理が追いつかず、JMeter の HTTP Request タイムアウトとなったときに発生する</li>
+</ul>
+</li>
+<li>Non HTTP response code: java.net.SocketException, Non HTTP response message: Connection reset<ul>
+<li>APサーバの処理が追いつかず、TCPの接続をOSが拒否したときに発生する</li>
+<li>通信経路上のネットワーク機器（ルータ、ファイアウォールなど）起因で発生することもある</li>
+</ul>
+</li>
+</ul>
+<p>前述の例外を低減するため、以下の点の調整が必要です。</p>
+<ul class="simple">
+<li>JMeterの実行環境<ul>
+<li>OSのプロセス上限設定（ulimit）</li>
+<li>NoRouteToHostException が多発する場合、複数台環境に分散して実行</li>
+<li>GUIモードではなく、CUIモードで実行</li>
+</ul>
+</li>
+<li>JMeterの設定<ul>
+<li>Java ヒープメモリサイズの設定</li>
+<li>request タイムアウト値を必要に応じて大きめに設定</li>
+<li>ramp-up期間（秒）の調整。特に高多重度のテスト時、サーバは request を受けつける多数スレッドの起動に時間がかかるため、大きめに設定した方がよい</li>
+</ul>
+</li>
+<li>APサーバ(Tomcat)側の設定<ul>
+<li>最大コネクション数の設定</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="baas_server.html" class="btn btn-neutral float-right" title="4. BaaSサーバ運用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="requirements.html" class="btn btn-neutral" title="2. 動作環境" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

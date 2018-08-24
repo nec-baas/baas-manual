@@ -1,0 +1,150 @@
+.. _object_query:
+
+=============================
+オブジェクトストレージ:クエリ
+=============================
+
+オブジェクトのクエリ
+====================
+
+オブジェクトのクエリは、バケットに対して query() を呼び出すことで行います。
+
+以下の例では、全件検索を行っています。
+
+.. code-block:: javascript
+
+    var query = new Nebula.ObjectQuery();
+    bucket.query(query)
+        .then(function(objects) {
+            // 成功時の処理。objects にはデータの配列が渡される。
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+
+全ヒット件数付きでクエリしたい場合は query() の代わりに queryWithCount() を使用します。
+詳細は :ref:`queryWithCount` を参照してください。
+
+クエリ条件は、Nebula.ObjectQuery クラスを使用して指定します。
+
+クエリ条件の指定
+================
+
+検索条件には Nebula.Clause を使用します。以下に例を示します。
+
+.. code-block:: javascript
+
+    var clause = Nebula.Clause.equals("name", "foo"); // 一致条件
+    query.setClause(clause);
+
+以下のような条件も指定できます。
+
+.. code-block:: javascript
+
+    var clause1 = Nebula.Clause.lessThan("age", 30); // 比較条件
+    var clause2 = Nebula.Clause.in("prefecture", ["Tokyo", "Kanagawa", "Saitama"]); // 配列検索
+    var clause3 = Nebula.Clause.regex("description", "^[a-c].*", ""); // 正規表現一致
+
+.. _object_query_logical:
+
+論理演算
+--------
+
+論理演算 (and, or) で複数の Clause を結合することも可能です。
+
+.. code-block:: javascript
+
+    // AND条件
+    var clause = Nebula.Clause.and(clause1, clause2, clause3);
+
+    // OR条件
+    var clause = Nebula.Clause.or(clause1, clause2, clause3);
+
+fluent スタイルの API を使用することで、複合条件を容易に記述できます。
+これらの条件はすべて and で結合されます。
+
+.. code-block:: javascript
+
+   // a == 100 かつ b > 100 かつ b < 200
+   var clause = Nebula.Clause.equals("a": 100).greaterThan("b", 100).lessThan("b", 200);
+
+not 演算子を用いることで、特定のキーに対する条件式を反転することができます。
+
+.. code-block:: javascript
+
+   // 以下は !(score1 > 80) && (score2 > 70) という意味
+   // score1 フィールドが存在しないオブジェクトにもヒットするが、
+   // score2 フィールドが存在しないオブジェクトにはヒットしない。
+   var clause = Nebula.Clause.greaterThan("score1", 80).not("score1").greaterThan("score2", 70);
+
+
+   // 以下は (score1 <= 80) && (score2 > 70) という意味
+   // 上記と似ているが、score1 フィールドが存在しないオブジェクトにはヒットしない点が異なる。
+   var clause2 = Nebula.Clause.lessThanOrEqual("score1", 80).greaterThan("score2", 70);
+
+.. note::
+
+    not 演算子と組み合わせて使用できる演算子とできない演算子は以下のとおりです。
+
+    * 組み合わせて使用できる演算子
+
+      - all, in, equals, notEqual, greaterThan, greaterThanOrEqual, lessThan, lessThanOrEqual, exists
+
+    * 組み合わせて使用できない演算子
+
+      - and, or, regex
+
+
+ソート順序の指定
+================
+
+ソート順序は、setSort() で指定します。
+下記では、name 昇順を指定しています。先頭に "-" を付与すると降順になります。
+
+.. code-block:: javascript
+
+    query.setSort("name");
+
+下記のように複数のソート設定を行った場合、先に設定したソートの優先度が高くなります。
+
+.. code-block:: javascript
+
+    query.setSort("name", "-age");
+
+
+スキップ数・検索上限数の指定
+=============================
+
+検索におけるスキップ数・上限数は、それぞれ setSkipCount(), setLimit() で指定します。
+
+以下の例では、100件目から最大10件を読むという指定になります。
+
+.. code-block:: javascript
+
+    query.setSkipCount(100)
+        .setLimit(10);
+
+なお、上限数の値はデフォルトで 100 となっています。
+上限数を無限大(制限なし)にしたい場合は -1 を指定します。
+
+.. _queryWithCount:
+
+全ヒット件数取得付きクエリ
+--------------------------
+
+クエリ上限数を指定した際に、全ヒット件数を合わせて取得したい場合は ObjectBucket.query() の代わりに ObjectBucket.queryWithCount() を使用してください。
+
+この場合、クエリ成功時のコールバック関数は以下の形式のオブジェクトが渡されます。
+
+.. code-block:: javascript
+
+   {
+       objects: 検索結果データの配列,
+       count: 全ヒット件数
+   }
+
+.. attention::
+
+   クエリ上限数を指定するとヒット件数が上限に達した時点で検索が打ち切られますが、
+   queryWithCount() を使用した場合はクエリ上限数にかかわらず全検索を行うため検索に要する時間が増加します。

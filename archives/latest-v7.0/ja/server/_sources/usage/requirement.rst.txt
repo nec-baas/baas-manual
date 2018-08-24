@@ -1,0 +1,18 @@
+========
+必要環境
+========
+
+BaaS server の動作には以下の環境が必要です。
+
+* OS: 以下のいずれか
+
+  * CentOS 7
+  * RedHat Enterprise Linux 7
+
+* Java SE Development Kit 8 または OpenJDK 8
+
+* APサーバ
+
+  * Tomcat 8.0.x (推奨は 8.5.x)
+
+* MongoDB (バージョン 3.2 以上, 推奨は 3.6 以上)
