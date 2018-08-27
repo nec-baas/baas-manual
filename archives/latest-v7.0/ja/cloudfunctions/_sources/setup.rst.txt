@@ -45,13 +45,12 @@ Nebula CLI をインストールします。
 Nebula CLI は、カスタム REST API、Cloud Functions コード、ファンクションなどの定義の
 登録・検索・削除などを行うコマンドラインツールです。
 
-Nebula CLI は tar.gz ファイルとして配布されています。
-配布ファイルを展開後、中に含まれる nec-baas-cli-\*.tgz ファイルを npm でグローバルにインストールします。
+Nebula CLI は npmjs.com から配布されています。
+以下 npm コマンドを実行してでグローバルにインストールします。
 
 .. code-block:: bash
 
-    $ tar xvzf nebula-cli-*.tar.gz
-    $ npm install -g nebula-cli-*/nec-baas-cli-*.tgz
+    $ npm install -g @nec-baas/cli
 
 .. attention::
 
