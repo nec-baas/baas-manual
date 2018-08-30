@@ -101,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id5">9.3. ソート順序の指定</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id6">9.4. スキップ数・検索上限数の指定</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#querywithcount">9.4.1. 全ヒット件数取得付きクエリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">9.4.2. プロジェクション</a></li>
 </ul>
 </li>
 </ul>
@@ -287,6 +288,40 @@
 <p class="first admonition-title">注意</p>
 <p class="last">クエリ上限数を指定するとヒット件数が上限に達した時点で検索が打ち切られますが、
 queryWithCount() を使用した場合はクエリ上限数にかかわらず全検索を行うため検索に要する時間が増加します。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>9.4.2. プロジェクション<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトの一部のフィールドを取得する場合、ObjectQuery.setProjection()で対象のフ
+ィールドを指定してから、検索を行います。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectQuery</span><span class="p">();</span>
+<span class="nx">query</span><span class="p">.</span><span class="nx">setProjection</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、&quot;_id&quot;フィールドと、指定した&quot;name&quot; フィールドを含むオブジェクトが
+取得できます。</p>
+<p>逆に、特定のフィールドのみ抑制したい場合は、以下のように指定します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">query</span><span class="p">.</span><span class="nx">setProjection</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、 &quot;_id&quot; と、指定したフィールド(&quot;name&quot;)以外のフィールドを含むオブジェクトが取得できます。</p>
+<p>&quot;_id&quot; はデフォルトで付与されますが、省きたい場合は以下のように指定します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">query</span><span class="p">.</span><span class="nx">setProjection</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                     <span class="s2">&quot;_id&quot;</span><span class="p">,</span>  <span class="mi">0</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>また入れ子構造となっているフィールドを指定する場合は、以下のように指定します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">query</span><span class="p">.</span><span class="nx">setProjection</span><span class="p">({</span><span class="s2">&quot;parent.name&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>また、 array フィールドに対して、 MongoDB と同様に以下の演算子を使用することも可能です。</p>
+<ul class="simple">
+<li>$elemMatch</li>
+<li>$slice</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">&quot;$&quot;, &quot;$meta&quot; 演算子は対象外です。</p>
 </div>
 </div>
 </div>

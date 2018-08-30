@@ -148,3 +148,49 @@ not 演算子を用いることで、特定のキーに対する条件式を反�
 
    クエリ上限数を指定するとヒット件数が上限に達した時点で検索が打ち切られますが、
    queryWithCount() を使用した場合はクエリ上限数にかかわらず全検索を行うため検索に要する時間が増加します。
+
+
+プロジェクション
+-------------------
+
+オブジェクトの一部のフィールドを取得する場合、ObjectQuery.setProjection()で対象のフ
+ィールドを指定してから、検索を行います。
+
+.. code-block:: javascript
+
+    var query = new Nebula.ObjectQuery();
+    query.setProjection({"name", 1});
+
+上記を指定した場合、"_id"フィールドと、指定した"name" フィールドを含むオブジェクトが
+取得できます。
+
+逆に、特定のフィールドのみ抑制したい場合は、以下のように指定します。
+
+.. code-block:: javascript
+
+    query.setProjection({"name", 0});
+
+上記を指定した場合、 "_id" と、指定したフィールド("name")以外のフィールドを含むオブジェクトが取得できます。
+
+"_id" はデフォルトで付与されますが、省きたい場合は以下のように指定します。
+
+.. code-block:: javascript
+
+    query.setProjection({"name", 1,
+                         "_id",  0});
+
+また入れ子構造となっているフィールドを指定する場合は、以下のように指定します。
+
+.. code-block:: javascript
+
+    query.setProjection({"parent.name", 1});
+
+また、 array フィールドに対して、 MongoDB と同様に以下の演算子を使用することも可能です。
+
+* $elemMatch
+* $slice
+
+.. attention::
+
+    "$", "$meta" 演算子は対象外です。
+
