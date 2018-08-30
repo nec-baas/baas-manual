@@ -7,13 +7,13 @@ Node.js プロジェクトのセットアップ
 サンプルプロジェクト
 =====================
 
-サンプルプロジェクトは、別途配布しています。
+サンプルプロジェクトは、`Github <https://github.com/nec-baas/cloudfn-sample-node>`_ で配布しています。
 
-また、CLI の examples ディレクトリにもサンプルが入っています。
+また、`CLI <https://github.com/nec-baas/baas-cli>`_ の examples ディレクトリにもサンプルが入っています。
 
 package.json ファイルの作成
 ============================
 
 プロジェクトディレクトリ内で以下のコマンドを実行し、package.json ファイルを作成してください。
 
-  $ npm init
+    $ npm init

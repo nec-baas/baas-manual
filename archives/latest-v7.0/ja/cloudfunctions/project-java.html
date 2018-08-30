@@ -173,7 +173,8 @@
 <span id="java-setup"></span><h1>5.1. Java プロジェクトのセットアップ<a class="headerlink" href="#java" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id20">
 <h2>5.1.1. サンプルプロジェクト<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>サンプルプロジェクトを別途配布しています。このサンプルを参考に、Java 開発用のプロジェクトを作成してください。</p>
+<p>サンプルプロジェクトを <a class="reference external" href="https://github.com/nec-baas/cloudfn-sample-java">Github</a> で配布しています。
+このサンプルを参考に、Java 開発用のプロジェクトを作成してください。</p>
 <p>ビルドツールには Maven を使用することを推奨します。</p>
 </div>
 <div class="section" id="pom-xml">
@@ -182,50 +183,25 @@
 (サンプルプロジェクトでは設定済み)</p>
 <p>プロジェクトのタイプ(packaging)は &quot;jar&quot; にしてください。
 (ビルド成果物として JAR ファイルが一個生成されるようにする)</p>
-<p>プロジェクトには以下２つのライブラリを追加する必要があります。</p>
+<p>プロジェクトに以下の depencency を追加する必要があります。</p>
 <ul class="simple">
-<li>cloudfn-sdk-*.jar : Cloud Functions Java クライアントライブラリ</li>
-<li>baas-client-core-*.jar : モバイルバックエンド基盤 Java クライアントライブラリ</li>
+<li>groupId: com.nec.baas.cloudfn.sdk</li>
+<li>artifactId: cloudfn-sdk</li>
+<li>version: <a class="reference external" href="https://search.maven.org/search?q=g:com.nec.baas.cloudfn.sdk">Maven Central</a> で確認ください。</li>
 </ul>
-<p>また、slf4j-api ライブラリが必要となります。</p>
 <p>Maven を使用する場合の pom.xml に記載する dependency の例を示します。</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!-- jar ファイルを libs ディレクトリに配置した場合の例 --&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.nec.baas<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>baas-client-core<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>7.0.0<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>system<span class="nt">&lt;/scope&gt;</span>
-  <span class="nt">&lt;systemPath&gt;</span>${basedir}/libs/baas-client-core-7.0.0.jar<span class="nt">&lt;/systemPath&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.nec.baas.cloudfn.sdk<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>cloudfn-sdksdk<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>7.0.0<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;scope&gt;</span>system<span class="nt">&lt;/scope&gt;</span>
-  <span class="nt">&lt;systemPath&gt;</span>${basedir}/libs/cloudfn-sdk-7.0.0.jar<span class="nt">&lt;/systemPath&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.squareup.okhttp3<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>okhttp<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>3.10.0<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>jackson-core<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>2.9.4<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>slf4j-api<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.7.25<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>cloudfn-sdk<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>7.0.2<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 </div>
 <div class="admonition attention">
 <p class="first admonition-title">注意</p>
 <p>Cloud Functions Java クライアントライブラリおよび，モバイルバックエンド基盤 Java クライアントライブラリのバージョンは，モバイルバックエンド基盤サーバのバージョンと合わせる必要があります．</p>
-<p class="last">モバイルバックエンド基盤サーバのバージョンを上げた場合には，上記の２ライブラリのバージョンも上げていただいた上で，Cloud Functions のコードを再ビルド・再登録する必要があります．</p>
+<p class="last">モバイルバックエンド基盤サーバのバージョンを上げた場合には，上記の dependency のバージョンも上げていただいた上で，Cloud Functions のコードを再ビルド・再登録する必要があります．</p>
 </div>
 </div>
 </div>
