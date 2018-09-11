@@ -9,7 +9,7 @@ body {
 
 header {
     background-image:linear-gradient(to bottom, #3981A2, #083957);
-    height:50px;
+    min-height:50px;
     padding: 15px 0 5px 15px;
     font-family:Helvetica;
     color:#fff;
@@ -64,6 +64,6 @@ td {
     text-align: center;
 }
 
-#versions th {
+.versions th {
     width: 120px;
 }
