@@ -1,0 +1,132 @@
+.. _configuration:
+
+============
+その他の設定
+============
+
+.. include:: ../../common/linkdef.rst
+
+メモリ使用量の設定
+==================
+
+BaaS サーバは、最低限 256MB のヒープ領域を必要とします。
+
+ヒープサイズは JVM のオプションで指定します。
+以下にオプション例を示します。
+::
+
+  -Xmx2048m -Xms1024m
+
+JVM オプションの設定手順については、使用する AP サーバのマニュアルを参照ください。
+
+ログレベルの設定
+================
+
+:ref:`config-loglevel` を参照してください。
+
+
+.. index::
+   single: MongoDB
+
+.. _config_mongodb:
+
+MongoDB の設定
+==============
+
+MongoDB の設定は、 :ref:`configuration_file` で行います。
+デフォルト設定は、シングルホストでlocalhost:27017 に接続、認証なしという設定となっています。
+
+シングルホストの場合
+--------------------
+
+シャーディング、レプリカセットいずれもなしの場合、mongo.servers プロパティに
+mongod サーバの URI を指定します。デフォルトは 'mongodb://localhost:27017' となっています。
+
+シャーディング環境の場合
+------------------------
+
+シャーディング環境の場合は、mongo.servers プロパティに mongos の URI
+を指定します。通常は、mongos は APサーバと同一ホストで動作させるので、
+デフォルトの 'mongodb://localhost:27017' の指定のままで構いません。
+
+レプリカセット環境(シャーディングなし)の場合
+--------------------------------------------
+
+レプリカセット(シャーディングなし)の場合、mongo.servers プロパティに
+レプリカセットを構成する mongod の台数分のホスト名、ポート番号を
+カンマで区切って記述した URI を指定します。
+例を示します。
+::
+
+    mongodb://server1:27017,server2:27017,server3:27017
+
+DNS SRV レコードが使用できる場合は、mongodb+srv 指定を使用できます。
+::
+
+   mongodb+srv://server.example.com
+
+MongoDB 認証
+------------
+
+デフォルトでは MongoDB の認証は使用しない設定となっていますが、
+MongoDB を分離したネットワークで運用するのでなければ、
+セキュリティ上認証を使用するようにすべきです。
+
+認証の設定手順は以下のとおりです。
+
+まず最初に認証なしで mongod を起動します。
+
+ついで、mongod にアクセスするための管理権限アカウントを作成します。
+以下の手順で MongoDB の admin データベース上に root ロールを持つユーザを作成します。
+ユーザ名とパスワードは user: pwd: で指定します。値は適宜変更してください。
+
+.. code-block:: bash
+
+  $ mongo admin
+  > db.createUser({user: "baas",  pwd: "Passw0rD", roles: [{ role:"root", db:"admin" }]});
+  > exit
+
+次に、MongoDB 側の認証を有効にします。
+mongod.conf ファイルに以下の記述を追加します
+(MongoDB の設定ファイルの詳細は `Configuration File Options`_ を参照)。
+追記したら mongod を再起動してください。
+
+.. code-block:: yaml
+
+  security:
+    authorization: enabled
+
+.. note::
+
+  mongod.conf の形式が YAML 形式でない旧フォーマット(MongoDB 2.4 形式)の場合は、
+  'auth = true' という行を追加してください (詳細は `2.4 configuration file format`_ を参照)。
+
+
+次に、BaaS 側で MongoDB の認証の設定を行います。
+mongo.username, mongo.password プロパティにそれぞれユーザ名とパスワードを
+設定してください。
+
+システム設定
+=============
+
+いくつかの設定は、デベロッパーコンソールの「システム設定」で行ってください。
+詳細は、「デベロッパーコンソール利用ガイド」⇒「システム設定」を参照してください。
+
+.. _config-alpn:
+
+ALPN 設定
+=========
+
+APNs Push (iOS Push) を使用する際、v6.0.x 以前のバージョンでは
+ALPN (Application Layer Protocol Negotiation) 拡張設定が必要でしたが、
+v6.2.0 より本設定は不要となりました。
+
+v6.0.x 以前からアップグレードした場合、Tomcat 起動時の -Xbootclasspath オプションでの
+alpn-boot-\*.jar ファイル指定は不要となりますので、削除してください。
+
+SSE Push サーバの設定
+=====================
+
+SSE Push 機能を使用する場合は設定が必要です。
+
+設定手順については、 `SSE Push サーバガイド <../../ssepush-server/index.html>`_ の「設定」の章を参照してください。

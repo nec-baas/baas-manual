@@ -1,0 +1,131 @@
+=========================================
+SSE Push 受信実装 (Node.js 編)
+=========================================
+
+.. include:: ../../common/linkdef.rst
+
+ライブラリの組み込み
+====================
+
+モバイルバックエンド基盤ライブラリと SSE Push ライブラリをプロジェクトに組み込みます。
+
+アプリケーションディレクトリ(package.jsonが存在するディレクトリ)に移動し、
+以下のようにしてライブラリを組み込んでください。
+
+.. code-block:: shell
+
+   $ npm install @nec-baas/ssepush-node --save
+
+.. attention::
+
+  npm install を実行するためには Internet 接続が必要です。
+  また Proxy サーバを通す必要がある場合は、"npm config set proxy"
+  で Proxy サーバ設定を行なう必要があります。
+
+実装
+====
+
+インスタンスの生成
+-------------------
+
+最初に、本ライブラリを require してください。
+(nebula の require と初期化も必要です)
+
+.. code-block:: javascript
+
+    const SsePush = require('@nec-baas/ssepush-node').SsePush;
+
+以下手順で SsePush インスタンスを生成します。
+
+
+.. code-block:: javascript
+
+    const ssePush = new SsePush(Nebula);
+    // デバイストークン設定
+    ssePush.setDeviceToken(deviceToken);
+
+デバイストークンは、デバイスに固有の識別子です。UUIDなどを使用することを
+推奨します(SsePush.uuid()で生成可能)。デバイストークンは同一デバイス
+では原則変更しないように、適宜保存するなどしてください。
+
+受信チャネル設定
+-------------------
+
+受信チャネルを設定する場合は、setChannels で指定します。
+
+.. code-block:: javascript
+
+    ssePush.setChannels(['channel1', 'channel2'])
+
+ハートビート間隔・監視設定
+---------------------------
+
+ハートビート間隔の設定は setHeartbeatInterval で行います。
+値はサーバ側の設定に合わせてください。
+
+.. code-block:: javascript
+
+    ssePush.setHeartbeatInterval(30);
+
+ハートビート間隔の2倍の時間が経過してもハートビート受信ができない場合は、
+onError でエラー通知されます。
+
+なお、ハートビート間隔を設定しない場合は、ハートビート監視は行われません。
+
+登録・受信開始
+---------------
+
+BaaSサーバへのインスタレーション登録と Push 待ち受けを開始します。
+ユーザがログイン状態になっている場合は、インスタレーションは自動的にユーザ
+に紐づけされます。
+
+.. code-block:: javascript
+
+    // BaaSサーバへの登録と Push 待ち受けを開始
+    ssePush.start({
+    	onMessage: (message) => {
+    		// 受信処理
+    	},
+    	onError: (error) => {
+    		// エラー処理
+    	}
+    });
+
+SSE Push メッセージを受信するたびに onMessage が呼び出されます。
+引数でメッセージが渡されます。メッセージは以下のような JSON object
+で、本文は "data" に格納されます。
+
+.. code-block:: javascript
+
+    {
+        "type": "message",
+        "data": "This is a test.",
+        "lastEventId": "",
+        "origin": "https://baas.example.com"
+    }
+ 
+エラー時は onError が呼び出されますので、適宜回復処理を行ってください。
+ステータスコードは error.status に格納されます。
+
+オプション
+----------
+
+Proxy サーバを使用する場合は、SsePush コンストラクタの第二引数にオプション
+を指定してください (注: 認証付きの Proxy は使用できません)
+
+.. code-block:: javascript
+
+    const options = { proxy: 'http://proxy.example.com:8080' }
+    const ssePush = new SsePush(Nebula, options);
+
+HTTPS接続でかつサーバ側が自己署名証明書を使用している場合は、以下のオプションを指定します。
+(非推奨)
+
+.. code-block:: javascript
+
+    const options = { rejectUnauthorized: false }
+
+なお、Proxy サーバ指定時に SSE Push サーバが HTTPS 接続であった場合
+(Installation登録時に報告される SSE Push サーバの URL が https: であった場合)、
+本ライブラリは tunnel モジュールを使用して接続を proxy するように自動構成します。
+このため、tunnel モジュールを予め npm install しておく必要があります。

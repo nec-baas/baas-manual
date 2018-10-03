@@ -1,0 +1,25 @@
+==============
+JavaScript SDK
+==============
+
+Android 5.x 以降使用時の注意点
+===============================
+
+Android 5.x 以降で jQuery Mobile を使用する際、画面が真っ白で何も表示されない現象が発生する場合があります。
+
+* 具体的には、WebView を Google Play から最新版に更新した場合。
+* 本件は、jQuery Mobile 側の問題です。
+
+本現象が発生した場合は、jQuery Mobile の読み込み前に以下のコードを挿入することで回避可能です。
+
+.. code-block:: html
+
+    <!-- ここから -->
+    <script>
+    $(document).on("mobileinit", function () {
+        $.mobile.pushStateEnabled = false;
+    });
+    </script>
+    <!-- ここまで -->
+    <!-- jQuery Mobile 読み込み -->
+    <script type="text/javascript" src="jquery.mobile.js"></script>

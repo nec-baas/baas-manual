@@ -1,0 +1,26 @@
+.. _license_read:
+
+ライセンス情報取得
+==================
+
+.. http:get:: /1/_sysadm/_/licensekey
+
+    ライセンス情報を取得する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+
+    :statuscode 200: 正常に取得した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+
+    **レスポンスボディ**
+
+    ライセンス情報を含む JSON データが返却される。
+
+    形式は :ref:`license_upsert` レスポンスと同様。
+
+    **注意事項**
+
+    * システム管理者権限が必要。
+    * ライセンス情報がない場合は空のJSONを返却する。
+

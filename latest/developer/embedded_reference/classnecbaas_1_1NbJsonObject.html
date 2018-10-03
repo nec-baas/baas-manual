@@ -1,0 +1,1057 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: クラス necbaas::NbJsonObject</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacenecbaas.html">necbaas</a></li><li class="navelem"><a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public メソッド</a> &#124;
+<a href="#pro-attribs">Protected 変数</a> &#124;
+<a href="classnecbaas_1_1NbJsonObject-members.html">すべてのメンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">クラス necbaas::NbJsonObject</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Jsonオブジェクト.  
+ <a href="classnecbaas_1_1NbJsonObject.html#details">[詳細]</a></p>
+
+<p><code>#include &quot;<a class="el" href="nb__json__object_8h_source.html">necbaas/nb_json_object.h</a>&quot;</code></p>
+<div class="dynheader">
+necbaas::NbJsonObjectに対する継承グラフ</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classnecbaas_1_1NbJsonObject.png" usemap="#necbaas::NbJsonObject_map" alt=""/>
+  <map id="necbaas::NbJsonObject_map" name="necbaas::NbJsonObject_map">
+<area href="classnecbaas_1_1NbObject.html" title="オブジェクト管理クラス. " alt="necbaas::NbObject" shape="rect" coords="0,56,146,80"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public メソッド</h2></td></tr>
+<tr class="memitem:aa887cd1d32986aae3131698d3ba6e733"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#aa887cd1d32986aae3131698d3ba6e733">NbJsonObject</a> ()</td></tr>
+<tr class="memdesc:aa887cd1d32986aae3131698d3ba6e733"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#aa887cd1d32986aae3131698d3ba6e733">[詳細]</a><br/></td></tr>
+<tr class="separator:aa887cd1d32986aae3131698d3ba6e733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e1346f99424dc301229218b705aa410"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a5e1346f99424dc301229218b705aa410">NbJsonObject</a> (const std::string &amp;json_string)</td></tr>
+<tr class="memdesc:a5e1346f99424dc301229218b705aa410"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#a5e1346f99424dc301229218b705aa410">[詳細]</a><br/></td></tr>
+<tr class="separator:a5e1346f99424dc301229218b705aa410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa20dd23d773af4c52685737f225514c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#aa20dd23d773af4c52685737f225514c0">NbJsonObject</a> (const std::vector&lt; char &gt; &amp;json_char)</td></tr>
+<tr class="memdesc:aa20dd23d773af4c52685737f225514c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#aa20dd23d773af4c52685737f225514c0">[詳細]</a><br/></td></tr>
+<tr class="separator:aa20dd23d773af4c52685737f225514c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad055a7115e02d1e36923aec4cc1db773"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#ad055a7115e02d1e36923aec4cc1db773">~NbJsonObject</a> ()</td></tr>
+<tr class="memdesc:ad055a7115e02d1e36923aec4cc1db773"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ.  <a href="#ad055a7115e02d1e36923aec4cc1db773">[詳細]</a><br/></td></tr>
+<tr class="separator:ad055a7115e02d1e36923aec4cc1db773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9354d98e710bc4218f0bb75dc7f51e07"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a9354d98e710bc4218f0bb75dc7f51e07">PutAll</a> (const std::string &amp;json)</td></tr>
+<tr class="memdesc:a9354d98e710bc4218f0bb75dc7f51e07"><td class="mdescLeft">&#160;</td><td class="mdescRight">全データセット.  <a href="#a9354d98e710bc4218f0bb75dc7f51e07">[詳細]</a><br/></td></tr>
+<tr class="separator:a9354d98e710bc4218f0bb75dc7f51e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e174aef9ab1cdd8289669a498861210"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a2e174aef9ab1cdd8289669a498861210">GetKeySet</a> () const </td></tr>
+<tr class="memdesc:a2e174aef9ab1cdd8289669a498861210"><td class="mdescLeft">&#160;</td><td class="mdescRight">キーセット取得.  <a href="#a2e174aef9ab1cdd8289669a498861210">[詳細]</a><br/></td></tr>
+<tr class="separator:a2e174aef9ab1cdd8289669a498861210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73b158036577373c40f36f93f75935c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a73b158036577373c40f36f93f75935c1">GetInt</a> (const std::string &amp;key, int default_value=0) const </td></tr>
+<tr class="memdesc:a73b158036577373c40f36f93f75935c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">整数値取得.  <a href="#a73b158036577373c40f36f93f75935c1">[詳細]</a><br/></td></tr>
+<tr class="separator:a73b158036577373c40f36f93f75935c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc578051b76f65f839ba0b99138e8a4"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a7cc578051b76f65f839ba0b99138e8a4">GetInt64</a> (const std::string &amp;key, int64_t default_value=0) const </td></tr>
+<tr class="memdesc:a7cc578051b76f65f839ba0b99138e8a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">64bit整数値取得.  <a href="#a7cc578051b76f65f839ba0b99138e8a4">[詳細]</a><br/></td></tr>
+<tr class="separator:a7cc578051b76f65f839ba0b99138e8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eaccf53750fd6d29c3f590bb523d648"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a7eaccf53750fd6d29c3f590bb523d648">GetDouble</a> (const std::string &amp;key, double default_value=0.0) const </td></tr>
+<tr class="memdesc:a7eaccf53750fd6d29c3f590bb523d648"><td class="mdescLeft">&#160;</td><td class="mdescRight">浮動小数点値取得.  <a href="#a7eaccf53750fd6d29c3f590bb523d648">[詳細]</a><br/></td></tr>
+<tr class="separator:a7eaccf53750fd6d29c3f590bb523d648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43119c0175b4961e93439a5b9c282618"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a43119c0175b4961e93439a5b9c282618">GetBoolean</a> (const std::string &amp;key, bool default_value=false) const </td></tr>
+<tr class="memdesc:a43119c0175b4961e93439a5b9c282618"><td class="mdescLeft">&#160;</td><td class="mdescRight">真偽値取得.  <a href="#a43119c0175b4961e93439a5b9c282618">[詳細]</a><br/></td></tr>
+<tr class="separator:a43119c0175b4961e93439a5b9c282618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87237ba2bd0dec37cd5a55d000baa077"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a87237ba2bd0dec37cd5a55d000baa077">GetString</a> (const std::string &amp;key, const std::string default_value=&quot;&quot;) const </td></tr>
+<tr class="memdesc:a87237ba2bd0dec37cd5a55d000baa077"><td class="mdescLeft">&#160;</td><td class="mdescRight">文字列取得.  <a href="#a87237ba2bd0dec37cd5a55d000baa077">[詳細]</a><br/></td></tr>
+<tr class="separator:a87237ba2bd0dec37cd5a55d000baa077"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75cbdb3fea8323c2f8bfe53d4bab3c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#ab75cbdb3fea8323c2f8bfe53d4bab3c0">GetJsonObject</a> (const std::string &amp;key) const </td></tr>
+<tr class="memdesc:ab75cbdb3fea8323c2f8bfe53d4bab3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jsonオブジェクト取得.  <a href="#ab75cbdb3fea8323c2f8bfe53d4bab3c0">[詳細]</a><br/></td></tr>
+<tr class="separator:ab75cbdb3fea8323c2f8bfe53d4bab3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3076089af2182430061d062ffa6e71e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnecbaas_1_1NbJsonArray.html">NbJsonArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#ad3076089af2182430061d062ffa6e71e">GetJsonArray</a> (const std::string &amp;key) const </td></tr>
+<tr class="memdesc:ad3076089af2182430061d062ffa6e71e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Json配列取得.  <a href="#ad3076089af2182430061d062ffa6e71e">[詳細]</a><br/></td></tr>
+<tr class="separator:ad3076089af2182430061d062ffa6e71e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2333024d720caf16ce55502b7fcb29fc"><td class="memItemLeft" align="right" valign="top">const Json::Value &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a2333024d720caf16ce55502b7fcb29fc">GetSubstitutableValue</a> () const </td></tr>
+<tr class="memdesc:a2333024d720caf16ce55502b7fcb29fc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a2333024d720caf16ce55502b7fcb29fc">[詳細]</a><br/></td></tr>
+<tr class="separator:a2333024d720caf16ce55502b7fcb29fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af997a5fd477d797a4b14c34d05feaa22"><td class="memItemLeft" align="right" valign="top">Json::Value &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#af997a5fd477d797a4b14c34d05feaa22">operator[]</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:af997a5fd477d797a4b14c34d05feaa22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value設定用添え字演算子.  <a href="#af997a5fd477d797a4b14c34d05feaa22">[詳細]</a><br/></td></tr>
+<tr class="separator:af997a5fd477d797a4b14c34d05feaa22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a091fcdd3ad29afcd14c42afa911c8e0c"><td class="memItemLeft" align="right" valign="top">const Json::Value &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a091fcdd3ad29afcd14c42afa911c8e0c">operator[]</a> (const std::string &amp;key) const </td></tr>
+<tr class="memdesc:a091fcdd3ad29afcd14c42afa911c8e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value参照用添え字演算子.  <a href="#a091fcdd3ad29afcd14c42afa911c8e0c">[詳細]</a><br/></td></tr>
+<tr class="separator:a091fcdd3ad29afcd14c42afa911c8e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc05d3fd7e2c1cae950003df6b1f1410"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#abc05d3fd7e2c1cae950003df6b1f1410">PutJsonObject</a> (const std::string &amp;key, const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;json_object)</td></tr>
+<tr class="memdesc:abc05d3fd7e2c1cae950003df6b1f1410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jsonオブジェクト設定.  <a href="#abc05d3fd7e2c1cae950003df6b1f1410">[詳細]</a><br/></td></tr>
+<tr class="separator:abc05d3fd7e2c1cae950003df6b1f1410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af940f6eae87258dabd57885a872ff792"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#af940f6eae87258dabd57885a872ff792">PutJsonArray</a> (const std::string &amp;key, const <a class="el" href="classnecbaas_1_1NbJsonArray.html">NbJsonArray</a> &amp;json_array)</td></tr>
+<tr class="memdesc:af940f6eae87258dabd57885a872ff792"><td class="mdescLeft">&#160;</td><td class="mdescRight">Json配列設定.  <a href="#af940f6eae87258dabd57885a872ff792">[詳細]</a><br/></td></tr>
+<tr class="separator:af940f6eae87258dabd57885a872ff792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaccd90057181b8ca1b1476ffb5afb896"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#aaccd90057181b8ca1b1476ffb5afb896">PutNull</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:aaccd90057181b8ca1b1476ffb5afb896"><td class="mdescLeft">&#160;</td><td class="mdescRight">null設定.  <a href="#aaccd90057181b8ca1b1476ffb5afb896">[詳細]</a><br/></td></tr>
+<tr class="separator:aaccd90057181b8ca1b1476ffb5afb896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abad54044a5312e324f913188c6e06a55"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#abad54044a5312e324f913188c6e06a55">GetSize</a> () const </td></tr>
+<tr class="memdesc:abad54044a5312e324f913188c6e06a55"><td class="mdescLeft">&#160;</td><td class="mdescRight">サイズ取得.  <a href="#abad54044a5312e324f913188c6e06a55">[詳細]</a><br/></td></tr>
+<tr class="separator:abad54044a5312e324f913188c6e06a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf9bd02316d40fe74b8ad68c7cdb6c03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#adf9bd02316d40fe74b8ad68c7cdb6c03">IsEmpty</a> () const </td></tr>
+<tr class="memdesc:adf9bd02316d40fe74b8ad68c7cdb6c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクト空確認.  <a href="#adf9bd02316d40fe74b8ad68c7cdb6c03">[詳細]</a><br/></td></tr>
+<tr class="separator:adf9bd02316d40fe74b8ad68c7cdb6c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff7259b6d114c0cf907e8affe958c6d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#aff7259b6d114c0cf907e8affe958c6d1">IsMember</a> (const std::string &amp;key) const </td></tr>
+<tr class="memdesc:aff7259b6d114c0cf907e8affe958c6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key存在確認.  <a href="#aff7259b6d114c0cf907e8affe958c6d1">[詳細]</a><br/></td></tr>
+<tr class="separator:aff7259b6d114c0cf907e8affe958c6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f2e84f385639536f582d45dc72f536f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacenecbaas.html#a716859de95104812115e042ecd95f6b7">NbJsonType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a7f2e84f385639536f582d45dc72f536f">GetType</a> (const std::string &amp;key) const </td></tr>
+<tr class="memdesc:a7f2e84f385639536f582d45dc72f536f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jsonタイプ取得.  <a href="#a7f2e84f385639536f582d45dc72f536f">[詳細]</a><br/></td></tr>
+<tr class="separator:a7f2e84f385639536f582d45dc72f536f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac234d4c67915f493ab46e28aeadeca26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#ac234d4c67915f493ab46e28aeadeca26">Remove</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:ac234d4c67915f493ab46e28aeadeca26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key削除.  <a href="#ac234d4c67915f493ab46e28aeadeca26">[詳細]</a><br/></td></tr>
+<tr class="separator:ac234d4c67915f493ab46e28aeadeca26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a345565f7093dcb2a0e83f6b8a17a9f14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a345565f7093dcb2a0e83f6b8a17a9f14">Clear</a> ()</td></tr>
+<tr class="memdesc:a345565f7093dcb2a0e83f6b8a17a9f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">全データ削除.  <a href="#a345565f7093dcb2a0e83f6b8a17a9f14">[詳細]</a><br/></td></tr>
+<tr class="separator:a345565f7093dcb2a0e83f6b8a17a9f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab963acf2523c606a525650d56dc1f6cd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#ab963acf2523c606a525650d56dc1f6cd">ToJsonString</a> () const </td></tr>
+<tr class="memdesc:ab963acf2523c606a525650d56dc1f6cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Json文字列変換.  <a href="#ab963acf2523c606a525650d56dc1f6cd">[詳細]</a><br/></td></tr>
+<tr class="separator:ab963acf2523c606a525650d56dc1f6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56427ac3e8394eaede0847494670ea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#ae56427ac3e8394eaede0847494670ea2">Replace</a> (const Json::Value &amp;value)</td></tr>
+<tr class="memdesc:ae56427ac3e8394eaede0847494670ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#ae56427ac3e8394eaede0847494670ea2">[詳細]</a><br/></td></tr>
+<tr class="separator:ae56427ac3e8394eaede0847494670ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac55c96f16623659b3960a4c1be308b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#afac55c96f16623659b3960a4c1be308b">operator==</a> (const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;other) const </td></tr>
+<tr class="memdesc:afac55c96f16623659b3960a4c1be308b"><td class="mdescLeft">&#160;</td><td class="mdescRight">==演算子.  <a href="#afac55c96f16623659b3960a4c1be308b">[詳細]</a><br/></td></tr>
+<tr class="separator:afac55c96f16623659b3960a4c1be308b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected 変数</h2></td></tr>
+<tr class="memitem:a2e3d62fde6dc2f778aab4b2cd0a40aca"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbJsonObject.html#a2e3d62fde6dc2f778aab4b2cd0a40aca">value_</a></td></tr>
+<tr class="separator:a2e3d62fde6dc2f778aab4b2cd0a40aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">説明</h2>
+<div class="textblock"><p>Jsonオブジェクト. </p>
+<p>Json形式のKey-Valueストアを提供する。<br/>
+ データの取得は、Valueの型に対応したGetメソッドを使用する。<br/>
+ データの設定は、添え字演算子[]かValueの型に対応したPutメソッドを使用する。<br/>
+</p>
+<p><b>本クラスのインスタンスはスレッドセーフではない</b> </p>
+</div><h2 class="groupheader">コンストラクタとデストラクタ</h2>
+<a class="anchor" id="aa887cd1d32986aae3131698d3ba6e733"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbJsonObject::NbJsonObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンストラクタ. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5e1346f99424dc301229218b705aa410"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbJsonObject::NbJsonObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>json_string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンストラクタ. </p>
+<p>Json文字列をParseしてNbJsonObjectを生成する。<br/>
+ Json Parseに失敗した場合は、空のJsonオブジェクトが生成される。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json_string</td><td>Json文字列 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa20dd23d773af4c52685737f225514c0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbJsonObject::NbJsonObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; char &gt; &amp;&#160;</td>
+          <td class="paramname"><em>json_char</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンストラクタ. </p>
+<p>Json文字列をParseしてNbJsonObjectを生成する。<br/>
+ Json Parseに失敗した場合は、空のJsonオブジェクトが生成される。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json_char</td><td>Json文字列 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad055a7115e02d1e36923aec4cc1db773"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual necbaas::NbJsonObject::~NbJsonObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>デストラクタ. </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数</h2>
+<a class="anchor" id="a345565f7093dcb2a0e83f6b8a17a9f14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbJsonObject::Clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>全データ削除. </p>
+<p>全てのKey-Valueセットを削除する。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a43119c0175b4961e93439a5b9c282618"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool necbaas::NbJsonObject::GetBoolean </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>default_value</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>真偽値取得. </p>
+<p>Keyに対応するValueをbool型で取得する。<br/>
+ 以下の場合は、default_valueを返却する。<br/>
+</p>
+<ul>
+<li>Keyに対応するValueが存在しない</li>
+<li>Valueが真偽値型でない <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">default_value</td><td>取得できなかったときに返す値 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Value </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="a7eaccf53750fd6d29c3f590bb523d648"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double necbaas::NbJsonObject::GetDouble </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>default_value</em> = <code>0.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>浮動小数点値取得. </p>
+<p>Keyに対応するValueをdouble型で取得する。<br/>
+ 以下の場合は、default_valueを返却する。<br/>
+</p>
+<ul>
+<li>Keyに対応するValueが存在しない</li>
+<li>Valueが数値型でない <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">default_value</td><td>取得できなかったときに返す値 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Value </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="a73b158036577373c40f36f93f75935c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int necbaas::NbJsonObject::GetInt </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>default_value</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>整数値取得. </p>
+<p>Keyに対応するValueをint型で取得する。<br/>
+ 浮動小数点は丸められる。<br/>
+ 以下の場合は、default_valueを返却する。<br/>
+</p>
+<ul>
+<li>Keyに対応するValueが存在しない</li>
+<li>Valueが数値型でない</li>
+<li>Valueがintの範囲外 <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">default_value</td><td>取得できなかったときに返す値 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Value </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="a7cc578051b76f65f839ba0b99138e8a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t necbaas::NbJsonObject::GetInt64 </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int64_t&#160;</td>
+          <td class="paramname"><em>default_value</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>64bit整数値取得. </p>
+<p>Keyに対応するValueをint64_t型で取得する。<br/>
+ 浮動小数点は丸められる。<br/>
+ 以下の場合は、default_valueを返却する。<br/>
+</p>
+<ul>
+<li>Keyに対応するValueが存在しない</li>
+<li>Valueが数値型でない</li>
+<li>Valueがint64_tの範囲外 <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">default_value</td><td>取得できなかったときに返す値 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Value </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="ad3076089af2182430061d062ffa6e71e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnecbaas_1_1NbJsonArray.html">NbJsonArray</a> necbaas::NbJsonObject::GetJsonArray </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Json配列取得. </p>
+<p>Keyに対応するValueをNbJsonArray型で取得する。<br/>
+ 以下の場合は、空のJson配列を返却する。<br/>
+</p>
+<ul>
+<li>Keyに対応するValueが存在しない</li>
+<li>ValueがJson配列型でない <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Value </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="ab75cbdb3fea8323c2f8bfe53d4bab3c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> necbaas::NbJsonObject::GetJsonObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Jsonオブジェクト取得. </p>
+<p>Keyに対応するValueをNbJsonObject型で取得する。<br/>
+ 以下の場合は、空のJsonオブジェクトを返却する。<br/>
+</p>
+<ul>
+<li>Keyに対応するValueが存在しない</li>
+<li>ValueがJsonオブジェクト型でない <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Value </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="a2e174aef9ab1cdd8289669a498861210"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; necbaas::NbJsonObject::GetKeySet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>キーセット取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>キーセット一覧 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abad54044a5312e324f913188c6e06a55"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int necbaas::NbJsonObject::GetSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>サイズ取得. </p>
+<p>Jsonオブジェクトに存在するKey-Valueセットの数を取得する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>Key-Valueセットの数 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a87237ba2bd0dec37cd5a55d000baa077"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string necbaas::NbJsonObject::GetString </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>default_value</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>文字列取得. </p>
+<p>Keyに対応するValueをstd::string型で取得する。<br/>
+ 以下の場合は、default_valueを返却する。<br/>
+</p>
+<ul>
+<li>Keyに対応するValueが存在しない</li>
+<li>Valueが文字列型でない <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">default_value</td><td>取得できなかったときに返す値 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Value </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a class="anchor" id="a2333024d720caf16ce55502b7fcb29fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const Json::Value&amp; necbaas::NbJsonObject::GetSubstitutableValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="a7f2e84f385639536f582d45dc72f536f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacenecbaas.html#a716859de95104812115e042ecd95f6b7">NbJsonType</a> necbaas::NbJsonObject::GetType </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Jsonタイプ取得. </p>
+<p>Keyに対応するJsonタイプを取得する。<br/>
+ Keyが存在しない場合は、NULL型が返る。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Jsonタイプ </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adf9bd02316d40fe74b8ad68c7cdb6c03"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool necbaas::NbJsonObject::IsEmpty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>オブジェクト空確認. </p>
+<p>Jsonオブジェクトが空かどうかを確認する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>確認結果 </dd></dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>空 </td></tr>
+    <tr><td class="paramname">false</td><td>1以上のKey-Valueセットが存在 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aff7259b6d114c0cf907e8affe958c6d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool necbaas::NbJsonObject::IsMember </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Key存在確認. </p>
+<p>keyがJsonオブジェクトに存在するか確認する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>確認結果 </dd></dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>存在する </td></tr>
+    <tr><td class="paramname">false</td><td>存在しない </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afac55c96f16623659b3960a4c1be308b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool necbaas::NbJsonObject::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>==演算子. </p>
+
+</div>
+</div>
+<a class="anchor" id="af997a5fd477d797a4b14c34d05feaa22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Json::Value&amp; necbaas::NbJsonObject::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Value設定用添え字演算子. </p>
+<p>添え字演算子を使用してKeyに対応するValueを設定する。<br/>
+ Keyが存在する場合は、Key-Valueセットが更新される。<br/>
+ Keyが存在しない場合は、Key-Valueセットが作成される。<br/>
+ 設定可能なValueの型は以下</p>
+<ul>
+<li>int, unsigned int,</li>
+<li>int64_t, uint64_t,</li>
+<li>double</li>
+<li>bool</li>
+<li>std::string</li>
+</ul>
+<p><a class="el" href="classnecbaas_1_1NbJsonObject.html" title="Jsonオブジェクト. ">NbJsonObject</a>, <a class="el" href="classnecbaas_1_1NbJsonArray.html" title="Json配列. ">NbJsonArray</a> の設定は、 <a class="el" href="classnecbaas_1_1NbJsonObject.html#abc05d3fd7e2c1cae950003df6b1f1410" title="Jsonオブジェクト設定. ">PutJsonObject()</a>, <a class="el" href="classnecbaas_1_1NbJsonObject.html#af940f6eae87258dabd57885a872ff792" title="Json配列設定. ">PutJsonArray()</a> を使用すること。 </p>
+<div class="fragment"><div class="line">  json[<span class="stringliteral">&quot;key1&quot;</span>] = 123;</div>
+<div class="line">  json[<span class="stringliteral">&quot;key2&quot;</span>] = <span class="stringliteral">&quot;value&quot;</span>;</div>
+<div class="line">* </div>
+</div><!-- fragment --> <dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>代入用内部データへの参照 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a091fcdd3ad29afcd14c42afa911c8e0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const Json::Value&amp; necbaas::NbJsonObject::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Value参照用添え字演算子. </p>
+<p>本演算子は未サポート。Valueの取得には、Getメソッドを使用してください。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a9354d98e710bc4218f0bb75dc7f51e07"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool necbaas::NbJsonObject::PutAll </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>全データセット. </p>
+<p>Json文字列をParseしてNbJsonObject内のデータを再構築する。元々存在していたデータは破棄される。<br/>
+ Json Parseに失敗した場合は、空のJsonオブジェクトが生成される。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>Json文字列 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af940f6eae87258dabd57885a872ff792"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbJsonObject::PutJsonArray </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classnecbaas_1_1NbJsonArray.html">NbJsonArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>json_array</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Json配列設定. </p>
+<p>Keyに対応するValueをNbJsonArray型で設定する。<br/>
+ Keyが空文字の場合は処理しない。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json_array</td><td>Value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abc05d3fd7e2c1cae950003df6b1f1410"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbJsonObject::PutJsonObject </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;&#160;</td>
+          <td class="paramname"><em>json_object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Jsonオブジェクト設定. </p>
+<p>Keyに対応するValueをNbJsonObject型で設定する。<br/>
+ Keyが空文字の場合は処理しない。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">json_object</td><td>Value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aaccd90057181b8ca1b1476ffb5afb896"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbJsonObject::PutNull </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>null設定. </p>
+<p>Keyに対応するValueにnullを設定する。<br/>
+ Keyが空文字の場合は処理しない。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac234d4c67915f493ab46e28aeadeca26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbJsonObject::Remove </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Key削除. </p>
+<p>Keyに対応するKey-Valueセットを削除する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae56427ac3e8394eaede0847494670ea2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbJsonObject::Replace </td>
+          <td>(</td>
+          <td class="paramtype">const Json::Value &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="ab963acf2523c606a525650d56dc1f6cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string necbaas::NbJsonObject::ToJsonString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Json文字列変換. </p>
+<p>設定されているJsonオブジェクトをJson文字列に変換する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>Json文字列 </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">変数</h2>
+<a class="anchor" id="a2e3d62fde6dc2f778aab4b2cd0a40aca"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Json::Value necbaas::NbJsonObject::value_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Jsonデータ </p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="nb__json__object_8h_source.html">nb_json_object.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

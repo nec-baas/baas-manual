@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9. オブジェクトの集計 &mdash; Java/Android SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="10. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="8. オブジェクトストレージ:クエリ" href="object_query.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Java/Android SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Java API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. オブジェクトの集計</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">9.1. 集計条件の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">9.2. 集計の実行</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">10. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">11. オフライン機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">13. マイグレーションガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">14. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java/Android SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>9. オブジェクトの集計</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>9. オブジェクトの集計<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>通常のクエリに加え、MongoDBのAggregationを使用することができます。
+グルーピング、データの加算など、複雑な検索条件を指定することができます。</p>
+<p>本ガイドでは、SDKからのAPI呼び出しの方法について説明します。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">使用にあたって、演算子の制限や注意事項があります。
+事前に <a class="reference external" href="../developer/functions/object_storage.html#aggregation">集計(Aggregation)</a>  を参照して下さい。</p>
+</div>
+<div class="section" id="id21">
+<h2>9.1. 集計条件の指定<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>集計に使用するデータは、商品の売り上げ情報を含むObjectがsalesバケットに保存済みとします。</p>
+<p>説明のため、一部フィールドは省略しています。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// salesバケットのデータ</span>
+<span class="p">{</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="o">:</span><span class="s2">&quot;2018-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;shop&quot;</span><span class="o">:</span><span class="s2">&quot;Tokyo&quot;</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="o">:</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="o">:</span><span class="mi">100</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="o">:</span><span class="s2">&quot;2018-01-02&quot;</span><span class="p">,</span> <span class="s2">&quot;shop&quot;</span><span class="o">:</span><span class="s2">&quot;Osaka&quot;</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="o">:</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="o">:</span><span class="mi">75</span>  <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="o">:</span><span class="s2">&quot;2018-01-02&quot;</span><span class="p">,</span> <span class="s2">&quot;shop&quot;</span><span class="o">:</span><span class="s2">&quot;Osaka&quot;</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="o">:</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="o">:</span><span class="mi">250</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="o">:</span><span class="s2">&quot;2018-01-03&quot;</span><span class="p">,</span> <span class="s2">&quot;shop&quot;</span><span class="o">:</span><span class="s2">&quot;Tokyo&quot;</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="o">:</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="o">:</span><span class="mi">200</span> <span class="p">...</span> <span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="o">:</span><span class="s2">&quot;2018-01-04&quot;</span><span class="p">,</span> <span class="s2">&quot;shop&quot;</span><span class="o">:</span><span class="s2">&quot;Tokyo&quot;</span><span class="p">,</span> <span class="s2">&quot;item&quot;</span><span class="o">:</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="o">:</span><span class="mi">150</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>検索の条件は、JSON配列に指定します。
+以下の例では、&quot;Tokyo&quot;で販売された商品毎に、売り上げの合計を集計します。</p>
+<p>通常NbJSONObject、NbJSONArray等を使用して条件を組み立てますが、
+一覧性のため、以下の例では文字列で記載しています。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span> <span class="n">pipelineBase</span> <span class="o">=</span> <span class="s">&quot;{ \&quot;pipeline\&quot;:                  &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;[                                           &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;   { \&quot;$match\&quot;: { \&quot;shop\&quot;: \&quot;Tokyo\&quot; }},  &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;   { \&quot;$group\&quot;: {                          &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;       \&quot;_id\&quot;: \&quot;$item\&quot;,                  &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;       \&quot;total\&quot;: { \&quot;$sum\&quot;: \&quot;$price\&quot; }  &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;     }                                      &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;   }                                        &quot;</span> <span class="o">+</span>
+           <span class="s">&quot;]}                                          &quot;</span><span class="o">;</span>
+
+<span class="n">NbJSONArray</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">NbJSONParser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">pipelineBase</span><span class="o">).</span><span class="na">getJSONArray</span><span class="o">(</span><span class="s">&quot;pipeline&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>一致条件を表す&quot;$match&quot;で、販売した&quot;shopが&quot;Tokyo&quot;であるオブジェクトに絞り込みを行います。</p>
+<p>その後、&quot;$group&quot;では、商品&quot;item&quot;毎に、売上&quot;price&quot;の和を&quot;total&quot;としてグルーピングします。
+_idに指定したフィールドは、グループ識別用のキーとして扱われます。</p>
+</div>
+<div class="section" id="id22">
+<h2>9.2. 集計の実行<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Aggregationを使用するためには、NbObjectBucket.aggregate()を呼び出します。
+引数にはpipelineを指定します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbObjectBucket</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">NbService</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">objectBucketManager</span><span class="o">().</span><span class="na">getBucket</span><span class="o">(</span><span class="s">&quot;sales&quot;</span><span class="o">);</span>
+<span class="n">bucket</span><span class="o">.</span><span class="na">aggregate</span><span class="o">(</span><span class="n">pipeline</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="k">new</span> <span class="n">NbCallback</span><span class="o">&lt;</span><span class="n">NbJSONArray</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">NbJSONArray</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">statuCode</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+<p>結果はNbJSONArrayで返却されます。
+&quot;item A&quot; 2件、&quot;item B&quot; 1件の売り上げが集計されます。</p>
+<p>集計データのイメージは以下の通りです。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">300</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="o">:</span> <span class="mi">150</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>MongoDBのAggregationは多様な集計機能をサポートしています。
+詳細は以下を参照下さい。</p>
+<ul class="last simple">
+<li><a class="reference external" href="../developer/functions/object_storage.html#aggregation">集計(Aggregation)</a></li>
+<li><a class="reference external" href="https://docs.mongodb.com/manual/aggregation/">MongoDB Aggregation</a></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">オフラインバケットに対してはAggregationを使用することができません。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="10. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_query.html" class="btn btn-neutral" title="8. オブジェクトストレージ:クエリ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

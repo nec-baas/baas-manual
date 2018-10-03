@@ -1,0 +1,13 @@
+アプリケーションの開発
+========================
+
+.. include:: ../../common/linkdef.rst
+
+各アプリケーションのサンプルは別途配布しています。
+
+.. toctree::
+   :maxdepth: 2
+
+   devel-webapp
+   devel-native-dotnet
+   devel-native-android

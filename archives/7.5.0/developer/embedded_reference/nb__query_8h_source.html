@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: nb_query.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_67ddc83a51c7c70dde674a18e8d37b86.html">necbaas</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">nb_query.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="nb__query_8h.html">説明を見る。</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * COPYRIGHT (C) 2017 NEC CORPORATION</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * ALL RIGHTS RESERVED BY NEC CORPORATION,  THIS PROGRAM</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * MUST BE USED SOLELY FOR THE PURPOSE FOR WHICH IT WAS</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * FURNISHED BY NEC CORPORATION,  NO PART OF THIS PROGRAM</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * MAY BE REPRODUCED OR DISCLOSED TO OTHERS,  IN ANY FORM</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * WITHOUT THE PRIOR WRITTEN PERMISSION OF NEC CORPORATION.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * NEC CONFIDENTIAL AND PROPRIETARY</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef NECBAAS_NBQUERY_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NECBAAS_NBQUERY_H</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;typeinfo&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;json/json.h&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__json__object_8h.html">necbaas/nb_json_object.h</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__json__array_8h.html">necbaas/nb_json_array.h</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>necbaas {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85">   29</a></span>&#160;<span class="keyword">enum class</span> <a class="code" href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85">NbReadPreference</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85a428429ba9ea83e4841036fb0508fd6dc">PRIMARY</a>,             </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85aca494867c5da233cadf7b8425b7e726e">SECONDARY_PREFERRED</a>, </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbQuery.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#ac67134ff27a5d0b1eb53c4caa98db0be">~NbQuery</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbQuery.html#a01c0a43c523d6cacfdffd5e725db57c4">   63</a></span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a01c0a43c523d6cacfdffd5e725db57c4">EqualTo</a>(<span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span> (!key.empty()) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordflow">if</span> (<span class="keyword">typeid</span>(T) == <span class="keyword">typeid</span>(<a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a>)) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">return</span> AddSimpleOp(<span class="stringliteral">&quot;$eq&quot;</span>, key, value);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                <span class="keywordflow">return</span> AddSimpleOp(<span class="stringliteral">&quot;&quot;</span>, key, value);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbQuery.html#a08b3856da635b785c30b0324ce2274c2">   84</a></span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a08b3856da635b785c30b0324ce2274c2">LessThan</a>(<span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> AddSimpleOp(<span class="stringliteral">&quot;$lt&quot;</span>, key, value);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbQuery.html#afc4819c0b9342af7045d166e9f90d355">   98</a></span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#afc4819c0b9342af7045d166e9f90d355">LessThanOrEqual</a>(<span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">return</span> AddSimpleOp(<span class="stringliteral">&quot;$lte&quot;</span>, key, value);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbQuery.html#ae164b2aba0527d02d6339e6e21d18e51">  112</a></span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#ae164b2aba0527d02d6339e6e21d18e51">GreaterThan</a>(<span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span> AddSimpleOp(<span class="stringliteral">&quot;$gt&quot;</span>, key, value);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbQuery.html#a7a5463c8d845f64727756b53cae9574e">  126</a></span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a7a5463c8d845f64727756b53cae9574e">GreaterThanOrEqual</a>(<span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">return</span> AddSimpleOp(<span class="stringliteral">&quot;$gte&quot;</span>, key, value);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbQuery.html#a8d67df29c08e6e04a5cf77453c289251">  140</a></span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a8d67df29c08e6e04a5cf77453c289251">NotEquals</a>(<span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> AddSimpleOp(<span class="stringliteral">&quot;$ne&quot;</span>, key, value);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a13695ca8e8bd68fecdfcea63da561a5b">In</a>(<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbJsonArray.html">NbJsonArray</a> &amp;array);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#af24798771ca5ef4f68b84a91527d9592">All</a>(<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbJsonArray.html">NbJsonArray</a> &amp;array);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a55070ab23a00fd1948d9c5a4aff61f12">Regex</a>(<span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> std::string &amp;regexp, <span class="keyword">const</span> std::string &amp;options = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#ad0cbde956554baa0ab2f97d4a9a91d0e">Exists</a>(<span class="keyword">const</span> std::string &amp;key);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#aa93088a66740f3ae528f902ada2789b0">NotExists</a>(<span class="keyword">const</span> std::string &amp;key);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#ae1be8e1c90df0ed5f22ab51d1aed0502">Not</a>(<span class="keyword">const</span> std::string &amp;key);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a9657b939bd7ff7d5442b06e45f2d1c53">Or</a>(<span class="keyword">const</span> std::vector&lt;NbQuery&gt; queries);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a75a93005ddddd4624609adc8ba8cd6ce">And</a>(<span class="keyword">const</span> std::vector&lt;NbQuery&gt; queries);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a3bfca213b72b107975546121db8bf475">OrderBy</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;order);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a2276480ef9804feb3b91a76ccd80935f">Skip</a>(<span class="keywordtype">int</span> skip);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#acf78682956535e368cb12a498c27c037">Limit</a>(<span class="keywordtype">int</span> limit);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#ad9e801b357437732c5b24d816546e7ea">DeleteMark</a>(<span class="keywordtype">bool</span> delete_mark);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a7f2ba2e7dd745a03c2fb5dc073e662af">Projection</a>(<span class="keyword">const</span> std::map&lt;std::string, bool&gt; &amp;projection);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#abd4bc089820581ac6a310c3a407a0224">ReadPreference</a>(<a class="code" href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85">NbReadPreference</a> read_preference);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html">NbQuery</a> &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a33d86e5a59aff171cdf5cadd5ed28dc3">Timeout</a>(<span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#a0ae98cc25962ce03c0a5c9abd375bbc5">GetConditionsString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#a62e2b5dbde7fed931c9ff3d267807c10">GetOrderString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#a2583cb0980226c3b84648e83fc8b454e">GetSkipString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#ab70eeec48179942f5fd8c278c9b49cf3">GetLimitString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#ac2b4cad550ea9afe2077ef4087952219">GetDeleteMarkString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#a81fcf558b5766f92b523f2d2b4e2bb64">GetProjectionString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#a8267b973d41002c5e31fb6ee1634d9f1">GetReadPreferenceString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    std::string <a class="code" href="classnecbaas_1_1NbQuery.html#af56cd0cd5ceebd3da2a52ac7acaba019">GetTimeoutString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="keyword">const</span> Json::Value &amp;<a class="code" href="classnecbaas_1_1NbQuery.html#a6b76cf47dc0f8b94031c4645ce40f530">GetConditions</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">int</span> kLimitDefault; </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    Json::Value conditions_;                   </div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    std::vector&lt;std::string&gt; order_{};         </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keywordtype">int</span> skip_{0};                              </div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordtype">int</span> limit_{kLimitDefault};                 </div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keywordtype">bool</span> delete_mark_{<span class="keyword">false</span>};                  </div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    std::map&lt;std::string, bool&gt; projection_{}; </div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <a class="code" href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85">NbReadPreference</a> read_preference_{<a class="code" href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85a428429ba9ea83e4841036fb0508fd6dc">NbReadPreference::PRIMARY</a>}; </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="keywordtype">int</span> timeout_{0}; </div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOpPrimitive(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="keywordflow">if</span> (!key.empty()) {</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            <span class="keywordflow">if</span> (op.empty()) {</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                conditions_[key] = value;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;                Json::Value json;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;                json[op] = value;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;                conditions_[key] = json;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            }</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        }</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    }</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOpJson(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, T value) {</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        <span class="keywordflow">if</span> (!key.empty()) {</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            <span class="keywordflow">if</span> (op.empty()) {</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                conditions_[key] = value.GetSubstitutableValue();</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                Json::Value json;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                json[op] = value.GetSubstitutableValue();</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                conditions_[key] = json;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;            }</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        }</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    }</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOp(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, <span class="keywordtype">int</span> value);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOp(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, int64_t value);</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOp(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, <span class="keywordtype">double</span> value);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOp(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, <span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOp(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> std::string &amp;value);</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOp(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> NbJsonObject &amp;value);</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;AddSimpleOp(<span class="keyword">const</span> std::string &amp;op, <span class="keyword">const</span> std::string &amp;key, <span class="keyword">const</span> NbJsonArray &amp;value);</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    <a class="code" href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">NbQuery</a> &amp;ConcatQueries(<span class="keyword">const</span> std::string &amp;op, std::vector&lt;NbQuery&gt; queries);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;};</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;}  <span class="comment">// namespace necbaas</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="preprocessor">#endif  // NECBAAS_NBQUERY_H</span></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_ac2b4cad550ea9afe2077ef4087952219"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#ac2b4cad550ea9afe2077ef4087952219">necbaas::NbQuery::GetDeleteMarkString</a></div><div class="ttdeci">std::string GetDeleteMarkString() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html">necbaas::NbQuery</a></div><div class="ttdoc">オブジェクト検索クラス. </div><div class="ttdef"><b>Definition:</b> nb_query.h:41</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_af56cd0cd5ceebd3da2a52ac7acaba019"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#af56cd0cd5ceebd3da2a52ac7acaba019">necbaas::NbQuery::GetTimeoutString</a></div><div class="ttdeci">std::string GetTimeoutString() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a55070ab23a00fd1948d9c5a4aff61f12"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a55070ab23a00fd1948d9c5a4aff61f12">necbaas::NbQuery::Regex</a></div><div class="ttdeci">NbQuery &amp; Regex(const std::string &amp;key, const std::string &amp;regexp, const std::string &amp;options=&quot;&quot;)</div><div class="ttdoc">正規表現一致条件を追加する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a6b76cf47dc0f8b94031c4645ce40f530"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a6b76cf47dc0f8b94031c4645ce40f530">necbaas::NbQuery::GetConditions</a></div><div class="ttdeci">const Json::Value &amp; GetConditions() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="nb__json__array_8h_html"><div class="ttname"><a href="nb__json__array_8h.html">nb_json_array.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_ad9e801b357437732c5b24d816546e7ea"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#ad9e801b357437732c5b24d816546e7ea">necbaas::NbQuery::DeleteMark</a></div><div class="ttdeci">NbQuery &amp; DeleteMark(bool delete_mark)</div><div class="ttdoc">削除マークされたデータを読み込むフラグを設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a2276480ef9804feb3b91a76ccd80935f"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a2276480ef9804feb3b91a76ccd80935f">necbaas::NbQuery::Skip</a></div><div class="ttdeci">NbQuery &amp; Skip(int skip)</div><div class="ttdoc">Skip値を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a2583cb0980226c3b84648e83fc8b454e"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a2583cb0980226c3b84648e83fc8b454e">necbaas::NbQuery::GetSkipString</a></div><div class="ttdeci">std::string GetSkipString() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a7a5463c8d845f64727756b53cae9574e"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a7a5463c8d845f64727756b53cae9574e">necbaas::NbQuery::GreaterThanOrEqual</a></div><div class="ttdeci">NbQuery &amp; GreaterThanOrEqual(const std::string &amp;key, T value)</div><div class="ttdoc">大なりまたは等しいを追加する. </div><div class="ttdef"><b>Definition:</b> nb_query.h:126</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_ad0cbde956554baa0ab2f97d4a9a91d0e"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#ad0cbde956554baa0ab2f97d4a9a91d0e">necbaas::NbQuery::Exists</a></div><div class="ttdeci">NbQuery &amp; Exists(const std::string &amp;key)</div><div class="ttdoc">フィールドの存在条件を追加する. </div></div>
+<div class="ttc" id="namespacenecbaas_html_a7d6ac8516c60d0716abb540131ae7b85"><div class="ttname"><a href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85">necbaas::NbReadPreference</a></div><div class="ttdeci">NbReadPreference</div><div class="ttdoc">参照する DB の指定 </div><div class="ttdef"><b>Definition:</b> nb_query.h:29</div></div>
+<div class="ttc" id="namespacenecbaas_html_a7d6ac8516c60d0716abb540131ae7b85aca494867c5da233cadf7b8425b7e726e"><div class="ttname"><a href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85aca494867c5da233cadf7b8425b7e726e">necbaas::NbReadPreference::SECONDARY_PREFERRED</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a7f2ba2e7dd745a03c2fb5dc073e662af"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a7f2ba2e7dd745a03c2fb5dc073e662af">necbaas::NbQuery::Projection</a></div><div class="ttdeci">NbQuery &amp; Projection(const std::map&lt; std::string, bool &gt; &amp;projection)</div><div class="ttdoc">プロジェクションを設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a8d67df29c08e6e04a5cf77453c289251"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a8d67df29c08e6e04a5cf77453c289251">necbaas::NbQuery::NotEquals</a></div><div class="ttdeci">NbQuery &amp; NotEquals(const std::string &amp;key, T value)</div><div class="ttdoc">不一致条件を追加する. </div><div class="ttdef"><b>Definition:</b> nb_query.h:140</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_ae1be8e1c90df0ed5f22ab51d1aed0502"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#ae1be8e1c90df0ed5f22ab51d1aed0502">necbaas::NbQuery::Not</a></div><div class="ttdeci">NbQuery &amp; Not(const std::string &amp;key)</div><div class="ttdoc">指定したキーの条件を反転(not)する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_af24798771ca5ef4f68b84a91527d9592"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#af24798771ca5ef4f68b84a91527d9592">necbaas::NbQuery::All</a></div><div class="ttdeci">NbQuery &amp; All(const std::string &amp;key, const NbJsonArray &amp;array)</div><div class="ttdoc">array に指定された値がすべて合致する条件を追加する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a08b3856da635b785c30b0324ce2274c2"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a08b3856da635b785c30b0324ce2274c2">necbaas::NbQuery::LessThan</a></div><div class="ttdeci">NbQuery &amp; LessThan(const std::string &amp;key, T value)</div><div class="ttdoc">小なり条件を追加する. </div><div class="ttdef"><b>Definition:</b> nb_query.h:84</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a75a93005ddddd4624609adc8ba8cd6ce"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a75a93005ddddd4624609adc8ba8cd6ce">necbaas::NbQuery::And</a></div><div class="ttdeci">NbQuery &amp; And(const std::vector&lt; NbQuery &gt; queries)</div><div class="ttdoc">AND条件を生成する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_abd4bc089820581ac6a310c3a407a0224"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#abd4bc089820581ac6a310c3a407a0224">necbaas::NbQuery::ReadPreference</a></div><div class="ttdeci">NbQuery &amp; ReadPreference(NbReadPreference read_preference)</div><div class="ttdoc">参照するDBの指定を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbJsonObject_html"><div class="ttname"><a href="classnecbaas_1_1NbJsonObject.html">necbaas::NbJsonObject</a></div><div class="ttdoc">Jsonオブジェクト. </div><div class="ttdef"><b>Definition:</b> nb_json_object.h:34</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_aa93088a66740f3ae528f902ada2789b0"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#aa93088a66740f3ae528f902ada2789b0">necbaas::NbQuery::NotExists</a></div><div class="ttdeci">NbQuery &amp; NotExists(const std::string &amp;key)</div><div class="ttdoc">フィールドの非存在条件を追加する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_ac67134ff27a5d0b1eb53c4caa98db0be"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#ac67134ff27a5d0b1eb53c4caa98db0be">necbaas::NbQuery::~NbQuery</a></div><div class="ttdeci">~NbQuery()</div><div class="ttdoc">デストラクタ. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a9657b939bd7ff7d5442b06e45f2d1c53"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a9657b939bd7ff7d5442b06e45f2d1c53">necbaas::NbQuery::Or</a></div><div class="ttdeci">NbQuery &amp; Or(const std::vector&lt; NbQuery &gt; queries)</div><div class="ttdoc">OR条件を生成する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_acf78682956535e368cb12a498c27c037"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#acf78682956535e368cb12a498c27c037">necbaas::NbQuery::Limit</a></div><div class="ttdeci">NbQuery &amp; Limit(int limit)</div><div class="ttdoc">Limit値を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a01c0a43c523d6cacfdffd5e725db57c4"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a01c0a43c523d6cacfdffd5e725db57c4">necbaas::NbQuery::EqualTo</a></div><div class="ttdeci">NbQuery &amp; EqualTo(const std::string &amp;key, T value)</div><div class="ttdoc">一致条件を追加する. </div><div class="ttdef"><b>Definition:</b> nb_query.h:63</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a13695ca8e8bd68fecdfcea63da561a5b"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a13695ca8e8bd68fecdfcea63da561a5b">necbaas::NbQuery::In</a></div><div class="ttdeci">NbQuery &amp; In(const std::string &amp;key, const NbJsonArray &amp;array)</div><div class="ttdoc">array に指定された値のいずれかと一致する条件を追加する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a112b8637048f3334b29642133352f350"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a112b8637048f3334b29642133352f350">necbaas::NbQuery::NbQuery</a></div><div class="ttdeci">NbQuery()</div><div class="ttdoc">コンストラクタ. </div></div>
+<div class="ttc" id="namespacenecbaas_html_a7d6ac8516c60d0716abb540131ae7b85a428429ba9ea83e4841036fb0508fd6dc"><div class="ttname"><a href="namespacenecbaas.html#a7d6ac8516c60d0716abb540131ae7b85a428429ba9ea83e4841036fb0508fd6dc">necbaas::NbReadPreference::PRIMARY</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a81fcf558b5766f92b523f2d2b4e2bb64"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a81fcf558b5766f92b523f2d2b4e2bb64">necbaas::NbQuery::GetProjectionString</a></div><div class="ttdeci">std::string GetProjectionString() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_ab70eeec48179942f5fd8c278c9b49cf3"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#ab70eeec48179942f5fd8c278c9b49cf3">necbaas::NbQuery::GetLimitString</a></div><div class="ttdeci">std::string GetLimitString() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a62e2b5dbde7fed931c9ff3d267807c10"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a62e2b5dbde7fed931c9ff3d267807c10">necbaas::NbQuery::GetOrderString</a></div><div class="ttdeci">std::string GetOrderString() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_ae164b2aba0527d02d6339e6e21d18e51"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#ae164b2aba0527d02d6339e6e21d18e51">necbaas::NbQuery::GreaterThan</a></div><div class="ttdeci">NbQuery &amp; GreaterThan(const std::string &amp;key, T value)</div><div class="ttdoc">大なり条件を追加する. </div><div class="ttdef"><b>Definition:</b> nb_query.h:112</div></div>
+<div class="ttc" id="nb__json__object_8h_html"><div class="ttname"><a href="nb__json__object_8h.html">nb_json_object.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a0ae98cc25962ce03c0a5c9abd375bbc5"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a0ae98cc25962ce03c0a5c9abd375bbc5">necbaas::NbQuery::GetConditionsString</a></div><div class="ttdeci">std::string GetConditionsString() const </div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbJsonArray_html"><div class="ttname"><a href="classnecbaas_1_1NbJsonArray.html">necbaas::NbJsonArray</a></div><div class="ttdoc">Json配列. </div><div class="ttdef"><b>Definition:</b> nb_json_array.h:37</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a33d86e5a59aff171cdf5cadd5ed28dc3"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a33d86e5a59aff171cdf5cadd5ed28dc3">necbaas::NbQuery::Timeout</a></div><div class="ttdeci">NbQuery &amp; Timeout(int timeout)</div><div class="ttdoc">クエリタイムアウト（ミリ秒）設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a3bfca213b72b107975546121db8bf475"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a3bfca213b72b107975546121db8bf475">necbaas::NbQuery::OrderBy</a></div><div class="ttdeci">NbQuery &amp; OrderBy(const std::vector&lt; std::string &gt; &amp;order)</div><div class="ttdoc">ソート条件を設定する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_afc4819c0b9342af7045d166e9f90d355"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#afc4819c0b9342af7045d166e9f90d355">necbaas::NbQuery::LessThanOrEqual</a></div><div class="ttdeci">NbQuery &amp; LessThanOrEqual(const std::string &amp;key, T value)</div><div class="ttdoc">小なりまたは等しいを追加する. </div><div class="ttdef"><b>Definition:</b> nb_query.h:98</div></div>
+<div class="ttc" id="classnecbaas_1_1NbQuery_html_a8267b973d41002c5e31fb6ee1634d9f1"><div class="ttname"><a href="classnecbaas_1_1NbQuery.html#a8267b973d41002c5e31fb6ee1634d9f1">necbaas::NbQuery::GetReadPreferenceString</a></div><div class="ttdeci">std::string GetReadPreferenceString() const </div><div class="ttdoc">[内部処理用] </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

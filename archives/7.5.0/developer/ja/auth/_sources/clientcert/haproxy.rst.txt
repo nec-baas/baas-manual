@@ -1,0 +1,199 @@
+.. include:: ../../common/linkdef.rst
+
+.. _haproxy_settings:
+
+=====================================
+リバースプロキシで認証する場合の設定
+=====================================
+
+本章では `HAProxy`_ によるクライアント証明書認証を行う場合の設定手順を説明します。
+
+HAProxyのインストール
+======================
+
+CentOSの場合は以下の手順でインストールします。
+
+.. code-block:: bash
+
+   $ sudo yum install haproxy
+
+Ubuntuの場合は、以下手順でインストールします。
+
+.. code-block:: bash
+
+   $ sudo apt-get install haproxy
+
+
+.. note::
+
+  HAProxyはgraceful stopに対応しており、設定変更後のダウンタイムを最小限に抑えることができます。
+  graceful stopを行うと既存のコネクションを維持した状態で、設定反映済みの新たなプロセスを起動して待ち受けを開始します。
+  既存のコネクションが全てクローズすると、古いプロセスは終了します。
+
+  graceful stopを使用するには、サービスのreloadを使用します。
+
+  .. code-block:: bash
+
+     $ sudo systemctl reload haproxy.service
+
+.. _preparing_certificate_for_haproxy:
+
+証明書の準備
+======================
+
+HAPorxyでのクライアント証明書認証には、以下証明書が必要となります。
+
+    - サーバ証明書/秘密鍵 : 必須
+    - CA証明書 : 必須
+    - CRL (証明書失効リスト) : オプション
+
+サーバ証明書は、原則public CAから払い出された正規の証明書を使用します。
+またサーバ証明書の秘密鍵には適切なアクセス権限を設定し、外部への漏えいが無いよう管理してください。
+
+なお、HAProxy で利用する際は、サーバ証明書・サーバ証明書の秘密鍵・中間CA証明書(存在する場合)をそれぞれ PEM 形式で用意し、これらを1つに連結したテキストファイルとして用意してください。
+
+.. note::
+
+    サーバ証明書の作成手順については、`サーバ証明書の作成手順 <../../../../server/ja/server/extended/sslcert.html>`_ を参照下さい。
+
+
+CA証明書は、クライアント証明書を発行するCAの証明書を使用します。
+
+CRLは、クライアント証明書発行元のCAが提供する、CRLのDistribution Pointから取得します。
+CRL の利用は必須ではありませんが、CRL が提供されている場合は利用することを推奨します。
+
+レスポンス用ファイルの準備
+===========================
+
+認証エラー時のレスポンスデータファイルを作成します。
+クライアント証明書認証に失敗した場合、リクエストをBaaSサーバには転送せず、HAProxyでエラーを返却します。
+この際に使用するレスポンスデータを用意しておきます。
+
+*/etc/haproxy/errors/401.http* にファイルを用意します。このファイルの内容がそのままhttpのレスポンスとして返却されます。
+ファイルを格納するディレクトリ、コンテンツは変更することができますが、クライアントSDKを使用する場合は、レスポンスボディをJSONとすることを推奨します。
+
+詳細は :ref:`haproxy_response_file` を参照して下さい。
+
+HAProxyの設定
+==============
+
+HAProxyの設定ファイルは以下に格納されています。
+
+.. code-block:: bash
+
+   /etc/haproxy/haproxy.cfg
+
+`HAProxyのConfiguration Manual`_ を参照してHAProxyの設定を編集します。
+
+
+クライアント証明書認証で使用するfrontend/backend部分の設定例は、 :ref:`haproxy_configurations` を参照して下さい。
+システム構成に応じて、編集して使用します。
+
+あわせてfirewallの設定を変更し、待ち受けに使用するTCPポートを解放しておきます。
+
+.. note::
+
+    クライアント証明書認証を行う場合、RPはのHTTPヘッダを付与してBaaSサーバにリクエストを転送する必要があります。
+    HAProxy以外のRPを使用する場合、以下に従ってヘッダを付与してください。
+
+     :ref:`client_cert_header_spec`
+
+.. _haproxy_crl_update_preparing:
+
+CRL更新用スクリプトの準備
+===========================
+
+CRLを使用する場合は、CRL更新用のスクリプトを準備します。(オプション)
+
+CRLには有効期限が設定されており、期限が切れるとクライアント証明書認証が失敗する場合があります。
+実行権限を付与したスクリプトをcron等に登録し、定期的に最新のCRLを反映してください。
+
+CRLの公開URLは、証明書の *X509v3 CRL Distribution Points* に格納されています。
+以下コマンドで証明書の内容を出力します。
+不明な場合は証明書の発行元にお問い合わせください。
+
+.. code-block:: bash
+
+    $ openssl x509 -in <証明書ファイル> -text
+
+スクリプトの例は、 :ref:`haproxy_crl_update_script` を参照してください。
+
+HAProxyの動作検証
+==================
+
+curlを使用して、HAProxyのクライアント証明書認証が正常に動作しているか確認します。
+
+一般的にクライアント証明書と秘密鍵はPKCS#12形式で提供されますが、curlにはpemフォーマットの証明書と秘密鍵に分離して指定します。
+
+.. code-block:: bash
+
+   $ curl -v --cert ./<クライアント証明書> --key ./<クライアント証明書の秘密鍵> https://<haproxy_host>:<port>/api/1/_health
+
+.. note::
+
+    private CAが発行したサーバ証明書を使用した場合、通信に失敗します。
+    *--cacert* オプションを追加し、pem形式のCA証明書を追加で指定します。
+
+    .. code-block:: bash
+
+        --cacert ./<CA証明書>
+
+    HAProxyがローカルネットワークに存在する場合、proxy設定を無効にする必要があります。
+    *--noproxy* オプションを指定し、直接アクセスします。
+
+    .. code-block:: bash
+
+        --noproxy <haproxy_host>
+
+またHAProxyサーバ上で tcpdump を使用し、リクエストがBaaSサーバに転送されていることを確認します。
+
+.. code-block:: bash
+
+   $ sudo tcpdump -i <interface_name> -A host <baas_hostname>
+
+BaaSサーバへのリクエストヘッダに、HAProxyの設定ファイルで指定した証明書情報が付与されていることを確認します。
+またクライアントに、200 OKが返却されることを確認します。
+
+**HAProxyからBaaSサーバへのリクエスト抜粋**
+
+::
+
+    GET /api/1/_health HTTP/1.1
+    User-Agent: curl/7.29.0
+    Host: 10.xx.xx.xx:8080
+    Accept: */*
+    X-SSL-Client-CertAuth-Validated: 1
+    X-SSL: 1
+    X-SSL-USED: 1
+    X-SSL-HAS-CERT: 1
+    X-SSL-Client-Verify: 0
+    X-SSL-Client-Serial: B39905F1C76BB2EC
+    X-SSL-Client-DN: /C=JP/ST=Kanagawa/L=Kawasaki/O=NEC Internal/OU=IoT Platform Development/CN=client001/UID=00000001
+    X-SSL-Client-CN: client001
+    X-SSL-Client-UID: 00000001
+    X-SSL-Client-Not-Before: 170614022222Z
+    X-SSL-Client-Not-After:
+    X-SSL-Issuer-DN: /C=JP/ST=Kanagawa/O=NEC Internal/OU=IoT Platform Development/CN=IoT Platform Development Department Private CA/emailAddress=mail@test.example.jp
+    X-SSL-Validate-Token: nebulaclientcertkey01234
+    X-Forwarded-For: 10.yy.yy.yy
+
+
+**クライアントへのレスポンス抜粋**
+
+::
+
+    < HTTP/1.1 200 OK
+    < Date: Wed, 02 Aug 2017 01:35:21 GMT
+    < Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.1e-fips PHP/5.4.16 Phusion_Passenger/5.1.1 proxy_html/3.1.2
+    < X-Content-Type-Options: nosniff
+    < X-XSS-Protection: 1; mode=block
+    < X-Frame-Options: SAMEORIGIN
+    < Content-Security-Policy: 'none'
+    < Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+    < Expires: 0
+    < Content-Type: application/json
+    < Content-Length: 33
+    <
+    * Connection #0 to host 10.xx.xx.xx left intact
+    {"name":"api","status":"running"}
+

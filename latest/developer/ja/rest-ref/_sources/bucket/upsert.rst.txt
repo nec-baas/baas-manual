@@ -1,0 +1,101 @@
+.. _bucket_upsert:
+
+バケットの作成・更新
+======================
+
+.. http:put:: /1/(tenantId)/buckets/(bucketType)/(bucketName)
+
+    バケットを作成・更新する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+    :reqheader Content-Type: "application/json"
+
+    :parameter string bucketType: バケット種別。オブジェクトストレージの場合は "object"、ファイルストレージの場合は "file"。
+    :parameter string bucketName: バケット名
+
+    :<json string description: バケットの説明 (作成時:オプション、更新時:必須)
+    :<json object ACL: バケットACL (作成時:オプション、更新時:必須)
+    :<json object contentACL: コンテンツACL (作成時:オプション、更新時:必須)
+    :<json boolean noAcl: ACLレス指定。オブジェクトACL制御無しの場合はtrue(デフォルト: false)。bucketType が "object" の場合のみ有効。
+
+    :statuscode 200: 正常登録した
+    :statuscode 400: パラメータ・リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー。バケット数制限超過。
+    :statuscode 409: 同名のバケット作成が衝突。更新と削除処理が衝突。
+    :statuscode 415: Content-Type 不正
+
+    :>json string owner: オーナのユーザID
+    :>json string description: バケットの説明
+    :>json object ACL: バケットACL
+    :>json object contentACL: コンテンツACL
+    :>json boolean noAcl: ACLレス指定
+
+    **リクエスト**
+
+    リクエストボディには、バケットの情報を JSON で指定する。以下に例を示す。
+
+    .. code-block:: json
+
+        {
+            "description": "バケットの説明文",
+            "ACL": {
+                "r": [ "g:authenticated" ],
+                "admin": [],
+            },
+            "contentACL": {
+                "r": [ "g:authenticated" ],
+                "w": [ "514af36644f9cb2eb8000002" ]
+            },
+            "noAcl": false
+        }
+
+    ここではバケット名 "bucket1" のオブジェクトバケットを作成する。
+    description には、バケットの説明文を指定することができる。
+
+    なお、ACL を指定しなかった場合は以下の ACL が自動的に設定される。
+
+    * ACL:
+
+      - ログイン済みの場合: "owner" にログインユーザが設定される。"r" に "g:authenticated" が設定され、認証ユーザは誰でもバケット情報を読み出せる。
+      - 未ログイン状態の場合: "r" に "g:anonymous" が設定され、誰でもバケット情報を読み出せる。
+    * contentACL:
+
+      - ログイン済みの場合: r, w に "g:authenticated" が設定され、認証ユーザは誰でも読み書き可。
+      - 未ログイン状態の場合 : r, w に "g:anonymous" が設定され、誰でも読み書き可。
+
+    description、ACL、contentACLはバケット作成時は全てオプションであるため、どれも指定せず作成することができる。
+    その場合のリクエストは空JSON( {} ) を指定する。
+
+    bucketType = "object" で noAcl を true に指定した場合、当該バケットにおいてオブジェクト単位の ACL 制御は行われない(ACLレスバケット)。
+
+    .. attention:
+
+        ACLレスバケット機能はβ版機能である。
+
+    **レスポンスボディ**
+
+    作成したバケット情報を含むJSON データ。リクエスト時と同じものだが、owner が設定される。
+
+    **注意事項**
+
+    * バケットはテナント毎に作成される。
+    * 1テナント当たり作成できるバケットの個数には上限がある(数千個程度)。
+    * テナント内では、同一名称のバケットを複数作成することはできない。
+    * 通常のバケット名は先頭が英数字、２文字目以降は英数字または'_'でなければならない。
+      ただし、特殊バケットの更新時は「_ROOT,_USERS,_GROUPS」を指定できる
+    * バケット名は40文字以下でなければならない。
+    * バケット作成時には、_ROOT バケットのcontentACLに対する create 権限が必要。
+    * バケット更新(ACL/contentACL以外)を行う際は、対象バケットに対する update 権限が必要。
+    * バケットの ACL, contentACL, noAcl を変更する際は、対象バケットに対する admin 権限が必要。
+    * 対象バケットに対するread権限が無くても、上記のレスポンスが返却される。
+    * バケットを作成する際、ACLに関連する検索を高速化するために、ACL.r と ACL.owner に対するインデックスがそれぞれ自動的に作成される。
+      ただし、noAcl = true の場合は作成されない。
+    * 更新時に noAcl の値を変更した場合、下記のように、noAcl の値に応じて、インデックスを適切に作成・削除する。
+      ここで「ACLに関連するインデックス」とは上述の ACL.r と ACL.owner に対するインデックス2個を指す。
+
+      - noAcl = true に変更した場合、ACLに関連するインデックスが削除される。
+      - noAcl = false に変更した場合、ACLに関連するインデックスが追加される。
+      - noAcl 変更時に、既存オブジェクトの ACL フィールドの値は変更されない(すでに付与されているACLの削除やデフォルトACLの付与は行わない)

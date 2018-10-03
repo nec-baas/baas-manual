@@ -1,0 +1,56 @@
+.. index::
+   single: API定義(HTTP)
+   single: Swagger
+
+============================
+API 定義の作成 (HTTP Proxy)
+============================
+
+カスタムAPIを定義・使用するためには、API定義の作成・登録が必要です。
+ここでは HTTP リクエストを Proxy するための定義の作成手順を説明します。
+
+Cloud Functions呼び出し用 API 定義の作成手順については、
+`Cloud Functions開発ガイド <../cloudfunctions/index.html>`_ を参照してください。
+
+カスタム API 定義は Swagger 定義ファイルとして作成します。
+Swagger 定義ファイルは YAML または JSON ファイルとして作成します。
+
+api1.yaml という名前で以下の内容のファイルを作成してください。
+
+.. code-block:: yaml
+
+    swagger: '2.0'
+    basePath: /api1
+    produces:
+      - application/json
+    paths:
+      /products:
+        get:
+          x-proxy:
+            uri: https://api.example.com/products/
+            method: GET
+
+basePath に指定した "/api1" が API の識別子(API名)となります。
+
+API内に任意の個数のオペレーションを定義することができます。
+ここでは /products サブパスに対して GET メソッドの API を定義しています。
+
+これは以下の REST API に対応します。
+/api/1/{tenantId}/api までが固定パスで、これ以下の階層を自由に定義できます。
+
+.. code-block:: text
+
+    GET http://{servername}/api/1/{tenantId}/api/api1/products
+
+プロキシの定義は x-proxy に指定します。x-proxy には以下の値を記述します。
+
+* uri (必須): Proxy 先の URI。http, https のみ使用可能です。
+* method (必須): HTTP Proxy 時のリクエストメソッド。GET/POST/PUT/DELETE のいずれか。
+* request (オプション): リクエストのマッピング規則
+* response (オプション): レスポンスのマッピング規則
+
+上記例の場合、https://api.example.com/products にリクエストがプロキシされます。
+
+リクエストパラメータ、クエリパラメータ、リクエスト/レスポンスヘッダ・ボディなどは原則パススルーされます。
+変換したい場合は、request や response に変換規則を記述する形となります。
+詳細は後述します。

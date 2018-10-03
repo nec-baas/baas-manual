@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. チュートリアル3 : アルバムアプリ &mdash; Tutorials (JavaScript) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="4. チュートリアル2 : ログイン機能とアクセス制御" href="tutorial2.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (JavaScript)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_code.html">3. チュートリアル1 : TODOアプリの実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">4. チュートリアル2 : ログイン機能とアクセス制御</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. チュートリアル3 : アルバムアプリ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. 新規アプリケーションを作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.2. バケットの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">5.3. サンプルコードの変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">5.4. サンプルの実行</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (JavaScript)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. チュートリアル3 : アルバムアプリ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. チュートリアル3 : アルバムアプリ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>チュートリアル3では、JavaScript SDK を使用して簡単なアルバムアプリを作成します。</p>
+<a class="reference internal image-reference" href="_images/tutorial3-1.png"><img alt="_images/tutorial3-1.png" class="align-center" src="_images/tutorial3-1.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li>端末内の画像の管理ができます。</li>
+<li>データは BaaS サーバ上の「ファイルストレージ」に格納されます。</li>
+<li>本アプリはブラウザ上で動作する Web アプリで、HTML + JavaScript のみで作成します。</li>
+</ul>
+<p>なお、本チュートリアルでは、簡単のためユーザ認証やアクセス制御は一切
+行いません。ユーザ認証を行うチュートリアルは、他のチュートリアルを参照してください。</p>
+<div class="section" id="id2">
+<h2>5.1. 新規アプリケーションを作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>まず、BaaS サーバのデベロッパコンソールにログインし、新規アプリケーションを作成します。</p>
+<p>ブラウザを開き、デベロッパコンソールにアクセスし、
+ID とパスワードを入力してログインしてください。</p>
+<img alt="_images/login.png" class="align-center" src="_images/login.png" />
+<p>ログインが完了すると、テナント名の一覧が表示されます。ここに表示されている
+テナントID は後ほど使用しますので、メモしておいてください。</p>
+<p>使用するテナントをクリックします。</p>
+<img alt="_images/tenant_list.png" class="align-center" src="_images/tenant_list.png" />
+<p>「アプリケーション」をクリックし、「追加」ボタンを押して新規アプリケーションを作成します。</p>
+<img alt="_images/tutorial3-4.png" class="align-center" src="_images/tutorial3-4.png" />
+<p>ここではアプリ名と説明文を上記のように入力します。</p>
+<img alt="_images/tutorial3-5.png" class="align-center" src="_images/tutorial3-5.png" />
+<p>アプリの作成が完了すると、アプリの詳細情報が表示されます。
+ここで表示される「アプリケーションID」「アプリケーションキー」は
+アプリケーションの認証に使用する秘密情報です。
+この２つは後ほど使用しますので、メモしておいてください。</p>
+</div>
+<div class="section" id="id3">
+<h2>5.2. バケットの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>画像情報を格納するための「バケット」を作成します。</p>
+<p>画面左の「<strong>ファイルバケット</strong>」⇒「追加」をクリックして、バケットを追加します。</p>
+<img alt="_images/tutorial3-6.png" class="align-center" src="_images/tutorial3-6.png" />
+<p>バケット名は &quot;AlbumTutorial&quot; としてください。</p>
+<p>また、バケットのアクセス権限を変更し、誰でも(anonymousユーザ)バケットを読み書きできるようにします。
+(デフォルトでは、認証ユーザしかバケットを読み書きできないようになっています）</p>
+<p>上記を参照して設定してください。</p>
+</div>
+<div class="section" id="id4">
+<h2>5.3. サンプルコードの変更<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>チュートリアル3のサンプルコードを設定し、実際に動作させてみます。</p>
+<p>チュートリアルの tutorial3/js/ ディレクトリにある config.sample.js ファイルを config.js という名前でコピーし、
+以下のように変更します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">NebulaConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;tenant&quot;</span><span class="o">:</span> <span class="s2">&quot;5657fe61240d3e15d40acd37&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appId&quot;</span><span class="o">:</span> <span class="s2">&quot;56ea61b9240d3e27263af477&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appKey&quot;</span><span class="o">:</span> <span class="s2">&quot;fKju2qT94EK4fdbMWbt0MY5gY3b9j8ysvuVJJQFR&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;baseUri&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.example.com/api/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;offline&quot;</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">&quot;debugMode&quot;</span><span class="o">:</span> <span class="s2">&quot;debug&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>tenant には テナントIDを設定してください。</li>
+<li>appId にアプリケーションIDを設定してください。</li>
+<li>appKey にアプリケーションキーを設定してください。</li>
+<li>baseUri には、BaaS サーバの API URL を指定してください。パスの &quot;/api&quot; まで必要です。</li>
+<li>offline を false にしてオフライン機能を無効してください。</li>
+<li>debugMode を &quot;debug&quot; に設定すると、JavaScript コンソールにデバッグログが表示されます。デバッグログを出したくない場合は &quot;release&quot; に設定してください。</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>5.4. サンプルの実行<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>tutorial3/index.html を Firefox, Chrome などのブラウザで開いて実行してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">CORS (Cross Origin Resource Sharing) に対応していないブラウザでは動作しません。
+具体的には Internet Explorer 9以下では動作しません</p>
+</div>
+<a class="reference internal image-reference" href="_images/tutorial3-1.png"><img alt="_images/tutorial3-1.png" class="align-center" src="_images/tutorial3-1.png" style="width: 500px;" /></a>
+<p>画面下のファイル選択ボタンでファイルを選択してアップロードできます。「×」ボタンを押すと消去されます。</p>
+<a class="reference internal image-reference" href="_images/tutorial3-7.png"><img alt="_images/tutorial3-7.png" class="align-center" src="_images/tutorial3-7.png" style="width: 500px;" /></a>
+<p>データは BaaS サーバに保存されますので、ブラウザを再起動したり
+他のクライアントからアクセスしても、アップロードしたファイルを参照することができます。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tutorial2.html" class="btn btn-neutral" title="4. チュートリアル2 : ログイン機能とアクセス制御" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

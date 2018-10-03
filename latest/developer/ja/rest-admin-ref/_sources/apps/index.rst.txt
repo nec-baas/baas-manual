@@ -1,0 +1,14 @@
+.. _apps:
+
+====================
+アプリケーション操作
+====================
+
+.. toctree::
+   :maxdepth: 1
+
+   create
+   read
+   list
+   update
+   delete

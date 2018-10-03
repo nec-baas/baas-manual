@@ -1,0 +1,12 @@
+=================
+Cloud Functions
+=================
+
+Cloud Functionsは、利用者が定義したファンクションをサーバ上で実行する機能です。
+Java、及びNode.jsの実行環境を提供します。
+
+前述のAPI Gateway機能と組み合わせることで、クライアントのREST API呼び出しを契機に、
+サーバでデータの集計を行うなど、柔軟に処理を行うことができます。
+
+Cloud Functionsの詳細については「 `Cloud Functions 開発ガイド <../../cloudfunctions/index.html>`_ 」をご覧ください。
+

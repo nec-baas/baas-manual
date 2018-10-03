@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. イベント &mdash; Event Subscription Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. イベントサブスクリプション" href="subscription.html" />
+    <link rel="prev" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Event Subscription Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. イベント</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">2.1. 概要</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">2.1.1. ファイルストレージイベントの例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">2.1.2. スケジューライベントの例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">2.2. フォーマット</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#filestorage">2.2.1. fileStorageイベント</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scheduler">2.2.2. schedulerイベント</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html">3. イベントサブスクリプション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">4. イベントサブスクリプションとクラウドファンクションの登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">5. イベント処理用クラウドファンクションの実装</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Event Subscription Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. イベント</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>2. イベント<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id21">
+<h2>2.1. 概要<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>イベントは、モバイルバックエンド基盤内で発生した事象を、JSON形式で表現・通知するものです。</p>
+<p>ユーザがイベントを扱う場面は、下記の2通りです。</p>
+<ul class="simple">
+<li>イベントサブスクリプション内でイベントフィルタを定義して、イベントを選り分ける。</li>
+<li>イベントハンドラ(クラウドファンクション)で、イベントを処理する。</li>
+</ul>
+<p>以下に、イベントの例を示します。</p>
+<div class="section" id="id22">
+<h3>2.1.1. ファイルストレージイベントの例<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;fileStorage&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;bucketName&quot;</span><span class="p">:</span> <span class="s2">&quot;photo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;fileName&quot;</span><span class="p">:</span> <span class="s2">&quot;image20180725-171630.jpg&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;file.created&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h3>2.1.2. スケジューライベントの例<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;scheduler&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;schedule&quot;</span><span class="p">:</span> <span class="s2">&quot;hourly&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>2.2. フォーマット<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>イベントはJSON形式で表現・通知されます。</p>
+<p>イベントは下記の属性を持ちます。</p>
+<ul class="simple">
+<li>source: イベントソース。(必須)<ul>
+<li>type: イベントソースの種類。v7.5.0ではfileStorage・schedulerのいずれか。（必須）</li>
+</ul>
+</li>
+<li>data: イベントの内容を示すJSONオブジェクト。dataの中身はsourceのtypeにより異なる。(必須)</li>
+</ul>
+<div class="section" id="filestorage">
+<h3>2.2.1. fileStorageイベント<a class="headerlink" href="#filestorage" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ファイルストレージイベントは、モバイルバックエンド基盤のファイルストレージにおいて、ファイル操作が行われた際に発生するイベントです。</p>
+<p>ファイルストレージイベントのdataは、下記の属性を持つJSONオブジェクトです。</p>
+<ul class="simple">
+<li>bucketName: イベントが発生したバケット名。（必須)</li>
+<li>fileName: イベントが発生したファイル名。（必須）</li>
+<li>action: 行われた操作。下記のいずれか。（必須）<ul>
+<li>file.created ファイルが作成された</li>
+<li>file.read ファイルがダウンロードされた</li>
+<li>file.updated ファイルが更新された</li>
+<li>file.deleted ファイルが削除された</li>
+<li>file.metadata-updated ファイルメタデータが更新された</li>
+<li>file.published ファイルが公開された</li>
+<li>file.unpublished ファイルが非公開にされた</li>
+</ul>
+</li>
+<li>deleteMark: actionがfile.deleteの場合にのみ、追加で指定される属性。0か1のいずれか。0ならば物理消去、1ならば論理消去を表す。</li>
+</ul>
+</div>
+<div class="section" id="scheduler">
+<h3>2.2.2. schedulerイベント<a class="headerlink" href="#scheduler" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>スケジューライベントは、モバイルバックエンド基盤のAPIサーバ内にあるスケジューラが発生させるイベントです。</p>
+<p>スケジューライベントのdataは、下記の属性を持つJSONオブジェクトです。</p>
+<ul class="simple">
+<li>schedule: スケジュールの種類を示す文字列。v7.5.0では下記のいずれか。<ul>
+<li>&quot;10 minutes interval&quot; (サーバ起動後に10分間隔で発生する。必ずしも正時に揃わない)</li>
+<li>&quot;hourly&quot;</li>
+<li>&quot;daily&quot;</li>
+<li>&quot;every 10 minutes&quot; (毎正時0分、10分、20分、30分、40分、50分に発生する)</li>
+<li>&quot;halfDay&quot;</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="subscription.html" class="btn btn-neutral float-right" title="3. イベントサブスクリプション" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="1. はじめに" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.5. fluentd を利用したロギング &mdash; Server User Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5. 詳細手順" href="../extended/index.html" />
+    <link rel="prev" title="4.4. ロギング設定" href="logger.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. コンフィグレーション</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="profile.html">4.1. プロファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html">4.2. 設定ファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">4.3. その他の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">4.4. ロギング設定</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.5. fluentd を利用したロギング</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-fluentd">4.5.1. fluentd のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">4.5.2. fluentd の利用設定</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#baas-logback">BaaSサーバ側 logback の設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">fluentd の設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">MongoDB レプリカセットを使用する場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. コンフィグレーション</a> &raquo;</li>
+        
+      <li>4.5. fluentd を利用したロギング</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="use-fluentd">
+<span id="index-0"></span><span id="id20"></span><h1>4.5. fluentd を利用したロギング<a class="headerlink" href="#use-fluentd" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>標準状態では、ログは各 AP サーバ・デベロッパコンソールサーバ毎に個別に出力されます。</p>
+<p>fluentd を使用すると、ログを一箇所に集約したり、出力先を MongoDB にしたりといった
+ことが可能になります。</p>
+<div class="section" id="install-fluentd">
+<span id="id21"></span><h2>4.5.1. fluentd のインストール<a class="headerlink" href="#install-fluentd" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>fluentd 1.0 以上 (td-agent3以上)をインストールしてください。</p>
+<p><a class="reference external" href="http://docs.fluentd.org/">fluentd サイト</a> の Installation の手順に従いインストールします。</p>
+<p>RHEL7 の場合の手順は以下の通りです。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent3.sh <span class="p">|</span> sh
+$ <span class="o">(</span>設定ファイルを編集<span class="o">)</span>
+$ sudo systemctl start td-agent.service
+</pre></div>
+</div>
+<p>また、MongoDB に出力するため fluent-plugin-mongo をインストールします。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo /usr/sbin/td-agent-gem install fluent-plugin-mongo
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>Fluentd 起動の初期化処理では、MongoDB との接続確認が実施されるため、MongoDB を先に起動してください。</li>
+<li>OS の起動に伴うサービス（デーモン）の自動起動にも、Fluentd より、MongoDBを先に起動できるように chkconfig で起動スクリプトの起動順序を指定する必要があります。
+例えば、Fluentdの場合、起動スクリプト( /etc/rc.d/init.d/td-agent )に、&quot;# chkconfig: [ランレベル] [起動順] 「終了順」&quot;で指定し、スクリプトを再登録します。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>4.5.2. fluentd の利用設定<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="baas-logback">
+<h3>BaaSサーバ側 logback の設定<a class="headerlink" href="#baas-logback" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>BaaS サーバの logback.properties プロパティファイルを編集し、
+logback.types に &quot;FLUENT&quot; を指定してください。</p>
+<p>logback.properties ファイルの詳細は <a class="reference internal" href="logger.html#config-loglevel"><span class="std std-ref">ログ設定</span></a> を参照してください。</p>
+<p>ログの出力先はデフォルトでは localhost:24224 に設定されています。
+出力先を変更した場合は、プロパティファイルに以下の値を指定してください。</p>
+<ul class="simple">
+<li>logback.fluent.host : ホスト名</li>
+<li>logback.fluent.port : ポート番号</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3>fluentd の設定<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下は、MongoDB の Capped collection にログを格納するための fluentd 設定ファイルの例です。
+fluentd 設定ファイルは /etc/td-agent/td-agent.conf に配置します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">source</span><span class="o">&gt;</span>
+  <span class="nd">@type</span> <span class="n">forward</span>
+  <span class="n">port</span> <span class="mi">24224</span>
+<span class="o">&lt;/</span><span class="n">source</span><span class="o">&gt;</span>
+
+<span class="c1"># conf.d ディレクトリから設定を読み込む</span>
+<span class="nd">@include</span> <span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="o">/*.</span><span class="n">conf</span>
+
+<span class="c1"># フェイルセーフ: 上記のルールにマッチしないログは標準出力に出力する</span>
+<span class="o">&lt;</span><span class="n">match</span> <span class="o">**&gt;</span>
+  <span class="nd">@type</span> <span class="n">stdout</span>
+<span class="o">&lt;/</span><span class="n">match</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">既存の設定ファイルに追記を行う場合、上記設定の &lt;source&gt;～&lt;/source&gt; と同等の設定が
+既に存在している場合があります。この場合は &lt;source&gt;～&lt;/source&gt;
+は追加しないでください(設定が重複していると、td-agent の起動が失敗します)。</p>
+</div>
+<p>さらに、/etc/td-agent/conf.d ディレクトリを作成し、以下の内容の2つのファイル(baas-system.conf, baas-access.conf)を格納します。これらのファイルは上記 td-agent.conf から include で読み込まれます。</p>
+<ul class="simple">
+<li>baas-system.conf</li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;match nebula.{api-server,console-server,cloudfn-server-manager,java-server}&gt;
+  @type mongo
+  host mongodb.example.com
+  port 27017
+  database baas_log
+  collection nebula_systemlog
+  capped
+  capped_size 1024m
+
+  # 認証(MongoDB認証有効時のみ、以下の項目追加)
+  #user baas
+  #password Passw0rD
+  #auth_source admin
+
+  &lt;buffer&gt;
+    flush_interval 10s
+  &lt;/buffer&gt;
+&lt;/match&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li>baas-access.conf</li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;match nebula.access&gt;
+  @type mongo
+  host mongodb.example.com
+  port 27017
+  database baas_log
+  collection nebula_accesslog
+  capped
+  capped_size 1024m
+
+  # 認証(MongoDB認証有効時のみ、以下の項目追加)
+  #user baas
+  #password Passw0rD
+  #auth_source admin
+
+  &lt;buffer&gt;
+    flush_interval 10s
+  &lt;/buffer&gt;
+&lt;/match&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li>host には MongoDB サーバのホスト名/IPアドレスを指定してください。</li>
+<li>port には MongoDB サーバのポート番号を指定してください。</li>
+</ul>
+<p>上記設定により、APIサーバ、コンソールサーバ、Cloud Functions 関連のシステムログと、APIサーバのアクセスログがMongoDB に出力されます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>必ずシステムログのデータベース名は &quot;baas_log&quot;, コレクション名は &quot;nebula_systemlog&quot; としてください。システムログ取得 REST API はこのコレクションからログを取得します。</li>
+<li>MongoDB認証有効時のみ、user、passwordとauth_sourceの項目を追記し、MongoDB認証用ユーザ、パスワードと認証データベース名を設定してください。</li>
+<li>認証データベース名とは、認証を行うユーザーが登録されているデータベースの名称のことです。</li>
+<li>fluentd 1.0以上(td-agent3以上)の場合、<a class="reference external" href="https://docs.fluentd.org/v1.0/articles/out_mongo">MongoDB Output Plugin</a> のインストールが事前に必要です。</li>
+</ul>
+</div>
+<p>fluentd および fluentd 設定ファイルの詳細は、fluentd の
+公式サイトのドキュメントを参照してください。</p>
+</div>
+<div class="section" id="id24">
+<h3>MongoDB レプリカセットを使用する場合<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>レプリカセットを使用する場合(シャーディングなし)は、設定ファイルの書式が若干変わります。
+詳細は <a class="reference external" href="https://docs.fluentd.org/v1.0/articles/out_mongo_replset">MongoDB ReplicaSet Output Plugin</a> を参照してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">match</span> <span class="n">nebula</span><span class="o">.</span><span class="p">{</span><span class="n">api</span><span class="o">-</span><span class="n">server</span><span class="p">,</span><span class="n">console</span><span class="o">-</span><span class="n">server</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="c1"># @type を以下記述に変更</span>
+  <span class="nd">@type</span> <span class="n">mongo_replset</span>
+
+  <span class="c1"># nodes にホスト/ポート番号を記述</span>
+  <span class="n">nodes</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">27017</span><span class="p">,</span><span class="n">localhost</span><span class="p">:</span><span class="mi">27018</span><span class="p">,</span><span class="n">localhost</span><span class="p">:</span><span class="mi">27019</span>
+
+  <span class="c1"># pluginのv0.8以降ではreplica_setにレプリカセット名を指定</span>
+  <span class="c1"># v0.8未満の場合は不要</span>
+  <span class="n">replica_set</span> <span class="n">my_replica_set_name</span>
+
+  <span class="c1"># host, port は記述削除</span>
+  <span class="c1"># その他の記述は同じ</span>
+  <span class="o">...</span>
+<span class="o">&lt;/</span><span class="n">match</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../extended/index.html" class="btn btn-neutral float-right" title="5. 詳細手順" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="logger.html" class="btn btn-neutral" title="4.4. ロギング設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

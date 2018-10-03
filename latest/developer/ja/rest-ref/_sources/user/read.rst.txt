@@ -1,0 +1,61 @@
+.. _user_read:
+
+ユーザ情報の取得
+=====================
+
+.. http:get:: /1/(tenantId)/users/(userId)
+
+    ユーザ情報を取得する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+
+    :parameter string userId: ユーザID
+
+    :statuscode 200: 正常取得した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当ユーザが存在しない
+
+    :>json string _id: ユーザID
+    :>json string username: ユーザネーム
+    :>json string email: E-mail アドレス
+    :>json array groups: ユーザが所属する全グループ名の一覧 (authenticated, anonymous は含まず)
+    :>json object options: オプション情報
+    :>json string createdAt: ユーザ作成日時
+    :>json string updatedAt: ユーザ更新日時
+    :>json string lastLoginAt: 最終ログイン日時。マスターキー使用時のみ返却する。
+    :>json string etag: 新規作成・更新の度に変更される固有値
+    :>json boolean federated: 外部認証連携有無
+    :>json string primaryLinkedUserId: OpenID Connect認証でユーザ自動生成時のリンクユーザID
+    :>json boolean clientCertUser: クライアント証明書認証ユーザフラグ
+    :>json boolean enabled: 有効フラグ
+
+
+    **レスポンスボディの例**
+
+    .. code-block:: javascript
+
+        {
+            "_id":"52116f01ac521e1742000001",
+            "username": "foo",
+            "email": "foo@example.com",
+            "groups": [ "group1", "group2", "group3" ],
+            "options": {
+                "displayName": "日電 太郎",
+                "division": "日電事業部"
+            },
+            "createdAt": "2013-08-27T04:37:30.000Z",
+            "updatedAt": "2013-08-27T04:37:30.000Z",
+            "lastLoginAt": "2013-08-27T04:37:30.000Z", //マスターキー使用時のみ返却
+            "etag": "8c92c97e-01a7-11e4-9598-53792c688d1b",
+            "federated": false,
+            "primaryLinkedUserId": "5953a6b10b1fed0f61c49ead",
+            "clientCertUser": false,
+            "enabled": true
+        }
+
+    **注意事項**
+
+    * _USERS バケットのcontentACL対するread権限が必要である。

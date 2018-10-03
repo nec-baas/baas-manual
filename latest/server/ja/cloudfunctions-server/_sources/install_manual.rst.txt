@@ -1,0 +1,301 @@
+.. include:: ../common/linkdef.rst
+
+====================
+インストール手順
+====================
+
+以下の手順でインストールを行います。
+
+RabbitMQ サーバのみ、別のサーバに配置することができます。
+それ以外のものはすべてCloud Functionsサーバにインストールします。
+
+RabbitMQ サーバ
+================
+
+RabbitMQ サーバを稼働させるホストに RabbitMQ をインストールします。
+RabbitMQ サーバのインストール方法は、`SSE Push サーバ利用手順書 <../ssepush-server/install.html>`_ を参照してください。
+
+Java 
+======
+
+Oracle JDK 8 以上または OpenJDK 8 以上をインストールします。
+
+OpenJDK 8 をインストールするには、以下のコマンドを使用します。
+
+.. code-block::  bash
+
+    $ sudo yum install java-1.8.0-openjdk-devel
+
+
+Docker
+======
+
+Docker をインストールします。
+
+`Get Started with Docker Engine for Linux`_ の手順に従いインストールを行ってください。
+
+.. note::
+
+   Dockerレス構成でCloud Functionsを運用する場合には、Dockerのインストールは不要です。
+
+.. attention::
+
+   Centos/RHELの場合、devicemapperドライバ の loop-lvm モードがデフォルトに適用されますが、パフォーマンスが良くないので、商用の場合は、direct-lvmモードへの切替をお薦めします。
+
+direct-lvm モードを切替える場合のみ、下記の手順を実行してください。
+詳細な切替手順は、 `Configure direct-lvm mode for production`_ を参照してください。
+
+- 事前に空のディスク（10GB以上）を用意し、パーティション作成
+  　
+  下記の手順では、デバイスファイル（/dev/vdc）の前提で説明しますが、構築環境にあわせて適切に置き換えてください。
+  また、fdisk コマンドの実行の詳細についてコマンドのヘルプへ参照ください。
+    
+  .. code-block:: bash
+    
+     $ sudo fdisk /dev/vdc
+
+     "n" で新な領域の作成 -> "p" で基本領域の指定 -> "1" でパーティション番号の指定
+     "t" でパーティションのタイプ設定を選択 -> "8e" でタイプ（Linux LVM）に設定
+     "w" で上記の設定内容をパーティションテーブルへ書込み
+         
+- LVM2 パッケージのインストール
+
+  .. code-block:: bash
+    
+     $ sudo yum -y install lvm2
+
+- 物理ボリュームの作成
+     
+  .. code-block:: bash
+
+     $ sudo pvcreate /dev/vdc1
+
+- ボリューム・グループの作成
+
+  .. code-block:: bash
+     
+     $ sudo vgcreate direct-lvm /dev/vdc1
+
+- データ格納用プールの作成
+
+  .. code-block:: bash
+
+     $ sudo lvcreate --wipesignatures y -n data direct-lvm -l 90%VG
+     $ sudo lvcreate --wipesignatures y -n metadata direct-lvm -l 5%VG
+  
+- 作成済のプールをthin poolへ変換
+
+  .. code-block:: bash
+
+     $ sudo lvconvert -y --zero n -c 512K --thinpool direct-lvm/data --poolmetadata direct-lvm/metadata
+     
+- lvm プロフィールを作成し、シン・プールを自動拡張の設定。記載内容は下記の通り。
+
+  .. code-block:: bash
+
+     $ sudo vi /etc/lvm/profile/docker-thinpool.profile
+     
+     activation {
+         thin_pool_autoextend_threshold=80
+         thin_pool_autoextend_percent=20
+     }
+
+- lvm プロフィールの適用
+  
+  .. code-block:: bash
+
+    $ sudo lvchange --metadataprofile docker-thinpool direct-lvm/data
+
+- stop docker サービス
+
+  .. code-block:: bash
+  
+    $ sudo systemctl stop docker
+
+- 既存データの削除
+
+  .. code-block:: bash
+
+    $ sudo rm -rf /var/lib/docker
+
+- docker service 設定にストレージ設定のパラメータを追記。記載内容は下記の通り。
+
+  .. code-block:: bash
+
+    $ sudo mkdir -p /etc/systemd/system/docker.service.d
+    $ sudo vi /etc/systemd/system/docker.service.d/docker.service.conf
+
+    ExecStart=/usr/bin/docker daemon -H unix:///var/run/docker.sock \
+          --storage-driver=devicemapper --storage-opt dm.thinpooldev=/dev/mapper/direct--lvm-data
+
+- 設定変更の適用と再起動
+   
+  .. code-block:: bash
+
+    $ sudo systemctl daemon-reload
+    $ sudo systemctl start docker
+
+サーバマネージャ / Node/Javaロジックサーバ
+==========================================
+
+サーバマネージャと Node/Javaロジックサーバをインストールします。
+
+インストール
+------------
+
+添付されている install.sh インストーラを使用してインストールを行ってください。
+
+.. code-block:: bash
+
+    $ sudo ./install.sh
+
+ディレクトリ・ファイルが以下のレイアウトで作成されます。
+
+.. code-block:: text
+
+   +- /
+     +- etc/
+     | +- baas/
+     |   +- cloudfn-server-manager-config.yaml
+     |   +- cloudfn-server-manager-logback.properties
+     +- var/
+     |   +- log/
+     |   |  +- cloudfn/
+     |   +- cloudfn/
+     |      +- usercode/
+     +- opt/
+       +- cloudfn/
+         +- bin/
+         |  +- cloudfn-server-manager.jar
+         +- etc-samples/
+         |  +- cloudfn-server-manager-config.yaml
+         |  +- cloudfn-server-manager-logback.properties
+         +- init/
+         |  +- rhel6/
+         |  |  +- cloudfn-server-manager.init.sh
+         |  +- rhel7/
+         |     +- cloudfn-server-manager.service
+         +- node-server/
+         |  +- packages/
+         +- java-server/
+            +- cloudfn-java-server.jar
+
+また、cloudfn ユーザが作成され、docker グループに追加されます。
+
+.. attention::
+
+   /etc/baas ディレクトリ内の設定ファイルは、既存のファイルが存在する場合は上書きされません。
+   バージョンアップ時は、適宜 /opt/cloudfn/etc-samples にあるサンプルを参照して
+   手動で更新を行ってください。
+
+サーバマネージャ設定ファイルの編集
+------------------------------------
+
+サーバマネージャの設定ファイルを修正します。
+
+/etc/baas/cloudfn-server-manager-config.yaml をエディタで編集し、設定を行ってください。
+設定手順は :ref:`configure` を参照してください。
+
+起動スクリプト設定・サービス起動
+----------------------------------
+
+ついで起動スクリプトをインストールし、サービスを起動します。
+
+RHEL6 / CentOS6 の場合は以下手順で init スクリプトのインストールと起動を行ってください。
+
+.. code-block:: bash
+
+    $ sudo cp /opt/cloudfn/init/rhel6/cloudfn-server-manager.init.sh /etc/init.d/cloudfn-server-manager
+    $ sudo chmod 755 /etc/init.d/cloudfn-server-manager
+    $ sudo chkconfig --add cloudfn-server-manager
+    $ sudo chkconfig cloudfn-server-manager on
+    $ sudo service cloudfn-server-manager start
+
+RHEL7 / CentOS7 の場合は、以下手順で systemd の Unit ファイルのインストールとサービスの起動を行ってください。
+
+.. code-block:: bash
+
+    $ sudo cp /opt/cloudfn/init/rhel7/cloudfn-server-manager.service /usr/lib/systemd/system
+    $ sudo systemctl enable cloudfn-server-manager
+    $ sudo systemctl start cloudfn-server-manager
+
+Docker コンテナの作成
+======================
+
+以下の手順で Docker コンテナを作成します。
+
+.. note::
+
+   Dockerレス構成でCloud Functionsを運用する場合には、コンテナの作成は不要です。
+
+.. code-block:: bash
+
+    # Dockerファイルを /tmp 以下に展開する
+    $ tar xvzf cloudfn-docker-$(version).tar.gz -C /tmp
+
+    # Java 8 を使用する場合
+    $ cd /tmp/java8
+    $ sudo docker build -t nebula/java-logic-server:java8 .
+
+    # Node.js v6 を使用する場合
+    $ cd /tmp/node6
+    $ sudo docker build -t nebula/node-logic-server:node6 .
+
+    # Node.js v8 を使用する場合
+    $ cd /tmp/node8
+    $ sudo docker build -t nebula/node-logic-server:node8 .
+
+上記 docker build で指定する repository/tag 名は、
+後述する設定ファイルに指定する値(spec.*.repoTag)に合わせる必要があります。
+
+.. index::
+   single: fluentd; インストール
+
+Fluentd
+=======
+
+Fluentd をインストールします。
+
+インストール手順については、サーバ利用手順書の `fluentdを利用したロギング <../server/configure/fluentd.html>`_
+を参照してください。
+
+Node.js
+=======
+
+Dockerレス構成で、Cloud Functionsを運用する場合には、Node.jsをインストールしてPATHを通す必要があります。
+
+`Node.jsサイト`_ を参照して、インストールしてください。
+
+.. note::
+
+   Dockerを利用してCloud Functionsを運用する場合には、Node.jsのインストールは不要です。
+
+ファイヤウォール設定
+--------------------
+
+Docker コンテナ内から fluend に対して TCP で接続しますので、
+ファイヤウォールで制限を掛けている場合は fluentd に対する In 方向のルールを
+追加する必要があります。
+
+RHEL7 の場合の設定例を示します。
+ここでは public zone について 24224/tcp を開放しています。
+
+.. code-block:: bash
+
+    $ sudo firewall-cmd --add-port=24224/tcp --zone=public --permanent
+    $ sudo firewall-cmd --reload
+
+サーバ稼働確認
+===============
+
+サーバが正常に稼働しているかを Serverspec を使用して検証します。
+
+.. note::
+
+  本手順は必須ではありませんが、実施することをおすすめします。
+
+サーバ状態確認用の Serverspec を別途提供しています。
+サーバ上に展開し実行してください。実行手順については付属の README を参照ください。
+
+
+

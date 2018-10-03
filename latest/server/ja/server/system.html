@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. システム構成 &mdash; Server User Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. 基本利用手順" href="usage/index.html" />
+    <link rel="prev" title="1. イントロダクション" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. システム構成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 標準構成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.1.1. ロードバランサ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">2.1.2. API サーバ / デベロッパーコンソールサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb">2.1.3. MongoDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sse-push">2.1.4. SSE Push サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cloud-functions">2.1.5. Cloud Functions サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rabbitmq-server">2.1.6. RabbitMQ Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fluentd-server">2.1.7. fluentd server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">2.2. 最小構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">2.3. 起動・終了順序</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure/index.html">4. コンフィグレーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. システム構成</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. システム構成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>2.1. 標準構成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>モバイルバックエンド基盤のシステム全体の構成は以下のようになります。
+本構成は論理構成であり、１つのサーバに複数のサーバを搭載しても構いません。</p>
+<a class="reference internal image-reference" href="_images/system.png"><img alt="_images/system.png" src="_images/system.png" style="width: 698.4000000000001px; height: 329.6px;" /></a>
+<p>赤色になっているサーバが、モバイルバックエンド基盤で提供するサーバになります。</p>
+<div class="section" id="id3">
+<h3>2.1.1. ロードバランサ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>クライアントからのリクエストはロードバランサで受け付け、後段のサーバに分散します。
+なお、HTTPS(TLS) の終端はロードバランサで行うことを推奨します。</p>
+</div>
+<div class="section" id="api">
+<h3>2.1.2. API サーバ / デベロッパーコンソールサーバ<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>モバイルバックエンド基盤の中心となるサーバです。</p>
+<p>API サーバは REST API リクエストを受付け、応答するサーバです。
+デベロッパーコンソールサーバは、管理用の機能/UIを提供するサーバです。</p>
+<p>本文書は、この API サーバ / デベロッパーサーバの利用手順について述べます。</p>
+</div>
+<div class="section" id="mongodb">
+<h3>2.1.3. MongoDB<a class="headerlink" href="#mongodb" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>モバイルバックエンド基盤では、データベースに MongoDB を使用します。</p>
+<p>各種データや管理情報はほぼすべて MongoDB に保存されます。</p>
+</div>
+<div class="section" id="sse-push">
+<h3>2.1.4. SSE Push サーバ<a class="headerlink" href="#sse-push" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>SSE Push 機能を提供するサーバです。
+SSE Push サーバの利用手順については、<a class="reference external" href="../ssepush-server/index.html">SSE Push サーバ利用手順書</a> を参照してください。</p>
+</div>
+<div class="section" id="cloud-functions">
+<h3>2.1.5. Cloud Functions サーバ<a class="headerlink" href="#cloud-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Cloud Functions 機能を提供するサーバです。</p>
+<p>Cloud Functions サーバの利用手順については、<a class="reference external" href="../cloudfunctions-server/index.html">Cloud Functions サーバ利用手順書</a> を参照してください。</p>
+</div>
+<div class="section" id="rabbitmq-server">
+<h3>2.1.6. RabbitMQ Server<a class="headerlink" href="#rabbitmq-server" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RabbitMQ Server は、API サーバ - SSE Push サーバ、および API サーバ - Cloud Functions サーバ間の通信を行うためのサーバです。</p>
+</div>
+<div class="section" id="fluentd-server">
+<h3>2.1.7. fluentd server<a class="headerlink" href="#fluentd-server" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>各サーバが出力するログは fluentd で収集し、MongoDB に格納します。
+(fluentd を使用せず、各サーバ上にファイルで格納するようにすることも可能です)</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>2.2. 最小構成<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>上記のうち、モバイルバックエンド基盤で利用が必須となるのは API サーバ / デベロッパーコンソールサーバ / MongoDB の３つです。</p>
+<ul class="simple">
+<li>SSE Push を使用しない場合は、SSE Push サーバは省略可能です。</li>
+<li>Cloud Functions を使用しない場合は、Cloud Functions サーバは省略可能です。</li>
+<li>SSE Push / Cloud Functions いずれも使用しない場合は、RabbitMQ Server は省略可能です。</li>
+<li>ロギングを MongoDB に行わない場合は、fluentd サーバは省略可能です。</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>2.3. 起動・終了順序<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サーバの起動順序には以下の依存関係があります。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">対象サーバ</th>
+<th class="head">依存するサーバ</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>fluentd サーバ</td>
+<td>MongoDB サーバ</td>
+</tr>
+<tr class="row-odd"><td>Cloud Functions サーバマネージャ</td>
+<td>RabbitMQ サーバ</td>
+</tr>
+<tr class="row-even"><td>SSE Push サーバ</td>
+<td>RabbitMQ サーバ</td>
+</tr>
+<tr class="row-odd"><td>API/デベロッパーコンソールサーバ</td>
+<td>MongoDB サーバ</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">依存するサーバが起動していない状態では、当該サーバの起動(再起動を含む)は失敗しますので、注意してください。
+なお、依存するサーバを再起動させることは問題ありません。</p>
+</div>
+<p>推奨するサーバの起動順序は以下のとおりです(停止は逆順)。</p>
+<ul class="simple">
+<li>MongoDB ⇒ fluentd, RabbitMQ ⇒ Cloud Functions, API/デベロッパーコンソールサーバ, SSE Push サーバ</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usage/index.html" class="btn btn-neutral float-right" title="3. 基本利用手順" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="1. イントロダクション" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

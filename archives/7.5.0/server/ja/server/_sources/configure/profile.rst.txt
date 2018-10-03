@@ -1,0 +1,54 @@
+.. index::
+   single: プロファイル
+
+.. _profile:
+
+============
+プロファイル
+============
+
+BaaS サーバは、本番・開発の2種類のプロファイル(環境)を切り替えることができます。
+
+* production (本番) : 実運用時に使用するプロファイル
+* development (開発) : 開発時や評価時に使用するプロファイル
+
+データベースは、各プロファイル毎に個別に用意されます。
+従って、開発プロファイルで BaaS サーバを起動すれば、
+本番環境には影響せずテスト利用を行うことができます。
+
+プロファイルはデフォルトで "development" になっています。
+
+.. attention::
+
+  production と develop の間に機能の差異は全くありません。
+  使用する設定ファイルと MongoDB データベースの名前空間が別々になっているだけです。
+
+システムプロパティで指定する場合
+---------------------------------
+
+APサーバ起動時の JVM オプションでシステムプロパティ spring.profiles.active を設定
+することでプロファイルを変更することができます。
+
+::
+
+    -Dspring.profiles.active=production 
+
+Tomcat の場合、catalina.sh/catalina.bat を起動する際の環境変数 JAVA_OPTS に上記値が設定
+されるようにしてください。
+
+web.xml で指定する場合
+-----------------------
+
+web.xml ファイルでプロファイルを指定することが可能です。
+
+web.xml は、各 WARファイル内の WEB-INF/web.xml にあります。
+
+web.xml に以下のように指定することで、プロファイルを固定できます。
+なお、web.xml で指定を行った場合、システムプロパティの値は参照されません。
+
+::
+
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>production</param-value>
+    </context-param>

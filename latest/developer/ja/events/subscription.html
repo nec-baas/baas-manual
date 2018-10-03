@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. イベントサブスクリプション &mdash; Event Subscription Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="4. イベントサブスクリプションとクラウドファンクションの登録" href="deploy.html" />
+    <link rel="prev" title="2. イベント" href="event.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Event Subscription Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="event.html">2. イベント</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. イベントサブスクリプション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">3.1. 概要</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#json">3.1.1. JSON形式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#yaml">3.1.2. YAML形式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">3.2. フォーマット</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">3.2.1. イベントフィルタ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">4. イベントサブスクリプションとクラウドファンクションの登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">5. イベント処理用クラウドファンクションの実装</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Event Subscription Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. イベントサブスクリプション</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>3. イベントサブスクリプション<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id21">
+<h2>3.1. 概要<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>イベントサブスクリプションは、イベントの検知・フィルタリング・ハンドリングからなる、イベント駆動の設定です。</p>
+<p>イベントサブスクリプションは、JSON・YAML形式で定義します。</p>
+<p>以下に、イベントサブスクリプションの例を示します。（同じ内容を、JSON・YAMLの両方で示します。）</p>
+<div class="section" id="json">
+<h3>3.1.1. JSON形式<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;photo-event&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;fileStorage&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;bucketName&quot;</span><span class="p">:</span> <span class="s2">&quot;photos&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;$in&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;file.created&quot;</span><span class="p">,</span> <span class="s2">&quot;file.updated&quot;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;handler&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;cloudFunction&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;functionName&quot;</span><span class="p">:</span> <span class="s2">&quot;makeThumbnail&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="yaml">
+<h3>3.1.2. YAML形式<a class="headerlink" href="#yaml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">photo-event</span>
+<span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fileStorage</span>
+<span class="l l-Scalar l-Scalar-Plain">filter</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">bucketName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">photos</span>
+    <span class="l l-Scalar l-Scalar-Plain">action</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">$in</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">file.created</span><span class="p p-Indicator">,</span> <span class="nv">file.updated</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">handler</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cloudFunction</span>
+    <span class="l l-Scalar l-Scalar-Plain">functionName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">makeThumbnail</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">イベントサブスクリプションは、モバイルバックエンド基盤の内部ではJSON形式で保存されます。
+ユーザがYAML形式で定義した場合でも、JSON形式に変換されて保存されます。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>3.2. フォーマット<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>イベントサブスクリプションは、JSON・YAML形式のいずれかで記述します。</p>
+<ul class="simple">
+<li>name: イベントサブスクリプションの識別名です。テナント内で一意な名前としてください。(必須)</li>
+<li>source: イベントソースを指定します。(必須)<ul>
+<li>type: イベントソースの種類を指定します。fileStorage, scheduler のいずれかを指定します。(必須)</li>
+</ul>
+</li>
+<li>filter: イベントフィルタを定義します。詳細は後述します。(オプショナル)</li>
+<li>handler: イベントハンドラを指定します。（必須）<ul>
+<li>type: イベントハンドラの種類を指定します。v7.5.0ではcloudFunctionのみがサポートされます。(必須)</li>
+<li>functionName: イベントハンドラのファンクション名を指定します。typeがcloudFunctionの場合に必須です。</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id23">
+<h3>3.2.1. イベントフィルタ<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>イベントフィルタは、MongoDBクエリのサブセットで定義します。</p>
+<p>イベントフィルタは、イベントのdataに適用され、マッチした場合にのみハンドラが起動されます。
+なお、イベントフィルタは省略可能であり、省略した場合は必ずハンドラが起動されます。</p>
+<p>イベントフィルタで使用できるクエリは、MongoDB の以下の演算子相当のものに限定されます。 $eq, $ne, $gt, $gte, $lte, $lt, $in, $nin, $all, $exists, $and, $or, $nor, $not, $regex。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deploy.html" class="btn btn-neutral float-right" title="4. イベントサブスクリプションとクラウドファンクションの登録" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="event.html" class="btn btn-neutral" title="2. イベント" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.8. Tomcatで直接認証する場合の設定例 &mdash; Authentication Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="8. (参考)プライベートCAの構築・運用手順" href="../private_ca.html" />
+    <link rel="prev" title="7.7. クライアント証明書ヘッダ仕様" href="header_spec.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../saml/index.html">5. ADFS / SAML 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">7. クライアント証明書認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">7.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client_cert.html">7.2. クライアント証明書の発行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="haproxy.html">7.3. リバースプロキシで認証する場合の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomcat.html">7.4. Tomcatで直接認証する場合の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_settings.html">7.5. BaaSサーバ設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configurations.html">7.6. HAProxyで認証する場合の設定例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header_spec.html">7.7. クライアント証明書ヘッダ仕様</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.8. Tomcatで直接認証する場合の設定例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tomcat-connector">7.8.1. Tomcat Connectorのコンフィギュレーションの例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crl">7.8.2. CRL更新用スクリプトの例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">7. クライアント証明書認証</a> &raquo;</li>
+        
+      <li>7.8. Tomcatで直接認証する場合の設定例</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>7.8. Tomcatで直接認証する場合の設定例<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="tomcat-connector">
+<span id="tomcat-connector-configurations"></span><h2>7.8.1. Tomcat Connectorのコンフィギュレーションの例<a class="headerlink" href="#tomcat-connector" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>TomcatのConnectorの例は、以下を参照下さい。
+例では用意した証明書を <em>${CATALINA_HOME}/conf/certs/</em> 配下に格納しています。</p>
+<p>流用時はコメント部分は除外し、パラメータ類を用途に合った値に書き換えてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Connector</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;8443&quot;</span>     <span class="o">...</span> <span class="n">通信に使用するポート</span>
+           <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span>
+           <span class="n">maxThreads</span><span class="o">=</span><span class="s2">&quot;300&quot;</span>
+           <span class="n">SSLEnabled</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+           <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;https&quot;</span>
+           <span class="n">secure</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+           <span class="n">defaultSSLHostConfigName</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="o">&gt;</span>   <span class="o">...</span> <span class="n">defaultのホスト名</span>
+    <span class="o">&lt;</span><span class="n">SSLHostConfig</span> <span class="n">hostName</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span>            <span class="o">...</span> <span class="n">使用するホスト名</span>
+                   <span class="n">certificateVerificationDepth</span><span class="o">=</span><span class="s2">&quot;5&quot;</span>
+                   <span class="n">certificateVerification</span><span class="o">=</span><span class="s2">&quot;optional&quot;</span>  <span class="o">...</span> <span class="n">クライアント証明書認証の使用</span>
+                                                           <span class="p">(</span><span class="n">必須</span><span class="p">:</span> <span class="n">reuqired</span><span class="p">,</span> <span class="n">オプション</span><span class="p">:</span> <span class="n">optional</span><span class="p">,</span> <span class="n">使用しない</span><span class="p">:</span> <span class="n">none</span><span class="p">)</span>
+                   <span class="n">truststoreType</span><span class="o">=</span><span class="s2">&quot;jks&quot;</span>
+                   <span class="n">truststoreFile</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{catalina.base}</span><span class="s2">/conf/certs/cacerts.jks&quot;</span>
+                   <span class="n">truststorePassword</span><span class="o">=</span><span class="s2">&quot;changeit&quot;</span>       <span class="o">...</span> <span class="n">TrustStoreのパスワード</span> <span class="n">作成時に指定した値を入力</span>
+                   <span class="n">certificateRevocationListFile</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{catalina.base}</span><span class="s2">/conf/certs/crl.pem&quot;</span>
+                   <span class="n">revocationEnabled</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+                   <span class="n">sslProtocol</span><span class="o">=</span><span class="s2">&quot;TLS&quot;</span>
+                   <span class="n">protocols</span><span class="o">=</span><span class="s2">&quot;+TLSv1+TLSv1.1+TLSv1.2&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">Certificate</span> <span class="n">certificateKeystoreFile</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{catalina.base}</span><span class="s2">/conf/certs/localhost_server.jks&quot;</span>
+                     <span class="n">certificateKeystorePassword</span><span class="o">=</span><span class="s2">&quot;changeit&quot;</span>   <span class="o">...</span> <span class="n">KeyStoreのパスワード</span> <span class="n">作成時に指定した値を入力</span>
+                     <span class="n">certificateKeyAlias</span><span class="o">=</span><span class="s2">&quot;tomcat&quot;</span>
+                     <span class="n">certificateKeystoreType</span><span class="o">=</span><span class="s2">&quot;JKS&quot;</span>
+                     <span class="n">certificateKeystoreProvider</span><span class="o">=</span><span class="s2">&quot;SUN&quot;</span>
+                     <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;RSA&quot;</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">SSLHostConfig</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">Connector</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>各要素の詳細は <a class="reference external" href="https://tomcat.apache.org/tomcat-8.5-doc/config/">Apache Tomcat 8 Configuration Reference</a>  の <em>Connector</em> を参照下さい。</p>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">KeyStoreファイルは秘密鍵を含みます。適切なアクセス権を設定し、外部への漏えいが発生しないよう管理してください。</p>
+</div>
+</div>
+<div class="section" id="crl">
+<span id="tomcat-crl-update-script"></span><h2>7.8.2. CRL更新用スクリプトの例<a class="headerlink" href="#crl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>CRL更新用スクリプトの例は、以下の通りです。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="nv">CONFIG_PATH</span><span class="o">=</span>/opt/tomcat8/conf/certs/
+<span class="nv">HOST</span><span class="o">=</span><span class="m">10</span>.0.255.75
+<span class="nv">CRL_FILE</span><span class="o">=</span>crl.pem
+<span class="nv">CRL_TMP_FILE</span><span class="o">=</span>crl.pem.tmp
+
+<span class="nv">CRL_FILE_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONFIG_PATH</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CRL_FILE</span><span class="si">}</span>
+<span class="nv">CRL_TMP_FILE_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONFIG_PATH</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CRL_TMP_FILE</span><span class="si">}</span>
+
+<span class="c1"># 作業ファイルが残っていれば削除</span>
+<span class="k">if</span> <span class="o">[</span> -e <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;remove old tmp crl&quot;</span>
+    rm –f <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span>
+<span class="k">fi</span>
+
+<span class="c1"># サーバからCRLを取得</span>
+wget http://<span class="si">${</span><span class="nv">HOST</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CRL_FILE</span><span class="si">}</span> -O <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span>
+
+<span class="c1"># 取得成功した場合</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -e <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># 既にCRLファイルが存在する場合</span>
+    <span class="k">if</span> <span class="o">[</span> -e <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="k">if</span> diff -q <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span> <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> &gt; /dev/null <span class="p">;</span> <span class="k">then</span>
+        <span class="c1"># CRLファイルが更新されていなかった</span>
+            <span class="nb">echo</span> <span class="s2">&quot;no update&quot;</span>
+        <span class="k">else</span>
+            <span class="nb">echo</span> <span class="s2">&quot;crl update. reload service&quot;</span>
+        <span class="c1"># CRLファイルが更新されていた場合はファイルを置き換えて再読み込み</span>
+            mv <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span>
+            sudo service tomcat8 restart
+        <span class="k">fi</span>
+    <span class="k">else</span>
+    <span class="c1"># CRLファイルが存在しない場合はサービス起動に失敗している　再起動する</span>
+        <span class="nb">echo</span> <span class="s2">&quot;get crl first time. restart service.&quot;</span>
+        mv <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span>
+        sudo service tomcat8 restart
+    <span class="k">fi</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;failed to get new crl&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../private_ca.html" class="btn btn-neutral float-right" title="8. (参考)プライベートCAの構築・運用手順" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="header_spec.html" class="btn btn-neutral" title="7.7. クライアント証明書ヘッダ仕様" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

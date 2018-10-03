@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. NEC BaaS iOS API の基本 &mdash; iOS SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="5. ユーザ管理" href="user.html" />
+    <link rel="prev" title="3. 初期化処理の実装" href="initialize.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> iOS SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. NEC BaaS iOS API の基本</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4.1. 非同期呼び出し</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https.html">9. HTTPS通信について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swift.html">10. Swift の利用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">iOS SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. NEC BaaS iOS API の基本</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-ios-api">
+<h1>4. NEC BaaS iOS API の基本<a class="headerlink" href="#nec-baas-ios-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>4.1. 非同期呼び出し<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NEC BaaS iOS API は、ほぼすべて非同期呼び出しとなります。
+API の処理結果は、ブロック構文(Blocks)で受け取る形になります。</p>
+<p>以下に、オブジェクトをクエリする場合の例を示します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBObjectBucket</span> <span class="o">*</span><span class="n">bucket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NBObjectBucket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBucketName</span><span class="p">:</span><span class="s">@&quot;testBucket&quot;</span><span class="p">];</span>
+
+<span class="c1">// クエリ実行</span>
+<span class="p">[</span><span class="n">bucket</span> <span class="nl">queryObjectInBackground</span><span class="p">:[</span><span class="n">NBQuery</span> <span class="n">new</span><span class="p">]</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 正常時</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">NBObject</span> <span class="o">*</span><span class="n">object</span> <span class="k">in</span> <span class="n">objects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">object</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@&quot;description&quot;</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー発生時</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Error: %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<p>非同期 API (通常 API 名に 'InBackground' が含まれます)の呼び出し時にブロックを指定します。
+API の実行が完了すると指定したブロックが呼び出されます。</p>
+<p>処理が成功した場合には error 引数に nil が、失敗した場合にはエラー情報が格納されますので、
+最初に nil かどうかを判定する必要があります。</p>
+<p>なお、ブロックはすべて UI スレッドで呼び出されるようになっています。
+従って、ブロック内から UI 更新などの処理を行うことが可能です。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="user.html" class="btn btn-neutral float-right" title="5. ユーザ管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="initialize.html" class="btn btn-neutral" title="3. 初期化処理の実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

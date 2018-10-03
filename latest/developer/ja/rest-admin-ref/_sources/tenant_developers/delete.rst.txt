@@ -1,0 +1,34 @@
+.. _tenant_developer_delete:
+
+テナント所属管理者削除
+======================
+
+.. http:delete:: /1/_sysadm/(tenantId)/tenantDevelopers/(developerId)
+
+    テナントから管理者を削除する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+
+    :parameter string tenantId: テナントID
+    :parameter string developerId: 管理者ID
+
+    :statuscode 200: 正常に削除した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当テナントもしくは管理者ユーザが存在しない、またはテナントが無効
+
+    :>json string result: 実行結果
+
+    **レスポンス**
+
+    リクエスト成功時は以下。
+
+    .. code-block:: json
+
+        {
+          "result":"ok"
+        }
+
+    **注意事項**
+
+    * システム管理者またはテナント管理者権限が必要。

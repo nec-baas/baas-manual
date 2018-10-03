@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. ログ &mdash; Cloud Functions Server User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="9. マイグレーションガイド" href="migration.html" />
+    <link rel="prev" title="7. 動作確認" href="test.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Server User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">2. 必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_configuration.html">3. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dist.html">4. 配布物の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_manual.html">5. インストール手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">6. 設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">7. 動作確認</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. ログ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tomcat">8.1. Tomcat ログ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.2. サーバマネージャログ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">8.3. コンテナログ / ロジックサーバログ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-daemon">8.4. Docker daemon ログ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Server User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>8. ログ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>8. ログ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Cloud Functions サーバを含むサーバ類は、複数の場所にログを出力しています。</p>
+<div class="section" id="tomcat">
+<h2>8.1. Tomcat ログ<a class="headerlink" href="#tomcat" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaS サーバのログは Tomcat のログに出力されます。</p>
+<p>デフォルトでは、ログは /var/log/tomcat8/catalina.out に出力されますので、こちらを確認してください。
+(fluentd にログを出力している場合は、デベロッパーコンソールや CLI からも確認できます)</p>
+<p>ログの設定ファイルは /etc/baas/logback.properties です。</p>
+</div>
+<div class="section" id="id2">
+<h2>8.2. サーバマネージャログ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サーバマネージャのログはデフォルトでは /var/log/cloudfn/ 以下にファイル出力されます。</p>
+<p>/etc/baas/cloudfn-server-manager-logback.properties で出力先は変更できます。
+(標準出力、ファイル、fluentd のいずれか１つ以上)</p>
+<p>fluentd に出力する場合は、以下の tag でログが出力されます。
+出力先については適宜 fluentd の設定ファイル(td-agent.conf) で設定してください。</p>
+<ul class="simple">
+<li>nebula.cloudfn : ユーザログ (ロジックサーバログと tag が同じため、MongoDB に出力すればデベロッパーコンソールから確認可能)</li>
+<li>nebula.cloudfn-server-manager : システムログ</li>
+</ul>
+<p>なお、サーバマネージャの標準出力ログは、RHEL7 の場合は &quot;sudo journalctl -u cloudfn-server-manager.service&quot; で確認できます。</p>
+</div>
+<div class="section" id="id3">
+<h2>8.3. コンテナログ / ロジックサーバログ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザコードを動作させる Docker コンテナのログ、およびコンテナ内で動作するロジックサーバのログは、デフォルトでは fluentd に出力されます。
+/etc/baas/cloudfn-server-manager-config.yaml で出力先は変更できます。</p>
+<p>fluentd に出力されたログは、デベロッパーコンソールの Cloud Functions ログで確認できます。
+また CLI でも確認できます。</p>
+<p>fluentd に出力していない場合は、&quot;docker logs &lt;container_id&gt;&quot; コマンドでログを確認します。</p>
+</div>
+<div class="section" id="docker-daemon">
+<h2>8.4. Docker daemon ログ<a class="headerlink" href="#docker-daemon" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Docker コンテナの起動などでエラーが発生している場合は Docker daemon ログを確認してください。</p>
+<p>CentOS7/RHEL7 の場合は、デフォルトで /var/log/messages にログが出力されています。
+(grep docker で検索してください)</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="migration.html" class="btn btn-neutral float-right" title="9. マイグレーションガイド" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="test.html" class="btn btn-neutral" title="7. 動作確認" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

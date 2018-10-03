@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. オブジェクトストレージ:クエリ &mdash; Embedded SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="8. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="6. オブジェクトストレージ" href="object_storage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Embedded SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. インストール手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Embedded SDK の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">6. オブジェクトストレージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. オブジェクトストレージ:クエリ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.1. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">7.2. クエリ条件の指定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">7.2.1. 論理演算</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">7.3. ソート順序の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">7.4. スキップ数・検索上限数の指定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">9. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Embedded SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. オブジェクトストレージ:クエリ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>7. オブジェクトストレージ:クエリ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>7.1. オブジェクトのクエリ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトのクエリは、バケットに対して Query() を呼び出すことで行います。</p>
+<p>以下の例では、全件検索を行っています。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// オブジェクトのクエリ</span>
+<span class="n">NbObjectBucket</span> <span class="nf">bucket</span><span class="p">(</span><span class="n">service1</span><span class="p">,</span> <span class="s">&quot;testBucket&quot;</span><span class="p">);</span>
+<span class="n">NbQuery</span> <span class="n">query</span><span class="p">;</span>
+
+<span class="n">NbResult</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">Query</span><span class="p">(</span><span class="n">query</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">IsSuccess</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// 処理成功</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">aObject</span> <span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">GetSuccessData</span><span class="p">())</span> <span class="p">{</span>
+        <span class="c1">// 検索にヒットしたオブジェクトにアクセス</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>クエリ条件は、NbQuery クラスを使用して指定します。
+NbQuery を生成し、メソッドを呼び出して条件を追加していきます。</p>
+</div>
+<div class="section" id="id3">
+<h2>7.2. クエリ条件の指定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NbQuery</span> <span class="n">query</span><span class="p">;</span>
+
+<span class="n">query</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">);</span> <span class="c1">// 一致条件</span>
+<span class="n">query</span><span class="p">.</span><span class="n">LessThan</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>    <span class="c1">// 比較条件</span>
+<span class="n">query</span><span class="p">.</span><span class="n">In</span><span class="p">(</span><span class="s">&quot;prefecture&quot;</span><span class="p">,</span> <span class="n">NbJsonArray</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">{</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">[&quot;Tokyo&quot;,&quot;Osaka&quot;]</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">}));</span> <span class="c1">// 配列検索条件</span>
+<span class="n">query</span><span class="p">.</span><span class="n">Regex</span><span class="p">(</span><span class="s">&quot;description&quot;</span><span class="p">,</span> <span class="s">&quot;^[a-c].*&quot;</span><span class="p">);</span> <span class="c1">// 正規表現一致</span>
+</pre></div>
+</div>
+<p>条件指定メソッドは query自身を返すので、同様の条件を以下のように記述することができます。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">LessThan</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">In</span><span class="p">(</span><span class="s">&quot;prefecture&quot;</span><span class="p">,</span> <span class="n">NbJsonArray</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">{</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">[&quot;Tokyo&quot;,&quot;Osaka&quot;]</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">}))</span>
+        <span class="p">.</span><span class="n">Regex</span><span class="p">(</span><span class="s">&quot;description&quot;</span><span class="p">,</span> <span class="s">&quot;^[a-c].*&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="id4">
+<h3>7.2.1. 論理演算<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>論理演算 (and, or) で複数の NbQuery を結合することが可能です。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NbQuery</span> <span class="n">query</span><span class="p">;</span>
+<span class="n">NbQuery</span> <span class="n">query1</span><span class="p">;</span>
+<span class="n">NbQuery</span> <span class="n">query2</span><span class="p">;</span>
+
+<span class="n">query</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="s">&quot;key0&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">query1</span><span class="p">.</span><span class="n">GreaterThanOrEqual</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">query2</span><span class="p">.</span><span class="n">LessThan</span><span class="p">(</span><span class="s">&quot;key2&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NbQuery</span><span class="o">&gt;</span> <span class="n">conditions</span> <span class="p">{</span><span class="n">query1</span><span class="p">,</span> <span class="n">query2</span><span class="p">};</span>
+<span class="n">query</span><span class="p">.</span><span class="n">And</span><span class="p">(</span><span class="n">conditions</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>not 演算子を用いることで、特定のキーに対する条件式を反転することができます。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// 以下は !(score1 &gt; 80) &amp;&amp; (score2 &gt; 70) という意味</span>
+<span class="c1">// score1 フィールドが存在しないオブジェクトにもヒットするが、</span>
+<span class="c1">// score2 フィールドが存在しないオブジェクトにはヒットしない。</span>
+<span class="n">query1</span><span class="p">.</span><span class="n">GreaterThan</span><span class="p">(</span><span class="s">&quot;score1&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">Not</span><span class="p">(</span><span class="s">&quot;score1&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">GreaterThan</span><span class="p">(</span><span class="s">&quot;score2&quot;</span><span class="p">,</span> <span class="mi">70</span><span class="p">);</span>
+
+<span class="c1">// 以下は (score1 &lt;= 80) &amp;&amp; (score2 &gt; 70) という意味</span>
+<span class="c1">// 上記と似ているが、score1 フィールドが存在しないオブジェクトにはヒットしない点が異なる。</span>
+<span class="n">query2</span><span class="p">.</span><span class="n">LessThanOrEqual</span><span class="p">(</span><span class="s">&quot;score1&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">GreaterThan</span><span class="p">(</span><span class="s">&quot;score2&quot;</span><span class="p">,</span> <span class="mi">70</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>7.3. ソート順序の指定<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ソート順序は、OrderBy() で指定します。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">order_by</span><span class="p">{</span><span class="s">&quot;key1&quot;</span><span class="p">,</span> <span class="s">&quot;-key2&quot;</span><span class="p">};</span>
+<span class="n">query</span><span class="p">.</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">order_by</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>ここでは、key1を昇順、key2を降順にソートします。
+指定の文字列の先頭を&quot;-&quot;にした場合は降順の指定となります。
+ここでは先に指定したkey1が優先され昇順にソートされます。その後key1が同一値の要素に対してkey2の降順にソートが行われます。</p>
+</div>
+<div class="section" id="id6">
+<h2>7.4. スキップ数・検索上限数の指定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索におけるスキップ数・上限数は、それぞれ Skip(), Limit() で指定します。</p>
+<p>以下の例では、100件目から最大10件を読むという指定になります。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="p">.</span><span class="n">Skip</span><span class="p">(</span><span class="mi">100</span><span class="p">).</span><span class="n">Limit</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>なお、Limitに指定可能な範囲は-1～100 となっています。
+-1の場合、制限なしとして動作します。
+範囲外の値を指定した場合、パラメータは無効となります。</p>
+<p>スキップ数・上限数を指定した際に、全ヒット件数を合わせて取得したい場合は NbObjectBucketの第二引数を使用します。</p>
+<p>クエリ成功時に全ヒット件数がcountに渡されます。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+<span class="n">bucket</span><span class="p">.</span><span class="n">Query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">count</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">上限数を指定するとヒット件数が上限に達した時点で検索が打ち切られます。
+一方Queryの引数にcount を指定すると、上限数にかかわらず全検索を行うため、検索に要する時間が増加します。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="8. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_storage.html" class="btn btn-neutral" title="6. オブジェクトストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

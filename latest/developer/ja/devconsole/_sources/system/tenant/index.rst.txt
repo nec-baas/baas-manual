@@ -1,0 +1,14 @@
+==============================
+テナント管理
+==============================
+
+.. toctree::
+   :maxdepth: 2
+
+   tenant
+   tenant_management
+   ldap
+   ratelimit 
+
+
+

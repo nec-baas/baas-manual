@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. JSONオブジェクトストレージ &mdash; Java/Android SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="8. オブジェクトストレージ:クエリ" href="object_query.html" />
+    <link rel="prev" title="6. グループ管理" href="group.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Java/Android SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Java API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">7.1. バケットの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.2. オブジェクトの追加</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">7.2.1. オブジェクトに設定できる値</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">7.3. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">7.4. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">7.5. オブジェクトの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">7.6. バッチリクエスト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">10. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">11. オフライン機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">13. マイグレーションガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">14. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java/Android SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. JSONオブジェクトストレージ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="json">
+<h1>7. JSONオブジェクトストレージ<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではJSONオブジェクトストレージの利用方法について説明します。</p>
+<div class="section" id="id1">
+<h2>7.1. バケットの取得<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>バケットの取得には、NbService.objectBucketManager() で取得される
+オブジェクトバケットマネージャを使用します。</p>
+<p>オブジェクトのクエリ操作などにはバケットが必ず必要になります。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbObjectBucketManager</span> <span class="n">obm</span> <span class="o">=</span> <span class="n">NbService</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">objectBucketManager</span><span class="o">();</span>
+<span class="n">NbObjectBucket</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">obm</span><span class="o">.</span><span class="na">getBucket</span><span class="o">(</span><span class="s">&quot;TodoTutorial1&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>7.2. オブジェクトの追加<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトは NbObject として生成します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbObject</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbObject</span><span class="o">(</span><span class="n">mService</span><span class="o">,</span> <span class="s">&quot;Todos&quot;</span><span class="o">);</span>
+<span class="n">obj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">,</span> <span class="n">s</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>コンストラクタの引数にNbServiceとバケット名を渡します。
+値は put() で設定します。</p>
+<p>オブジェクトを保存するには、save() メソッドを呼び出します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="n">NbCallback</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">NbObject</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">arg0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>7.2.1. オブジェクトに設定できる値<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトに put() で設定できる値は、以下のいずれかのクラスのインスタンスです。</p>
+<ul class="simple">
+<li>Number</li>
+<li>String</li>
+<li>Boolean</li>
+<li>NbJSONObject (または Map&lt;String,Object&gt;)</li>
+<li>NbJSONArray (または List&lt;Object&gt;)</li>
+</ul>
+<p>NbJSONObject, NbJSONArray はそれぞれ JSON オブジェクトおよび配列に相当します。
+NbJSONObject, NbJSONArray に格納できる値も上記いずれかのクラスのインスタンスです。
+また、NbJSONObject, NbJSONArray は入れ子にすることが可能です。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;Taro Nichiden&quot;</span><span class="o">);</span> <span class="c1">// String</span>
+<span class="n">obj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">27</span><span class="o">);</span> <span class="c1">// Number</span>
+<span class="n">obj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;married&quot;</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span> <span class="c1">// Boolean</span>
+
+<span class="n">NbJSONObject</span> <span class="n">contact</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbJSONObject</span><span class="o">();</span>
+<span class="n">contact</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;tel&quot;</span><span class="o">,</span> <span class="s">&quot;03-xxxx-yyyy&quot;</span><span class="o">);</span>
+<span class="n">contact</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;email&quot;</span><span class="o">,</span> <span class="s">&quot;taro@example.com&quot;</span><span class="o">);</span>
+<span class="n">obj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;contact&quot;</span><span class="o">,</span> <span class="n">contact</span><span class="o">);</span> <span class="c1">// JSON Object</span>
+
+<span class="n">obj</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;hobbies&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;Tennis&quot;</span><span class="o">,</span> <span class="s">&quot;Fishing&quot;</span><span class="o">));</span> <span class="c1">// JSON Array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>7.3. アクセス制御<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクト単位でアクセス制御を行うことができます。</p>
+<p>アクセス制御には、ACLクラスを使用します。NbObject に setAcl で ACL を設定します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbAcl</span> <span class="n">acl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbAcl</span><span class="o">();</span>
+<span class="n">acl</span><span class="o">.</span><span class="na">setOwner</span><span class="o">(</span><span class="s">&quot;オーナID&quot;</span><span class="o">);</span>
+<span class="n">acl</span><span class="o">.</span><span class="na">addEntry</span><span class="o">(</span><span class="n">NbAclPermission</span><span class="o">.</span><span class="na">READ</span><span class="o">,</span> <span class="s">&quot;ユーザID&quot;</span><span class="o">);</span>
+<span class="n">acl</span><span class="o">.</span><span class="na">addEntry</span><span class="o">(</span><span class="n">NbAclPermission</span><span class="o">.</span><span class="na">READ</span><span class="o">,</span> <span class="s">&quot;g:グループ名&quot;</span><span class="o">);</span>
+<span class="n">acl</span><span class="o">.</span><span class="na">addEntry</span><span class="o">(</span><span class="n">NbAclPermission</span><span class="o">.</span><span class="na">WRITE</span><span class="o">,</span> <span class="s">&quot;ユーザID&quot;</span><span class="o">);</span>
+
+<span class="n">NbObject</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbObject</span><span class="o">(</span><span class="s">&quot;Todos&quot;</span><span class="o">,</span> <span class="n">nebulaService</span><span class="o">);</span>
+<span class="n">obj</span><span class="o">.</span><span class="na">setAcl</span><span class="o">(</span><span class="n">acl</span><span class="o">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>setOwner() でオーナIDを設定します。</li>
+<li>addEntry() でエントリを追加します。<ul>
+<li>第1引数に権限種別を指定します。</li>
+<li>第2引数に、ユーザID/グループIDを指定します。NbUser, NbGroup も指定可能です。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>7.4. オブジェクトの更新<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトを更新するには、NbObject の save() メソッドを使用します。</p>
+<p>最初にクエリを行って NbObject のインスタンスを取得し、
+オブジェクトに値を設定して save() を呼び出すという流れになります。</p>
+</div>
+<div class="section" id="id6">
+<h2>7.5. オブジェクトの削除<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトを更新するには、NbObject の deleteObject() メソッドを使用します。</p>
+<p>更新の場合と同様最初にクエリを行って NbObject のインスタンスを取得し、
+その後 deleteObject() を呼び出すという流れになります。</p>
+</div>
+<div class="section" id="id7">
+<h2>7.6. バッチリクエスト<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>複数のオブジェクトの追加・更新・削除を１回の API で実行することができます。</p>
+<p>以下に使用例を示します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// バッチリクエスト</span>
+<span class="n">NbJSONArray</span> <span class="n">requests</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbJSONArray</span><span class="o">();</span>
+
+<span class="c1">// 挿入したいデータ</span>
+<span class="n">NbObject</span> <span class="n">obj1</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="na">newObject</span><span class="o">();</span>
+<span class="n">obj1</span><span class="o">.</span><span class="na">put</span><span class="o">(...);</span>
+<span class="o">...</span>
+<span class="n">requests</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bucket</span><span class="o">.</span><span class="na">createBatchRequest</span><span class="o">(</span><span class="n">obj1</span><span class="o">,</span> <span class="n">NbBatchOperationType</span><span class="o">.</span><span class="na">INSERT</span><span class="o">));</span>
+
+<span class="c1">// 更新したいデータ</span>
+<span class="n">NbObject</span> <span class="n">obj2</span> <span class="o">=</span> <span class="o">...;</span>
+<span class="n">obj2</span><span class="o">.</span><span class="na">put</span><span class="o">(...);</span>
+<span class="o">...</span>
+<span class="n">requests</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bucket</span><span class="o">.</span><span class="na">createBatchRequest</span><span class="o">(</span><span class="n">obj2</span><span class="o">,</span> <span class="n">NbBatchOperationType</span><span class="o">.</span><span class="na">UPDATE</span><span class="o">));</span>
+
+<span class="c1">// 削除したいデータ</span>
+<span class="n">NbObject</span> <span class="n">obj3</span> <span class="o">=</span> <span class="o">...;</span>
+<span class="o">...</span>
+<span class="n">requests</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">bucket</span><span class="o">.</span><span class="na">createBatchRequest</span><span class="o">(</span><span class="n">obj3</span><span class="o">,</span> <span class="n">NbBatchOperationType</span><span class="o">.</span><span class="na">DELETE</span><span class="o">));</span>
+
+<span class="c1">// リクエスト実行</span>
+<span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">();</span>
+<span class="n">bucket</span><span class="o">.</span><span class="na">executeBatchOperation</span><span class="o">(</span><span class="n">requests</span><span class="o">,</span> <span class="n">token</span><span class="o">,</span> <span class="k">new</span> <span class="n">NbCallback</span><span class="o">&lt;</span><span class="n">NbJSONArray</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">NbJSONArray</span> <span class="n">results</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">results</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">NbJSONObject</span> <span class="n">result</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+
+            <span class="c1">// result code</span>
+            <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;result&quot;</span><span class="o">);</span>
+            <span class="c1">// reason code</span>
+            <span class="n">String</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&quot;reasonCode&quot;</span><span class="o">);</span>
+            <span class="c1">// データ</span>
+            <span class="n">NbObject</span> <span class="n">obj</span> <span class="o">=</span> <span class="o">(</span><span class="n">NbObject</span><span class="o">)</span><span class="n">result</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;data&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">,</span> <span class="n">NbErrorInfo</span> <span class="n">errorInfo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+<p>最初にバッチリクエスト用に JSON Array を作成します。</p>
+<p>そして、この JSON Array に、操作したい NbObject に対するバッチリクエストを作成・
+追加していきます。これには NbObjectBucket.createBatchRequest() を使用します。</p>
+<p>最後に、NbObjectBucket.executBatchOperation() を実行すると、バッチリクエストが
+サーバに送信されます。成功すると、onSuccess が呼び出されます。</p>
+<p>onSuccess 引数の results には、リクエスト時のオブジェクト数に対応した数の
+レスポンスが格納されます。レスポンスにはレスポンスコード、リーズンコード(失敗時)、
+NbObject型のデータが格納されます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">一回のバッチリクエストで要求できるリクエスト数は無制限となっていますが、
+リクエスト数が多いとサーバに大きな負荷がかかりますので、通常は100件以下に留めてください。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="object_query.html" class="btn btn-neutral float-right" title="8. オブジェクトストレージ:クエリ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group.html" class="btn btn-neutral" title="6. グループ管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

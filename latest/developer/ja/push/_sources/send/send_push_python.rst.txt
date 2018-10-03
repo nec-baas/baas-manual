@@ -1,0 +1,56 @@
+=========================================================
+クライアントからのPush送信方法 (Python 編)
+=========================================================
+
+Python からのプッシュ送信方法を説明します．
+
+Push送信方法
+============
+
+``baas.PushSender.send`` を呼ぶことで，プッシュを送信できます。
+
+以下にコード例を示します．
+
+この例では，下記のようなプッシュを送ります．
+
+- ``TerminalInfo`` チャネルを購読中のインスタレーションを宛先とします．
+- 受信者を，営業グループ( ``g:eigyo`` )と，企画グループ( ``g:kikaku`` )に限定します．
+- メッセージとして， ``"Low battery."`` を送ります．
+
+宛先を「インスタレーションを選択するためのクエリ条件(Clause)」として作成するのがポイントです．
+(クエリの詳細については， `オブジェクトのクエリ`_ を参照して下さい)
+
+.. _`オブジェクトのクエリ`: ../../python/object_query.html
+
+.. code-block:: Python
+
+    request = {
+        "query": {"_channels": "TerminalInfo"}, # 宛先をセットする
+        "allowedReceivers": ["g:eigyo", "g:kikaku"], # 受信者をセットする
+        "message": "Low battery." # メッセージをセットする
+        } 
+
+    # Push を送信する
+    send_num = baas.PushSender.send(service, request)
+
+オプションパラメータ設定方法
+============================
+
+FCM, APNs, SSEの各プッシュテクノロジ特有の，オプションパラメータは必須パラメータと併記します．
+
+FCMの例
+---------
+
+.. code-block:: Python
+
+    request = {
+        "query": {"_channels": "TerminalInfo"}, # 宛先をセットする
+        "allowedReceivers": ["g:eigyo", "g:kikaku"], # 受信者をセットする
+        "message": "Low battery.", # メッセージをセットする
+        "title": "title", # FCM 固有パラメータ
+        "uri": "http://www.nebula.test.com" # FCM 固有パラメータ
+        } 
+
+    # Push を送信する
+    send_num = baas.PushSender.send(service, request)
+

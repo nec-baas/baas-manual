@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.6. HAProxyで認証する場合の設定例 &mdash; Authentication Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="7.7. クライアント証明書ヘッダ仕様" href="header_spec.html" />
+    <link rel="prev" title="7.5. BaaSサーバ設定" href="baas_settings.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../saml/index.html">5. ADFS / SAML 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">7. クライアント証明書認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">7.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client_cert.html">7.2. クライアント証明書の発行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="haproxy.html">7.3. リバースプロキシで認証する場合の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomcat.html">7.4. Tomcatで直接認証する場合の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="baas_settings.html">7.5. BaaSサーバ設定</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.6. HAProxyで認証する場合の設定例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#haproxy-response-file">7.6.1. レスポンス用ファイルの例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#haproxy-configurations">7.6.2. HAProxyのコンフィギュレーションの例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crl">7.6.3. CRL更新用スクリプトの例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="header_spec.html">7.7. クライアント証明書ヘッダ仕様</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tomcat_configurations.html">7.8. Tomcatで直接認証する場合の設定例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">7. クライアント証明書認証</a> &raquo;</li>
+        
+      <li>7.6. HAProxyで認証する場合の設定例</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="haproxy">
+<h1>7.6. HAProxyで認証する場合の設定例<a class="headerlink" href="#haproxy" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="haproxy-response-file">
+<span id="id1"></span><h2>7.6.1. レスポンス用ファイルの例<a class="headerlink" href="#haproxy-response-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>認証エラー時のレスポンスデータファイルの例は、以下の通りです。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">401</span> <span class="n">Unauthorized</span>
+<span class="n">Connection</span><span class="p">:</span> <span class="n">close</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+
+<span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="s2">&quot;Invalid Client Certificate&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="haproxy-configurations">
+<span id="id2"></span><h2>7.6.2. HAProxyのコンフィギュレーションの例<a class="headerlink" href="#haproxy-configurations" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>HAProxyのコンフィギュレーションの例は、以下の通りです。</p>
+<p><strong>frontendの設定</strong></p>
+<p>例では事前に用意した証明書、エラーファイルを <em>/etc/haproxy/</em> 配下に格納しています。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">frontend</span>  <span class="n">main</span>
+    <span class="c1"># *:8080  ... 全IPアドレスのTCP 8080ポートでリクエストの待ち受けを行う</span>
+    <span class="c1"># ssl     ... 通信にssl(https)を使用します</span>
+    <span class="c1"># crt     ... サーバ証明書ファイル(pemフォーマット)</span>
+    <span class="c1">#             サーバ証明書、サーバ証明書の秘密鍵、中間CA証明書(存在する場合)をcatコマンドで結合したファイル</span>
+    <span class="c1"># ca-file ... クライアント証明書の発行元CAの証明書(pemフォーマット)</span>
+    <span class="c1"># verify optional ... クライアント証明書が存在する場合は検証を行う</span>
+    <span class="c1">#                     クライアント証明書認証を必須とする場合は、verify requiredを指定する</span>
+    <span class="c1"># crt-ignore-err all ... クライアント証明書の検証が失敗した場合も処理を継続する</span>
+    <span class="c1"># no-sslv3 ... SSLv3を無効にする</span>
+    <span class="c1"># crl-file ... 証明書失効リスト</span>
+    <span class="c1">#              クライアント証明書発行元のCAが提供するCRLを、定期的に取得・更新すること</span>
+    <span class="n">bind</span>    <span class="o">*</span><span class="p">:</span><span class="mi">8080</span> <span class="n">ssl</span> <span class="n">crt</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">haproxy</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">server_cert</span><span class="o">.</span><span class="n">pem</span>  <span class="n">ca</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">haproxy</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">cacert</span><span class="o">.</span><span class="n">pem</span> <span class="n">verify</span> <span class="n">optional</span> <span class="n">crt</span><span class="o">-</span><span class="n">ignore</span><span class="o">-</span><span class="n">err</span> <span class="nb">all</span> <span class="n">no</span><span class="o">-</span><span class="n">sslv3</span> <span class="n">crl</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">haproxy</span><span class="o">/</span><span class="n">certs</span><span class="o">/</span><span class="n">crl</span><span class="o">.</span><span class="n">pem</span>
+
+    <span class="c1"># L7 modeを使用する</span>
+    <span class="n">mode</span> <span class="n">http</span>
+    <span class="c1"># クライアントが付与した&quot;X-SSL&quot;で始まるヘッダを削除する</span>
+    <span class="c1"># 予期しないヘッダ転送を避けるため必ず設定すること</span>
+    <span class="n">reqdel</span> <span class="o">^</span><span class="n">X</span><span class="o">-</span><span class="n">SSL</span>
+
+    <span class="c1"># クライアント証明書認証に失敗したケース(証明書なしの場合は除く)</span>
+    <span class="n">use_backend</span> <span class="n">invalid</span><span class="o">-</span><span class="n">cert</span><span class="o">-</span><span class="n">detected</span> <span class="n">unless</span> <span class="p">{</span> <span class="n">ssl_c_verify</span> <span class="mi">0</span> <span class="p">}</span>
+    <span class="c1"># クライアント証明書認証に成功したケース</span>
+    <span class="n">use_backend</span> <span class="k">with</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">cert</span> <span class="k">if</span> <span class="p">{</span> <span class="n">ssl_c_used</span> <span class="p">}</span>
+    <span class="c1"># クライアント証明書が付与されないケース(通常認証)</span>
+    <span class="n">default_backend</span> <span class="n">no</span><span class="o">-</span><span class="n">certificate</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">HAProxyで使用するサーバ証明書ファイルは、秘密鍵を含みます。
+適切なアクセス権限を設定し、外部への漏えいが発生しないよう管理してください。</p>
+</div>
+<p><strong>backendの設定</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># クライアント証明書認証に失敗</span>
+<span class="n">backend</span> <span class="n">invalid</span><span class="o">-</span><span class="n">cert</span><span class="o">-</span><span class="n">detected</span>
+    <span class="n">mode</span>   <span class="n">http</span>
+    <span class="n">option</span> <span class="n">httpclose</span>
+    <span class="c1"># 転送先のバックエンドサーバの指定を行っていないため、haproxyに503エラーが発生</span>
+    <span class="c1"># その結果、指定した/etc/haproxy/errors/401.httpファイルの内容がクライアントに返却される</span>
+    <span class="n">errorfile</span>  <span class="mi">503</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">haproxy</span><span class="o">/</span><span class="n">errors</span><span class="o">/</span><span class="mf">401.</span><span class="n">http</span>
+
+<span class="c1"># クライアント証明書認証に成功</span>
+<span class="n">backend</span> <span class="k">with</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">cert</span>
+    <span class="n">mode</span>    <span class="n">http</span>
+    <span class="n">balance</span> <span class="n">roundrobin</span>
+    <span class="c1"># 転送先のバックエンドサーバを指定</span>
+    <span class="c1"># 複数のBaaS APIサーバが存在する場合は列挙すること</span>
+    <span class="n">server</span>    <span class="n">certapi01</span>  <span class="mf">10.0</span><span class="o">.</span><span class="mf">1.1</span><span class="p">:</span><span class="mi">80</span>
+    <span class="c1"># server  certapi02  10.0.1.2:80</span>
+
+    <span class="n">option</span>  <span class="n">forwardfor</span>
+
+    <span class="c1"># バックエンドに送信する証明書情報ヘッダ</span>
+    <span class="n">http</span><span class="o">-</span><span class="n">request</span> <span class="nb">set</span><span class="o">-</span><span class="n">header</span> <span class="n">X</span><span class="o">-</span><span class="n">SSL</span><span class="o">-</span><span class="n">Client</span><span class="o">-</span><span class="n">CertAuth</span><span class="o">-</span><span class="n">Validated</span>    <span class="mi">1</span>
+    <span class="n">http</span><span class="o">-</span><span class="n">request</span> <span class="nb">set</span><span class="o">-</span><span class="n">header</span> <span class="n">X</span><span class="o">-</span><span class="n">SSL</span><span class="o">-</span><span class="n">Client</span><span class="o">-</span><span class="n">Serial</span>         <span class="o">%</span><span class="p">[</span><span class="n">ssl_c_serial</span><span class="p">,</span><span class="nb">hex</span><span class="p">]</span>
+    <span class="n">http</span><span class="o">-</span><span class="n">request</span> <span class="nb">set</span><span class="o">-</span><span class="n">header</span> <span class="n">X</span><span class="o">-</span><span class="n">SSL</span><span class="o">-</span><span class="n">Client</span><span class="o">-</span><span class="n">CN</span>             <span class="o">%</span><span class="p">{</span><span class="o">+</span><span class="n">Q</span><span class="p">}[</span><span class="n">ssl_c_s_dn</span><span class="p">(</span><span class="n">cn</span><span class="p">)]</span>
+    <span class="n">http</span><span class="o">-</span><span class="n">request</span> <span class="nb">set</span><span class="o">-</span><span class="n">header</span> <span class="n">X</span><span class="o">-</span><span class="n">SSL</span><span class="o">-</span><span class="n">Client</span><span class="o">-</span><span class="n">UID</span>            <span class="o">%</span><span class="p">{</span><span class="o">+</span><span class="n">Q</span><span class="p">}[</span><span class="n">ssl_c_s_dn</span><span class="p">(</span><span class="n">uid</span><span class="p">)]</span>
+    <span class="n">http</span><span class="o">-</span><span class="n">request</span> <span class="nb">set</span><span class="o">-</span><span class="n">header</span> <span class="n">X</span><span class="o">-</span><span class="n">SSL</span><span class="o">-</span><span class="n">Issuer</span><span class="o">-</span><span class="n">DN</span>             <span class="o">%</span><span class="p">{</span><span class="o">+</span><span class="n">Q</span><span class="p">}[</span><span class="n">ssl_c_i_dn</span><span class="p">]</span>
+    <span class="c1"># X-SSL-Validate-Tokenにはシステム毎に異なる値を設定すること</span>
+    <span class="n">http</span><span class="o">-</span><span class="n">request</span> <span class="nb">set</span><span class="o">-</span><span class="n">header</span> <span class="n">X</span><span class="o">-</span><span class="n">SSL</span><span class="o">-</span><span class="n">Validate</span><span class="o">-</span><span class="n">Token</span>        <span class="n">a3bbc802</span><span class="o">-</span><span class="mi">4619</span><span class="o">-</span><span class="mi">49</span><span class="n">de</span><span class="o">-</span><span class="mi">8</span><span class="n">c74</span><span class="o">-</span><span class="n">b42ab4b9c2b5</span>
+
+<span class="c1"># 通常認証</span>
+<span class="n">backend</span> <span class="n">no</span><span class="o">-</span><span class="n">certificate</span>
+    <span class="n">mode</span>    <span class="n">http</span>
+    <span class="n">balance</span> <span class="n">roundrobin</span>
+    <span class="c1"># 転送先のバックエンドサーバを指定</span>
+    <span class="c1"># 複数のBaaS APIサーバが存在する場合は列挙すること</span>
+    <span class="n">server</span>  <span class="n">certapi01</span>  <span class="mf">10.0</span><span class="o">.</span><span class="mf">1.1</span><span class="p">:</span><span class="mi">80</span>
+    <span class="c1">#server  certapi02  10.0.1.2:80</span>
+
+    <span class="n">option</span>  <span class="n">forwardfor</span>
+
+    <span class="n">http</span><span class="o">-</span><span class="n">request</span> <span class="nb">set</span><span class="o">-</span><span class="n">header</span> <span class="n">X</span><span class="o">-</span><span class="n">SSL</span><span class="o">-</span><span class="n">Client</span><span class="o">-</span><span class="n">CertAuth</span><span class="o">-</span><span class="n">Validated</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="crl">
+<span id="haproxy-crl-update-script"></span><h2>7.6.3. CRL更新用スクリプトの例<a class="headerlink" href="#crl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>CRL更新用スクリプトの例は、以下の通りです。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="nv">CONFIG_PATH</span><span class="o">=</span>/etc/haproxy
+<span class="nv">HOST</span><span class="o">=</span><span class="m">10</span>.0.255.75
+<span class="nv">CRL_FILE</span><span class="o">=</span>crl.pem
+<span class="nv">CRL_TMP_FILE</span><span class="o">=</span>crl.pem.tmp
+
+<span class="nv">CRL_FILE_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONFIG_PATH</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CRL_FILE</span><span class="si">}</span>
+<span class="nv">CRL_TMP_FILE_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">CONFIG_PATH</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CRL_TMP_FILE</span><span class="si">}</span>
+
+<span class="c1"># 作業ファイルが残っていれば削除</span>
+<span class="k">if</span> <span class="o">[</span> -e <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;remove old tmp crl&quot;</span>
+    rm –f <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span>
+<span class="k">fi</span>
+
+<span class="c1"># サーバからCRLを取得</span>
+wget http://<span class="si">${</span><span class="nv">HOST</span><span class="si">}</span>/<span class="si">${</span><span class="nv">CRL_FILE</span><span class="si">}</span> -O <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span>
+
+<span class="c1"># 取得成功した場合</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -e <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># 既にCRLファイルが存在する場合</span>
+    <span class="k">if</span> <span class="o">[</span> -e <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="k">if</span> diff -q <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span> <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> &gt; /dev/null <span class="p">;</span> <span class="k">then</span>
+        <span class="c1"># CRLファイルが更新されていなかった</span>
+            <span class="nb">echo</span> <span class="s2">&quot;no update&quot;</span>
+        <span class="k">else</span>
+            <span class="nb">echo</span> <span class="s2">&quot;crl update. reload service&quot;</span>
+        <span class="c1"># CRLファイルが更新されていた場合はファイルを置き換えて再読み込み</span>
+            mv <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span>
+            sudo service haproxy reload
+        <span class="k">fi</span>
+    <span class="k">else</span>
+    <span class="c1"># CRLファイルが存在しない場合はサービス起動に失敗している　再起動する</span>
+        <span class="nb">echo</span> <span class="s2">&quot;get crl first time. restart service.&quot;</span>
+        mv <span class="si">${</span><span class="nv">CRL_TMP_FILE_PATH</span><span class="si">}</span> <span class="si">${</span><span class="nv">CRL_FILE_PATH</span><span class="si">}</span>
+        sudo service haproxy restart
+    <span class="k">fi</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;failed to get new crl&quot;</span> <span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="header_spec.html" class="btn btn-neutral float-right" title="7.7. クライアント証明書ヘッダ仕様" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="baas_settings.html" class="btn btn-neutral" title="7.5. BaaSサーバ設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+.. _tenant_read:
+
+テナント情報取得
+================
+
+.. http:get:: /1/_sysadm/_/tenants/(tenantId)
+
+    テナント情報を取得する。
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+
+    :parameter string tenantId: テナントID
+
+    :statuscode 200: 正常に取得した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当テナントが存在しない、または無効
+
+    :>json object tenant: テナント情報
+
+    **レスポンスボディ**
+
+    該当テナント情報を含む JSON データが返却される。
+    形式は、:ref:`tenant_create` レスポンスと同様。
+
+    以下パラメータについては、システム管理者のみ参照可能。
+
+    .. list-table::
+       :header-rows: 1
+       :widths: 30, 70
+
+       * - プロパティ
+         - 名称
+       * - enabled
+         - テナント有効フラグ
+       * - authType
+         - 認証方式
+       * - ldapSetting
+         - LDAPサーバ設定
+       * - ～.loginAttribute
+         - ログイン属性
+       * - ～.hostName
+         - ホスト名
+       * - ～.port
+         - ポート
+       * - ～.accountName
+         - アカウント
+       * - ～.baseDn
+         - Base DN
+       * - mongoConnectionConfig
+         - MongoDB 個別接続設定
+       * - ～.servers
+         - MongoDB サーバ定義
+       * - ～.username
+         - 認証用ユーザ
+       * - ～.password
+         - 認証用パスワード
+       * - rateLimitSetting
+         - レートリミット設定
+       * - ～.total
+         - テナント全体のリミット値
+       * - ～.customApi
+         - カスタムAPI毎のリミット値設定
+
+    **注意事項**
+
+    * システム管理者またはアプリケーション管理者以上の権限が必要。
+    * システム管理者権限以外では所属テナント情報のみ取得可能。
+    * システム管理者権限以外では取得可能情報が制限される。

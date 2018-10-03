@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.5.3. SSO Circle &mdash; Authentication Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.6. BaaSサーバの設定" href="setup.html" />
+    <link rel="prev" title="5.5.2. OpenAM" href="openam.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. ADFS / SAML 認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">5.2. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequence.html">5.3. 動作概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_system.html">5.4. システムの事前設定</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="idp.html">5.5. IdP 側の設定</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="adfs.html">5.5.1. ADFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="openam.html">5.5.2. OpenAM</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.5.3. SSO Circle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id20">概要</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">アカウントの作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#idp">IdPメタデータのダウンロード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sp">SPメタデータの登録</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">5.6. BaaSサーバの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register.html">5.7. 認証時のユーザ・グループ自動登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devel.html">5.8. アプリケーションの開発</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attention.html">5.9. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. ADFS / SAML 認証</a> &raquo;</li>
+        
+          <li><a href="idp.html">5.5. IdP 側の設定</a> &raquo;</li>
+        
+      <li>5.5.3. SSO Circle</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sso-circle">
+<h1>5.5.3. SSO Circle<a class="headerlink" href="#sso-circle" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id20">
+<h2>概要<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://www.ssocircle.com/">SSOCircle</a> サービスを利用することで、IdPを立てることなく
+簡単に SAML 認証を試してみることができます。
+ここでは SSOCircle を使った SAML 認証の設定手順について説明します。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">SSOCircle の利用は試行にのみ使用してください。本番環境で使用すべきものではありません。</p>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>アカウントの作成<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://www.ssocircle.com/">SSOCircle</a> にアクセスし、「SAML / OpenID IDP」にある
+&quot;Account registration&quot; に移動し、&quot;New User&quot; よりアカウントを作成します。</p>
+</div>
+<div class="section" id="idp">
+<h2>IdPメタデータのダウンロード<a class="headerlink" href="#idp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>SSOCircle にログイン後、画面左の「Manage Matadata」をクリックしてください。</p>
+<p>「SSOCircle Public IDP Metadata」を右クリックし、SSOCircle の IdP メタデータをファイルにダウンロードしてください。
+このファイルを BaaS デベロッパーコンソールから IdPメタデータとしてアップロードしてください。</p>
+</div>
+<div class="section" id="sp">
+<h2>SPメタデータの登録<a class="headerlink" href="#sp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaSデベロッパーコンソールから SPメタデータをダウンロードしておいてください。</p>
+<p>SSOCircle にログイン後、画面左の「Manage Matadata」⇒「Add new Service Provider」へ進んでください。</p>
+<p>フォーム必要事項を入力して SPメタデータを登録します。</p>
+<ul class="simple">
+<li>FQDN: BaaSサーバの FQDN を入力します。</li>
+<li>Attributes sent in assertion: FirstName, LastName, EmailAddress すべてチェックを入れてください。</li>
+<li>Insert youe metadata information: SPメタデータのファイルの内容を設定します。</li>
+</ul>
+<p>SPメタデータの内容はテキストファイル(XMLファイル)になっています。
+テキストエディタで開いてクリップボードに内容をコピーし、上記フォームに貼り付けて登録を行ってください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="setup.html" class="btn btn-neutral float-right" title="5.6. BaaSサーバの設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="openam.html" class="btn btn-neutral" title="5.5.2. OpenAM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

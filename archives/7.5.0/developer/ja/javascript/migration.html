@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>15. マイグレーションガイド &mdash; JavaScript SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="16. JavaScript SDK に含まれるOSS" href="oss.html" />
+    <link rel="prev" title="14. マルチテナント" href="multitenant.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JavaScript SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. ライブラリの初期化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">4. ログ出力手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">5. NEC BaaS JavaScript API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">6. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">7. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">8. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">9. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">10. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">11. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">13. セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitenant.html">14. マルチテナント</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">15. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-2-7-5-0">15.1. ver 7.0.2 → 7.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#http-2">15.1.1. HTTP/2 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">15.1.2. オプション指定ファイルダウンロード</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-7-0-2">15.2. ver 7.0.0 → 7.0.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">15.2.1. 不具合修正</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-2-6-5-4">15.3. ver 6.5.2 → 6.5.4 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">15.3.1. 不具合修正</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-x-7-0-0">15.4. ver 6.5.x → 7.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#breaking-changes-node-js">15.4.1. BREAKING CHANGES: Node.js パッケージ名変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#npmjs-com">15.4.2. npmjs.com パッケージ公開</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-aggregation">15.4.3. MongoDB Aggregation 対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-1-6-5-2">15.5. ver 6.5.1 → 6.5.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">15.5.1. 不具合修正</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-1-6-5-1">15.6. ver 6.0.1 → 6.5.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#node-js-require">15.6.1. Node.js require 手順の変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#typescript">15.6.2. TypeScript 対応強化</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-1-6-5-0">15.7. ver 6.0.1 → 6.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#es6-promise">15.7.1. ES6 Promise 削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-gateway">15.7.2. API Gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#objectquery">15.7.3. ObjectQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">15.7.4. クライアント証明書認証</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openid-connect">15.7.5. OpenID Connect認証対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-0-6-0-1">15.8. ver 6.0.0 → 6.0.1 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-5-0-0-6-0-0">15.9. ver 5.0.0 → 6.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cloud-functions-api">15.9.1. Cloud Functions API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-4-1-0-5-0-0">15.10. ver 4.1.0 → 5.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">15.10.1. Cloud Functions API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">15.10.2. マルチテナント対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">15.10.3. ロングクエリ対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">15.10.4. ユーザクエリ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-4-0-1-4-1-0">15.11. ver 4.0.1 → 4.1.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#es6-promise-jquery-deferred">15.11.1. ES6 Promise 移行/jQuery.Deferred 廃止</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">15.11.2. API 変更(コールバック引数変更)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#objectbucket-query">ObjectBucket.query()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">エラーコールバック引数変更</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#user-current-api">15.11.3. User.current() API の変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clause-fluent-api">15.11.4. Clause fluent API 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#node-js">15.11.5. Node.js 対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-4-0-0-4-0-1">15.12. ver 4.0.0 → 4.0.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">15.12.1. ユーザの所属グループ・オプション情報取得機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete">15.12.2. delete メソッドの名前変更</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-3-0-0-4-0-0">15.13. ver 3.0.0 → 4.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#push-api">15.13.1. Push 送信 API の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">15.13.2. オブジェクトストレージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">15.13.3. 自己署名証明書対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-1-2-0-3-0-0">15.14. ver 1.2.0 → 3.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">15.14.1. オフライン機能の改善</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">15.14.2. オフラインバケットのインデックス機能の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">15.14.3. 前回同期時刻の取得機能の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">15.14.4. プロジェクション機能の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">15.14.5. ユーザ関連の API 強化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">15.14.6. グループ情報更新時の楽観ロック</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#null">15.14.7. オブジェクトデータの null サポート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">15.14.8. インデックス・シャードキー関連</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">15.14.9. オフライン関連</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-1-1-0-1-2-0-api">15.15. ver 1.1.0 → 1.2.0 での API 変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">15.15.1. オブジェクトの検索(クエリ)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">15.15.2. オブジェクトの更新/削除時の楽観ロック</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">15.15.3. ファイルオフライン関連</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-0-9-6-1-1-0-api">15.16. ver 0.9.6 → 1.1.0 での API 変更点</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oss.html">16. JavaScript SDK に含まれるOSS</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JavaScript SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>15. マイグレーションガイド</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>15. マイグレーションガイド<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>本章では、NEC BaaS JavaScript SDK の以前のバージョンからの
+API の変更点や移行方法について説明します。</p>
+<div class="section" id="ver-7-0-2-7-5-0">
+<h2>15.1. ver 7.0.2 → 7.5.0 での変更点<a class="headerlink" href="#ver-7-0-2-7-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="http-2">
+<h3>15.1.1. HTTP/2 対応<a class="headerlink" href="#http-2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Node.js でHTTP/2に対応しました。</p>
+<p>詳細は、 <a class="reference internal" href="initialize.html"><span class="doc">ライブラリの初期化</span></a> を参照して下さい。</p>
+</div>
+<div class="section" id="id2">
+<h3>15.1.2. オプション指定ファイルダウンロード<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Node.jsで、ファイルダウンロード時のオプション指定に対応しました。</p>
+<p>詳細は、 <a class="reference internal" href="file_storage.html"><span class="doc">ファイルストレージ</span></a> を参照して下さい。</p>
+</div>
+</div>
+<div class="section" id="ver-7-0-0-7-0-2">
+<h2>15.2. ver 7.0.0 → 7.0.2 での変更点<a class="headerlink" href="#ver-7-0-0-7-0-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h3>15.2.1. 不具合修正<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Node.js で HttpRequest.setDefaultTimeout() の値がHTTPタイムアウトに設定されない</li>
+<li>Proxy CONNECT 時の Host ヘッダ設定誤り修正 (tunnel -&gt; tunnel-fork モジュールに変更)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-2-6-5-4">
+<h2>15.3. ver 6.5.2 → 6.5.4 での変更点<a class="headerlink" href="#ver-6-5-2-6-5-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3>15.3.1. 不具合修正<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Node.js で HttpRequest.setDefaultTimeout() の値がHTTPタイムアウトに設定されない</li>
+<li>Proxy CONNECT 時の Host ヘッダ設定誤り修正 (tunnel -&gt; tunnel-fork モジュールに変更)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-x-7-0-0">
+<h2>15.4. ver 6.5.x → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-x-7-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="breaking-changes-node-js">
+<h3>15.4.1. BREAKING CHANGES: Node.js パッケージ名変更<a class="headerlink" href="#breaking-changes-node-js" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Node.js パッケージ名を &quot;nebula&quot; から &quot;&#64;nec-baas/jssdk&quot; に変更しました。
+これに伴い、require 文および import 文の修正が必要になります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// v6.5 以前</span>
+<span class="kr">const</span> <span class="nx">Nebula</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;nebula&#39;</span><span class="p">).</span><span class="nx">Nebula</span><span class="p">;</span>
+<span class="c1">// v7.0 以降</span>
+<span class="kr">const</span> <span class="nx">Nebula</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@nec-baas/jssdk&#39;</span><span class="p">).</span><span class="nx">Nebula</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="npmjs-com">
+<h3>15.4.2. npmjs.com パッケージ公開<a class="headerlink" href="#npmjs-com" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>npmjs.com にて本 SDK をパッケージ公開しました。
+&quot;npm install&quot; で npmjs.com から SDK のダウンロード・インストールが可能です。</p>
+</div>
+<div class="section" id="mongodb-aggregation">
+<h3>15.4.3. MongoDB Aggregation 対応<a class="headerlink" href="#mongodb-aggregation" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MongoDB Aggregation に対応しました。
+ObjectBucket.aggregate() メソッドを追加しています。</p>
+<p>詳細は、<a class="reference internal" href="object_aggregation.html"><span class="doc">オブジェクトの集計</span></a> を参照して下さい。</p>
+</div>
+</div>
+<div class="section" id="ver-6-5-1-6-5-2">
+<h2>15.5. ver 6.5.1 → 6.5.2 での変更点<a class="headerlink" href="#ver-6-5-1-6-5-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h3>15.5.1. 不具合修正<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>CSPヘッダの設定次第で、SDK のロードがエラーになる場合がある (CSPポリシにより eval が実行エラーとなる)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-0-1-6-5-1">
+<h2>15.6. ver 6.0.1 → 6.5.1 での変更点<a class="headerlink" href="#ver-6-0-1-6-5-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="node-js-require">
+<h3>15.6.1. Node.js require 手順の変更<a class="headerlink" href="#node-js-require" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Node.js で JavaScript を require でロードする手順が変更となりました。
+v6.5.1 以降は、以下のように require の後ろに '.Nebula' を付加する必要があります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// v6.5.0以前</span>
+<span class="kr">const</span> <span class="nx">Nebula</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;nebula&#39;</span><span class="p">);</span>
+<span class="c1">// v6.5.1以降</span>
+<span class="kr">const</span> <span class="nx">Nebula</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;nebula&#39;</span><span class="p">).</span><span class="nx">Nebula</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>これは TypeScript における ES2015 import 構文への対応のための変更です。</p>
+<p>詳細は  <a class="reference internal" href="setup.html#setup"><span class="std std-ref">SDKセットアップ手順</span></a> を参照してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">v6.5.0 以前のコードは、上記に合わせて変更が必要です。</p>
+</div>
+</div>
+<div class="section" id="typescript">
+<h3>15.6.2. TypeScript 対応強化<a class="headerlink" href="#typescript" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>npm パッケージで JS SDK をインストールし、import 文でインポートできるようになりました。</p>
+<p>手順については、 <a class="reference internal" href="setup.html#setup"><span class="std std-ref">SDKセットアップ手順</span></a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="ver-6-0-1-6-5-0">
+<h2>15.7. ver 6.0.1 → 6.5.0 での変更点<a class="headerlink" href="#ver-6-0-1-6-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="es6-promise">
+<h3>15.7.1. ES6 Promise 削除<a class="headerlink" href="#es6-promise" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>baas.js 内に ES6 Promise モジュールが内包されなくなりました。
+このため、Promise に対応していないブラウザの場合は、es6-promise モジュールを
+別途ロードする必要があります。</p>
+<p>詳細は、<a class="reference internal" href="setup.html#setup"><span class="std std-ref">SDKセットアップ手順</span></a> を参照してください。</p>
+</div>
+<div class="section" id="api-gateway">
+<h3>15.7.2. API Gateway<a class="headerlink" href="#api-gateway" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>レスポンスヘッダを受信するための API を追加しました。</p>
+<p>詳細は <a class="reference internal" href="api_gateway.html#api-gateway"><span class="std std-ref">API Gateway</span></a> を参照してください。</p>
+</div>
+<div class="section" id="objectquery">
+<h3>15.7.3. ObjectQuery<a class="headerlink" href="#objectquery" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ObjectQuery に setSort / getSort メソッドが追加されました。
+(旧API の setSortOrder, clearSortOrder, getSortOrder は Deprecated 扱いとなります)</p>
+</div>
+<div class="section" id="id6">
+<h3>15.7.4. クライアント証明書認証<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>クライアント証明書認証に対応しました。(node.js)</p>
+<p>NebulaService#setClinetCertificate を使用してクライアント証明書の設定が可能です。
+対応するサーバとのhttps通信時に、ログインを行わなくともユーザ権限が付与された状態でアクセスできます。</p>
+<p>詳細は  <a class="reference internal" href="user.html#js-users"><span class="std std-ref">ユーザ管理</span></a> を参照してください。</p>
+</div>
+<div class="section" id="openid-connect">
+<h3>15.7.5. OpenID Connect認証対応<a class="headerlink" href="#openid-connect" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>OpenID Connect リンク情報取得/リンク情報削除 API を追加しました。</p>
+<p>詳細は  <a class="reference internal" href="user.html#js-users"><span class="std std-ref">ユーザ管理</span></a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="ver-6-0-0-6-0-1">
+<h2>15.8. ver 6.0.0 → 6.0.1 での変更点<a class="headerlink" href="#ver-6-0-0-6-0-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>下記の不具合を修正しました。</p>
+<ul class="simple">
+<li>Node.js アプリケーションで JavaScript ライブラリのロードができない</li>
+</ul>
+</div>
+<div class="section" id="ver-5-0-0-6-0-0">
+<h2>15.9. ver 5.0.0 → 6.0.0 での変更点<a class="headerlink" href="#ver-5-0-0-6-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="cloud-functions-api">
+<h3>15.9.1. Cloud Functions API<a class="headerlink" href="#cloud-functions-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Nebula.CustomApi を使用して DELETE メソッドで API を呼び出す際の動作が変更されました。
+データはボディ(JSON形式)ではなく、クエリパラメータで送信されます。</p>
+</div>
+</div>
+<div class="section" id="ver-4-1-0-5-0-0">
+<h2>15.10. ver 4.1.0 → 5.0.0 での変更点<a class="headerlink" href="#ver-4-1-0-5-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h3>15.10.1. Cloud Functions API<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Cloud Functions呼び出し用に Nebula.CustomApi クラスを追加しました。
+詳細は <a class="reference external" href="../cloudfunctions/index.html">Cloud Functions開発ガイド</a> の「カスタムAPIの実行」の章を参照してください。</p>
+</div>
+<div class="section" id="id8">
+<h3>15.10.2. マルチテナント対応<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>1つのプロセスから複数のテナント/アプリに同時接続する機能を追加しました。
+詳細は <a class="reference internal" href="multitenant.html#multitenant"><span class="std std-ref">マルチテナント</span></a> を参照してください。</p>
+</div>
+<div class="section" id="id9">
+<h3>15.10.3. ロングクエリ対応<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトストレージのクエリ時に長いクエリ条件を使用する場合の API を追加しました。
+(ObjectBucket.longQuery())。詳細はリファレンスを参照してください。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">本機能を使用する場合は、モバイルバックエンド基盤サーバ v5.0.0 以上が必要です。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>15.10.4. ユーザクエリ<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ユーザ検索時に skip/limit 条件を指定できるようにしました。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">本機能を使用する場合は、モバイルバックエンド基盤サーバ v5.0.0 以上が必要です。</p>
+</div>
+</div>
+</div>
+<div class="section" id="ver-4-0-1-4-1-0">
+<h2>15.11. ver 4.0.1 → 4.1.0 での変更点<a class="headerlink" href="#ver-4-0-1-4-1-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">ver 4.1.0 で、API に後方互換性のない変更が行われています。
+このため、従来のコードに修正が必要になる場合がありますので、注意してください。</p>
+</div>
+<div class="section" id="es6-promise-jquery-deferred">
+<h3>15.11.1. ES6 Promise 移行/jQuery.Deferred 廃止<a class="headerlink" href="#es6-promise-jquery-deferred" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>jQuery.Deferred サポートは廃止となり、ES6 Promise に移行しました。
+<strong>jQuery.Deferred を使用しているコードは修正が必要になります。</strong></p>
+<p>詳細は <a class="reference internal" href="basics.html#id21"><span class="std std-ref">ES6 Promise</span></a> を参照してください。</p>
+</div>
+<div class="section" id="api">
+<h3>15.11.2. API 変更(コールバック引数変更)<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ES6 Promise 対応に伴い、API コールバック(success, error) の引数の数を1個に統一しました。
+このため、いくつかの API について後方互換性のない変更が行われています。</p>
+<p><strong>これらの API を使用している箇所については、コードの修正が必要となります。</strong>
+詳細は以下のとおりです。</p>
+<div class="section" id="objectbucket-query">
+<h4>ObjectBucket.query()<a class="headerlink" href="#objectbucket-query" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ObjectBucket の query() API は以下2つの API に分割されました。
+詳細は <a class="reference internal" href="object_query.html#object-query"><span class="std std-ref">オブジェクトストレージ:クエリ</span></a> を参照してください。</p>
+<ul class="simple">
+<li>query() : 通常クエリ (ヒット件数取得なし)</li>
+<li>queryWithCount() : ヒット件数取得つきクエリ</li>
+</ul>
+<p>query() については、success コールバック引数の個数は1個のみとなり、
+検索結果の配列が渡されます。</p>
+<p>queryWithCount() については、success コールバック引数は1個のみとなり、
+結果は以下のオブジェクトとして渡されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">objects</span><span class="o">:</span> <span class="nx">検索結果の配列</span><span class="p">,</span>
+    <span class="nx">count</span><span class="o">:</span> <span class="nx">ヒット件数</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>また、これにともない、ObjectQuery.setCountQuery() は廃止となります。</p>
+</div>
+<div class="section" id="id11">
+<h4>エラーコールバック引数変更<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>以下の API について、error コールバックの引数個数が変更(2→1)となります。</p>
+<p>具体的には、第1引数が削除され第2引数 (err) のみが渡されます。
+従来の第1引数の値は、err.data プロパティに格納されます。</p>
+<ul class="simple">
+<li>ObjectBucket.delete()</li>
+<li>ObjectBucket.deleteBucket()</li>
+<li>ObjectBucket.load()</li>
+<li>ObjectBucket.loadBucket()</li>
+<li>ObjectBucket.remove()</li>
+<li>ObjectBucket.save()</li>
+<li>ObjectBucket.saveBucket()</li>
+<li>FileBucket.delete()</li>
+<li>FileBucket.dlownloadFile()</li>
+<li>FileBucket.getMetadata()</li>
+<li>FileBucket.load()</li>
+<li>FileBucket.loadBucket()</li>
+<li>FileBucket.publish()</li>
+<li>FileBucket.remove()</li>
+<li>FileBucket.save()</li>
+<li>FileBucket.saveAs()</li>
+<li>FileBucket.saveBucket()</li>
+<li>FileBucket.unpublish()</li>
+<li>FileBucket.updateMetadata()</li>
+<li>FileBucket.uploadNewFile()</li>
+<li>FileBucket.uploadUpdateFile()</li>
+</ul>
+</div>
+</div>
+<div class="section" id="user-current-api">
+<h3>15.11.3. User.current() API の変更<a class="headerlink" href="#user-current-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>User.current() API は非同期APIから同期APIに変更されました。
+返り値で直接 current user を返却するようになります。</p>
+<p>後方互換性維持のため、従来どおり callbacks 引数を指定した場合は、コールバックを呼び出します。</p>
+<p>jQuery.Deferred を使用している場合は、 <strong>値を直接受け取るようにコードを修正する必要があります</strong> 。</p>
+</div>
+<div class="section" id="clause-fluent-api">
+<h3>15.11.4. Clause fluent API 対応<a class="headerlink" href="#clause-fluent-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Nebula.Clause に fluent スタイルの API を追加しました。
+複合条件を記述しやすくなっています。詳細は <a class="reference internal" href="object_query.html#object-query-logical"><span class="std std-ref">論理演算</span></a> を参照してください。</p>
+</div>
+<div class="section" id="node-js">
+<h3>15.11.5. Node.js 対応<a class="headerlink" href="#node-js" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Node.js に対応しました。</p>
+</div>
+</div>
+<div class="section" id="ver-4-0-0-4-0-1">
+<h2>15.12. ver 4.0.0 → 4.0.1 での変更点<a class="headerlink" href="#ver-4-0-0-4-0-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id12">
+<h3>15.12.1. ユーザの所属グループ・オプション情報取得機能<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ユーザが所属するグループおよびオプション情報を取得する機能を追加しました。</p>
+<p>以下で得られる User に対して、get(&quot;groups&quot;) で所属グループ一覧を、
+get(&quot;options&quot;)でオプション情報を取得できます。
+ただし、オフライン API では使用できません。</p>
+<ul class="simple">
+<li>Nebula.User.current()</li>
+<li>Nebula.User.query() (ユーザID指定で検索した場合のみ)</li>
+<li>Nebula.User.update()</li>
+</ul>
+</div>
+<div class="section" id="delete">
+<h3>15.12.2. delete メソッドの名前変更<a class="headerlink" href="#delete" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の delete() メソッドは、JavaScript の予約語と衝突するためすべて remove() メソッドにリネームされました。</p>
+<ul class="simple">
+<li>Nebula.User.delete()</li>
+<li>Nebula.Group.delete()</li>
+<li>Nebula.ObjectBucket.delete()</li>
+<li>NebuleFileBucket.delete()</li>
+</ul>
+<p>互換性維持のため delete() メソッドも残してありますが、
+Deprecated となり将来のバージョンでは削除となる予定です。</p>
+</div>
+</div>
+<div class="section" id="ver-3-0-0-4-0-0">
+<h2>15.13. ver 3.0.0 → 4.0.0 での変更点<a class="headerlink" href="#ver-3-0-0-4-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="push-api">
+<h3>15.13.1. Push 送信 API の追加<a class="headerlink" href="#push-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Push 送信 API が追加されました。
+詳細は <a class="reference external" href="../push/index.html">Push 通知ガイド</a> を参照ください。</p>
+</div>
+<div class="section" id="id13">
+<h3>15.13.2. オブジェクトストレージ<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトクエリ時の not 演算子をサポートしました。</p>
+</div>
+<div class="section" id="id14">
+<h3>15.13.3. 自己署名証明書対応<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>自己証明証明書を使用するサーバへの接続許可設定を初期化パラメータに追加しました。
+詳細は <a class="reference internal" href="initialize.html#allow-self-signed-certificate"><span class="std std-ref">自己署名証明書を使用する場合の設定</span></a> を参照ください。</p>
+</div>
+</div>
+<div class="section" id="ver-1-2-0-3-0-0">
+<h2>15.14. ver 1.2.0 → 3.0.0 での変更点<a class="headerlink" href="#ver-1-2-0-3-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id15">
+<h3>15.14.1. オフライン機能の改善<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトストレージのオフライン機能が大幅に変更されています。</p>
+<p>オブジェクトバケットに、バケットモードが追加されました。
+バケットモードには以下のモードがあります。</p>
+<blockquote>
+<div><ul class="simple">
+<li>オンラインモード: 常にサーバと通信するモードです。</li>
+<li>レプリカモード: 常にローカルキャッシュを読み書きするモードです。サーバとの通信は、同期時にのみ発生します。</li>
+<li>ローカルモード： 常にローカルキャッシュを読み書きするモードです。サーバとは同期しません。</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id16">
+<h3>15.14.2. オフラインバケットのインデックス機能の追加<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オフラインバケット(レプリカモード)の検索を高速化するため、
+オブジェクトに対しインデックスを設定できる API を追加しました。</p>
+</div>
+<div class="section" id="id17">
+<h3>15.14.3. 前回同期時刻の取得機能の追加<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>前回の同期時刻を取得できる API を追加しました。(レプリカモード時に使用)</p>
+</div>
+<div class="section" id="id18">
+<h3>15.14.4. プロジェクション機能の追加<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>プロジェクション関連の API を追加しました。
+Nebula.ObjectQuery クラスの setProjection() メソッドで条件を指定できます。</p>
+</div>
+<div class="section" id="id19">
+<h3>15.14.5. ユーザ関連の API 強化<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ユーザに任意の情報をオプションとして設定できるようになりました。
+詳細は、APIリファレンス Nebula.User クラスの set()
+メソッドを参照ください。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">,</span> <span class="s2">&quot;xxxxx&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>ユーザ名に &quot;&#64;&quot; を使用できるようになりました。</p>
+</div>
+<div class="section" id="id20">
+<h3>15.14.6. グループ情報更新時の楽観ロック<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>グループの更新時に、etag をリクエストパラメータにセットすることで、楽観ロックができるように
+改善されています。(他ユーザによりグループ情報が更新された場合にデータの衝突を検出できます)</p>
+</div>
+<div class="section" id="null">
+<h3>15.14.7. オブジェクトデータの null サポート<a class="headerlink" href="#null" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトデータで以下のように null を値に持つオブジェクトをサポートしました。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="nx">xxxxxxxx</span> <span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span> <span class="o">:</span> <span class="kc">null</span> <span class="p">,</span>
+    <span class="s2">&quot;ACL&quot;</span> <span class="o">:</span> <span class="p">{....}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id21">
+<h3>15.14.8. インデックス・シャードキー関連<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>インデックスキー、シャードキー関連の API は削除されました。</p>
+</div>
+<div class="section" id="id22">
+<h3>15.14.9. オフライン関連<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<dl class="docutils">
+<dt>以下の API は削除されました。</dt>
+<dd><ul class="first last simple">
+<li>キャッシュポリシー関連の API</li>
+<li>ネットワークモード関連の API</li>
+<li>自動同期関連の API</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="ver-1-1-0-1-2-0-api">
+<h2>15.15. ver 1.1.0 → 1.2.0 での API 変更点<a class="headerlink" href="#ver-1-1-0-1-2-0-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h3>15.15.1. オブジェクトの検索(クエリ)<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクト検索のコールバック成功時の引数として「検索条件に合致したオブジェクトの数」を追加しました。</p>
+</div>
+<div class="section" id="id24">
+<h3>15.15.2. オブジェクトの更新/削除時の楽観ロック<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトの更新/削除時に、etag をリクエストパラメータにセットすることで、楽観ロックができるように
+改善されています。(他ユーザによりサーバ側のデータが更新された場合にデータの衝突を検出できます)</p>
+</div>
+<div class="section" id="id25">
+<h3>15.15.3. ファイルオフライン関連<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ファイルオフライン関連の API は非サポートになりました。</p>
+</div>
+</div>
+<div class="section" id="ver-0-9-6-1-1-0-api">
+<h2>15.16. ver 0.9.6 → 1.1.0 での API 変更点<a class="headerlink" href="#ver-0-9-6-1-1-0-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>変更なし</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oss.html" class="btn btn-neutral float-right" title="16. JavaScript SDK に含まれるOSS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="multitenant.html" class="btn btn-neutral" title="14. マルチテナント" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

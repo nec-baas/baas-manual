@@ -1,0 +1,30 @@
+NEC BaaS REST API Reference: API Gateway / Cloud Functions
+==========================================================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 3
+
+   intro
+   notations
+   auth
+   common
+   structure
+   apigw/index
+   apis/index
+   code
+   functions/index
+   logs/index
+   notes
+   changes
+
+Index
+-----
+
+* :ref:`genindex`
+* :ref:`search`
+
+.. include:: ../common/back_to_index.rst

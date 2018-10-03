@@ -1,0 +1,102 @@
+.. _tenant_update:
+
+テナント更新
+============
+
+.. http:put:: /1/_sysadm/_/tenants/(tenantId)
+
+    テナント情報を更新する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+    :reqheader Content-Type: application/json, application/yaml のいずれか
+
+    :parameter string tenantId: テナントID
+
+    :statuscode 200: 正常に更新した
+    :statuscode 400: リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当テナントが存在しない、または無効
+    :statuscode 409: 同名テナントが存在している
+    :statuscode 412: 外部認証ユーザが存在している
+    :statuscode 415: Content-Type 不正
+
+    :>json object tenant: 更新したテナント情報
+
+    **リクエストボディ**
+
+    JSON もしくはYAML 形式で記述された更新データを指定する。
+
+    YAML形式によるレートリミット設定を更新するリクエストの例を以下に示す。
+
+    .. code-block:: yaml
+
+        tenant:
+          rateLimitSetting:
+            total: 0
+            customApi:
+              api01: 5000
+              api03: 200
+
+    以下パラメータについては、システム管理者のみ更新可能。
+
+    .. list-table::
+       :header-rows: 1
+       :widths: 30, 70
+
+       * - プロパティ
+         - 名称
+       * - enabled
+         - テナント有効フラグ
+       * - authType
+         - 認証方式
+       * - ldapSetting
+         - LDAPサーバ設定
+       * - ～.loginAttribute
+         - ログイン属性
+       * - ～.hostName
+         - ホスト名
+       * - ～.port
+         - ポート
+       * - ～.accountName
+         - アカウント
+       * - ～.password
+         - パスワード
+       * - ～.baseDn
+         - Base DN
+       * - mongoConnectionConfig
+         - MongoDB 個別接続設定
+       * - ～.servers
+         - MongoDB サーバ定義
+       * - ～.username
+         - 認証用ユーザ
+       * - ～.password
+         - 認証用パスワード
+       * - rateLimitSetting
+         - レートリミット設定
+       * - ～.total
+         - テナント全体のリミット値
+       * - ～.customApi
+         - カスタムAPI毎のリミット値設定
+
+    authTypeには、以下のいずれか１つのみを指定可能とする。
+
+    * NORMAL : 通常認証
+    * LDAP : 通常認証＋LDAP認証
+
+    LDAPを指定する際、ldapSettingsのloginAttribute, hostName, baseDnを一度も設定していない場合は必須パラメータとなる。
+
+    **レスポンス**
+
+    更新したテナント情報を含む JSON データが返却される。
+    形式は、:ref:`tenant_create` レスポンスと同様。
+
+    **注意事項**
+
+    * システム管理者またはテナント管理者の権限が必要。
+    * テナントIDは更新不可。
+    * テナント管理者権限では所属テナント情報のみ更新可能。
+    * テナント管理者権限では更新可能情報が限定される。
+    * リクエストボディで指定するフィールドのみを更新する。
+    * 対象テナントに外部認証ユーザが存在する場合は認証方式の変更不可。
+    * specialBucketのACL(contentACL)を更新する場合は、全ての権限を設定すること。更新はACL単位で行われるため、指定を省略した権限については空配列が設定される。

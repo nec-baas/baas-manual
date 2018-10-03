@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LDAP連携 &mdash; Developer Console User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="APIレートリミット(スロットリング)" href="ratelimit.html" />
+    <link rel="prev" title="一般設定" href="tenant_management.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../login.html">2. ログイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. システム管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../abstract.html">3.1. システム管理機能について</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. テナント管理</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tenant.html">テナントの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant_management.html">一般設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant_management.html#mongodb">MongoDB個別接続設定</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">LDAP連携</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">手順</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ldapapi">LDAPサーバ連携時のユーザ管理APIについて</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ratelimit.html">APIレートリミット(スロットリング)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administrator.html">3.3. 管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system_config.html">3.4. システム設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../saml_keyStore.html">3.5. SAML KeyStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">3.6. ライセンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../systemlog.html">3.7. システムログ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tenant/index.html">4. テナント管理</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">3. システム管理</a> &raquo;</li>
+        
+          <li><a href="index.html">3.2. テナント管理</a> &raquo;</li>
+        
+      <li>LDAP連携</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ldap">
+<span id="ldapauth"></span><h1>LDAP連携<a class="headerlink" href="#ldap" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>LDAP(ActiveDirectory)サーバと連携することで、ユーザログイン時にLDAPサーバに登録されている
+ユーザ名とパスワードを利用することができます。</p>
+<p>ログインに成功した時点で、BaaS サーバにユーザ情報が登録されます。これにより、各APIが該当ユーザを使用可能となります。</p>
+<div class="section" id="id1">
+<h2>手順<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>LDAPサーバと連携する手順について説明します。</p>
+<div class="section" id="id2">
+<h3>テナント追加時の認証方式で「通常認証 + LDAP認証」を選択<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>デフォルトは「通常認証」になっているので、「通常認証 + LDAP認証」を選択します。</p>
+</div>
+<div class="section" id="id3">
+<h3>LDAPサーバ設定を入力<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>認証方式に「通常認証 + LDAP認証」を選択すると「LDAPサーバ設定」の項目が表示されるので、
+使用するLDAPサーバのログイン属性、ホスト名、ポート、アカウント、パスワード、Base DNを入力し、「保存」をクリックします。</p>
+<ul>
+<li><p class="first">ログイン属性</p>
+<p>ログインユーザ名として使用するLDAP属性。例： ActiveDirectory の場合は 「sAMAccountName」</p>
+</li>
+<li><p class="first">ホスト名</p>
+<p>LDAPサーバのホスト名。例：「<a class="reference external" href="ldap://localhost">ldap://localhost</a>」</p>
+</li>
+<li><p class="first">ポート</p>
+<p>LDAPサーバのポート番号。例：「389」</p>
+</li>
+<li><p class="first">アカウント</p>
+<p>LDAPサーバの読み取り可能なユーザアカウント。例：「CN=Administrator,CN=users,DC=example,DC=com」</p>
+</li>
+<li><p class="first">パスワード</p>
+<p>LDAPサーバの読み取り可能なユーザパスワード。例：「adminPassword」</p>
+</li>
+<li><p class="first">Base DN</p>
+<p>LDAPツリーのBase DN。例：「OU=company,DC=example,DC=com」</p>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/LDAP2.png"><img alt="../../_images/LDAP2.png" src="../../_images/LDAP2.png" style="width: 475.20000000000005px; height: 745.6px;" /></a>
+<p>手順は以上です。これにて、LDAPサーバと連携してログインすることが可能です。</p>
+</div>
+</div>
+<div class="section" id="ldapapi">
+<h2>LDAPサーバ連携時のユーザ管理APIについて<a class="headerlink" href="#ldapapi" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>LDAPサーバ連携時のユーザ管理APIの仕様は以下の通りです。</p>
+<ul class="simple">
+<li>ユーザ情報の取得は、BaaS サーバに登録済のユーザのみ検索します。つまり、一度もログインしていないユーザは検索できません。</li>
+<li>サインアップ、ユーザ情報変更、ユーザ削除、パスワードリセットは使用できません。(権限エラーを返します)</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>注意事項<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>サポートするLDAPサーバは、ActiveDirectoryです。OpenLDAPについても動作確認済ですが、評価は行っておりません。</li>
+<li>プロトコルは、LDAPとLDAPSに対応しております。startTLSは非対応です。</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ratelimit.html" class="btn btn-neutral float-right" title="APIレートリミット(スロットリング)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tenant_management.html" class="btn btn-neutral" title="一般設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../../_static/analytics.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

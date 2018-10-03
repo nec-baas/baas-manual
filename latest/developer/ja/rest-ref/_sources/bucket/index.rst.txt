@@ -1,0 +1,16 @@
+.. _bucket:
+
+============
+バケット管理
+============
+
+.. toctree::
+   :maxdepth: 1
+
+   upsert
+   find
+   read
+   delete
+   read_index
+   read_shard_key
+

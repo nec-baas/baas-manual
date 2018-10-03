@@ -1,0 +1,11 @@
+.. _logs:
+
+==========
+ログ管理
+==========
+
+.. toctree::
+   :maxdepth: 1
+
+   function_logs
+   system_logs

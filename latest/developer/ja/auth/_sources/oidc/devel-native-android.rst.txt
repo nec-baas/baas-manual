@@ -1,0 +1,134 @@
+=================================
+Native アプリケーション (Android)
+=================================
+
+Android による OpenID Connect 認証の実装方法を記載します。
+
+大きく分けて、以下の4つの処理を実装します。
+
+* カスタムスキームの登録
+* OpenID Connect 認証開始 REST API の実行
+* OpenID Connect 認証完了時の処理
+* BaaS サーバへのログイン
+
+カスタムスキームの登録
+======================
+
+OpenID Connect 認証結果を受け取るためのカスタム URL スキームを登録します。
+
+ここでは例として "sampleapp1://" スキームを使用することにします。
+(実際にはアプリ固有の名称に変更してください)
+
+AndroidManifest.xml に以下のように intent-filter を設定します。
+ここではカスタム URL スキームが起動されたときに Activity が起動されるように設定しています。
+
+.. code-block:: text
+
+  <activity android:name="{Activityクラス名}"
+      ...
+      <intent-filter>
+          <action android:name=android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="sampleapp1" android:host="oidc_callback" />
+      </intent-filter>
+  </activity>
+
+
+OpenID Connect認証開始
+======================
+
+ブラウザを起動して OpenID Connect 認証開始の REST API を実行します。
+
+REST API の URI は、以下のとおりです。
+
+    {endpointUri}/1/{tenantId}/auth/oidc/start?op={op}&redirect={redirectUri}&scope={scope}&createUser={true|false}&sessionToken={sessionToken}
+
+* op、redirectUri は必須です。
+* op は連携する OpenID Connectプロバイダを指定します。設定可能な値は以下の通りです。
+
+  - google: Google
+  - adfs: ADFS (Windows Server 2016)
+  - other: OpenAM
+
+* redirectUri にはリダイレクトURLを指定します。上述のカスタムURLスキーム宛を指定してください。
+* OIDC認証ユーザを作成する場合は、createUser=true を指定してください。
+* 作成済ユーザとのアカウントリンク設定をする場合は、sessionToken にリンクさせたいユーザのセッショントークンを指定してください。
+* scope はオプションです。取得したい属性情報(OpenID Connectスコープ)を指定します。必ず "openid" が含まれている必要があります。
+
+redirectUri, scope については、いずれもURIエンコードが必要な点に注意してください。
+
+
+以下にサンプルコードを示します。
+
+.. code-block:: java
+
+    // リダイレクト URI            
+    final String redirectUri = "sampleapp1://oidc_callback"
+
+    final String endpointUri = "{エンドポイントURI}"
+    final String tenantId = "{テナントID}"
+    final String op = "{OP種別}"
+    final String scope = "{Scope値}"
+
+    // 起動用 URI 生成
+    StringBuffer sbRequestUri = new StringBuffer();
+    sbRequestUri.append(String.format("%s/1/%s/auth/oidc/start", endpointUri, tenantId));
+    sbRequestUri.append(String.format("?redirect=%s", URLEncoder.encode(redirectUri, "UTF-8")));
+    sbRequestUri.append(String.format("&op=%s",op));
+    sbRequestUri.append("&createUser=true");
+    if(scope.compareTo("") != 0) {
+        sbRequestUri.append(String.format("&scope=%s", URLEncoder.encode(scope, "UTF-8")));
+    }
+    Uri uri = Uri.parse(sbRequestUri.toString());
+
+    // ブラウザ起動
+    Intent intent = new intent(Intent.ACTION_VIEW, uri);
+    startActivity(intent);
+
+
+OpenID Connect認証完了時の処理
+==============================
+
+OpenID Connect 認証完了が完了すると、カスタムスキームURIにリダイレクトされます。
+リダイレクトURIは以下のようにワンタイムトークンがクエリパラメータに格納された形になります。
+
+    sampleapp1://oidc_callback?token=123456789abcdef
+
+カスタムスキームURIが起動されると、上記で設定した intent-filter の指定により Activity の
+onNewIntent() が呼び出されます。
+Intent の Data にリダイレクト URI が格納されており、この中に認証用の「ワンタイムトークン」
+が含まれています。これを NbUser.extractOneTimeTokenFromUri() で取り出します。
+
+以下にサンプルコードを示します。
+
+.. code-block:: java
+
+    @Override
+    protected void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+
+        // リダイレクト URI を取り出す
+        Uri uri = intent.getData();
+
+        // ワンタイムトークンを取り出す
+        LoginParam param = NbUser.extractOneTimeTokenFromUri(uri.toString());
+
+        ...
+
+BaaS サーバへのログイン
+=======================
+
+ワンタイムトークンを指定してログインします。
+
+上記で取得した LoginParam を指定して NbUser.login() を呼び出してください。
+
+サーバからセッショントークンが払いだされ、以降は本セッショントークンで認証が行われます。
+以下にサンプルコードを示します。
+
+.. code-block:: java
+
+            // ログイン
+            NbUser.login(loginParam, new NbUserCallback() {
+                /* 中略 */
+            });

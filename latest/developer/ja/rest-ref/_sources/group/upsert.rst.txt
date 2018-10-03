@@ -1,0 +1,113 @@
+.. _group_upsert:
+
+グループの変更
+=================
+
+.. http:put:: /1/(tenantId)/groups/(groupName)
+
+    グループを変更する。該当グループが存在しない場合はグループ作成となる。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+    :reqheader Content-Type: "application/json"
+
+    :parameter string groupName: グループ名
+
+    :query string etag: ETag値
+
+    :<json array users: 所属ユーザIDの一覧(オプション)
+    :<json array groups: 所属グループ名の一覧(オプション)
+    :<json object ACL: ACL(オプション)
+
+    :statuscode 200: 正常登録した
+    :statuscode 400: パラメータ・リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 409: ETag 不一致（etag_mismatch）、更新が衝突した(request_conflicted)
+    :statuscode 415: Content-Type 不正
+
+    :>json array users: 所属ユーザIDの一覧
+    :>json array groups: 所属グループ名の一覧
+    :>json object ACL: ACL
+    :>json string createdAt: 作成日時
+    :>json string updatedAt: 更新日時
+    :>json string etag: ETag値
+    :>json string reasonCode: 409 Conflict 時のエラー原因
+    :>json object detail: 409 Conflict 時のエラーデータ
+
+    **リクエスト**
+
+    グループ名は groupName に指定する。
+
+    グループ名には100文字以下の '/' を除く任意の UTF-8 文字列が使用できる。
+    ただし、先頭が "_EXT-" で開始するグループ名は特殊用途に予約されているため使用できない。
+
+    リクエストボディに、グループの定義を指定する。以下に例を示す。
+
+    .. code-block:: javascript
+
+        {
+            "users": [ "xxxxx", "yyyyy", "zzzzz" ],
+            "groups" : [ "group2", "group3" ],
+            "ACL": {
+                /* ACL */
+            }
+        }
+
+    詳細は :ref:`group_create` と同様。
+
+    **レスポンス**
+
+    成功時のレスポンスは :ref:`group_create` と同じ。
+
+    409 Conflict の場合は以下の形式でデータが返却される。
+
+    .. code-block:: javascript
+
+        {
+            "reasonCode": "etag_mismatch"
+            "detail": {
+                "_id":"52116f01ac521e1742000001",
+                "name": "group3",
+                "users": [ "xxxxx", "yyyyy", "zzzzz" ],
+                "groups" : [ "group2", "group3" ],
+                "ACL": {/*ACL*/},
+                "createdAt": "2013-08-27T04:37:30.000Z",
+                "updatedAt": "2013-08-27T04:37:30.000Z"
+                "etag": "8c92c97e-01a7-11e4-9598-53792c688d1b"
+            }
+        }
+
+    * reasonCode: 原因を示すコード。以下のいずれか
+
+      - "etag_mismatch": 更新・削除処理でETagが不一致
+      - "request_conflicted":  更新・削除処理で衝突
+    * detail: エラーに関するデータ
+
+    detail の内容は、reasonCodeに対して下記内容となる。
+
+    .. list-table::
+       :header-rows: 1
+       :widths: 20, 80
+
+       * - reasonCode
+         - detail
+       * - etag_mismatch
+         - サーバ側のグループ情報を含むJSON データ (JSON形式)
+       * - request_conflicted
+         - "Updating conflicted" (文字列)
+
+    **注意事項**
+
+    * グループはアプリ毎ではなく、テナント毎に作成される。
+    * グループ作成時は_GROUPS バケットのcontentACLに対する create 権限が必要。
+    * グループ変更時は_GROUPSバケットのcontentACLに対する update 権限、および対象グループの update 権限の両方が必要。
+      ACLの変更を伴う場合は、対象グループの admin 権限も必要。
+    * グループ変更時は_GROUPSバケットのcontentACL、および対象グループのread権限が無くても、上記のレスポンスが返却される。
+    * "users" と "groups" には、既に登録済みのユーザとグループを指定すること。
+      未登録のユーザ・グループを指定した場合は400エラーが返却される。
+    * "users" と "groups" を指定しない場合は、下記の動作となる。
+
+      - グループ作成時: users, groupsを空で作成
+      - グループ更新時: users, groupsを更新しない

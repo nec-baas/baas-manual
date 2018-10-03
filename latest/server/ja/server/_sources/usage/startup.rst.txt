@@ -1,0 +1,78 @@
+===============================
+APサーバへのデプロイ・起動手順
+===============================
+
+.. APサーバの設定
+.. ===============
+..
+.. WebOTX の設定
+.. --------------
+..
+.. WebOTX を使用する場合、セキュリティポリシの追加が必要です。
+..
+.. 動作させるドメインの config/server.policy に以下の設定を
+.. 追加してください。
+..
+..  ::
+..
+..    grant {
+..      permission java.lang.RuntimePermission "createClassLoader";
+..      permission java.lang.RuntimePermission "getenv.*";
+..      permission java.lang.RuntimePermission "defineClassInPackage.*";
+..      permission java.security.AllPermission;
+..    };
+
+
+APサーバへのデプロイ
+=====================
+
+アプリケーション(AP)サーバ(Tomcat)への WAR ファイルのデプロイ手順を示します。
+以下は /opt/tomcat 以下に Tomcat をインストールした場合の例です。
+
+::
+
+ sudo /bin/rm -rf /opt/tomcat/webapps/api/
+ sudo cp api.war /opt/tomcat/webapps/
+
+ sudo /bin/rm -rf /opt/tomcat/webapps/console/
+ sudo cp console.war /opt/tomcat/webapps/
+
+起動
+====
+
+APサーバを起動することで、BaaSサーバが起動します。
+APサーバの起動前に、データベース (MongoDB)を起動しておく必要があります。
+
+サーバ起動後、ブラウザからサーバにアクセスして、アプリケーションを利用できます。
+
+Tomcat の場合、デベロッパーコンソールの URL は ``http://localhost:8080/console``
+、API の URL は ``http://localhost:8080/api`` となります。
+
+
+コンテキストパスを変更したい場合
+=================================
+
+コンテキストパスを /api や /console 以外に設定したい場合の例を示します。
+
+まず WAR ファイルを適当なディレクトリに展開します。
+ただし、${CATALINA_HOME}/webapps ディレクトリは避けて下さい。
+
+次に、${CATALINA_HOME}/conf/Cataline/localhost/ ディレクトリに
+コンテキストXMLファイルを作成します。
+
+コンテキストXMLファイルのファイル名は、コンテキストパス名 + .xmlとします。
+コンテキストパスがサブディレクトリを含む場合は、'/' を '#' に置換します。
+(例: コンテキストパスが /some/path/api の場合は some#path#api.xml とする)
+
+ファイル内容は以下のように記述します。
+
+.. code-block:: text
+
+    <?xml version='1.0' encoding='utf-8'?>
+    <Context docBase="アプリケーションディレクトリ" />
+
+docBase= にWARファイルを展開したディレクトリを指定します。
+
+なお、WARファイルを展開せず、直接デプロイすることも可能です。
+この場合は docBase にはディレクトリではなく WAR ファイルのパスを直接指定します。
+

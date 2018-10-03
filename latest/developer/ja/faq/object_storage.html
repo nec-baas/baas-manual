@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. JSONオブジェクトストレージ &mdash; FAQ and Trouble Shooting Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="8. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="6. 認証" href="auth.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FAQ and Trouble Shooting Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic.html">1. 全般</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">2. 動作環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">3. 性能・諸元</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baas_server.html">4. BaaSサーバ運用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">5. MongoDB 関連</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mongodb-timestamp">7.1. MongoDB の Timestamp は使用できますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bit">7.2. 64bit 整数値は使用できますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">7.3. ドキュメント挿入・更新時のバリデーション機能はありますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">7.4. クエリ時の検索数に上限はありますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sort">7.5. 大量データをクエリすると 500 エラーになります (sort条件あり)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">7.6. トランザクション相当の機能はありますか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">9. Push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">10. Cloud Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">11. JavaScript 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="android.html">12. Android 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ios.html">13. iOS 開発</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FAQ and Trouble Shooting Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. JSONオブジェクトストレージ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="json">
+<h1>7. JSONオブジェクトストレージ<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="mongodb-timestamp">
+<h2>7.1. MongoDB の Timestamp は使用できますか？<a class="headerlink" href="#mongodb-timestamp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaS サーバ v7.0 より、<a class="reference external" href="https://github.com/mongodb/specifications/blob/master/source/extended-json.rst">MongoDB Extended JSON仕様</a> を使用して表記することができるようになっています。
+詳細は <a class="reference external" href="../developer/functions/object_storage.html#json">デベロッパーマニュアル: オブジェクトストレージ</a> の「JSON仕様について」
+を参照してください。</p>
+<p>なお、BaaS サーバv6.5以下では Extended JSON は利用できませんので、その場合は Epoch time 数値や ISO8601形式の文字列などを使用してください。</p>
+</div>
+<div class="section" id="bit">
+<h2>7.2. 64bit 整数値は使用できますか？<a class="headerlink" href="#bit" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>使用できます。</p>
+<p>ただし、JavaScript では数値がすべて 64bit 倍精度(IEEE 754-2008 binary64。
+符号1ビット、指数部11ビット、仮数部52ビット)となる関係上、
+JavaScript SDK では 64bit整数値は使用できません。</p>
+<p>JavaScript で 64bit整数を使用したい場合は、文字列に変換して格納してください。</p>
+</div>
+<div class="section" id="id21">
+<h2>7.3. ドキュメント挿入・更新時のバリデーション機能はありますか？<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>現行のバージョン(v7以下)ではサポートしていません。</p>
+</div>
+<div class="section" id="id22">
+<h2>7.4. クエリ時の検索数に上限はありますか？<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>REST API 仕様書では「limit 値に制限がかけられている場合がある」
+という記載がありますが、現在のバージョンでは上限は掛けておりません。</p>
+</div>
+<div class="section" id="sort">
+<h2>7.5. 大量データをクエリすると 500 エラーになります (sort条件あり)<a class="headerlink" href="#sort" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>インデックスを設定していないフィールドを sort 条件に指定して大量のデータを
+クエリすると、500エラーが発生します。</p>
+<p>これは MongoDB の制限で、インデックスが使用できない場合の Sort オペレーションでは
+ドキュメントの総量(+オーバヘッド)が 32MB 未満でなければならないためです。
+(詳細は <a class="reference external" href="https://docs.mongodb.com/manual/reference/limits/#Sort-Operations">MongoDB LImits and Thresholds - Sort Operations</a> を参照してください)</p>
+<p>このような場合は、sort 条件を設定するフィールドにインデックスを張るようにしてください。</p>
+</div>
+<div class="section" id="id23">
+<h2>7.6. トランザクション相当の機能はありますか？<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>一部対応しています。</p>
+<p>バッチオペレーションのトランザクション機能を使用すると、
+全件のリクエストが成功した場合にコミット、
+一部のリクエストが失敗した場合はロールバックすることができます。</p>
+<p>トランザクションを使用するには、いくつかの条件があります。
+詳細は、 <a class="reference external" href="../developer/functions/object_storage.html">オブジェクトストレージ</a> の
+「バッチオペレーション」を参照して下さい。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="8. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="auth.html" class="btn btn-neutral" title="6. 認証" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+============
+ユーザ管理
+============
+
+ここではユーザ管理機能の利用方法について説明します。
+
+ユーザ登録
+==========
+
+最初に `baas.User` クラスインスタンスを作成してユーザ情報をプロパティに設定し、
+`baas.User.register()` で登録します。
+
+.. code-block:: python
+
+    user = baas.User(service)
+
+    user.username = "username"
+    user.email = "email address"
+    user.password = "password"
+    user.options = {}  # option info
+
+    user.register()
+
+ログイン
+========
+
+ログインする場合には、`baas.User.login()` を呼び出します。
+
+ユーザ名または E-mail を使用してログインします。
+
+.. code-block:: python
+
+    result = baas.User.login(service, username="user1", password="Passw0rD")
+    result = baas.User.login(service, email="user1@example.com", password="Passw0rD")
+
+ログインが成功すると、service インスタンスにセッショントークンがセットされます。
+セッショントークンの値は `service.session_token` で取得できます。
+
+ログアウト
+==========
+
+ログアウトする場合には、logout() を呼び出します。
+
+.. code-block:: python
+
+    baas.User.logout(service)
+
+ユーザ検索
+==========
+
+ユーザ検索を行う場合は、`baas.User.query()` を使用します。
+
+ユーザ名または E-mail を検索条件に指定できます。どちらも指定しない場合は全件検索となります。
+いずれの場合でも、結果はユーザ情報の dict の配列になります。
+
+.. code-block:: python
+
+    users = baas.User.query(service)  # 全検索
+    users = baas.User.query(service, username="user1")  # ユーザ名指定検索
+    users = baas.User.query(service, email="user1@example.com")  # メールアドレス指定検索
+
+ユーザの取得
+==============
+
+ユーザを取得するには、 `baas.User.get()` の引数にユーザIDを指定して呼び出します。
+
+.. code-block:: python
+
+    user = baas.User.get(service, user_id="userId")
+
+ユーザの更新
+==============
+
+ユーザを更新するには、 `baas.User` クラスインスタンスを作成してユーザ情報をプロパティに設定し、
+update() の引数にユーザIDを指定して呼び出します。
+
+.. code-block:: python
+
+    user = baas.User(service)
+
+    user.username = "username"
+    user.email = "email address"
+    user.password = "password"
+    user.options = {}  # option info
+
+    user.update(user_id="userId", etag="userEtag")
+
+.. attention::
+
+  カレントユーザ以外を更新する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。
+
+ユーザの削除
+==============
+
+ユーザを削除するには、`baas.User.remove()` の引数にユーザIDを指定して呼び出します。
+
+.. code-block:: python
+
+    baas.User.remove(service, user_id="userId")
+
+.. attention::
+
+  カレントユーザ以外を削除する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。
+
+パスワードリセット
+===================
+パスワードリセットを行う場合は、`baas.User.reset_password()` を使用します。
+
+username と email のいずれかを使ってパスワードをリセットします。
+パスワードリセットを実行すると、確認メールがユーザに送信されます。
+
+.. code-block:: python
+
+    # username でリセットする場合
+    baas.User.reset_password(service, username="username")
+
+    # email でリセットする場合
+    baas.User.reset_password(service, email="email@example.com")
+

@@ -1,0 +1,15 @@
+.. _functions:
+
+=============
+Function 管理
+=============
+
+.. toctree::
+   :maxdepth: 1
+
+   create
+   create-table
+   get
+   list
+   delete
+   delete-all

@@ -1,0 +1,179 @@
+.. include:: ../../common/linkdef.rst
+
+.. index::
+    single: fluentd
+
+.. _use_fluentd:
+
+==========================
+fluentd を利用したロギング
+==========================
+
+標準状態では、ログは各 AP サーバ・デベロッパコンソールサーバ毎に個別に出力されます。
+
+fluentd を使用すると、ログを一箇所に集約したり、出力先を MongoDB にしたりといった
+ことが可能になります。
+
+.. _install_fluentd:
+
+fluentd のインストール
+======================
+
+fluentd 1.0 以上 (td-agent3以上)をインストールしてください。
+
+`fluentd サイト`_ の Installation の手順に従いインストールします。
+
+RHEL7 の場合の手順は以下の通りです。
+
+.. code-block:: bash
+
+    $ curl -L https://toolbelt.treasuredata.com/sh/install-redhat-td-agent3.sh | sh
+    $ (設定ファイルを編集)
+    $ sudo systemctl start td-agent.service
+
+また、MongoDB に出力するため fluent-plugin-mongo をインストールします。
+
+.. code-block:: bash
+
+    $ sudo /usr/sbin/td-agent-gem install fluent-plugin-mongo
+ 
+.. attention::
+
+   - Fluentd 起動の初期化処理では、MongoDB との接続確認が実施されるため、MongoDB を先に起動してください。
+   - OS の起動に伴うサービス（デーモン）の自動起動にも、Fluentd より、MongoDBを先に起動できるように chkconfig で起動スクリプトの起動順序を指定する必要があります。
+     例えば、Fluentdの場合、起動スクリプト( /etc/rc.d/init.d/td-agent )に、"# chkconfig: [ランレベル] [起動順] 「終了順」"で指定し、スクリプトを再登録します。
+
+fluentd の利用設定
+==================
+
+BaaSサーバ側 logback の設定
+----------------------------
+
+BaaS サーバの logback.properties プロパティファイルを編集し、
+logback.types に "FLUENT" を指定してください。
+
+logback.properties ファイルの詳細は :ref:`config-loglevel` を参照してください。
+
+ログの出力先はデフォルトでは localhost:24224 に設定されています。
+出力先を変更した場合は、プロパティファイルに以下の値を指定してください。
+
+* logback.fluent.host : ホスト名
+* logback.fluent.port : ポート番号
+
+fluentd の設定
+---------------
+
+以下は、MongoDB の Capped collection にログを格納するための fluentd 設定ファイルの例です。
+fluentd 設定ファイルは /etc/td-agent/td-agent.conf に配置します。
+
+::
+
+ <source>
+   @type forward
+   port 24224
+ </source>
+
+ # conf.d ディレクトリから設定を読み込む
+ @include conf.d/*.conf
+
+ # フェイルセーフ: 上記のルールにマッチしないログは標準出力に出力する
+ <match **>
+   @type stdout
+ </match>
+
+.. attention::
+
+   既存の設定ファイルに追記を行う場合、上記設定の <source>～</source> と同等の設定が
+   既に存在している場合があります。この場合は <source>～</source>
+   は追加しないでください(設定が重複していると、td-agent の起動が失敗します)。
+
+さらに、/etc/td-agent/conf.d ディレクトリを作成し、以下の内容の2つのファイル(baas-system.conf, baas-access.conf)を格納します。これらのファイルは上記 td-agent.conf から include で読み込まれます。
+
+* baas-system.conf
+
+.. code-block:: text
+
+  <match nebula.{api-server,console-server,cloudfn-server-manager,java-server}>
+    @type mongo
+    host mongodb.example.com
+    port 27017
+    database baas_log
+    collection nebula_systemlog
+    capped
+    capped_size 1024m
+
+    # 認証(MongoDB認証有効時のみ、以下の項目追加)
+    #user baas 
+    #password Passw0rD
+    #auth_source admin
+
+    <buffer>
+      flush_interval 10s
+    </buffer>
+  </match>
+
+* baas-access.conf
+
+.. code-block:: text
+
+  <match nebula.access>
+    @type mongo
+    host mongodb.example.com
+    port 27017
+    database baas_log
+    collection nebula_accesslog
+    capped
+    capped_size 1024m
+
+    # 認証(MongoDB認証有効時のみ、以下の項目追加)
+    #user baas
+    #password Passw0rD
+    #auth_source admin
+
+    <buffer>
+      flush_interval 10s
+    </buffer>
+  </match>
+
+* host には MongoDB サーバのホスト名/IPアドレスを指定してください。
+* port には MongoDB サーバのポート番号を指定してください。
+
+上記設定により、APIサーバ、コンソールサーバ、Cloud Functions 関連のシステムログと、APIサーバのアクセスログがMongoDB に出力されます。
+
+.. attention::
+
+   - 必ずシステムログのデータベース名は "baas_log", コレクション名は "nebula_systemlog" としてください。システムログ取得 REST API はこのコレクションからログを取得します。
+
+   - MongoDB認証有効時のみ、user、passwordとauth_sourceの項目を追記し、MongoDB認証用ユーザ、パスワードと認証データベース名を設定してください。
+   
+   - 認証データベース名とは、認証を行うユーザーが登録されているデータベースの名称のことです。
+  
+   - fluentd 1.0以上(td-agent3以上)の場合、`MongoDB Output Plugin`_ のインストールが事前に必要です。
+
+fluentd および fluentd 設定ファイルの詳細は、fluentd の
+公式サイトのドキュメントを参照してください。
+
+
+MongoDB レプリカセットを使用する場合
+------------------------------------
+
+レプリカセットを使用する場合(シャーディングなし)は、設定ファイルの書式が若干変わります。
+詳細は `MongoDB ReplicaSet Output Plugin`_ を参照してください。
+
+::
+
+  <match nebula.{api-server,console-server}>
+    # @type を以下記述に変更
+    @type mongo_replset
+
+    # nodes にホスト/ポート番号を記述
+    nodes localhost:27017,localhost:27018,localhost:27019
+
+    # pluginのv0.8以降ではreplica_setにレプリカセット名を指定
+    # v0.8未満の場合は不要
+    replica_set my_replica_set_name
+
+    # host, port は記述削除
+    # その他の記述は同じ
+    ...
+  </match>

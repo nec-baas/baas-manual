@@ -1,0 +1,42 @@
+.. _api_create:
+
+カスタムAPI登録
+===============
+
+.. http:put:: /1/(tenantId)/apigw/apis/(apiName)
+
+    カスタムAPIを登録する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+    :reqheader Content-Type: application/json, text/plain, text/x-yaml のいずれか
+
+    :parameter string apiName: API名
+
+    :statuscode 200: 正常にAPIを登録した
+    :statuscode 400: パラメータ/リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 415: Content-Type 不正
+    :statuscode 504: タイムアウトエラー
+
+    **リクエストボディ**
+
+    API定義(Swagger 2.0形式JSONまたはYAML)を指定する。
+
+    **レスポンス**
+
+    リクエスト成功時は以下。
+
+    .. code-block:: json
+
+        {
+            "result":"ok"
+        }
+
+    エラー時は JSON 形式でエラー通知される。Content-Type ヘッダは "application/json" となる。
+
+    **注意事項**
+
+    * 指定したapi-nameで、既にAPIが登録されていた場合、上書きする。
+    * api-nameは任意のパス文字列とし、クライアントが指定する

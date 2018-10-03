@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. NEC BaaS JavaScript API の基本 &mdash; JavaScript SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="6. ユーザ管理" href="user.html" />
+    <link rel="prev" title="4. ログ出力手順" href="logger.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JavaScript SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. ライブラリの初期化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">4. ログ出力手順</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. NEC BaaS JavaScript API の基本</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id20">5.1. 非同期呼び出し</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">5.2. ES6 Promise</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jquery-deferred">5.2.1. jQuery.Deferred サポートについて</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">6. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">7. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">8. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">9. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">10. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">11. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">13. セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitenant.html">14. マルチテナント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">15. マイグレーションガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oss.html">16. JavaScript SDK に含まれるOSS</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JavaScript SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. NEC BaaS JavaScript API の基本</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-javascript-api">
+<h1>5. NEC BaaS JavaScript API の基本<a class="headerlink" href="#nec-baas-javascript-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id20">
+<h2>5.1. 非同期呼び出し<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="line-block">
+<div class="line">NEC BaaS JavaScript API は、ほぼ全て非同期呼び出しとなります。 API の処理結果は、コールバックで受け取る形になります。</div>
+</div>
+<div class="line-block">
+<div class="line">以下に、オブジェクトをクエリする場合の例を示します。</div>
+<div class="line">本例では &quot;score&quot; が &quot;30&quot; 以下のオブジェクトを検索します。</div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectBucket</span><span class="p">(</span><span class="s2">&quot;ApiBasic1&quot;</span><span class="p">);</span>                               <span class="c1">// クエリ発行先のバケットを設定</span>
+    <span class="kd">var</span> <span class="nx">clause</span> <span class="o">=</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">Clause</span><span class="p">.</span><span class="nx">lessThan</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>        <span class="c1">// 検索条件を設定</span>
+    <span class="kd">var</span> <span class="nx">conditions</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectQuery</span><span class="p">();</span>               <span class="c1">// クエリのインスタンスを生成</span>
+    <span class="nx">conditions</span><span class="p">.</span><span class="nx">setClause</span><span class="p">(</span><span class="nx">clause</span><span class="p">);</span>                            <span class="c1">// 検索条件を設定</span>
+
+    <span class="nx">callbacks</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 成功時の処理</span>
+        <span class="p">},</span>
+        <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 失敗時の処理</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">bucket</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">conditions</span><span class="p">,</span> <span class="nx">callbacks</span><span class="p">);</span>                     <span class="c1">// クエリ発行</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">検索条件の設定には、 Clause クラスを使用します。</div>
+<div class="line">設定した検索条件は、 ObjectQuery() メソッドで生成したインスタンスに格納します。</div>
+</div>
+<div class="line-block">
+<div class="line">API 呼び出し時は、コールバック関数を指定します。</div>
+<div class="line">処理が成功した場合は success で指定したコールバック関数が、失敗した場合は error で指定したコールバック関数が呼び出されます。</div>
+</div>
+<div class="line-block">
+<div class="line">最後に、クエリを発行します。</div>
+</div>
+</div>
+<div class="section" id="id21">
+<span id="index-0"></span><span id="id22"></span><h2>5.2. ES6 Promise<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本 JavaScript API は、ES6(ES2015)標準の Promise にも対応しており、非同期呼び出しを書きやすくなっています。</p>
+<p>以下に、 Promise を使用する場合の例を示します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">bucket</span> <span class="o">=</span> <span class="s2">&quot;ApiBasic1&quot;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">clause</span> <span class="o">=</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">Clause</span><span class="p">.</span><span class="nx">lessThan</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="s2">&quot;30&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">conditions</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectQuery</span><span class="p">();</span>
+    <span class="nx">conditions</span><span class="p">.</span><span class="nx">setClause</span><span class="p">(</span><span class="nx">clause</span><span class="p">);</span>
+
+    <span class="nx">bucket</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">conditions</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">objects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 成功時の処理。</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 失敗時の処理。</span>
+        <span class="p">});</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>callback 引数を省略すると、API からは Promise が返却されますので、.then(), .catch() で処理を
+記述します。</p>
+<p>ES6 Promise の詳細については、以下の参考文献を参照してください。</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.html5rocks.com/ja/tutorials/es6/promises/">JavaScript Promises | HTML5 Rocks</a></li>
+<li><a class="reference external" href="http://azu.github.io/promises-book/">JavaScript Promise の本</a></li>
+<li><a class="reference external" href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/">Promise | MDN</a></li>
+<li><a class="reference external" href="https://www.promisejs.org/">Promises | promisejs.org</a></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">ES6 Promise 非対応ブラウザ(IE11、Android 4.4以下標準ブラウザなど)で Promise を使用する場合は、
+別途 ES6 Promise Polyfill ライブラリの組み込みが必要です。
+手順は <a class="reference internal" href="setup.html#setup"><span class="std std-ref">SDKセットアップ手順</span></a> を参照してください。</p>
+</div>
+<div class="section" id="jquery-deferred">
+<h3>5.2.1. jQuery.Deferred サポートについて<a class="headerlink" href="#jquery-deferred" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>v4.0.1 までサポートしていた jQuery.Deferred サポートは廃止となりました。今後は Promise を使用するようにしてください。</p>
+<p>jQuery.Deferred から Promise への移行は以下のように行ってください。</p>
+<ul class="simple">
+<li>.done() メソッドはありませんので、.then() メソッドに変更してください。</li>
+<li>.fail() メソッドはありませんので、.catch() メソッドに変更してください。</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="user.html" class="btn btn-neutral float-right" title="6. ユーザ管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="logger.html" class="btn btn-neutral" title="4. ログ出力手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

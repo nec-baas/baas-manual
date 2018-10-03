@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. 共通定義 &mdash; REST API Reference (APIGW/Cloud Functions) 6.5.1 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="5. データ構造" href="structure.html" />
+    <link rel="prev" title="3. 認証" href="auth.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Reference (APIGW/Cloud Functions)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.5.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">3. 認証</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. 共通定義</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. 用語定義</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">5. データ構造</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apigw/index.html">6. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis/index.html">7. API 管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">8. コード管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">9. Function 管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logs/index.html">10. ログ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html">11. 備考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">12. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Reference (APIGW/Cloud Functions)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. 共通定義</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. 共通定義<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>共通定義全般については、REST API リファレンス 本編を参照のこと。</p>
+<div class="section" id="id2">
+<h2>4.1. 用語定義<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">用語</th>
+<th class="head">定義</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>API</td>
+<td>API Gateway を使用してBaaS外部に公開する REST API。Swagger 2.0 (OpenAPI 2.0)形式で定義する。
+オペレーションのエントリポイントの一覧。0個以上のオペレーションを含む。</td>
+</tr>
+<tr class="row-odd"><td>オペレーション(operation)</td>
+<td>APIを構成する要素で、APIのエントリポイントの1つに対応する。operationId属性で識別する。
+Cloud Functions を使用する場合、operationIdにファンクション名を指定し、ファンクションと関連付ける。</td>
+</tr>
+<tr class="row-even"><td>ファンクションテーブル(function table)</td>
+<td>BaaS内部で定義される、処理(ファンクション)のエントリポイントの一覧。0個以上のファンクションを含む。JSONまたはYAMLで定義する。</td>
+</tr>
+<tr class="row-odd"><td>ファンクション(function)</td>
+<td>ファンクションテーブルを構成する要素(エントリポイント)。
+コード属性・ハンドラ属性・環境属性を持つ。JSONまたはYAMLで定義する。</td>
+</tr>
+<tr class="row-even"><td>コード(code)</td>
+<td><p class="first">ファンクションを構成する要素。実装コードのファイルを指定する。JSONまたはYAMLで定義し、bucket属性とfile属性を持つ。</p>
+<p>実装コードは、BaaSのファイルストレージに配置され、上記のbucket属性・file属性で参照する。</p>
+<p>実装コードファイルは、1個以上のハンドラ実装を含む。</p>
+<p class="last">コードの具体的な実体は、実装言語によって異なる。Node.jsの場合はnpmパッケージが実体である。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>ハンドラ(handler)</td>
+<td><p class="first">ファンクションを構成する要素。文字列である。コード内のハンドラ実装を指定する。</p>
+<p class="last">ハンドラ文字列のフォーマットは、実装言語によって異なる。Node.jsの場合は、exports.{function-name}のfunction-nameである。</p>
+</td>
+</tr>
+<tr class="row-even"><td>環境(env)</td>
+<td>ファンクションを構成する要素。ファンクションを実行する環境を指定する。spec属性、timeout属性, memorySize属性を含む。
+(specは実質的にdockerのイメージ名である)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="structure.html" class="btn btn-neutral float-right" title="5. データ構造" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="auth.html" class="btn btn-neutral" title="3. 認証" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'6.5.1',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

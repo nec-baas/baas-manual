@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.8. バッチオペレーション &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="8.9. オブジェクトの集計(Aggregation)" href="aggregate.html" />
+    <link rel="prev" title="8.7. オブジェクトの一括削除" href="query_delete.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. JSONオブジェクトストレージ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create.html">8.1. オブジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">8.2. オブジェクトの読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">8.3. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="long_query.html">8.4. オブジェクトのロングクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">8.5. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">8.6. オブジェクトの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_delete.html">8.7. オブジェクトの一括削除</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.8. バッチオペレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html">8.9. オブジェクトの集計(Aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">8. JSONオブジェクトストレージ</a> &raquo;</li>
+        
+      <li>8.8. バッチオペレーション</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="object-batch">
+<span id="id1"></span><h1>8.8. バッチオペレーション<a class="headerlink" href="#object-batch" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="post">
+<dt id="post--1-(tenantId)-objects-(bucketName)-_batch">
+<code class="descname">POST </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/objects/</code><span class="sig-paren">(</span><em>bucketName</em><span class="sig-paren">)</span><code class="descname">/_batch</code><a class="headerlink" href="#post--1-(tenantId)-objects-(bucketName)-_batch" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>複数オブジェクトを同時に追加・更新・削除する。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- マスターキー(必須)</li>
+<li><em>X-Session-Token</em> -- セッショントークン(オプション)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bucketName</strong> (<em>string</em>) -- バケット名</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>requestToken</strong> (<em>string</em>) -- リクエストトークン</li>
+<li><strong>deleteMark</strong> (<em>int</em>) -- 論理削除を行う場合は 1</li>
+<li><strong>enableTx</strong> (<em>int</em>) -- トランザクション機能を使用する場合は 1</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<em>array</em>) -- オペレーションの配列</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常実行した</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ/リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">415 Unsupported Media Type</a> -- Content-Type 不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.2">501 Not Implemented</a> -- サーバがトランザクション機能をサポートしない</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- オペレーション実行結果の配列</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>リクエスト</strong></p>
+<p>複数のデータを同時にバッチ更新する。</p>
+<p>クライアント側から requestToken を指定することができる。</p>
+<p>サーバは、requestToken が指定された場合、成功時レスポンスをキャッシュする。
+同一 requestToken を持つリクエストが再送された場合、サーバは処理を行わずキャッシュしたレスポンスのみを返却する。</p>
+<p>ただし、同一requestTokenでのリクエストが非常に短い間隔で再送された場合には、処理が二重に行われる可能性があるため注意が必要。
+クライアントは requestToken をランダムかつ推測不可能な文字列として作成しなければならない。</p>
+<p>&quot;deleteMark&quot; に 1 を指定した場合、操作種別 &quot;delete&quot; において、データは論理削除される(実データは削除せず削除マークのみを true に設定する)。
+insert, update には影響しない。</p>
+<p>&quot;enableTx&quot; に 1 を指定した場合、MongoDB のトランザクション機能を使用して全オペレーションがアトミックに処理される。
+オペレーションのうち１つでも失敗した場合は、全オペレーションがロールバックされる。
+レスポンスのステータスコードは 200 OKとなるが、ロールバックされたオペレーションの result の値は &quot;rollbacked&quot; となる。</p>
+<ul class="simple">
+<li>なお、トランザクション機能を使用する場合のMongoDB の要件は、注意事項を参照。</li>
+<li>サーバがトランザクション機能をサポートしない場合は、レスポンスのステータスコードは 501 Not Implemented。</li>
+</ul>
+<p><strong>リクエストボディの例</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;requests&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;insert&quot;</span>
+      <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;xxxxxxxx&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="nt">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+          <span class="nt">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;update&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;yyyyyyyy&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;etag&quot;</span><span class="p">:</span> <span class="s2">&quot;ff123cc6-01a9-11e4-9be6-d39577f35b51&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="nt">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+          <span class="nt">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+        <span class="p">},</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;zzzzzzzz&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;etag&quot;</span><span class="p">:</span> <span class="s2">&quot;11b6cedc-01aa-11e4-88f1-0b3208ae4242&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>オペレーションは &quot;requests&quot; に配列で指定する。サーバはこの配列の先頭から順に処理を実行する。</p>
+<p>各オペレーションには以下の要素を指定する。</p>
+<ul class="simple">
+<li>op : 操作種別。insert, update, delete のいずれかを指定。</li>
+<li>_id : 対象となるオブジェクトID。update, delete の場合は必須。insertの場合は不要。
+insert で id 指定したい場合はdata の &quot;_id&quot; フィールドに格納すること。</li>
+<li>etag: オブジェクトの ETag。update, delete 操作では、ETag を指定することで楽観ロックが実施される(サーバ側データと ETag 照合がされる)。</li>
+<li>data: 更新データ。insert, update の場合は、それぞれオブジェクトの作成、更新APIで送信するリクエストボディの内容と同一。delete の場合は不要。
+insert の場合、&quot;_id&quot; を含む場合はその値が採用され、指定しない場合はサーバ側で作成する。<ul>
+<li>注: update の場合、$full_update を指定しないとフルアップデートにならず部分更新となる。</li>
+</ul>
+</li>
+</ul>
+<p><strong>レスポンスボディの例</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;results&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*DATA*/</span> <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;conflict&quot;</span><span class="p">,</span>
+      <span class="s2">&quot; reasonCode &quot;</span><span class="o">:</span> <span class="s2">&quot; etag_mismatch &quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*DATA*/</span> <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;serverError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*DATA*/</span> <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>results 配列には、リクエスト時のオペレーションに対応した個数の JSON データが格納される。
+また、この並び順はリクエストの配列の順番に対応している。</p>
+<p>データには以下のフィールドが設定される。</p>
+<ul class="simple">
+<li>result : 実行結果。以下のいずれか。<ul>
+<li>ok : 正常に操作が完了した。</li>
+<li>conflict : 衝突が発生した。</li>
+<li>forbidden : ACL違反のためアクセス不可</li>
+<li>notFound : 該当データが存在しない</li>
+<li>badRequest : リクエスト不正</li>
+<li>requestEntityTooLarge : オブジェクトサイズ制限超過</li>
+<li>rollbacked: トランザクション失敗によりロールバックされた</li>
+<li>serverError : その他のエラー</li>
+</ul>
+</li>
+<li>reasonCode :conflictの理由。Resultがconflictの場合のみ付加。以下のいずれか。<ul>
+<li>unspecified : 不明（初期値）</li>
+<li>request_conflicted : 更新・削除処理衝突（更新･削除中に該当オブジェクトに変更発生）</li>
+<li>duplicate_key : ユニーク制約エラー（重複エラー）</li>
+<li>duplicate_id : IDが衝突（重複エラー）</li>
+<li>etag_mismatch : ETagが衝突（比較エラー）</li>
+</ul>
+</li>
+<li>_id : オブジェクトID。insertでエラーとなった場合は付加されない。</li>
+<li>etag : 更新後の ETag 値</li>
+<li>updatedAt : 更新時刻</li>
+<li>data : resultがokの場合、更新されたオブジェクトデータ。
+作成・更新・削除 API のレスポンスボディと同じもの。
+エラーの場合は &quot;etag_mismatch&quot; のみデータが格納され、それ以外の場合はなし。</li>
+</ul>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>バケットcontentACLと対象オブジェクトの update 権限が必要</li>
+<li>対象オブジェクトの ACL の変更を伴う場合、admin 権限も必要。</li>
+<li>同一requestTokenを用いた再送が非常に短い間隔で行われた場合、処理が二重に行われる可能性がある。</li>
+<li>deleteMark は操作種別 &quot;delete&quot; のみに影響する。</li>
+<li>バッチオペレーションにおいてもデータ暗号化に対応する。注意事項等は、<a class="reference internal" href="create.html#object-create"><span class="std std-ref">オブジェクトの作成</span></a>, <a class="reference internal" href="update.html#object-update"><span class="std std-ref">オブジェクトの更新</span></a> を参照。</li>
+<li>トランザクション機能を使用する場合は以下の条件がある<ul>
+<li>MongoDB 4.0 以上かつレプリカセット構成が必要</li>
+<li>レプリカセット全メンバのfeatureCompatibilityVersionは4.0以上に設定されていること</li>
+<li>MongoDB 4.0 のシャーディング環境では利用不可</li>
+</ul>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="aggregate.html" class="btn btn-neutral float-right" title="8.9. オブジェクトの集計(Aggregation)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="query_delete.html" class="btn btn-neutral" title="8.7. オブジェクトの一括削除" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

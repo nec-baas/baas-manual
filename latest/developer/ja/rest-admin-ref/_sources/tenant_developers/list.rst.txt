@@ -1,0 +1,46 @@
+.. _tenant_developer_list:
+
+テナント所属管理者一覧取得
+============================
+
+.. http:get:: /1/_sysadm/(tenantId)/tenantDevelopers
+
+    テナント所属管理者の一覧を取得する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+
+    :parameter string tenantId: テナントID
+
+    :statuscode 200: 正常に取得した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当テナントが存在しない、または無効
+
+    :>json array tenantDevelopers: 管理者ユーザID、名前、E-mail、アカウント種別設定の JSON データの配列。
+
+    **レスポンス**
+
+    レスポンスの例を以下に示す。
+
+    .. code-block:: json
+
+        {
+          "tenantDevelopers": [
+            {
+              "_id": "5a93e8005bd67428ee3fac08",
+              "name": "AppAdministrator",
+              "email": "appadmin@example.com",
+              "accountType": "appAdmin"
+            },
+            {
+              "_id": "5aac80a2dcf78b49d7cf6ca1",
+              "name": "OperationAdministrator",
+              "email": "opadmin@example.com",
+              "accountType": "opAdmin"
+            }
+          ]
+        }
+
+    **注意事項**
+
+    * システム管理者またはアプリケーション管理者以上の権限が必要。

@@ -1,0 +1,21 @@
+OpenAM
+======
+
+IdPメタデータのダウンロード
+---------------------------
+
+OpenAM (Ver 13.0) の場合は、下記 URL から取得できます。
+
+  <http://{host}:{port}/openam/saml2/jsp/exportmetadata.jsp>
+
+このファイルを BaaS デベロッパーコンソールから IdPメタデータとしてアップロードしてください。
+
+SPメタデータの登録と設定
+-------------------------
+
+1) FEDERATION -> エンティティーのインポート で、 SP メタデータファイルを登録
+2) OpenAM 登録ユーザの uid フィールドを NameID として使うために、 IdP の NameID の書式リストと値マップを下記のみに設定 (FEDERATION -> IdPのリンク)
+
+* 書式リスト：　urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+* 値マップ：　　urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified=uid
+

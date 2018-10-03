@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.3. オブジェクトのクエリ &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="8.4. オブジェクトのロングクエリ" href="long_query.html" />
+    <link rel="prev" title="8.2. オブジェクトの読み込み" href="read.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. JSONオブジェクトストレージ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create.html">8.1. オブジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">8.2. オブジェクトの読み込み</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.3. オブジェクトのクエリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#where">8.3.1. 検索条件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sort-order">8.3.2. ソート順序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#skip-limit">8.3.3. スキップカウント(skip) / 検索数上限 (limit)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#count-query">8.3.4. 件数取得フラグ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#projection">8.3.5. プロジェクション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#readpreference">8.3.6. readPreference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="long_query.html">8.4. オブジェクトのロングクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">8.5. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">8.6. オブジェクトの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_delete.html">8.7. オブジェクトの一括削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch.html">8.8. バッチオペレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html">8.9. オブジェクトの集計(Aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">8. JSONオブジェクトストレージ</a> &raquo;</li>
+        
+      <li>8.3. オブジェクトのクエリ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="object-query">
+<span id="id1"></span><h1>8.3. オブジェクトのクエリ<a class="headerlink" href="#object-query" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="get">
+<dt id="get--1-(tenantId)-objects-(bucketName)">
+<code class="descname">GET </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/objects/</code><span class="sig-paren">(</span><em>bucketName</em><span class="sig-paren">)</span><a class="headerlink" href="#get--1-(tenantId)-objects-(bucketName)" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>オブジェクトをクエリする。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- アプリケーションキー(必須)</li>
+<li><em>X-Session-Token</em> -- セッショントークン(オプション)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bucketName</strong> (<em>string</em>) -- バケット名</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>where</strong> (<em>string</em>) -- <a class="reference internal" href="#where"><span class="std std-ref">検索条件</span></a></li>
+<li><strong>order</strong> (<em>string</em>) -- <a class="reference internal" href="#sort-order"><span class="std std-ref">ソート順序</span></a></li>
+<li><strong>skip</strong> (<em>int</em>) -- <a class="reference internal" href="#skip"><span class="std std-ref">スキップカウント</span></a></li>
+<li><strong>limit</strong> (<em>int</em>) -- <a class="reference internal" href="#limit"><span class="std std-ref">検索数上限</span></a> 。最大値およびデフォルト値は100件</li>
+<li><strong>count</strong> (<em>int</em>) -- <a class="reference internal" href="#count-query"><span class="std std-ref">件数取得フラグ</span></a></li>
+<li><strong>deleteMark</strong> (<em>int</em>) -- 1に設定すると論理削除されたデータもクエリ対象とする</li>
+<li><strong>projection</strong> (<em>string</em>) -- <a class="reference internal" href="#projection"><span class="std std-ref">プロジェクション</span></a></li>
+<li><strong>readPreference</strong> (<em>string</em>) -- <a class="reference internal" href="#readpreference"><span class="std std-ref">readPreference</span></a>: 参照するDBの指定</li>
+<li><strong>timeout</strong> (<em>int</em>) -- クエリタイムアウト(ミリ秒)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常終了</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- 権限エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> -- バケットが存在しない</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> -- 検索条件・プロジェクションの演算子の利用方法が正しくない、その他のエラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.5">504 Gateway Timeout</a> -- クエリタイムアウト</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- クエリ結果の配列</li>
+<li><strong>currentTime</strong> (<em>string</em>) -- サーバ時刻</li>
+<li><strong>count</strong> (<em>int</em>) -- 全件数 (countクエリパラメータを1に設定した場合のみ)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>レスポンスボディの例</strong></p>
+<p>結果は以下のように results に配列形式で格納される。</p>
+<p>また、&quot;currentTime&quot; にクエリ実行時のサーバ時刻が格納される(このフィールドはデータ同期処理を行う際に使用することを想定している)。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;results&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;score&quot;</span><span class="o">:</span><span class="mi">80</span><span class="p">,</span>
+          <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* ACL */</span> <span class="p">}</span>
+          <span class="s2">&quot;createdAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;8c92c97e-01a7-11e4-9598-53792c688d1b&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;currentTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-09-01T12:34:56.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>クエリの実行は、オブジェクトが暗号化されたままの状態で実施される。
+したがって、検索条件に &quot;_protected&quot; フィールドを指定した場合、暗号化されたデータに対して検索するため、期待する検索結果とならない。</p>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>バケットcontentACLと対象オブジェクトの read 権限が必要</li>
+<li>デフォルトの検索上限数は 100件である</li>
+<li>クエリパラメータが非常に多い場合、ブラウザによっては URL の長さ制限のためにリクエストが発行できない場合がある。
+この場合は <a class="reference internal" href="long_query.html#object-long-query"><span class="std std-ref">オブジェクトのロングクエリ</span></a> を使用すること。</li>
+<li>検索条件はクエリパラメータ/URLに格納され、サーバのアクセスログに記録されるため、機密性の高い情報を格納するべきではない。
+やむを得ず検索式に含めたい場合は、<a class="reference internal" href="long_query.html#object-long-query"><span class="std std-ref">オブジェクトのロングクエリ</span></a> を使用すること。</li>
+<li>&quot;_protected&quot; フィールドを検索条件に指定した場合の動作は不定となる。</li>
+</ul>
+</dd></dl>
+
+<div class="section" id="where">
+<span id="id2"></span><h2>8.3.1. 検索条件<a class="headerlink" href="#where" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>条件指定は where パラメータで指定する。where パラメータには、JSON で検索条件を設定する。</p>
+<p>特定のキーに対して完全一致させたい場合は、以下のように指定する。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>比較を行う場合は、以下の演算子を利用できる。</p>
+<ul class="simple">
+<li>$lt, $gt : Less Than / Greater Than</li>
+<li>$lte, $gte : Less or Equal / Greater of Equal</li>
+<li>$ne : Not equal to</li>
+</ul>
+<p>例) score が 70 超のものを選択したい場合</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$gt&quot;</span><span class="o">:</span> <span class="mi">70</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>その他、以下の演算子を使用できる。これらは MongoDB の演算子と同じものがそのまま使用できる。</p>
+<ul class="simple">
+<li>$in</li>
+<li>$all</li>
+<li>$regex</li>
+<li>$exists</li>
+<li>$not</li>
+<li>$or</li>
+<li>$and</li>
+</ul>
+</div>
+<div class="section" id="sort-order">
+<span id="id3"></span><h2>8.3.2. ソート順序<a class="headerlink" href="#sort-order" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>順序指定は order パラメータで行う。order パラメータには、ソートを行うキー名を指定する。</p>
+<p>以下の例は、age キー昇順でソートする。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">order</span><span class="o">=</span><span class="nx">age</span>
+</pre></div>
+</div>
+<p>複数条件を指定するときは &quot;,&quot; で区切る。また、降順で検索したい場合は検索キーの前に &quot;-&quot; を付与する。
+以下の例は、第1優先で年齢昇順、第2優先で名前降順でソートする。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">order</span><span class="o">=</span><span class="nx">age</span><span class="p">,</span><span class="o">-</span><span class="nx">name</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">ソート対象のキー名の先頭が&quot;-&quot;(ハイフン)または、キー名に&quot;,&quot;(カンマ)が含まれる場合、正常にソートできない場合がある。</p>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">ソート対象のキーにインデックスが設定されていない場合、MongoDB の制限により、ソート対象のデータ量は32MB以内に収める必要がある。
+この制限を超えると500 Internal Server Error となる。大量のデータをソートしたい場合は、必ずインデックスを設定すること。</p>
+</div>
+</div>
+<div class="section" id="skip-limit">
+<span id="limit"></span><span id="skip"></span><h2>8.3.3. スキップカウント(skip) / 検索数上限 (limit)<a class="headerlink" href="#skip-limit" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>skip で検索結果の先頭からのスキップ数、limit で返却する検索数の上限を指定する。</p>
+<p>以下の例では、検索結果の100件目から50件を取得する。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">skip</span><span class="o">=</span><span class="mi">100</span><span class="o">&amp;</span><span class="nx">limit</span><span class="o">=</span><span class="mi">50</span>
+</pre></div>
+</div>
+<p>limit のデフォルト値は 100件とする。limit を指定しなかった場合は、デフォルトでこの値が指定されたものとみなされる。</p>
+<p>limit に -1 を指定した場合は制限なし(無限大)として扱う。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">サーバ側のコンフィグレーションによっては、limit 値に制限がかけられている場合がある。
+この場合、上限値を越える値を指定したり -1 を指定した場合は 400 Bad Request エラーとなる。</p>
+</div>
+</div>
+<div class="section" id="count-query">
+<span id="id4"></span><h2>8.3.4. 件数取得フラグ<a class="headerlink" href="#count-query" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>条件に合致した全件数を取得したい場合は、count パラメータを 1 にセットする。これは通常、skip/limit と組み合わせて使用する。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">count</span><span class="o">=</span><span class="mi">1</span><span class="o">&amp;</span><span class="nx">limit</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>として検索した場合の例を以下に示す。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;results&quot;</span><span class="p">:[</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;count&quot;</span><span class="p">:</span> <span class="mi">539</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>limit=0 を指定しているため、results の内容は空となるが、count に件数が取得される。</p>
+</div>
+<div class="section" id="projection">
+<span id="id5"></span><h2>8.3.5. プロジェクション<a class="headerlink" href="#projection" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索結果に含まれるオブジェクトのフィールドを制限したい場合にはprojectionにJSON形式で指定する。
+projection は MongoDB と同様の書式で指定する。
+特定のフィールドのみを取得したい場合は以下のように指定する。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、以下のような結果が得られる。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;results&quot;</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Foo&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;currentTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-09-01T12:34:56.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>逆に、特定のフィールドのみ抑制したい場合は以下のように指定する</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、以下のような結果が得られる。（nameのみ省略される）</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;results&quot;</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;score&quot;</span><span class="o">:</span><span class="mi">80</span><span class="p">,</span>
+      <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* ACL ... */</span> <span class="p">}</span>
+      <span class="s2">&quot;createdAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;8c92c97e-01a7-11e4-9598-53792c688d1b&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;currentTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-09-01T12:34:56.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>&quot;_id&quot;フィールドはデフォルトで付加されるが、省きたい場合は以下のように指定する。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、以下のような結果が得られる。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;results&quot;</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Foo&quot;</span><span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;currentTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-09-01T12:34:56.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>入れ子構造になっているフィールドを指定する場合は以下のようにする。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;parent.child&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、以下のような結果が得られる。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;results&quot;</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;parent&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;child&quot;</span><span class="o">:</span> <span class="mi">123</span><span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;currentTime&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-09-01T12:34:56.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>フィールドは複数指定する事が可能だが、&quot;0&quot;と&quot;1&quot;を混在させることはできない。但し、「&quot;_id&quot;:0」のみ例外的に併用可能。</p>
+<p>正しい例:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">}</span>
+<span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>正しくない例</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">}</span>
+<span class="nx">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>また、arrayフィールドに対して、MongoDBと同様に以下の演算子を使用することも可能。</p>
+<ul class="simple">
+<li>$elemMatch</li>
+<li>$slice</li>
+</ul>
+<p>【注意】 &quot;$&quot;, &quot;$meta&quot; 演算子は対象外。</p>
+</div>
+<div class="section" id="readpreference">
+<span id="id6"></span><h2>8.3.6. readPreference<a class="headerlink" href="#readpreference" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>使用するMongoDBがレプリカセットで構築されている場合のみ有効なパラメータ。</p>
+<p>参照するDBを以下の値で指定できる。（大文字小文字は区別されない）
+指定しない場合はデフォルトでprimaryとなる。</p>
+<ul class="simple">
+<li>primary: プライマリから読み込む（デフォルト）</li>
+<li>secondaryPreferred: セカンダリ優先で読み込む。セカンダリが複数ある場合はランダムに選択される。セカンダリが存在しない場合はプライマリから読み込む。</li>
+</ul>
+<p>これ以外の値を指定した場合はBadRequestとなる。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">セカンダリから読む場合、古い情報が得られる場合がある。
+これは、プライマリからセカンダリへの複製処理で若干の遅延が発生するため。
+最新状態を取得する必要がある場合はセカンダリを指定しないこと。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="long_query.html" class="btn btn-neutral float-right" title="8.4. オブジェクトのロングクエリ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="read.html" class="btn btn-neutral" title="8.2. オブジェクトの読み込み" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

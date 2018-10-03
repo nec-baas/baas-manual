@@ -1,0 +1,53 @@
+.. _file_unpublish:
+
+ファイルの公開解除
+==================
+
+.. http:delete:: /1/(tenantId)/files/(bucketName)/(fileName)/publish
+
+    ファイル1件の公開を解除する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+
+    :parameter string bucketName: バケット名
+    :parameter string fileName: ファイル名
+
+    :query string metaETag: メタデータETag値
+
+    :statuscode 200: 正常終了した
+    :statuscode 400: パラメータ・リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当バケットまたはファイルが存在しない
+    :statuscode 409: ファイルがロック中（file_locked）、ETag 不一致（etag_mismatch）
+
+    :>json string _id: ファイルID
+    :>json string filename: ファイル名
+    :>json string contentType: Content-Type
+    :>json int length: ファイルサイズ
+    :>json object ACL: ACL
+    :>json string createdAt: 作成日時
+    :>json string updatedAt: 更新日時
+    :>json string metaETag: メタデータETag
+    :>json string fileETag: ファイルETag
+    :>json boolean cacheDisabled: キャッシュ無効フラグ
+    :>json string publicUrl: 公開URL
+    :>json object options: オプション
+    :>json boolean _deleted: 論理削除フラグ
+
+    **レスポンス**
+
+    更新したメタデータ(JSON)がレスポンスボディで返却される。
+
+    成功した場合、metaETag フィールドに更新された ETag 値（metaETag）が格納される
+    (データの内容に変更がない場合であっても、常に updatedAt とmetaETag 値は更新される)。
+
+    409 Conflictの場合はその原因をJSON形式で返す。
+
+    **注意事項**
+
+    * バケット contentACL の update 権限が必要。
+    * 対象ファイルの admin権限が必要。
+    * バケットcontentACL、および対象ファイルのread権限が無くても、上記のレスポンスが返却される。

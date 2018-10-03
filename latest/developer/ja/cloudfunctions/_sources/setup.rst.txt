@@ -1,0 +1,63 @@
+.. _cli_setup:
+
+=======================
+開発環境のセットアップ
+=======================
+
+.. include:: ../common/linkdef.rst
+
+ここでは API Gateway / Cloud Functions 開発に必要となる環境のセットアップ手順を説明します。
+
+.. note::
+
+  開発環境はクライアント(個々の開発者のPCなど)にインストールすることを想定しています。
+  サーバにインストールすることも可能ですが、推奨は致しません。
+
+Node.js のインストール
+=======================
+
+Cloud Functions 開発で使用するツールは Node.js で記述されているため、
+Node.js をインストールする必要があります。
+
+Node.js v6.x 以上をインストールしてください。
+
+* Linux 環境の場合は `nvm`_ を使用することを推奨します。
+* Windows の場合は `Node.jsサイト`_ からダウンロード・インストールしてください。
+
+Proxy 設定
+--------------------------------------
+
+Internet 接続に Proxy が必要な環境では、Node.js の npm (Node Package Manager) を使用する
+ために Proxy 設定が必要になります。
+
+以下のように "npm config set proxy" で Proxy サーバを指定してください。
+
+.. code-block:: bash
+
+    $ npm config set proxy http://[proxy_host]:[proxy_port]
+
+設定値を確認するには "npm config list" とします。
+
+
+Nebula CLI のインストール
+==========================
+
+Nebula CLI をインストールします。
+
+Nebula CLI は、カスタム REST API、Cloud Functions コード、ファンクションなどの定義の
+登録・検索・削除などを行うコマンドラインツールです。
+
+Nebula CLI は npmjs.com から配布されています。
+以下 npm コマンドを実行してでグローバルにインストールします。
+
+.. code-block:: bash
+
+    $ npm install -g @nec-baas/cli
+
+.. attention::
+
+   Node.js をユーザ毎ではなくシステムにインストールしている場合は、管理者権限が必要です。
+
+これで nebula コマンドが使用できるようになります。
+
+使用方法は `CLIツールコマンドリファレンス <../apigw/cli.html>`_ を参照してください。

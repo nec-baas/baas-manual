@@ -1,0 +1,158 @@
+======================
+オブジェクトストレージ
+======================
+
+ここではオブジェクトストレージの利用方法について説明します。
+
+バケットインスタンスの生成
+==========================
+
+オブジェクトストレージを操作する際は、NbObjectBucket クラスのインスタンスを生成する必要があります。
+引数にバケット名を指定して NbObjectBucket を生成します。
+
+.. code-block:: csharp
+
+    var empBucket = new NbObjectBucket<NbObject>("Employee");
+
+オブジェクトの新規追加
+======================
+
+オブジェクトは NbObject として生成します。
+以下、新規追加する例を示します。
+
+.. code-block:: csharp
+
+    var obj = empBucket.NewObject();
+    // または var obj = new NbObject("Employee");
+
+    obj["name"] = "Taro Nichiden";
+    obj["email"] = "taro@example.com";
+    obj["age"] = 27;
+
+    var resultObj = await obj.SaveAsync();
+
+NbObjectBucket.NewObject() または NbObject.New() を使って NbObject を生成します。
+値はインデクサ(["key名"])で設定します。
+
+SaveAsync() メソッドを呼び出すことで、オブジェクトを保存します。
+
+オブジェクトに設定できる値
+---------------------------
+
+オブジェクトで設定できる値は、以下のいずれかのクラスのインスタンスです。
+
+* 数値 (int, long, short, float, double)
+* string
+* bool
+* NbJsonObject
+* NbJsonArray
+
+NbJsonObject, NbJsonArray はそれぞれ JSON オブジェクトおよび配列に相当します。
+NbJsonObject, NbJsonArray に格納できる値も上記いずれかのクラスのインスタンスです。
+また、NbJsonObject, NbJsonArray は入れ子にすることが可能です。
+
+以下に例を示します。
+
+.. code-block:: csharp
+
+    obj["name"] = "Taro Nichiden"; // string
+    obj["age"] = 27; // int
+    obj["married"] = true; // bool
+
+    NbJsonObject contact = new NbJsonObject() {
+        {"tel", "03-xxxx-yyyy"},
+        {"email", "taro@example.com"}
+    };
+    obj["contact"] = contact; // JSON Object
+
+    NbJsonArray array = new NbJsonArray() { "Tennis", "Fishing" };
+    obj["hobbies"] = array; // JSON Array
+
+
+アクセス制御
+============
+
+オブジェクト単位でアクセス制御を行うことができます。
+
+アクセス制御には、ACLクラスを使用します。NbObject の ACL プロパティに設定します。
+
+.. code-block:: csharp
+
+    var acl = new NbAcl();
+    acl.Owner = "オーナID";
+    acl.R.Add("ユーザID");
+    acl.R.Add("g:グループ名");
+    acl.W.Add("ユーザID");
+
+    var obj = NbObject.New("Todos");
+    obj.ACL = acl;
+
+* Owner にオーナIDを設定します。
+* R, W, C, U, D プロパティにエントリを追加します。
+
+  - これらは HashSet<string> になっており、Add で値を追加できます。
+  - グループを指定する場合は "g:" プレフィクスが必要です。
+
+オブジェクトの更新
+==================
+
+オブジェクトを更新するには、NbObject の SaveAsync() メソッドを使用します。
+
+最初にクエリを行って NbObject のインスタンスを取得し、
+オブジェクトに値を設定して SaveAsync() を呼び出すという流れになります。
+
+オブジェクトの削除
+==================
+
+オブジェクトを更新するには、NbObject の DeleteAsync() メソッドを使用します。
+
+更新の場合と同様最初にクエリを行って NbObject のインスタンスを取得し、
+その後 DeleteAsync() を呼び出すという流れになります。
+
+NbObject のサブクラス化
+=======================
+
+NbObject をサブクラス化することができます。
+サブクラス化することにより、フィールドアクセスをプロパティアクセスで
+ラップすることが可能です。
+
+以下に例を示します。
+
+.. code-block:: csharp
+
+    public class Employee : NbObject
+    {
+        // 引数なしコンストラクタ(必須)
+        public Employee() : base("Employee") {}
+
+        // パラメータ付きコンストラクタ
+        public Employee(NbBucketType type = NbBucketType.Online,
+            NbService service = null) 
+            : base("Employee", type, service) {}
+
+        // "name" フィールドアクセスを Name プロパティでラップ
+        public string Name {
+            get { return this["name"] as string; }
+            set { this["name"] = value; }
+        }
+    }
+
+サブクラス化したクラスは、必ず引数なしコンストラクタを実装
+する必要があります。引数なしコンストラクタは、バケット名を
+指定して基底クラスのコンストラクタを呼び出して下さい。
+
+使用例は以下の通りです。
+
+.. code-block:: csharp
+
+   // オブジェクトの生成と保存
+   var emp = new Employee() {
+       Name = "Taro Nichiden"
+   };
+   await emp.SaveAsync();
+
+   // バケット取得時は型パラメータを指定する
+   var empBucket = new NbObjectBucket<Employee>("employee");
+
+   // クエリ (返り値の型は IEnumerable<Employee>)
+   var employees = await empBucket.QueryAsync(new NbQuery());

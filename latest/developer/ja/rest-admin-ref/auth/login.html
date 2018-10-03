@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1. ログイン &mdash; REST API Reference (Administration) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.2. ログアウト" href="logout.html" />
+    <link rel="prev" title="5. 管理者ログイン" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference (Administration)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 管理者ログイン</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.1. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logout.html">5.2. ログアウト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tenants/index.html">6. テナント操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">7. アプリケーション操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">8. 管理者操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenant_developers/index.html">9. テナント所属管理者操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">10. ライセンスキー操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_config/index.html">11. システム設定操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">12. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference (Administration)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. 管理者ログイン</a> &raquo;</li>
+        
+      <li>5.1. ログイン</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="auth-login">
+<span id="id1"></span><h1>5.1. ログイン<a class="headerlink" href="#auth-login" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="post">
+<dt id="post--1-_sysadm-_-auth-login">
+<code class="descname">POST </code><code class="descname">/1/_sysadm/_/auth/login</code><a class="headerlink" href="#post--1-_sysadm-_-auth-login" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ログインを行う。ログインが成功すると、管理者用セッショントークンが払い出される。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>email</strong> (<em>string</em>) -- E-mail アドレス (必須)</li>
+<li><strong>password</strong> (<em>string</em>) -- パスワード (必須)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常にログインした</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ/リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">415 Unsupported Media Type</a> -- Content-Type 不正</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>_id</strong> (<em>string</em>) -- 管理者ユーザID</li>
+<li><strong>developerToken</strong> (<em>string</em>) -- 管理者用セッショントークン</li>
+<li><strong>expire</strong> (<em>integer</em>) -- 管理者セッショントークンの有効期限</li>
+<li><strong>email</strong> (<em>string</em>) -- E-mail アドレス</li>
+<li><strong>name</strong> (<em>string</em>) -- 名前</li>
+<li><strong>forceChangePassword</strong> (<em>boolean</em>) -- 次回ログイン時パスワード強制変更フラグ</li>
+<li><strong>isSysAdmin</strong> (<em>boolean</em>) -- システム管理者フラグ</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>レスポンスボディの例</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;developerToken&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJ1c2VyX2lkI....a403dde3c3f704c5cd&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;expire&quot;</span><span class="p">:</span> <span class="mi">1376878239</span><span class="p">,</span>
+  <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;admin@example.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Administrator&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;forceChangePassword&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;isSysAdmin&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>expireは、UNIX Time (1970-01-01 00:00:00 UTCからの経過秒数)で表現する。ログインから24時間後が設定される。</li>
+<li>以後、管理者系APIでは、セッショントークンを X-Developer-Token ヘッダに指定すること。</li>
+<li>管理者セッショントークンには有効期限があるので注意すること。期限切れとなった場合は再度ログインを行うこと。</li>
+<li>セッショントークンの利用が終わったら、原則 <a class="reference internal" href="logout.html#auth-logout"><span class="std std-ref">ログアウト</span></a> APIを呼び出してトークンを無効化すること。</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logout.html" class="btn btn-neutral float-right" title="5.2. ログアウト" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="5. 管理者ログイン" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

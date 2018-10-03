@@ -1,0 +1,304 @@
+======================
+オフライン機能
+======================
+
+ここではオフライン機能の利用方法について説明します。
+
+オフライン機能は、具体的に以下の機能を提供します。
+
+* キャッシュ機能: サーバから受信したデータやサーバへ送信したデータを、クライアントのローカルストレージ(ローカルDB)にキャッシュし、ネットワークに接続していないオフライン環境でも必要なデータにアクセスできます。
+* 同期機能: ローカルストレージ上のキャッシュデータを、サーバとの間で手動、または自動で同期することができます。
+* オフラインログイン: ログインキャッシュを保持し、オフライン状態でもログイン操作を行うことができます。
+
+NEC BaaS Android SDK ライブラリの初期化
+========================================
+
+オフライン機能を利用する場合、NEC BaaS Android SDK ライブラリをオフライン機能を有効にして初期化する必要があります。
+初期化方法は、前述の「初期化処理の実装」に記載の「 :ref:`label-android_init_offline` 」を参照してください。
+
+初期化後、 NbService のインスタンスが生成されます。
+
+
+オフラインログイン
+===================
+
+オフライン状態でもログイン操作を行うことができます。
+ただし、一度オンライン状態でログインを行い、ログインキャッシュを作成しておく必要があります。
+
+オフライン時のログインキャッシュの有効期限は以下のように設定できます。
+これはオフライン環境下でログインしローカルDBにアクセス可能な期間に影響します。
+指定がない場合、有効期間は１日(デフォルト)になります。
+
+.. code-block:: java
+    
+    final long expire = 60 * 60 * 24 * 3; // ログイン有効期間を3日間に設定する場合
+
+    mService.setLoginCacheValidTime(expire); // 戻り値なし
+
+オブジェクトストレージ
+======================
+
+バケットモード: オンライン・レプリカ・ローカル
+----------------------------------------------
+
+オブジェクトバケットには以下３つの種類があります。
+
+* オンラインモードバケット : 常にサーバと通信するバケット。ローカルにはキャッシュしない。
+* レプリカモードバケット : 常にローカルキャッシュを読み書きするモード。サーバ上のバケットと同期する。
+* ローカルモードバケット : 常にローカルデータベースを読み書きするモード。サーバ上のバケットとは同期しない。
+
+オンラインモードバケットは、従来のバケット同じです。
+バケットに対する読み書き動作は、常にサーバに対して実行されます。
+ローカルにデータがキャッシュされることはありません。
+
+レプリカモードバケットでは、クライアントのストレージ上にバケットが作成され、
+読み書き動作は常にこのローカルストレージに対して実行されます。
+そして、同期操作を行うことで、サーバ上のバケットと双方向で同期が実行されます。
+
+ローカルモードバケットは、常にクライアントのストレージ上のバケットのみを読み書きします。
+サーバとの同期は行いません。
+
+バケットの取得
+--------------
+
+.. code-block:: java
+
+    NbObjectBucketManager obm = NbService.getInstance().objectBucketManager();
+
+    // オンラインモードバケットの取得
+    NbObjectBucket onlineBucket = obm.getBucket("bucket1", NbBucketMode.ONLINE);
+
+    // レプリカモードバケットの取得
+    NbObjectBucket replicaBucket = obm.getBucket("bucket1", NbBucketMode.REPLICA);
+
+    // ローカルモードバケットの取得
+    NbObjectBucket localBucket = obm.getBucket("local_bucket1", NbBucketMode.LOCAL);
+
+バケットは同様 NObjectBucketManager.getBucket() を使用して取得します。
+getBucket() の第二引数にモードを指定することで、取得するバケットの種類を指定します。
+
+オブジェクト操作
+----------------
+
+オンライン・レプリカ・ローカルバケットいずれも、読み書きを行うための API は同じです。
+オンラインバケットはサーバに、レプリカ・ローカルバケットはローカルストレージに対する操作となります。
+
+.. attention::
+
+  レプリカ・ローカルバケットに対するクエリは、オンラインバケットに対するクエリと100%互換ではありません。
+  レプリカ・ローカルバケットで使用できるクエリは、MongoDB の以下の演算子相当のものに限定されます。
+  $eq, $ne, $gt, $gte, $lte, $lt, $in, $nin, $all, $exists, $and, $or, $nor, $not, $regex。
+
+.. attention::
+
+  レプリカ・ローカルバケットに対するクエリは、デフォルト状態ではインデックスが使用されず全件検索となるため
+  検索性能は高くありません。インデックスを設定する方法については :ref:`local_index` を参照してください。
+
+レプリカバケットの手動同期
+--------------------------
+
+クライアント側のレプリカバケットと、サーバ側バケットの間でデータを手動同期する方法について説明します。
+
+データ同期では前回同期から更新のあった差分データを同期します。
+
+同期処理では、下記 1, 2 の処理を行います。下記 1. については、同期範囲を設定しておくことができます(後述)。
+
+オフライン時にクライアント側で更新したデータを、オンライン時にサーバへ送信する手段が必要となるため、
+下記 2. では、同期範囲の指定に関係なく、クライアント側で更新のあったデータは全てサーバに送信されます。
+
+1. サーバ側で更新のあったデータを受信
+2. クライアント側で更新したデータをサーバへ送信
+
+同期処理の進捗は NbObjectSyncEventListener() で通知されます。
+
+.. code-block:: java
+    
+    replicaBucket.sync(new NbObjectSyncResultCallback() {
+
+        @Override
+        public void onFailure(int errorCode, NbErrorInfo errorInfo) {
+            // 成功時の処理
+        }
+
+        @Override
+        public void onSuccess() {
+            // 失敗時の処理
+        }
+
+    });
+
+
+同期範囲の指定
+---------------
+
+デフォルトではレプリカバケットはすべてのデータを同期しますが、必要に応じて同期の範囲を指定できます。
+
+同期範囲はクエリ(NbQuery)でバケット単位に指定することができます。
+同期範囲はローカルDB上に永続化されますので、アプリ起動毎に設定する必要はありません。
+
+.. code-block:: java
+    
+    // query1に条件を指定
+    NbClause clause = new NbClause().or(
+        new Clause().equals("company", "nec"),
+        new Clause().greaterThan("age", 30),
+    );
+    NbQuery query1 = new NbQuery().setClause(clause);
+
+    // バケットに同期範囲を指定
+    replicaBucket.setSyncScope(scope);
+
+なお、同期対象を「変更」した場合は、ローカルDBのデータがクリアされますので注意してください。
+
+自動同期
+---------
+
+同期処理はバックグラウンドで自動化することができます。
+自動同期間隔を指定することにより、定期的にサーバとの間で同期を実行します。
+
+.. code-block:: java
+
+    final long interval = 3600; // 同期間隔を秒単位で指定
+    
+    replicaBucket.setAutoSyncInterval(interval); // 戻り値なし
+
+
+衝突解決ポリシーの設定
+-----------------------
+
+クライアントとサーバ間で同期を行う際、同じデータに対して、サーバ側とクライアント側で更新があると
+データ衝突が発生します。このデータ衝突の解決のため、事前にサーバ側とクライアント側のどちらのデータを
+優先して使用するか衝突解決ポリシーで指定することができます。
+
+* SERVER を指定した場合は、常にサーバ側のデータを優先してローカルDBのデータを更新します。
+* CLIENT を指定した場合は、常にクライアント側のデータを優先してサーバ側の該当データを更新します。
+* MANUAL を指定した場合は、衝突したデータをユーザに通知し、ユーザが選択したデータで該当データを更新します。
+
+衝突解決ポリシーは enum NbConflictResolvePolicy で指定し、オブジェクトバケットごとに設定できます。
+
+.. code-block:: java
+
+    public enum NbConflictResolvePolicy {
+        CLIENT,  // 常にクライアント側のデータを優先
+        SERVER,  // 常にサーバ側のデータを優先 (デフォルト)
+        MANUAL;  // マニュアル (ユーザにより選択)
+      }
+
+使用例は以下のとおりです。
+
+.. code-block:: java
+
+    replicaBucket.setResolveConflictPolicy(NbConflictResolvePolicy.SERVER); // サーバ優先
+
+同期イベント通知
+----------------
+
+衝突解決ポリシーにマニュアル（ユーザによる選択)を指定した場合、
+衝突発生時にイベントを受けとり処理を行う必要があります。
+
+同期イベントの受け取りには、NbObjectSyncEventListener リスナを使用します。
+リスナ登録は NbObjectBucketManager.registerNbObjectSyncEventListener() を使用します。
+
+以下に例を示します。
+
+.. code-block:: java
+
+    NbObjectSyncEventListener listener = new NbObjectSyncEventListener() {
+        private NbObjectConflictResolver mResolver;
+
+        @Override
+        public void onSyncStart(String bucketName) {
+        }
+
+        @Override
+        public void onSyncCompleted(String bucketName, List<String> syncObjectIds) {
+        }
+
+        @Override
+        public void onSyncConflicted(NbObjectConflictResolver resolver, String bucketName,
+                NbObject client, NbObject server) {
+            mResolver = resolver;
+            // bucketName, client, server もまとめて保持しておく
+
+            // ここでユーザ通知を行う
+        }
+
+        @Override
+        public void onResolveConflict(NbObject resolveObject, NbConflictResolvePolicy resolve) {
+        }
+
+        @Override
+        public void onSyncError(int bucketName, NbObject errorObject) {
+        }
+    };
+
+    // リスナの登録
+    mService.objectBucketManager().registerSyncEventListener(listener);
+
+データ衝突が発生すると、上記 onSyncConflicted() が呼び出されます。
+ここでユーザに衝突を通知したり、プログラムのロジックで衝突解決を実施します。
+
+解決を実行するには、通知されたデータ衝突に対して、使用するデータを選択します。
+使用するデータは以下のクライアント/サーバのいずれかを選択できます。
+
+.. code-block:: java
+    
+    public enum NbConflictResolvePolicy {
+        SERVER,  // サーバ側のデータを選択 (デフォルト)
+        CLIENT; // クライアント側のデータを選択
+    }
+
+衝突解決時のデータ選択は以下のAPIを使用して実行します。
+
+.. code-block:: java
+    
+    NbConflictResolvePolicy resolve = NbConflictResolvePolicy.SERVER; // サーバ側のデータを指定
+    
+    // bucketName には衝突したオブジェクトが属するバケットの名前(onSyncConflictedで通知のあったバケット)、 
+    // objectId には衝突したオブジェクトID(onSyncConflictedで通知のあったオブジェクトID)、 resolve には解決方法を指定します。
+    mResolver.resolveConflict(bucketName, objectId, resolve);
+
+
+.. _local_index:
+
+レプリカバケットに対するインデックス設定
+-----------------------------------------
+
+ローカル(レプリカ)バケットに保存される JSON データの検索を高速化するため、
+インデックスを設定することができます。
+
+注: このインデックスは、サーバ側で設定するインデックスとは連動しません。
+
+例えば以下のような形式のデータが格納されているバケットに対してインデックスを設定する場合、
+
+.. code-block:: javascript
+
+    {
+        "name": "Taro Nichiden",
+        "age": 31
+    }
+
+以下のような設定を行います。
+
+.. code-block:: java
+
+    Map<string, NbIndexType> index = new HashMap<>();
+
+    index.put("name", NbIndexType.STRING);
+    index.put("age", NbIndexType.NUMBER);
+
+    replicaBucket.setIndexToLocal(index, new NbResultCallback() {
+        @Override
+        public void onSuccess() { ... }
+        @Override
+        public void onFailure(int statusCode, NbErrorInfo errorInfo) { ... }
+    });
+
+setIndexToLocal の第一引数にインデックス情報を引き渡します。
+インデックスを設定可能なのは、文字列(STRING)、数値(NUMBER)、ブーリアン(BOOLEAN)のいずれかです。
+
+.. attention::
+
+   NbObject の該当フィールドにスカラー値以外(JSONオブジェクト、配列など)が格納されている場合、
+   データが正しく検索されません（該当データに検索がヒットしません)。
+   必ず、スカラー値のみが入っているフィールドに対してのみ、インデックスを設定するようにしてください。

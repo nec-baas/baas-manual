@@ -1,0 +1,12 @@
+.. _admin:
+
+=========
+管理系API
+=========
+
+.. toctree::
+   :maxdepth: 1
+
+   info
+   health
+   apistats

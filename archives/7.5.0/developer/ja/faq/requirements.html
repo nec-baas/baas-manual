@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 動作環境 &mdash; FAQ and Trouble Shooting Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. 性能・諸元" href="performance.html" />
+    <link rel="prev" title="1. 全般" href="generic.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FAQ and Trouble Shooting Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic.html">1. 全般</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 動作環境</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#windows">2.1. (サーバ) Windows で動作しますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java-11">2.2. (サーバ) Java 11 以降で動作しますか？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node-red-node-red">2.3. (Node-RED) Node-RED 環境を構築する際に注意すべき点はありますか？</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">3. 性能・諸元</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baas_server.html">4. BaaSサーバ運用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">5. MongoDB 関連</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">9. Push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">10. Cloud Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">11. JavaScript 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="android.html">12. Android 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ios.html">13. iOS 開発</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FAQ and Trouble Shooting Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. 動作環境</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 動作環境<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="windows">
+<h2>2.1. (サーバ) Windows で動作しますか？<a class="headerlink" href="#windows" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaS v7.0.0 より Windows Server 2016 に対応しています。
+(BaaS v7.0.0 未満は Windows には正式には対応しておりません)</p>
+<p>以下サーバが動作環境対象です。</p>
+<ul class="simple">
+<li>API サーバ</li>
+<li>デベロッパーコンソールサーバ</li>
+<li>SSE Push サーバ</li>
+</ul>
+<p>なお、Windows Server 2012 以降, Windows 7 以降(64bit版) でも動作はしますが、動作保証はしておりません。</p>
+<p>MongoDB も合わせて Windows で動作させる場合は、MongoDB の動作環境も確認ください (MongoDB は 32bit Windows では動作しません)</p>
+<p>以下サーバは Windows では動作しません。</p>
+<ul class="simple">
+<li>Cloud Functions サーバ</li>
+</ul>
+</div>
+<div class="section" id="java-11">
+<h2>2.2. (サーバ) Java 11 以降で動作しますか？<a class="headerlink" href="#java-11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>モバイルバックエンド基盤 サーバ v7.5.0 より、OpenJDK 11 に対応しています。</p>
+<p>Oracle JDK 11 でも動作するはずですが、現時点では保証対象外とさせていただいております。</p>
+</div>
+<div class="section" id="node-red-node-red">
+<h2>2.3. (Node-RED) Node-RED 環境を構築する際に注意すべき点はありますか？<a class="headerlink" href="#node-red-node-red" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Node.js は v6 以降(推奨は v8以降)を使用してください。少なくとも v0.12.x 以下では動作しません。</p>
+<p>Node.js の一部バージョン(v6.10.1, v7.6.0)で <a class="reference external" href="https://github.com/nodejs/node/issues/12033/">Node.jsのメモリリーク</a> が報告されています。
+運用時に使用する Node.js のバージョンには注意してください。
+モバイルバックエンド基盤の Node-RED 評価では、 Node.js v6.10.0 のバージョンで問題ないことを確認しています。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="performance.html" class="btn btn-neutral float-right" title="3. 性能・諸元" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="generic.html" class="btn btn-neutral" title="1. 全般" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. チュートリアル2 : ログイン機能 &mdash; Tutorials (iOS) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="4. チュートリアル1 : TODOアプリ (Swift版)" href="tutorial1_swift.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (iOS)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ (Objective-C版)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_code.html">3. チュートリアル1 : TODOアプリの実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_swift.html">4. チュートリアル1 : TODOアプリ (Swift版)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. チュートリアル2 : ログイン機能</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. サンプルの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.2. ファイル構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">5.3. ログイン状態のチェック</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">5.4. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5.5. ログイン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">5.5.1. ログイン処理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">5.6. ログアウト処理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">5.6.1. 保存データのアクセス制御</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (iOS)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. チュートリアル2 : ログイン機能</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. チュートリアル2 : ログイン機能<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>チュートリアル2では、チュートリアル1の Todo アプリにユーザ登録・ログイン機能を追加します。</p>
+<p>チュートリアル1ではデータを全員で共有していましたが、
+チュートリアル2ではユーザごとにデータを管理するようにします。</p>
+<div class="section" id="id2">
+<h2>5.1. サンプルの実行<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>チュートリアル1と同じように、デベロッパコンソールからアプリケーションを新たに作成し、
+Config.h に設定を行って下さい。</p>
+<p>また、デベロッパコンソールから、オブジェクトバケットを作成します。
+バケット名は “TodoTutorial2” としてください。
+なお、ACL はデフォルトのまま (認証ユーザのみ読み書き可能)で構いません。</p>
+<p>アプリを起動すると、ログイン画面が表示されます。
+最初にサインアップボタンを押してサインアップ画面に遷移して下さい。
+E-mail アドレスとパスワード(8文字以上)を入力してサインアップします。</p>
+<p>サインアップが完了したらログインを行って下さい。
+チュートリアル１と同様のアプリ画面が表示されます。
+データを入れたら、メニューからログアウトしてください。</p>
+<p>ログイン画面に戻りますので、今度は違うユーザ名でサインアップを行い、ログインしてみてください。
+先ほど作成したデータが、現在のユーザからは見えなくなっていることを確認してください。</p>
+</div>
+<div class="section" id="id3">
+<h2>5.2. ファイル構成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログイン関連のファイルとして、以下のものを追加しています。
+(これらのファイルは他のプロジェクトへ容易に転用できるようにしてあります）</p>
+<ul class="simple">
+<li>UserLogin.storyboard : ログイン関連の UI の定義 (UIレイアウト、遷移など)</li>
+<li>LoginViewController.h/.m : ログイン用の View Controller</li>
+<li>CreateAccountViewController.h/.m : アカウント作成用の View Controller</li>
+<li>PasswordResetViewController.h/.m : パスワードリセット用の View Controller</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>5.3. ログイン状態のチェック<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>TodoListViewController の viewWillAppear: 内で、ログイン状態のチェックを
+行うようにしています。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span>
+<span class="p">{</span>
+    <span class="c1">// ログインチェック</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">LoginViewController</span> <span class="nl">loginCheck</span><span class="p">:</span><span class="nb">self</span><span class="p">])</span> <span class="p">{</span>
+        <span class="c1">// ログイン状態であれば、Todo をリロードする</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">todos</span> <span class="o">==</span> <span class="nb">nil</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">[</span><span class="nb">self</span> <span class="nl">reloadTodos</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>LoginViewContoroller の loginCheck: は以下のように実装しています。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">loginCheck:</span><span class="p">(</span><span class="bp">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">viewController</span>
+<span class="p">{</span>
+    <span class="c1">// ログイン状態チェック</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">NBUser</span> <span class="n">loggedIn</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 未ログイン状態の場合は、ログイン画面を表示させる</span>
+    <span class="bp">UIStoryboard</span> <span class="o">*</span><span class="n">storyboard</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIStoryboard</span> <span class="nl">storyboardWithName</span><span class="p">:</span><span class="s">@&quot;UserLogin&quot;</span> <span class="nl">bundle</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="kt">id</span> <span class="n">firstViewControler</span> <span class="o">=</span> <span class="p">[</span><span class="n">storyboard</span> <span class="n">instantiateInitialViewController</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">viewController</span> <span class="nl">presentViewController</span><span class="p">:</span><span class="n">firstViewControler</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">NO</span> <span class="nl">completion</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>ユーザがログインしているかどうかは、NBUser の loggedIn メソッドで確認できます。
+戻り値が YES ならログイン済みです。</p>
+<p>ログイン済みでなかった場合は、UserLogin.storyboard を読み込みログイン画面を起動します。</p>
+</div>
+<div class="section" id="id5">
+<h2>5.4. サインアップ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サインアップは CreateAccountViewController クラスで行っています。
+具体的には createAccount: メソッド内で行っています。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="c1">// 登録処理</span>
+<span class="n">NBUser</span> <span class="o">*</span><span class="n">user</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBUser</span> <span class="n">new</span><span class="p">];</span>
+<span class="n">user</span><span class="p">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span><span class="p">;</span>
+<span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="p">;</span>
+<span class="p">[</span><span class="n">user</span> <span class="nl">signUpInBackgroundWithPassword</span><span class="p">:</span><span class="n">password</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NBUser</span> <span class="o">*</span><span class="n">user</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">LoginViewController</span> <span class="nl">showAlert</span><span class="p">:</span><span class="s">@&quot;正常にアカウント登録しました&quot;</span> <span class="nl">withTitle</span><span class="p">:</span><span class="s">@&quot;Success&quot;</span><span class="p">];</span>
+        <span class="p">[</span><span class="nb">self</span> <span class="nl">dismissViewControllerAnimated</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">completion</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">LoginViewController</span> <span class="nl">showError</span><span class="p">:</span><span class="n">error</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<p>サインアップを行うには、NBUser インスタンスを作成してパラメータを設定したのち、
+signUpInBackgroundWithPassword:block: を呼び出します。</p>
+<p>サインアップ処理が終了すると、ブロックが呼び出されます。
+成功した場合は Alert を表示して View Contorller を閉じます。</p>
+</div>
+<div class="section" id="id6">
+<h2>5.5. ログイン<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログインは LoginViewController の doLogin: メソッドで行っています。</p>
+<div class="section" id="id7">
+<h3>5.5.1. ログイン処理<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="c1">// ログイン処理実行</span>
+<span class="p">[</span><span class="n">NBUser</span> <span class="nl">logInInBackgroundWithUsername</span><span class="p">:</span><span class="n">username</span> <span class="nl">email</span><span class="p">:</span><span class="n">email</span> <span class="nl">password</span><span class="p">:</span><span class="n">password</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NBUser</span> <span class="o">*</span><span class="n">user</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Login success&quot;</span><span class="p">);</span>
+        <span class="p">[</span><span class="nb">self</span> <span class="nl">dismissViewControllerAnimated</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">completion</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Login error : %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+        <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="k">class</span> <span class="nl">showError</span><span class="p">:</span><span class="n">error</span><span class="p">];</span>
+        <span class="nb">self</span><span class="p">.</span><span class="n">usernameField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@&quot;&quot;</span><span class="p">;</span>
+        <span class="nb">self</span><span class="p">.</span><span class="n">passwordField</span><span class="p">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">@&quot;&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<p>ログインを行うには、NBUser の logInInBackgroundWithUsername:email:password:block:
+を呼び出します。</p>
+<p>ログイン処理が完了すると、ブロックが呼ばれます。
+成功した場合は View Controller を閉じ、アプリケーションに戻ります。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>5.6. ログアウト処理<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログアウト処理は、TodoListViewController の logout: で行っています。</p>
+<p>具体的な処理は LoginViewController の logout: にあります。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">([</span><span class="n">NBUser</span> <span class="n">loggedIn</span><span class="p">])</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">NBUser</span> <span class="nl">logOutInBackgroundWithBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NBUser</span> <span class="o">*</span><span class="n">user</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="nb">self</span> <span class="nl">loginCheck</span><span class="p">:</span><span class="n">viewController</span><span class="p">];</span>
+    <span class="p">}];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>NBUser の logOutInBackgroundWithBlock: を呼び出してログアウトを行います。</p>
+<div class="section" id="id9">
+<h3>5.6.1. 保存データのアクセス制御<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データの保存処理は TodoListViewController の addTodo: で行っており、処理はチュートリアル１と全く同じです。</p>
+<p>ただし、ログイン状態で作成したデータには、そのユーザのみがアクセス可能な ACL が
+自動的に設定されます。具体的には以下のような ACL が設定されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&quot;オーナのユーザID&quot;</span><span class="p">,</span>
+    <span class="nx">r</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">w</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">c</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">u</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">d</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">admin</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>このため、他のユーザが作成したデータは、同一のバケットに入っていても不可視になります。
+また、変更することもできません。</p>
+<p>なお、チュートリアル１のように未ログイン状態でデータを作成した場合は、
+以下のように誰でも読み書き可能な ACL が自動的に設定されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">r</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span> <span class="nx">w</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span> <span class="nx">c</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">u</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">d</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">admin</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tutorial1_swift.html" class="btn btn-neutral" title="4. チュートリアル1 : TODOアプリ (Swift版)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

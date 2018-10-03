@@ -1,0 +1,22 @@
+.. _admin_health:
+
+ヘルスチェック
+===============
+
+.. http:get:: /1/_health
+
+    BaaSサーバの稼働状態を返す
+
+    :statuscode 200: 正常取得
+
+    :>json string name: サーバ名("api"固定)
+    :>json string state: 稼働状態("running"固定)
+
+    **レスポンスボディの例**
+
+    .. code-block:: json
+
+        {
+            "name": "api",
+            "state": "running"
+        }

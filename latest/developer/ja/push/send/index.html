@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. クライアントからの Push 送信 &mdash; Push Notification Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="6.1. クライアントからの Push 送信について" href="intro.html" />
+    <link rel="prev" title="5.4. SSE Push 受信実装 (Node.js 編)" href="../sse/impl_node.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Push Notification Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. Push通知機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../send_console.html">2. コンソールからのPush送信方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apns/index.html">3. iOS Push (APNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fcm/index.html">4. Android Push (FCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sse/index.html">5. SSE Push (Server-Sent Event Push)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. クライアントからの Push 送信</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html">6.1. クライアントからの Push 送信について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_java.html">6.2. クライアントからのPush送信方法 (Pure Java / Android編)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_dotnet.html">6.3. クライアントからのPush送信方法 (.NET 編)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_js.html">6.4. クライアントからのPush送信方法 (JavaScript 編)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_ios.html">6.5. クライアントからのPush送信方法(iOS編)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_python.html">6.6. クライアントからのPush送信方法 (Python 編)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Push Notification Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>6. クライアントからの Push 送信</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="push">
+<h1>6. クライアントからの Push 送信<a class="headerlink" href="#push" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">6.1. クライアントからの Push 送信について</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#id1">6.1.1. 事前準備</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="send_push_java.html">6.2. クライアントからのPush送信方法 (Pure Java / Android編)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="send_push_java.html#push">6.2.1. Push送信方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_java.html#id2">6.2.2. オプションパラメータ設定方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="send_push_dotnet.html">6.3. クライアントからのPush送信方法 (.NET 編)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="send_push_dotnet.html#push">6.3.1. Push送信方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_dotnet.html#id2">6.3.2. オプションパラメータ設定方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="send_push_js.html">6.4. クライアントからのPush送信方法 (JavaScript 編)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="send_push_js.html#push">6.4.1. Push送信方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_js.html#id2">6.4.2. オプションパラメータ設定方法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="send_push_ios.html">6.5. クライアントからのPush送信方法(iOS編)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="send_push_ios.html#push-apns-gcm">6.5.1. Push メッセージ(APNs/GCM 共通部分)の構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_ios.html#push-apns">6.5.2. Push メッセージ(APNs 固有部分)の構築</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_ios.html#push">6.5.3. Push メッセージの送信</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="send_push_python.html">6.6. クライアントからのPush送信方法 (Python 編)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="send_push_python.html#push">6.6.1. Push送信方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send_push_python.html#id2">6.6.2. オプションパラメータ設定方法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="6.1. クライアントからの Push 送信について" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../sse/impl_node.html" class="btn btn-neutral" title="5.4. SSE Push 受信実装 (Node.js 編)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

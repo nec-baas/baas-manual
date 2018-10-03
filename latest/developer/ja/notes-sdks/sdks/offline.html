@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.8. オフライン・同期 &mdash; NEC BaaS Notes 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2.9. 文字種・文字列長制約" href="string_limit.html" />
+    <link rel="prev" title="2.7. Cloud Functions" href="cloudfn.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> NEC BaaS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../support.html">1. 品質保証範囲</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. SDK</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html">2.1. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.2. ファイルストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="android.html">2.3. Android SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">2.4. JavaScript SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dotnet.html">2.5. .NET SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html">2.6. Push</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">2.7. Cloud Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.8. オフライン・同期</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#acl">2.8.1. ACL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">具体例の解説</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.8.2. 同期範囲の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.8.3. 同期範囲の変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.8.4. 別ユーザログイン</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.8.5. 論理削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.8.6. 補足: オフライン・同期アルゴリズムの解説</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="string_limit.html">2.9. 文字種・文字列長制約</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparison_table.html">2.10. SDKの機能比較表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">3. 改訂履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NEC BaaS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">2. SDK</a> &raquo;</li>
+        
+      <li>2.8. オフライン・同期</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2.8. オフライン・同期<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>オフライン・同期機能を使用する際は、次の点に注意が必要です。</p>
+<ul class="simple">
+<li>ACL</li>
+<li>同期範囲の設定</li>
+<li>同期範囲の変更</li>
+<li>別ユーザログイン</li>
+<li>論理削除オブジェクト</li>
+</ul>
+<p>以下、順に説明します。</p>
+<div class="section" id="acl">
+<h2>2.8.1. ACL<a class="headerlink" href="#acl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ローカルキャッシュに関係するアクセス権変更があっても、同期ではローカルキャッシュへは自動的に反映されません。ユーザのアクセス可能なオブジェクトが増加した場合、増加したオブジェクトを取得できない場合があります。</p>
+<ul class="simple">
+<li>具体例<ul>
+<li>ユーザの所属するグループの追加や変更</li>
+<li>バケットに対するアクセス権の追加</li>
+</ul>
+</li>
+<li>解説<ul>
+<li>オブジェクトの ACL を変更した場合は、当該オブジェクトは変更されたとみなされ同期によりサーバからクライアントへ送付されるため問題はありません。</li>
+<li>グループにユーザを追加すると、オブジェクトには変更がないにも関わらずアクセス不可⇒可にアクセス権限が変化する場合があります。この場合、当該オブジェクトは差分同期の対象とならないため、クライアントへ送付されません。</li>
+<li>逆にグループからユーザを削除すると、オブジェクトがアクセス可⇒不可 に変化する場合があります。この場合、当該オブジェクトはローカルキャッシュから削除されず、更新もされないオブジェクトとなってしまいます。</li>
+</ul>
+</li>
+<li>対策<ul>
+<li>ユーザのアクセス権が変わるような操作を行う場合には、ローカルキャッシュを削除するようにしてください。</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id2">
+<h3>具体例の解説<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>User A の所属グループが(Group1,Group2)から(Group1,Group3)に変更になった場合、
+アクセス権が失われた Object Y は、ローカルキャッシュから消えずに残り、アップデートもされなくなってしまいます。</p>
+<p>アクセス権が追加された Object Z は、クライアントにオブジェクトが送付されず、アプリから存在が見えません。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="13%" />
+<col width="13%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">オブジェクト</th>
+<th class="head">アクセス可能なグループ</th>
+<th class="head">アクセス権変更前</th>
+<th class="head">アクセス権変更後</th>
+<th class="head">挙動</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Object X</td>
+<td>Group1</td>
+<td>○</td>
+<td>○</td>
+<td>正常</td>
+</tr>
+<tr class="row-odd"><td>Object Y</td>
+<td>Group2</td>
+<td>○</td>
+<td>×</td>
+<td>消えなくなる</td>
+</tr>
+<tr class="row-even"><td>Object Z</td>
+<td>Group3</td>
+<td>×</td>
+<td>○</td>
+<td>見えない</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>2.8.2. 同期範囲の設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>同期範囲を決定するために利用するオブジェクトフィールドは書き換えが起こらないフィールドのみとしてください。</p>
+<ul class="simple">
+<li>具体例<ul>
+<li>特定のフィールドにIDを入れるなどして、同期範囲を設定する場合、その フィールドの値を変更しないでください。</li>
+<li>端末Aでローカルキャッシュにオブジェクトを作成・同期したあと、別の端末Bから そのオブジェクトの ID を端末Aの同期範囲外に変更すると、当該オブジェクトが端末Aのローカルキャッシュから削除されなくなります。</li>
+</ul>
+</li>
+<li>解説<ul>
+<li>ID 変更を行ったオブジェクトが同期範囲から外れると、同期時に当該オブジェクトがクライアントに送信されないため、端末Aのローカルキャッシュから削除されなくなります。</li>
+</ul>
+</li>
+<li>対策<ul>
+<li>同期範囲として利用するフィールドの値変更は行わないように注意してください。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>2.8.3. 同期範囲の変更<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>同期範囲を変更すると、最終同期日時がリセットされます。</p>
+<ul class="simple">
+<li>最終同期日時がリセットされると、次回同期は差分同期ではなく全データ同期となるため、同期に要する時間が長くなります。</li>
+<li>最終同期日時の考え方は、p33「オフライン・同期アルゴリズムの解説」を参照ください。</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>2.8.4. 別ユーザログイン<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ローカルキャッシュを取得した際のユーザと異なるユーザでのログインを行うと、 ACLや同期範囲設定の影響で、アクセス可能なオブジェクトへアクセスできない場合があります。</p>
+<ul class="simple">
+<li>具体例<ul>
+<li>ユーザAでアプリの利用を開始し同期実行後、ユーザBでログインし同期を行うケースを考えます。ユーザAにはアクセス権がなくユーザBにアクセス権があるオブジェクトが存在する場合、同期時にクライアントにはそのオブジェクトが送信されません。</li>
+<li>ユーザ毎に同期範囲を変える設定にしていた場合、同期範囲設定がローカルキャッシュと異なる条件となってしまうため、同期範囲に使う ID を変更するのと同じ結果となります。</li>
+</ul>
+</li>
+<li>解説<ul>
+<li>ユーザAで同期を行った際には、サーバ上でこのオブジェクトに更新があったとしてもクライアントには送信されません(ユーザAのアクセス権限がないため)。この後、ユーザBでログインして同期しても、当該オブジェクトの更新時刻は最終同期日時より古いため更新されていないとみなされ、同期されません。</li>
+</ul>
+</li>
+<li>対策<ul>
+<li>別ユーザでログインした場合、キャッシュは消すように実装してください。</li>
+<li>あるいは、ユーザ単位で ACL の設定を変える場合、運用で異なるユーザでのログインを行わないように管理してください。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>2.8.5. 論理削除<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サーバ上で論理削除されたオブジェクトは、そのままでは物理的には削除されません。古くなったオブジェクトは定期的に削除する処置が必要です。</p>
+<p>詳細は <a class="reference internal" href="object_storage.html#object-delete"><span class="std std-ref">オブジェクト削除</span></a> を参照ください。</p>
+</div>
+<div class="section" id="id7">
+<h2>2.8.6. 補足: オフライン・同期アルゴリズムの解説<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>同期はバケット単位に実行されます。</p>
+<p>バケット毎に「Pull」⇒「Push」処理が順に実行されます。
+Pull / Push 処理ともに、更新データのみを同期する「差分同期」が行われます。</p>
+<ul class="simple">
+<li>Pull 処理<ul>
+<li>Pull 処理では、サーバ上の更新データがクライアント側に転送、同期されます。</li>
+<li>Pull 時には、サーバに対して a)「同期範囲内」かつ b)「更新時刻が最終同期日時以降」となるデータをクエリし、同期します。<ul>
+<li>初回同期時は b) の条件は使用されません。</li>
+</ul>
+</li>
+<li>Pull 処理が行われた際、衝突処理も実行されます。</li>
+</ul>
+</li>
+<li>Push 処理<ul>
+<li>Push 処理では、クライアント上の更新データがサーバ側に転送されます。</li>
+<li>ローカルキャッシュ上には、オブジェクト毎に更新フラグ(dirtyフラグ)があり、dirty 状態のオブジェクトのみがサーバに同期されます。</li>
+<li>なお、Push 時には同期範囲は使用されません (全範囲同期)。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="string_limit.html" class="btn btn-neutral float-right" title="2.9. 文字種・文字列長制約" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cloudfn.html" class="btn btn-neutral" title="2.7. Cloud Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

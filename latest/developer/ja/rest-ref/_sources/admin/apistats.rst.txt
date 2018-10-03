@@ -1,0 +1,325 @@
+.. _admin_apistats:
+
+API統計情報取得
+===============
+
+.. http:get:: /1/(tenantId)/management/apistats
+
+    特定の1テナントもしくは全テナントを対象とし、MongoDBに10分単位で保存しているAPI統計情報(APIコール数)を取得する。
+
+    特定の1テナントを対象とする場合は、マスターキーが必要。
+    パスパラメータ tenantId にはテナントIDまたはテナント名を指定する。
+
+    全テナントを対象とする場合は、システムキーが必要。
+    パスパラメータ tenantId には "_system" を指定する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須、ただしシステムキー使用時は不要)
+    :reqheader X-Application-Key: 特定テナント対象時はマスターキー。全テナント対象時はシステムキー。(必須)
+
+    :parameter string tenantId: 特定テナント対象時はテナントIDまたはテナント名。全テナント対象時は "_system"。
+
+    :query boolean total: 指定期間の積算値を取得する場合は true。個別の統計値(10分毎)を取得する場合は false。
+    :query string tenantId: 検索対象をテナントIDで絞り込む (システムキー使用時のみ指定可能)
+    :query string appId: 検索対象をアプリケーションIDで絞り込む
+    :query string customApiName: 検索対象をカスタムAPI名で絞り込む
+    :query string order: ソート順序
+    :query int limit: 検索数上限。デフォルトは 1,000件。
+    :query string start: 開始日時(ISODate形式)
+    :query string end: 終了日時(ISODate形式)
+
+    :statuscode 200: 正常取得
+    :statuscode 400: パラメータ不正
+    :statuscode 401: 認証エラー
+
+    :>json array results: 統計情報の配列
+
+    **レスポンスボディの例**
+
+    統計情報は JSON の results プロパティに配列形式で格納される。
+
+    以下に全テナント対象、total = false の場合の例を示す。
+    各要素は、10分単位のAPI統計情報。
+
+    .. code-block:: javascript
+
+        {
+          "results": [
+            {
+              "createdAt": "2017-07-12T00:00:000Z",
+              "tenantId": "テナントID_1",
+              "アプリケーションID_1": {
+                "users": 2,
+                "customApi": {
+                  "hello": {
+                    "/sayHello": {
+                      "GET": 1
+                    }
+                  }
+                },
+                "functions": 1
+              },
+              "アプリケーションID_2": {
+                "objects": 3,
+              }
+            },
+            {
+              //API実行回数0のデータも取得される
+              "createdAt": "2017-07-12T00:00:000Z",
+              "tenantId": "テナントID_2"
+            }
+          ]
+        }
+
+    **注意事項**
+
+    * システムキー指定の場合のみクエリパラメータにtenantIdを指定可。
+    * tenantIdとappIdの同時指定による検索対象の絞り込みは不可。同時に指定した場合、レスポンスは「400 Bad Request」となる。
+    * customApiNameを指定する場合は、同時にtenantIdもしくはappIdの指定が必要。同時に指定されなかった場合、レスポンスは「400 Bad Request」となる。
+
+API統計情報の取得範囲
+----------------------
+
+X-Application-Keyにマスターキーを指定した場合、該当アプリを含むテナント内のAPI統計情報を取得する。
+
+システムキーを指定した場合は全テナント横断のAPI統計情報を取得する。
+
+積算値フラグ (total)
+---------------------
+
+totalにtrueを設定した場合、start, end で指定した期間内のAPI統計情報の積算値を取得する。
+テナント毎、アプリ毎の積算値も合わせて取得する。
+totalを省略、またはfalseを指定した場合、10分単位の個別のAPI統計情報を取得する。
+
+API統計情報の積算値は以下のように、テナント毎に "results" に配列形式で格納される。
+
+例) total=true として積算値を取得した場合:
+
+.. code-block:: javascript
+
+        {
+          "results": [
+            {
+              "tenantId": "テナントID_1",
+              "tenantTotal": 15,   //テナント毎の積算値
+              "アプリケーションID_1": {
+                "appTotal": 11,    //アプリ毎の積算値
+                "users": 3,
+                "customApi": {
+                  "hello": {
+                    "/sayHello": {
+                      "GET": 2
+                    },
+                    "/tweetHello": {
+                      "GET": 1
+                    }
+                  }
+                },
+                "functions": 5
+              },
+              "アプリケーションID_2": {
+                /*…*/
+              }
+            },
+            {
+              "tenantId": "テナントID_2",
+              /*…*/
+            },
+            /*…*/
+          ]
+        }
+
+テナントIDでの検索対象の絞り込み (tenantId)
+---------------------------------------------
+
+クエリパラメータ tenantId を使用して、指定されたテナントIDで検索対象の絞り込みを行うことができる。
+
+X-Application-Keyにシステムキーを設定している場合のみ指定可能。
+X-Application-Keyにマスターキーを使用する場合(パスに tenantId を指定する場合)、クエリパラメータの tenantId は無視される。
+
+テナントID_1で検索対象の絞り込みを行う場合は、クエリパラメータに以下のように指定する。
+::
+
+    tenantId=テナントID_1
+
+10分単位のAPI統計情報をテナントID_1で絞り込みした場合の例を以下に示す。
+
+.. code-block:: javascript
+
+        {
+          "results": [
+            {
+              "createdAt": "2017-07-12T00:00:000Z",
+              "tenantId": "テナントID_1",
+              "アプリケーションID_1": {
+                "users":2 ,
+                "customApi": {
+                  "hello": {
+                    "/sayHello": {
+                      "GET": 1
+                    }
+                  }
+                },
+                "functions": 1
+              },
+              "アプリケーションID_2": {
+                "objects": 3,
+              }
+            },
+            {
+              "createdAt": "2017-07-12T00:20:000Z",
+              "tenantId": "テナントID_1"
+            },
+            /*...*/
+          ]
+        }
+
+アプリケーションIDでの検索対象の絞り込み (appId)
+-------------------------------------------------
+
+指定されたアプリケーションIDで検索対象の絞り込みを行う。
+
+アプリケーションID_1で検索対象の絞り込みを行う場合は、以下のように指定する。
+::
+
+    appId=アプリケーションID_1
+
+10分単位のAPI統計情報をアプリケーションID_1で絞り込みした場合の例を以下に示す。
+
+.. code-block:: javascript
+
+        {
+          "results":[
+            {
+              "createdAt": "2017-07-12T00:00:000Z",
+              "tenantId": "テナントID_1",
+              "アプリケーションID_1": {
+                "users": 2,
+                /*…*/
+              }
+            },
+            {
+              "createdAt": "2017-07-12T00:10:000Z",
+              "tenantId": "テナントID_1"
+              "アプリケーションID_1": {
+                "customApi": {
+                  "hello": {
+                    "/sayHello": {
+                      "GET": 1
+                    },
+                    "/tweetHello": {
+                      "GET": 1
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+
+カスタムAPI名での検索対象の絞り込み (customApiName)
+-------------------------------------------------------
+
+指定されたカスタムAPI名で検索対象の絞り込みを行う。
+カスタムAPI名を指定する場合は、同時にテナントIDもしくはアプリケーションIDの指定が必要である。
+
+カスタムAPI名「hello」で検索対象の絞り込みを行う場合は、以下のように指定する。
+::
+
+    customApiName=hello
+
+10分単位のAPI統計情報をカスタムAPI名「hello」とテナントID「テナントID 1」で絞り込みした場合の例を以下に示す。
+
+.. code-block:: javascript
+
+        {
+          "results": [
+            {
+              "createdAt": "2017-07-12T00:00:000Z",
+              "tenantId": "テナントID_1",
+              "アプリケーションID_1": {
+                "customApi": {
+                  "hello": {
+                    "/sayHello": {
+                      "GET": 1
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "createdAt": "2017-07-12T00:10:000Z",
+              "tenantId": "テナントID_1"
+              "アプリケーションID_1": {
+                "customApi": {
+                  "hello": {
+                    "/sayHello": {
+                      "GET": 1
+                    },
+                    "/tweetHello": {
+                      "GET": 1
+                    }
+                  }
+                }
+              },
+              "アプリケーションID_2": {
+                "customApi": {
+                  "hello": {
+                    "/sayHello": {
+                      "GET": 1
+                    }
+                  }
+                }
+              }
+            },
+            /*…*/
+          ]
+        }
+
+ソート順序 (order)
+-------------------
+
+order パラメータにcreatedAtを指定することによりAPI統計情報の生成時刻でソートを行うことができる。
+積算値フラグtotalがtrueの場合は無視される。
+
+以下の例は、生成時刻の古い順でソートする。
+::
+
+    order=createdAt
+
+生成時刻の新しい順にソートする場合は以下のようにcreatedAtの前に "-" を付与する。
+::
+
+    order=-createdAt
+
+orderを指定しなかった場合は、デフォルトで生成時刻の古い順でソートされる。
+
+createdAt以外のキーがorderに設定された場合、レスポンスは「400 Bad Request」となる。
+
+検索数上限 (limit)
+-------------------
+
+返却する検索数の上限を指定する。
+対象は10分単位で保存してあるAPI統計情報であり、積算値フラグtotalがtrueの場合は無視される。
+
+以下の例では、API統計情報500件を取得する。
+::
+
+    limit=500
+
+limit のデフォルト値は 1,000件とする。limit を指定しなかった場合は、デフォルトでこの値が指定されたものとみなされる。
+
+limit に -1 を指定した場合は制限なし(無限大)として扱う。
+
+注: サーバ側のコンフィグレーションによっては、limit 値に制限がかけられている場合がある。
+この場合、上限値を越える値を指定したり -1 を指定した場合は 400 Bad Request エラーとなる。
+
+開始日時 (start)、終了日時(end)
+---------------------------------
+
+開始日時と終了日時で集計するデータの期間を指定する。
+開始日時、または、終了日時のみの指定も可。時刻はUTC時刻で指定する。
+
+例) 2017/04/01 から 2017/05/31 までのAPI統計情報を取得したい場合
+::
+
+    start=2017-04-01T00:00:00.000Z&end=2017-05-31T00:00:00.000Z

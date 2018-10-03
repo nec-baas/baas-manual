@@ -1,0 +1,21 @@
+NEC BaaS Python SDK Guide
+=========================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 3
+
+   intro
+   setup
+   initialize
+   basics
+   user
+   group
+   object_storage
+   object_query
+   object_aggregation
+   file_storage
+   api_gateway

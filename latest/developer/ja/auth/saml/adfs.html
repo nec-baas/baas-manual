@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.5.1. ADFS &mdash; Authentication Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.5.2. OpenAM" href="openam.html" />
+    <link rel="prev" title="5.5. IdP 側の設定" href="idp.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. ADFS / SAML 認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">5.2. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequence.html">5.3. 動作概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_system.html">5.4. システムの事前設定</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="idp.html">5.5. IdP 側の設定</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.5.1. ADFS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#idp">IdPメタデータのダウンロード</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sp">SPメタデータの登録と設定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="openam.html">5.5.2. OpenAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ssocircle.html">5.5.3. SSO Circle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">5.6. BaaSサーバの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register.html">5.7. 認証時のユーザ・グループ自動登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devel.html">5.8. アプリケーションの開発</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attention.html">5.9. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. ADFS / SAML 認証</a> &raquo;</li>
+        
+          <li><a href="idp.html">5.5. IdP 側の設定</a> &raquo;</li>
+        
+      <li>5.5.1. ADFS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adfs">
+<h1>5.5.1. ADFS<a class="headerlink" href="#adfs" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Windows Server2012 R2上での操作を例に説明します。</p>
+<div class="section" id="idp">
+<h2>IdPメタデータのダウンロード<a class="headerlink" href="#idp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ADFS サーバ (Windows Server 2012 R2) の場合は、下記 URL から取得できます。</p>
+<blockquote>
+<div>&lt;<a class="reference external" href="https:/">https:/</a>/&lt;servername&gt;/FederationMetadata/2007-06/FederationMetadata.xml&gt;</div></blockquote>
+<p>このファイルを BaaS デベロッパーコンソールから IdPメタデータとしてアップロードしてください。</p>
+</div>
+<div class="section" id="sp">
+<h2>SPメタデータの登録と設定<a class="headerlink" href="#sp" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ol class="arabic simple">
+<li>サーバーマネージャ＞ダッシュボード＞ツール＞ AD FSの管理を選択</li>
+<li>ADFS 画面左の ADFS &gt; 信頼関係 配下を展開して表示</li>
+<li>証明書利用者信頼を右クリックして「証明書利用者信頼の追加」を選択</li>
+<li>証明書利用者信頼の追加ウィザードを開始</li>
+<li>「証明書利用者についてのデータをファイルからインポートする」を選び、参照ボタン押下でエクスポートした SP メタデータファイルを選択</li>
+<li>追加ウィザードに従い次に進む。この際、表示名には適当な文字列を選択し、デフォルトの設定を変更せずに次に進む</li>
+<li>完了画面で、ウィザードの終了時にこの証明書利用者信頼の「要求規則の編集」ダイアログを開く、にチェックがついていることを確認して閉じるを選択</li>
+<li>要求規則の編集画面が起動されるので、以下の規則を追加</li>
+</ol>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="21%" />
+<col width="15%" />
+<col width="19%" />
+<col width="25%" />
+<col width="21%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>要求規則テンプレート</td>
+<td>要求規則名</td>
+<td>属性ストア</td>
+<td>LDAP属性</td>
+<td>出力方向の要求の種類の種類</td>
+</tr>
+<tr class="row-even"><td>LDAP属性を要求として送信</td>
+<td>任意の規則名</td>
+<td>Active Directory</td>
+<td>SAM-Account-Name</td>
+<td>名前ID</td>
+</tr>
+<tr class="row-odd"><td>LDAP属性を要求として送信</td>
+<td>任意の規則名</td>
+<td>Active Directory</td>
+<td>Token-Groups-名前の指定なし</td>
+<td>グループ</td>
+</tr>
+<tr class="row-even"><td>LDAP属性を要求として送信</td>
+<td>任意の規則名</td>
+<td>Active Directory</td>
+<td>SAM-Account-Name</td>
+<td>共通名</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="9">
+<li>OK ボタンで要求規則の編集画面を閉じる</li>
+<li>登録したデータの表示名を右クリック＞プロパティ＞詳細設定タブでセキュアハッシュアルゴリズムを SHA-1 に設定</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="openam.html" class="btn btn-neutral float-right" title="5.5.2. OpenAM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="idp.html" class="btn btn-neutral" title="5.5. IdP 側の設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="../_static/analytics.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

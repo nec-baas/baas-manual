@@ -1,0 +1,179 @@
+.. _object_batch:
+
+バッチオペレーション
+===========================
+
+.. http:post:: /1/(tenantId)/objects/(bucketName)/_batch
+
+    複数オブジェクトを同時に追加・更新・削除する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+    :reqheader Content-Type: application/json
+
+    :parameter string bucketName: バケット名
+
+    :query string requestToken: リクエストトークン
+    :query int deleteMark: 論理削除を行う場合は 1
+    :query int enableTx: トランザクション機能を使用する場合は 1
+
+    :<json array request: オペレーションの配列
+
+    :statuscode 200: 正常実行した
+    :statuscode 400: パラメータ/リクエストボディ不正
+    :statuscode 415: Content-Type 不正
+    :statuscode 501: サーバがトランザクション機能をサポートしない
+
+    :>json array results: オペレーション実行結果の配列
+
+    **リクエスト**
+
+    複数のデータを同時にバッチ更新する。
+
+    クライアント側から requestToken を指定することができる。
+
+    サーバは、requestToken が指定された場合、成功時レスポンスをキャッシュする。
+    同一 requestToken を持つリクエストが再送された場合、サーバは処理を行わずキャッシュしたレスポンスのみを返却する。
+
+    ただし、同一requestTokenでのリクエストが非常に短い間隔で再送された場合には、処理が二重に行われる可能性があるため注意が必要。
+    クライアントは requestToken をランダムかつ推測不可能な文字列として作成しなければならない。
+
+    "deleteMark" に 1 を指定した場合、操作種別 "delete" において、データは論理削除される(実データは削除せず削除マークのみを true に設定する)。
+    insert, update には影響しない。
+
+    "enableTx" に 1 を指定した場合、MongoDB のトランザクション機能を使用して全オペレーションがアトミックに処理される。
+    オペレーションのうち１つでも失敗した場合は、全オペレーションがロールバックされる。
+    レスポンスのステータスコードは 200 OKとなるが、ロールバックされたオペレーションの result の値は "rollbacked" となる。
+
+    * なお、トランザクション機能を使用する場合のMongoDB の要件は、注意事項を参照。
+    * サーバがトランザクション機能をサポートしない場合は、レスポンスのステータスコードは 501 Not Implemented。
+
+    **リクエストボディの例**
+
+    .. code-block:: json
+
+        {
+          "requests": [
+            {
+              "op": "insert"
+              "data": {
+                "_id": "xxxxxxxx",
+                "name": "Foo",
+                "score": 80,
+                "ACL": {
+                  "r": ["g:authenticated"],
+                  "w": ["g:authenticated"],
+                }
+              }
+            },
+            {
+              "op": "update",
+              "_id": "yyyyyyyy",
+              "etag": "ff123cc6-01a9-11e4-9be6-d39577f35b51",
+              "data": {
+                "name": "Foo",
+                "score": 80,
+                "ACL": {
+                  "r": ["g:authenticated"],
+                  "w": ["g:authenticated"],
+                },
+              }
+            },
+            {
+              "op": "delete",
+              "_id": "zzzzzzzz",
+              "etag": "11b6cedc-01aa-11e4-88f1-0b3208ae4242"
+            }
+          ]
+        }
+
+    オペレーションは "requests" に配列で指定する。サーバはこの配列の先頭から順に処理を実行する。
+
+    各オペレーションには以下の要素を指定する。
+
+    * op : 操作種別。insert, update, delete のいずれかを指定。
+    * _id : 対象となるオブジェクトID。update, delete の場合は必須。insertの場合は不要。
+      insert で id 指定したい場合はdata の "_id" フィールドに格納すること。
+    * etag: オブジェクトの ETag。update, delete 操作では、ETag を指定することで楽観ロックが実施される(サーバ側データと ETag 照合がされる)。
+    * data: 更新データ。insert, update の場合は、それぞれオブジェクトの作成、更新APIで送信するリクエストボディの内容と同一。delete の場合は不要。
+      insert の場合、"_id" を含む場合はその値が採用され、指定しない場合はサーバ側で作成する。
+
+      - 注: update の場合、$full_update を指定しないとフルアップデートにならず部分更新となる。
+
+    **レスポンスボディの例**
+
+    .. code-block:: javascript
+
+        {
+          "results": [
+            {
+              "result": "ok",
+              "_id": "...",
+              "etag": "...",
+              "updatedAt": "...",
+              "data": { /*DATA*/ },
+            },
+            {
+              "result": "conflict",
+              " reasonCode ": " etag_mismatch ",
+              "_id": "...",
+              "etag": "...",
+              "updatedAt": "...",
+              "data": { /*DATA*/ },
+            },
+            {
+              "result": "serverError",
+              "_id": "..."
+            },
+            {
+              "result": "ok",
+              "_id": "...",
+              "etag": "...",
+              "updatedAt": "...",
+              "data": { /*DATA*/ },
+            }
+          ]
+        }
+
+    results 配列には、リクエスト時のオペレーションに対応した個数の JSON データが格納される。
+    また、この並び順はリクエストの配列の順番に対応している。
+    
+    データには以下のフィールドが設定される。
+
+    * result : 実行結果。以下のいずれか。
+
+      - ok : 正常に操作が完了した。
+      - conflict : 衝突が発生した。
+      - forbidden : ACL違反のためアクセス不可
+      - notFound : 該当データが存在しない
+      - badRequest : リクエスト不正
+      - requestEntityTooLarge : オブジェクトサイズ制限超過
+      - rollbacked: トランザクション失敗によりロールバックされた
+      - serverError : その他のエラー
+    * reasonCode :conflictの理由。Resultがconflictの場合のみ付加。以下のいずれか。
+
+      - unspecified : 不明（初期値）
+      - request_conflicted : 更新・削除処理衝突（更新･削除中に該当オブジェクトに変更発生）
+      - duplicate_key : ユニーク制約エラー（重複エラー）
+      - duplicate_id : IDが衝突（重複エラー）
+      - etag_mismatch : ETagが衝突（比較エラー）
+    * _id : オブジェクトID。insertでエラーとなった場合は付加されない。
+    * etag : 更新後の ETag 値
+    * updatedAt : 更新時刻
+    * data : resultがokの場合、更新されたオブジェクトデータ。
+      作成・更新・削除 API のレスポンスボディと同じもの。
+      エラーの場合は "etag_mismatch" のみデータが格納され、それ以外の場合はなし。
+
+    **注意事項**
+
+    * バケットcontentACLと対象オブジェクトの update 権限が必要
+    * 対象オブジェクトの ACL の変更を伴う場合、admin 権限も必要。
+    * 同一requestTokenを用いた再送が非常に短い間隔で行われた場合、処理が二重に行われる可能性がある。
+    * deleteMark は操作種別 "delete" のみに影響する。
+    * バッチオペレーションにおいてもデータ暗号化に対応する。注意事項等は、:ref:`object_create`, :ref:`object_update` を参照。
+    * トランザクション機能を使用する場合は以下の条件がある
+
+      - MongoDB 4.0 以上かつレプリカセット構成が必要
+      - レプリカセット全メンバのfeatureCompatibilityVersionは4.0以上に設定されていること
+      - MongoDB 4.0 のシャーディング環境では利用不可

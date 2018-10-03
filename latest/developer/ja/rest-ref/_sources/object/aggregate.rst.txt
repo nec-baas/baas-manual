@@ -1,0 +1,110 @@
+.. _object_aggregate:
+
+オブジェクトの集計(Aggregation)
+=================================
+
+.. http:post:: /1/(tenantId)/objects/(bucketName)/_aggregate
+
+    オブジェクトの集計処理(Aggregation)を行う。
+
+    指定バケット内のオブジェクトの集計処理を行う。
+    MongoDB の Aggregation と同等の処理である。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+    :reqheader Content-Type: application/json
+
+    :parameter string bucketName: バケット名
+
+    :<json array pipeline: Aggregation Pipeline Stage の配列
+    :<json object options: Aggregation オプション
+
+    :statuscode 200: 正常終了
+    :statuscode 400: パラメータ/リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: バケットが存在しない
+    :statuscode 415: Content-Type 不正
+    :statuscode 500: pipeline, options の利用方法が正しくない。その他のエラー。
+    :statuscode 504: タイムアウト
+
+    :>json array results: 実行結果の配列
+
+    **リクエストボディ**
+
+    Aggregation 条件はJSON で表記しリクエストボディに格納する。フォーマットは以下の通りである。
+
+    .. code-block:: javascript
+
+        {
+            "pipeline": [ /*pipeline配列*/ ],
+            "options": { /*オプション*/ }
+        }
+
+
+    pipline には、MongoDB の aggregation pipeline stagesを配列で記述する。
+    記述方式は MongoDB マニュアルの `Aggregation Pipeline <https://docs.mongodb.com/manual/core/aggregation-pipeline/>`_ を参照すること。
+
+    使用できる stageは以下のものに限定される。
+
+    * $match
+    * $lookup
+    * $limit
+    * $skip
+    * $sort
+    * $group
+    * $bucket
+    * $bucketAuto
+    * $count
+    * $project
+    * $addFields
+
+    $lookup, $addFields を使用する場合は、バックエンドの MongoDB は ver 3.4 以上でなければならない。
+
+    $lookup 内で pipeline を使用する場合は、バックエンドの MongoDB は ver 3.6 以上でなければならない。
+    また、$lookup 内 pipeline で使用できる stage は以下のものに限定される。
+
+    * $match
+    * $project
+    * $limit
+    * $skip
+    * $sort
+
+    optionsにはオプションをJSON形式で指定する。
+    指定できる値は以下のとおり。意味は MongoDB の aggregate コマンドと同一である。
+
+    * allowDiskUse (boolean) : テンポラリファイルの利用許可
+    * maxTimeMS (integer) : 処理時間の上限(ミリ秒)
+    * batchSize (integer) : バッチサイズ
+
+    なお、ACL によるアクセス制御を行うため、pipeline には以下の修正が行われた上で実施される。
+    ただし、これらの処理はマスターキー使用時には実施されない。
+
+    * pipeline の先頭に、該当バケット内ドキュメントに対する ACL 制約を行うための $match が挿入される
+      (ただし該当バケットの noAcl属性が true の場合は挿入されない)
+    * 各 $lookup (pipeline 指定がないものに限る)の直後に、参照先バケット内ドキュメントに対する ACL 制約を行うための $addFields / $filter が挿入される (ただし参照先バケットの noAcl 属性が true の場合は挿入されない)
+    * pipeline 指定がある $lookup については、その pipeline の先頭に ACL 制約を行うための $match が挿入される。
+
+    **レスポンスボディ**
+
+    Aggregation 結果は以下のように results に配列で結果が格納された JSON として返却される。
+
+    .. code-block:: javascript
+
+        {
+          "results": [ /*results*/ ]
+        }
+
+    Aggregationの実行は、オブジェクトが暗号化されている状態で実施される。
+    したがって、"_protected" フィールドに対する pipeline 操作を指定した場合、暗号化されたデータに対して実行されるため、期待する検索結果とならない。
+
+    Aggregation 結果は、results 配列の各JSONに対して、トップレベルの "_protected" フィールドを復号したものを返却する。
+    そのため、$lookupで結合したバケットのオブジェクトは暗号化されたままとなる。
+    復号が必要な場合は、対象データをトップレベルの "_protected" フィールドに移動する pipeline 操作が必要となる。
+
+    **注意事項**
+
+    * バケットcontentACLと対象オブジェクトの read 権限が必要
+    * $lookup を行う場合は、参照先バケットの contentACL と対象オブジェクトの read 権限が必要
+    * "_protected" フィールドを Aggregation 条件に指定した場合の Aggregation 結果は不定となる

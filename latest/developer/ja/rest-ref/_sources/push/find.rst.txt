@@ -1,0 +1,35 @@
+.. _push_find:
+
+インスタレーションの検索
+==========================
+
+.. http:get:: /1/(tenantId)/push/installations
+
+    インスタレーションを検索する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+
+    :statuscode 200: 正常取得
+    :statuscode 401: 認証エラー
+
+    :>json array results: インスタレーションの配列
+
+    **レスポンスボディの例**
+
+    .. code-block:: javascript
+
+        {
+            "results": [
+                {
+                    "_id": "541bc0a0e4b03de4b0287b2e",
+                    "_deviceToken": "xxxx",
+                    /*...*/
+                 },
+                 { /*...*/ }
+             ]
+        }
+
+    **注意事項**
+
+    * マスターキーが必要なので、通常のアプリケーションでは使用不可。

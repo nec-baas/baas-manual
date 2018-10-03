@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11. JavaScript 開発 &mdash; FAQ and Trouble Shooting Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="12. Android 開発" href="android.html" />
+    <link rel="prev" title="10. Cloud Functions" href="cloudfn.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FAQ and Trouble Shooting Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="generic.html">1. 全般</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">2. 動作環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">3. 性能・諸元</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baas_server.html">4. BaaSサーバ運用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mongodb.html">5. MongoDB 関連</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">9. Push</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">10. Cloud Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. JavaScript 開発</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#err-insecure-response">11.1. クロスドメインアクセス時に ERR_INSECURE_RESPONSE エラーになります</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-501-not-implemented">11.2. 更新・削除系の API が 501 Not Implemented エラーになります</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ie11-javascript-sdk">11.3. IE11 でイントラネットの JavaScript SDK を使用したコンテンツにアクセスすると、うまく動作しません</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ie11-localstorage">11.4. IE11 で LocalStorage のデータにアクセスできない場合があります</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="android.html">12. Android 開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ios.html">13. iOS 開発</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FAQ and Trouble Shooting Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>11. JavaScript 開発</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="javascript">
+<h1>11. JavaScript 開発<a class="headerlink" href="#javascript" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="err-insecure-response">
+<h2>11.1. クロスドメインアクセス時に ERR_INSECURE_RESPONSE エラーになります<a class="headerlink" href="#err-insecure-response" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaSサーバに自己署名証明書を使用し、クロスドメインアクセスを行う場合、上記エラーになります。</p>
+<p>対応方法は以下のいずれかになります。</p>
+<ol class="arabic simple">
+<li>正規の SSL 証明書を使用する。</li>
+<li>コンテンツを BaaSサーバと同一ドメイン(https)に置く。</li>
+<li>ブラウザで BaaS サーバにアクセスし、証明書例外を許可する。</li>
+<li>サーバのCA証明書をブラウザにインストールする。</li>
+</ol>
+</div>
+<div class="section" id="api-501-not-implemented">
+<h2>11.2. 更新・削除系の API が 501 Not Implemented エラーになります<a class="headerlink" href="#api-501-not-implemented" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Proxy サーバが GET / POST 以外のメソッドを遮断している可能性があります。</p>
+<p>このような場合は HTTPS で接続するようにしてください。</p>
+</div>
+<div class="section" id="ie11-javascript-sdk">
+<h2>11.3. IE11 でイントラネットの JavaScript SDK を使用したコンテンツにアクセスすると、うまく動作しません<a class="headerlink" href="#ie11-javascript-sdk" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>同じコンテンツに Chrome でアクセスして問題がない場合は、IE11 で以下設定を行ってください。</p>
+<p>「ツール」→「互換表示設定」→「イントラネットサイトを互換表示で表示する」のチェックを外す。</p>
+</div>
+<div class="section" id="ie11-localstorage">
+<h2>11.4. IE11 で LocalStorage のデータにアクセスできない場合があります<a class="headerlink" href="#ie11-localstorage" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>IE11 で JavaScript SDK の API 実行時に LocalStorage にアクセスできず、
+以下のエラーが出力される場合があります。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>SCRIPT5: アクセスが拒否されました。
+</pre></div>
+</div>
+<p>本問題は Windows OS の AppData\LocalLow ディレクトリに対するのアクセス権限が
+付与されていない場合に発生します。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">Windows OS を展開するためのシステム準備ツール (Sysprep) を使って OS インストールを
+した場合、設定によっては本問題が発生することがあります。</p>
+</div>
+<p>このような場合は、コマンドプロンプト等で以下のコマンドを実⾏することで解決する場合があります。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>icacls %userprofile%<span class="se">\A</span>ppData<span class="se">\L</span>ocalLow /t /setintegritylevel <span class="o">(</span>OI<span class="o">)(</span>CI<span class="o">)</span>L
+</pre></div>
+</div>
+<p>詳細は <a class="reference external" href="https://social.technet.microsoft.com/Forums/ja-JP/066767a5-f9d5-45f4-95cf-dcd0ff030090/script5-access-is-denied-error-when-accessing-web-sites-using-localstorage?forum=ieitprocurrentver">MSフォーラムサイト(IE)</a> を参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="android.html" class="btn btn-neutral float-right" title="12. Android 開発" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cloudfn.html" class="btn btn-neutral" title="10. Cloud Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

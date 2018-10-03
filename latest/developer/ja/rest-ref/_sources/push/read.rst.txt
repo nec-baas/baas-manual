@@ -1,0 +1,19 @@
+.. _push_read:
+
+インスタレーション情報の取得
+==============================
+
+.. http:get:: /1/(tenantId)/push/installations/(installationId)
+
+    インスタレーション情報を取得する。
+
+    レスポンスは、:ref:`push_upsert` の応答と同じ。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+
+    :parameter string installationId: インスタレーションID
+
+    :statuscode 200: 正常取得
+    :statuscode 401: 認証エラー
+    :statuscode 404: 該当するインスタレーションが存在しない。

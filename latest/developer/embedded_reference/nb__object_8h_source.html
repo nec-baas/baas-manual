@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: nb_object.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_67ddc83a51c7c70dde674a18e8d37b86.html">necbaas</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">nb_object.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="nb__object_8h.html">説明を見る。</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * COPYRIGHT (C) 2017 NEC CORPORATION</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * ALL RIGHTS RESERVED BY NEC CORPORATION,  THIS PROGRAM</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * MUST BE USED SOLELY FOR THE PURPOSE FOR WHICH IT WAS</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * FURNISHED BY NEC CORPORATION,  NO PART OF THIS PROGRAM</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * MAY BE REPRODUCED OR DISCLOSED TO OTHERS,  IN ANY FORM</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * WITHOUT THE PRIOR WRITTEN PERMISSION OF NEC CORPORATION.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * NEC CONFIDENTIAL AND PROPRIETARY</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef NECBAAS_NBOBJECT_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NECBAAS_NBOBJECT_H</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__service_8h.html">necbaas/nb_service.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__acl_8h.html">necbaas/nb_acl.h</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__json__object_8h.html">necbaas/nb_json_object.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>necbaas {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbObject.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnecbaas_1_1NbObject.html">NbObject</a> : <span class="keyword">public</span> <a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classnecbaas_1_1NbObject.html#a2256005af0e789bf5d12f7ae33ef933b">NbObject</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classnecbaas_1_1NbObject.html#a2256005af0e789bf5d12f7ae33ef933b">NbObject</a>(<span class="keyword">const</span> std::shared_ptr&lt;NbService&gt; &amp;service, <span class="keyword">const</span> std::string &amp;bucket_name);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classnecbaas_1_1NbObject.html#a74554366209dc723f107974aedc48394">~NbObject</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbObject&gt;</a> <a class="code" href="classnecbaas_1_1NbObject.html#a059b652d6a572595149cf989f17f7c01">PartUpdateObject</a>(<span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;json, <span class="keywordtype">bool</span> acl = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbObject&gt;</a> <a class="code" href="classnecbaas_1_1NbObject.html#a7be72cebab0a105bece79fd85f90232e">DeleteObject</a>(<span class="keywordtype">bool</span> delete_mark = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbObject&gt;</a> <a class="code" href="classnecbaas_1_1NbObject.html#a58decee967d3c147e3bc1ac1bd3f5212">Save</a>(<span class="keywordtype">bool</span> acl = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classnecbaas_1_1NbObject.html#ab2597158462c761c0079ce65ec7a4812">GetTimeout</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbObject.html#a923b9023a9826771fa87793cd78067d1">SetTimeout</a>(<span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbObject.html#a1082ecdaeb232b8127cdfce3ee751ba3">GetBucketName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbObject.html#af5ed335e77d115947932fbed4e2f447d">GetObjectId</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbObject.html#afb5e2d569aece3a41db5d5353336e998">SetObjectId</a>(<span class="keyword">const</span> std::string &amp;object_id);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">const</span> std::tm <a class="code" href="classnecbaas_1_1NbObject.html#ab122703c0558ef742c45f4d66313a51e">GetCreatedTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keyword">const</span> std::tm <a class="code" href="classnecbaas_1_1NbObject.html#a26690024a1e1bb30f4eac1556e45d507">GetUpdatedTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbObject.html#acdae8a67e00a099aa60c28f352039337">SetCreatedTime</a>(<span class="keyword">const</span> std::tm &amp;created_time);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbObject.html#a1cf8b9170da901b65aa84b8003aeffd5">GetETag</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbObject.html#ad5fcff0a286983552f94dd67298dc4ff">SetETag</a>(<span class="keyword">const</span> std::string &amp;etag);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbAcl.html">NbAcl</a> &amp;<a class="code" href="classnecbaas_1_1NbObject.html#ac9fd3cbc8bb7e00fd5e283070bd80489">GetAcl</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbObject.html#a2700ebfd97182cc9597c2b34d5e4c326">SetAcl</a>(<span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbAcl.html">NbAcl</a> &amp;acl);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classnecbaas_1_1NbObject.html#a683449c0d42e04d5000341f2a371fc10">IsDeleteMark</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbObject.html#a02fe9fc2e21502bea03f90322a3d6e01">SetObjectData</a>(<span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;json);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbObject.html#af2b2b8a857f610d363614c7a9a38d30b">SetCurrentParam</a>(<span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;json);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    std::shared_ptr&lt;NbService&gt; service_; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordtype">int</span> timeout_{kRestTimeoutDefault};   </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    std::string bucket_name_{};          </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    std::string object_id_{};            </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    std::string created_time_{};         </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    std::string updated_time_{};         </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    std::string etag_{};                 </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="classnecbaas_1_1NbAcl.html">NbAcl</a> acl_{};                        </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordtype">bool</span> deleted_{<span class="keyword">false</span>};                </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> RemoveReservationFields(<a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> *json);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;};</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;}  <span class="comment">// namespace necbaas</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#endif  // NECBAAS_NBOBJECT_H</span></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html"><div class="ttname"><a href="classnecbaas_1_1NbObject.html">necbaas::NbObject</a></div><div class="ttdoc">オブジェクト管理クラス. </div><div class="ttdef"><b>Definition:</b> nb_object.h:34</div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a683449c0d42e04d5000341f2a371fc10"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a683449c0d42e04d5000341f2a371fc10">necbaas::NbObject::IsDeleteMark</a></div><div class="ttdeci">bool IsDeleteMark() const </div><div class="ttdoc">削除マーク付与確認. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbAcl_html"><div class="ttname"><a href="classnecbaas_1_1NbAcl.html">necbaas::NbAcl</a></div><div class="ttdoc">ACLクラス. </div><div class="ttdef"><b>Definition:</b> nb_acl.h:30</div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a2256005af0e789bf5d12f7ae33ef933b"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a2256005af0e789bf5d12f7ae33ef933b">necbaas::NbObject::NbObject</a></div><div class="ttdeci">NbObject()</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_ad5fcff0a286983552f94dd67298dc4ff"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#ad5fcff0a286983552f94dd67298dc4ff">necbaas::NbObject::SetETag</a></div><div class="ttdeci">void SetETag(const std::string &amp;etag)</div><div class="ttdoc">ETag設定. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a923b9023a9826771fa87793cd78067d1"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a923b9023a9826771fa87793cd78067d1">necbaas::NbObject::SetTimeout</a></div><div class="ttdeci">void SetTimeout(int timeout)</div><div class="ttdoc">RESTタイムアウト設定. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a26690024a1e1bb30f4eac1556e45d507"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a26690024a1e1bb30f4eac1556e45d507">necbaas::NbObject::GetUpdatedTime</a></div><div class="ttdeci">const std::tm GetUpdatedTime() const </div><div class="ttdoc">オブジェクトの更新日時取得. </div></div>
+<div class="ttc" id="nb__service_8h_html"><div class="ttname"><a href="nb__service_8h.html">nb_service.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_ac9fd3cbc8bb7e00fd5e283070bd80489"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#ac9fd3cbc8bb7e00fd5e283070bd80489">necbaas::NbObject::GetAcl</a></div><div class="ttdeci">const NbAcl &amp; GetAcl() const </div><div class="ttdoc">ACL取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_acdae8a67e00a099aa60c28f352039337"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#acdae8a67e00a099aa60c28f352039337">necbaas::NbObject::SetCreatedTime</a></div><div class="ttdeci">void SetCreatedTime(const std::tm &amp;created_time)</div><div class="ttdoc">オブジェクトの作成日時設定. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_af5ed335e77d115947932fbed4e2f447d"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#af5ed335e77d115947932fbed4e2f447d">necbaas::NbObject::GetObjectId</a></div><div class="ttdeci">const std::string &amp; GetObjectId() const </div><div class="ttdoc">オブジェクトID取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_ab2597158462c761c0079ce65ec7a4812"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#ab2597158462c761c0079ce65ec7a4812">necbaas::NbObject::GetTimeout</a></div><div class="ttdeci">int GetTimeout() const </div><div class="ttdoc">RESTタイムアウト取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a1082ecdaeb232b8127cdfce3ee751ba3"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a1082ecdaeb232b8127cdfce3ee751ba3">necbaas::NbObject::GetBucketName</a></div><div class="ttdeci">const std::string &amp; GetBucketName() const </div><div class="ttdoc">バケット名取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a74554366209dc723f107974aedc48394"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a74554366209dc723f107974aedc48394">necbaas::NbObject::~NbObject</a></div><div class="ttdeci">virtual ~NbObject()</div><div class="ttdoc">デストラクタ. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a2700ebfd97182cc9597c2b34d5e4c326"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a2700ebfd97182cc9597c2b34d5e4c326">necbaas::NbObject::SetAcl</a></div><div class="ttdeci">void SetAcl(const NbAcl &amp;acl)</div><div class="ttdoc">ACL設定. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a58decee967d3c147e3bc1ac1bd3f5212"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a58decee967d3c147e3bc1ac1bd3f5212">necbaas::NbObject::Save</a></div><div class="ttdeci">NbResult&lt; NbObject &gt; Save(bool acl=false)</div><div class="ttdoc">オブジェクトを保存する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a02fe9fc2e21502bea03f90322a3d6e01"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a02fe9fc2e21502bea03f90322a3d6e01">necbaas::NbObject::SetObjectData</a></div><div class="ttdeci">void SetObjectData(const NbJsonObject &amp;json)</div><div class="ttdoc">オブジェクトデータ設定. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_ab122703c0558ef742c45f4d66313a51e"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#ab122703c0558ef742c45f4d66313a51e">necbaas::NbObject::GetCreatedTime</a></div><div class="ttdeci">const std::tm GetCreatedTime() const </div><div class="ttdoc">オブジェクトの作成日時取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_af2b2b8a857f610d363614c7a9a38d30b"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#af2b2b8a857f610d363614c7a9a38d30b">necbaas::NbObject::SetCurrentParam</a></div><div class="ttdeci">void SetCurrentParam(const NbJsonObject &amp;json)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbResult_html"><div class="ttname"><a href="classnecbaas_1_1NbResult.html">necbaas::NbResult</a></div><div class="ttdoc">REST API処理結果クラス. </div><div class="ttdef"><b>Definition:</b> nb_result.h:32</div></div>
+<div class="ttc" id="nb__acl_8h_html"><div class="ttname"><a href="nb__acl_8h.html">nb_acl.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a7be72cebab0a105bece79fd85f90232e"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a7be72cebab0a105bece79fd85f90232e">necbaas::NbObject::DeleteObject</a></div><div class="ttdeci">NbResult&lt; NbObject &gt; DeleteObject(bool delete_mark=false)</div><div class="ttdoc">オブジェクトを削除する. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbJsonObject_html"><div class="ttname"><a href="classnecbaas_1_1NbJsonObject.html">necbaas::NbJsonObject</a></div><div class="ttdoc">Jsonオブジェクト. </div><div class="ttdef"><b>Definition:</b> nb_json_object.h:34</div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a1cf8b9170da901b65aa84b8003aeffd5"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a1cf8b9170da901b65aa84b8003aeffd5">necbaas::NbObject::GetETag</a></div><div class="ttdeci">const std::string &amp; GetETag() const </div><div class="ttdoc">ETag取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_a059b652d6a572595149cf989f17f7c01"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#a059b652d6a572595149cf989f17f7c01">necbaas::NbObject::PartUpdateObject</a></div><div class="ttdeci">NbResult&lt; NbObject &gt; PartUpdateObject(const NbJsonObject &amp;json, bool acl=false)</div><div class="ttdoc">オブジェクトを部分更新する. </div></div>
+<div class="ttc" id="nb__json__object_8h_html"><div class="ttname"><a href="nb__json__object_8h.html">nb_json_object.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbObject_html_afb5e2d569aece3a41db5d5353336e998"><div class="ttname"><a href="classnecbaas_1_1NbObject.html#afb5e2d569aece3a41db5d5353336e998">necbaas::NbObject::SetObjectId</a></div><div class="ttdeci">void SetObjectId(const std::string &amp;object_id)</div><div class="ttdoc">オブジェクトID設定. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

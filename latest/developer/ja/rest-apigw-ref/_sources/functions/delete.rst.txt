@@ -1,0 +1,31 @@
+.. _function_delete:
+
+ファンクションの削除
+====================
+
+.. http:delete:: /1/(tenantId)/functions/(functionName)
+
+    ファンクションを削除する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+
+    :parameter string functionName: ファンクション
+
+    :statuscode 200: 正常にファンクションを削除した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: ファクションが存在しない
+    :statuscode 504: タイムアウトエラー
+
+    **レスポンス**
+
+    リクエスト成功時は以下。
+
+    .. code-block:: json
+
+        {
+            "result":"ok"
+        }
+
+    エラー時は JSON 形式でエラー通知される。Content-Type ヘッダは "application/json" となる。

@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. JSONオブジェクトストレージ:クエリ &mdash; Python SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="9. JSONオブジェクトストレージ:集計" href="object_aggregation.html" />
+    <link rel="prev" title="7. JSONオブジェクトストレージ" href="object_storage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Python SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Python SDK API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. JSONオブジェクトストレージ:クエリ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">8.1. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.2. クエリ条件の指定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#object-query-logical">8.2.1. 論理演算</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">8.3. ソート順序の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">8.4. スキップ数・検索上限数の指定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.4.1. プロジェクション</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. JSONオブジェクトストレージ:集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">10. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">11. API Gateway</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Python SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>8. JSONオブジェクトストレージ:クエリ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="json">
+<span id="object-query"></span><h1>8. JSONオブジェクトストレージ:クエリ<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>8.1. オブジェクトのクエリ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトのクエリは、ObjectBucket の <cite>query()</cite> を呼び出すことで行います。</p>
+<p>以下の例では、全件検索を行っています。
+結果はオブジェクト(dict)の配列として返却されます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>全ヒット件数付きでクエリしたい場合は <cite>query()</cite> の代わりに <cite>query_with_count()</cite> を使用します。
+返り値はオブジェクト配列と全件数のタプルになります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">total_count</span><span class="p">)</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">query_with_count</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">クエリ上限数を指定するとヒット件数が上限に達した時点で検索が打ち切られますが、
+queryWithCount() を使用した場合はクエリ上限数にかかわらず全検索を行うため検索に要する時間が増加します。</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>8.2. クエリ条件の指定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索条件は MongoDB に対するクエリ式として指定します。
+クエリ式は where キーワード引数に dict で指定します。以下に例を示します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">})</span>  <span class="c1"># 一致条件</span>
+</pre></div>
+</div>
+<p>以下のように演算子を用いた条件も指定できます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$lt&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}})</span>  <span class="c1"># 比較条件</span>
+<span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;prefecture&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$in&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Tokyo&quot;</span><span class="p">,</span> <span class="s2">&quot;Kanagawa&quot;</span><span class="p">,</span> <span class="s2">&quot;Saitama&quot;</span><span class="p">]}})</span>  <span class="c1"># 配列検索</span>
+<span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$regex&quot;</span><span class="p">:</span> <span class="s2">&quot;^[a-c].*&quot;</span><span class="p">}})</span>  <span class="c1"># 正規表現一致</span>
+</pre></div>
+</div>
+<div class="section" id="object-query-logical">
+<span id="id3"></span><h3>8.2.1. 論理演算<a class="headerlink" href="#object-query-logical" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>論理演算 (and, or) で複数のクエリ式を結合することも可能です。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># AND条件</span>
+<span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$and&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="o">...</span><span class="p">},</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="p">{</span><span class="o">...</span><span class="p">}]})</span>
+
+<span class="c1"># OR条件</span>
+<span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$or&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="o">...</span><span class="p">},</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="p">{</span><span class="o">...</span><span class="p">}]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>8.3. ソート順序の指定<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ソート順序は、sort キーワード引数で指定します。
+下記では、name 昇順を指定しています。先頭に &quot;-&quot; を付与すると降順になります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>複数のソート設定を行う場合はカンマで区切ります。先に設定したソートの優先度が高くなります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="s2">&quot;name,-age&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>8.4. スキップ数・検索上限数の指定<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索におけるスキップ数・上限数は、それぞれ skip, limit キーワード引数で指定します。</p>
+<p>以下の例では、100件目から最大10件を読むという指定になります。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">skip</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>なお、上限数の値はデフォルトで 100 となっています。
+上限数を無限大(制限なし)にしたい場合は -1 を指定します。</p>
+<div class="section" id="id6">
+<h3>8.4.1. プロジェクション<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトの一部のフィールドを取得する場合は、 projection キーワード引数で指定します。
+下記では、&quot;_id&quot;フィールドと、指定した&quot;name&quot; フィールドを含むオブジェクトが取得できます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>逆に、特定のフィールドのみ抑制したい場合は、以下のように指定します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、 &quot;_id&quot; と、指定したフィールド(&quot;name&quot;)以外のフィールドを含むオブジェクトが取得できます。</p>
+<p>&quot;_id&quot; はデフォルトで付与されますが、省きたい場合は以下のように指定します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>また入れ子構造となっているフィールドを指定する場合は、以下のように指定します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;parent.name&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>また、 array フィールドに対して、 MongoDB と同様に以下の演算子を使用することも可能です。</p>
+<ul class="simple">
+<li>$elemMatch</li>
+<li>$slice</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">&quot;$&quot;, &quot;$meta&quot; 演算子は対象外です。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="object_aggregation.html" class="btn btn-neutral float-right" title="9. JSONオブジェクトストレージ:集計" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_storage.html" class="btn btn-neutral" title="7. JSONオブジェクトストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
