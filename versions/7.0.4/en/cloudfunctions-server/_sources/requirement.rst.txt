@@ -1,0 +1,17 @@
+========
+必要環境
+========
+
+.. include:: ../common/linkdef.rst
+
+Cloud Functionsサーバの動作には以下の環境が必要です。
+
+* OS: CentOS 7 以上または RHEL 7 以上
+* `Java SE`_ Development Kit 8 以上
+* `RabbitMQ`_ 3.6.1 以上
+* `Docker`_ 1.12.1 以上
+* `fluentd`_ 2.3.2 以上
+
+.. attention::
+
+   Cloud Functions サーバは Windows では動作しません。

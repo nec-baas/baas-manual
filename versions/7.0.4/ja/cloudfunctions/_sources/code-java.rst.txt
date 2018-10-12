@@ -1,0 +1,100 @@
+=========================
+Cloud Functionsコード実装
+=========================
+
+.. index::
+   single: ハンドラ(Java)
+
+Java ハンドラ実装
+=================
+
+Java で Cloud Functionsのコード実装を行います。
+
+ここでは、"Hello world!!!" という応答を返す単純なロジックを作成してみます。
+
+以下の内容で Hello.java ファイルを作成してください。
+
+.. code-block:: java
+
+    package com.example;
+    
+    import com.nec.baas.cloudfn.sdk.*;
+
+    public class Hello {
+        public static void sayHello(Map<String,Object> event, Context context) {
+            String json = "{\"message\": \"Hello world!!!\"}";
+            ApigwResponse response = ApigwResponse.ok(json, "application/json");
+            context.succeed(response);
+        }
+    }
+
+上記 sayHello が「ハンドラ」です。ハンドラがコードのエントリポイントになります。
+
+このハンドラでは、JSON レスポンスを返却しています。
+
+ハンドラには以下２つの引数が引き渡されます。
+
+* event: 呼び出し元が指定したリクエストボディが格納されます。
+* context: ランタイム情報が格納されます。
+
+.. index::
+   single: event(Java)
+
+event
+-----
+
+event にはリクエストボディが渡されます。Content-Type に応じて、使用できる event の型が異なります。
+
+* Content-Type が "plain/text" の場合
+
+  - 型には String が使用できます。リクエストボディの文字列が渡されます。
+
+* Content-Type が "application/json" の場合
+
+  - 型には任意の POJO クラスまたは Map<String,Object> が使用できます。
+  - 内部的には、Jackson の ObjectMapper.readValue() で JSON をパースしたものがそのまま引き渡されます。詳細は Jackson のマニュアルを参照ください。
+  - Map<String, Object> を指定した場合、JSON が入れ子になっている場合は Map も入れ子になります。また要素内に JSON 配列がある場合は、List に変換されます。
+
+* Content-Type が "application/octet-stream" の場合
+
+  - 型には byte[], java.nio.Buffer, java.io.ByteArrayInputStream が使用できます。いずれもバイト列が渡されます。
+
+context
+-------
+
+context にはいくつかのメソッドやオブジェクトが定義されています。
+ハンドラの処理が正常に完了した場合は context.succeed() を、異常終了した場合は context.fail() を呼び出す必要があります。
+
+context の詳細は :ref:`context_java` を参照してください。
+
+
+コードのビルド
+===============
+
+以下手順でビルドを行い、TAR.GZ ファイルを作成します。
+
+.. code-block:: bash
+
+    $ mvn verify
+
+target ディレクトリ内に <プロジェクト名>-<バージョン>-cloudfn.tar.gz という名前で
+TAR.GZ ファイルが作成されます。
+
+コードの登録
+=============
+
+コードができたので、モバイルバックエンド基盤サーバに登録します。
+
+.. code-block:: bash
+
+    $ nebula create-code -f [tar-gz_filename]
+
+create-code コマンドを実行すると、指定した TAR.GZ ファイルがサーバにアップロードします。
+
+コードはファイルバケットに格納されます。デフォルトでは "CUSTOM_CODE" という名前のバケットに格納されます。
+
+コードが登録されたかどうかは "nebula list-code" で確認できます。
+コードを削除したいときは "nebula delete-code <ファイル名>" で削除してください。
+
+
+

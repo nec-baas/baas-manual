@@ -1,0 +1,216 @@
+.. index::
+   single: コンテキスト(Node.js)
+.. index::
+   single: context(Node.js)
+
+.. _context:
+
+============
+コンテキスト
+============
+
+Node.js のハンドラ第二引数に引き渡される context の詳細について説明します。
+
+context には以下のメソッドが設定されています。
+
+* succeed() : 成功時に呼び出す関数
+* fail() : 失敗時に呼び出す関数
+* apigwResponse() : APIレスポンスを生成する関数
+* httpError() : HTTPエラーを生成する関数
+
+また、以下のオブジェクトが設定されています。
+
+* clientContext: クライアントコンテキスト
+* Nebula: JavaScript SDK Nebula ハンドラ
+* logger: ロガー
+* shared: リクエスト間で共有されるオブジェクト
+
+
+context.succeed() : ハンドラの正常終了
+======================================
+
+.. code-block:: javascript
+
+   context.succeed(Object result)
+
+ハンドラの実行が正常終了したことを通知します。
+result に指定した値が呼び出し元に返却されます。
+result に指定できる型は以下のいずれかです。
+
+* ApigwResponse : 設定されたステータスコード、ヘッダ、データが返却されます。
+* String : そのままテキストとして返却されます
+* Object : JSON 形式に変換して返却されます
+* Buffer : バイナリデータがそのまま返却されます。
+
+ステータスコードや Content-Type を指定したい場合は ApigwResponse を使用します(後述)
+
+ApigwResponse を使用しない場合は、Content-Type には result の型に合わせて以下の値が自動的に使用されます。
+
+======== ===========================
+型       Content-Type
+======== ===========================
+String   text/plain
+Object   application/json
+Buffer   application/octet-stream
+======== ===========================
+
+.. attention::
+
+   ApigwResponse を使用しない場合はステータスコードは 200 OK 固定となります。
+
+.. index::
+   single: ApigwResponse(Node.js)
+
+ApigwResponse
+-------------
+
+ステータスコードや Content-Type などを指定したい場合は ApigwResponse クラスを使用します。
+ApigwResponse は context.apigwResponse() メソッドで生成します。
+apigwResponse() メソッドの仕様は以下の通りです。
+
+.. code-block:: javascript
+
+   context.apigwResponse(Number statusCode, Object headers, Object data);
+
+* statusCode には HTTP ステータスコードを指定します。
+* headers には HTTP ヘッダを指定します。
+* data には返却するデータを指定します。String, Object, Buffer のいずれかを指定できます。
+  Object を指定した場合は JSON 形式に変換されます。
+
+以下に例を示します。
+
+.. code-block:: javascript
+
+   context.succeed(context.apigwResponse(200, {"Content-Type": "text/plain"}, "Hello world."));
+
+
+context.fail() : ハンドラの異常終了
+===================================
+
+.. code-block:: javascript
+
+   context.fail(Object error);
+
+ハンドラの実行がエラー終了したことを通知します。
+error にエラー情報を指定します。error の型には以下のものが指定できます。
+
+* ApigwResponse : レスポンス
+* Error : エラー
+* String
+* Object
+* Buffer
+
+ApigwResponse 以外を返却した場合は、HTTP ステータスコードは 500 Internal Server Error 固定となります。500 以外のステータスコードを返却したい場合は ApigwResponse を使用してください。
+
+Error を返却した場合は、エラーメッセージが text/plain で返却されます。
+それ以外の場合のレスポンスボディは context.succeed() の場合と同じです。
+
+.. index::
+   single: HttpError(Node.js)
+
+HttpError
+---------
+
+HTTPステータスコードを返却したい場合は ApigwResponse クラスを使用します。
+エラー生成を行う際は context.httpError() 関数で生成します。
+
+.. code-block:: javascript
+
+   context.httpError(Number statusCode, Object message);
+
+* statusCode にはステータスコードを指定します。
+* message にはエラーメッセージを指定します。String または Object を指定できます。Object を指定した場合は JSON に変換されます。
+
+.. index::
+   single: clientContext(Node.js)
+
+.. _clientContextNode:
+
+context.clientContext : クライアントコンテキスト
+================================================
+
+クライアントコンテキスト(context.clientContext)には以下の情報が引き渡されます。
+
+.. code-block:: javascript
+
+    { 
+        "method": "HTTPメソッド",
+        "uri": "URI",
+        "queryParams": { クエリパラメータ },
+        "pathParams": { パスパラメータ },
+        "headers": { ヘッダパラメータ },
+        "contentType": "Content-Type",
+        "nebula": {
+            "tenant": "テナントID",
+            "appId": "アプリケーションID",
+            "appKey": "アプリケーションキー",
+            "masterKey": "マスターキー",
+            "isMaster": REST API 呼び出し時のマスターキー使用有無(boolean),
+            "baseUri": "Base URI",
+            "user": {
+                "_id": "ユーザID",
+                "sessionToken": "セッショントークン",
+                "expire": セッショントークン有効期限(UnixTime(秒)),
+                "username": "ユーザ名",
+                "email": "E-mailアドレス",
+                "options": { オプション },
+                "groups": [ 所属グループ名リスト ]
+            }
+        },
+        "function": { ファンクション定義 }
+    }
+
+* クエリパラメータには、パラメータ名と対応する文字列の配列が格納されます (文字列ではなく文字列の配列になる点に注意)
+* パスパラメータには、パスパラメータ名(Swaggerで指定したもの)と対応する文字列が格納されます。
+
+.. index::
+   single: Nebula(Node.js)
+
+context.Nebula : モバイルバックエンド基盤ハンドル
+=================================================
+
+context.Nebula には、モバイルバックエンド基盤 JavaScript SDK の初期化済みハンドルが格納されます。
+これを使用してモバイルバックエンド基盤のサーバ機能を呼び出すことができます。
+
+詳細は :ref:`use_nebula_nodejs` を参照してください。
+
+
+.. index::
+   single: logger(Node.js)
+
+context.logger : ロガー
+=======================
+
+ユーザコードでログ出力したい場合は、context.logger を使用してください。
+
+context.logger は、以下のメソッドを持っています。
+
+* context.logger.trace() : TRACEレベルログ出力
+* context.logger.debug() : DEBUGレベルログ出力
+* context.logger.info() : INFOレベルログ出力
+* context.logger.warn() : WARNレベルログ出力
+* context.logger.error() : ERRORレベルログ出力
+
+console.log() などを使ってもログは出力されますが、ログレベルなどの情報が
+出力されませんので、context.logger を使用するようにしてください。
+
+出力されたログはデベロッパーコンソール上で閲覧することができます。
+また、CLI ツールを使って取得することも可能です。
+
+
+.. index::
+   single: shared
+
+context.shared : 共有オブジェクト
+=================================
+
+context.shared には、同一 Docker コンテナ内で起動される複数リクエスト間で共有されるメモリ上のオブジェクトが設定されています。
+これは RDBMS へのコネクションプールなどを格納するために使用することができます。
+
+ただし、本オブジェクトは以下のようなケースでは共有されませんので、注意してください。
+
+* リクエストが異なるコンテナで実行される場合 (詳細は :ref:`docker_run` を参照してください)
+* コンテナが再起動された場合
+* Node.js サーバ内の異なるプロセスで実行される場合
+
+  - ユーザコード実行用の Node.js サーバは、内部で複数プロセスを使用したクラスタ動作となっており、リクエストが複数のプロセスに分配されるようになっています。

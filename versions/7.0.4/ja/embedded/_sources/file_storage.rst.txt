@@ -1,0 +1,108 @@
+==================
+ファイルストレージ
+==================
+
+ここではファイルストレージの利用方法について説明します。
+
+バケットの取得
+==============
+
+NEC BaaS Embedded SDKではサーバへのバケットの生成はサポートしていないため、事前にデベロッ
+パーコンソールなどから該当のバケットを作成しておきます。
+
+ファイル一覧操作などにはバケットが必要になります。
+以下のようにファイルバケットのインスタンスを生成します。
+
+
+
+.. code-block:: c++
+
+        NbFileBucket bucket(service1, "bucketName");
+
+
+ファイルの新規アップロード
+==========================
+
+ファイルを新規アップロードするには、NbFileBucket の UploadNewFile() を使用します。
+
+.. code-block:: c++
+
+        NbResult<NbFileMetadata> uploadResult =  bucket.UploadNewFile("test_file.txt",
+                                                                      "~/test_file.txt",
+                                                                      "text/plain",
+                                                                      NbAcl::CreateAclForAnonymous());
+
+        if(uploadResult.IsSuccess()) {
+            // 処理成功
+            // uploadしたファイルのメタデータを取得
+            NbFileMetadata meta = uploadResult.GetSuccessData();
+        } else {
+            // 処理失敗
+        }
+
+UploadNewFile() には、ファイル名、ファイルパス、Content-Type、ACL、キャッシュ禁止フラグ(オプション)を渡します。
+
+
+アクセス制御
+============
+
+ファイル単位でアクセス制御を行うことができます。
+
+アクセス制御には、オブジェクトストレージと同様に NbACL クラスを使用します。
+
+ファイル一覧の取得
+==================
+
+バケット内のファイル一覧の取得には、NbFileBucket.GetFiles() を呼び出すことで行います。
+
+.. code-block:: c++
+
+        NbResult<std::vector<NbFileMetadata>> resultFiles = bucket.GetFiles(false, false);
+        if(resultFiles.IsSuccess()) {
+            // 処理成功
+            for(auto aFile : resultFiles.GetSuccessData()) {
+                // 各メタデータの参照
+            }
+        } else {
+            // 処理失敗
+        }
+
+第一引数publishedがtrueの場合、公開設定をされているファイルのみを取得します。
+また第二引数deleteMarkがtrueの場合、削除マークが付与されたファイルを含め、検索対象とします。
+
+
+ファイルのダウンロード
+======================
+
+ファイルのダウンロードには、NbFileBucket.DownloadFile() を使用します。
+
+.. code-block:: c++
+
+        NbResult<int> downloadResult = bucket.DownloadFile("test_file.txt",
+                                                           "./download_test_file.txt");
+        if(downloadResult.IsSuccess()) {
+            // 処理成功
+        } else {
+            // 処理失敗
+        }
+
+ファイルの削除
+==============
+
+ファイルを削除するには NbFileBucket.DeleteFile() を使用します。
+通常はGetFiles()等で取得したメタデータを使用してファイルを指定します。
+
+.. code-block:: c++
+
+        NbResult<NbJsonObject> deleteResult = bucket.DeleteFile(metaData, false);
+        if(deleteResult.IsSuccess()) {
+            // 処理成功
+        } else {
+            // 処理失敗
+        }
+
+第二引数がtrueの場合、メタデータに削除マークを付与します。後からファイルの情報を参照することができます。処理結果には更新されたメタデータが格納されます。
+
+falseの場合、メタデータを完全に消去します。処理結果は空となります。
+
+

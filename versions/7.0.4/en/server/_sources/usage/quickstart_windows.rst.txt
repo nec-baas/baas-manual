@@ -1,0 +1,295 @@
+=======================================
+クイックスタート (Windows Server 2016)
+=======================================
+
+.. include:: ../../common/linkdef.rst
+
+ここでは、BaaS サーバを Windows Server 2016 にインストール・起動する手順を説明します。
+
+制限事項
+========
+
+Windows 上で BaaS サーバを動作させる場合、以下の制限事項があります。
+
+* Cloud Functions は利用できません(動作しません)
+* SSE Push サーバは動作しますが、コネクション数上限などで不具合が発生する可能性があるため推奨しません。
+
+構成
+====
+
+本手順は以下の環境構築を想定しています。
+
+* 1台構成：BaaSサーバとDBサーバ(MongoDB)を1台PC上で動作させる
+* 2台構成：BaaSサーバとDBサーバ(MongoDB)をそれぞれ別の PC で動作させる
+
+動作確認環境のOSとソフトウェア
+==============================
+
+* OS: Windows Server 2016
+* JDK: Oracle JDK 8 (Windows x64版)
+* MongoDB: 3.6 (Windows x64版)
+* Tomcat 8.5
+
+以下の手順はすべて Windows ServerのAdministratorユーザで実施してください。
+
+前準備
+======
+
+MongoDB3.0系を使用するためのOSパッチの適用が必要です。
+以下を参照してパッチを適用してください。
+
+http://support.microsoft.com/kb/2731284
+
+DBサーバ(MongoDB)の構築
+=======================
+
+MongoDB をインストールしてください。
+詳細手順は以下を参照ください。
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+
+MongoDB のダウンロードとインストール
+------------------------------------
+
+https://www.mongodb.com/community にアクセスし、Download ⇒ Community Server ⇒ Windows に進んでください。
+
+プルダウンメニューで Version を選択し、「Download(msi)」をクリックして msi ファイルをダウンロードしてください。
+
+Version 選択時は、使用する OS に合わせたものを選択してください(無い場合はバージョンが近いものを選択)。
+過去のVersionのMongoDBが必要な場合、 *All Version Binaries* を選択してファイルをダウンロードします。
+
+ダウンロードした MSI ファイルをダブルクリックしてインストールしてください。
+インストールフォルダは c:\\Program Files\\MongoDB\\Server\\3.6\\ などになります。
+
+MongoDB をアップグレードする際の注意事項
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+既存の MongoDB をアップグレードする場合は、以下の注意事項があります。
+
+* MongoDB 3.2 から直接 MongoDB 3.6 にアップグレードすることはできません。
+
+  - 一旦 MongoDB 3.4 にアップグレードし、db.adminCommand の setFeatureCompatibilityVersion を "3.4" に指定して実行する必要があります。
+  - MongoDB 3.6 にアップグレード後、setFeatureCompatibilityVersion を "3.6" に指定して実行する必要があります。
+
+具体的な手順の詳細は MongoDB の `Release Notes <https://docs.mongodb.com/manual/release-notes/>`_ を参照してください。
+
+データとログファイルの格納先を作成
+----------------------------------
+
+データ格納用、ログ格納用のディレクトリを作成してください。
+
+* C:\\MongoDB\\db
+* C:\\MongoDB\\logs
+
+MongoDB設定ファイルを作成
+-------------------------
+
+C:\\MongoDB\\ に mongod.cfg という名前で設定ファイルを作成・配置します。
+以下に例を示します。
+
+.. code-block:: yaml
+
+  systemLog:
+    destination: file
+    logAppend: true
+    path: c:\MongoDB\log\mongod.log
+
+  storage:
+    dbPath: c:\MongoDB\db
+    journal:
+      enabled: true
+    engine: wiredTiger
+
+  net:
+    port: 27017
+    bindIp: 127.0.0.1  # Listen to local interface only, comment to listen on all interfaces.
+
+MongoDB を BaaSサーバと別サーバに配置する場合は、
+net.bindIp の設定をコメントアウトするか、マシンのIPアドレスを指定してください。
+
+MongoDBを Windows のサービスに登録
+----------------------------------
+
+管理者としてコマンドプロンプトを立ち上げ、以下を実行してください。
+
+::
+
+    "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe" --config c:\MongoDB\mongod.cfg --install
+
+注: mongo.exe ではなく mongod.exe なので注意してください。
+
+Windowsのサービス管理画面で、MongoDBがサービスとして登録されたことを確認してください。
+
+MongoDB の起動
+--------------
+
+管理者としてコマンドラインを起動し、以下コマンドを指定して起動してください。
+(サービスマネージャーからも起動可能)
+
+::
+
+    net start MongoDB
+
+Firewall の設定
+---------------
+
+Windows ServerのFireWallから、MongoDBの受信先のIPアドレスとポートを設定します。
+
+* 「コントロールパネル」→「ファイアウォールの状態の確認」→「詳細設定」→「受信の規則」を選択
+* 画面右上の「新しい規則..」を選択し、下記の設定を行う。
+
+  - 規則の種類：カスタム
+  - プログラム：すべてのプログラム
+  - プロトコル及びポート
+
+    + プロトコルの種類：TCP
+    + ローカルポート：27017
+
+  - スコープ： 「この規則を適用するリモートIPアドレスを選択してください。」 →「これらのIPアドレス」
+
+    + アクセス元となるBaaSサーバのIPアドレスを追加することでアクセス制限をかける。
+
+  - 操作：デフォルトのまま
+  - プロファイル：デフォルトのまま
+  - 名前：任意（例えば、MongoDB Security Policy）
+
+Tomcat のインストール
+=====================
+
+JDK8 のインストール
+-------------------
+
+JDK8 をインストールします。
+`Oracle JDK サイト <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ より Windows x64 版をダウンロードし、セットアップします。
+
+Tomcat のインストール
+---------------------
+
+Tomcat 8.5 をインストールします。
+
+C:\\tomcat8\\ ディレクトリを作成し、apache-tomcat-8.5.x-windows-x64.zipを解凍します。
+展開後のパスは（C:\\tomcat8\\apache-tomcat-8.5.xx）などになります。
+
+Tomcat server.xml の設定
+------------------------
+
+Tomcat の conf\\server.xml を編集します。
+
+下記のように、HTTP Connectorのポート番号を修正してください。
+なお、PCで使用済みのポート番号とぶつからないように注意してください。
+
+.. code-block:: xml
+
+        <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+Connectorで受付可能な最大スレッド数はmaxThreadsというパラメータで調整可能です。
+デフォルト（指定なし）は200です。必要に応じて増加させてください。
+
+BaaSサーバ設定ファイルの格納
+----------------------------
+
+C:\\NEC\\BaaS\\etc\\ ディレクトリを作成し、設定ファイル(development.xml)を格納してください。
+
+development.xml の設定方法については、 :ref:`configuration_file` を参照してください。
+
+Tomcat を Windows のサービスとして登録
+--------------------------------------
+
+コマンド プロンプトを立ち上げ、下記のコマンドを実行し、Tomcat を Windows サービスに登録します。
+
+::
+
+    C:\tomcat8\apache-tomcat-8.5.x\bin\service.bat install
+
+Tomcat 設定
+-----------
+　　　
+C:\\tomcat8\\apache-tomcat-8.5.x\\bin\\tomcat8w.exe を起動します。
+
+開かれたウィンドウの Java タブを開き、以下のパラメータを確認し初期値を適宜変更・保存してください。
+
+* Use Default: チェックを外す
+* JavaVirtualMachine: JavaVM のパスを指定する。
+
+  - c:\\Program Files\\Java\\jre1.8.0_x\\bin\\server\\jvm.dll など
+
+* Initial memory pool, Maximum memory pool: ヒープメモリサイズを設定する
+
+  - それぞれ 1024MB, 2048MB など
+
+* Java Options: JVM の起動パラメータを設定する。
+
+  - -Dfile.encoding=UTF-8 オプションを追加する。
+
+.. attention::
+
+  file.encoding オプションを指定しないと、デベロッパーコンソールの処理で文字化けが発生する場合があります。
+
+Tomcat の起動
+-------------
+
+tomcat8w を起動して "General" タブを開き、Start を押して Tomcat を起動してください。
+(すでに起動している場合は Restart を押して再起動してください)
+Service Status が "Started" に変わったことを確認してください。
+
+また、システム起動時に自動的に Tomcat を起動するため、"Startup type" を
+"Automatic" に変更してください。
+
+Firewall 設定
+-------------
+
+Windows ServerのFirewallから、Tomcat のポートを開放してください。
+
+* 「コントロールパネル」→「ファイアウォールの状態の確認」→「詳細設定」→「受信の規則」を選択
+* 画面右上の「新しい規則..」を選択し、下記の設定を行う。
+
+  - 規則の種類：カスタム
+  - プログラム：すべてのプログラム
+  - プロトコル及びポート
+
+    + プロトコルの種類：TCP
+    + ローカルポート：8080 (server.xml の設定に合わせる)
+
+  - スコープ： 「この規則を適用するリモートIPアドレスを選択してください。」 →「これらのIPアドレス」。
+
+    + アクセス元(リバースプロキシサーバなど)のIPアドレスを追加することでアクセス制限をかける。
+
+  - 操作：デフォルトのまま
+  - プロファイル：デフォルトのまま
+  - 名前：任意（例えば、Tomcat Security Policy）
+
+BaaS サーバのインストール
+=========================
+
+Tomcat 上に BaaS サーバをデプロイします。
+
+BaaSサーバのwarファイル(api.warとconsole.war)を下記の場所に格納してください。
+
+::
+
+    C:\tomcat8\apache-tomcat-8.5.x\webapps\
+
+事前にwebapps配下にあるdocs、examplesなどのフォルダを全て削除しておくことを推奨します。
+
+動作確認
+========
+
+デベロッパコンソールサーバの動作確認
+------------------------------------
+
+ブラウザ上で下記のURLにアクセスし、コンソール画面が表示されることを確認してください。
+
+::
+
+    http://[BaaSサーバのIPアドレス]:8080/console/
+
+APIサーバの動作確認
+-------------------
+
+ブラウザ上で、http://[BaaSサーバのIPアドレス]:8080/api/をブラウズし、下記のJSONが表示されることを確認してください。
+
+::
+
+    {"error":"Not Found"}

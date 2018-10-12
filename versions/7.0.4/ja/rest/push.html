@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. PUSH &mdash; REST API Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="6. ファイルストレージ" href="file_storage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">1. チュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">2. REST API の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_management.html">3. ユーザ管理機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">4. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acl.html">5. セキュリティ : ACL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">6. ファイルストレージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. PUSH</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">7.1. Push通知</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. PUSH</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="push">
+<h1>7. PUSH<a class="headerlink" href="#push" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>APNs, GCM, 独自Pushサーバ 経由でクライアント端末へPush通知を送ることができます。</p>
+<p>クライアントがPush通知を受信するためには、デバイス固有な情報を含むインスタレーションをBaaS サーバへ登録しておく必要があります。</p>
+<p>インスタレーションの登録は各クライアントSDK経由で行われることを想定するため、ここでは省略します。</p>
+<div class="section" id="id1">
+<h2>7.1. Push通知<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>インスタレーション登録済みのクライアントに対してPush通知を行います。</p>
+<p>一般ユーザ権限で送信する場合は、事前にデベロッパコンソールのアプリ設定にて、「クライアントPush許可」をONにしておく必要があります。
+Master権限で送信する場合は不要です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \
+ <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{ </span><span class="se">\</span>
+<span class="s1">      &quot;query&quot;:{&quot;_channels&quot;:&quot;channel1&quot;}, </span><span class="se">\</span>
+<span class="s1">      &quot;message&quot;:&quot;チャネル１購読者へのメッセージ&quot;, </span><span class="se">\</span>
+<span class="s1">      &quot;allowedReceivers&quot;:[&quot;g:group1&quot;] </span><span class="se">\</span>
+<span class="s1">     }&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">push</span><span class="o">/</span><span class="n">notifications</span>
+</pre></div>
+</div>
+<p>上記の例では、&quot;channel1&quot;というチャネルを購読している&quot;group1&quot;グループに所属するユーザへPush通知を行います。
+APNs,GCM,独自Pushの区別なく送信することができます。</p>
+<p>Push通知の送信先は、&quot;query&quot;で条件指定することで絞り込むことができます(必須)。条件指定はオブジェクトストレージのクエリと同様に行います。
+また、&quot;allowedReceiver&quot;にユーザID、グループ名を指定することで、受信者を制限することもできます(オプション)。</p>
+<p>その他、各Push方式固有のプロパティについてはREST API仕様書を参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="file_storage.html" class="btn btn-neutral" title="6. ファイルストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

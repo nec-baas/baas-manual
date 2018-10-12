@@ -1,0 +1,117 @@
+==============
+ユーザ管理機能
+==============
+
+サインアップ
+------------
+
+ユーザを作成します。
+
+.. note::
+
+  ユーザはアプリ毎ではなく、テナント全体で共通(シングルサインオン)となります。
+
+::
+
+ curl -X POST \
+   -H "X-Application-Id: {app_id}" \
+   -H "X-Application-Key: {app_key}" \
+   -H "Content-Type: application/json" \
+   -d '{"username":"foo", "email":"foo@example.com", "password":"Passw0rD"}' \
+   https://{server}/api/1/{tenant}/users
+
+JSON で、username, email, password を指定してください。
+
+成功すると、200 OK が返り、JSON でユーザ情報が返却されます。
+
+::
+
+  {
+    "_id": "52116f01ac521e1742000001",
+    "username": "foo",
+    "email": "foo@example.com",
+    "options": {},
+    "etag": "4a42d082-973d-11e5-94bb-57301660038b",
+    "createdAt": "2013-08-27T04:37:30Z",
+    "updatedAt": "2013-08-27T04:37:30Z"
+  }
+
+ステータスコードは以下のとおりです。
+
+* 200 OK : 正常にユーザを作成した
+* 400 Bad Request : パラメータエラー
+* 403 Forbidden : 認可エラー
+* 409 Conflict : 既に同一ユーザが存在している
+
+ログイン
+--------
+
+::
+
+ curl -X POST \
+   -H "X-Application-Id: {app_id}" \
+   -H "X-Application-Key: {app_key}" \
+   -H "Content-Type: application/json" \
+   -d '{"email":"foo@example.com", "password":"Passw0rD"}' \
+   https://{server}/api/1/{tenant}/login
+
+username または email と、password を指定してログインします。
+
+ログインが成功すると、200 OK が返り、BODY でパラメータが返却されます。
+
+::
+
+  {
+    "_id":"52116f01ac521e1742000001",
+    "sessionToken":"eyJ1c2VyX2lkIjp7IiRvaWQiOiAiNTIxMTZmMDFhYzUyMWUxNzQyMDAwMDAxIn0sImV4cGlyZSI6MTM3Njg3ODIzOX0=--5d44532510f4ad2236ec39a403dde3c3f704c5cd",
+    "expire":1376878239,
+    "username": "foo",
+    "email": "foo@example.com",
+    "groups": [],
+    "options": [],
+    "etag": "4a42d082-973d-11e5-94bb-57301660038b",
+    "createdAt": "2013-08-27T04:37:30Z",
+    "updatedAt": "2013-08-27T04:37:30Z",
+    "lastLoginAt": "2015-11-30T06:38:20Z"
+  }
+
+主なパラメータは以下の通りです。
+
+* _id: ユーザID
+* sessionToken: セッショントークン。以後の API 呼び出しでは、X-Session-Token ヘッダにこの値を入れてください。
+* expire: セッションの有効期限。unix time。
+
+主なステータスコードは以下のとおりです。
+
+* 200 OK : ログイン成功
+* 400 Bad Request : パラメータエラー
+* 401 Unauthorized : 認証エラー
+
+ログアウト
+----------
+
+::
+
+ curl -X DELETE \
+   -H "X-Application-Id: {app_id}" \
+   -H "X-Application-Key: {app_key}" \
+   -H "X-Session-Token: {session_token}" \
+   https://{server}/api/1/{tenant}/login
+
+ログアウトを行うと、sessionToken は無効になりますので、破棄してください。
+
+パスワードリセット
+------------------
+
+該当するユーザにパスワードリセット方法を記載したメールを送信します。
+
+::
+
+ curl -X POST \
+   -H "X-Application-Id: {app_id}" \
+   -H "X-Application-Key: {app_key}" \
+   -H "Content-Type: application/json" \
+   -d '{"email":"foo@example.com" }' \
+   https://{server}/api/1/{tenant}/request_password_reset
+
+パラメータには username または email のいずれかを指定します。

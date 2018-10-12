@@ -1,0 +1,62 @@
+.. _auth:
+
+==================
+認証・セキュリティ
+==================
+
+カスタム API に対するアクセス制限
+=================================
+
+カスタム API に対する認証はアプリケーションキー認証、
+アクセス制限の方法としては ACL を使用する方法と
+ユーザコード側でアクセスチェックを行う方法の２通りが提供されます。
+
+アプリケーションキー認証
+------------------------
+
+API Gateway の認証は、BaaS の他 REST API と同様、X-Application-Id, X-Application-Key ヘッダによるアプリケーションキー認証となります。
+
+アプリケーションキー認証は必須であり、外すことはできません。
+
+.. index::
+   single: ACL
+
+ACL
+---
+
+Swagger API 定義に ACL を記述することでアクセス制限を行うことが可能です。
+具体的な方法はAPI Gateway 利用手順書の `認証・セキュリティ <../apigw/auth.html>`_
+を参照してください。
+
+ユーザコード側でのアクセスチェック
+----------------------------------
+
+ハンドラに引き渡される context.Nebula にはカスタム API 呼び出し時のユーザ情報
+(セッショントークン)が格納されていますので、これを使ってアクセス権限チェックを行うことが
+できます。
+
+以下に例を示します。
+
+.. code-block:: javascript
+
+    exports.myhandler = (event, context) => {
+        const Nebula = context.Nebula;
+
+        // ログインしているかチェックしたい場合
+        if (!Nebula.isLoggedIn()) {
+            context.fail(new Error("Not logged in"));
+        }
+
+        // 所属グループをチェックする場合
+        const groups = Nebula.User.current().groups;
+        if (groups.indexOf("admin") < 0) {
+            context.fail(new Error("Unauthorized"));
+        }
+
+        ...
+
+なお、BaaS API を呼び出す場合は BaaSサーバ側で ACL のチェックが行われますので、
+この権限チェックで十分な場合はユーザコード側でのアクセス権チェックは不要です。
+
+
+

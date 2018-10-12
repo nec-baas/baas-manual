@@ -1,0 +1,149 @@
+.. include:: ../common/linkdef.rst
+
+=================
+インストール手順
+=================
+
+インストール: RabbitMQ サーバ
+=================================
+
+RabbitMQ サーバを稼働させるホストに RabbitMQ をインストールします。
+
+RabbitMQ サーバのインストール
+-----------------------------
+
+`Downloading and Installing RabbitMQ`_ を参照して
+インストールを実施してください。
+
+CentOS の場合は `Installing on RPM-based Linux`_
+手順を参照してください。手順概要は以下の通りです。
+
+1. Erlang をインストールします。方法は何通りかありますが、推奨は RabbitMQサイトで配布している RPM をインストールする手順です。
+2. RabbitMQ RPM をダウンロードし、インストールします。
+3. 設定ファイル /etc/rabbitmq/rabbitmq.config を作成します。
+4. クラスタ構成にする場合は /var/lib/rabbitmq/.erlang.cookie に Cookie を作成します。
+5. rabbitmq-server サービスを再起動します。
+
+以下に rabbitmq.config ファイルの例を示します。
+default_user, default_pass にデフォルトユーザ名・パスワードを指定します。
+(パスワードの値は適宜変更してください)
+
+.. code-block:: erlang
+
+    %% -*- mode: erlang -*-
+    [
+      {rabbit, [
+        %% TCP listen port
+        {tcp_listeners, [5672]},
+        %% Default User
+        {default_user, <<"rabbitmq">> },
+        %% Default Password
+        {default_pass, <<"rabbitmq">> }
+      ]}
+    ].
+
+
+ファイヤウォール設定変更
+-------------------------
+
+RabbitMQ はデフォルトで TCP/5672 ポートを使用しますので、
+ファイヤウォールの設定を変更し Incoming 通信を許可してください。
+
+インストール: SSE Push サーバ
+=================================
+
+SSE Push サーバを稼働させるホストに SSE Push サーバをインストールします。
+
+ulimit の設定変更
+-----------------
+
+SSE Push サーバは、性質上大量の TCP コネクションを同時に継続オープンしておく必要があります。
+このため ulimit の nofile 設定値を大きくしておく必要があります。
+
+CentOS の場合は、/etc/security/limits.d/99-nofile.conf ファイルを以下のような内容で
+作成し、システムを再起動します。
+
+.. code-block:: text
+
+    *       soft    nofile  64000
+    *       hard    nofile  64000
+
+ファイヤウォール設定変更
+------------------------
+
+ファイヤウォールの設定を変更し、以下のIncoming通信を許可してください。
+
+* Tomcat ポート: TCP/8080
+
+SSE Push サーバクラスタを組む場合は、以下のポートも追加で許可が必要です。
+
+* Hazelcast listen ポート: TCP/5701
+* Hazelcast マルチキャストポート: UDP/54327
+
+OpenJDK のインストール
+--------------------------------
+
+OpenJDK 8 以上をインストールします。
+
+.. code-block:: bash
+
+    $ sudo yum install java-1.8.0-openjdk-devel
+
+.. _install_tomcat:
+
+Tomcat のインストールと設定
+-----------------------------
+
+`Apache Tomcat`_ より、Tomcat 8.5 以上をダウンロードし、インストールを行って下さい。
+
+server.xml ファイルを編集し、パラメータを調整してください。
+設定ファイルのリファレンスは `Apache Tomcat 8 Configuration Reference`_ を参照してください。
+
+主に設定が必要な項目は以下のとおりです。
+
+* maxConnections : 同時接続するクライアント数より大きな値に設定してください。推奨値は数千～10,000程度です。
+
+SSE Push サーバのインストール
+-----------------------------
+
+SSE Push サーバをデプロイします。
+配布物に含まれる ssepush.war を Tomcat8 の webapps ディレクトリにコピーしてください。
+
+設定ファイルの配置
+------------------
+
+設定ファイルを XML ファイルで作成し、/etc/ssepush/config.xml または ~/.ssepush/config.xml に投入してください。
+以下に設定例を示します。
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+    <properties>
+        <entry key="amqpUri">amqp://rabbitmq:rabbitmq@192.168.0.1:5672</entry>
+    </properties>
+
+ここでは AMQP の設定を行っています。amqp:// の部分が RabbitMQ の AMQP URI です。
+ホスト部分を RabbitMQ が動作する ホストのホスト名もしくは IP アドレスに変更します。 
+認証が必要なので、認証ユーザ名・パスワードも指定します。
+
+設定ファイルの詳細は、次章を参照してください。
+
+設定が完了したら、Tomcat を再起動してください。
+
+モバイルバックエンド基盤サーバ側の設定変更
+------------------------------------------
+
+SSE Push を使用するモバイルバックエンド基盤サーバから RabbitMQ へ接続するための
+設定変更が必要です。
+
+詳細手順は「 `モバイルバックエンド基盤 Push 通知ガイド <../push/index.html>`_ 」の「SSE Push サーバセットアップ」
+を参照してください。
+
+ロードバランサの設定
+=====================
+
+ロードバランサを設置し、HTTPS 通信を SSE Push サーバの TCP:8080 ポートに HTTP で転送するように設定してください。
+
+HTTPS 通信の終端はロードバランサ上で行う必要がありますので、適宜 SSL 証明書をロードバランサに設定する必要があります。
+

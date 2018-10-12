@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. オブジェクトストレージ &mdash; iOS SDK Guide 5.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="8. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="6. グループ管理" href="group.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> iOS SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                5.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS iOS API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. オブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.1. オブジェクトの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">7.2. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">7.3. オブジェクトのクエリ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">7.3.1. クエリ条件の指定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">7.3.2. ソート順序の指定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">7.3.3. 検索数・スキップ数の指定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">7.4. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">7.5. オブジェクトの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https.html">9. HTTPS通信について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swift.html">10. Swift の利用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">iOS SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. オブジェクトストレージ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>7. オブジェクトストレージ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではオブジェクトストレージの利用方法について説明します。</p>
+<div class="section" id="id2">
+<h2>7.1. オブジェクトの追加<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトは NBObject クラスのインスタンスとして生成します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBObject</span> <span class="o">*</span><span class="n">obj</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBObject</span> <span class="nl">objectWithBucketName</span><span class="p">:</span><span class="s">@&quot;TodoTutorial1&quot;</span><span class="p">];</span>
+
+<span class="n">obj</span><span class="p">[</span><span class="s">@&quot;description&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">@&quot;打ち合わせ資料を作成する&quot;</span><span class="p">;</span>
+<span class="n">obj</span><span class="p">[</span><span class="s">@&quot;dueDate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">@&quot;2014/12/19&quot;</span><span class="p">;</span>
+
+<span class="c1">// 以下の書き方も可</span>
+<span class="c1">//[obj setObject:@&quot;打ち合わせ資料を作成する&quot; forKey:@&quot;description&quot;];</span>
+<span class="c1">//[obj setObject:@&quot;2014/12/19&quot; forKey:@&quot;dueDate&quot;];</span>
+</pre></div>
+</div>
+<p>オブジェクトを生成するには、バケット名を指定して objectWithBucketName: メソッドを呼び出します。</p>
+<p>値には文字列、整数、NSArray、NSDictionary など、NSJSONSerialization でシリアライズできる任意のオブジェクトを指定することができます。</p>
+<p>オブジェクトを保存するには、saveInBackgroundWithBlock: メソッドを呼び出します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">obj</span> <span class="nl">saveInBackgroundWithBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー時の処理</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>7.2. アクセス制御<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクト単位でアクセス制御を行うことができます。</p>
+<p>アクセス制御には、NBAcl クラスを使用します。NBObject の acl プロパティに設定します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBAcl</span> <span class="o">*</span><span class="n">acl</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBAcl</span> <span class="n">new</span><span class="p">];</span>
+<span class="n">acl</span><span class="p">.</span><span class="n">owner</span> <span class="o">=</span> <span class="s">@&quot;オーナID&quot;</span><span class="p">;</span>
+<span class="p">[</span><span class="n">acl</span> <span class="nl">addEntry</span><span class="p">:</span><span class="s">@&quot;ユーザID&quot;</span> <span class="nl">permission</span><span class="p">:</span><span class="n">NBAclReadable</span><span class="p">];</span>
+<span class="p">[</span><span class="n">acl</span> <span class="nl">addEntry</span><span class="p">:</span><span class="s">@&quot;g:グループID&quot;</span> <span class="nl">permission</span><span class="p">:</span><span class="n">NBAclReadable</span><span class="p">];</span>
+<span class="p">[</span><span class="n">acl</span> <span class="nl">addEntry</span><span class="p">:</span><span class="s">@&quot;ユーザID&quot;</span> <span class="nl">permission</span><span class="p">:</span><span class="n">NBAclWritable</span><span class="p">];</span>
+
+<span class="n">NBObject</span> <span class="o">*</span><span class="n">obj</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBObject</span> <span class="nl">objectWithBucketName</span><span class="p">:</span><span class="s">@&quot;TodoTutorial1&quot;</span><span class="p">];</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">acl</span> <span class="o">=</span> <span class="n">acl</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>owner プロパティにオーナIDを設定します。</li>
+<li>addEntry:permission: でエントリを追加します。<ul>
+<li>第1引数に、ユーザID/グループIDを指定します。グループIDを指定する場合は g: プレフィクスを付与します。</li>
+<li>第2引数に、権限種別を指定します。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>7.3. オブジェクトのクエリ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトのクエリは、バケットに対してクエリを発行することで行います。</p>
+<p>以下の例では、全件検索を行っています。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="c1">// バケットインスタンスを作成</span>
+<span class="n">NBObjectBucket</span> <span class="o">*</span><span class="n">bucket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NBObjectBucket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBucketName</span><span class="p">:</span><span class="s">@&quot;TodoTutorial1&quot;</span><span class="p">];</span>
+
+<span class="n">NBQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBQuery</span> <span class="n">new</span><span class="p">];</span>
+<span class="p">[</span><span class="n">bucket</span> <span class="nl">queryObjectInBackground</span><span class="p">:</span><span class="n">query</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 正常時</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー発生時</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<p>クエリしたオブジェクトは objects に NBObject の配列で渡されます。
+count には全件数が格納されます。</p>
+<p>クエリ条件は、Query クラスに指定します。</p>
+<div class="section" id="id5">
+<h3>7.3.1. クエリ条件の指定<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>検索条件には NBClause を使用します。</p>
+<p>NBClause の生成には NBClause のインスタンスメソッドを使用します。
+以下に例を示します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBClause</span> <span class="o">*</span><span class="n">c1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="nl">equals</span><span class="p">:</span><span class="s">@&quot;name&quot;</span> <span class="nl">value</span><span class="p">:</span><span class="s">@&quot;foo&quot;</span><span class="p">];</span> <span class="c1">// 一致条件</span>
+<span class="n">NBClause</span> <span class="o">*</span><span class="n">c2</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="nl">lessThan</span><span class="p">:</span><span class="s">@&quot;age&quot;</span> <span class="nl">value</span><span class="p">:</span><span class="mi">@30</span><span class="p">];</span> <span class="c1">// 比較条件</span>
+<span class="n">NBClause</span> <span class="o">*</span><span class="n">c3</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="k">in</span><span class="o">:</span><span class="s">@&quot;prefecture&quot;</span> <span class="nl">value</span><span class="p">:</span><span class="l">@[</span><span class="s">@&quot;Tokyo&quot;</span><span class="p">,</span> <span class="s">@&quot;Kanagawa&quot;</span><span class="p">,</span> <span class="s">@&quot;Saitama&quot;</span><span class="l">]</span><span class="p">];</span> <span class="c1">// 配列検索</span>
+<span class="n">NBClause</span> <span class="o">*</span><span class="n">c4</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="nl">regex</span><span class="p">:</span><span class="s">@&quot;description&quot;</span> <span class="nl">expression</span><span class="p">:</span><span class="s">@&quot;^[a-c]&quot;</span> <span class="nl">option</span><span class="p">:</span><span class="n">NBRegexCaseNone</span><span class="p">];</span> <span class="c1">// 正規表現一致</span>
+</pre></div>
+</div>
+<p>論理演算 (and, or, not) で複数の NBClause を結合することも可能です。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBClause</span> <span class="o">*</span><span class="n">c5</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="nl">and</span><span class="p">:</span><span class="l">@[</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n">c4</span><span class="l">]</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>NBClause からクエリを生成することができます。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBQuery</span> <span class="nl">queryWithClause</span><span class="p">:</span><span class="n">c5</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>7.3.2. ソート順序の指定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ソート順序は、setSortOrderWithKey:isAscend: で指定します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">query</span> <span class="nl">setSortOrderWithKey</span><span class="p">:</span><span class="s">@&quot;updatedAt&quot;</span> <span class="nl">isAscend</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>ここでは、updatedAt 昇順を指定しています。
+isAscend: に NO を指定すると降順になります。</p>
+</div>
+<div class="section" id="id7">
+<h3>7.3.3. 検索数・スキップ数の指定<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>クエリの limit, skip プロパティにそれぞれ検索数、スキップ数を指定できます。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="p">.</span><span class="n">skip</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">query</span><span class="p">.</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">101</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>7.4. オブジェクトの更新<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトの更新は、部分更新と上書き更新の 2 種類があります。</p>
+<p>どちらも対象オブジェクトをクエリで取得し、更新します。
+下記の例では、[&#64;&quot;name&quot; が &#64;&quot;foo&quot; に一致する] オブジェクトを上書きします。</p>
+<p>部分更新は、NBObject クラスの partUpdateInBackgroundWithBlock:block: メソッドで行います。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBObjectBucket</span> <span class="o">*</span><span class="n">bucket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NBObjectBucket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBucketName</span><span class="p">:</span><span class="s">@&quot;TodoTutorial1&quot;</span><span class="p">];</span>
+<span class="n">NBClause</span> <span class="o">*</span><span class="n">c1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="nl">equals</span><span class="p">:</span><span class="s">@&quot;name&quot;</span> <span class="nl">value</span><span class="p">:</span><span class="s">@&quot;foo&quot;</span><span class="p">];</span> <span class="c1">// 一致条件</span>
+<span class="n">NBQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBQuery</span> <span class="nl">queryWithClause</span><span class="p">:</span><span class="n">c1</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">bucket</span> <span class="nl">queryInBackgroundWithQuery</span><span class="p">:</span><span class="n">query</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 正常時、対象オブジェクトを更新。</span>
+        <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">dic</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObjectsAndKeys</span><span class="p">:</span>
+            <span class="s">@&quot;foo&quot;</span><span class="p">,</span> <span class="s">@&quot;name&quot;</span><span class="p">,</span>
+            <span class="s">@&quot;000-0000-0000&quot;</span><span class="p">,</span> <span class="s">@&quot;tel&quot;</span><span class="p">,</span>
+            <span class="nb">nil</span><span class="p">];</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">NBObject</span> <span class="o">*</span><span class="n">obj</span> <span class="k">in</span> <span class="n">objects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">[</span><span class="n">obj</span> <span class="nl">partUpdateInBackgroundWithDictionary</span><span class="p">:</span><span class="n">dic</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NSArrary</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUnteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 成功時の処理</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>      <span class="c1">// エラー時の処理</span>
+                <span class="p">}</span>
+            <span class="p">}];</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー発生時</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<p>更新内容を NSDictionary で作成し、第1引数に設定します。</p>
+<p>上書き更新は、オブジェクトの追加と同じく saveInBackgroundWithBlock: メソッドで行います。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBObjectBucket</span> <span class="o">*</span><span class="n">bucket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NBObjectBucket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBucketName</span><span class="p">:</span><span class="s">@&quot;TodoTutorial1&quot;</span><span class="p">];</span>
+<span class="n">NBClause</span> <span class="o">*</span><span class="n">c1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="nl">equals</span><span class="p">:</span><span class="s">@&quot;name&quot;</span> <span class="nl">value</span><span class="p">:</span><span class="s">@&quot;foo&quot;</span><span class="p">];</span> <span class="c1">// 一致条件</span>
+<span class="n">NBQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBQuery</span> <span class="nl">queryWithClause</span><span class="p">:</span><span class="n">c1</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">bucket</span> <span class="nl">queryInBackgroundWithQuery</span><span class="p">:</span><span class="n">query</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 正常時、対象オブジェクトを上書き。</span>
+        <span class="n">obj</span><span class="p">[</span><span class="s">@&quot;name&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="s">@&quot;foo&quot;</span><span class="p">;</span>
+        <span class="n">obj</span><span class="p">[</span><span class="s">@&quot;tel&quot;</span><span class="p">]</span>     <span class="o">=</span> <span class="s">@&quot;000-0000-0000&quot;</span><span class="p">;</span>
+        <span class="n">obj</span><span class="p">[</span><span class="s">@&quot;address&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">@&quot;Kanagawa&quot;</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">NBObject</span> <span class="o">*</span><span class="n">obj</span> <span class="k">in</span> <span class="n">objects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">[</span><span class="n">obj</span> <span class="nl">saveInBackgroundWithBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 成功時の処理</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>      <span class="c1">// エラー時の処理</span>
+                <span class="p">}</span>
+            <span class="p">}];</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー発生時</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>7.5. オブジェクトの削除<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトの削除は NBObject インスタンスのインスタンスメソッドで行います。</p>
+<p>オブジェクトを削除するには、deleteInBackgroundWithBlock: メソッドを呼び出します。
+削除する際、対象のオブジェクトの id が必要なため、一度クエリする必要があります。</p>
+<p>下記の例では、[&#64;&quot;name&quot; が &#64;&quot;foo&quot; に一致する] オブジェクトを削除します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBObjectBucket</span> <span class="o">*</span><span class="n">bucket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NBObjectBucket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBucketName</span><span class="p">:</span><span class="s">@&quot;TodoTutorial1&quot;</span><span class="p">];</span>
+<span class="n">NBClause</span> <span class="o">*</span><span class="n">c1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBClause</span> <span class="nl">equals</span><span class="p">:</span><span class="s">@&quot;name&quot;</span> <span class="nl">value</span><span class="p">:</span><span class="s">@&quot;foo&quot;</span><span class="p">];</span> <span class="c1">// 一致条件</span>
+<span class="n">NBQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBQuery</span> <span class="nl">queryWithClause</span><span class="p">:</span><span class="n">c1</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">bucket</span> <span class="nl">queryInBackgroundWithQuery</span><span class="p">:</span><span class="n">query</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 正常時、対象オブジェクトを削除。</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">NBObject</span> <span class="o">*</span><span class="n">obj</span> <span class="k">in</span> <span class="n">objects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">[</span><span class="n">obj</span> <span class="nl">deleteInBackgroundWithBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 成功時の処理</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>      <span class="c1">// エラー時の処理</span>
+                <span class="p">}</span>
+            <span class="p">}];</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// エラー発生時</span>
+    <span class="p">}</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="8. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group.html" class="btn btn-neutral" title="6. グループ管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'5.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

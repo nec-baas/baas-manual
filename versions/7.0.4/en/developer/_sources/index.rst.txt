@@ -1,0 +1,21 @@
+NEC BaaS Developer Manual
+=========================
+
+Table of contents
+------------------
+
+.. toctree::
+   :maxdepth: 3
+   :numbered: 3
+
+   intro
+   functions/index
+   limits
+
+Index
+------
+
+* :ref:`genindex`
+* :ref:`search`
+
+.. include:: ../common/back_to_index.rst

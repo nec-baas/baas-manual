@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.6. コンテキスト &mdash; Cloud Functions Developer Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. 認証・セキュリティ" href="auth.html" />
+    <link rel="prev" title="5.5. ユーザコードからのモバイルバックエンド基盤の利用" href="use-nebula-java.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project-dir.html">3. プロジェクトディレクトリの作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodejs.html">4. Node.js での開発</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="java.html">5. Java での開発</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project-java.html">5.1. Java プロジェクトのセットアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-java.html">5.2. Cloud Functionsコード実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-function-java.html">5.3. API/ファンクション定義の登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exec-java.html">5.4. カスタムAPIの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-nebula-java.html">5.5. ユーザコードからのモバイルバックエンド基盤の利用</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.6. コンテキスト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context-succeed">5.6.1. context.succeed() : ハンドラの正常終了</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#apigwresponse">ApigwResponse</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#context-fail">5.6.2. context.fail() : ハンドラの異常終了</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#httperror">HttpError</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#context-clientcontext">5.6.3. context.clientContext : クライアントコンテキスト</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nebulacontext">NebulaContext :  モバイルバックエンド基盤接続情報</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#context-logger">5.6.4. context.logger : ロガー</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="others.html">7. その他補足情報</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">8. 制限事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="java.html">5. Java での開発</a> &raquo;</li>
+        
+      <li>5.6. コンテキスト</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="index-0"></span><div class="section" id="context-java">
+<span id="index-1"></span><span id="id1"></span><h1>5.6. コンテキスト<a class="headerlink" href="#context-java" title="Permalink to this headline">¶</a></h1>
+<p>Java のハンドラ第二引数に引き渡される context の詳細について説明します。</p>
+<p>context は com.nec.baas.cloudfn.sdk.Context クラス型です。</p>
+<p>context には以下のメソッドが設定されています。</p>
+<ul class="simple">
+<li>succeed() : 成功時に呼び出す</li>
+<li>fail() : 失敗時に呼び出す</li>
+<li>httpError() : HTTPエラーを生成する</li>
+<li>logger() : Logger を取得する</li>
+<li>clientContext(): Client Context を取得する</li>
+</ul>
+<div class="section" id="context-succeed">
+<h2>5.6.1. context.succeed() : ハンドラの正常終了<a class="headerlink" href="#context-succeed" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">succeed</span><span class="o">(</span><span class="n">ApigwResponse</span> <span class="n">response</span><span class="o">);</span>
+<span class="n">succeed</span><span class="o">(</span><span class="n">String</span> <span class="n">result</span><span class="o">);</span>
+<span class="n">succeed</span><span class="o">(</span><span class="n">Object</span> <span class="n">pojo</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>ハンドラの実行が正常終了したことを通知します。
+result に指定した値が呼び出し元に返却されます。
+result に指定できる型は以下のいずれかです。</p>
+<ul class="simple">
+<li>ApigwResponse : 設定されたステータスコード、ヘッダ、データが返却されます。</li>
+<li>String : そのままテキストとして返却されます。Content-Type は text/plain 固定となります。</li>
+<li>Object : JSON文字列に変換されます。変換には Jackson databind が使用されます。Content-Type は application/json 固定となります。</li>
+</ul>
+<p>ステータスコードや Content-Type を指定したい場合は ApigwResponse を使用します(後述)</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ApigwResponse を使用しない場合はステータスコードは 200 OK 固定となります。</p>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">現在の仕様では、succeedにバイト列(byte[])を引き渡すと、succeed(Object pojo)にディスパッチされ、Base64エンコードされます。
+この仕様はわかりにくいため、将来的に変更される可能性があります。
+安全のため、現時点ではsucceedに直接バイト列を引き渡すのは避け、ApigwResponseにバイト列を格納した上で引き渡してください。</p>
+</div>
+<div class="section" id="apigwresponse">
+<span id="index-2"></span><h3>ApigwResponse<a class="headerlink" href="#apigwresponse" title="Permalink to this headline">¶</a></h3>
+<p>ステータスコードや Content-Type などを指定したい場合は ApigwResponse クラスを使用します。
+ApigwResponse は context.apigwResponse() メソッドで生成します。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">ApigwResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">ApigwResponse</span>
+    <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">entity</span><span class="o">(</span><span class="s">&quot;Hello world.&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="s">&quot;text/plain&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>status() : HTTP ステータスコードを指定します。</li>
+<li>entity() : 返却するデータを指定します。</li>
+<li>contentType() : Content-Type を指定します。</li>
+</ul>
+<p>詳細は Javadoc を参照してください。</p>
+</div>
+</div>
+<div class="section" id="context-fail">
+<h2>5.6.2. context.fail() : ハンドラの異常終了<a class="headerlink" href="#context-fail" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">fail</span><span class="o">(</span><span class="n">Sring</span> <span class="n">message</span><span class="o">);</span>
+<span class="n">fail</span><span class="o">(</span><span class="n">HttpError</span> <span class="n">httpError</span><span class="o">);</span>
+<span class="n">fail</span><span class="o">(</span><span class="n">ApigwResponse</span> <span class="n">response</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>ハンドラの実行がエラー終了したことを通知します。
+引数の型には以下のものが指定できます。</p>
+<ul class="simple">
+<li>ApigwResponse : レスポンス</li>
+<li>HttpError : HTTPエラー</li>
+<li>String : エラーメッセージ</li>
+</ul>
+<p>String を指定した場合は、HTTP ステータスコードは 500 Internal Server Error 固定となります。
+500 以外のステータスコードを返却したい場合は ApigwResponse または HttpError を使用してください。</p>
+<p>HttpError を指定した場合は、Content-Type は “text/plain” 固定となります。</p>
+<div class="section" id="httperror">
+<h3>HttpError<a class="headerlink" href="#httperror" title="Permalink to this headline">¶</a></h3>
+<p>HTTP エラーを返したい場合には HttpError を使用できます。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">HttpError</span> <span class="n">error</span> <span class="o">=</span> <span class="n">HttpError</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="mi">403</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">message</span><span class="o">(</span><span class="s">&quot;Forbidden&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>status(): ステータスコードを指定します。</li>
+<li>message(): エラーメッセージを指定します。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="context-clientcontext">
+<span id="clientcontextjava"></span><span id="index-3"></span><h2>5.6.3. context.clientContext : クライアントコンテキスト<a class="headerlink" href="#context-clientcontext" title="Permalink to this headline">¶</a></h2>
+<p>クライアントコンテキストは context.clientContext() で取得できます。
+クライアントコンテキストには以下のメソッドがあります。</p>
+<ul class="simple">
+<li>contentType() : Content-Type を取得</li>
+<li>method() : HTTP メソッドを取得</li>
+<li>uri() : URI 文字列を取得</li>
+<li>queryParams() : クエリパラメータを取得 (Map&lt;String,List&lt;String&gt;&gt;型)</li>
+<li>pathParams() : パスパラメータを取得 (Map&lt;String,String&gt;型)</li>
+<li>headers() : ヘッダパラメータを取得 (Map&lt;String,List&lt;String&gt;&gt;型)</li>
+<li>nebula() : NebulaContext を取得</li>
+<li>function() : Function 定義を取得 (Map&lt;String,Object&gt;型)</li>
+</ul>
+<div class="section" id="nebulacontext">
+<span id="index-4"></span><h3>NebulaContext :  モバイルバックエンド基盤接続情報<a class="headerlink" href="#nebulacontext" title="Permalink to this headline">¶</a></h3>
+<p>NebulaContext には、テナントID/アプリID/キーなど、モバイルバックエンド基盤に接続するための情報が格納されています。
+詳細は Javadoc を参照してください。</p>
+<p>詳細は <a class="reference internal" href="use-nebula-java.html#use-nebula-java"><span class="std std-ref">ユーザコードからのモバイルバックエンド基盤の利用</span></a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="context-logger">
+<span id="index-5"></span><h2>5.6.4. context.logger : ロガー<a class="headerlink" href="#context-logger" title="Permalink to this headline">¶</a></h2>
+<p>ユーザコードでログ出力したい場合は、context.logger を使用してください。</p>
+<p>logger は org.slf4j.Logger 型です。詳細は slf4j のマニュアルを参照してください。</p>
+<p>出力されたログはデベロッパーコンソール上で閲覧することができます。
+また、CLI ツールを使って取得することも可能です。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="auth.html" class="btn btn-neutral float-right" title="6. 認証・セキュリティ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="use-nebula-java.html" class="btn btn-neutral" title="5.5. ユーザコードからのモバイルバックエンド基盤の利用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

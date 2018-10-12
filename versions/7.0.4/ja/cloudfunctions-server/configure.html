@@ -1,0 +1,538 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. 設定 &mdash; Cloud Functions Server User Manual 7.0.2 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="7. 動作確認" href="test.html" />
+    <link rel="prev" title="5. インストール手順" href="install_manual.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Server User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">2. 必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_configuration.html">3. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dist.html">4. 配布物の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_manual.html">5. インストール手順</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. 設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#config-file">6.1. サーバマネージャ設定ファイル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">6.1.1. 設定ファイルの書式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#index-0">スペック</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#config-fluentd">6.1.2. サーバマネージャログ出力設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fluentd-config">6.2. Fluentd の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cloud-functions">6.2.1. Cloud Functions ログ設定ファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">6.2.2. MongoDB レプリカセットを使用する場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#server-config">6.3. モバイルバックエンド基盤サーバの設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#apiuri">6.3.1. APIサーバ内部ベースURIの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">6.3.2. RabbitMQ サーバ設定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">7. 動作確認</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logs.html">8. ログ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Server User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>6. 設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configure">
+<span id="id20"></span><h1>6. 設定<a class="headerlink" href="#configure" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="config-file">
+<span id="id21"></span><h2>6.1. サーバマネージャ設定ファイル<a class="headerlink" href="#config-file" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Cloud Functionsサーバの設定ファイルは、YAML ファイルとして作成します。
+設定ファイルは /etc/baas ディレクトリに cloudfn-server-manager-config.yaml という名前で作成してください。</p>
+<div class="section" id="id22">
+<h3>6.1.1. 設定ファイルの書式<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>設定ファイルの書式は以下の通りです。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">system</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">起動タイプ</span>
+  <span class="l l-Scalar l-Scalar-Plain">noChargeKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">APIカウント対象外キー</span>
+
+<span class="l l-Scalar l-Scalar-Plain">amqp</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">AMQP URI</span>
+
+<span class="l l-Scalar l-Scalar-Plain">usercode</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">host_root_dir</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ユーザコード展開ベースディレクトリ</span>
+
+<span class="l l-Scalar l-Scalar-Plain">docker</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Docker URI</span>
+
+<span class="l l-Scalar l-Scalar-Plain">fluentd</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">address</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fluentd IPアドレス:ポート番号</span>
+
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">&lt;spec&gt;</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">repoTag</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Docker イメージの repository/tag 名</span>
+    <span class="l l-Scalar l-Scalar-Plain">volume</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ロジックサーバが格納されたディレクトリ</span>
+    <span class="l l-Scalar l-Scalar-Plain">cmd</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Docker コンテナ内で実行するコマンドライン</span>
+</pre></div>
+</div>
+<p>設定項目は以下のとおりです。</p>
+<ul class="simple">
+<li>system<ul>
+<li>type: 起動タイプを指定します。
+'docker' を指定した場合は Docker を使用してロジックサーバを起動します。
+'direct' を指定した場合は Docker は使用せずロジックサーバを直接起動します(Dockerレス)。</li>
+<li>noChargeKey: モバイルバックエンド基盤サーバ側に対する内部操作(コードダウンロードなど)を API カウントの対象外とするためのキーです。<a class="reference internal" href="#server-config"><span class="std std-ref">モバイルバックエンド基盤サーバの設定</span></a> の値に合わせてください。</li>
+</ul>
+</li>
+<li>amqp : AMQP 設定<ul>
+<li>uri : AMQP 接続 URI</li>
+</ul>
+</li>
+<li>usercode : ユーザコード設定<ul>
+<li>host_root_dir: ユーザコードを展開するベースディレクトリです</li>
+</ul>
+</li>
+<li>docker : Docker設定<ul>
+<li>uri : Docker URIです。通常は unix:///var/run/docker.sock を指定します。</li>
+</ul>
+</li>
+<li>fluentd : fluentd 設定<ul>
+<li>address : fluentd のIPアドレス:ポート番号です。Docker コンテナ内からアクセス可能なアドレス/ポート番号を指定してください。</li>
+</ul>
+</li>
+<li>spec: スペックを指定します。詳細は後述します。</li>
+</ul>
+<p>Docker を使用する場合のサンプルを以下に示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">system</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">docker</span>
+  <span class="l l-Scalar l-Scalar-Plain">noChargeKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sAmPleNoChargeKey12345678</span>
+
+<span class="l l-Scalar l-Scalar-Plain">amqp</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">amqp://guest:guest@localhost:5672</span>
+
+<span class="l l-Scalar l-Scalar-Plain">usercode</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">host_root_dir</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/cloudfn/usercode</span>
+
+<span class="l l-Scalar l-Scalar-Plain">docker</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">unix:///var/run/docker.sock</span>
+
+<span class="l l-Scalar l-Scalar-Plain">fluentd</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">address</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">172.17.0.1:24224</span>
+
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">node6</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">repoTag</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nebula/node-logic-server</span>
+    <span class="l l-Scalar l-Scalar-Plain">volume:/opt/cloudfn/node-server/package</span>
+    <span class="l l-Scalar l-Scalar-Plain">cmd</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node /opt/emitter/bin/server.js</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">java8</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">repoTag</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nebula/java-logic-server</span>
+    <span class="l l-Scalar l-Scalar-Plain">volume</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/cloudfn/java-server</span>
+    <span class="l l-Scalar l-Scalar-Plain">cmd</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">java -jar /opt/emitter/cloudfn-java-server.jar</span>
+</pre></div>
+</div>
+<p>Docker を使用しない場合(Dockerレス)の例を示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">system</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">direct</span>
+  <span class="l l-Scalar l-Scalar-Plain">noChargeKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sAmPleNoChargeKey12345678</span>
+
+<span class="l l-Scalar l-Scalar-Plain">amqp</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">amqp://guest:guest@localhost:5672</span>
+
+<span class="l l-Scalar l-Scalar-Plain">usercode</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">host_root_dir</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/cloudfn/usercode</span>
+
+<span class="l l-Scalar l-Scalar-Plain">fluentd</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">address</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">172.17.0.1:24224</span>
+
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">node6</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cmd</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node /opt/cloudfn/node-server/package/bin/server.js</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">java8</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">cmd</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">java -jar /opt/cloudfn/java-server/cloudfn-java-server.jar</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">Node.js を使用する限り、上記設定は amqp.uri, system.noChargeKey 以外変更する必要はありません。
+上記の値をそのまま使用してください。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Docker 1.9 未満の場合はホスト IP の値が異なるため、docker.fluentd_address には &quot;172.17.42.1:24224&quot; を指定する必要があります。</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">警告</p>
+<p class="last">Docker コンテナが Fluentd に接続できない場合 (fluentd.address が正しくないか，Fluentd が起動していない場合)，Docker コンテナは起動に失敗します．
+その際に，起動に失敗したプロセスが残ってしまう場合があります．</p>
+</div>
+<div class="section" id="index-0">
+<span id="id23"></span><h4>スペック<a class="headerlink" href="#index-0" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>「スペック」はロジックサーバを実行する環境の設定です。
+「スペック名」はスペックを一意に指定する文字列で、ファンクション定義ファイルから指定します。</p>
+<p>上記設定ファイルでは、&lt;spec&gt; の箇所にスペック名を記述します。
+スペックが複数存在する場合は、複数セット指定する必要があります。</p>
+<p>設定項目は以下のとおりです。</p>
+<ul class="simple">
+<li>repoTag : 起動する Docker イメージの repository/tag 名</li>
+<li>volume : 起動するロジックサーバが格納されたディレクトリ</li>
+<li>cmd : Docker コンテナ内で起動時に実行するコマンドライン</li>
+</ul>
+<p>起動タイプを 'docker' に指定した場合は Docker 経由でサーバが起動されます。</p>
+<p>spec.[spec].volume で指定したディレクトリは、コンテナ内の
+&quot;/opt/emitter&quot; ディレクトリに固定的にマウントされます。
+spec.[spec].cmd では、これを意識してサーバを起動するように記述してください。</p>
+<p>起動タイプを 'direct' に指定した場合は Docker は使用せず直接サーバが起動されます。
+サーバの起動には cmd に指定したコマンドラインが使用されます
+(Dockerコンテナ内ではなくサーバホスト上で直接起動しますので注意してください)。
+なお、repoTag, volume の値は無視されます。</p>
+</div>
+</div>
+<div class="section" id="config-fluentd">
+<span id="index-1"></span><span id="id24"></span><h3>6.1.2. サーバマネージャログ出力設定<a class="headerlink" href="#config-fluentd" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>サーバマネージャが出力するログの設定は、/etc/baas/cloudfn-server-manager-logback.properties ファイルで行います。
+設定ファイルのサンプルは /opt/cloudfn/etc-samples/ ディレクトリに格納されていますので、/etc/baas ディレクトリにコピーして
+編集してください。</p>
+<p>設定ファイルの例を示します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logback</span><span class="o">.</span><span class="n">level</span><span class="o">=</span><span class="n">INFO</span>
+
+<span class="n">logback</span><span class="o">.</span><span class="n">types</span><span class="o">=</span><span class="n">FILE</span>
+<span class="c1">#logback.types=STDOUT,FLUENT</span>
+<span class="n">logback</span><span class="o">.</span><span class="n">logdir</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">cloudfn</span>
+
+<span class="c1">#logback.fluent.host=localhost</span>
+<span class="c1">#logback.fluent.port=24224</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>logback.level : ログレベルです。デフォルトは INFO になっています。</li>
+<li>logback.types : ログ種別を指定します。以下任意の値をカンマ区切りで指定します。<ul>
+<li>STDOUT: 標準出力に出力します。</li>
+<li>FILE: ファイルに出力します。ファイル名は cloudfn-server-manager.log となります。ログは自動的にローテートされます。</li>
+<li>FLUENT: fluentd に出力します。</li>
+</ul>
+</li>
+<li>logback.logdir : FILE を指定したときのログファイル出力ディレクトリを指定します。cloudfn ユーザが書き込めるよう permission を指定しておく必要がります。</li>
+<li>logback.fluent.{host|port} : fluentd のホスト名/ポート番号を指定します。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="fluentd-config">
+<span id="id25"></span><h2>6.2. Fluentd の設定<a class="headerlink" href="#fluentd-config" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザコードが出力するログを、MongoDBに転送するための設定が必要です。</p>
+<p>サーバ利用手順書の <a class="reference external" href="../server/configure/fluentd.html">fluentdを利用したロギング</a>
+を参照して td-agent.conf および baas-system.conf の設定を行ってください。</p>
+<div class="section" id="cloud-functions">
+<h3>6.2.1. Cloud Functions ログ設定ファイル<a class="headerlink" href="#cloud-functions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>/etc/td-agent/conf.d ディレクトリに baas-cloudfn.conf ファイルを作成します。
+以下に例を示します。本ファイルは td-agent.conf から include で読み込まれます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># MongoDB にユーザコード実行ログを出力する</span>
+<span class="o">&lt;</span><span class="n">match</span> <span class="n">nebula</span><span class="o">.</span><span class="n">cloudfn</span><span class="o">&gt;</span>
+  <span class="nd">@type</span> <span class="n">mongo</span>
+  <span class="c1"># MongoDBサーバのホスト</span>
+  <span class="n">host</span> <span class="n">localhost</span>
+  <span class="c1"># MongoDBサーバのポート(デフォルト：27017)</span>
+  <span class="n">port</span> <span class="mi">27017</span>
+  <span class="n">database</span> <span class="n">baas_log</span>
+  <span class="n">collection</span> <span class="n">nebula_customlogic</span>
+  <span class="n">capped</span>
+  <span class="c1"># Collectionのサイズ</span>
+  <span class="n">capped_size</span> <span class="mi">1024</span><span class="n">m</span>
+
+  <span class="c1"># 認証(MongoDB認証有効時のみ、以下の項目追加)</span>
+  <span class="c1">#user baas</span>
+  <span class="c1">#password Passw0rD</span>
+  <span class="c1">#auth_source admin</span>
+
+  <span class="o">&lt;</span><span class="n">buffer</span><span class="o">&gt;</span>
+    <span class="c1"># flush間隔</span>
+    <span class="n">flush_interval</span> <span class="mi">10</span><span class="n">s</span>
+  <span class="o">&lt;/</span><span class="n">buffer</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">match</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>&lt;match nebula.cloufdn&gt; タグ内に、ユーザコードログ出力のための設定を以下の通り記述します。</p>
+<ul class="simple">
+<li>データベース名は &quot;baas_log&quot; としてください。</li>
+<li>コレクション名は &quot;nebula_customlogic&quot; としてください。</li>
+<li>コレクションのサイズは適宜変更してください。</li>
+<li>認証は MongoDB認証用ユーザ、パスワードと認証データベース名を設定してください。</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>BaaS v5 以前は &lt;match nebula.customlogic&gt; という記述となっていましたが、v6 では &lt;match nebula.cloudfn&gt; に変更となっています。</li>
+<li>MongoDB認証有効時のみ、user、passwordとauth_sourceの項目を追記し、MongoDB認証用ユーザ、パスワードと認証データベース名を設定してください。</li>
+<li>認証データベース名とは、認証を行うユーザーが登録されているデータベースの名称のことです。</li>
+</ul>
+</div>
+<p>また、サーバマネージャおよび Java ロジックサーバのログをシステムログに出力するために、
+モバイルバックエンド基盤サーバ側の fluentd の設定(baas-system.conf)も合わせて行ってください。</p>
+</div>
+<div class="section" id="id27">
+<h3>6.2.2. MongoDB レプリカセットを使用する場合<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>レプリカセットを使用する場合(シャーディングなし)は、設定ファイルの書式が若干変わります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">match</span> <span class="n">nebula</span><span class="o">.</span><span class="n">cloudfn</span><span class="o">&gt;</span>
+  <span class="c1"># @type を以下記述に変更</span>
+  <span class="nd">@type</span> <span class="n">mongo_replset</span>
+
+  <span class="c1"># nodes にホスト/ポート番号を記述</span>
+  <span class="n">nodes</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">27017</span><span class="p">,</span><span class="n">localhost</span><span class="p">:</span><span class="mi">27018</span><span class="p">,</span><span class="n">localhost</span><span class="p">:</span><span class="mi">27019</span>
+
+  <span class="c1"># host, port は記述削除</span>
+  <span class="c1"># その他の記述は同じ</span>
+  <span class="o">...</span>
+<span class="o">&lt;/</span><span class="n">match</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="server-config">
+<span id="id28"></span><h2>6.3. モバイルバックエンド基盤サーバの設定<a class="headerlink" href="#server-config" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>モバイルバックエンド基盤サーバ側に設定の追加・変更が必要です。</p>
+<div class="section" id="apiuri">
+<h3>6.3.1. APIサーバ内部ベースURIの設定<a class="headerlink" href="#apiuri" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>デベロッパーコンソールの「APIサーバ内部向けベースURI」に
+Cloud Functions サーバから見た MBaaS APIサーバの URI を設定してください。</p>
+<p>詳細は、デベロッパーコンソール利用ガイドの <a class="reference external" href="../devconsole/system/system_config.html">システム設定</a> を参照してください。</p>
+</div>
+<div class="section" id="id31">
+<h3>6.3.2. RabbitMQ サーバ設定<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RabbitMQ と通信するための設定が必要です。
+モバイルバックエンド基盤サーバの設定ファイルに以下の項目を修正・追記してください．</p>
+<p>(設定ファイルの記述方法については， <a class="reference external" href="../server/configure/index.html">コンフィグレーション</a> を参照してください．)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目名</th>
+<th class="head">説明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>amqp.uri</td>
+<td>MBaaSサーバからみた RabbitMQ の AMQP Broker URI　(追記)</td>
+</tr>
+<tr class="row-odd"><td>system.noChargeKey</td>
+<td>APIカウント対象外キー (追記)</td>
+</tr>
+</tbody>
+</table>
+<p>以下に例を示します。</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE properties SYSTEM &quot;http://java.sun.com/dtd/properties.dtd&quot;&gt;</span>
+<span class="nt">&lt;properties&gt;</span>
+   (中略)
+   <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;amqp.uri&quot;</span><span class="nt">&gt;</span>amqp://guest:guest@localhost:5672<span class="nt">&lt;/entry&gt;</span>
+   (中略)
+   <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;system.noChargeKey&quot;</span><span class="nt">&gt;</span>sAmPleNoChargeKey12345678<span class="nt">&lt;/entry&gt;</span>
+
+<span class="nt">&lt;/properties&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="test.html" class="btn btn-neutral float-right" title="7. 動作確認" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install_manual.html" class="btn btn-neutral" title="5. インストール手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.2',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

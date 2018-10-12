@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.1. プロファイル &mdash; Server User Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.2. 設定ファイル" href="config_file.html" />
+    <link rel="prev" title="4. コンフィグレーション" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. コンフィグレーション</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. プロファイル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.1.1. システムプロパティで指定する場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#web-xml">4.1.2. web.xml で指定する場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html">4.2. 設定ファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">4.3. その他の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">4.4. ロギング設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluentd.html">4.5. fluentd を利用したロギング</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. コンフィグレーション</a> &raquo;</li>
+        
+      <li>4.1. プロファイル</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="profile">
+<span id="index-0"></span><span id="id1"></span><h1>4.1. プロファイル<a class="headerlink" href="#profile" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>BaaS サーバは、本番・開発の2種類のプロファイル(環境)を切り替えることができます。</p>
+<ul class="simple">
+<li>production (本番) : 実運用時に使用するプロファイル</li>
+<li>development (開発) : 開発時や評価時に使用するプロファイル</li>
+</ul>
+<p>データベースは、各プロファイル毎に個別に用意されます。
+従って、開発プロファイルで BaaS サーバを起動すれば、
+本番環境には影響せずテスト利用を行うことができます。</p>
+<p>プロファイルはデフォルトで &quot;development&quot; になっています。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">production と develop の間に機能の差異は全くありません。
+使用する設定ファイルと MongoDB データベースの名前空間が別々になっているだけです。</p>
+</div>
+<div class="section" id="id2">
+<h2>4.1.1. システムプロパティで指定する場合<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>APサーバ起動時の JVM オプションでシステムプロパティ spring.profiles.active を設定
+することでプロファイルを変更することができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">Dspring</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">active</span><span class="o">=</span><span class="n">production</span>
+</pre></div>
+</div>
+<p>Tomcat の場合、catalina.sh/catalina.bat を起動する際の環境変数 JAVA_OPTS に上記値が設定
+されるようにしてください。</p>
+</div>
+<div class="section" id="web-xml">
+<h2>4.1.2. web.xml で指定する場合<a class="headerlink" href="#web-xml" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>web.xml ファイルでプロファイルを指定することが可能です。</p>
+<p>web.xml は、各 WARファイル内の WEB-INF/web.xml にあります。</p>
+<p>web.xml に以下のように指定することで、プロファイルを固定できます。
+なお、web.xml で指定を行った場合、システムプロパティの値は参照されません。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">context</span><span class="o">-</span><span class="n">param</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">param</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">active</span><span class="o">&lt;/</span><span class="n">param</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">param</span><span class="o">-</span><span class="n">value</span><span class="o">&gt;</span><span class="n">production</span><span class="o">&lt;/</span><span class="n">param</span><span class="o">-</span><span class="n">value</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">context</span><span class="o">-</span><span class="n">param</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="config_file.html" class="btn btn-neutral float-right" title="4.2. 設定ファイル" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="4. コンフィグレーション" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.5.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

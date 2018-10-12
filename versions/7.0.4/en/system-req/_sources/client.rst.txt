@@ -1,0 +1,54 @@
+============
+クライアント
+============
+
+注: 各 SDK により利用可能な機能(オフライン、Push、ファイルストレージなど)が異なります。
+詳細はお問い合わせください。
+
+JavaScript SDK
+================
+
+ブラウザ 使用時
+----------------
+
+* PC: Chrome, IE11 (※1)
+* Android 4.1.x 以上: Chrome for Android
+* iOS 8 以上: Mobile Safari
+
+※1: IE11 の互換表示モードでは正常動作しません。標準モードでご利用ください。
+
+Node.js 使用時
+--------------
+
+* Node.js v6.x.x 以上 (推奨: v8.x.x以上)
+
+
+Android SDK
+=============
+
+* Android 4.1.x 以上
+
+Java SDK
+==========
+
+* Java SE Development Kit 8 以上または OpenJDK 8 以上
+
+.NET SDK
+==========
+
+* .NET Framework 4.5.2 以上
+
+iOS SDK
+========
+
+* iOS 8 以上
+
+注: iOS SDK はβ版提供であり、品質保証は行っておりません。
+
+Embedded SDK
+=============
+
+* NEC エッジゲートウェイ エントリーモデル / Rapberry Pi / CentOS 7 以上(PC)
+
+
+

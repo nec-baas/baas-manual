@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. はじめに &mdash; Tutorials (Android) 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)" href="tutorial1.html" />
+    <link rel="prev" title="NEC BaaS Tutorials (Android)" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (Android)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. はじめに</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">1.1. チュートリアルのソースコード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">1.2. ビルドに必要な環境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#android-studio">1.3. Android Studio へのインポート手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gradle-proxy">1.4. Gradle proxy 設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_code.html">3. チュートリアル1 : TODOアプリの実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">4. チュートリアル2 : ログイン機能とアクセス制御</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">5. チュートリアル3 : アルバムアプリ (ファイルストレージ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">6. チュートリアル4 : TODOアプリ(オフライン機能あり)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (Android)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. はじめに</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>1. はじめに<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>本マニュアルでは、Android ネイティブアプリケーション向けの
+チュートリアルを提示します。</p>
+<div class="section" id="id21">
+<h2>1.1. チュートリアルのソースコード<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>チュートリアルのソースコード一式は Github で配布していますので、
+こちらから入手してください。</p>
+<p>URL は <a class="reference external" href="https://github.com/nec-baas/baas-tutorials-android">https://github.com/nec-baas/baas-tutorials-android</a> です。</p>
+</div>
+<div class="section" id="id22">
+<h2>1.2. ビルドに必要な環境<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>Android の開発環境(Android Studio / Android SDK)が必要になります。</p>
+<p>詳細は <a class="reference external" href="http://developer.android.com/sdk/index.html">Android Studio / Android SDK</a> のサイトを参照してください。</p>
+<p>また、SDK のインストール時には、以下のコンポーネントのインストールが必要になります。</p>
+<ul class="simple">
+<li>Android SDK Tools</li>
+<li>Android SDK Platform-tools</li>
+<li>Android SDK Build tools (最新のもの)</li>
+<li>SDK Platform v22</li>
+<li>Android Support Repository</li>
+<li>Google Repository</li>
+</ul>
+</div>
+<div class="section" id="android-studio">
+<h2>1.3. Android Studio へのインポート手順<a class="headerlink" href="#android-studio" title="Permalink to this headline">¶</a></h2>
+<p>Android Studio を起動し、File → Import Project を選択し、各チュートリアルの
+ディレクトリを指定してインポートしてください。</p>
+</div>
+<div class="section" id="gradle-proxy">
+<h2>1.4. Gradle proxy 設定<a class="headerlink" href="#gradle-proxy" title="Permalink to this headline">¶</a></h2>
+<p>Proxy が必要な環境で開発を行う場合は、Gradle の Proxy 設定が必要になります。</p>
+<p>各プロジェクトの　gradle/gradle.properties もしくは ~/.gradle
+(Windows の場合は c:Users[ユーザ名].gradle) ディレクトリ内に gradle.properties
+ファイルを作成し、以下の内容で Proxy の設定を記述してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemProp</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">proxyHost</span><span class="o">=</span><span class="p">[</span><span class="n">Proxyホスト名</span><span class="p">]</span>
+<span class="n">systemProp</span><span class="o">.</span><span class="n">http</span><span class="o">.</span><span class="n">proxyPort</span><span class="o">=</span><span class="p">[</span><span class="n">Proxyポート番号</span><span class="p">]</span>
+<span class="n">systemProp</span><span class="o">.</span><span class="n">https</span><span class="o">.</span><span class="n">proxyHost</span><span class="o">=</span><span class="p">[</span><span class="n">Proxyホスト名</span><span class="p">]</span>
+<span class="n">systemProp</span><span class="o">.</span><span class="n">https</span><span class="o">.</span><span class="n">proxyPort</span><span class="o">=</span><span class="p">[</span><span class="n">Proxyポート番号</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>詳細は <a class="reference external" href="https://developer.android.com/studio/intro/studio-config.html">Configure Android Studio</a> の “Android Plugin for Gradle HTTP proxy settings” を参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial1.html" class="btn btn-neutral float-right" title="2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="NEC BaaS Tutorials (Android)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

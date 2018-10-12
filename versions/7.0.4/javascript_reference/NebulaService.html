@@ -1,0 +1,3050 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Class: NebulaService</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AclGroup.html">AclGroup</a></li><li><a href="AclPermission.html">AclPermission</a></li><li><a href="Nebula.html">Nebula</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AccountLink.html">AccountLink</a></li><li><a href="Acl.html">Acl</a></li><li><a href="BatchRequest.html">BatchRequest</a></li><li><a href="Clause.html">Clause</a></li><li><a href="CustomApi.html">CustomApi</a></li><li><a href="FileBucket.html">FileBucket</a></li><li><a href="FileMetadata.html">FileMetadata</a></li><li><a href="Group.html">Group</a></li><li><a href="HttpRequest.html">HttpRequest</a></li><li><a href="NebulaService.html">NebulaService</a></li><li><a href="ObjectBucket.html">ObjectBucket</a></li><li><a href="ObjectQuery.html">ObjectQuery</a></li><li><a href="PushSender.html">PushSender</a></li><li><a href="PushSender.ApnsFields.html">PushSender.ApnsFields</a></li><li><a href="PushSender.GcmFields.html">PushSender.GcmFields</a></li><li><a href="PushSender.SseFields.html">PushSender.SseFields</a></li><li><a href="User.html">User</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: NebulaService</h1>
+<section>
+
+<header>
+    
+        <h2>
+        NebulaService
+        </h2>
+        
+            <div class="class-description"><p>JavaScript SDK メインサービスクラス</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="NebulaService"><span class="type-signature"></span>new NebulaService()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>NebulaService コンストラクタ。</p>
+<p><p>
+NebulaService インスタンスを生成する。生成したインスタンス毎に異なるテナント/アプリに接続できる。
+<a href="Nebula.html">Nebula</a> はデフォルトの NebulaService インスタンスである。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var service2 = new Nebula.NebulaService();</pre>
+
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".this.BUCKET_MODE_LOCAL">
+    <h4 id=".this.BUCKET_MODE_LOCAL"><span class="type-signature">&lt;static, constant> </span>this.BUCKET_MODE_LOCAL<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>バケットモード - ローカルモード</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".this.BUCKET_MODE_ONLINE">
+    <h4 id=".this.BUCKET_MODE_ONLINE"><span class="type-signature">&lt;static, constant> </span>this.BUCKET_MODE_ONLINE<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>バケットモード - オンラインモード</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".this.BUCKET_MODE_REPLICA">
+    <h4 id=".this.BUCKET_MODE_REPLICA"><span class="type-signature">&lt;static, constant> </span>this.BUCKET_MODE_REPLICA<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>バケットモード - レプリカモード</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="getAppID"><span class="type-signature"></span>getAppID()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>アプリケーションIDを取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>アプリケーションID</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getAppKey"><span class="type-signature"></span>getAppKey()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>アプリケーションキーを取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>アプリケーションキー</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getBaseUri"><span class="type-signature"></span>getBaseUri()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>エンドポイントURLを取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>エンドポイントURL</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getCurrentUser"><span class="type-signature"></span>getCurrentUser()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>カレントユーザのログイン情報を返す。
+未ログイン、またはセッショントークンが有効期限切れの場合は null を返す。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>ユーザ情報。_id, username, email, sessionToken, expire, options, groups フィールドが含まれる。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getLoginCacheValidTime"><span class="type-signature"></span>getLoginCacheValidTime(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ログインキャッシュ有効期限の取得（オフライン機能限定）</p>
+<p><p>
+・オフライン用ログインキャッシュ有効期限を取得する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>結果を受け取るコールバック</p>
+<pre>
+・callbacks は、成功時と失敗時の応答コールバックを指定する。
+    {
+        success : function(expire) {
+            // 成功時の処理
+            // expire : ログインキャッシュ有効期限
+        },
+        error : function(error) {
+            // 失敗時の処理
+        }
+    }
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(expire)
+            expireには、ログインキャッシュ有効期限（秒）が格納される。
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(error)
+            error : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ
+             }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Promise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;any></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getServiceID"><span class="type-signature"></span>getServiceID()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>サービスIDを返す</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>サービスID</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getTenantID"><span class="type-signature"></span>getTenantID()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>テナントIDを取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>テナントID</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="initialize"><span class="type-signature"></span>initialize(params)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>MBaaS JavaScript SDK 初期化</p>
+<p><p>
+・MBaaS JavaScript SDK（以降、SDKと称す）を初期化する。<br>
+・アプリケーションは、SDK の初回利用またはパラメータ変更を行う際に呼び出さなければならない。
+</pre></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>MBaaS JavaScript SDK 初期化パラメータ</p>
+<pre>
+・params は、初期化パラメータをJSON 形式で指定する。
+    {
+        "tenant"              : "my-tenant-id",
+        "appId"               : "my-app-id",
+        "appKey"              : "my-app-key",
+        "baseUri"             : "http://baas.example.com/api",
+        "offline"             : false,
+        "allowSelfSignedCert" : false,
+        "serviceId"           : "my-service-id",
+        "debugMode"           : "debug"
+    }
+    (プロパティ名)
+    tenant      : テナント毎に割り当てられるユニークなID（必須）
+    appId       : アプリケーション毎に割り当てられるユニークなID（必須）
+    appKey      : アプリケーション毎に割り当てられる秘密キー（必須）
+    baseUri     : MBaaS REST API のエンドポイントURL（必須）
+    offline      : オフライン機能の指定。（オプション）
+                  オフライン機能を利用する場合はtrue を指定する。（初期値：false）
+    allowSelfSignedCert : 自己署名証明書の使用を認める指定。（オプション）
+                  オフラインモード使用時(SDE for SmartDevice使用時)、
+                  及びNode.js使用時(Https Proxy未使用時)のみ有効。
+                  (Node.jsでHttps Proxy使用時は、NebulaService#setHttpsProxy()を参照して設定を行うこと)
+                  SSL接続に自己署名証明書を使用しているMBaaSサーバを
+                  利用する場合はtrue を指定する。（初期値：false）
+    serviceId   : NebulaService毎に割り当てられるユニークなID（オプション）
+                  マルチテナント機能を使用して複数のNebulaService(インスタンス)を生成する場合等に使用。
+                  本IDはログイン情報キャッシュ時のKey情報に利用される。
+    debugMode   : ログ出力レベル。（オプション）
+                  "release", "debug", "test" のいずれかを指定
+                  debug は、コンソール上にデバッグログを出力する。
+                  release は、クリティカルなエラー以外のコンソール上にデバッグログを出力しない。
+                  test は、TBD。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="NebulaService.html">NebulaService</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="isClientCertSet"><span class="type-signature"></span>isClientCertSet()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>client証明書の設定が有効または無効を返す(Node.js使用時のみ有効)。</p>
+<p><p>
+https Proxyを使用する場合、本設定は無効である。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>証明書設定済みならばtrue</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="removeCurrentUser"><span class="type-signature"></span>removeCurrentUser()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>カレントユーザのログイン情報を破棄する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="NebulaService.html">NebulaService</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setAppKey"><span class="type-signature"></span>setAppKey(key)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>アプリケーションキーを変更する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>アプリケーションキー</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="NebulaService.html">NebulaService</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setClientCertificate"><span class="type-signature"></span>setClientCertificate(certInfo)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>クライアント証明書の設定を行う (Node.js使用時のみ有効)。</p>
+<p><p>
+https Proxyを使用する場合、本設定は無効である。NebulaService#setHttpsProxy()のoptionsに証明書の設定を行うこと。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>certInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>証明書情報を指定する。
+pfxとpassphrase(またはkeyとcert),ca を指定する。
+pfxとcert/keyを同時に指定した場合の動作は保証しない。
+nullを指定した場合は証明書の設定を解除する。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="NebulaService.html">NebulaService</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// p12(pfx)形式のクライアント証明書(証明書/秘密鍵)を指定、p12ファイルのパスフレーズを指定
+ // 信頼するCA証明書として、2件を指定する場合
+ service.setClientCertificate({
+   pfx: fs.readFileSync(&#x27;clientCertificate.p12&#x27;),
+   passphrase: &#x27;password&#x27;,
+   ca: [fs.readFileSync(&#x27;caCert1.pem&#x27;), fs.readFileSync(&#x27;caCert2.pem&#x27;)]
+ });
+
+ // pem形式のクライアント証明、キーを使用。CA証明書を1件指定
+ service.setClientCertificate({
+   cert: fs.readFileSync(&#x27;clientCert.pem&#x27;),
+   key: fs.readFileSync(&#x27;clientKey.pem&#x27;),
+   ca: fs.readFileSync(&#x27;caCert1.pem&#x27;)
+ });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCurrentUser"><span class="type-signature"></span>setCurrentUser(user)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>カレントユーザのログイン情報をセットする。</p>
+<p><p>ブラウザでは local storage に永続化され、NebulaService 間で共有される。
+Node.js では NebulaService 内(メモリ)に個別に保持される。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="User.html">User</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ユーザ</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="NebulaService.html">NebulaService</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setHttpProxy"><span class="type-signature"></span>setHttpProxy(proxy)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>HTTP プロキシを設定する (Node.js専用)。</p>
+<p><p>
+注: 本設定はグローバル設定である(NebulaService毎ではない)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>proxy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロキシ設定。host, port を指定する。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// Example:
+ Nebula.setHttpProxy({ host: &#x27;proxysv.example.com&#x27;, port: 8080});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setHttpsProxy"><span class="type-signature"></span>setHttpsProxy(proxy, options)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>HTTPS プロキシを設定する (Node.js専用)。</p>
+<p><p>
+注: 本設定はグローバル設定である(NebulaService毎ではない)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>proxy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロキシ設定。host, port を指定する。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>https.request() に引き渡すオプション(省略可)。</p>
+<p><p>
+クライアント証明書認証に使用する証明書の設定などを行う。
+使用方法はExampleを参照のこと。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// Example:
+ // https Proxyを指定する
+ Nebula.setHttpsProxy({ host: &#x27;proxysv.example.com&#x27;, port: 8080});
+
+ // p12(pfx)形式のクライアント証明書(証明書/秘密鍵)を指定、p12ファイルのパスフレーズを指定
+ // 信頼するCA証明書として、2件を指定する場合
+ Nebula.setHttpsProxy({ host: &#x27;proxysv.example.com&#x27;, port: 8080},
+ {
+   pfx: fs.readFileSync(&#x27;clientCertificate.p12&#x27;),
+   passphrase: &#x27;password&#x27;,
+   ca: [fs.readFileSync(&#x27;caCert1.pem&#x27;), fs.readFileSync(&#x27;caCert2.pem&#x27;)]
+ });
+
+ // pem形式のクライアント証明、キーを使用。CA証明書を1件指定
+ Nebula.setHttpsProxy({ host: &#x27;proxysv.example.com&#x27;, port: 8080},
+ {
+   cert: fs.readFileSync(&#x27;clientCert.pem&#x27;),
+   key: fs.readFileSync(&#x27;clientKey.pem&#x27;),
+   ca: fs.readFileSync(&#x27;caCert1.pem&#x27;)
+ });
+
+ // 自己署名証明書を使用しているサーバへの接続を許可する
+ Nebula.setHttpsProxy({ host: &#x27;proxysv.example.com&#x27;, port: 8080},
+ {
+   rejectUnauthorized: false
+ });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setLoginCacheValidTime"><span class="type-signature"></span>setLoginCacheValidTime(expire, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ログインキャッシュ有効期限の設定（オフライン機能限定）</p>
+<p><p>
+・オフライン用ログインキャッシュ有効期限を設定する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>expire</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ログインキャッシュ有効期限（秒）</p>
+<pre>
+・expireには、ログインキャッシュ有効期限（秒）を指定する。
+    デフォルトは、「259200秒（72時間）」である。
+</pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>結果を受け取るコールバック</p>
+<pre>
+・callbacks は、成功時と失敗時の応答コールバックを指定する。
+    {
+        success : function() {
+            // 成功時の処理
+        },
+        error : function(error) {
+            // 失敗時の処理
+        }
+    }
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success()
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(error)
+            error : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ
+             }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Promise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;any></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setNetworkEventListener"><span class="type-signature"></span>setNetworkEventListener(listener)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ネットワークイベントリスナの登録（オフライン機能限定）</p>
+<p><p>
+・ネットワークの接続状態変更イベントを受け取るリスナーを設定する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>listener</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ネットワークイベントリスナ</p>
+<pre>
+・listener には、イベント発生時のコールバックを指定する。
+    {
+        onNetworkStateChanged : function(isOnline) {
+            // ネットワークの接続状態が変更されたときに呼び出される
+            // isOnline : trueはオンライン状態、falseはオフライン状態
+        }
+    }
+・すでに登録している場合は、上書きされる。
+・登録を取り消す場合は、listener に null を指定する。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="NebulaService.html">NebulaService</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setSessionToken"><span class="type-signature"></span>setSessionToken(sessionToken)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>セッショントークンをセットする。セッショントークンの有効期限は無期限扱い。</p>
+<p><p>ユーザがログイン済みの場合は、セッショントークンのみが変更される。
+未ログインの場合は、ダミーユーザが保存される (セッショントークン以外のフィールドは空)。</p>
+<p><p>ブラウザでは local storage に永続化され、NebulaService 間で共有される。
+Node.js では NebulaService 内(メモリ)に個別に保持される。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sessionToken</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>セッショントークン</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="NebulaService.html">NebulaService</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018-08-31T11:30:55+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

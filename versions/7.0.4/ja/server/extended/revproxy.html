@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定 &mdash; Server User Guide 7.0.4 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.6. サーバ証明書の作成手順" href="sslcert.html" />
+    <link rel="prev" title="5.4. ロードバランサ" href="loadbalancer.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure/index.html">4. コンフィグレーション</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 詳細手順</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clitool.html">5.1. コマンドラインツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contextpath.html">5.2. コンテキストパスの変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiserver.html">5.3. 複数サーバ構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loadbalancer.html">5.4. ロードバランサ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">5.5.1. HAProxy によるリバースプロキシ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nginx">5.5.2. Nginx によるリバースプロキシ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#https">5.5.3. リバースプロキシで HTTPS を終端する場合</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#aws-els-elastic-load-balander">AWS ELS (Elastic Load Balander) を使用する場合</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#uri">5.5.4. ベースURIの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sslcert.html">5.6. サーバ証明書の作成手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb_cluster.html">5.7. MongoDBクラスタ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. 詳細手順</a> &raquo;</li>
+        
+      <li>5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http">
+<span id="index-0"></span><h1>5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id20">
+<h2>5.5.1. HAProxy によるリバースプロキシ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>リバースプロキシを設置してHTTPS(SSL)接続を終端させ、後段のAPサーバにHTTPリクエストを転送するようにします。
+ここではリバースプロキシに <a class="reference external" href="http://www.haproxy.com/">HAProxy</a> を使用する方法を示します。</p>
+<p>HAProxyをyum, apt-getなどでインストールします。
+設定ファイルは /etc/haproxy/haproxy.cfg に格納されています。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># global設定
+global
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+
+# default設定
+defaults
+    mode   http
+    log    global
+    option httplog
+    option dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+# frontend設定
+# サーバ証明書を指定
+frontend  main *:443 ssl crt /etc/haproxy/test.example.com.pem
+    reqadd X-Forwarded-Proto:\ https
+
+    # /console でパスが開始する場合は console用サーバに転送
+    acl url_console   path_beg   -i /console
+    use_backend       console    if url_console
+    # それ以外はAPIサーバに転送
+    default_backend   api
+
+# backend設定
+backend console
+    balance roundrobin
+    server  console1 192.168.0.5:8080
+    server  console2 192.168.0.6:8080
+
+backend api
+    balance roundrobin
+    server  api1 192.168.0.1:8080
+    server  api2 192.168.0.2:8080
+    server  api3 192.168.0.3:8080
+    server  api4 192.168.0.4:8080
+</pre></div>
+</div>
+<ul class="simple">
+<li>APサーバのリストをbackend api 内に記述してください。</li>
+<li>コンソールサーバのリストを backend console 内に記述してください。</li>
+<li>frontendのパラメータとしてsslを指定するとSSLでの接続を受け付けます。</li>
+<li>SSL 証明書および鍵ファイルは crt オプションで指定します。サーバ証明書と秘密鍵をcat等で結合したファイルを使用してください。</li>
+<li>後段の AP サーバで接続元の IP アドレスをログに記録できるようにするため、X-Forwarded-Proto などのヘッダを設定してください。</li>
+</ul>
+<p>証明書の作成手順については <a class="reference internal" href="sslcert.html"><span class="doc">サーバ証明書の作成手順</span></a> を参照してください。</p>
+</div>
+<div class="section" id="nginx">
+<h2>5.5.2. Nginx によるリバースプロキシ<a class="headerlink" href="#nginx" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ここではリバースプロキシに Nginx を使用する方法を示します。</p>
+<p>nginx を apt-get などでインストールします。
+以下の設定例を参考に、/etc/nginx/sites-available/ に設定ファイルを作成し、sites-enabled にシンボリックリンクを設定してください。
+なお、デフォルトの設定ファイルは無効化してください。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># HTTPS 設定
+server {
+  listen 443 ssl;
+  server_name localhost; # 適宜修正すること
+
+  access_log  /var/log/nginx/localhost.access.log;
+
+  root html;
+  index index.html index.htm;
+
+  ssl on;
+  ssl_certificate cert.pem;
+  ssl_certificate_key cert.key;
+
+  ssl_session_timeout 5m;
+
+  ssl_protocols SSLv3 TLSv1;
+  ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+  ssl_prefer_server_ciphers on;
+
+  # リバースプロキシ用の HTTP ヘッダ設定
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-Proto https;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Host $host;
+  proxy_set_header X-Forwarded-Server $host;
+
+  # APサーバ
+  location /api/ {
+    proxy_pass http://apservers/api/;
+    proxy_redirect http:// https://;
+  }
+
+  # コンソールサーバ
+  location /console/ {
+    proxy_pass http://console_servers/console/;
+    proxy_redirect http:// https://;
+  }
+}
+
+# APサーバ群の設定
+upstream apservers {
+  server server1.example.com:8080;
+  server server2.example.com:8080;
+  server server3.example.com:8080;
+  keepalive 100;
+}
+
+# コンソールサーバ群の設定
+upstream console_servers {
+  server server1.example.com:8080;
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li>APサーバのURLリストを upstream apservers 内に記述してください。</li>
+<li>コンソールサーバの URL を upstream console_servers 内に記述してください。</li>
+<li>SSL 証明書および鍵ファイルは /etc/nginx 以下に配置します。ファイル名は上記設定ファイルの ssl_certificate および ssl_certificat_key で指定します。</li>
+<li>後段の AP サーバで接続元の IP アドレスをログに記録できるようにするため、X-Forwarded-For などのヘッダを設定してください。</li>
+</ul>
+<p>証明書の作成手順については <a class="reference internal" href="sslcert.html"><span class="doc">サーバ証明書の作成手順</span></a> を参照してください。</p>
+</div>
+<div class="section" id="https">
+<h2>5.5.3. リバースプロキシで HTTPS を終端する場合<a class="headerlink" href="#https" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ロードバランサ/リバースプロキシ(AWS ELB など)を使用して HTTPS(TLS) を終端して Tomcat に HTTP で転送を行う場合、
+Tomcat 側の Connector に設定が必要になる場合があります。
+これはリバースプロキシ側がリダイレクト時の Location ヘッダを書き換えてくれないためです。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Connector</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;8080&quot;</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;HTTP/1.1&quot;</span>
+           <span class="n">connectionTimeout</span><span class="o">=</span><span class="s2">&quot;20000&quot;</span>
+           <span class="n">URIEncoding</span><span class="o">=</span><span class="s2">&quot;UTF-8&quot;</span>
+           <span class="n">redirectPort</span><span class="o">=</span><span class="s2">&quot;8443&quot;</span>
+           <span class="n">proxyPort</span><span class="o">=</span><span class="s2">&quot;443&quot;</span>
+           <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;https&quot;</span>
+           <span class="n">secure</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>proxyPort、scheme、secure の3属性を追加する必要があります。</p>
+<div class="section" id="aws-els-elastic-load-balander">
+<h3>AWS ELS (Elastic Load Balander) を使用する場合<a class="headerlink" href="#aws-els-elastic-load-balander" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>AWSコンソールから、ELBへのSSL証明書の設定方法は、 <a class="reference external" href="https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html">HTTPS リスナーを使用した Classic Load Balancer の作成</a> (「ステップ 3: セキュリティ設定の指定」)を参照してください。</p>
+<p>なお、購入SSL証明書によって、中間証明書を設定しないと、Androidやcurlからのアクセスで警告が出ることがあります。</p>
+<p>必要に応じで、下記のように中間証明書を設定してください。
+ロードバランサーの[Listener Configuration] -&gt; [Certificate] -&gt; [Certificate Chain]に中間証明書を設定します。</p>
+</div>
+</div>
+<div class="section" id="uri">
+<h2>5.5.4. ベースURIの設定<a class="headerlink" href="#uri" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ロードバランサ・リバースプロキシを使用する場合は、ベースURIの設定を行う必要があります。
+これはロードバランサ・リバースプロキシ使用時は MBaaS サーバは外部の URI がわからないためで、
+MBaaS 内部での URL 生成（主にパスワードリセットの URL 生成)を正しく行うために外部 URI を教える必要があるためです。</p>
+<p>ベース URI は設定ファイルに設定するか、デベロッパーコンソールから設定します。
+設定ファイルについては <a class="reference internal" href="../configure/config_file.html#configuration-file"><span class="std std-ref">設定ファイル</span></a> を参照してください。</p>
+<p>以下に設定例を示します。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;properties&gt;
+    &lt;!-- APIサーバ ベースURI 設定 --&gt;
+    &lt;entry key=&quot;api.baseUrl&quot;&gt;https://baas.example.com/api&lt;/entry&gt;
+
+    &lt;!-- コンソールサーバ ベースURI 設定 --&gt;
+    &lt;entry key=&quot;console.baseUrl&quot;&gt;https://baas.example.com/console&lt;/entry&gt;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sslcert.html" class="btn btn-neutral float-right" title="5.6. サーバ証明書の作成手順" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="loadbalancer.html" class="btn btn-neutral" title="5.4. ロードバランサ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.4',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

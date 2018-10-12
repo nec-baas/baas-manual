@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS Server User Guide &mdash; Server User Guide 7.0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. イントロダクション" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure/index.html">4. コンフィグレーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS Server User Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-server-user-guide">
+<h1>NEC BaaS Server User Guide<a class="headerlink" href="#nec-baas-server-user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#id2">1.1. 本文書の位置づけ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#baas">1.2. BaaS サーバについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">2. システム構成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system.html#id2">2.1. 標準構成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system.html#id3">2.1.1. ロードバランサ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#api">2.1.2. API サーバ / デベロッパーコンソールサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#mongodb">2.1.3. MongoDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#sse-push">2.1.4. SSE Push サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#cloud-functions">2.1.5. Cloud Functions サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#rabbitmq-server">2.1.6. RabbitMQ Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system.html#fluentd-server">2.1.7. fluentd server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system.html#id6">2.2. 最小構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system.html#id7">2.3. 起動・終了順序</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">3. 基本利用手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage/glossary.html">3.1. 用語の定義</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage/glossary.html#id2">3.1.1. ディレクトリ関連</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage/requirement.html">3.2. 必要環境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/quickstart_rhel.html">3.3. クイックスタート (RHEL 7, CentOS 7)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#ulimit">3.3.1. ulimit の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#selinux">3.3.2. SELinux の無効化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#jdk">3.3.3. JDK のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#id20">3.3.4. Tomcat のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#id22">3.3.5. MongoDB のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#id24">3.3.6. ファイヤウォール設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#baas">3.3.7. BaaS サーバのデプロイ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#id25">3.3.8. 動作確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_rhel.html#id26">3.3.9. 補足事項</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage/quickstart_windows.html">3.4. クイックスタート (Windows Server 2016)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#id20">3.4.1. 制限事項</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#id21">3.4.2. 構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#os">3.4.3. 動作確認環境のOSとソフトウェア</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#id22">3.4.4. 前準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#db-mongodb">3.4.5. DBサーバ(MongoDB)の構築</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#id28">3.4.6. Tomcat のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#id33">3.4.7. BaaS サーバのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/quickstart_windows.html#id34">3.4.8. 動作確認</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage/license_auth.html">3.5. ライセンス認証</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage/license_auth.html#id2">3.5.1. ライセンスキー・ライセンスファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/license_auth.html#id3">3.5.2. ライセンスキーの組み込み</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage/startup.html">3.6. APサーバへのデプロイ・起動手順</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage/startup.html#id1">3.6.1. APサーバへのデプロイ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/startup.html#id2">3.6.2. 起動</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/startup.html#id3">3.6.3. コンテキストパスを変更したい場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usage/devconsole.html">3.7. デベロッパーコンソール利用手順</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="usage/devconsole.html#initial-login">3.7.1. 初回ログイン</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/devconsole.html#id4">3.7.2. テナントの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usage/devconsole.html#id5">3.7.3. テナント内にアプリケーションを作成</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure/index.html">4. コンフィグレーション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure/config_file.html">4.1. 設定ファイル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure/config_file.html#id2">4.1.1. 設定ファイルサンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/config_file.html#uri">4.1.2. URI設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/config_file.html#mongodb">4.1.3. MongoDB設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/config_file.html#amqp">4.1.4. AMQP設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/config_file.html#id4">4.1.5. その他の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configure/configure.html">4.2. その他の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure/configure.html#id21">4.2.1. メモリ使用量の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/configure.html#id22">4.2.2. ログレベルの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/configure.html#index-0">4.2.3. プロファイルの選択</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/configure.html#config-mongodb">4.2.4. MongoDB の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/configure.html#id30">4.2.5. システム設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/configure.html#alpn">4.2.6. ALPN 設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/configure.html#sse-push">4.2.7. SSE Push サーバの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configure/logger.html">4.3. ロギング設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure/logger.html#id21">4.3.1. ログ出力場所</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/logger.html#config-loglevel">4.3.2. ログ設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/logger.html#id26">4.3.3. ログフォーマット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/logger.html#id27">4.3.4. fluentd の利用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configure/fluentd.html">4.4. fluentd を利用したロギング</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure/fluentd.html#install-fluentd">4.4.1. fluentd のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure/fluentd.html#id22">4.4.2. fluentd の利用設定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended/index.html">5. 詳細手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended/clitool.html">5.1. コマンドラインツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended/clitool.html#id2">5.1.1. コマンドラインツールの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/clitool.html#id3">5.1.2. システム管理アカウントの管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/clitool.html#id4">5.1.3. テナントのエクスポート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/clitool.html#id5">5.1.4. テナントのインポート</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended/contextpath.html">5.2. コンテキストパスの変更</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended/contextpath.html#tomcat">5.2.1. Tomcat の場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended/multiserver.html">5.3. 複数サーバ構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended/loadbalancer.html">5.4. ロードバランサ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended/revproxy.html">5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended/revproxy.html#id20">5.5.1. HAProxy によるリバースプロキシ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/revproxy.html#nginx">5.5.2. Nginx によるリバースプロキシ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/revproxy.html#https">5.5.3. リバースプロキシで HTTPS を終端する場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/revproxy.html#uri">5.5.4. ベースURIの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended/sslcert.html">5.6. サーバ証明書の作成手順</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended/sslcert.html#csr">5.6.1. CSR(証明書要求)の作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/sslcert.html#id2">5.6.2. 自己署名証明書の作成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended/mongodb_cluster.html">5.7. MongoDBクラスタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended/mongodb_cluster.html#id21">5.7.1. MongoDB クラスタ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended/mongodb_cluster.html#tenant-db-cluster">5.7.2. テナント単位の MongoDB クラスタ切り替え</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">6. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-7-0-3-ver-7-0-4">6.1. ver 7.0.3 → ver 7.0.4 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id2">6.1.1. デベロッパーコンソールサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-7-0-2-7-0-3">6.2. ver 7.0.2 → 7.0.3 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-7-0-0-7-0-2">6.3. ver 7.0.0 → 7.0.2 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-3-6-5-4">6.4. ver 6.5.3 → 6.5.4 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id3">6.4.1. デベロッパーコンソールサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-x-7-0-0">6.5. ver 6.5.x → 7.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id4">6.5.1. ライセンス認証</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id5">6.5.2. オブジェクトストレージ強化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#openid-connect">6.5.3. OpenID Connect認証 アカウントリンク対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-2-6-5-3">6.6. ver 6.5.2 → 6.5.3 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#api">6.6.1. APIサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-1-6-5-2">6.7. ver 6.5.1 → 6.5.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id8">6.7.1. APIサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-0-ver-6-5-1">6.8. ver 6.5.0 → ver 6.5.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id9">6.8.1. APIサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-0-3-6-5-0">6.9. ver 6.0.3 → 6.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#rest-api">6.9.1. 準拠する REST API の改訂</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#saml">6.9.2. SAML 認証機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id10">6.9.3. OpenID Connect認証機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id12">6.9.4. クライアント証明書認証機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#ldap">6.9.5. LDAPグループ連携機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id15">6.9.6. ローカルユーザ・外部認証ユーザ混在対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id16">6.9.7. ファイルストレージ強化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#api-gateway">6.9.8. API Gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id19">6.9.9. セキュリティ強化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id21">6.9.10. デベロッパーコンソール強化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id22">6.9.11. 設定項目改善</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id23">6.9.12. サーバ管理ツール強化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#apns-alpn-boot">6.9.13. APNs 利用時の ALPN Boot 不要化</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-0-2-6-0-3">6.10. ver 6.0.2 → 6.0.3 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id24">6.10.1. APIサーバ/デベロッパーコンソールサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-0-0-6-0-2">6.11. ver 6.0.0 → 6.0.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id25">6.11.1. API サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id26">6.11.2. デベロッパーコンソールサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-5-0-2-6-0-0">6.12. ver 5.0.2 → 6.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id27">6.12.1. 準拠する REST API の改訂</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id28">6.12.2. 設定ファイル変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#api-gateway-http-proxy">6.12.3. API Gateway (HTTP Proxy) の仕様変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id31">6.12.4. 初期システム管理者アカウントの自動追加</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-5-0-1-5-0-2">6.13. ver 5.0.1 → 5.0.2 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-5-0-0-5-0-1">6.14. ver 5.0.0 → 5.0.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#cors-access-control-allow-credential">6.14.1. CORS Access-Control-Allow-Credential ヘッダ許可設定追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id33">6.14.2. 不具合修正</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-4-0-3-5-0-0">6.15. ver 4.0.3 → 5.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id34">6.15.1. 設定ファイル変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#api-gateway-cloud-functions">6.15.2. API Gateway / Cloud Functions機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id35">6.15.3. ログ閲覧機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id36">6.15.4. APIレートリミット(スロットリング)機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id38">6.15.5. パスワードポリシ・ロックポリシの強化・設定変更機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#db">6.15.6. テナント毎のDBクラスタ切り替え機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#mongodb">6.15.7. オブジェクトストレージ MongoDB クエリタイムアウト設定の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id41">6.15.8. オブジェクトストレージ クエリプランナ実行機能の追加</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-4-0-2-4-0-3">6.16. ver 4.0.2 → 4.0.3 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-4-0-1-4-0-2">6.17. ver 4.0.1 → 4.0.2 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-4-0-0-4-0-1">6.18. ver 4.0.0 → 4.0.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id43">6.18.1. オブジェクトストレージ: 論理削除オブジェクトの自動定期削除機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#apns-push">6.18.2. APNs Push</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-3-0-0-4-0-0">6.19. ver 3.0.0 → 4.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#java-8">6.19.1. Java 8 への移行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#tomcat">6.19.2. Tomcat バージョンの更新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id44">6.19.3. マイグレーション手順</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id45">6.19.4. 設定ファイルフォーマットの変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id46">6.19.5. 準拠する REST API の改訂</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#sse-push">6.19.6. SSE Push 機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html#id47">6.19.7. デベロッパコンソール機能の変更</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. イントロダクション" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.4',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

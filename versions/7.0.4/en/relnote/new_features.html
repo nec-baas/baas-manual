@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>New Features &mdash; Release Note 7.0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="改訂履歴" href="changes.html" />
+    <link rel="prev" title="Greetings" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Release Note
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Greetings</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">New Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">License key activation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">JSON object storage enhancements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-aggregation">MongoDB Aggregation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-extended-json">MongoDB Extended JSON support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#openid-connect">OpenID Connect認証 アカウントリンク対応</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows-server-2016">Windows Server 2016 対応</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rest-api-url">REST API の URL にテナント名が利用可能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">Enhanced Security</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">改訂履歴</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">リリース物件の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">マニュアルの読み方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caution.html">注意事項・制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Release Note</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>New Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>New Features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>本リリースはバージョン ver 7.0.3 です。
+本バージョンでは、以前リリースしたバージョンからいくつかの機能拡張・変更がなされています。</p>
+<p>ver 6.5.x → ver 7.0.3 での新機能は以下のとおりです。</p>
+<div class="section" id="id2">
+<h2>License key activation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>From ver 7.0 we introduced a license key activation Please note that you must input the license key to use the server features. (You don’t need to set license key when using unlimited version servers.)</p>
+<p>For details, please see <a class="reference external" href="../server/usage/license_auth.html">Server User Manual: License key activation</a></p>
+</div>
+<div class="section" id="id4">
+<h2>JSON object storage enhancements<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mongodb-aggregation">
+<h3>MongoDB Aggregation<a class="headerlink" href="#mongodb-aggregation" title="Permalink to this headline">¶</a></h3>
+<p>You can use MongoDB Aggregation feature. It provides features like as LEFT OUTER JOIN, GROUP BY, COUNT, SUM of RDB.</p>
+<p>For details, please see <a class="reference external" href="../developer/functions/object_storage.html#aggregation">Aggregation</a>.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">You need to use specific (newer) MongoDB version to use some aggregation features like as JOIN. Please see the link above for more information.</p>
+</div>
+</div>
+<div class="section" id="mongodb-extended-json">
+<h3>MongoDB Extended JSON support<a class="headerlink" href="#mongodb-extended-json" title="Permalink to this headline">¶</a></h3>
+<p>MongoDB の <a class="reference external" href="https://github.com/mongodb/specifications/blob/master/source/extended-json.rst">Extended JSON</a> に対応しました。
+日付やタイムスタンプ型のデータなどを投入することができるようになります。</p>
+<p>詳細は <a class="reference external" href="../developer/functions/object_storage.html#json">オブジェクトストレージ: JSON仕様について</a> をご参照ください。</p>
+</div>
+</div>
+<div class="section" id="openid-connect">
+<h2>OpenID Connect認証 アカウントリンク対応<a class="headerlink" href="#openid-connect" title="Permalink to this headline">¶</a></h2>
+<p>v7.0.0 より、OpenID Connect認証 アカウントリンク対応を追加しました。
+詳細は <a class="reference external" href="../auth/oidc/account_link.html">アカウントリンク情報の設定、取得、削除</a> をご参照ください。</p>
+</div>
+<div class="section" id="windows-server-2016">
+<h2>Windows Server 2016 対応<a class="headerlink" href="#windows-server-2016" title="Permalink to this headline">¶</a></h2>
+<p>Windows Server 2016 に対応しました。
+API サーバ、デベロッパーコンソールサーバ、SSE Push サーバを Windows Server 2016 上で動作させることができます。</p>
+<p>ただし、Cloud Functions サーバは対象外となります(Windows Server では動作しません)</p>
+</div>
+<div class="section" id="rest-api-url">
+<h2>REST API の URL にテナント名が利用可能<a class="headerlink" href="#rest-api-url" title="Permalink to this headline">¶</a></h2>
+<p>REST API の URL にテナントIDではなくテナント名も使用できるようになりました。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//.../</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">586</span><span class="n">da91204e80e089380c531</span>
+</pre></div>
+</div>
+<p>ではなく</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//.../</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">mytenant</span>
+</pre></div>
+</div>
+<p>のような URL でアクセス可能になります。</p>
+</div>
+<div class="section" id="id6">
+<h2>Enhanced Security<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>セキュリティ強化のため、パスワードハッシュ方式を SHA-256 から BCrypt に変更しました。
+(ストレッチング回数は共に 1024回)</p>
+<p>ユーザ・管理者の新規作成およびパスワード変更を行った際に BCrypt でパスワードがハッシュ化されます。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="changes.html" class="btn btn-neutral float-right" title="改訂履歴" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="Greetings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.3',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

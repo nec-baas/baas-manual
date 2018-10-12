@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.6. コンテキスト &mdash; Cloud Functions Developer Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="5. Java での開発" href="java.html" />
+    <link rel="prev" title="4.5. ユーザコードからのモバイルバックエンド基盤の利用" href="use-nebula-nodejs.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project-dir.html">3. プロジェクトディレクトリの作成</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nodejs.html">4. Node.js での開発</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project-nodejs.html">4.1. Node.js プロジェクトのセットアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-nodejs.html">4.2. Cloud Functionsコード実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-function.html">4.3. API/ファンクション定義の登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exec.html">4.4. カスタムAPIの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-nebula-nodejs.html">4.5. ユーザコードからのモバイルバックエンド基盤の利用</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.6. コンテキスト</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context-succeed">4.6.1. context.succeed() : ハンドラの正常終了</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#apigwresponse">ApigwResponse</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#context-fail">4.6.2. context.fail() : ハンドラの異常終了</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#httperror">HttpError</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#context-clientcontext">4.6.3. context.clientContext : クライアントコンテキスト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context-nebula">4.6.4. context.Nebula : モバイルバックエンド基盤ハンドル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context-logger">4.6.5. context.logger : ロガー</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context-shared">4.6.6. context.shared : 共有オブジェクト</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="java.html">5. Java での開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="others.html">7. その他補足情報</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">8. 制限事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="nodejs.html">4. Node.js での開発</a> &raquo;</li>
+        
+      <li>4.6. コンテキスト</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="index-0"></span><div class="section" id="context">
+<span id="index-1"></span><span id="id1"></span><h1>4.6. コンテキスト<a class="headerlink" href="#context" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Node.js のハンドラ第二引数に引き渡される context の詳細について説明します。</p>
+<p>context には以下のメソッドが設定されています。</p>
+<ul class="simple">
+<li>succeed() : 成功時に呼び出す関数</li>
+<li>fail() : 失敗時に呼び出す関数</li>
+<li>apigwResponse() : APIレスポンスを生成する関数</li>
+<li>httpError() : HTTPエラーを生成する関数</li>
+</ul>
+<p>また、以下のオブジェクトが設定されています。</p>
+<ul class="simple">
+<li>clientContext: クライアントコンテキスト</li>
+<li>Nebula: JavaScript SDK Nebula ハンドラ</li>
+<li>logger: ロガー</li>
+<li>shared: リクエスト間で共有されるオブジェクト</li>
+</ul>
+<div class="section" id="context-succeed">
+<h2>4.6.1. context.succeed() : ハンドラの正常終了<a class="headerlink" href="#context-succeed" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">context</span><span class="p">.</span><span class="nx">succeed</span><span class="p">(</span><span class="nb">Object</span> <span class="nx">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ハンドラの実行が正常終了したことを通知します。
+result に指定した値が呼び出し元に返却されます。
+result に指定できる型は以下のいずれかです。</p>
+<ul class="simple">
+<li>ApigwResponse : 設定されたステータスコード、ヘッダ、データが返却されます。</li>
+<li>String : そのままテキストとして返却されます</li>
+<li>Object : JSON 形式に変換して返却されます</li>
+<li>Buffer : バイナリデータがそのまま返却されます。</li>
+</ul>
+<p>ステータスコードや Content-Type を指定したい場合は ApigwResponse を使用します(後述)</p>
+<p>ApigwResponse を使用しない場合は、Content-Type には result の型に合わせて以下の値が自動的に使用されます。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">型</th>
+<th class="head">Content-Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>String</td>
+<td>text/plain</td>
+</tr>
+<tr class="row-odd"><td>Object</td>
+<td>application/json</td>
+</tr>
+<tr class="row-even"><td>Buffer</td>
+<td>application/octet-stream</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">ApigwResponse を使用しない場合はステータスコードは 200 OK 固定となります。</p>
+</div>
+<div class="section" id="apigwresponse">
+<span id="index-2"></span><h3>ApigwResponse<a class="headerlink" href="#apigwresponse" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ステータスコードや Content-Type などを指定したい場合は ApigwResponse クラスを使用します。
+ApigwResponse は context.apigwResponse() メソッドで生成します。
+apigwResponse() メソッドの仕様は以下の通りです。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">context</span><span class="p">.</span><span class="nx">apigwResponse</span><span class="p">(</span><span class="nb">Number</span> <span class="nx">statusCode</span><span class="p">,</span> <span class="nb">Object</span> <span class="nx">headers</span><span class="p">,</span> <span class="nb">Object</span> <span class="nx">data</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>statusCode には HTTP ステータスコードを指定します。</li>
+<li>headers には HTTP ヘッダを指定します。</li>
+<li>data には返却するデータを指定します。String, Object, Buffer のいずれかを指定できます。
+Object を指定した場合は JSON 形式に変換されます。</li>
+</ul>
+<p>以下に例を示します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">context</span><span class="p">.</span><span class="nx">succeed</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">apigwResponse</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">},</span> <span class="s2">&quot;Hello world.&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="context-fail">
+<h2>4.6.2. context.fail() : ハンドラの異常終了<a class="headerlink" href="#context-fail" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">context</span><span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nb">Object</span> <span class="nx">error</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>ハンドラの実行がエラー終了したことを通知します。
+error にエラー情報を指定します。error の型には以下のものが指定できます。</p>
+<ul class="simple">
+<li>ApigwResponse : レスポンス</li>
+<li>Error : エラー</li>
+<li>String</li>
+<li>Object</li>
+<li>Buffer</li>
+</ul>
+<p>ApigwResponse 以外を返却した場合は、HTTP ステータスコードは 500 Internal Server Error 固定となります。500 以外のステータスコードを返却したい場合は ApigwResponse を使用してください。</p>
+<p>Error を返却した場合は、エラーメッセージが text/plain で返却されます。
+それ以外の場合のレスポンスボディは context.succeed() の場合と同じです。</p>
+<div class="section" id="httperror">
+<span id="index-3"></span><h3>HttpError<a class="headerlink" href="#httperror" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>HTTPステータスコードを返却したい場合は ApigwResponse クラスを使用します。
+エラー生成を行う際は context.httpError() 関数で生成します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">context</span><span class="p">.</span><span class="nx">httpError</span><span class="p">(</span><span class="nb">Number</span> <span class="nx">statusCode</span><span class="p">,</span> <span class="nb">Object</span> <span class="nx">message</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>statusCode にはステータスコードを指定します。</li>
+<li>message にはエラーメッセージを指定します。String または Object を指定できます。Object を指定した場合は JSON に変換されます。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="context-clientcontext">
+<span id="clientcontextnode"></span><span id="index-4"></span><h2>4.6.3. context.clientContext : クライアントコンテキスト<a class="headerlink" href="#context-clientcontext" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>クライアントコンテキスト(context.clientContext)には以下の情報が引き渡されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;method&quot;</span><span class="o">:</span> <span class="s2">&quot;HTTPメソッド&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;uri&quot;</span><span class="o">:</span> <span class="s2">&quot;URI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;queryParams&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">クエリパラメータ</span> <span class="p">},</span>
+    <span class="s2">&quot;pathParams&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">パスパラメータ</span> <span class="p">},</span>
+    <span class="s2">&quot;headers&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">ヘッダパラメータ</span> <span class="p">},</span>
+    <span class="s2">&quot;contentType&quot;</span><span class="o">:</span> <span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nebula&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;tenant&quot;</span><span class="o">:</span> <span class="s2">&quot;テナントID&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;appId&quot;</span><span class="o">:</span> <span class="s2">&quot;アプリケーションID&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;appKey&quot;</span><span class="o">:</span> <span class="s2">&quot;アプリケーションキー&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;masterKey&quot;</span><span class="o">:</span> <span class="s2">&quot;マスターキー&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;isMaster&quot;</span><span class="o">:</span> <span class="nx">REST</span> <span class="nx">API</span> <span class="nx">呼び出し時のマスターキー使用有無</span><span class="p">(</span><span class="kr">boolean</span><span class="p">),</span>
+        <span class="s2">&quot;baseUri&quot;</span><span class="o">:</span> <span class="s2">&quot;Base URI&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;ユーザID&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sessionToken&quot;</span><span class="o">:</span> <span class="s2">&quot;セッショントークン&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;expire&quot;</span><span class="o">:</span> <span class="nx">セッショントークン有効期限</span><span class="p">(</span><span class="nx">UnixTime</span><span class="p">(</span><span class="nx">秒</span><span class="p">)),</span>
+            <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;ユーザ名&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;E-mailアドレス&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;options&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">オプション</span> <span class="p">},</span>
+            <span class="s2">&quot;groups&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="nx">所属グループ名リスト</span> <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;function&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="nx">ファンクション定義</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>クエリパラメータには、パラメータ名と対応する文字列の配列が格納されます (文字列ではなく文字列の配列になる点に注意)</li>
+<li>パスパラメータには、パスパラメータ名(Swaggerで指定したもの)と対応する文字列が格納されます。</li>
+</ul>
+</div>
+<div class="section" id="context-nebula">
+<span id="index-5"></span><h2>4.6.4. context.Nebula : モバイルバックエンド基盤ハンドル<a class="headerlink" href="#context-nebula" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>context.Nebula には、モバイルバックエンド基盤 JavaScript SDK の初期化済みハンドルが格納されます。
+これを使用してモバイルバックエンド基盤のサーバ機能を呼び出すことができます。</p>
+<p>詳細は <a class="reference internal" href="use-nebula-nodejs.html#use-nebula-nodejs"><span class="std std-ref">ユーザコードからのモバイルバックエンド基盤の利用</span></a> を参照してください。</p>
+</div>
+<div class="section" id="context-logger">
+<span id="index-6"></span><h2>4.6.5. context.logger : ロガー<a class="headerlink" href="#context-logger" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザコードでログ出力したい場合は、context.logger を使用してください。</p>
+<p>context.logger は、以下のメソッドを持っています。</p>
+<ul class="simple">
+<li>context.logger.trace() : TRACEレベルログ出力</li>
+<li>context.logger.debug() : DEBUGレベルログ出力</li>
+<li>context.logger.info() : INFOレベルログ出力</li>
+<li>context.logger.warn() : WARNレベルログ出力</li>
+<li>context.logger.error() : ERRORレベルログ出力</li>
+</ul>
+<p>console.log() などを使ってもログは出力されますが、ログレベルなどの情報が
+出力されませんので、context.logger を使用するようにしてください。</p>
+<p>出力されたログはデベロッパーコンソール上で閲覧することができます。
+また、CLI ツールを使って取得することも可能です。</p>
+</div>
+<div class="section" id="context-shared">
+<span id="index-7"></span><h2>4.6.6. context.shared : 共有オブジェクト<a class="headerlink" href="#context-shared" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>context.shared には、同一 Docker コンテナ内で起動される複数リクエスト間で共有されるメモリ上のオブジェクトが設定されています。
+これは RDBMS へのコネクションプールなどを格納するために使用することができます。</p>
+<p>ただし、本オブジェクトは以下のようなケースでは共有されませんので、注意してください。</p>
+<ul class="simple">
+<li>リクエストが異なるコンテナで実行される場合 (詳細は <a class="reference internal" href="others.html#docker-run"><span class="std std-ref">Docker コンテナの起動単位</span></a> を参照してください)</li>
+<li>コンテナが再起動された場合</li>
+<li>Node.js サーバ内の異なるプロセスで実行される場合<ul>
+<li>ユーザコード実行用の Node.js サーバは、内部で複数プロセスを使用したクラスタ動作となっており、リクエストが複数のプロセスに分配されるようになっています。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="java.html" class="btn btn-neutral float-right" title="5. Java での開発" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="use-nebula-nodejs.html" class="btn btn-neutral" title="4.5. ユーザコードからのモバイルバックエンド基盤の利用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+========================
+Pushを受信するための実装
+========================
+
+.. include:: ../../common/linkdef.rst
+
+端末情報の登録
+==================
+
+アプリを起動する際に、デバイストークンの取得を行う処理が必要になります。
+
+AppDelegate 実装ファイル内の application:didFinishLaunchingWithOptions: メソッド内に、
+Push 通知を受けるための登録処理を追加します。以下のようにコードを追加してください。
+
+.. code-block:: objective-c
+
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+        // その他の処理
+
+        // Push受信用の処理
+        UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+
+        // その他の処理
+
+        return YES;
+    }
+
+また、OS側からデバイストークンを受け取るため、
+AppDelegate に application:didRegisterUserNotificationSettings: と application:didRegisterForRmoteNotificationsWithDeviceToken: 
+メソッドを追加します。
+
+このメソッド内で、受け取ったデバイストークンを MBaaS 側に登録します。
+
+.. code-block:: objective-c
+
+    - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+        [application registerForRemoteNotifications];
+    }
+
+    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+        NBPushInstallation *installation = [NBPushInstallation currentInstallation];
+        [installation setDeviceTokenFromData:deviceToken];
+
+        // 購読チャネルを設定 (設定必須。ここでは空配列を指定)
+        installation.channels = @[];
+
+        [installation saveInBackgroundWithBlock:^(NBPushInstallation *installation, NSError *error) {
+            if (!error) {
+                // 正常登録完了
+            } else {
+                // 登録エラー
+            }
+        }];
+    }
+
+最初に NBPushInstallation の currentInstallation を呼び出して NBPushInstallation の
+インスタンスを取得します。
+
+ついで setDeviceTokenFromData を呼び出してトークンをセットし、
+saveInBackgroundWithBlock: を呼び出してインスタレーションを保存(サーバ登録)します。
+
+チャネルの購読
+==============
+
+チャネルを購読する場合は、NBPushInstallation の channels プロパティにチャネルの一覧を
+設定します。
+
+.. code-block:: objective-c
+
+        NBPushInstallation *installation = [NBPushInstallation currentInstallation];
+
+        // 購読チャネルを設定
+        installation.channels = @[@"Channel1", @"Channel2"];
+
+        [installation saveInBackgroundWithBlock:^(NBPushInstallation *installation, NSError *error) {
+            ....
+        }];
+
+ユーザの紐付け
+==============
+
+インスタレーションは、インスタレーション保存のタイミングでログイン中だったユーザに紐付けられます。
+
+紐付けを変更したい場合は、ログイン操作・ログアウト操作の完了時に、
+あらためてインスタレーションの保存処理を行う必要があります。
+
+Push通知の受信
+===============
+
+Push通知の受信は、AppDelegate の application:didReceiveRemoteNotification: メソッドで
+実装します。
+
+以下に実装例を示します。
+
+.. code-block:: objective-c
+
+    // Push 受信
+    - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+        NSDictionary *aps = userInfo[@"aps"];
+        NSString *alert = aps[@"alert"][@"body"];
+    
+        // local 通知すべてキャンセル
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+        // local 通知を出す
+        UILocalNotification *n = [UILocalNotification new];
+        n.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        n.timeZone = [NSTimeZone defaultTimeZone];
+        n.alertBody = alert;
+        n.soundName = UILocalNotificationDefaultSoundName;
+        n.alertAction = @"OPEN";
+    
+        [[UIApplication sharedApplication] scheduleLocalNotification:n];
+    }
+
+Push通知は userInfo 引数に渡されます。
+userInfo の "aps" キーに NSDictionary 側で情報が入っています。
+Pushメッセージは "alert" → "body" キーに格納されています。
+
+上記サンプルでは、Local Notification で受信したメッセージを表示しています。
+
+
+VoIP Push (PushKit) を使用する場合
+===================================
+
+通常 Push ではなく VoIP Push を使用する場合は、以下のように実装を変更します。
+
+なお、VoIP Push の実装方法の詳細は `Voice Over IP (VoIP) Best Practices`_ を参照してください。
+
+AppDelegate 実装ファイルの application:didFinishLaunchingWithOptions: メソッド内にある、
+Push 通知を受けるための登録処理を以下のように変更します。
+
+.. code-block:: objective-c
+
+        // PushKit 登録処理
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        PKPushRegistry *voipRegistry = [[PKPushRegistry alloc] initWithQueue:mainQueue];
+        voipRegistry.delegate = self;
+        voipRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
+
+デバイストークンの取得処理は、pushRegistry:didUpdatePushCredentials:forType: で行います。
+
+.. code-block:: objective-c
+
+    -(void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type {
+        NSData *deviceToken = credentials.token;
+
+        NBPushInstallation *installation = [NBPushInstallation currentInstallation];
+        [installation setDeviceTokenFromData:deviceToken];
+        // 以降は application:didRegisterForRemoteNotificationsWithDeviceToken: と同じ
+        ...
+
+Push の受信処理は pushRegistry:didReceiveIncomingPushWithPayload:forType: で行います。
+
+.. code-block:: objective-c
+
+    -(void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
+        NSDictionary *userInfo = payload.dictionaryPayload;
+
+        NSDictionary *aps = userInfo[@"aps"];
+        NSString *alert = aps[@"alert"][@"body"];
+        // 以降は application:didReceiveRemoteNotification: と同じ
+
+なお、VoIP Push を使用する場合は、Info.plist の UIBackgroundModes に "voip" を追加する必要があります。

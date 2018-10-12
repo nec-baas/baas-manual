@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.2. その他の設定 &mdash; Server User Guide 7.0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.3. ロギング設定" href="logger.html" />
+    <link rel="prev" title="4.1. 設定ファイル" href="config_file.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. コンフィグレーション</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="config_file.html">4.1. 設定ファイル</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. その他の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">4.2.1. メモリ使用量の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">4.2.2. ログレベルの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#index-0">4.2.3. プロファイルの選択</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id24">システムプロパティで指定する場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#web-xml">web.xml で指定する場合</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#config-mongodb">4.2.4. MongoDB の設定</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id26">シングルホストの場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">シャーディング環境の場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">レプリカセット環境(シャーディングなし)の場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">MongoDB 認証</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">4.2.5. システム設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alpn">4.2.6. ALPN 設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sse-push">4.2.7. SSE Push サーバの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">4.3. ロギング設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluentd.html">4.4. fluentd を利用したロギング</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. コンフィグレーション</a> &raquo;</li>
+        
+      <li>4.2. その他の設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<span id="id1"></span><h1>4.2. その他の設定<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id21">
+<h2>4.2.1. メモリ使用量の設定<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>BaaS サーバは、最低限 256MB のヒープ領域を必要とします。</p>
+<p>ヒープサイズは JVM のオプションで指定します。
+以下にオプション例を示します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">Xmx2048m</span> <span class="o">-</span><span class="n">Xms1024m</span>
+</pre></div>
+</div>
+<p>JVM オプションの設定手順については、使用する AP サーバのマニュアルを参照ください。</p>
+</div>
+<div class="section" id="id22">
+<h2>4.2.2. ログレベルの設定<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="logger.html#config-loglevel"><span class="std std-ref">ログ設定</span></a> を参照してください。</p>
+</div>
+<div class="section" id="index-0">
+<span id="id23"></span><h2>4.2.3. プロファイルの選択<a class="headerlink" href="#index-0" title="Permalink to this headline">¶</a></h2>
+<p>BaaS サーバは、本番・開発・テストの3種類のプロファイル(環境)を切り替えることができます。</p>
+<ul class="simple">
+<li>production (本番) : 実運用時に使用するプロファイル</li>
+<li>development (開発) : 開発時や評価時に使用するプロファイル</li>
+<li>test (テスト) : 自動テスト実行時に使用するプロファイル</li>
+</ul>
+<p>データベースは、各プロファイル毎に個別に用意されます。
+従って、開発プロファイルで BaaS サーバを起動すれば、
+本番環境には影響せずテスト利用を行うことができます。</p>
+<p>プロファイルはデフォルトで “development” になっています。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">production と develop の間に機能の差異は全くありません。
+使用する設定ファイルと MongoDB データベースの名前空間が別々になっているだけです。</p>
+</div>
+<div class="section" id="id24">
+<h3>システムプロパティで指定する場合<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>APサーバの JVM オプションでシステムプロパティ spring.profiles.active を設定
+することでプロファイルを変更することができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">Dspring</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">active</span><span class="o">=</span><span class="n">production</span>
+</pre></div>
+</div>
+<p>Tomcat の場合、catalina.sh/catalina.bat を起動する際の環境変数 JAVA_OPTS に上記値が設定
+されるようにしてください。</p>
+</div>
+<div class="section" id="web-xml">
+<h3>web.xml で指定する場合<a class="headerlink" href="#web-xml" title="Permalink to this headline">¶</a></h3>
+<p>web.xml ファイルでプロファイルを指定することが可能です。</p>
+<p>web.xml は、WARファイル内の WEB-INF/web.xml にあります。
+(ソースコード上は  ${SRCROOT}/api/src/main/webapp/WEB-INF/web.xml と
+${SRCROOT}/console/src/main/webapp/WEB-INF/web.xml の２箇所にあります)</p>
+<p>web.xml に以下のように指定することで、プロファイルを固定できます。
+なお、web.xml で指定を行った場合、システムプロパティの値は参照されません。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">context</span><span class="o">-</span><span class="n">param</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">param</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">active</span><span class="o">&lt;/</span><span class="n">param</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">param</span><span class="o">-</span><span class="n">value</span><span class="o">&gt;</span><span class="n">production</span><span class="o">&lt;/</span><span class="n">param</span><span class="o">-</span><span class="n">value</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">context</span><span class="o">-</span><span class="n">param</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="config-mongodb">
+<span id="index-1"></span><span id="id25"></span><h2>4.2.4. MongoDB の設定<a class="headerlink" href="#config-mongodb" title="Permalink to this headline">¶</a></h2>
+<p>MongoDB の設定は、上記設定ファイルで行います。
+デフォルト設定は、シングルホストでlocalhost:27017 に接続、認証なしという設定となっています。</p>
+<div class="section" id="id26">
+<h3>シングルホストの場合<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p>シャーディング、レプリカセットいずれもなしの場合、mongo.servers プロパティに
+mongod を動作させるホスト名とポート番号を指定します。デフォルトは ‘localhost:27017’ と
+なっています。</p>
+</div>
+<div class="section" id="id27">
+<h3>シャーディング環境の場合<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>シャーディング環境の場合は、mongo.servers プロパティに mongos のホスト名、ポート番号
+を指定します。通常は、mongos は APサーバと同一ホストで動作させるので、
+デフォルトの ‘localhost:27017’ の指定のままで構いません。</p>
+</div>
+<div class="section" id="id28">
+<h3>レプリカセット環境(シャーディングなし)の場合<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p>レプリカセット(シャーディングなし)の場合、mongo.servers プロパティに
+レプリカセットを構成する mongod ３台分のホスト名、ポート番号を
+カンマで区切って設定します。</p>
+</div>
+<div class="section" id="id29">
+<h3>MongoDB 認証<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>デフォルトでは MongoDB の認証は使用しない設定となっていますが、
+MongoDB を分離したネットワークで運用するのでなければ、
+セキュリティ上認証を使用するようにすべきです。</p>
+<p>認証の設定手順は以下のとおりです。</p>
+<p>まず最初に認証なしで mongod を起動します。</p>
+<p>ついで、mongod にアクセスするための管理権限アカウントを作成します。
+以下の手順で MongoDB の admin データベース上に root ロールを持つユーザを作成します。
+ユーザ名とパスワードは user: pwd: で指定します。値は適宜変更してください。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mongo admin
+&gt; db.createUser<span class="o">({</span>user: <span class="s2">&quot;baas&quot;</span>,  pwd: <span class="s2">&quot;Passw0rD&quot;</span>, roles: <span class="o">[{</span> role:<span class="s2">&quot;root&quot;</span>, db:<span class="s2">&quot;admin&quot;</span> <span class="o">}]})</span><span class="p">;</span>
+&gt; <span class="nb">exit</span>
+</pre></div>
+</div>
+<p>次に、MongoDB 側の認証を有効にします。
+mongod.conf ファイルに以下の記述を追加します
+(MongoDB の設定ファイルの詳細は <a class="reference external" href="https://docs.mongodb.com/manual/reference/configuration-options/">Configuration File Options</a> を参照)。
+追記したら mongod を再起動してください。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">security</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">authorization</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">enabled</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">mongod.conf の形式が YAML 形式でない旧フォーマット(MongoDB 2.4 形式)の場合は、
+‘auth = true’ という行を追加してください (詳細は <a class="reference external" href="https://docs.mongodb.com/v2.4/reference/configuration-options/">2.4 configuration file format</a> を参照)。</p>
+</div>
+<p>次に、BaaS 側で MongoDB の認証の設定を行います。
+mongo.username, mongo.password プロパティにそれぞれユーザ名とパスワードを
+設定してください。</p>
+</div>
+</div>
+<div class="section" id="id30">
+<h2>4.2.5. システム設定<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h2>
+<p>いくつかの設定は、デベロッパーコンソールの「システム設定」で行ってください。
+詳細は <a class="reference external" href="../../devconsole/system/system_config.html">システム設定</a> を参照してください。</p>
+</div>
+<div class="section" id="alpn">
+<span id="config-alpn"></span><h2>4.2.6. ALPN 設定<a class="headerlink" href="#alpn" title="Permalink to this headline">¶</a></h2>
+<p>APNs Push (iOS Push) を使用する際、v6.0.x 以前のバージョンでは
+ALPN (Application Layer Protocol Negotiation) 拡張設定が必要でしたが、
+v6.2.0 より本設定は不要となりました。</p>
+<p>v6.0.x 以前からアップグレードした場合、Tomcat 起動時の -Xbootclasspath オプションでの
+alpn-boot-*.jar ファイル指定は不要となりますので、削除してください。</p>
+</div>
+<div class="section" id="sse-push">
+<h2>4.2.7. SSE Push サーバの設定<a class="headerlink" href="#sse-push" title="Permalink to this headline">¶</a></h2>
+<p>SSE Push 機能を使用する場合は設定が必要です。</p>
+<p>設定手順については、<a class="reference external" href="../../push/index.html">Push通知ガイド</a> の「SSE Push」の章を参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logger.html" class="btn btn-neutral float-right" title="4.3. ロギング設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="config_file.html" class="btn btn-neutral" title="4.1. 設定ファイル" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.4',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

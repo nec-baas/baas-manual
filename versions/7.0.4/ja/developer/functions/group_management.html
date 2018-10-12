@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.3. グループ管理機能 &mdash; Developer Manual 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2.4. オブジェクトストレージ" href="object_storage.html" />
+    <link rel="prev" title="2.2. ユーザ管理・認証機能" href="user_management.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. 機能ガイド</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="application.html">2.1. テナントとアプリケーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_management.html">2.2. ユーザ管理・認証機能</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.3. グループ管理機能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.3.1. グループ管理の概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.3.2. グループ管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.3.3. グループ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.3.4. グループへの所属</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.3.5. グループのアクセス権限</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html">2.4. オブジェクトストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.5. ファイルストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl.html">2.6. セキュリティ : ACL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cors.html">2.7. Cross Origin Resource Sharing (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_offline.html">2.8. オフライン機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html">2.9. Push通知</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../limits.html">3. 制限値・スレショルド・文字制約</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">2. 機能ガイド</a> &raquo;</li>
+        
+      <li>2.3. グループ管理機能</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2.3. グループ管理機能<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>2.3.1. グループ管理の概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザをグループにまとめて管理する機能を提供します。</p>
+<p>BaaS が扱うオブジェクトやファイルデータに対しては、どのユーザ・グループがアクセスすることができるかといったアクセス制御を細かく行うことができます。</p>
+</div>
+<div class="section" id="id3">
+<h2>2.3.2. グループ管理<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザは、グループにまとめて管理することができます。
+データに対するアクセス制御は、ユーザの他にグループも指定することができます。</p>
+<p>グループは、以下の図のように階層化することができます。</p>
+<img alt="../_images/group.png" src="../_images/group.png" />
+<p>あるグループに所属するユーザは、その上位グループにも自動的に所属するものとみなされます。
+上記の図の例では、グループ１に所属するユーザは、A課、A部、会社A にすべて所属します。</p>
+</div>
+<div class="section" id="id4">
+<h2>2.3.3. グループ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>グループは、テナント内では「グループ名」で一意に識別します。
+名前はアルファベットや数値から構成される名前です。</p>
+<p>また、以下の予約グループ名を利用することができます。</p>
+<ul class="simple">
+<li>authenticated : 認証済みユーザ全員を表すグループ</li>
+<li>anonymous : 未認証ユーザを含めた全ユーザを表すグループ</li>
+</ul>
+<p>グループは以下のようにJSON形式で表現します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;jigyoubu1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;user1&quot;</span><span class="p">,</span> <span class="s2">&quot;user2&quot;</span><span class="p">,</span> <span class="s2">&quot;user3&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;groups&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="s2">&quot;group2&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;01234567890&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;w&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>'_id' : グループを一意に識別するID(プライマリキー)です。通常は、グループ作成時にサーバ側が自動で採番します。</li>
+<li>'name' : グループ名です。</li>
+<li>'users' : 所属するユーザの一覧です。</li>
+<li>'groups' : 所属するグループの一覧です。</li>
+<li>'ACL' : グループのACLです。</li>
+<li>'createdAt' : グループの作成日時です。</li>
+<li>'updatedAt' : グループの更新日時です。</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>2.3.4. グループへの所属<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>グループには任意の個数のユーザおよびグループを所属させることができます。</p>
+<p>所属させるユーザ/グループは、既にサーバに登録済みである必要があります。</p>
+<p>例として、level1, level2, level3, level4 の４つのグループを作成し、
+level1 に最も高い権限を、level4 に最も低い権限を与える場合を考えます。</p>
+<p>各グループに以下の様にユーザ/グループを所属させます。</p>
+<ul class="simple">
+<li>level1<ul>
+<li>ユーザID: &quot;54d47018aea788df195e0001&quot;</li>
+</ul>
+</li>
+<li>level2<ul>
+<li>ユーザID: &quot;54d47018aea788df195e0002&quot;</li>
+<li>グループ: &quot;level1&quot;</li>
+</ul>
+</li>
+<li>level3<ul>
+<li>ユーザID: &quot;54d47018aea788df195e0003&quot;</li>
+<li>グループ: &quot;level2&quot;</li>
+</ul>
+</li>
+<li>level4<ul>
+<li>グループ: &quot;authenticated&quot;</li>
+</ul>
+</li>
+</ul>
+<p>この場合、以下のように解釈されます。</p>
+<ul class="simple">
+<li>ユーザ &quot;54d47018aea788df195e0001&quot; は、level1/2/3/4 グループに所属します。</li>
+<li>ユーザ &quot;54d47018aea788df195e0002&quot; は、level2/3/4 グループに所属します。</li>
+<li>ユーザ &quot;54d47018aea788df195e0003&quot; は、level3/4 グループに所属します。</li>
+<li>それ以外の認証ユーザは、level4 グループのみに所属します。</li>
+</ul>
+<p>このように設定しておけば、例えばあるデータに level2 グループのアクセス権限を
+与えれば、level1/level2 のいずれかのグループに所属するメンバにのみ
+アクセス権限を与えることができます。</p>
+<p>自分が所属するグループを確認したい場合は、ユーザ管理機能が提供している「自ユーザ情報取得」機能を利用することで、所属するグループ一覧を取得できます。</p>
+<p>ユーザやグループを削除すると、所属するグループからも削除されます。</p>
+</div>
+<div class="section" id="id6">
+<h2>2.3.5. グループのアクセス権限<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>グループに ACL (Access Control List)を設定することで、アクセス制御を行うことができます。ACLの詳細については「セキュリティ」の節で説明しています。
+ここでは概要のみ説明します。</p>
+<p>ACL は、グループ作成時に 'ACL' キーを指定することで設定します。</p>
+<p>ACL キー内の 'owner' キーに、グループのオーナのユーザIDを指定します。
+オーナはグループの読み書きの権限がすべて与えられます。</p>
+<p>ACL キー内の 'r' に読み込み可能なユーザ一覧、'w' に書き込み・削除可能なユーザ一覧を配列で指定します。</p>
+<p>また、グループ名を指定することも可能です。グループ名を指定する場合は&quot;g:groupA&quot; のように先頭に &quot;g:&quot; を付与してください。</p>
+<p>なお、ログイン済み全ユーザを表す &quot;authenticated&quot; グループと、未ログインユーザ全員を表す &quot;anonymous&quot; グループも使用できます。</p>
+<p>ユーザとグループ、いずれかの条件に合致すると、グループへのアクセスが許可されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;jigyoubu1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;user1&quot;</span><span class="p">,</span> <span class="s2">&quot;user2&quot;</span><span class="p">,</span> <span class="s2">&quot;user3&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;groups&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="s2">&quot;group2&quot;</span><span class="p">],</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;w&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:groupA&quot;</span><span class="p">],</span>
+  <span class="p">}</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上記の例では、誰でも読み込み可能で、書き込みは groupA が可能。
+オーナとなる 52116f01ac521e1742000001 ユーザはすべて可能という指定となります。</p>
+<p>なお、ACL を指定せずにグループを作成した場合は、以下のような動作となります。</p>
+<ul class="simple">
+<li>ログイン状態でグループを作成すると、そのユーザのみ読み書き可能なグループが作成されます。</li>
+<li>未ログイン状態でグループを作成すると、誰でも読み書き可能なグループが作成されます。</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="object_storage.html" class="btn btn-neutral float-right" title="2.4. オブジェクトストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_management.html" class="btn btn-neutral" title="2.2. ユーザ管理・認証機能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

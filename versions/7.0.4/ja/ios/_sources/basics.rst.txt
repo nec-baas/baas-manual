@@ -1,0 +1,39 @@
+=======================
+NEC BaaS iOS API の基本
+=======================
+
+非同期呼び出し
+==============
+
+NEC BaaS iOS API は、ほぼすべて非同期呼び出しとなります。
+API の処理結果は、ブロック構文(Blocks)で受け取る形になります。
+
+以下に、オブジェクトをクエリする場合の例を示します。
+
+.. code-block:: objc
+
+    NBObjectBucket *bucket = [[NBObjectBucket alloc] initWithBucketName:@"testBucket"];
+    
+    // クエリ実行
+    [bucket queryObjectInBackground:[NBQuery new] block:^(NSArray *objects, NSUInteger count, NSError *error) {
+        if (!error) {
+            // 正常時
+            for (NBObject *object in objects) {
+                NSLog(@"%@", [object objectForKey:@"description"];
+            }
+        } else {
+            // エラー発生時
+            NSLog(@"Error: %@", error);
+        }
+    }];
+
+非同期 API (通常 API 名に 'InBackground' が含まれます)の呼び出し時にブロックを指定します。
+API の実行が完了すると指定したブロックが呼び出されます。
+
+処理が成功した場合には error 引数に nil が、失敗した場合にはエラー情報が格納されますので、
+最初に nil かどうかを判定する必要があります。
+
+なお、ブロックはすべて UI スレッドで呼び出されるようになっています。
+従って、ブロック内から UI 更新などの処理を行うことが可能です。
+
+    

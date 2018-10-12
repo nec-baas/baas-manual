@@ -1,0 +1,48 @@
+GCM から FCM への移行
+======================
+
+.. include:: ../../common/linkdef.rst
+
+プロジェクトの移行
+------------------
+
+また、実装変更を行う前に、Firebase コンソールにアクセスし、旧 Google プロジェクトを Firebase プロジェクトにインポートしておく
+必要があります。インポートした場合、「API(GCM)キー」は変更されずそのまま「サーバーキー」に移行されます。
+
+詳細は :ref:`fcm_apikey` を参照してください。
+
+実装変更手順
+------------
+
+GCM 3.0 を使用していたアプリを FCM に移行する際の実装変更手順は、
+`Migrate a GCM Client App for Android to Firebase Cloud Messaging`_
+に記載されていますので、こちらを参照してください。
+
+手順の概要は以下のとおりです。
+
+* build.gradle の dependencies に記述するライブラリを変更する。
+* GCM で使用していた Permission をすべて削除する。
+* AndroidManifest から BroadcastReceiver の記述を削除する。
+* Registration 処理を削除する。
+* InstanceIDListenerService を移行する (AndroidManifest記述変更、FirebaseInstanceIdService への置き換え)
+* GcmListenerService を移行する (AndroidManifest の記述変更、FirebaseMessagingService への置き換え)
+
+GCM 2.0 からの移行の場合は以下のような差異があります。
+
+* InstanceIDListenerService, GcmListenerService は GCM 2.0 以前には存在しない。
+* GCM 2.0 では独自に BroadcastReceiver と IntentService の実装が必要だったが、これは不要になるため削除する。
+* IntentService が行っていたメッセージ受信処理は FirebaseMessagingService に移行する。
+
+
+モバイルバックエンド基盤固有の手順
+-----------------------------------
+
+Registration 処理と InstanceIDListenerService についてはモバイルバックエンド基盤固有の手順があります。
+
+GCM では Registration を行うための処理を NbGcmPushInstallation.register()
+で行っていましたが、この処理は不要となりますので削除してください。
+
+代わりに Registration ID の通知を受けて MBaaS サーバに通知する処理の追加が必要になります。
+具体的には FirebaseInstanceIdService を継承したサービスの実装が新たに必要になります。
+
+手順は :ref:`fcm_register_token` を参照してください。

@@ -1,0 +1,92 @@
+.. index::
+   single: API定義(RabbitMQ)
+   single: Swagger
+
+============================
+API 定義の作成 (RabbitMQ)
+============================
+
+ここでは RabbtiMQ (AMQP) リクエストを Proxy するための定義の作成手順を説明します。
+
+カスタム API 定義は Swagger 定義ファイルとして作成します。
+Swagger 定義ファイルは YAML または JSON ファイルとして作成します。
+
+以下に API 定義の例を示します。
+
+.. code-block:: yaml
+
+    swagger: '2.0'
+    basePath: /amqp
+    x-proxy:
+      addrs:
+        - rabbitmq1.example.com:5672
+        - rabbitmq2.example.com:5672
+      username: guest
+      password: guest
+      vhost: vhost1
+    paths:
+      /publish/{id}:
+        post:
+          x-proxy:
+            type: amqp-publish
+            exchange: exchange1
+            routingKey: ${request.pathParams.id}
+            confirm: false
+      /consume/{id}:
+        get:
+          x-proxy:
+            type: amqp-consume
+            queue: ${request.pathParams.id}
+            timeout: 10000
+
+basePath に指定した "/amqp" が API の識別子(API名)となります。
+
+API内に任意の個数のオペレーションを定義することができます。
+ここでは /publish サブパスに対して POST メソッドの API を、
+/consume サブパスに対して GET メソッドの API を定義しています。
+
+これは以下の REST API に対応します。
+/api/1/{tenantId}/api までが固定パスで、これ以下の階層を自由に定義できます。
+
+.. code-block:: text
+
+    POST http://{servername}/api/1/{tenantId}/api/amqp/publish/{id}
+    GET http://{servername}/api/1/{tenantId}/api/amqp/consume/{id}
+
+プロキシの定義は "x-proxy" に指定します。
+
+x-proxy は 1)トップレベル、2)サブパスレベル、3)オペレーション、の３箇所に個別に記述できます(上記例では 1, 3 に記述)。複数指定した場合は値はマージされます。
+同じ値が存在する場合は、深いレベルに指定した値が優先されます。
+
+RabbitMQ 接続の場合、x-proxy には以下の値を記述します。
+
+* type (必須): 送信時は amqp-publish を、受信時は amqp-consume を指定します。
+* addrs (必須): RabbitMQ クラスタのホスト/ポート番号の組を指定します。
+* host (必須): RabbitMQ ホストを指定します。
+* port (必須): RabbitMQ ポート番号を指定します。
+* username (必須): RabbitMQ 認証ユーザ名を指定します。
+* password (必須): RabbitMQ 認証パスワードを指定します。
+* vhost (オプション): バーチャルホスト名を指定します。
+
+上記のうち、addrs または host/port のいずれかのみ必須(もう一方はオプション)です。
+
+* addrs には ["ホスト名:ポート番号", "ホスト名:ポート番号"] のように，ホスト名とポートの組をリストで指定します．
+* addrs ではなく host, port を指定する場合はホストは１台しか指定できません。
+
+送信時には以下の値を指定します。
+
+* exchange (必須): 送信先の Exchange 名を指定します。
+* routingKey (必須): Routing Key を指定します。
+* confirm (オプション): true を指定すると送信時 ack を待ちます。
+
+受信時には以下の値を指定します。
+
+* queue (必須): キュー名を指定します。
+* timeout (オプション): タイムアウト時間をミリ秒で指定します。指定がない場合はポーリングになります。
+
+REST API で、上記 /publish に POST で送信を行うと、指定された RabbitMQ サーバに対してメッセージが送信されます。なお、HTTPメッセージボディは無変換でそのまま RabbitMQ 側に送信されます。(メッセージ内容の変換は行いません)
+
+また上記 /consume に GET リクエストを送信すると、RabbitMQ からメッセージを１件取得して返却します。データはそのままレスポンスボディに無変換で格納されます。
+
+
+

@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 制限値・スレショルド・文字制約 &mdash; Developer Manual 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="2.9. Push notification" href="functions/push.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">2. Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 制限値・スレショルド・文字制約</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">3.1. テナント</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">3.1.1. テナント数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">3.1.2. テナント名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">3.2. アプリケーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id25">3.2.1. アプリケーション数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">3.3. バケット</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">3.3.1. バケット数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">3.3.2. バケット名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id29">3.4. ユーザ管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">3.4.1. ユーザ名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#e-mail">3.4.2. E-mail アドレス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">3.4.3. ユーザパスワード</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id32">3.5. グループ管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id33">3.5.1. グループ名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#json">3.6. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id34">3.7. ファイルストレージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id35">3.7.1. ファイル名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">3.7.2. ファイルサイズ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#push">3.8. Push</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id37">3.8.1. FCMサーバーキー</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id38">3.9. デベロッパーコンソール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id39">3.9.1. デベロッパーパスワード</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">3.9.2. オブジェクトストレージインデックス名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-gateway">3.10. API Gateway</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api">3.10.1. API名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basepath">3.10.2. basePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">3.10.3. サブパス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cloud-functions">3.11. Cloud Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#operationid">3.11.1. operationId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">3.11.2. ハンドラ名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id43">3.11.3. ファンクション名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id44">3.11.4. コードファイル名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id45">3.12. RabbitMQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#routing-key">3.12.1. Routing Key</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. 制限値・スレショルド・文字制約</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>3. 制限値・スレショルド・文字制約<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h1>
+<p>ここではモバイルバックエンド基盤の制限値(リミット)やスレショルド、文字制約について説明します。</p>
+<p>特に断りがないかぎり、文字列のエンコーディングにはすべて UTF-8 を使用するものとします。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">サーバに設定されているライセンスに指定された制限によって、
+一部の値が制限されている場合があります。</p>
+</div>
+<div class="section" id="id21">
+<h2>3.1. テナント<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id22">
+<h3>3.1.1. テナント数<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>無制限</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ライセンス制限により、テナント数上限が制限されている場合があります。</p>
+</div>
+</div>
+<div class="section" id="id23">
+<h3>3.1.2. テナント名<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 1バイト英数字、アンダースコア、ピリオド、ハイフン</li>
+<li>先頭文字： 英数字のみ</li>
+<li>文字列長制限(UTF-8バイト数): 1～無制限</li>
+<li>上記制限とは別に、24文字の16進文字列(0～9, a～f, A～F)は使用禁止</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>3.2. アプリケーション<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id25">
+<h3>3.2.1. アプリケーション数<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>無制限</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ライセンス制限により、テナント毎に作成可能なアプリケーション数が制限されている場合があります。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>3.3. バケット<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id27">
+<h3>3.3.1. バケット数<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>無制限</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ライセンス制限により、オブジェクトストレージ・ファイルストレージの
+それぞれについてテナント毎の上限数が制限されている場合があります。</p>
+</div>
+</div>
+<div class="section" id="id28">
+<h3>3.3.2. バケット名<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 1バイト英数字、アンダースコア</li>
+<li>文字列長制限(UTF-8バイト数): 1～40</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id29">
+<h2>3.4. ユーザ管理<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id30">
+<h3>3.4.1. ユーザ名<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: ASCII文字 (0x20～0x7e)</li>
+<li>文字列長制限(UTF-8バイト数): 1～100</li>
+</ul>
+</div>
+<div class="section" id="e-mail">
+<h3>3.4.2. E-mail アドレス<a class="headerlink" href="#e-mail" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>右の正規表現にマッチすること:  <code class="regexp docutils literal notranslate"><span class="pre">[\w.-]+&#64;(?:[\w-]+\.)+[\w-]+</span></code></li>
+<li>文字列長制限(UTF-8バイト数): 1～100</li>
+</ul>
+</div>
+<div class="section" id="id31">
+<h3>3.4.3. ユーザパスワード<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<p>デフォルト設定は以下の通り。</p>
+<ul class="simple">
+<li>使用できる文字: ASCII文字 (0x20～0x7e)</li>
+<li>文字列長制限(UTF-8バイト数): 8～100</li>
+</ul>
+<p>なお、デベロッパーコンソールにて、使用可能文字種・長さ制限を追加指定できます。</p>
+</div>
+</div>
+<div class="section" id="id32">
+<h2>3.5. グループ管理<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id33">
+<h3>3.5.1. グループ名<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: <code class="docutils literal notranslate"><span class="pre">/</span></code> を除く任意の Unicode文字。但し先頭が <code class="docutils literal notranslate"><span class="pre">_EXT-</span></code> で開始する名称は予約のため REST API からの作成・変更・削除は不可</li>
+<li>文字列長制限(UTF-16コード単位): 1～100</li>
+</ul>
+<p>v6 より、グループ名には日本語を含む Unicode 文字が使用できるようになりました。</p>
+</div>
+</div>
+<div class="section" id="json">
+<h2>3.6. JSONオブジェクトストレージ<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
+<p>JSONオブジェクトストレージはほぼ MongoDB の制限値に制約されます。</p>
+<p>MongoDB の制限値については <a class="reference external" href="https://docs.mongodb.com/manual/reference/limits/">MongoDB Limits and Thresholds</a> を参照ください。</p>
+<p>具体的には以下のような値が制限を受けます。</p>
+<ul class="simple">
+<li>JSONオブジェクトサイズ・ネスト段数 (BSON Documents)</li>
+<li>JSONオブジェクトのフィールド名</li>
+<li>バケット名 (Collection Name)</li>
+<li>インデックス・シャードキー</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ライセンス制限により、JSONオブジェクトサイズに追加で上限制限されている場合があります。</p>
+</div>
+</div>
+<div class="section" id="id34">
+<h2>3.7. ファイルストレージ<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id35">
+<h3>3.7.1. ファイル名<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>ファイル名のエンコーディングは UTF-8</li>
+<li>右の制御文字は使用禁止: ASCIIコード 0x00-0x1f, 0x7f</li>
+<li>右の10文字は使用禁止: <code class="docutils literal notranslate"><span class="pre">/</span> <span class="pre">\</span> <span class="pre">:</span> <span class="pre">*</span> <span class="pre">?</span> <span class="pre">&quot;</span> <span class="pre">&lt;</span> <span class="pre">&gt;</span> <span class="pre">|</span> <span class="pre">'</span></code></li>
+<li>以下の文字列を含む名称は使用不可<ul>
+<li><code class="docutils literal notranslate"><span class="pre">~~~</span></code></li>
+</ul>
+</li>
+<li>文字列長制限(UTF-8バイト数): 1～900</li>
+</ul>
+</div>
+<div class="section" id="id36">
+<h3>3.7.2. ファイルサイズ<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<p>使用するストレージのシュルによって異なります。</p>
+<ul class="simple">
+<li>MongoDB(GridFS) : 100MB</li>
+<li>S3/S3互換ストレージ: S3/S3互換オブジェクトストレージの制限による</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">ライセンス制限により、ファイルサイズに追加で上限制限されている場合があります。</p>
+</div>
+</div>
+</div>
+<div class="section" id="push">
+<h2>3.8. Push<a class="headerlink" href="#push" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id37">
+<h3>3.8.1. FCMサーバーキー<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 空白文字以外許可</li>
+<li>文字列長制限(UTF-8バイト数): 1～無制限</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id38">
+<h2>3.9. デベロッパーコンソール<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id39">
+<h3>3.9.1. デベロッパーパスワード<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: ASCII文字(0x20-0x7e)</li>
+<li>文字列長制限(UTF-8バイト数): 8～100</li>
+</ul>
+</div>
+<div class="section" id="id40">
+<h3>3.9.2. オブジェクトストレージインデックス名<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 1バイト英数字、アンダースコア</li>
+<li>文字列長制限(UTF-8バイト数): 8～100</li>
+</ul>
+</div>
+</div>
+<div class="section" id="api-gateway">
+<h2>3.10. API Gateway<a class="headerlink" href="#api-gateway" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="api">
+<h3>3.10.1. API名<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>正規表現 <code class="regexp docutils literal notranslate"><span class="pre">\w[\w-]*</span></code> に合致すること</li>
+<li>文字列長制限(UTF-8バイト数): 1～900</li>
+</ul>
+</div>
+<div class="section" id="basepath">
+<h3>3.10.2. basePath<a class="headerlink" href="#basepath" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>先頭は必ず <code class="docutils literal notranslate"><span class="pre">/</span></code>。パスの最終要素は API 名と一致していること。</li>
+<li>文字列長制限(UTF-8バイト数): 1～無制限</li>
+</ul>
+</div>
+<div class="section" id="id41">
+<h3>3.10.3. サブパス<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>右の正規表現にマッチすること: <code class="regexp docutils literal notranslate"><span class="pre">(/|(/(\{\w[\w.-]*\}|\w[\w.-]*))+)</span></code></li>
+<li>上記正規表現は以下の意味:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">/</span></code> で区切られた1以上のパス要素の連結。先頭は必ず <code class="docutils literal notranslate"><span class="pre">/</span></code>、末尾に <code class="docutils literal notranslate"><span class="pre">/</span></code> は付けない。</li>
+<li>パス要素は <code class="docutils literal notranslate"><span class="pre">name</span></code> または <code class="docutils literal notranslate"><span class="pre">{name}</span></code> 形式(後者はパステンプレート)。</li>
+<li>name は1バイト英数字とアンダースコア。2文字目移行はピリオド、ハイフンを使用可能。</li>
+<li>例外的に <code class="docutils literal notranslate"><span class="pre">/</span></code> 1文字は許可。</li>
+</ul>
+</li>
+<li>文字列長制限(UTF-8バイト数): 1～無制限</li>
+</ul>
+</div>
+</div>
+<div class="section" id="cloud-functions">
+<h2>3.11. Cloud Functions<a class="headerlink" href="#cloud-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="operationid">
+<h3>3.11.1. operationId<a class="headerlink" href="#operationid" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 制限なし (実際にはファンクション名の影響を受ける)</li>
+<li>文字列長制限(UTF-8バイト数): 1～900 (実際にはファンクション名の影響を受ける)</li>
+</ul>
+</div>
+<div class="section" id="id42">
+<h3>3.11.2. ハンドラ名<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 制限なし、ただし使用する言語仕様による</li>
+<li>文字列長制限(UTF-8バイト数): 1～無制限</li>
+</ul>
+</div>
+<div class="section" id="id43">
+<h3>3.11.3. ファンクション名<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 1バイト英数字、アンダースコア</li>
+<li>文字列長制限(UTF-8バイト数): 1～900</li>
+</ul>
+</div>
+<div class="section" id="id44">
+<h3>3.11.4. コードファイル名<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: ファイルストレージのファイル名制限と同じ</li>
+<li>文字列長制限(UTF-8バイト数): ファイルストレージのファイル名制限と同じ</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id45">
+<h2>3.12. RabbitMQ<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="routing-key">
+<h3>3.12.1. Routing Key<a class="headerlink" href="#routing-key" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>使用できる文字: 制限なし (UTF-8文字列)</li>
+<li>文字列長制限(UTF-8バイト数): ～255</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="functions/push.html" class="btn btn-neutral" title="2.9. Push notification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

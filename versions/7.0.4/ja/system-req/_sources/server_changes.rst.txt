@@ -1,0 +1,28 @@
+==========================
+サーバ: v6.5 との主な差異
+==========================
+
+モバイルバックエンド基盤 ver 6.5 とは以下の差異があります。
+
+基本サーバ (API/コンソール)
+===========================
+
+* OS
+
+  - v6.5: CentOS 7 または Red Hat Enterprise Linux 7
+  - v7.0: CentOS 7 または Red Hat Enterprise Linux 7 または Windows Server 2016
+
+* MongoDB
+
+  - v6.5: MongoDB 3.2 以上 (3.4以上推奨)
+  - v7.0: MongoDB 3.2 以上 (3.6以上推奨)
+
+Cloud Functions サーバ
+=======================
+
+* fluentd
+
+  - v6.5: fluentd v0.12 / td-agent 2.6.2 以上
+  - v7.0: fluentd v1.0 / td-agent 3.1.x 以上
+
+

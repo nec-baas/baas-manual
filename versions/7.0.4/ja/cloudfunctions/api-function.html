@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.3. API/ファンクション定義の登録 &mdash; Cloud Functions Developer Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="4.4. カスタムAPIの実行" href="exec.html" />
+    <link rel="prev" title="4.2. Cloud Functionsコード実装" href="code-nodejs.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project-dir.html">3. プロジェクトディレクトリの作成</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nodejs.html">4. Node.js での開発</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project-nodejs.html">4.1. Node.js プロジェクトのセットアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-nodejs.html">4.2. Cloud Functionsコード実装</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. API/ファンクション定義の登録</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#index-0">4.3.1. API定義の作成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uri">URI へのマッピング</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basepath">basePath に関する注意事項</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">パステンプレート</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#path-string-restrictions">パス使用可能文字列の制約</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.3.2. ファンクション定義の作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">4.3.3. API定義とファンクション定義の登録</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cli">CLIを使用する場合</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">デベロッパーコンソールを使用する場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="exec.html">4.4. カスタムAPIの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use-nebula-nodejs.html">4.5. ユーザコードからのモバイルバックエンド基盤の利用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-nodejs.html">4.6. コンテキスト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="java.html">5. Java での開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="others.html">7. その他補足情報</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">8. 制限事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="nodejs.html">4. Node.js での開発</a> &raquo;</li>
+        
+      <li>4.3. API/ファンクション定義の登録</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api">
+<h1>4.3. API/ファンクション定義の登録<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>作成したコードをカスタムAPIから呼び出すためには、API定義とファンクション定義の登録が必要です。</p>
+<div class="section" id="index-0">
+<span id="id1"></span><h2>4.3.1. API定義の作成<a class="headerlink" href="#index-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>カスタム API 定義は Swagger 定義ファイルとして作成します。
+Swagger 定義ファイルは YAML または JSON ファイルとして作成します。</p>
+<p>hello-api.yaml という名前で以下の内容のファイルを作成してください。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">swagger</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.0&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">basePath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/hello</span>
+<span class="l l-Scalar l-Scalar-Plain">produces</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+<span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/sayHello</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">operationId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sayHello</span>
+      <span class="l l-Scalar l-Scalar-Plain">summary</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Hello world</span>
+</pre></div>
+</div>
+<p>basePath に指定された &quot;hello&quot; が API の識別子(API名)となります。</p>
+<p>API内に任意の個数のオペレーションを定義することができます。
+ここでは /sayHello サブパスに対して GET メソッドの API を定義しています。</p>
+<p>operationId には、後述するファンクション名を指定する必要があります。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">basePath や path に指定するパス文字列について、いくつかの制約事項があります。
+詳細は <a class="reference internal" href="api-function-java.html#path-string-restrictions"><span class="std std-ref">パス使用可能文字列の制約</span></a> を参照してください。</p>
+</div>
+<div class="section" id="uri">
+<h3>URI へのマッピング<a class="headerlink" href="#uri" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>BaaS サーバに対する実際の URI は以下のような対応となります。
+/api/1/{tenantId}/api までは固定となっており、これ以下の階層を API 名と
+サブパスで定義できます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">servername</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenantId</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="p">{</span><span class="n">apiname</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="n">subpath</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>上記例の sayHello の場合は、以下の REST API に対応します。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET http://{servername}/api/1/{tenantId}/api/hello/sayHello
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">APサーバ側で context path を変更している場合は、
+先頭の /api 部分が異なりますので、適宜読み替えてください。</p>
+</div>
+</div>
+<div class="section" id="basepath">
+<h3>basePath に関する注意事項<a class="headerlink" href="#basepath" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>basePath の値は、CLI から API 定義をサーバに登録するときにのみ参照されます。
+具体的には basePath の末端部分の名称が API 名としてサーバに登録されます。
+(それより前の部分は何を記述しても無視されます)</p>
+<p>したがって、以下の basePath はすべて　API 名 &quot;hello&quot; として認識します。</p>
+<ul class="simple">
+<li>/hello</li>
+<li>/api/hello</li>
+<li>/api/1/tenant1/api/hello</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">サーバに登録後は、basePath は一切参照されません。
+URI は API名とサブパスのみから決定されます。</p>
+</div>
+<p>Swagger 定義と BaaS サーバの URI を完全に一致させたい場合は、
+host に BaaS サーバのホスト名を、
+basePath に &quot;/api/1/{<em>tenantId</em>}/api/{<em>apiname</em>}&quot; を指定してください。</p>
+</div>
+<div class="section" id="id2">
+<h3>パステンプレート<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>サブパスには、Swagger 仕様で定められるパステンプレートが使用できます。
+パステンプレートは '{', '}' で記述します。</p>
+<p>たとえば、サブパスに '/products/{id}' と記述すると、'/products/a' や
+'/products/b' などのリクエストにもマッチします。</p>
+<p>テンプレートにマッチした部分の値は、パスパラメータとして clientContext に
+に引き渡され、ユーザコードから参照することができます。</p>
+<p>clientContext については <a class="reference internal" href="context-nodejs.html#clientcontextnode"><span class="std std-ref">clientContext(Node.js)</span></a>
+または <a class="reference internal" href="context-java.html#clientcontextjava"><span class="std std-ref">clientContext(Java)</span></a> を参照してください。</p>
+</div>
+<div class="section" id="path-string-restrictions">
+<span id="id3"></span><h3>パス使用可能文字列の制約<a class="headerlink" href="#path-string-restrictions" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>basePath 末尾の API 名については、使用できる文字列に制限があります。</p>
+<ul class="simple">
+<li>1文字目は1バイト英数字とアンダースコアのみが使用可能。</li>
+<li>2文字目以降はこれに加えてハイフンが使用可能。</li>
+<li>API名は1文字以上です。</li>
+</ul>
+<p>サブパスについては、'/' で区切られるそれぞれのパス要素について以下の制約があります。</p>
+<ul class="simple">
+<li>各パス要素は固定文字列もしくはパステンプレートにします。</li>
+<li>パステンプレートはパラメータ名を '{', '}' を囲んだものです。</li>
+<li>固定文字列、パラメータ名はともに、1文字目は1バイト英数字とアンダースコアのみが使用可能、2文字目以降はこれに加えてハイフンとピリオドが使用可能です。</li>
+<li>パステンプレートの前後に文字を追加することはできません。</li>
+</ul>
+<p>なお、サブパスは必ず '/' で開始しなければならず、末尾は '/' であってはなりません。
+ただし、例外的に '/' 1文字は許可されます。</p>
+<p>サブパスの例をいくつか示します。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="13%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">パス</th>
+<th class="head">判定</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>/</td>
+<td>OK</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>/a</td>
+<td>OK</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>/a/b/c</td>
+<td>OK</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>/a/{b.c}/_d</td>
+<td>OK</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>a/b</td>
+<td>NG</td>
+<td>先頭が '/' でない</td>
+</tr>
+<tr class="row-odd"><td>/a/b/</td>
+<td>NG</td>
+<td>末尾が '/' になっている</td>
+</tr>
+<tr class="row-even"><td>/a+b</td>
+<td>NG</td>
+<td>使用禁止文字</td>
+</tr>
+<tr class="row-odd"><td>/.a</td>
+<td>NG</td>
+<td>先頭にピリオドは使用不可</td>
+</tr>
+<tr class="row-even"><td>/-a</td>
+<td>NG</td>
+<td>先頭にハイフンは使用不可</td>
+</tr>
+<tr class="row-odd"><td>/a/{b</td>
+<td>NG</td>
+<td>パステンプレートが不正</td>
+</tr>
+<tr class="row-even"><td>/a/b{c}</td>
+<td>NG</td>
+<td>パステンプレートが不正</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4.3.2. ファンクション定義の作成<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファンクションは、カスタム API とコードのひも付け定義です。
+ファンクションも YAML または JSON で記述します。</p>
+<p>hello-function.yml という名前でファイルを作成してください。</p>
+<p>Node.js の場合:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ファンクション名</span>
+<span class="l l-Scalar l-Scalar-Plain">sayHello</span><span class="p p-Indicator">:</span>
+  <span class="c1"># コード指定</span>
+  <span class="l l-Scalar l-Scalar-Plain">code</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">bucket</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">CUSTOM_CODE</span>
+    <span class="l l-Scalar l-Scalar-Plain">file</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">hello-1.0.0.tgz</span>
+
+  <span class="c1"># ハンドラ名</span>
+  <span class="l l-Scalar l-Scalar-Plain">handler</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sayHello</span>
+
+  <span class="c1"># 実行環境</span>
+  <span class="l l-Scalar l-Scalar-Plain">env</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node6</span>
+    <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">600</span>
+    <span class="l l-Scalar l-Scalar-Plain">memorySize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">256</span>
+</pre></div>
+</div>
+<p>Java の場合:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ファンクション名</span>
+<span class="l l-Scalar l-Scalar-Plain">sayHello</span><span class="p p-Indicator">:</span>
+  <span class="c1"># コード指定</span>
+  <span class="l l-Scalar l-Scalar-Plain">code</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">bucket</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">CUSTOM_CODE</span>
+    <span class="l l-Scalar l-Scalar-Plain">file</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">hello-1.0.0.tgz</span>
+  <span class="c1"># ハンドラ名</span>
+  <span class="l l-Scalar l-Scalar-Plain">handler</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">com.example.Hello::sayHello</span>
+  <span class="c1"># 実行環境</span>
+  <span class="l l-Scalar l-Scalar-Plain">env</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">java8</span>
+    <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">600</span>
+    <span class="l l-Scalar l-Scalar-Plain">memorySize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">512</span>
+</pre></div>
+</div>
+<p>&quot;sayHello&quot; がファンクション名となります。これは上述した API 定義内の operationId
+と合わせる必要があります。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">ファンクション名に指定できるのは1バイト英数字と '_' のみです。
+記号は使用できません。</p>
+</div>
+<ul class="simple">
+<li>code : 実行するコードを指定します。値は、前節で登録したコードに合わせます。<ul>
+<li>bucket : コードを格納したファイルバケット名</li>
+<li>file : コードのファイル名。Node.js の場合はファイルの拡張子は &quot;tgz&quot;、Java の場合は &quot;tgz&quot;。</li>
+</ul>
+</li>
+<li>handler: 実行するハンドラ名を指定します<ul>
+<li>Node.js の場合は、export したハンドラ名を記述します。</li>
+<li>Java の場合は、&quot;パッケージ名.クラス名::メソッド名&quot; を記述します。</li>
+</ul>
+</li>
+<li>env : コードを実行するときの環境を指定します<ul>
+<li>spec : 実行環境のスペック名</li>
+<li>timeout : リクエストタイムアウト(秒)</li>
+<li>memorySize : Dockerコンテナに割り当てるメモリサイズ(MB) (Dockerレス構成時は無効)</li>
+</ul>
+</li>
+</ul>
+<p>スペック名はコードを実行する環境のスペックを一意に識別するもので、
+起動する Docker コンテナ名やサーバプログラムの格納位置などの指定に使用されます。
+スペック名は Cloud Functions サーバ側で設定した名称に合わせてください。</p>
+<ul class="simple">
+<li>Node.js の場合は、&quot;node6&quot; がデフォルトです。</li>
+<li>Java の場合は、&quot;java8&quot; がデフォルトです。</li>
+</ul>
+<p>スペックの詳細は <a class="reference external" href="../cloudfunctions-server/index.html">Cloud Functionsサーバ 利用手順書</a> の「設定」の章を参照してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>memorySize は Docker レス構成時は無効です。</p>
+<p>また、memorySize は Docker コンテナに割り当てられるメモリサイズですので、
+Node.js や Java VM の起動時オプションで指定するメモリサイズ指定とは関係ありません。</p>
+<p class="last">起動時オプションを変更したい場合は、サーバマネージャ設定ファイル内のコマンドライン指定を変更する必要があります。
+詳細は、<a class="reference external" href="../cloudfunctions-server/index.html">Cloud Functionsサーバ 利用手順書</a>
+の「サーバーマネージャ設定ファイル」を参照ください。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>4.3.3. API定義とファンクション定義の登録<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下手順で API 定義とファンクション定義をサーバに登録します。</p>
+<div class="section" id="cli">
+<h3>CLIを使用する場合<a class="headerlink" href="#cli" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nebula create-api hello-api.yml
+$ nebula create-function hello-function.yml
+</pre></div>
+</div>
+<p>API・ファンクションの一覧はそれぞれ &quot;nebula list-apis&quot;, &quot;nebula export-functions&quot; で確認できます。</p>
+<p>API・ファンクションを削除したい場合はそれぞれ &quot;nebula delete-api &lt;API名&gt;&quot;, &quot;nebula delete-function &lt;function名&gt;&quot; です。</p>
+</div>
+<div class="section" id="id7">
+<h3>デベロッパーコンソールを使用する場合<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ブラウザを使用してデベロッパーコンソールから API定義、ファンクション定義を登録することも可能です。</p>
+<p>デベロッパーコンソールにログイン後、画面左メニューの「API Gateway」、「Cloud Functions」⇒「Functions」から、それぞれ API定義、ファンクション定義の管理画面に入ることができます。</p>
+<p>「追加」ボタンを押して、定義を登録します。定義ファイルの内容を画面上でコピー・ペーストで入力することで定義を投入できます。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="exec.html" class="btn btn-neutral float-right" title="4.4. カスタムAPIの実行" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="code-nodejs.html" class="btn btn-neutral" title="4.2. Cloud Functionsコード実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.1. 設定ファイル &mdash; Server User Guide 7.0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.2. その他の設定" href="configure.html" />
+    <link rel="prev" title="4. コンフィグレーション" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. コンフィグレーション</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. 設定ファイル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.1.1. 設定ファイルサンプル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uri">4.1.2. URI設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb">4.1.3. MongoDB設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amqp">4.1.4. AMQP設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.1.5. その他の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">4.2. その他の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">4.3. ロギング設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluentd.html">4.4. fluentd を利用したロギング</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. コンフィグレーション</a> &raquo;</li>
+        
+      <li>4.1. 設定ファイル</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration-file">
+<span id="index-0"></span><span id="id1"></span><h1>4.1. 設定ファイル<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h1>
+<p>データベース接続やRabbitMQサーバ接続などの各種設定は、設定ファイル(プロパティファイル)で設定します。
+プロパティファイルのファイル名は、プロファイルに応じて production.xml, development.xml, test.xml というファイル名で
+作成し、以下いずれかのフォルダに格納します。</p>
+<ol class="arabic simple">
+<li>/etc/baas</li>
+<li>c:/NEC/BaaS/etc/  (Windowsの場合)</li>
+<li>Tomcat実行ユーザホームディレクトリの ~/.baas/</li>
+<li>[デプロイディレクトリ]/WEB-INF/classes/ (クラスパス)</li>
+</ol>
+<p>複数配置した場合は、下のほうの設定が優先されます。(上で設定した値を下の設定で上書きします)</p>
+<p>なお設定値はサーバ起動時のシステムプロパティや環境変数、およびデベロッパーコンソール
+でも設定できます。複数設定した場合は、以下の下のほうの設定が優先されます。</p>
+<ol class="arabic simple">
+<li>プロパティファイル</li>
+<li>環境変数</li>
+<li>システムプロパティ</li>
+<li>デベロッパーコンソールのシステム設定値</li>
+</ol>
+<div class="section" id="id2">
+<h2>4.1.1. 設定ファイルサンプル<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>以下に設定ファイルのテンプレートを記載します。同じものが配布物件内の sample-properties.xml にあります。</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE properties SYSTEM &quot;http://java.sun.com/dtd/properties.dtd&quot;&gt;</span>
+<span class="c">&lt;!--</span>
+<span class="c">プロパティ設定 XML ファイル。</span>
+
+<span class="c">本ファイルは、BaaSの設定を行うためのものである。</span>
+<span class="c">以下いずれかのディレクトリに production.xml, development.xml, test.xml の名称で配置する。</span>
+<span class="c">複数置いた場合は、下のものが優先される。</span>
+
+<span class="c"> 1) /etc/baas/</span>
+<span class="c"> 2) c:/NEC/BaaS/etc/ (Windows)</span>
+<span class="c"> 3) ~/.baas/</span>
+<span class="c"> 4) [デプロイディレクトリ]/WEB-INF/classes/ (クラスパス)</span>
+
+<span class="c">なお設定値はサーバ起動時のシステムプロパティや環境変数、およびデベロッパーコンソール</span>
+<span class="c">でも設定できる。複数設定した場合は、下のものが優先される。</span>
+
+<span class="c"> 1) XMLファイル</span>
+<span class="c"> 2) 環境変数</span>
+<span class="c"> 3) システムプロパティ</span>
+<span class="c"> 4) デベロッパーコンソールのシステム設定値</span>
+
+<span class="c">なお、Spring のプロファイル(production/development/test)の切り替えはここではできない。</span>
+<span class="c">WARファイル内の web.xml ファイルを変更するか、</span>
+<span class="c">JVM オプション -Dspring.profiles.active で起動時に指定する。</span>
+
+<span class="c">logback の設定は、このファイルではなく logback.xml ファイルで行う。</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;properties&gt;</span>
+   <span class="c">&lt;!-- APIサーバ ベースURI デフォルト設定 --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;api.baseUrl&quot;&gt;http://baas.example.com/api&lt;/entry&gt; --&gt;</span>
+
+   <span class="c">&lt;!-- APIサーバ 内部向けベースURI デフォルト設定 --&gt;</span>
+   <span class="c">&lt;!-- 省略時は api.baseUrl の値が使用される --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;api.internalBaseUrl&quot;&gt;&lt;/entry&gt; --&gt;</span>
+
+   <span class="c">&lt;!-- Consoleサーバ ベースURI デフォルト設定 --&gt;</span>
+   <span class="c">&lt;!-- 注: デベロッパーコンソール システム設定の値のほうが優先される --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;console.baseUrl&quot;&gt;http://baas.example.com/console&lt;/entry&gt; --&gt;</span>
+
+   <span class="c">&lt;!--</span>
+<span class="c">       MongoDB 設定</span>
+<span class="c">   --&gt;</span>
+   <span class="c">&lt;!--</span>
+<span class="c">     MongoDB サーバ。MongoDB Connection String URI で指定する。</span>
+<span class="c">     (&quot;mongodb://&quot; は省略可。)</span>
+
+<span class="c">     例1) ローカル接続</span>
+<span class="c">       mongodb://localhost:27017</span>
+<span class="c">     例2) レプリカセットの場合</span>
+<span class="c">       mongodb://server1:27017,server2:27017,server3:27017</span>
+<span class="c">   --&gt;</span>
+   <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;mongo.servers&quot;</span><span class="nt">&gt;</span>mongodb://localhost:27017<span class="nt">&lt;/entry&gt;</span>
+
+   <span class="c">&lt;!-- MongoDB認証ユーザ名 --&gt;</span>
+   <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;mongo.username&quot;</span><span class="nt">&gt;&lt;/entry&gt;</span>
+   <span class="c">&lt;!-- MongoDB認証パスワード --&gt;</span>
+   <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;mongo.password&quot;</span><span class="nt">&gt;&lt;/entry&gt;</span>
+
+   <span class="c">&lt;!-- MongoDB ホスト当たり最大コネクション数 --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;mongo.maxConnectionsPerHost&quot;&gt;200&lt;/entry&gt; --&gt;</span>
+
+
+   <span class="c">&lt;!--</span>
+<span class="c">       AMQP サーバ設定 (SSE Push/カスタムロジック に必要)。</span>
+<span class="c">       amqp.{addrs,username,password,vhost} を設定する、amqp.uri を設定するか、いずれか選択。</span>
+<span class="c">       両方設定した場合は前者(addrs,...)が優先される。</span>
+<span class="c">   --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;amqp.addrs&quot;&gt;localhost:5672,localhost:5673&lt;/entry&gt; --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;amqp.username&quot;&gt;guest&lt;/entry&gt; --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;amqp.password&quot;&gt;guest&lt;/entry&gt; --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;amqp.vhost&quot;&gt;vhost1&lt;/entry&gt; --&gt;</span>
+   <span class="c">&lt;!-- &lt;entry key=&quot;amqp.uri&quot;&gt;amqp://guest:guest@localhost:5672&lt;/entry&gt; --&gt;</span>
+
+   <span class="c">&lt;!-- APIカウント対象外キー : サーバマネージャ側と設定をあわせること --&gt;</span>
+   <span class="nt">&lt;entry</span> <span class="na">key=</span><span class="s">&quot;system.noChargeKey&quot;</span><span class="nt">&gt;</span>sAmPleNoChargeKey12345678<span class="nt">&lt;/entry&gt;</span>
+
+<span class="nt">&lt;/properties&gt;</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">バージョン6よりいくつかの設定は削除され、デベロッパーコンソールの「システム設定」に移行しました。
+詳細は <a class="reference external" href="../../devconsole/system/system_config.html">システム設定</a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="uri">
+<h2>4.1.2. URI設定<a class="headerlink" href="#uri" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>api.baseUrl: クライアント側から見た APIサーバのベース URI を指定します。<ul>
+<li>ロードバランサやリバースプロキシを使用している場合は、外部に見えている URI を指定します。</li>
+<li>この値は、パスワードリセット時の確認メール内に URI 記述する際などに使用されます。</li>
+<li>この値はデベロッパーコンソールのシステム設定で上書き可能です。</li>
+</ul>
+</li>
+<li>api.internalBaseUrl: 内部サーバから見た API サーバのベース URI を指定します。<ul>
+<li>外部(Internet側)URL と内部向けURL が異なる場合に指定します。省略時は api.baseUrl の値が使用されます。</li>
+<li>この値は、Cloud Functions が API サーバにアクセスする際に使用します。したがって、Cloud Functions 機能を使用する場合は、api.baseUrl または api.internalBaseUrl の指定は必須です。</li>
+<li>この値はデベロッパーコンソールのシステム設定で上書き可能です。</li>
+</ul>
+</li>
+<li>console.baseUrl: クライアント側からみたデベロッパーコンソールサーバのベース URI を指定します。<ul>
+<li>ロードバランサやリバースプロキシを使用している場合は、外部に見えている URI を指定します。</li>
+<li>この値は、パスワードリセット時の確認メール内に URI 記述する際などに使用されます。</li>
+<li>この値はデベロッパーコンソールのシステム設定で上書き可能です。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">NEC Cloud IaaS 上で Cloud Functions を使用する場合、api.internalBaseUrl の指定は必須です。
+これは、内部サーバからは外部IPアドレス(仮想FWのNATグローバルアドレス)にはアクセスができないためです。</p>
+</div>
+</div>
+<div class="section" id="mongodb">
+<span id="mongodb-config"></span><h2>4.1.3. MongoDB設定<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h2>
+<p>MongoDB関連の設定を行います。
+指定可能なパラメータは以下のとおりです。</p>
+<ul class="simple">
+<li>mongo.servers: MongoDB サーバ接続設定を <a class="reference external" href="https://docs.mongodb.com/manual/reference/connection-string/">Connection String URI</a>  形式で記述します。<ul>
+<li>先頭の “mongodb://” は省略可能です</li>
+<li>username:password&#64; は指定不要です。以下の mongo.username, mongo.password 設定が使用されます。</li>
+<li>データベース名 (/database) は指定しないでください</li>
+<li>オプション(?options) は指定可能です</li>
+<li>DNS SRV レコードを参照する形式 (mongodb+srv://) も使用可能です(MongoDB 3.6以降)</li>
+</ul>
+</li>
+<li>mongo.username, mongo.password: MongoDB 認証を使用する場合に、ユーザ名とパスワードを指定します。<ul>
+<li>このユーザは admin データベースの root role を持っている必要があります。</li>
+</ul>
+</li>
+<li>mongo.maxConnectionsPerHost: 各APIサーバから MongoDB サーバに対して接続する際の最大TCPコネクション数を指定します。</li>
+</ul>
+<p>mongo.servers の指定例を示します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># シングルサーバ構成またはシャーディング構成の場合</span>
+<span class="n">mongodb</span><span class="p">:</span><span class="o">//</span><span class="n">server1</span><span class="p">:</span><span class="mi">27017</span>
+
+<span class="c1"># 先頭の mongodb:// は省略可能。</span>
+<span class="n">server1</span><span class="p">:</span><span class="mi">27017</span>
+
+<span class="c1"># レプリカセット構成の場合</span>
+<span class="n">mongodb</span><span class="p">:</span><span class="o">//</span><span class="n">server1</span><span class="p">:</span><span class="mi">27017</span><span class="p">,</span><span class="n">server2</span><span class="p">:</span><span class="mi">27017</span><span class="p">,</span><span class="n">server3</span><span class="p">:</span><span class="mi">27017</span>
+
+<span class="c1"># DNS SRVレコードを使用する場合 (MongoDB 3.6以降)</span>
+<span class="n">mongodb</span><span class="o">+</span><span class="n">srv</span><span class="p">:</span><span class="o">//</span><span class="n">server</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">バージョン 7.0.3 より、mongo.servers に Connection String URI 形式の指定ができるようになりました。
+7.0.2以前のバージョンではURI指定できませんので、ご注意ください。</p>
+</div>
+</div>
+<div class="section" id="amqp">
+<h2>4.1.4. AMQP設定<a class="headerlink" href="#amqp" title="Permalink to this headline">¶</a></h2>
+<p>AMQP(RabbitMQ)接続に必要なパラメータを設定します。</p>
+<p>URI で指定する方法と、各パラメータを分割して指定する方法があります。
+RabbitMQ クラスタに接続する場合は後者の方法で指定する必要があります。</p>
+<p>URI で指定する場合は、以下パラメータを設定します。</p>
+<ul class="simple">
+<li>amqp.uri: AMQP URI を指定します (例: amqp://guest:guest&#64;localhost:5672)</li>
+</ul>
+<p>パラメータを分割して指定する場合は、以下パラメータを設定します。</p>
+<ul class="simple">
+<li>amqp.addrs: AMQPホストを指定します。<ul>
+<li>“ホスト名:ポート番号” 形式で指定します。</li>
+<li>AMQPクラスタを指定する場合は、カンマで区切ります (例: “host1:5672,host2:5672”)</li>
+</ul>
+</li>
+<li>amqp.username: 認証ユーザ名を指定します。</li>
+<li>amqp.password: 認証パスワードを指定します。</li>
+<li>amqp.vhost: vhost を指定します。</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">AMQP(RabbitMQ)を使用しない場合は、AMQP関連の設定は有効化しないでください。
+AMQP サーバに接続できない場合、正常にモバイルバックエンド基盤サーバが起動しません。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4.1.5. その他の設定<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>system.noChargeKey: メータリングにおいて、内部API呼び出しをカウント対象外とするための認証キーを指定します。<ul>
+<li>このキーは Cloud Functions サーバマネージャの設定と同じ文字列を指定する必要があります。</li>
+<li>このキーは漏洩しないよう注意して管理してください。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="configure.html" class="btn btn-neutral float-right" title="4.2. その他の設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="4. コンフィグレーション" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.4',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.5. オブジェクトバケット管理 &mdash; Developer Console User Manual 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.6. ファイルバケット管理" href="file.html" />
+    <link rel="prev" title="4.4. グループ管理" href="group.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../login.html">2. ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">3. システム管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. テナント管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="abstract.html">4.1. テナント管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">4.2. アプリケーション管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">4.3. ユーザ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html">4.4. グループ管理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.5. オブジェクトバケット管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">オブジェクトバケットの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">オブジェクトバケットの編集、削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">インデックスの作成</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id24">サポートするインデックスタイプおよびオプション</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">データ管理機能</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id26">データのエクスポート</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">オブジェクトデータのカラム表示</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">オブジェクトデータの検索</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#index-0">クエリプランナー</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="file.html">4.6. ファイルバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apigw.html">4.7. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">4.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_stats.html">4.9. API統計情報</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html">4.10. テナント管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_basic.html">4.11. テナント設定 - 基本設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_storage.html">4.12. テナント設定 - 外部ストレージ設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_acl.html">4.13. テナント設定 - 特殊バケットのACL設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_template.html">4.14. テナント設定 - テンプレート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_oidc.html">4.15. テナント設定 - OpenID Connect設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_client_cert.html">4.16. テナント設定 - クライアント証明書</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. テナント管理</a> &raquo;</li>
+        
+      <li>4.5. オブジェクトバケット管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>4.5. オブジェクトバケット管理<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>オブジェクトバケットの追加、編集、削除、インデックス設定、シャードキー設定を行うことができます。
+また、データのインポートエクスポートを行うことができます。</p>
+<div class="section" id="id21">
+<h2>オブジェクトバケットの追加<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>例として、オブジェクトバケットの追加方法を説明します。</p>
+<p>オブジェクトバケット一覧画面で、「追加」を選択してください。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_1.png"><img alt="../_images/objMenu_1.png" src="../_images/objMenu_1.png" style="width: 590.4px; height: 225.0px;" /></a>
+<p>新規オブジェクトバケット登録画面が表示されますので、「バケット名」、「説明」(任意)、「バケットACL」、「コンテンツACL」を入力し、「保存」を選択してください。(「バケットACL」と「コンテンツACL」にはデフォルト値が入っています)</p>
+<a class="reference internal image-reference" href="../_images/objMenu_2-1.png"><img alt="../_images/objMenu_2-1.png" src="../_images/objMenu_2-1.png" style="width: 589.8px; height: 695.4px;" /></a>
+<p>これでテナントにオブジェクトバケットが追加されました。</p>
+<p>追加したオブジェクトバケットの情報が表示されます。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_3.png"><img alt="../_images/objMenu_3.png" src="../_images/objMenu_3.png" style="width: 580.2px; height: 531.0px;" /></a>
+</div>
+<div class="section" id="id22">
+<h2>オブジェクトバケットの編集、削除<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テナント内のオブジェクトバケットの編集、削除は、オブジェクトバケット一覧画面で「編集」を選択後、表示されるオブジェクトバケット編集画面で実施できます。</p>
+</div>
+<div class="section" id="id23">
+<h2>インデックスの作成<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>指定フィールドへのインデックス作成方法を説明します。</p>
+<p>オブジェクトバケット一覧画面で、「インデックス」を選択してください。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_9-1.png"><img alt="../_images/objMenu_9-1.png" src="../_images/objMenu_9-1.png" style="width: 591.0px; height: 213.0px;" /></a>
+<p>インデックス一覧画面が表示されますので、「追加」を選択してください。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_9-2.png"><img alt="../_images/objMenu_9-2.png" src="../_images/objMenu_9-2.png" style="width: 597.6px; height: 360.0px;" /></a>
+<p>新規インデックス追加画面で「インデックス名」「キー」「オプション」を入力し、「保存」を選択してください。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_9-3.png"><img alt="../_images/objMenu_9-3.png" src="../_images/objMenu_9-3.png" style="width: 597.0px; height: 650.4px;" /></a>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">インデックス名に使用可能な文字は1バイト英数字、アンダースコアのみです。
+また、インデックス名の文字数は1文字～40文字に制限されます。</p>
+</div>
+<div class="section" id="id24">
+<h3>サポートするインデックスタイプおよびオプション<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>サポートするインデックスのタイプは以下の通りです。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">インデックスタイプ</th>
+<th class="head">入力例</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>昇順</td>
+<td>{&quot;name&quot;:&quot;key1&quot;, &quot;type&quot;:1}  または  key1</td>
+</tr>
+<tr class="row-odd"><td>降順</td>
+<td>{&quot;name&quot;:&quot;key1&quot;, &quot;type&quot;:-1}  または  -key1</td>
+</tr>
+<tr class="row-even"><td>ハッシュ</td>
+<td>{&quot;name&quot;:&quot;key1&quot;, &quot;type&quot;:&quot;hashed&quot;}</td>
+</tr>
+</tbody>
+</table>
+<p>サポートするオプションは以下の通りです。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="24%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">オプション</th>
+<th class="head">入力例</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>unique</td>
+<td>{&quot;unique&quot;: true}</td>
+<td>ハッシュインデックスには設定不可</td>
+</tr>
+</tbody>
+</table>
+<p>MongoDB で提供されている上記以外のタイプ・オプションも設定可能ですが、動作保証範囲外となります。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">詳細は、 <a class="reference external" href="https://docs.mongodb.com/manual/indexes/">MongoDB DocumentationのIndexes</a> を参照して下さい。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>データ管理機能<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id26">
+<h3>データのエクスポート<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>次に、オブジェクトバケット内のデータのエクスポートを説明します。</p>
+<p>オブジェクトバケット一覧画面で対象バケットの「データ」を選択します。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_4.png"><img alt="../_images/objMenu_4.png" src="../_images/objMenu_4.png" style="width: 591.0px; height: 213.0px;" /></a>
+<p>オブジェクトデータ一覧が表示されますので、「エクスポート」を選択するとデータがJSON形式でエクスポートされます。ファイルは、「&quot;オブジェクトバケット名&quot;.json」となります。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_5.png"><img alt="../_images/objMenu_5.png" src="../_images/objMenu_5.png" style="width: 682.2px; height: 518.4px;" /></a>
+<p>JSON形式のデータをインポートすることもできます。</p>
+</div>
+<div class="section" id="id27">
+<h3>オブジェクトデータのカラム表示<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトデータ一覧画面では、オブジェクトデータに含まれるカラム(フィールド)を選択して表示できます。「カラムの表示」メニューからカラムを選択すると、画面上に選択したカラムが追加表示されます。
+カラムは最大5件まで追加できます。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_6.png"><img alt="../_images/objMenu_6.png" src="../_images/objMenu_6.png" style="width: 682.2px; height: 518.4px;" /></a>
+</div>
+<div class="section" id="id28">
+<h3>オブジェクトデータの検索<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトデータ一覧画面で、「検索」を選択します。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_7.png"><img alt="../_images/objMenu_7.png" src="../_images/objMenu_7.png" style="width: 682.2px; height: 518.4px;" /></a>
+<p>オブジェクトデータの検索画面が表示されますので、検索条件を入力後、「検索実行」を選択します。検索条件は画面内の例に従ってJSON形式で入力してください。</p>
+<a class="reference internal image-reference" href="../_images/objMenu_8.png"><img alt="../_images/objMenu_8.png" src="../_images/objMenu_8.png" style="width: 588.0px; height: 585.0px;" /></a>
+</div>
+</div>
+<div class="section" id="index-0">
+<span id="id29"></span><h2>クエリプランナー<a class="headerlink" href="#index-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトバケットに対するクエリ実行時の実行計画を確認することができます。</p>
+<p>オブジェクトバケット一覧画面で「クエリプランナー」を選択するとクエリプランナー画面に移動します。</p>
+<p>クエリ式を入力することで、クエリプランナーの結果(explain結果)を確認することができます。</p>
+<ul class="simple">
+<li>結果の読み方については、 <a class="reference external" href="https://docs.mongodb.com/manual/reference/explain-results/">Explain Results</a> を参照してください。</li>
+<li>ACL チェックのための演算子がクエリ式に自動追加されます。実行されるクエリは、プランナー結果の parsedQuery 内に格納されています。</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file.html" class="btn btn-neutral float-right" title="4.6. ファイルバケット管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group.html" class="btn btn-neutral" title="4.4. グループ管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

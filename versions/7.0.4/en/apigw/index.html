@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS API Gateway Developer Guide &mdash; API Gateway Developer Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> API Gateway Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-http.html">3. API 定義の作成 (HTTP Proxy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-amqp.html">4. API 定義の作成 (RabbitMQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-register.html">5. API定義の登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">6. リクエスト・レスポンスマッピング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">7. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exec.html">8. カスタムAPIの実行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xproxy.html">9. Swagger ベンダ拡張 リファレンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">10. CLIツール コマンドリファレンス</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">API Gateway Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS API Gateway Developer Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-api-gateway-developer-guide">
+<h1>NEC BaaS API Gateway Developer Guide<a class="headerlink" href="#nec-baas-api-gateway-developer-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#api-gateway">1.1. API Gateway とは</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#id21">1.2. 用語の定義</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#id2">2.1. コマンドライン開発環境のセットアップ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-http.html">3. API 定義の作成 (HTTP Proxy)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-proxy-amqp.html">4. API 定義の作成 (RabbitMQ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-register.html">5. API定義の登録</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-register.html#cli">5.1. CLI ツールから投入する場合</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-register.html#id1">5.2. デベロッパーコンソールから投入する場合</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mapping.html">6. リクエスト・レスポンスマッピング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#templating">6.1. テンプレート記法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#http">6.2. リクエストマッピング (HTTP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#http-response-mapping">6.3. レスポンスマッピング (HTTP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#id29">6.4. ボディマッピング (RabbitMQ)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html#id30">6.5. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">7. 認証・セキュリティ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#api">7.1. カスタム API に対する認証・アクセス制限</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exec.html">8. カスタムAPIの実行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xproxy.html">9. Swagger ベンダ拡張 リファレンス</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xproxy.html#id1">9.1. ベンダ拡張の優先順位</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xproxy.html#x-acl">9.2. x-acl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xproxy.html#x-proxy">9.3. x-proxy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">10. CLIツール コマンドリファレンス</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#cli-config">10.1. CLIコンフィグレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#api">10.2. API操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#id4">10.3. コード操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#id5">10.4. ファンクション操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#id6">10.5. ログ取得</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-0-7-0-0">11.1. ver 6.5.0 → 7.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-0-0-6-5-0">11.2. ver 6.0.0 → 6.5.0 での変更点</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. はじめに" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

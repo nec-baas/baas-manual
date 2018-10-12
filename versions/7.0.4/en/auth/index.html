@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS Authentication Developer Guide &mdash; Authentication Developer Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. 認証機能の概要" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saml/index.html">5. ADFS / SAML 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS Authentication Developer Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-authentication-developer-guide">
+<h1>NEC BaaS Authentication Developer Guide<a class="headerlink" href="#nec-baas-authentication-developer-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. 認証機能の概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#id2">1.1. 認証方式の種類</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="appkey.html">2. アプリケーションキー認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="appkey.html#id2">2.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appkey.html#id3">2.2. 認証方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="appkey.html#id4">2.3. キーの種類</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="local.html">3. ローカル認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="local.html#id2">3.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local.html#id3">3.2. ユーザの識別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local.html#id4">3.3. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local.html#id5">3.4. パスワードリセット</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ldap.html">4. LDAP / ActiveDirectory 連携</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html#id1">4.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html#id2">4.2. 設定方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html#id3">4.3. ログイン時のユーザ自動登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html#id4">4.4. グループ情報の自動連携</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html#id5">4.5. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="saml/index.html">5. ADFS / SAML 認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="saml/intro.html">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml/glossary.html">5.2. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml/sequence.html">5.3. 動作概要</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="saml/sequence.html#web">5.3.1. Web アプリケーションの場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/sequence.html#id2">5.3.2. ネイティブアプリケーションの場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="saml/setup_system.html">5.4. システムの事前設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="saml/https.html">5.4.1. HTTPS の使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/jce.html">5.4.2. JCE (Java Cryptography Extension) の適用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/keystore.html">5.4.3. キーストアの登録</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="saml/idp.html">5.5. IdP 側の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="saml/adfs.html">5.5.1. ADFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/openam.html">5.5.2. OpenAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/ssocircle.html">5.5.3. SSO Circle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="saml/setup.html">5.6. BaaSサーバの設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="saml/setup.html#id1">5.6.1. テナントの作成・変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/setup.html#idp">5.6.2. IdPメタデータのインポート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/setup.html#sp">5.6.3. SPメタデータのエクスポート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/setup.html#uri">5.6.4. 許可するリダイレクト URI の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="saml/register.html">5.7. 認証時のユーザ・グループ自動登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml/devel.html">5.8. アプリケーションの開発</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="saml/devel-webapp.html">5.8.1. Web アプリケーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/devel-native-dotnet.html">5.8.2. Native アプリケーション (C#)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="saml/devel-native-android.html">5.8.3. Native アプリケーション (Android)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="saml/attention.html">5.9. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oidc/index.html">6. OpenID Connect 認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oidc/intro.html">6.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/glossary.html">6.2. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/create_oidc_user.html">6.3. OIDC 認証ユーザ作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/account_link.html">6.4. アカウントリンク情報の設定、取得、削除</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oidc/account_link.html#id2">6.4.1. アカウントリンク情報の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/account_link.html#id3">6.4.2. アカウントリンク情報の取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/account_link.html#del-account-link">6.4.3. アカウントリンク情報の削除</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/sequence.html">6.5. 動作概要</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oidc/sequence.html#web">6.5.1. Web アプリケーションの場合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/sequence.html#id2">6.5.2. ネイティブアプリケーションの場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/setup_system.html">6.6. システムの事前設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oidc/setup_system.html#api-uri">6.6.1. 一般設定 - APIサーバ ベースURI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/setup_system.html#id3">6.6.2. プロキシサーバ設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/create_tenant.html">6.7. テナントの作成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oidc/create_tenant.html#id3">6.7.1. テナントの作成・変更</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/op.html">6.8. OpenID Connectプロバイダ (OP) 側の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oidc/google.html">6.8.1. Google</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/adfs.html">6.8.2. ADFS (Windows Server 2016)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/openam.html">6.8.3. OpenAM 13.0.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/setup_tenant.html">6.9. テナント設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oidc/setup_tenant.html#openid-connect">6.9.1. テナント設定 - OpenID Connect設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/devel.html">6.10. アプリケーションの開発</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oidc/devel-webapp.html">6.10.1. Web アプリケーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/devel-native-dotnet.html">6.10.2. Native アプリケーション (C#)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oidc/devel-native-android.html">6.10.3. Native アプリケーション (Android)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oidc/attention.html">6.11. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clientcert/index.html">7. クライアント証明書認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/intro.html">7.1. 概要</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/intro.html#id2">7.1.1. システム構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/intro.html#id6">7.1.2. 証明書とユーザの対応・プロビジョニング</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/intro.html#id7">7.1.3. 認証ユーザの権限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/intro.html#id8">7.1.4. クライアント証明書</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/intro.html#id9">7.1.5. クライアント開発</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/client_cert.html">7.2. クライアント証明書の発行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/client_cert.html#ca">7.2.1. 認証局(CA)の選択</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/client_cert.html#id2">7.2.2. クライアント証明書のパラメータ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/client_cert.html#id3">7.2.3. 有効期限</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/haproxy.html">7.3. リバースプロキシで認証する場合の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/haproxy.html#id21">7.3.1. HAProxyのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/haproxy.html#preparing-certificate-for-haproxy">7.3.2. 証明書の準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/haproxy.html#id24">7.3.3. レスポンス用ファイルの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/haproxy.html#id25">7.3.4. HAProxyの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/haproxy.html#crl">7.3.5. CRL更新用スクリプトの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/haproxy.html#id26">7.3.6. HAProxyの動作検証</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/tomcat.html">7.4. Tomcatで直接認証する場合の設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/tomcat.html#id21">7.4.1. 証明書の準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/tomcat.html#keystoretruststore">7.4.2. KeyStore、TrustStoreの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/tomcat.html#connector">7.4.3. Connectorの設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/tomcat.html#crl">7.4.4. CRL更新用スクリプトの準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/tomcat.html#id22">7.4.5. Tomcatの動作検証</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/baas_settings.html">7.5. BaaSサーバ設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/baas_settings.html#id1">7.5.1. システム設定 - クライアント証明書認証設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/baas_settings.html#id4">7.5.2. テナント設定 - クライアント証明書認証</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/baas_settings.html#id6">7.5.3. クライアント証明書ユーザ登録</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/configurations.html">7.6. HAProxyで認証する場合の設定例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/configurations.html#haproxy-response-file">7.6.1. レスポンス用ファイルの例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/configurations.html#haproxy-configurations">7.6.2. HAProxyのコンフィギュレーションの例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/configurations.html#crl">7.6.3. CRL更新用スクリプトの例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/header_spec.html">7.7. クライアント証明書ヘッダ仕様</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clientcert/tomcat_configurations.html">7.8. Tomcatで直接認証する場合の設定例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/tomcat_configurations.html#tomcat-connector">7.8.1. Tomcat Connectorのコンフィギュレーションの例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clientcert/tomcat_configurations.html#crl">7.8.2. CRL更新用スクリプトの例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="private_ca.html">8. (参考)プライベートCAの構築・運用手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="private_ca.html#id1">8.1. 必要環境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="private_ca.html#root-ca">8.2. Root CA の構築</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id2">8.2.1. CAディレクトリの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#openssl-cnf">8.2.2. openssl.cnf の作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id6">8.2.3. CA の作成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="private_ca.html#id7">8.3. サーバ証明書の発行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#rsa">8.3.1. RSA秘密鍵の生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id8">8.3.2. RSA秘密鍵のパスフレーズ解除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#csr">8.3.3. CSR(証明書発行要求)の生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id9">8.3.4. 証明書の発行</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="private_ca.html#id10">8.4. クライアント証明書の発行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id11">8.4.1. RSA秘密鍵の生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id12">8.4.2. RSA秘密鍵のパスフレーズ解除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id13">8.4.3. CSR(証明書発行要求)の生成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id14">8.4.4. 証明書の発行</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="private_ca.html#crl">8.5. 証明書の失効と、CRL(証明書失効リスト)の作成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id15">8.5.1. 証明書の失効</a></li>
+<li class="toctree-l3"><a class="reference internal" href="private_ca.html#id16">8.5.2. サーバへのCRL反映</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. 認証機能の概要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

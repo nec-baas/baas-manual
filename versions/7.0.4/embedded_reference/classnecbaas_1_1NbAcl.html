@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: クラス necbaas::NbAcl</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacenecbaas.html">necbaas</a></li><li class="navelem"><a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public メソッド</a> &#124;
+<a href="#pub-static-methods">Static Public メソッド</a> &#124;
+<a href="classnecbaas_1_1NbAcl-members.html">すべてのメンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">クラス necbaas::NbAcl</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ACLクラス.  
+ <a href="classnecbaas_1_1NbAcl.html#details">[詳細]</a></p>
+
+<p><code>#include &quot;<a class="el" href="nb__acl_8h_source.html">necbaas/nb_acl.h</a>&quot;</code></p>
+<div class="dynheader">
+necbaas::NbAclに対する継承グラフ</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classnecbaas_1_1NbAcl.png" usemap="#necbaas::NbAcl_map" alt=""/>
+  <map id="necbaas::NbAcl_map" name="necbaas::NbAcl_map">
+<area href="classnecbaas_1_1NbAclBase.html" title="ACL基底クラス. " alt="necbaas::NbAclBase" shape="rect" coords="0,0,129,24"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public メソッド</h2></td></tr>
+<tr class="memitem:af44cd2c3314b549c43e9a7d88b3d7777"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#af44cd2c3314b549c43e9a7d88b3d7777">NbAcl</a> ()</td></tr>
+<tr class="memdesc:af44cd2c3314b549c43e9a7d88b3d7777"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#af44cd2c3314b549c43e9a7d88b3d7777">[詳細]</a><br/></td></tr>
+<tr class="separator:af44cd2c3314b549c43e9a7d88b3d7777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a3c8d416284ac187e68c7fd8b6704ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a3a3c8d416284ac187e68c7fd8b6704ed">NbAcl</a> (const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;json)</td></tr>
+<tr class="memdesc:a3a3c8d416284ac187e68c7fd8b6704ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#a3a3c8d416284ac187e68c7fd8b6704ed">[詳細]</a><br/></td></tr>
+<tr class="separator:a3a3c8d416284ac187e68c7fd8b6704ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5007faa3afc6d6aae4034d3f107a042"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#ad5007faa3afc6d6aae4034d3f107a042">~NbAcl</a> ()</td></tr>
+<tr class="memdesc:ad5007faa3afc6d6aae4034d3f107a042"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ.  <a href="#ad5007faa3afc6d6aae4034d3f107a042">[詳細]</a><br/></td></tr>
+<tr class="separator:ad5007faa3afc6d6aae4034d3f107a042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9639ffe728a652541ab36a4f0a3a3138"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a9639ffe728a652541ab36a4f0a3a3138">GetAdmin</a> () const </td></tr>
+<tr class="memdesc:a9639ffe728a652541ab36a4f0a3a3138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Admin権限が付加されたユーザ・グループの一覧を取得する.  <a href="#a9639ffe728a652541ab36a4f0a3a3138">[詳細]</a><br/></td></tr>
+<tr class="separator:a9639ffe728a652541ab36a4f0a3a3138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfdf0d0521050f9190d8296f02be8dd"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#aadfdf0d0521050f9190d8296f02be8dd">GetOwner</a> () const </td></tr>
+<tr class="memdesc:aadfdf0d0521050f9190d8296f02be8dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">オーナのユーザIDを取得する.  <a href="#aadfdf0d0521050f9190d8296f02be8dd">[詳細]</a><br/></td></tr>
+<tr class="separator:aadfdf0d0521050f9190d8296f02be8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab797d4aa41d21711a5ff02b3443b4ebf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#ab797d4aa41d21711a5ff02b3443b4ebf">SetAdmin</a> (const std::list&lt; std::string &gt; &amp;admin)</td></tr>
+<tr class="memdesc:ab797d4aa41d21711a5ff02b3443b4ebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">admin権限を付加するユーザ・グループの一覧を設定する.  <a href="#ab797d4aa41d21711a5ff02b3443b4ebf">[詳細]</a><br/></td></tr>
+<tr class="separator:ab797d4aa41d21711a5ff02b3443b4ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00fba7943e08a55c9469d54c8d708c6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a00fba7943e08a55c9469d54c8d708c6e">SetOwner</a> (const std::string &amp;owner)</td></tr>
+<tr class="memdesc:a00fba7943e08a55c9469d54c8d708c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">オーナのユーザIDを設定する.  <a href="#a00fba7943e08a55c9469d54c8d708c6e">[詳細]</a><br/></td></tr>
+<tr class="separator:a00fba7943e08a55c9469d54c8d708c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4965ea7eb64c449d92c7653b12ae4565"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a4965ea7eb64c449d92c7653b12ae4565">SetJson</a> (<a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> json) override</td></tr>
+<tr class="memdesc:a4965ea7eb64c449d92c7653b12ae4565"><td class="mdescLeft">&#160;</td><td class="mdescRight">JsonからACLをセットする.  <a href="#a4965ea7eb64c449d92c7653b12ae4565">[詳細]</a><br/></td></tr>
+<tr class="separator:a4965ea7eb64c449d92c7653b12ae4565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5f24d9205af43803b7a31fc7c86305f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#ad5f24d9205af43803b7a31fc7c86305f">ToJsonObject</a> () const </td></tr>
+<tr class="memdesc:ad5f24d9205af43803b7a31fc7c86305f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Jsonオブジェクトに変換する.  <a href="#ad5f24d9205af43803b7a31fc7c86305f">[詳細]</a><br/></td></tr>
+<tr class="separator:ad5f24d9205af43803b7a31fc7c86305f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classnecbaas_1_1NbAclBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classnecbaas_1_1NbAclBase')"><img src="closed.png" alt="-"/>&#160;Public メソッド inherited from <a class="el" href="classnecbaas_1_1NbAclBase.html">necbaas::NbAclBase</a></td></tr>
+<tr class="memitem:ae47ee0b35dfddeb04396b034591e779c inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#ae47ee0b35dfddeb04396b034591e779c">NbAclBase</a> ()</td></tr>
+<tr class="memdesc:ae47ee0b35dfddeb04396b034591e779c inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#ae47ee0b35dfddeb04396b034591e779c">[詳細]</a><br/></td></tr>
+<tr class="separator:ae47ee0b35dfddeb04396b034591e779c inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28dd5f148db48d04aaa1f65bfe9f855b inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a28dd5f148db48d04aaa1f65bfe9f855b">~NbAclBase</a> ()</td></tr>
+<tr class="memdesc:a28dd5f148db48d04aaa1f65bfe9f855b inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ.  <a href="#a28dd5f148db48d04aaa1f65bfe9f855b">[詳細]</a><br/></td></tr>
+<tr class="separator:a28dd5f148db48d04aaa1f65bfe9f855b inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914e8bea72aa3fe6274ecc79cbfbfb68 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a914e8bea72aa3fe6274ecc79cbfbfb68">AddEntry</a> (<a class="el" href="namespacenecbaas.html#ac76358fcfdbb3133a0f4b2ba0616a231">NbAclPermission</a> permission, const std::string &amp;entry)</td></tr>
+<tr class="memdesc:a914e8bea72aa3fe6274ecc79cbfbfb68 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">対象権限にユーザ・グループを追加する.  <a href="#a914e8bea72aa3fe6274ecc79cbfbfb68">[詳細]</a><br/></td></tr>
+<tr class="separator:a914e8bea72aa3fe6274ecc79cbfbfb68 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac65f5c805da3fb41b6ca1f5b3037588f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#ac65f5c805da3fb41b6ca1f5b3037588f">GetCreate</a> () const </td></tr>
+<tr class="memdesc:ac65f5c805da3fb41b6ca1f5b3037588f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">createが許可されたユーザ・グループの一覧を取得する.  <a href="#ac65f5c805da3fb41b6ca1f5b3037588f">[詳細]</a><br/></td></tr>
+<tr class="separator:ac65f5c805da3fb41b6ca1f5b3037588f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af5ade116818435c8fd06bb6e64585f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a2af5ade116818435c8fd06bb6e64585f">GetDelete</a> () const </td></tr>
+<tr class="memdesc:a2af5ade116818435c8fd06bb6e64585f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">deleteが許可されたユーザ・グループの一覧を取得する.  <a href="#a2af5ade116818435c8fd06bb6e64585f">[詳細]</a><br/></td></tr>
+<tr class="separator:a2af5ade116818435c8fd06bb6e64585f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74384cab82d836f6275f63871f9a45f2 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a74384cab82d836f6275f63871f9a45f2">GetRead</a> () const </td></tr>
+<tr class="memdesc:a74384cab82d836f6275f63871f9a45f2 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">readが許可されたユーザ・グループの一覧を取得する.  <a href="#a74384cab82d836f6275f63871f9a45f2">[詳細]</a><br/></td></tr>
+<tr class="separator:a74384cab82d836f6275f63871f9a45f2 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafcaecf67ba045e37ef38ed83c69ec71 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#aafcaecf67ba045e37ef38ed83c69ec71">GetUpdate</a> () const </td></tr>
+<tr class="memdesc:aafcaecf67ba045e37ef38ed83c69ec71 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">updateが許可されたユーザ・グループの一覧を取得する.  <a href="#aafcaecf67ba045e37ef38ed83c69ec71">[詳細]</a><br/></td></tr>
+<tr class="separator:aafcaecf67ba045e37ef38ed83c69ec71 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be5c0c1119b841fecaa8cea08d9149f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a6be5c0c1119b841fecaa8cea08d9149f">GetWrite</a> () const </td></tr>
+<tr class="memdesc:a6be5c0c1119b841fecaa8cea08d9149f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">writeが許可されたユーザ・グループの一覧を取得する.  <a href="#a6be5c0c1119b841fecaa8cea08d9149f">[詳細]</a><br/></td></tr>
+<tr class="separator:a6be5c0c1119b841fecaa8cea08d9149f inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14362b5e1bd94ae62300699e43cb4a7d inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a14362b5e1bd94ae62300699e43cb4a7d">RemoveEntry</a> (<a class="el" href="namespacenecbaas.html#ac76358fcfdbb3133a0f4b2ba0616a231">NbAclPermission</a> permission, const std::string &amp;entry)</td></tr>
+<tr class="memdesc:a14362b5e1bd94ae62300699e43cb4a7d inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">対象権限からユーザIDを削除する.  <a href="#a14362b5e1bd94ae62300699e43cb4a7d">[詳細]</a><br/></td></tr>
+<tr class="separator:a14362b5e1bd94ae62300699e43cb4a7d inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd5de4f61f80d4994331292928e87e30 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#afd5de4f61f80d4994331292928e87e30">SetCreate</a> (const std::list&lt; std::string &gt; &amp;create)</td></tr>
+<tr class="memdesc:afd5de4f61f80d4994331292928e87e30 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">createを許可するユーザ・グループの一覧を設定する.  <a href="#afd5de4f61f80d4994331292928e87e30">[詳細]</a><br/></td></tr>
+<tr class="separator:afd5de4f61f80d4994331292928e87e30 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5e721bae6b73558488788b5c0d7e17a inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#ae5e721bae6b73558488788b5c0d7e17a">SetDelete</a> (const std::list&lt; std::string &gt; &amp;del)</td></tr>
+<tr class="memdesc:ae5e721bae6b73558488788b5c0d7e17a inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">deleteを許可するユーザ・グループの一覧を設定する.  <a href="#ae5e721bae6b73558488788b5c0d7e17a">[詳細]</a><br/></td></tr>
+<tr class="separator:ae5e721bae6b73558488788b5c0d7e17a inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3369e867312a0bd8921ccabc79721172 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a3369e867312a0bd8921ccabc79721172">SetRead</a> (const std::list&lt; std::string &gt; &amp;read)</td></tr>
+<tr class="memdesc:a3369e867312a0bd8921ccabc79721172 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">readを許可するユーザ・グループの一覧を設定する.  <a href="#a3369e867312a0bd8921ccabc79721172">[詳細]</a><br/></td></tr>
+<tr class="separator:a3369e867312a0bd8921ccabc79721172 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fd36fd9fc1a555aca32deeb2bfff6f4 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a2fd36fd9fc1a555aca32deeb2bfff6f4">SetUpdate</a> (const std::list&lt; std::string &gt; &amp;update)</td></tr>
+<tr class="memdesc:a2fd36fd9fc1a555aca32deeb2bfff6f4 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">updateを許可するユーザ・グループの一覧を設定する.  <a href="#a2fd36fd9fc1a555aca32deeb2bfff6f4">[詳細]</a><br/></td></tr>
+<tr class="separator:a2fd36fd9fc1a555aca32deeb2bfff6f4 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0819dbdb120f33c1f2f787eeeb72e03 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#ac0819dbdb120f33c1f2f787eeeb72e03">SetWrite</a> (const std::list&lt; std::string &gt; &amp;write)</td></tr>
+<tr class="memdesc:ac0819dbdb120f33c1f2f787eeeb72e03 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">writeを許可するユーザ・グループの一覧を設定する.  <a href="#ac0819dbdb120f33c1f2f787eeeb72e03">[詳細]</a><br/></td></tr>
+<tr class="separator:ac0819dbdb120f33c1f2f787eeeb72e03 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80aabce3dc2a579b392fd7cf287f5d43 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a80aabce3dc2a579b392fd7cf287f5d43">ToJsonString</a> () const </td></tr>
+<tr class="memdesc:a80aabce3dc2a579b392fd7cf287f5d43 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Json文字列に変換する.  <a href="#a80aabce3dc2a579b392fd7cf287f5d43">[詳細]</a><br/></td></tr>
+<tr class="separator:a80aabce3dc2a579b392fd7cf287f5d43 inherit pub_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public メソッド</h2></td></tr>
+<tr class="memitem:a5df6f77d28e51fbac4058a00d242c8f1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a5df6f77d28e51fbac4058a00d242c8f1">CreateAclForAnonymous</a> ()</td></tr>
+<tr class="memdesc:a5df6f77d28e51fbac4058a00d242c8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">anonymousアクセス(R/W/Admin)可能な ACL を生成する.  <a href="#a5df6f77d28e51fbac4058a00d242c8f1">[詳細]</a><br/></td></tr>
+<tr class="separator:a5df6f77d28e51fbac4058a00d242c8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a993e4dea1e7f3c5cb7db748b70020a2d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a993e4dea1e7f3c5cb7db748b70020a2d">CreateAclForAuthenticated</a> ()</td></tr>
+<tr class="memdesc:a993e4dea1e7f3c5cb7db748b70020a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Authenticatedアクセス(R/W/Admin)可能な ACL を生成する.  <a href="#a993e4dea1e7f3c5cb7db748b70020a2d">[詳細]</a><br/></td></tr>
+<tr class="separator:a993e4dea1e7f3c5cb7db748b70020a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d173cda5f53d9c11be639913fa63c6d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a9d173cda5f53d9c11be639913fa63c6d">CreateAclForUser</a> (const <a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a> &amp;user)</td></tr>
+<tr class="memdesc:a9d173cda5f53d9c11be639913fa63c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">特定ユーザのみがアクセス可能な ACL を生成する.  <a href="#a9d173cda5f53d9c11be639913fa63c6d">[詳細]</a><br/></td></tr>
+<tr class="separator:a9d173cda5f53d9c11be639913fa63c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cf9498c9ab76f308f140ce421d69448"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#a1cf9498c9ab76f308f140ce421d69448">CreateAclFor</a> (const std::string &amp;entry)</td></tr>
+<tr class="memdesc:a1cf9498c9ab76f308f140ce421d69448"><td class="mdescLeft">&#160;</td><td class="mdescRight">R/W/Adminが同一のACLを生成する.  <a href="#a1cf9498c9ab76f308f140ce421d69448">[詳細]</a><br/></td></tr>
+<tr class="separator:a1cf9498c9ab76f308f140ce421d69448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adebd8492088d6cb43cdb857373d1c7b8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAcl.html#adebd8492088d6cb43cdb857373d1c7b8">CreateAclFor</a> (std::list&lt; std::string &gt; entries)</td></tr>
+<tr class="memdesc:adebd8492088d6cb43cdb857373d1c7b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">R/W/Adminが同一のACLを生成する.  <a href="#adebd8492088d6cb43cdb857373d1c7b8">[詳細]</a><br/></td></tr>
+<tr class="separator:adebd8492088d6cb43cdb857373d1c7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classnecbaas_1_1NbAclBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classnecbaas_1_1NbAclBase')"><img src="closed.png" alt="-"/>&#160;Protected メソッド inherited from <a class="el" href="classnecbaas_1_1NbAclBase.html">necbaas::NbAclBase</a></td></tr>
+<tr class="memitem:a9d99f39ba4e0ff595c507fce890f534b inherit pro_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a9d99f39ba4e0ff595c507fce890f534b">SortUnique</a> (std::list&lt; std::string &gt; *acl_list)</td></tr>
+<tr class="memdesc:a9d99f39ba4e0ff595c507fce890f534b inherit pro_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a9d99f39ba4e0ff595c507fce890f534b">[詳細]</a><br/></td></tr>
+<tr class="separator:a9d99f39ba4e0ff595c507fce890f534b inherit pro_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7273979748c44c7407c6cff0f517fdbd inherit pro_methods_classnecbaas_1_1NbAclBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbAclBase.html#a7273979748c44c7407c6cff0f517fdbd">SetEntries</a> (const std::list&lt; std::string &gt; &amp;entries, std::list&lt; std::string &gt; *acl_list)</td></tr>
+<tr class="memdesc:a7273979748c44c7407c6cff0f517fdbd inherit pro_methods_classnecbaas_1_1NbAclBase"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a7273979748c44c7407c6cff0f517fdbd">[詳細]</a><br/></td></tr>
+<tr class="separator:a7273979748c44c7407c6cff0f517fdbd inherit pro_methods_classnecbaas_1_1NbAclBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">説明</h2>
+<div class="textblock"><p>ACLクラス. </p>
+<p><b>本クラスのインスタンスはスレッドセーフではない</b> </p>
+</div><h2 class="groupheader">コンストラクタとデストラクタ</h2>
+<a class="anchor" id="af44cd2c3314b549c43e9a7d88b3d7777"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbAcl::NbAcl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンストラクタ. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3a3c8d416284ac187e68c7fd8b6704ed"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbAcl::NbAcl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンストラクタ. </p>
+<p>JsonオブジェクトからACLを構築する。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>Jsonオブジェクト </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad5007faa3afc6d6aae4034d3f107a042"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbAcl::~NbAcl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ. </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数</h2>
+<a class="anchor" id="a1cf9498c9ab76f308f140ce421d69448"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a> necbaas::NbAcl::CreateAclFor </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>entry</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>R/W/Adminが同一のACLを生成する. </p>
+<p>ユーザIDまたはグループ名が空文字の場合は初期状態のACLが返る。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">entry</td><td>ユーザIDまたはグループ名 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>ACL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adebd8492088d6cb43cdb857373d1c7b8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a> necbaas::NbAcl::CreateAclFor </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>entries</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>R/W/Adminが同一のACLを生成する. </p>
+<p>リスト内の空文字は無視され、空文字でないもののみ設定される。<br/>
+ リストが空、リスト内が全て空文字の場合は初期状態のACLが返る。<br/>
+ ユーザID/グループ名が重複している場合は１つにまとめられる。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">entry</td><td>ユーザID/グループ名のリスト </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>ACL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5df6f77d28e51fbac4058a00d242c8f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a> necbaas::NbAcl::CreateAclForAnonymous </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>anonymousアクセス(R/W/Admin)可能な ACL を生成する. </p>
+<dl class="section return"><dt>戻り値</dt><dd>ACL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a993e4dea1e7f3c5cb7db748b70020a2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a> necbaas::NbAcl::CreateAclForAuthenticated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Authenticatedアクセス(R/W/Admin)可能な ACL を生成する. </p>
+<dl class="section return"><dt>戻り値</dt><dd>ACL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9d173cda5f53d9c11be639913fa63c6d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbAcl.html">NbAcl</a> necbaas::NbAcl::CreateAclForUser </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a> &amp;&#160;</td>
+          <td class="paramname"><em>user</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>特定ユーザのみがアクセス可能な ACL を生成する. </p>
+<p>ユーザIDが空文字の場合は初期状態のACLが返る。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">user</td><td>ユーザ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>ACL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9639ffe728a652541ab36a4f0a3a3138"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::list&lt;std::string&gt;&amp; necbaas::NbAcl::GetAdmin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Admin権限が付加されたユーザ・グループの一覧を取得する. </p>
+<dl class="section return"><dt>戻り値</dt><dd>Adminのリスト </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aadfdf0d0521050f9190d8296f02be8dd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbAcl::GetOwner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>オーナのユーザIDを取得する. </p>
+<dl class="section return"><dt>戻り値</dt><dd>オーナのユーザID </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab797d4aa41d21711a5ff02b3443b4ebf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbAcl::SetAdmin </td>
+          <td>(</td>
+          <td class="paramtype">const std::list&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>admin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>admin権限を付加するユーザ・グループの一覧を設定する. </p>
+<p>リスト内の空文字は無視され、空文字でないもののみ設定される。<br/>
+ ユーザID/グループ名が重複している場合は１つにまとめられる。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">admin</td><td>admin権限を付加するユーザID/グループ名('g:'プレフィクス付き)のリスト </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4965ea7eb64c449d92c7653b12ae4565"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbAcl::SetJson </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a>&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>JsonからACLをセットする. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>Jsonオブジェクト </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classnecbaas_1_1NbAclBase.html#a89f71033dff3bc813501a3465e02b21b">necbaas::NbAclBase</a>を再定義しています。</p>
+
+</div>
+</div>
+<a class="anchor" id="a00fba7943e08a55c9469d54c8d708c6e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbAcl::SetOwner </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>owner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>オーナのユーザIDを設定する. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">owner</td><td>オーナのユーザID </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad5f24d9205af43803b7a31fc7c86305f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> necbaas::NbAcl::ToJsonObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Jsonオブジェクトに変換する. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">json</td><td>Jsonオブジェクト </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classnecbaas_1_1NbAclBase.html#a81ab2b7590d38b952ddaf6378802c456">necbaas::NbAclBase</a>を再定義しています。</p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="nb__acl_8h_source.html">nb_acl.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

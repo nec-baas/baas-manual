@@ -1,0 +1,157 @@
+=================
+設定
+=================
+
+.. include:: ../common/linkdef.rst
+
+設定ファイル
+============
+
+SSE Push サーバの設定ファイルは XML で作成します。配置場所は以下のいずれかです。
+
+* /etc/ssepush/config.xml
+* (Tomcat実行ユーザのホームディレクトリ)/.ssepush/config.xml
+
+設定ファイルはアプリケーションの初期化時に読み込まれますので、
+内容を変更した場合はアプリケーションサーバの再起動が必要です。
+
+設定ファイルの書式
+------------------
+
+設定ファイルの書式は以下の通りです。
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+    <properties>
+        <!-- AMQP URI -->
+        <entry key="amqpUri">amqp://localhost:5672</entry>
+
+        <!-- Hazelcast 設定ファイルのパス -->
+        <!--
+        <entry key="hazelcastConfig">file:/etc/ssepush/hazelcastConfig.xml</entry>
+        -->
+
+        <!-- SSE ハートビート間隔(秒) -->
+        <!--
+        <entry key="heartbeatIntervalSec">30</entry>
+        -->
+    </properties>
+
+* amqpUri : AMQP サーバの URI
+* hazelcastConfig: Hazelcast 設定ファイルのパス。デフォルトは file:/etc/ssepush/hazelcastConfig.xml。
+* hearbeatIntervalSec: SSE Push サーバが各クライアントに定期送信するハートビートメッセージの間隔(単位:秒)。デフォルトは30秒。
+
+  - ハートビートメッセージは、1) SSE接続が切れないように維持するため、2) クライアントの生存確認、のために送信されます。
+  - 長くすることでクライアント側のバッテリ消耗を抑えることができますが、NATやプロキシサーバが間に存在する場合はそれらのタイムアウト値よりも長くしてはなりません。
+
+amqpUri の設定は必須です。
+それ以外については省略可能で、省略した場合はデフォルト値が用いられます。
+
+.. _clustering:
+
+クラスタリング
+==============
+
+クラスタリングを行う場合は、Hazelcast の設定変更が必要です。
+(デフォルトはスタンドアロン構成)
+
+設定ファイルを /etc/ssepush/hazelcastConfig.xml などに配置し、
+config.xml には以下のように設定を行います。
+
+.. code-block:: xml
+
+        <entry key="hazelcastConfig">file:/etc/ssepush/hazelcastConfig.xml</entry>  
+
+Hazelcast 設定の詳細は、 `Hazelcast Documentation`_ を参照してください。
+
+マルチキャストを使用する場合
+----------------------------
+
+マルチキャストを使用する場合の hazelcastConfig.xml の例を示します。
+
+.. code-block:: xml
+
+ <?xml version="1.0" encoding="UTF-8"?>
+ <hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.5.xsd"
+           xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- 共通設定のロード。本指定は必須です。 -->
+    <import resource="classpath:CommonHazelcastConfig.xml"/>
+
+    <!-- クラスタグループ定義 -->
+    <group>
+        <name>ssepush</name>
+        <password>Passw0rD</password>
+    </group>
+
+    <!-- ネットワーク設定 -->
+    <network>
+        <reuse-address>true</reuse-address>
+        <port auto-increment="false">5701</port>
+        <join>
+            <!-- マルチキャスト設定 -->
+            <multicast enabled="true">
+                <multicast-group>224.2.2.3</multicast-group>
+                <multicast-port>54327</multicast-port>
+                <multicast-time-to-live>32</multicast-time-to-live>
+                <multicast-timeout-seconds>10</multicast-timeout-seconds>
+            </multicast>
+
+            <tcp-ip enabled="false"/>
+            <aws enabled="false"/>
+
+        </join>
+    </network>
+ </hazelcast>
+
+.. attention::
+
+   AWS を使用する場合、VPC 内でマルチキャストを使用することができません。
+   以下のユニキャストを使用する場合の設定を使用するか、
+   aws 設定を使用します。aws 設定については Hazelcastのマニュアルを参照してください。
+
+ユニキャスト(tcp-ip)を使用する場合
+----------------------------------
+
+マルチキャストではなくユニキャストを使用する場合は、tcp-ip タグでメンバ(SSE Push サーバ群)の
+IPアドレス/ポート番号を個別に指定する必要があります。
+
+以下に hazelcastConfig.xml の例を示します。tcp-ip 内の member にメンバを指定します。
+
+.. code-block:: xml
+
+ <?xml version="1.0" encoding="UTF-8"?>
+ <hazelcast xsi:schemaLocation="http://www.hazelcast.com/schema/config hazelcast-config-3.5.xsd"
+           xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- 共通設定のロード。本指定は必須です。 -->
+    <import resource="classpath:CommonHazelcastConfig.xml"/>
+
+    <!-- クラスタグループ定義 -->
+    <group>
+        <name>ssepush</name>
+        <password>Passw0rD</password>
+    </group>
+
+    <!-- ネットワーク設定 -->
+    <network>
+        <reuse-address>true</reuse-address>
+        <port auto-increment="false">5701</port>
+        <join>
+            <!-- ユニキャスト設定 -->
+            <multicast enabled="false" />
+
+            <tcp-ip enabled="true">
+                <member>10.0.0.1:5701</member>
+                <member>10.0.0.2:5701</member>
+                <member>10.0.0.3:5701</member>
+            </tcp-ip>
+
+            <aws enabled="false"/>
+        </join>
+    </network>
+ </hazelcast>

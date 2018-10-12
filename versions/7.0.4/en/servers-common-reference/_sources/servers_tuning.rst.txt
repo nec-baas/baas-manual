@@ -1,0 +1,116 @@
+.. include:: ../common/linkdef.rst
+
+=============================
+サーバのチューニング
+=============================
+
+OS、ミドルウェアと各サーバのチューニングについて説明します。
+
+各サーバで利用するミドルウェアについては、:ref:`middlewares_correspondence_table` を参照ください。
+
+Linux OS
+================
+
+Linux OS の場合は、下記のカーネルパラメータをチューニングしてください。
+
+ulimit の設定
+----------------
+
+ulimit 設定のOSデフォルト値が小さすぎるため、サーバとして運用するときは大きめに設定してください（特に、APサーバとDBサーバ）。
+
+* nproc: ユーザ毎に起動できるプロセス数
+* nofile: プロセス毎に同時に開けるファイル数の上限
+
+設定方法は、`ulimit の設定 <../server/usage/quickstart_rhel.html#ulimit>`_  を参照ください。
+
+
+Transparent Huge Pages (THP) の無効化
+---------------------------------------
+
+MongoDB サーバが稼働する環境向けの設定です。
+
+THP はカーネルのメモリ性能改善機能の一つです。メモリのシーケンシャルアクセスには有益ですが、
+DB のようなランダムアクセスが多い場合はパフォーマンスが落ちることがあるため、無効にする必要があります。
+
+設定方法は、 `MongoDB disable transparent-huge-pages`_ を参照ください。
+
+
+Tomcat
+=======
+
+下記の JVM ヒープサイズと接続数上限について、必要に応じてチューニングしてください。
+対象は後述する API/Console サーバおよび SSE Push サーバです。
+
+* -Xmx: JVM ヒープサイズの最大メモリ量
+* -Xms: JVM ヒープサイズの最小メモリ量
+* maxConnections: 同時に受け付けるコネクション数の上限
+
+JVM ヒープサイズ設定は、`JVM ヒープサイズ設定 <../server/usage/quickstart_rhel.html#tomcat-service-config>`_ を参照ください。
+
+接続数上限設定は、設定ファイル（$TOMCAT_HOME]/conf/server.xml） の Connectorタグに設定してください。
+
+MongoDB
+========
+
+前述の ulimit の設定 と Transparent Huge Pages (THP) の無効化が必要です。
+
+
+Fluentd
+========
+
+MongoDB Output Pluginの cappedコレクション容量を必要に応じてチューニングしてください。
+
+* capped_size: capped コレクション容量。 MongoDB に保存するログデータ量に応じて調整してください。
+* 設定方法は、`Fluentdの利用設定 <../server/configure/logger.html#use-fluentd>`_ を参照ください。
+
+RabbitMQ
+===================
+
+前述の ulimit の設定が必要です。
+
+
+API/Console サーバ
+===================
+
+前述の ulimit と Tomcat の設定が必要です。
+
+また、必要に応じて MongoDB サーバに対して接続する際の最大TCPコネクション数（mongo.maxConnectionsPerHost）を
+チューニングします。
+
+Tomcat の設定について
+
+* 低負荷運用の場合(同時アクセス数低、データ量少ない)は、 ヒープサイズの設定は "-Xmx1024m -Xms512m" で十分です。
+* オブジェクトの書込（1KB）とクエリ（1MB）を秒間リクエスト500回で実行する場合、VM ヒープサイズの使用量(実測)は 500MB弱になります。
+* 高負荷運用（同時アクセス数高、データ量多い）の場合は、ヒープサイズとコネクション数上限を引き上げてください。
+
+mongo.maxConnectionsPerHost: 各APIサーバから MongoDB サーバに対して接続する際の最大TCPコネクション数
+
+* mongo.maxConnectionsPerHost を大きく設定することでピーク性能を上げることができます。
+  ただしAPIサーバをスケールさせた場合、MongoDB へのコネクション数が多くなりすぎすぎ、接続エラー
+  が発生する可能性がありますので注意が必要です。
+* 設定方法は、`MongoDB設定 <../server/configure/config_file.html#mongodb>`_ を参照ください。
+
+SSEPush サーバ
+===================
+
+前述の ulimit と Tomcat の設定が必要です。
+
+Tomcat の設定について
+
+* 同時アクセス数(クライアント数)が多い場合は、Tomcatの maxConnections を同時接続するクライアント数より大きな値に設定してください。
+  推奨値は数千～10,000程度までです。
+* 実測では、10,000接続の場合は、JVM ヒープサイズの最大メモリ量は、3GB程度が必要です。
+
+Cloud Functions サーバ
+========================
+
+前述の ulimit の設定が必要です。
+
+サーバマネジャー（Cloudfn-server-manager）の JVM ヒープサイズ 設定は、一般的に変更不要ですが、下記の方法でチューニングできます。
+
+Cloudfn-server-manager の service ファイル（CentOS7 の場合は、 cloudfn-server-manager.service）にある環境変数定義（JAVA_OPTS） で調整してください。
+
+.. code-block:: text
+
+   [service]
+   Environment="JAVA_OPTS=-Xmx1024m -Xms512m"

@@ -1,0 +1,640 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. チュートリアル1 : TODOアプリの実装 &mdash; Tutorials (JavaScript) 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="4. チュートリアル2 : ログイン機能とアクセス制御" href="tutorial2.html" />
+    <link rel="prev" title="2. チュートリアル1 : TODOアプリ" href="tutorial1.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (JavaScript)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. チュートリアル1 : TODOアプリの実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">3.1. ディレクトリ構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#html">3.2. HTMLファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-js-javascript">3.3. application.js : アプリケーション JavaScript ファイル</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nec-baas">3.3.1. NEC BaaS ライブラリの初期化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.3.2. アプリケーションの初期化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.3.3. オブジェクトバケットについて</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3.4. サーバから Todo リストをダウンロードする</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.3.5. 画面の描画処理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.3.6. Todo の追加処理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">3.3.7. Todo の削除処理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">4. チュートリアル2 : ログイン機能とアクセス制御</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">5. チュートリアル3 : アルバムアプリ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (JavaScript)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. チュートリアル1 : TODOアプリの実装</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="todo">
+<h1>3. チュートリアル1 : TODOアプリの実装<a class="headerlink" href="#todo" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではチュートリアル1の実装について解説します。</p>
+<div class="section" id="id1">
+<h2>3.1. ディレクトリ構成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>チュートリアル1 のソースは以下のようなディレクトリ構成になっています。</p>
+<ul class="simple">
+<li>index.html : メインの HTML ファイル</li>
+<li>js<ul>
+<li>baas.js : NEC BaaS JavaScript ライブラリ</li>
+<li>config.js : 設定用 JavaScript</li>
+<li>application.js : Todoアプリ JavaScript</li>
+</ul>
+</li>
+<li>css<ul>
+<li>style.css : スタイルシート</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="html">
+<h2>3.2. HTMLファイル<a class="headerlink" href="#html" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>HTMLファイルは以下のようになっています。</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;ja&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Tutorial 1<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://code.jquery.com/jquery-1.11.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;js/baas.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;js/config.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;js/application.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;css/style.css&quot;</span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>TODO<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;todos&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;new-todo&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;todoText&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;What needs to be done?&quot;</span> <span class="na">autofocus</span><span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>head セクションで、必要な JavaScript ファイルをすべてロードします。<ul>
+<li>NEC BaaS JavaScript ライブラリは jQuery を必要とするので、最初に jQuery ライブラリをロードします。</li>
+<li>ついで、NEC BaaS JavaScript ライブラリ、設定ファイル、アプリケーション JavaScript ファイルをロードします。</li>
+</ul>
+</li>
+<li>&lt;div id=&quot;app&quot;&gt; タグ内にアプリケーションの本体が表示されます。</li>
+<li>&lt;ul id=&quot;todos&quot;&gt; タグ内に TODO リスト、&lt;div id=&quot;new-todo&quot;&gt; タグ内に新規Todo入力用のinput タグを格納します。</li>
+</ul>
+</div>
+<div class="section" id="application-js-javascript">
+<h2>3.3. application.js : アプリケーション JavaScript ファイル<a class="headerlink" href="#application-js-javascript" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>application.js に Todo アプリの本体となる JavaScript コードを記述します。</p>
+<p>application.js の全文を掲載します。詳細についてはこの後に解説します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 初期化</span>
+  <span class="nx">Nebula</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">NebulaConfig</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">ENTER_KEY</span> <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;TodoTutorial1&quot;</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">// モデル</span>
+      <span class="nx">model</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">todos</span><span class="o">:</span> <span class="p">[]</span>
+      <span class="p">},</span>
+
+      <span class="c1">// 初期化</span>
+      <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+          <span class="c1">// 入力処理</span>
+          <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todoText&quot;</span><span class="p">).</span><span class="nx">keypress</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">which</span> <span class="o">==</span> <span class="nx">ENTER_KEY</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">self</span><span class="p">.</span><span class="nx">addTodo</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todoText&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+                  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todoText&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+                  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+              <span class="p">}</span>
+          <span class="p">});</span>
+
+          <span class="c1">// TODO をダウンロードする</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectBucket</span><span class="p">(</span><span class="nx">BUCKET_NAME</span><span class="p">);</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span>
+      <span class="p">},</span>
+
+      <span class="c1">// BaaS サーバから TODO をダウンロードする</span>
+      <span class="nx">fetch</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+          <span class="c1">// クエリ生成</span>
+          <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectQuery</span><span class="p">();</span>
+          <span class="nx">query</span><span class="p">.</span><span class="nx">setSortOrder</span><span class="p">(</span><span class="s2">&quot;updatedAt&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+          <span class="c1">// クエリ実行</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">objects</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">self</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">todos</span> <span class="o">=</span> <span class="nx">objects</span><span class="p">;</span>
+                  <span class="nx">self</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+              <span class="p">})</span>
+              <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+              <span class="p">});</span>
+      <span class="p">},</span>
+
+      <span class="c1">// TODO の追加</span>
+      <span class="nx">addTodo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+          <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">description</span><span class="o">:</span> <span class="nx">text</span> <span class="p">};</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">self</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span>
+              <span class="p">})</span>
+              <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+              <span class="p">});</span>
+      <span class="p">},</span>
+
+      <span class="c1">// TODO 削除</span>
+      <span class="nx">deleteTodo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+          <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                  <span class="nx">self</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span> <span class="c1">// リロード</span>
+              <span class="p">})</span>
+              <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+              <span class="p">})</span>
+      <span class="p">},</span>
+
+      <span class="c1">// ビューのアップデート</span>
+      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+          <span class="kd">var</span> <span class="nx">$todos</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todos&quot;</span><span class="p">);</span>
+          <span class="nx">$todos</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">todos</span><span class="p">)</span> <span class="p">{</span>
+              <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">todos</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+              <span class="c1">// 削除ボタンを生成</span>
+              <span class="kd">var</span> <span class="nx">delButton</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;button/&gt;&quot;</span><span class="p">);</span>
+              <span class="nx">delButton</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;✖&quot;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&quot;destroy&quot;</span><span class="p">);</span>
+
+              <span class="c1">// 削除イベントハンドラを設定</span>
+              <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">_id</span><span class="p">;</span>
+                  <span class="nx">delButton</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                     <span class="nx">self</span><span class="p">.</span><span class="nx">deleteTodo</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+                  <span class="p">});</span>
+              <span class="p">})();</span>
+
+              <span class="c1">// TODO 一行分を生成</span>
+              <span class="kd">var</span> <span class="nx">li</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;li/&gt;&quot;</span><span class="p">);</span>
+              <span class="nx">li</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">description</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">delButton</span><span class="p">);</span>
+              <span class="nx">$todos</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="nx">App</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<div class="section" id="nec-baas">
+<h3>3.3.1. NEC BaaS ライブラリの初期化<a class="headerlink" href="#nec-baas" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>まずはじめに NEC BaaS ライブラリ初期化の処理を行います。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 初期化</span>
+  <span class="nx">Nebula</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">NebulaConfig</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>初期化には Nebula.initialize() を使用します。
+この API は、NEC BaaS の機能を呼び出す前に必ず１度実施する必要があります。</p>
+<p>Nebula.initialize() には、設定情報を引き渡します。
+本チュートリアルでは、この値は前節で設定した通り config.js 内に記述します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">NebulaConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;tenant&quot;</span><span class="o">:</span> <span class="s2">&quot;5657fe61240d3e15d40acd37&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appId&quot;</span><span class="o">:</span> <span class="s2">&quot;56ea65bb240d3e27263af479&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appKey&quot;</span><span class="o">:</span> <span class="s2">&quot;KPQOlhm949cN6s1cXNsSRFwh8qUTKh8KE81SCFC7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;baseUri&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.example.com/api&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;offline&quot;</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">&quot;debugMode&quot;</span><span class="o">:</span> <span class="s2">&quot;debug&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Nebula.initialize() には、テナントID, アプリケーションID、アプリケーションキー、
+BaseURI などを指定します。</p>
+</div>
+<div class="section" id="id2">
+<h3>3.3.2. アプリケーションの初期化<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Todo アプリケーションクラスの定義および初期化を行います。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// モデル</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">todos</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+
+    <span class="cm">/* 中略 */</span>
+<span class="p">};</span>
+
+<span class="nx">App</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>本チュートリアルでは、'App' 変数にアプリケーションの全ロジックを実装しています。</p>
+<p>App.model には、Todo リストを格納します。</p>
+<p>App クラスの初期化は、init() で行っています。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 初期化</span>
+<span class="nx">init</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="c1">// 入力処理</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todoText&quot;</span><span class="p">).</span><span class="nx">keypress</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">which</span> <span class="o">==</span> <span class="nx">ENTER_KEY</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">addTodo</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todoText&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todoText&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="c1">// バケットから TODO をダウンロードする</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectBucket</span><span class="p">(</span><span class="nx">BUCKET_NAME</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>ここでは以下の処理を行っています。</p>
+<ul class="simple">
+<li>入力フィールドに Todo テキストを入力したときのイベント処理(addTodo() を呼び出す)を設定する。</li>
+<li>オブジェクトバケットを生成し、Todo のロードを開始する。</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>3.3.3. オブジェクトバケットについて<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Todo の1件分の情報は以下のような JSON で表現します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;打ち合わせ資料を作成する&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Todo 情報の格納には、NEC BaaS の「オブジェクトストレージ」機能を使用します。
+オブジェクトストレージには、JSON 形式のデータをそのまま格納することができます。</p>
+<p>オブジェクトストレージにデータを格納するには、オブジェクトの入れ物となる「バケット」を
+用意する必要があります。</p>
+<p>リレーショナルデータベースとの対比でいうと、バケットとオブジェクトは以下のような関係になります。</p>
+<ul class="simple">
+<li>テーブル → バケット</li>
+<li>(テーブルの)行 → オブジェクト</li>
+</ul>
+<p>オブジェクトを格納するバケットは、前節に記載したとおり、デベロッパコンソールで作成済みです。</p>
+<p>バケットを使用するには、まず最初に new Nebula.ObjectBucket() を呼び出して
+バケットのインスタンス変数を用意します。この後は、バケットに対して操作を
+行うことで、データの読み書きを行うことができます。</p>
+</div>
+<div class="section" id="id4">
+<h3>3.3.4. サーバから Todo リストをダウンロードする<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// BaaS サーバから TODO をダウンロードする</span>
+<span class="nx">fetch</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="c1">// クエリ生成</span>
+    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">ObjectQuery</span><span class="p">();</span>
+    <span class="nx">query</span><span class="p">.</span><span class="nx">setSortOrder</span><span class="p">(</span><span class="s2">&quot;updatedAt&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="c1">// クエリ実行</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">objects</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">todos</span> <span class="o">=</span> <span class="nx">objects</span><span class="p">;</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+        <span class="p">});</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>fetch() で、サーバから Todo リストをクエリ・ダウンロードします。</p>
+<p>クエリ条件は、new Nebula.ObjectQuery() で生成します。
+クエリ条件は SQL データベースでいうところの SELECT 文に相当し、
+検索するオブジェクトの絞込み、ソート条件の指定、スキップ件数・件数上限の指定などが可能です。
+ここでは、オブジェクトの更新時刻 (updatedAt) 昇順でクエリを実施します。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">件数上限はデフォルトで100件となっています。
+一回のクエリで 100件以上のデータを取得したい場合は、クエリ条件で件数上限値を明示的に指定する必要があります。</p>
+</div>
+<p>クエリの実行は、バケットの query() メソッドで実行します。
+query() は Promise を返します。then() に成功時の処理を記述します。</p>
+<p>then() には、取得したJSONオブジェクトの配列が渡されます。
+各オブジェクトは以下のような形式の JSON オブジェクトになっています。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="s2">&quot;53c3ad874b5450f1fb87456b&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;description&quot;</span> <span class="o">:</span> <span class="s2">&quot;打ち合わせ資料作成&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;createdAt&quot;</span> <span class="o">:</span> <span class="s2">&quot;2014-07-14T10:14:31.998Z&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;updatedAt&quot;</span> <span class="o">:</span> <span class="s2">&quot;2014-07-14T10:14:31.998Z&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;ACL&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;r&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;g:anonymous&quot;</span> <span class="p">],</span> <span class="s2">&quot;w&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;g:anonymous&quot;</span> <span class="p">],</span> <span class="s2">&quot;c&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">],</span> <span class="s2">&quot;u&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">],</span> <span class="s2">&quot;d&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">],</span> <span class="s2">&quot;admin&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="p">]</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>_id はオブジェクトを一意に識別する ID です。SQLデータベースでいうところのプライマリキーです。</li>
+<li>createdAt はオブジェクトを最初に作成したときの時刻(UTC)です。</li>
+<li>updatedAt はオブジェクトを最後に更新したときの時刻(UTC)です。</li>
+<li>ACL はオブジェクトのアクセス権限です。この例では、全ユーザ(anonymous)が読み書き可能です。</li>
+<li>これ以外のフィールド(description)は、オブジェクトを作成したときに指定した値です。</li>
+</ul>
+<p>ここでは model.todos にオブジェクトの配列を保存し、render() を呼び出して
+画面のレンダリングを行うようにしています。</p>
+</div>
+<div class="section" id="id5">
+<h3>3.3.5. 画面の描画処理<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// ビューのアップデート</span>
+    <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">$todos</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#todos&quot;</span><span class="p">);</span>
+        <span class="nx">$todos</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">todos</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">todos</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+            <span class="c1">// 削除ボタンを生成</span>
+            <span class="kd">var</span> <span class="nx">delButton</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;button/&gt;&quot;</span><span class="p">);</span>
+            <span class="nx">delButton</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;✖&quot;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&quot;destroy&quot;</span><span class="p">);</span>
+
+            <span class="c1">// 削除イベントハンドラを設定</span>
+            <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">_id</span><span class="p">;</span>
+                <span class="nx">delButton</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                   <span class="nx">self</span><span class="p">.</span><span class="nx">deleteTodo</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+                <span class="p">});</span>
+            <span class="p">})();</span>
+
+            <span class="c1">// TODO 一行分を生成</span>
+            <span class="kd">var</span> <span class="nx">li</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;li/&gt;&quot;</span><span class="p">);</span>
+            <span class="nx">li</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">description</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">delButton</span><span class="p">);</span>
+            <span class="nx">$todos</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>画面のレンダリングは render() で行っています。</p>
+<p>ここでは model.todos に保存された Todo オブジェクトの一覧を &lt;li&gt; 要素を使って
+&lt;ul id=&quot;todos&quot;&gt; 要素以下に追加していきます。</p>
+<p>また、この際に Todo を削除するボタンを一緒に作成し &lt;li&gt; 要素以下に追加しています。
+削除処理本体は deleteTodo() に実装しており、deleteTodo() に引き渡す引数は
+オブジェクトの _id プロパティ、すなわちデータの ID を渡すようにしています。</p>
+</div>
+<div class="section" id="id6">
+<h3>3.3.6. Todo の追加処理<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// TODO の追加</span>
+<span class="nx">addTodo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">description</span><span class="o">:</span> <span class="nx">text</span> <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+        <span class="p">});</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>Todo の追加は addTodo() で行います。
+本関数は、入力フィールドで Enter キーを押した時に呼び出され、
+引数には入力フィールドに入力されたテキストが渡されます。</p>
+<p>data に保存したい JSON データを作成し、バケットの save() メソッドを呼び出すことで
+データを BaaS サーバに保存します。</p>
+<p>保存が成功したら、then() 内で fetch() を呼び出し、データのリロードとレンダリングを
+実施します。</p>
+</div>
+<div class="section" id="id7">
+<h3>3.3.7. Todo の削除処理<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// TODO 削除</span>
+<span class="nx">deleteTodo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">bucket</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">fetch</span><span class="p">();</span> <span class="c1">// リロード</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+        <span class="p">})</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>Todo の削除処理は deleteTodo() で行います。</p>
+<p>オブジェクトの削除には、バケットの remove() メソッドを使用します。
+引数にはオブジェクトの ID を渡します。</p>
+<p>削除が成功したら、then() 内で fetch() を呼び出し、データのリロードとレンダリング
+を実施します。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial2.html" class="btn btn-neutral float-right" title="4. チュートリアル2 : ログイン機能とアクセス制御" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial1.html" class="btn btn-neutral" title="2. チュートリアル1 : TODOアプリ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+.. include:: ../../common/linkdef.rst
+
+===========
+SSO Circle
+===========
+
+概要
+====
+
+`SSOCircle`_ サービスを利用することで、IdPを立てることなく
+簡単に SAML 認証を試してみることができます。
+ここでは SSOCircle を使った SAML 認証の設定手順について説明します。
+
+.. attention::
+
+   SSOCircle の利用は試行にのみ使用してください。本番環境で使用すべきものではありません。
+
+アカウントの作成
+================
+
+`SSOCircle`_ にアクセスし、「SAML / OpenID IDP」にある
+"Account registration" に移動し、"New User" よりアカウントを作成します。
+
+IdPメタデータのダウンロード
+===========================
+
+SSOCircle にログイン後、画面左の「Manage Matadata」をクリックしてください。
+
+「SSOCircle Public IDP Metadata」を右クリックし、SSOCircle の IdP メタデータをファイルにダウンロードしてください。
+このファイルを BaaS デベロッパーコンソールから IdPメタデータとしてアップロードしてください。
+
+SPメタデータの登録
+==================
+
+BaaSデベロッパーコンソールから SPメタデータをダウンロードしておいてください。
+
+SSOCircle にログイン後、画面左の「Manage Matadata」⇒「Add new Service Provider」へ進んでください。
+
+フォーム必要事項を入力して SPメタデータを登録します。
+
+* FQDN: BaaSサーバの FQDN を入力します。
+* Attributes sent in assertion: FirstName, LastName, EmailAddress すべてチェックを入れてください。
+* Insert youe metadata information: SPメタデータのファイルの内容を設定します。
+
+SPメタデータの内容はテキストファイル(XMLファイル)になっています。
+テキストエディタで開いてクリップボードに内容をコピーし、上記フォームに貼り付けて登録を行ってください。
+
+
+
+
+
+
+
+

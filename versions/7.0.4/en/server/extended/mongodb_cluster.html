@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.7. MongoDBクラスタ &mdash; Server User Guide 7.0.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. マイグレーションガイド" href="../migration.html" />
+    <link rel="prev" title="5.6. サーバ証明書の作成手順" href="sslcert.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure/index.html">4. コンフィグレーション</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 詳細手順</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clitool.html">5.1. コマンドラインツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contextpath.html">5.2. コンテキストパスの変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiserver.html">5.3. 複数サーバ構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loadbalancer.html">5.4. ロードバランサ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="revproxy.html">5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sslcert.html">5.6. サーバ証明書の作成手順</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.7. MongoDBクラスタ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">5.7.1. MongoDB クラスタ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id22">レプリカセット</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">シャーディング</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tenant-db-cluster">5.7.2. テナント単位の MongoDB クラスタ切り替え</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. 詳細手順</a> &raquo;</li>
+        
+      <li>5.7. MongoDBクラスタ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mongodb">
+<h1>5.7. MongoDBクラスタ<a class="headerlink" href="#mongodb" title="Permalink to this headline">¶</a></h1>
+<p>ここでは MongoDB クラスタを組む場合の概要を説明します。</p>
+<p>MongoDB クラスタの詳細は、以下を参照してください。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.mongodb.org/manual/core/replication-introduction/">Replication</a></li>
+<li><a class="reference external" href="https://docs.mongodb.org/manual/core/sharding-introduction/">Sharding</a></li>
+</ul>
+<div class="section" id="id21">
+<h2>5.7.1. MongoDB クラスタ<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>レプリカセットを組む場合と、シャーディングを組む場合の２通りがあります。</p>
+<div class="section" id="id22">
+<h3>レプリカセット<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>データベースの冗長性が必要な場合は、MongoDB のレプリカセットを組みます。</p>
+<p>レプリカセットでは、３台のマシンが必要になります。
+それぞれのマシンで mongod サーバを起動します。
+３台のうち１台が Primay、残り２台は Secondary となります。
+(Secondary 1台、Arbiter 1台という構成も可能です)。</p>
+<p>レプリカセットを使用する場合は、BaaSサーバ側の設定で３台のマシンを指定する必要があります。
+詳細は <a class="reference internal" href="../configure/configure.html#config-mongodb"><span class="std std-ref">MongoDB の設定</span></a> の「レプリカセット環境の場合」を参照してください。</p>
+</div>
+<div class="section" id="id23">
+<h3>シャーディング<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>スケーラビリティを向上させたい場合は、MongoDB のシャーディングクラスタを組む必要があります。</p>
+<p>MongoDB のシャーディングでは、１つのシャード毎にレプリカセットを組む必要があります。
+また、これとは別に設定サーバが３台必要になります。
+従って、全体では シャード数 x 3 + 3台のマシンが必要になります。</p>
+<p>また、BaaS サーバと同一のマシン内に、ルーティングを行う mongos サーバを起動する必要があります。
+BaaS サーバからは、mongos サーバに接続するための接続設定が必要です。
+詳細は <a class="reference internal" href="../configure/configure.html#config-mongodb"><span class="std std-ref">MongoDB の設定</span></a> の「シャーディング環境の場合」を参照してください。</p>
+</div>
+</div>
+<div class="section" id="tenant-db-cluster">
+<span id="id24"></span><h2>5.7.2. テナント単位の MongoDB クラスタ切り替え<a class="headerlink" href="#tenant-db-cluster" title="Permalink to this headline">¶</a></h2>
+<p>ver 5.0.0 より、テナント単位で MongoDB クラスタを切り替えできるようになっています。</p>
+<p>プライマリの MongoDB クラスタとは別に複数の MongoDB クラスタを立ち上げ、
+テナント毎に別個の MongoDB クラスタにデータを格納することができます。</p>
+<ul class="simple">
+<li>テナントが使用する MongoDB クラスタをプライマリクラスタ以外に指定できます。<ul>
+<li>デベロッパーコンソールでテナントを作成する際に、接続する MongoDB
+クラスタのサーバ設定(ホスト名/ポート番号、認証ユーザ・パスワード)を入力してください。</li>
+</ul>
+</li>
+<li>既存のテナントを別の MongoDB クラスタに変更することも可能です。<ul>
+<li>変更はデベロッパーコンソールで行ってください。</li>
+<li>ただし、データは自動では移動しませんので、 <a class="reference external" href="https://docs.mongodb.com/manual/reference/program/mongodump/">mongodump</a> 、 <a class="reference external" href="https://docs.mongodb.com/manual/reference/program/mongorestore/">mongorestore</a> を使用して手動で
+バックアップ・リストアが必要です。</li>
+</ul>
+</li>
+<li>1個の MongoDB クラスタに複数のテナントを収容することが可能です。</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">個別の MongoDB クラスタに格納されるのは主にオブジェクトストレージ・ファイルストレージです。
+ユーザ・グループ・セッショントークンは常にプライマリクラスタに格納され、
+別の MongoDB クラスタに格納することはできません。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../migration.html" class="btn btn-neutral float-right" title="6. マイグレーションガイド" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sslcert.html" class="btn btn-neutral" title="5.6. サーバ証明書の作成手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.4',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

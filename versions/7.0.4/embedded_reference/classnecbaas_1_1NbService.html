@@ -1,0 +1,829 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: クラス necbaas::NbService</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacenecbaas.html">necbaas</a></li><li class="navelem"><a class="el" href="classnecbaas_1_1NbService.html">NbService</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public メソッド</a> &#124;
+<a href="#pub-static-methods">Static Public メソッド</a> &#124;
+<a href="#pro-methods">Protected メソッド</a> &#124;
+<a href="classnecbaas_1_1NbService-members.html">すべてのメンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">クラス necbaas::NbService</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>MBaaS サービスクラス.  
+ <a href="classnecbaas_1_1NbService.html#details">[詳細]</a></p>
+
+<p><code>#include &quot;<a class="el" href="nb__service_8h_source.html">necbaas/nb_service.h</a>&quot;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public メソッド</h2></td></tr>
+<tr class="memitem:a93ff35d926ab3c419d17ee9d984f82b6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a93ff35d926ab3c419d17ee9d984f82b6">~NbService</a> ()</td></tr>
+<tr class="memdesc:a93ff35d926ab3c419d17ee9d984f82b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ.  <a href="#a93ff35d926ab3c419d17ee9d984f82b6">[詳細]</a><br/></td></tr>
+<tr class="separator:a93ff35d926ab3c419d17ee9d984f82b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a30c78f1d353b6848d48d34543ba693"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a4a30c78f1d353b6848d48d34543ba693">GetAppId</a> () const </td></tr>
+<tr class="memdesc:a4a30c78f1d353b6848d48d34543ba693"><td class="mdescLeft">&#160;</td><td class="mdescRight">アプリケーションID取得.  <a href="#a4a30c78f1d353b6848d48d34543ba693">[詳細]</a><br/></td></tr>
+<tr class="separator:a4a30c78f1d353b6848d48d34543ba693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a684b6ae8d00889d4a1213ef5cdeed1f2"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a684b6ae8d00889d4a1213ef5cdeed1f2">GetAppKey</a> () const </td></tr>
+<tr class="memdesc:a684b6ae8d00889d4a1213ef5cdeed1f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">アプリケーションキー取得.  <a href="#a684b6ae8d00889d4a1213ef5cdeed1f2">[詳細]</a><br/></td></tr>
+<tr class="separator:a684b6ae8d00889d4a1213ef5cdeed1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae576ff3bb0b9d0c33ce79b768222741b"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#ae576ff3bb0b9d0c33ce79b768222741b">GetEndpointUrl</a> () const </td></tr>
+<tr class="memdesc:ae576ff3bb0b9d0c33ce79b768222741b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Endpoint URI 取得.  <a href="#ae576ff3bb0b9d0c33ce79b768222741b">[詳細]</a><br/></td></tr>
+<tr class="separator:ae576ff3bb0b9d0c33ce79b768222741b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86316d1d057d0fde76e6f763f9c58d20"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a86316d1d057d0fde76e6f763f9c58d20">GetTenantId</a> () const </td></tr>
+<tr class="memdesc:a86316d1d057d0fde76e6f763f9c58d20"><td class="mdescLeft">&#160;</td><td class="mdescRight">テナントID取得.  <a href="#a86316d1d057d0fde76e6f763f9c58d20">[詳細]</a><br/></td></tr>
+<tr class="separator:a86316d1d057d0fde76e6f763f9c58d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a890750231aba822b0da46d6be745ad8c"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a890750231aba822b0da46d6be745ad8c">GetProxy</a> () const </td></tr>
+<tr class="memdesc:a890750231aba822b0da46d6be745ad8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proxy URL取得.  <a href="#a890750231aba822b0da46d6be745ad8c">[詳細]</a><br/></td></tr>
+<tr class="separator:a890750231aba822b0da46d6be745ad8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a52b08f2485f10bc595530d86a9b8d"><td class="memItemLeft" align="right" valign="top">NbSessionToken&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a09a52b08f2485f10bc595530d86a9b8d">GetSessionToken</a> ()</td></tr>
+<tr class="memdesc:a09a52b08f2485f10bc595530d86a9b8d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a09a52b08f2485f10bc595530d86a9b8d">[詳細]</a><br/></td></tr>
+<tr class="separator:a09a52b08f2485f10bc595530d86a9b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841fb7af9cf33baabc499b9865cb8aad"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a841fb7af9cf33baabc499b9865cb8aad">SetSessionToken</a> (const NbSessionToken &amp;token)</td></tr>
+<tr class="memdesc:a841fb7af9cf33baabc499b9865cb8aad"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a841fb7af9cf33baabc499b9865cb8aad">[詳細]</a><br/></td></tr>
+<tr class="separator:a841fb7af9cf33baabc499b9865cb8aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c012d9a49044d8ae65fdd85dc88a769"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a1c012d9a49044d8ae65fdd85dc88a769">ClearSessionToken</a> ()</td></tr>
+<tr class="memdesc:a1c012d9a49044d8ae65fdd85dc88a769"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a1c012d9a49044d8ae65fdd85dc88a769">[詳細]</a><br/></td></tr>
+<tr class="separator:a1c012d9a49044d8ae65fdd85dc88a769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa65ed8effd5ea45971865c0e28ea0866"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#aa65ed8effd5ea45971865c0e28ea0866">ExecuteRequest</a> (std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, int timeout)</td></tr>
+<tr class="memdesc:aa65ed8effd5ea45971865c0e28ea0866"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#aa65ed8effd5ea45971865c0e28ea0866">[詳細]</a><br/></td></tr>
+<tr class="separator:aa65ed8effd5ea45971865c0e28ea0866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aa14f7e54ff1db7abf2469683568c33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a4aa14f7e54ff1db7abf2469683568c33">ExecuteFileDownload</a> (std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, const std::string &amp;file_path, int timeout)</td></tr>
+<tr class="memdesc:a4aa14f7e54ff1db7abf2469683568c33"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a4aa14f7e54ff1db7abf2469683568c33">[詳細]</a><br/></td></tr>
+<tr class="separator:a4aa14f7e54ff1db7abf2469683568c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a219b275bcc16cee1bdc73e4205d24c8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a219b275bcc16cee1bdc73e4205d24c8b">ExecuteFileUpload</a> (std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, const std::string &amp;file_path, int timeout)</td></tr>
+<tr class="memdesc:a219b275bcc16cee1bdc73e4205d24c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a219b275bcc16cee1bdc73e4205d24c8b">[詳細]</a><br/></td></tr>
+<tr class="separator:a219b275bcc16cee1bdc73e4205d24c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public メソッド</h2></td></tr>
+<tr class="memitem:aebac5bb11e8b3d8361ff88e2c9b1d2bf"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#aebac5bb11e8b3d8361ff88e2c9b1d2bf">CreateService</a> (const std::string &amp;endpoint_url, const std::string &amp;tenant_id, const std::string &amp;app_id, const std::string &amp;app_key, const std::string &amp;proxy=&quot;&quot;)</td></tr>
+<tr class="memdesc:aebac5bb11e8b3d8361ff88e2c9b1d2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">サービスインスタンス生成.  <a href="#aebac5bb11e8b3d8361ff88e2c9b1d2bf">[詳細]</a><br/></td></tr>
+<tr class="separator:aebac5bb11e8b3d8361ff88e2c9b1d2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa921c76e7c4417be564c8ad1db620732"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#aa921c76e7c4417be564c8ad1db620732">SetDebugLogEnabled</a> (bool flag)</td></tr>
+<tr class="memdesc:aa921c76e7c4417be564c8ad1db620732"><td class="mdescLeft">&#160;</td><td class="mdescRight">ロギング設定（デバッグログ）.  <a href="#aa921c76e7c4417be564c8ad1db620732">[詳細]</a><br/></td></tr>
+<tr class="separator:aa921c76e7c4417be564c8ad1db620732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf62410da7df2f6456ec253716e83884"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#abf62410da7df2f6456ec253716e83884">SetErrorLogEnabled</a> (bool flag)</td></tr>
+<tr class="memdesc:abf62410da7df2f6456ec253716e83884"><td class="mdescLeft">&#160;</td><td class="mdescRight">ロギング設定（エラーログ）.  <a href="#abf62410da7df2f6456ec253716e83884">[詳細]</a><br/></td></tr>
+<tr class="separator:abf62410da7df2f6456ec253716e83884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06813f72cda3a6716f8bed9f18a53a4d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a06813f72cda3a6716f8bed9f18a53a4d">SetRestLogEnabled</a> (bool flag)</td></tr>
+<tr class="memdesc:a06813f72cda3a6716f8bed9f18a53a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ロギング設定（RESTログ）.  <a href="#a06813f72cda3a6716f8bed9f18a53a4d">[詳細]</a><br/></td></tr>
+<tr class="separator:a06813f72cda3a6716f8bed9f18a53a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected メソッド</h2></td></tr>
+<tr class="memitem:a2a81370b827f9a8e447e40808d8cce6a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a2a81370b827f9a8e447e40808d8cce6a">NbService</a> (const std::string &amp;endpoint_url, const std::string &amp;tenant_id, const std::string &amp;app_id, const std::string &amp;app_key, const std::string &amp;proxy)</td></tr>
+<tr class="memdesc:a2a81370b827f9a8e447e40808d8cce6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#a2a81370b827f9a8e447e40808d8cce6a">[詳細]</a><br/></td></tr>
+<tr class="separator:a2a81370b827f9a8e447e40808d8cce6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc2b6adeb49260001cc5d93a9b92d3eb"><td class="memItemLeft" align="right" valign="top">virtual NbRestExecutor *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#adc2b6adeb49260001cc5d93a9b92d3eb">PopRestExecutor</a> ()</td></tr>
+<tr class="memdesc:adc2b6adeb49260001cc5d93a9b92d3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">REST Executor 取り出し.  <a href="#adc2b6adeb49260001cc5d93a9b92d3eb">[詳細]</a><br/></td></tr>
+<tr class="separator:adc2b6adeb49260001cc5d93a9b92d3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a4253ec325b3000f64c1bc99686ee6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#ae0a4253ec325b3000f64c1bc99686ee6">PushRestExecutor</a> (NbRestExecutor *executor)</td></tr>
+<tr class="memdesc:ae0a4253ec325b3000f64c1bc99686ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">REST Executor 返却.  <a href="#ae0a4253ec325b3000f64c1bc99686ee6">[詳細]</a><br/></td></tr>
+<tr class="separator:ae0a4253ec325b3000f64c1bc99686ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b6e908916912770ade342c977635743"><td class="memItemLeft" align="right" valign="top">NbHttpRequestFactory&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a7b6e908916912770ade342c977635743">GetHttpRequestFactory</a> ()</td></tr>
+<tr class="memdesc:a7b6e908916912770ade342c977635743"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTPリクエストファクトリ取得.  <a href="#a7b6e908916912770ade342c977635743">[詳細]</a><br/></td></tr>
+<tr class="separator:a7b6e908916912770ade342c977635743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a700a78c14fc4df275e2dd7e876c2e730"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbService.html#a700a78c14fc4df275e2dd7e876c2e730">ExecuteCommon</a> (std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, std::function&lt; <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a> &gt;(NbRestExecutor *, const NbHttpRequest &amp;)&gt; executor_method)</td></tr>
+<tr class="memdesc:a700a78c14fc4df275e2dd7e876c2e730"><td class="mdescLeft">&#160;</td><td class="mdescRight">REST実行(共通処理).  <a href="#a700a78c14fc4df275e2dd7e876c2e730">[詳細]</a><br/></td></tr>
+<tr class="separator:a700a78c14fc4df275e2dd7e876c2e730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">説明</h2>
+<div class="textblock"><p>MBaaS サービスクラス. </p>
+<p>MBaaS 機能を提供するメインクラス. </p>
+</div><h2 class="groupheader">コンストラクタとデストラクタ</h2>
+<a class="anchor" id="a93ff35d926ab3c419d17ee9d984f82b6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual necbaas::NbService::~NbService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>デストラクタ. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2a81370b827f9a8e447e40808d8cce6a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbService::NbService </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>endpoint_url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>tenant_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>app_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>app_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>proxy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンストラクタ. </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数</h2>
+<a class="anchor" id="a1c012d9a49044d8ae65fdd85dc88a769"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbService::ClearSessionToken </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="aebac5bb11e8b3d8361ff88e2c9b1d2bf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::shared_ptr&lt;<a class="el" href="classnecbaas_1_1NbService.html">NbService</a>&gt; necbaas::NbService::CreateService </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>endpoint_url</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>tenant_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>app_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>app_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>proxy</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>サービスインスタンス生成. </p>
+<p>サービスインスタンスは、本メソッドを使用して取得する. proxy以外のパラメータは必須である。必須パラメータが空文字の場合はREST実行時にエラーが発生する。 proxyに空文字を設定した場合はProxyを使用しない。Proxyを使用する場合は必ず設定すること。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">endpoint_url</td><td>Endpoint URI </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tenant_id</td><td>テナントID </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">app_id</td><td>アプリケーションID </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">app_key</td><td>アプリケーションキー </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">proxy</td><td>Proxy URL "[scheme]://[hostname]:[port]"<br/>
+ デフォルト：Proxy無効(空文字)<br/>
+ 例）"http://proxyhost:8080" </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>サービスインスタンス </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a700a78c14fc4df275e2dd7e876c2e730"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt;<a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a>&gt; necbaas::NbService::ExecuteCommon </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>create_request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a> &gt;(NbRestExecutor *, const NbHttpRequest &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>executor_method</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>REST実行(共通処理). </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">create_request</td><td>HTTPリクエスト作成関数ポインタ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">executor_method</td><td>Executor関数ポインタ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>処理結果 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4aa14f7e54ff1db7abf2469683568c33"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt;<a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a>&gt; necbaas::NbService::ExecuteFileDownload </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>create_request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="a219b275bcc16cee1bdc73e4205d24c8b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt;<a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a>&gt; necbaas::NbService::ExecuteFileUpload </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>create_request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>file_path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="aa65ed8effd5ea45971865c0e28ea0866"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt;<a class="el" href="classnecbaas_1_1NbHttpResponse.html">NbHttpResponse</a>&gt; necbaas::NbService::ExecuteRequest </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>create_request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="a4a30c78f1d353b6848d48d34543ba693"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbService::GetAppId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>アプリケーションID取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>アプリケーションID </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a684b6ae8d00889d4a1213ef5cdeed1f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbService::GetAppKey </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>アプリケーションキー取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>アプリケーションキー </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae576ff3bb0b9d0c33ce79b768222741b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbService::GetEndpointUrl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Endpoint URI 取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>Endpoint URI </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7b6e908916912770ade342c977635743"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NbHttpRequestFactory necbaas::NbService::GetHttpRequestFactory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>HTTPリクエストファクトリ取得. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">executor</td><td>RESTタイムアウト(秒) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>リクエストファクトリ </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a890750231aba822b0da46d6be745ad8c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbService::GetProxy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Proxy URL取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>Proxy URL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a09a52b08f2485f10bc595530d86a9b8d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NbSessionToken necbaas::NbService::GetSessionToken </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="a86316d1d057d0fde76e6f763f9c58d20"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbService::GetTenantId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>テナントID取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>テナントID </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adc2b6adeb49260001cc5d93a9b92d3eb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual NbRestExecutor* necbaas::NbService::PopRestExecutor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>REST Executor 取り出し. </p>
+<dl class="section return"><dt>戻り値</dt><dd>REST Executor </dd></dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">nullptr以外</td><td>取得成功 </td></tr>
+    <tr><td class="paramname">nullptr</td><td>同時接続数オーバー </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae0a4253ec325b3000f64c1bc99686ee6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void necbaas::NbService::PushRestExecutor </td>
+          <td>(</td>
+          <td class="paramtype">NbRestExecutor *&#160;</td>
+          <td class="paramname"><em>executor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>REST Executor 返却. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">executor</td><td>REST Executor </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa921c76e7c4417be564c8ad1db620732"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void necbaas::NbService::SetDebugLogEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ロギング設定（デバッグログ）. </p>
+<p>プロセス内の全サービスに対して設定される。<br/>
+ default設定: Debug版: 有効、Release版: 無効 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>true:有効／false:無効 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abf62410da7df2f6456ec253716e83884"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void necbaas::NbService::SetErrorLogEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ロギング設定（エラーログ）. </p>
+<p>プロセス内の全サービスに対して設定される。<br/>
+ default設定: Debug版: 有効、Release版: 無効 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>true:有効／false:無効 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a06813f72cda3a6716f8bed9f18a53a4d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void necbaas::NbService::SetRestLogEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ロギング設定（RESTログ）. </p>
+<p>プロセス内の全サービスに対して設定される。<br/>
+ default設定: Debug版: 有効、Release版: 無効 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>true:有効／false:無効 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a841fb7af9cf33baabc499b9865cb8aad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void necbaas::NbService::SetSessionToken </td>
+          <td>(</td>
+          <td class="paramtype">const NbSessionToken &amp;&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="nb__service_8h_source.html">nb_service.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

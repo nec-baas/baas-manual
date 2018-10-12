@@ -1,0 +1,64 @@
+.. _swift:
+
+==============
+Swift の利用
+==============
+
+.. include:: ../common/linkdef.rst
+
+概要
+----
+
+Swift から Nebula API を利用することができます。
+利用可能な Swift のバージョンは 3 以上です。
+
+iOS SDK は Objective-C で記述されているため、Swift から呼び出すためには Bridging Header をプロジェクトに追加する必要があります。
+Briding Header からは Nebula.h ヘッダを import してください。
+
+詳細は `Using Swift with Cocoa and Objective-C`_ を参照してください。
+
+名前の変換規則
+--------------
+
+Swift から Nebula API を呼び出す際は、Swift3 の規則に従ったメソッド名の
+自動変換が行われます。
+
+また、一部のメソッドについては個別に Swift の名称を定義しています。
+詳細は SDK の各ヘッダ内に NS_SWIFT_NAME マクロで記述していますので、
+こちらを参照してください。
+
+また、'block:' 引数ラベルはすべて 'completion:' ラベルに変更していますので
+注意してください。
+
+以下に変換例を示します。
+
+.. code-block:: objective-c
+
+    // 変換前(Objective-C)
+    [NBCore setUpWithAppId:@"appId" appKey:@"appKey" tenantId:@"tenantId"];
+    [NBCore setEndPointUri:@"http://example.com/api"];
+
+    NBObjectBucket *bucket = [[NBObjectBucket alloc] initWithBucketName: @"bucket1"];
+    
+    NBQuery *query = [NBQuery new];
+    [query setSortOrderWithKey:@"updatedAt" isAscend:YES];
+
+    [bucket queryInBackgroundWithQuery:query block:^(NSArray *objects, NSUInteger count, NSError *error) {
+        ...
+    }];
+
+.. code-block:: swift
+
+    // 変換後(Swift3)
+    NBCore.setUp(appId:"appId" appKey:"appKey" tenantId:"tenantId")
+    NBCore.set(endPointUri:"http://example.com/api")
+
+    let bucket = NBObjectBucket(bucketName: "bucket1")
+
+    let query = NBQuery()
+    query.setSortOrder(key:"updatedAt" isAscend:true)
+
+    bucket.queryInBackground(query: query, completion: {objects, count, error in
+        ...
+    })    
+    

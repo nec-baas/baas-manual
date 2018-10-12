@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. インストール手順 &mdash; Embedded SDK Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. 初期化処理の実装" href="initialize.html" />
+    <link rel="prev" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Embedded SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. インストール手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">2.1. 手順概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">2.2. 事前準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nec-baas-embedded-sdk">2.3. NEC BaaS Embedded SDK 配布物の内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodule-label">2.4. サブモジュールの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">2.5. ライブラリの生成: ターゲットデバイス上で直接コンパイルする場合</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id25">2.5.1. インストール先ディレクトリ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#raspberry-pi">2.6. ライブラリの生成: Raspberry Pi向けクロスコンパイルの場合</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id26">2.6.1. ツールチェーンの取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">2.6.2. Raspberry Pi のルートファイルシステムのコピー</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake">2.6.3. クロスコンパイル用cmakeファイルの編集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">2.6.4. ビルド実行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Embedded SDK の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">6. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">7. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">9. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Embedded SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. インストール手順</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sdk-setup">
+<span id="id20"></span><h1>2. インストール手順<a class="headerlink" href="#sdk-setup" title="Permalink to this headline">¶</a></h1>
+<p>ここでは、NEC BaaS Embedded SDK をインストールする手順について説明します。</p>
+<div class="section" id="id21">
+<h2>2.1. 手順概要<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>Embedded SDK を利用する場合、1) ターゲットデバイス上で直接コンパイルする、2) 別のホストでクロスコンパイルする、の2通りの方法があります。</p>
+<p>方法 1) を利用する場合は、ターゲットデバイスの OS 上にコンパイラなどのツールをインストールし、
+Embedded SDK のソースを展開してビルドしてヘッダとライブラリをターゲットOS上にインストールします。
+アプリケーションもターゲットデバイス上でビルドする形になります。</p>
+<p>方法 2) を利用する場合は、ホストマシン上にクロスコンパイラを導入しておき、
+Embedded SDK のソースをクロスコンパイルし、ライブラリをクロスコンパイル環境とターゲットOS上にインストールします。
+アプリケーションはターゲット上で直接コンパイルするか、ホストマシン上でクロスコンパイルすることになります。</p>
+</div>
+<div class="section" id="id22">
+<h2>2.2. 事前準備<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>Embedded SDK のビルドを行うため、いくつかコンポーネントをインストールします。</p>
+<p>ターゲットデバイスには以下のコンポーネントをインストールしてください。</p>
+<ul class="simple">
+<li>libcurl-devel 7.19以降</li>
+</ul>
+<p>ターゲットデバイス上で直接コンパイルする場合は、以下のコンポーネントもターゲットにインストールしてください。</p>
+<ul class="simple">
+<li>gcc/g++ 4.7 以降 (C++11をサポートすること)</li>
+<li>CMake 3.1 以降</li>
+</ul>
+<p><a class="reference internal" href="#submodule-label"><span class="std std-ref">サブモジュールの取得</span></a> の章にある依存ライブラリの取得を行う必要があるため、以下も合わせてインストールしてください。
+ライブラリ取得済みの環境一式をコピーして使用する場合は不要です。</p>
+<ul class="simple">
+<li>git 1.8以降</li>
+</ul>
+<p>CentOS を使用している場合は、yumを使用してインストールすることができます。
+その他のOSでは apt などのパッケージ管理システムを使用して同様に必要なツールを取得して下さい。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo yum install gcc gcc-c++
+$ sudo yum --enablerepo<span class="o">=</span>epel install cmake3
+$ sudo yum install libcurl-devel
+$ sudo yum install git
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">リポジトリに登録されているgccのバージョンが古い場合、以下の手順で更新してください。</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -version
+gcc <span class="o">(</span>GCC<span class="o">)</span> <span class="m">4</span>.4.7 <span class="m">20120313</span> <span class="o">(</span>Red Hat <span class="m">4</span>.4.7-18<span class="o">)</span>
+
+$ <span class="nb">cd</span> /etc/yum.repos.d
+$ sudo wget http://people.centos.org/tru/devtools-2/devtools-2.repo
+$ sudo yum install devtoolset-2-gcc
+$ sudo yum install devtoolset-2-binutils
+$ sudo yum install devtoolset-2-gcc-c++
+
+<span class="c1"># 以下コマンドで更新したgccを使用するようになります。</span>
+<span class="c1"># ログアウト後は以前のgccを参照するため、必要に応じて~/.bash_profile などに追記してください。</span>
+$ scl <span class="nb">enable</span> devtoolset-2 bash
+
+$ gcc -version
+gcc <span class="o">(</span>GCC<span class="o">)</span> <span class="m">4</span>.8.2 <span class="m">20140120</span> <span class="o">(</span>Red Hat <span class="m">4</span>.8.2-15<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nec-baas-embedded-sdk">
+<h2>2.3. NEC BaaS Embedded SDK 配布物の内容<a class="headerlink" href="#nec-baas-embedded-sdk" title="Permalink to this headline">¶</a></h2>
+<p>NEC BaaS Embedded SDK 配布物には、以下のフォルダで構成されています。
+使用する環境下でビルドし、生成したライブラリをプロジェクトに組み込みます。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>doc/              - ドキュメント生成用の設定ファイル
+functional_test/  - 機能試験コード
+libs/             - 依存ライブラリのサブモジュール
+src/              - SDKのコード
+unit_tests/       - 単体試験コード
+CMakeLists.txt    - CMake用のビルド用設定ファイル
+README.md         - 配布物の説明、ビルド手順
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">ソースコード提供のため、コードの改変、サポート外のプラットフォームでも動作可能ですが、サポート対象外となりますのでご注意ください。</p>
+</div>
+</div>
+<div class="section" id="submodule-label">
+<span id="id23"></span><h2>2.4. サブモジュールの取得<a class="headerlink" href="#submodule-label" title="Permalink to this headline">¶</a></h2>
+<p>NEC BaaS Embedded SDKは以下のOSSライブラリを使用します。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/nlohmann/json">JsonCpp</a></li>
+<li><a class="reference external" href="https://github.com/jpbarrette/curlpp">cURLpp</a></li>
+<li><a class="reference external" href="https://github.com/muflihun/easyloggingpp">Easylogging++</a></li>
+</ul>
+<p>NEC BaaS Embedded SDKでは、前述の依存ライブラリをgit submoduleとして管理しています。
+ビルドの前に、サブモジュールの取得を行います。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ submodule update
+</pre></div>
+</div>
+<p>ホストで事前にsubmoduleを取得し、ターゲットにリポジトリをコピーしても問題ありません。</p>
+</div>
+<div class="section" id="id24">
+<h2>2.5. ライブラリの生成: ターゲットデバイス上で直接コンパイルする場合<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<p>プロジェクトフォルダにビルド用のディレクトリを作成し、移動します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir build
+$ <span class="nb">cd</span> build
+</pre></div>
+</div>
+<p>その後cmakeを使用してMakefileを生成します。
+対象のCMakeLists.txtは親ディレクトリのファイルを指定します。
+この時、-DCMAKE_BUILD_TYPE=Debug または Releaseを指定することで、デバッグ用/リリース用のライブラリを切り替えることができます。
+またIntel 32bitプロセッサ環境を使用する場合は、-DIA32オプションを追加します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake3 -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug ../
+</pre></div>
+</div>
+<p>CMakeでライブラリや環境のチェックが行われます。
+エラーが発生した場合はメッセージの内容に従い、apt-get,yum等で必要なリソースをインストールしてから、再度コマンドを実行してください。</p>
+<p>成功した場合、カレントディレクトリにMakefileが生成されますので、以下コマンドでビルドします。
+jオプションはコンパイルする環境に応じて調整してください。</p>
+<p>またinstallには管理者権限が必要です。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make -j4
+$ sudo make install
+</pre></div>
+</div>
+<div class="section" id="id25">
+<h3>2.5.1. インストール先ディレクトリ<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>デフォルトのインストール先ディレクトリを記載します。
+詳細はinstall時のログのファイル一覧を参照ください。</p>
+<p>これらのヘッダファイルのインクルード、ライブラリのリンクを行い、NEC BaaS Embedded SDKを使用したアプリケーションの開発を行います。</p>
+<p><strong>NEC Baas Embedded SDK関連ヘッダ</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">necbaas</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>cURLpp 関連ヘッダ</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">utilspp</span><span class="o">/</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">curlpp</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>JsonCpp関連ヘッダ</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">include</span><span class="o">/</span><span class="n">json</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>NEC Baas Embedded SDKライブラリ</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libembeddedsdk</span><span class="o">.</span><span class="n">so</span>
+</pre></div>
+</div>
+<p><strong>cURLppライブラリ</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libcurlpp</span><span class="o">.</span><span class="n">so</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">static</span><span class="o">/</span><span class="n">libcurlpp_static</span><span class="o">.</span><span class="n">a</span>
+</pre></div>
+</div>
+<p><strong>JsonCppライブラリ</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libjsoncpp</span><span class="o">.</span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="raspberry-pi">
+<h2>2.6. ライブラリの生成: Raspberry Pi向けクロスコンパイルの場合<a class="headerlink" href="#raspberry-pi" title="Permalink to this headline">¶</a></h2>
+<p>Raspberry Pi向けのクロスコンパイル手順を記載します。</p>
+<div class="section" id="id26">
+<h3>2.6.1. ツールチェーンの取得<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<p>クロスコンパイル用の <a class="reference external" href="https://github.com/raspberrypi/tools">ツールチェーン</a> を取得します。</p>
+<p>ここでは$HOME/raspberrypi にcloneを行います。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir <span class="nv">$HOME</span>/raspberrypi
+$ <span class="nb">cd</span> <span class="nv">$HOME</span>/raspberrypi
+$ git clone https://github.com/raspberrypi/tools.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h3>2.6.2. Raspberry Pi のルートファイルシステムのコピー<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>依存ライブラリやヘッダファイルを参照するために、raspberrypi本体から /lib/usr をコピーします。 ツールチェーンの中にも sysroot が用意されていますが、libcurl等のライブラリが含まれないためファイルコピーを行います。</p>
+<p>なお、事前準備に記載したとおり、libcurl-devel などのライブラリは事前にターゲット上にインストールしておく必要があります。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ rsync -rl --delete-after --safe-links pi@<span class="o">[</span>ip_addr<span class="o">]</span>:/<span class="o">{</span>lib,usr<span class="o">}</span> <span class="nv">$HOME</span>/raspberrypi/rootfs
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">ip_addr: pi&#64;[ip_addr] の部分は、raspberrypi側の設定に合わせます。</p>
+</div>
+</div>
+<div class="section" id="cmake">
+<h3>2.6.3. クロスコンパイル用cmakeファイルの編集<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
+<p>ツールチェーンのインストールディレクトリ、rootfsの展開先に合わせてSDKビルド環境の cross/raspberrypi/pi.cmake を編集します。上記手順の通りであれば修正は不要です。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>set(RASPBERRYPI_ROOT $ENV{HOME}/raspberrypi)
+set(RASPBERRYPI_TOOLCHAIN ${RASPBERRYPI_ROOT}/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf)
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h3>2.6.4. ビルド実行<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p>cmake実行時にクロスコンパイル用cmakeファイルを指定します。以下の定義を追加して実行します。</p>
+<p>-DCMAKE_TOOLCHAIN_FILE=[SDKビルド環境]/cross/raspberrypi/pi.cmake</p>
+<p>実行例</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake3 -DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>../cross/raspberrypi/pi.cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span>out ../
+</pre></div>
+</div>
+<p>成功するとMakefileが生成されます。 ネイティブ環境と同様にmakeを実行し、ライブラリを生成します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make -j4
+$ make install
+</pre></div>
+</div>
+<p>CMAKE_INSTALL_PREFIXに指定したディレクトリにRaspberry Pi用のライブラリが生成されます。 これらを対象の端末にコピーして使用します。</p>
+<p>/usr/local/lib等のシステムディレクトリ、もしくは環境変数LD_LIBRARY_PATHに含まれるディレクトリにコピーすると、通常のライブラリと同様に参照が可能となります。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="initialize.html" class="btn btn-neutral float-right" title="3. 初期化処理の実装" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="1. はじめに" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

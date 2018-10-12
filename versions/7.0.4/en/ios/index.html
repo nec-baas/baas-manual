@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS iOS SDK Guide &mdash; iOS SDK Guide 5.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> iOS SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                5.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS iOS API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https.html">9. HTTPS通信について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swift.html">10. Swift の利用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">iOS SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS iOS SDK Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-ios-sdk-guide">
+<h1>NEC BaaS iOS SDK Guide<a class="headerlink" href="#nec-baas-ios-sdk-guide" title="Permalink to this headline">¶</a></h1>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">本 iOS SDK は現時点ではβ品質であり、AS IS で提供するものです。
+現時点で品質保証はしておりませんので、ご注意ください。</p>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#id20">2.1. 事前準備</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#id21">2.2. SDK 配布物の内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#id22">2.3. SDKの追加手順</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="initialize.html#import">3.1. ヘッダファイルの import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialize.html#id2">3.2. 初期化処理</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS iOS API の基本</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basics.html#id1">4.1. 非同期呼び出し</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id2">5.1. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id3">5.2. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id4">5.3. ログイン状態の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id5">5.4. ログアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html#id6">5.5. パスワードリセット</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id2">6.1. グループの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id3">6.2. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id4">6.3. グループの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id5">6.4. グループ一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id6">6.5. グループの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html#id7">6.6. グループの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id2">7.1. オブジェクトの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id3">7.2. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id4">7.3. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id8">7.4. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html#id9">7.5. オブジェクトの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id2">8.1. ファイルの新規アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id3">8.2. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id4">8.3. ファイル一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id5">8.4. ファイルのダウンロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html#id6">8.5. ファイルの公開</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https.html">9. HTTPS通信について</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="https.html#id1">9.1. 自己署名証明書</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="swift.html">10. Swift の利用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="swift.html#id21">10.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swift.html#id22">10.2. 名前の変換規則</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-3-0-0-5-0-0">11.1. ver 3.0.0 → 5.0.0 での変更点</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. はじめに" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'5.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+.. include:: ../common/linkdef.rst
+
+.. _sdk_setup:
+
+===================
+インストール手順
+===================
+
+ここでは、NEC BaaS Embedded SDK をインストールする手順について説明します。
+
+手順概要
+--------
+
+Embedded SDK を利用する場合、1) ターゲットデバイス上で直接コンパイルする、2) 別のホストでクロスコンパイルする、の2通りの方法があります。
+
+方法 1) を利用する場合は、ターゲットデバイスの OS 上にコンパイラなどのツールをインストールし、
+Embedded SDK のソースを展開してビルドしてヘッダとライブラリをターゲットOS上にインストールします。
+アプリケーションもターゲットデバイス上でビルドする形になります。
+
+方法 2) を利用する場合は、ホストマシン上にクロスコンパイラを導入しておき、
+Embedded SDK のソースをクロスコンパイルし、ライブラリをクロスコンパイル環境とターゲットOS上にインストールします。
+アプリケーションはターゲット上で直接コンパイルするか、ホストマシン上でクロスコンパイルすることになります。
+
+事前準備
+--------
+
+Embedded SDK のビルドを行うため、いくつかコンポーネントをインストールします。
+
+ターゲットデバイスには以下のコンポーネントをインストールしてください。
+
+* libcurl-devel 7.19以降
+
+ターゲットデバイス上で直接コンパイルする場合は、以下のコンポーネントもターゲットにインストールしてください。
+
+* gcc/g++ 4.7 以降 (C++11をサポートすること)
+* CMake 3.1 以降
+
+:ref:`submodule-label` の章にある依存ライブラリの取得を行う必要があるため、以下も合わせてインストールしてください。
+ライブラリ取得済みの環境一式をコピーして使用する場合は不要です。
+
+* git 1.8以降
+
+CentOS を使用している場合は、yumを使用してインストールすることができます。
+その他のOSでは apt などのパッケージ管理システムを使用して同様に必要なツールを取得して下さい。
+
+.. code-block:: bash
+  
+    $ sudo yum install gcc gcc-c++
+    $ sudo yum --enablerepo=epel install cmake3
+    $ sudo yum install libcurl-devel
+    $ sudo yum install git
+
+.. note ::
+
+    リポジトリに登録されているgccのバージョンが古い場合、以下の手順で更新してください。
+
+.. code-block:: bash
+ 
+   $ gcc -version
+   gcc (GCC) 4.4.7 20120313 (Red Hat 4.4.7-18)
+
+   $ cd /etc/yum.repos.d
+   $ sudo wget http://people.centos.org/tru/devtools-2/devtools-2.repo
+   $ sudo yum install devtoolset-2-gcc
+   $ sudo yum install devtoolset-2-binutils
+   $ sudo yum install devtoolset-2-gcc-c++        
+
+   # 以下コマンドで更新したgccを使用するようになります。
+   # ログアウト後は以前のgccを参照するため、必要に応じて~/.bash_profile などに追記してください。
+   $ scl enable devtoolset-2 bash
+
+   $ gcc -version
+   gcc (GCC) 4.8.2 20140120 (Red Hat 4.8.2-15)
+
+
+NEC BaaS Embedded SDK 配布物の内容
+-------------------------------------
+
+NEC BaaS Embedded SDK 配布物には、以下のフォルダで構成されています。
+使用する環境下でビルドし、生成したライブラリをプロジェクトに組み込みます。
+
+.. code-block:: text
+
+  doc/              - ドキュメント生成用の設定ファイル
+  functional_test/  - 機能試験コード
+  libs/             - 依存ライブラリのサブモジュール
+  src/              - SDKのコード
+  unit_tests/       - 単体試験コード
+  CMakeLists.txt    - CMake用のビルド用設定ファイル
+  README.md         - 配布物の説明、ビルド手順
+
+.. warning:: 
+
+   ソースコード提供のため、コードの改変、サポート外のプラットフォームでも動作可能ですが、サポート対象外となりますのでご注意ください。
+
+.. _submodule-label:
+
+サブモジュールの取得
+--------------------
+
+NEC BaaS Embedded SDKは以下のOSSライブラリを使用します。
+
+* `JsonCpp`_
+* `cURLpp`_
+* `Easylogging++`_
+
+NEC BaaS Embedded SDKでは、前述の依存ライブラリをgit submoduleとして管理しています。
+ビルドの前に、サブモジュールの取得を行います。
+
+.. code-block:: bash
+
+    $ submodule update
+
+ホストで事前にsubmoduleを取得し、ターゲットにリポジトリをコピーしても問題ありません。
+
+
+ライブラリの生成: ターゲットデバイス上で直接コンパイルする場合
+--------------------------------------------------------------
+
+プロジェクトフォルダにビルド用のディレクトリを作成し、移動します。
+
+.. code-block:: bash
+
+    $ mkdir build
+    $ cd build
+
+その後cmakeを使用してMakefileを生成します。
+対象のCMakeLists.txtは親ディレクトリのファイルを指定します。
+この時、-DCMAKE_BUILD_TYPE=Debug または Releaseを指定することで、デバッグ用/リリース用のライブラリを切り替えることができます。
+またIntel 32bitプロセッサ環境を使用する場合は、-DIA32オプションを追加します。
+
+.. code-block:: bash
+
+    $ cmake3 -DCMAKE_BUILD_TYPE=Debug ../
+
+CMakeでライブラリや環境のチェックが行われます。
+エラーが発生した場合はメッセージの内容に従い、apt-get,yum等で必要なリソースをインストールしてから、再度コマンドを実行してください。
+
+成功した場合、カレントディレクトリにMakefileが生成されますので、以下コマンドでビルドします。
+jオプションはコンパイルする環境に応じて調整してください。
+
+またinstallには管理者権限が必要です。
+
+.. code-block:: bash
+
+    $ make -j4
+    $ sudo make install
+
+
+インストール先ディレクトリ
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+デフォルトのインストール先ディレクトリを記載します。
+詳細はinstall時のログのファイル一覧を参照ください。
+
+これらのヘッダファイルのインクルード、ライブラリのリンクを行い、NEC BaaS Embedded SDKを使用したアプリケーションの開発を行います。
+
+
+**NEC Baas Embedded SDK関連ヘッダ**
+
+:: 
+
+    /usr/local/include/necbaas/
+
+**cURLpp 関連ヘッダ**
+
+::
+
+    /usr/local/include/utilspp/
+    /usr/local/include/curlpp/
+
+**JsonCpp関連ヘッダ**
+
+::
+
+    /usr/local/include/json/
+
+
+**NEC Baas Embedded SDKライブラリ**
+
+::
+
+    /usr/local/lib/libembeddedsdk.so
+
+
+**cURLppライブラリ**
+
+::
+
+    /usr/local/lib/libcurlpp.so
+    /usr/local/lib/static/libcurlpp_static.a    
+
+**JsonCppライブラリ**
+
+::
+
+    /usr/local/lib/libjsoncpp.a
+
+
+ライブラリの生成: Raspberry Pi向けクロスコンパイルの場合
+--------------------------------------------------------
+
+Raspberry Pi向けのクロスコンパイル手順を記載します。
+
+ツールチェーンの取得
+^^^^^^^^^^^^^^^^^^^^
+
+クロスコンパイル用の `ツールチェーン`_ を取得します。
+
+ここでは$HOME/raspberrypi にcloneを行います。
+
+.. code-block:: bash
+
+    $ mkdir $HOME/raspberrypi
+    $ cd $HOME/raspberrypi
+    $ git clone https://github.com/raspberrypi/tools.git
+
+Raspberry Pi のルートファイルシステムのコピー
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+依存ライブラリやヘッダファイルを参照するために、raspberrypi本体から /lib/usr をコピーします。 ツールチェーンの中にも sysroot が用意されていますが、libcurl等のライブラリが含まれないためファイルコピーを行います。
+
+なお、事前準備に記載したとおり、libcurl-devel などのライブラリは事前にターゲット上にインストールしておく必要があります。
+
+.. code-block:: bash
+   
+    $ rsync -rl --delete-after --safe-links pi@[ip_addr]:/{lib,usr} $HOME/raspberrypi/rootfs
+
+.. note::
+
+   ip_addr: pi@[ip_addr] の部分は、raspberrypi側の設定に合わせます。
+
+
+クロスコンパイル用cmakeファイルの編集
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ツールチェーンのインストールディレクトリ、rootfsの展開先に合わせてSDKビルド環境の cross/raspberrypi/pi.cmake を編集します。上記手順の通りであれば修正は不要です。
+
+.. code-block:: text
+
+    set(RASPBERRYPI_ROOT $ENV{HOME}/raspberrypi)
+    set(RASPBERRYPI_TOOLCHAIN ${RASPBERRYPI_ROOT}/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf)
+
+ビルド実行
+^^^^^^^^^^^
+
+cmake実行時にクロスコンパイル用cmakeファイルを指定します。以下の定義を追加して実行します。
+
+-DCMAKE_TOOLCHAIN_FILE=[SDKビルド環境]/cross/raspberrypi/pi.cmake
+
+実行例
+
+.. code-block:: bash
+
+    cmake3 -DCMAKE_TOOLCHAIN_FILE=../cross/raspberrypi/pi.cmake -DCMAKE_INSTALL_PREFIX=out ../
+
+成功するとMakefileが生成されます。 ネイティブ環境と同様にmakeを実行し、ライブラリを生成します。
+
+.. code-block:: bash
+   
+    $ make -j4
+    $ make install
+
+CMAKE_INSTALL_PREFIXに指定したディレクトリにRaspberry Pi用のライブラリが生成されます。 これらを対象の端末にコピーして使用します。
+
+/usr/local/lib等のシステムディレクトリ、もしくは環境変数LD_LIBRARY_PATHに含まれるディレクトリにコピーすると、通常のライブラリと同様に参照が可能となります。
+

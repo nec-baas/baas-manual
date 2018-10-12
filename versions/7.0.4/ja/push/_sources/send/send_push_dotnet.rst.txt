@@ -1,0 +1,94 @@
+.. _send_push_dotnet:
+
+=========================================================
+クライアントからのPush送信方法 (.NET 編)
+=========================================================
+
+.NET SDK からのプッシュ送信方法を説明します．
+
+Push送信方法
+============
+
+``NbPush`` オブジェクトを作成し、 ``sendPush`` メソッドを呼ぶことで、プッシュを送信できます。
+
+以下にコード例を示します。
+
+この例では、下記のようなプッシュを送ります。
+
+- ``TerminalInfo`` チャネルを購読中のインスタレーションを宛先とします。
+- 受信者を、営業グループ( ``g:eigyo`` )と、企画グループ( ``g:kikaku`` )に限定します。
+- メッセージとして、 ``"Low battery."`` を送ります。
+
+宛先を「インスタレーションを選択するためのクエリ」として作成するのがポイントです。
+(クエリの詳細については、 `オブジェクトのクエリ`_ を参照して下さい)
+
+.. _`オブジェクトのクエリ`: ../../dotnet/object_storage.html
+
+.. code-block:: csharp
+
+    var push = new NbPush();
+
+    // 宛先を作成する
+    var query = new NbQuery();
+    query.EqualTo("_channels", "TerminalInfo");
+
+    // 宛先をセットする
+    push.Query = query;
+
+    // 受信者をセットする
+    push.AllowedReceivers = new HashSet<string>{"g:eigyo", "g:kikaku"}; 
+
+    // メッセージをセットする
+    push.Message = "Low battery.";
+
+    // Pushを送信する
+    var result = await push.SendAsync();
+    // result には、宛先として選択されたインスタレーションの数が格納されている
+
+
+オプションパラメータ設定方法
+============================
+
+GCM, APNs, SSEの各プッシュテクノロジ特有の，オプションパラメータは下記のように設定して下さい.
+
+GCMの場合
+---------
+
+.. code-block:: csharp
+
+    var gcm = new NbGcmFields();
+    gcm.Title = "title";
+    gcm.Uri = "http://www.nebula.test.com";
+
+    var push = new NbPush();
+    push.GcmFields = gcm;
+
+
+APNsの場合
+----------
+
+.. code-block:: csharp
+
+    var apns = new NbApnsFields();
+    apns.Badge = 5;
+    apns.Sound = "sound.aiff";
+    apns.ContentAvailable = 1;
+    apns.Category = "information";
+
+    var push = new NbPush();
+    push.ApnsFields = apns;
+
+
+SSEの場合
+---------
+
+.. code-block:: csharp
+
+    var sse = new SseFields();
+    sse.EventId = "event01";
+    sse.EventType = "message";
+
+    var push = new NbPush();
+    push.SseFields = sse;
+
+

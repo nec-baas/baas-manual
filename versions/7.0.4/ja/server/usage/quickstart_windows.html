@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.4. クイックスタート (Windows Server 2016) &mdash; Server User Guide 7.0.4 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3.5. ライセンス認証" href="license_auth.html" />
+    <link rel="prev" title="3.3. クイックスタート (RHEL 7, CentOS 7)" href="quickstart_rhel.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. 基本利用手順</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">3.1. 用語の定義</a></li>
+<li class="toctree-l2"><a class="reference internal" href="requirement.html">3.2. 必要環境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart_rhel.html">3.3. クイックスタート (RHEL 7, CentOS 7)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. クイックスタート (Windows Server 2016)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">3.4.1. 制限事項</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">3.4.2. 構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#os">3.4.3. 動作確認環境のOSとソフトウェア</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">3.4.4. 前準備</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#db-mongodb">3.4.5. DBサーバ(MongoDB)の構築</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id23">MongoDB のダウンロードとインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">データとログファイルの格納先を作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">MongoDB設定ファイルを作成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mongodb-windows">MongoDBを Windows のサービスに登録</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27">MongoDB の起動</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#firewall">Firewall の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">3.4.6. Tomcat のインストール</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#jdk8">JDK8 のインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">Tomcat のインストール</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tomcat-server-xml">Tomcat server.xml の設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#baas">BaaSサーバ設定ファイルの格納</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tomcat-windows">Tomcat を Windows のサービスとして登録</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">Tomcat 設定</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">Tomcat の起動</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">Firewall 設定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">3.4.7. BaaS サーバのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">3.4.8. 動作確認</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id35">デベロッパコンソールサーバの動作確認</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api">APIサーバの動作確認</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="license_auth.html">3.5. ライセンス認証</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html">3.6. APサーバへのデプロイ・起動手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devconsole.html">3.7. デベロッパーコンソール利用手順</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configure/index.html">4. コンフィグレーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">3. 基本利用手順</a> &raquo;</li>
+        
+      <li>3.4. クイックスタート (Windows Server 2016)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="windows-server-2016">
+<h1>3.4. クイックスタート (Windows Server 2016)<a class="headerlink" href="#windows-server-2016" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここでは、BaaS サーバを Windows Server 2016 にインストール・起動する手順を説明します。</p>
+<div class="section" id="id20">
+<h2>3.4.1. 制限事項<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Windows 上で BaaS サーバを動作させる場合、以下の制限事項があります。</p>
+<ul class="simple">
+<li>Cloud Functions は利用できません(動作しません)</li>
+<li>SSE Push サーバは動作しますが、コネクション数上限などで不具合が発生する可能性があるため推奨しません。</li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h2>3.4.2. 構成<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本手順は以下の環境構築を想定しています。</p>
+<ul class="simple">
+<li>1台構成：BaaSサーバとDBサーバ(MongoDB)を1台PC上で動作させる</li>
+<li>2台構成：BaaSサーバとDBサーバ(MongoDB)をそれぞれ別の PC で動作させる</li>
+</ul>
+</div>
+<div class="section" id="os">
+<h2>3.4.3. 動作確認環境のOSとソフトウェア<a class="headerlink" href="#os" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>OS: Windows Server 2016</li>
+<li>JDK: Oracle JDK 8 (Windows x64版)</li>
+<li>MongoDB: 3.6 (Windows x64版)</li>
+<li>Tomcat 8.5</li>
+</ul>
+<p>以下の手順はすべて Windows ServerのAdministratorユーザで実施してください。</p>
+</div>
+<div class="section" id="id22">
+<h2>3.4.4. 前準備<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDB3.0系を使用するためのOSパッチの適用が必要です。
+以下を参照してパッチを適用してください。</p>
+<p><a class="reference external" href="http://support.microsoft.com/kb/2731284">http://support.microsoft.com/kb/2731284</a></p>
+</div>
+<div class="section" id="db-mongodb">
+<h2>3.4.5. DBサーバ(MongoDB)の構築<a class="headerlink" href="#db-mongodb" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDB をインストールしてください。
+詳細手順は以下を参照ください。</p>
+<p><a class="reference external" href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/">https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/</a></p>
+<div class="section" id="id23">
+<h3>MongoDB のダウンロードとインストール<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://www.mongodb.com/community">https://www.mongodb.com/community</a> にアクセスし、Download ⇒ Community Server ⇒ Windows に進んでください。</p>
+<p>プルダウンメニューで Version を選択し、「Download(msi)」をクリックして msi ファイルをダウンロードしてください。</p>
+<p>Version 選択時は、使用する OS に合わせたものを選択してください(無い場合はバージョンが近いものを選択)。
+過去のVersionのMongoDBが必要な場合、 <em>All Version Binaries</em> を選択してファイルをダウンロードします。</p>
+<p>ダウンロードした MSI ファイルをダブルクリックしてインストールしてください。
+インストールフォルダは c:\Program Files\MongoDB\Server\3.6\ などになります。</p>
+<div class="section" id="id24">
+<h4>MongoDB をアップグレードする際の注意事項<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>既存の MongoDB をアップグレードする場合は、以下の注意事項があります。</p>
+<ul class="simple">
+<li>MongoDB 3.2 から直接 MongoDB 3.6 にアップグレードすることはできません。<ul>
+<li>一旦 MongoDB 3.4 にアップグレードし、db.adminCommand の setFeatureCompatibilityVersion を &quot;3.4&quot; に指定して実行する必要があります。</li>
+<li>MongoDB 3.6 にアップグレード後、setFeatureCompatibilityVersion を &quot;3.6&quot; に指定して実行する必要があります。</li>
+</ul>
+</li>
+</ul>
+<p>具体的な手順の詳細は MongoDB の <a class="reference external" href="https://docs.mongodb.com/manual/release-notes/">Release Notes</a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="id25">
+<h3>データとログファイルの格納先を作成<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データ格納用、ログ格納用のディレクトリを作成してください。</p>
+<ul class="simple">
+<li>C:\MongoDB\db</li>
+<li>C:\MongoDB\logs</li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h3>MongoDB設定ファイルを作成<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>C:\MongoDB\ に mongod.cfg という名前で設定ファイルを作成・配置します。
+以下に例を示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">systemLog</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">destination</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">file</span>
+  <span class="l l-Scalar l-Scalar-Plain">logAppend</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">c:\MongoDB\log\mongod.log</span>
+
+<span class="l l-Scalar l-Scalar-Plain">storage</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">dbPath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">c:\MongoDB\db</span>
+  <span class="l l-Scalar l-Scalar-Plain">journal</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wiredTiger</span>
+
+<span class="l l-Scalar l-Scalar-Plain">net</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">27017</span>
+  <span class="l l-Scalar l-Scalar-Plain">bindIp</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>  <span class="c1"># Listen to local interface only, comment to listen on all interfaces.</span>
+</pre></div>
+</div>
+<p>MongoDB を BaaSサーバと別サーバに配置する場合は、
+net.bindIp の設定をコメントアウトするか、マシンのIPアドレスを指定してください。</p>
+</div>
+<div class="section" id="mongodb-windows">
+<h3>MongoDBを Windows のサービスに登録<a class="headerlink" href="#mongodb-windows" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>管理者としてコマンドプロンプトを立ち上げ、以下を実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;C:\Program Files\MongoDB\Server</span><span class="se">\3</span><span class="s2">.6</span><span class="se">\b</span><span class="s2">in\mongod.exe&quot;</span> <span class="o">--</span><span class="n">config</span> <span class="n">c</span><span class="p">:</span>\<span class="n">MongoDB</span>\<span class="n">mongod</span><span class="o">.</span><span class="n">cfg</span> <span class="o">--</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>注: mongo.exe ではなく mongod.exe なので注意してください。</p>
+<p>Windowsのサービス管理画面で、MongoDBがサービスとして登録されたことを確認してください。</p>
+</div>
+<div class="section" id="id27">
+<h3>MongoDB の起動<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>管理者としてコマンドラインを起動し、以下コマンドを指定して起動してください。
+(サービスマネージャーからも起動可能)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="n">start</span> <span class="n">MongoDB</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="firewall">
+<h3>Firewall の設定<a class="headerlink" href="#firewall" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Windows ServerのFireWallから、MongoDBの受信先のIPアドレスとポートを設定します。</p>
+<ul class="simple">
+<li>「コントロールパネル」→「ファイアウォールの状態の確認」→「詳細設定」→「受信の規則」を選択</li>
+<li>画面右上の「新しい規則..」を選択し、下記の設定を行う。<ul>
+<li>規則の種類：カスタム</li>
+<li>プログラム：すべてのプログラム</li>
+<li>プロトコル及びポート<ul>
+<li>プロトコルの種類：TCP</li>
+<li>ローカルポート：27017</li>
+</ul>
+</li>
+<li>スコープ： 「この規則を適用するリモートIPアドレスを選択してください。」 →「これらのIPアドレス」<ul>
+<li>アクセス元となるBaaSサーバのIPアドレスを追加することでアクセス制限をかける。</li>
+</ul>
+</li>
+<li>操作：デフォルトのまま</li>
+<li>プロファイル：デフォルトのまま</li>
+<li>名前：任意（例えば、MongoDB Security Policy）</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>3.4.6. Tomcat のインストール<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="jdk8">
+<h3>JDK8 のインストール<a class="headerlink" href="#jdk8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>JDK8 をインストールします。
+<a class="reference external" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle JDK サイト</a> より Windows x64 版をダウンロードし、セットアップします。</p>
+</div>
+<div class="section" id="id29">
+<h3>Tomcat のインストール<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Tomcat 8.5 をインストールします。</p>
+<p>C:\tomcat8\ ディレクトリを作成し、apache-tomcat-8.5.x-windows-x64.zipを解凍します。
+展開後のパスは（C:\tomcat8\apache-tomcat-8.5.xx）などになります。</p>
+</div>
+<div class="section" id="tomcat-server-xml">
+<h3>Tomcat server.xml の設定<a class="headerlink" href="#tomcat-server-xml" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Tomcat の conf\server.xml を編集します。</p>
+<p>下記のように、HTTP Connectorのポート番号を修正してください。
+なお、PCで使用済みのポート番号とぶつからないように注意してください。</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&quot;8080&quot;</span> <span class="na">protocol=</span><span class="s">&quot;HTTP/1.1&quot;</span>
+       <span class="na">connectionTimeout=</span><span class="s">&quot;20000&quot;</span>
+       <span class="na">redirectPort=</span><span class="s">&quot;8443&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Connectorで受付可能な最大スレッド数はmaxThreadsというパラメータで調整可能です。
+デフォルト（指定なし）は200です。必要に応じて増加させてください。</p>
+</div>
+<div class="section" id="baas">
+<h3>BaaSサーバ設定ファイルの格納<a class="headerlink" href="#baas" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>C:\NEC\BaaS\etc\ ディレクトリを作成し、設定ファイル(development.xml)を格納してください。</p>
+<p>development.xml の設定方法については、 <a class="reference internal" href="../configure/config_file.html#configuration-file"><span class="std std-ref">設定ファイル</span></a> を参照してください。</p>
+</div>
+<div class="section" id="tomcat-windows">
+<h3>Tomcat を Windows のサービスとして登録<a class="headerlink" href="#tomcat-windows" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>コマンド プロンプトを立ち上げ、下記のコマンドを実行し、Tomcat を Windows サービスに登録します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">tomcat8</span>\<span class="n">apache</span><span class="o">-</span><span class="n">tomcat</span><span class="o">-</span><span class="mf">8.5</span><span class="o">.</span><span class="n">x</span>\<span class="nb">bin</span>\<span class="n">service</span><span class="o">.</span><span class="n">bat</span> <span class="n">install</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id30">
+<h3>Tomcat 設定<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>C:\tomcat8\apache-tomcat-8.5.x\bin\tomcat8w.exe を起動します。</p>
+<p>開かれたウィンドウの Java タブを開き、以下のパラメータを確認し初期値を適宜変更・保存してください。</p>
+<ul class="simple">
+<li>Use Default: チェックを外す</li>
+<li>JavaVirtualMachine: JavaVM のパスを指定する。<ul>
+<li>c:\Program Files\Java\jre1.8.0_x\bin\server\jvm.dll など</li>
+</ul>
+</li>
+<li>Initial memory pool, Maximum memory pool: ヒープメモリサイズを設定する<ul>
+<li>それぞれ 1024MB, 2048MB など</li>
+</ul>
+</li>
+<li>Java Options: JVM の起動パラメータを設定する。<ul>
+<li>-Dfile.encoding=UTF-8 オプションを追加する。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">file.encoding オプションを指定しないと、デベロッパーコンソールの処理で文字化けが発生する場合があります。</p>
+</div>
+</div>
+<div class="section" id="id31">
+<h3>Tomcat の起動<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>tomcat8w を起動して &quot;General&quot; タブを開き、Start を押して Tomcat を起動してください。
+(すでに起動している場合は Restart を押して再起動してください)
+Service Status が &quot;Started&quot; に変わったことを確認してください。</p>
+<p>また、システム起動時に自動的に Tomcat を起動するため、&quot;Startup type&quot; を
+&quot;Automatic&quot; に変更してください。</p>
+</div>
+<div class="section" id="id32">
+<h3>Firewall 設定<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Windows ServerのFirewallから、Tomcat のポートを開放してください。</p>
+<ul class="simple">
+<li>「コントロールパネル」→「ファイアウォールの状態の確認」→「詳細設定」→「受信の規則」を選択</li>
+<li>画面右上の「新しい規則..」を選択し、下記の設定を行う。<ul>
+<li>規則の種類：カスタム</li>
+<li>プログラム：すべてのプログラム</li>
+<li>プロトコル及びポート<ul>
+<li>プロトコルの種類：TCP</li>
+<li>ローカルポート：8080 (server.xml の設定に合わせる)</li>
+</ul>
+</li>
+<li>スコープ： 「この規則を適用するリモートIPアドレスを選択してください。」 →「これらのIPアドレス」。<ul>
+<li>アクセス元(リバースプロキシサーバなど)のIPアドレスを追加することでアクセス制限をかける。</li>
+</ul>
+</li>
+<li>操作：デフォルトのまま</li>
+<li>プロファイル：デフォルトのまま</li>
+<li>名前：任意（例えば、Tomcat Security Policy）</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id33">
+<h2>3.4.7. BaaS サーバのインストール<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Tomcat 上に BaaS サーバをデプロイします。</p>
+<p>BaaSサーバのwarファイル(api.warとconsole.war)を下記の場所に格納してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">tomcat8</span>\<span class="n">apache</span><span class="o">-</span><span class="n">tomcat</span><span class="o">-</span><span class="mf">8.5</span><span class="o">.</span><span class="n">x</span>\<span class="n">webapps</span>\
+</pre></div>
+</div>
+<p>事前にwebapps配下にあるdocs、examplesなどのフォルダを全て削除しておくことを推奨します。</p>
+</div>
+<div class="section" id="id34">
+<h2>3.4.8. 動作確認<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id35">
+<h3>デベロッパコンソールサーバの動作確認<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ブラウザ上で下記のURLにアクセスし、コンソール画面が表示されることを確認してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="p">[</span><span class="n">BaaSサーバのIPアドレス</span><span class="p">]:</span><span class="mi">8080</span><span class="o">/</span><span class="n">console</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api">
+<h3>APIサーバの動作確認<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ブラウザ上で、<a class="reference external" href="http:/">http:/</a>/[BaaSサーバのIPアドレス]:8080/api/をブラウズし、下記のJSONが表示されることを確認してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span><span class="s2">&quot;Not Found&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="license_auth.html" class="btn btn-neutral float-right" title="3.5. ライセンス認証" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quickstart_rhel.html" class="btn btn-neutral" title="3.3. クイックスタート (RHEL 7, CentOS 7)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.4',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

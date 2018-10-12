@@ -1,0 +1,97 @@
+==============================
+オブジェクトストレージ: クエリ
+==============================
+
+ここではオブジェクトストレージのクエリ方法について説明します。
+
+オブジェクトのクエリ
+====================
+
+オブジェクトのクエリは、バケットに対して QueryAsync() を呼び出すことで行います。
+
+以下の例では、全件検索を行っています。
+
+.. code-block:: csharp
+
+    var query = new NbQuery();
+    var objects = await bucket.QueryAsync(query);
+
+    foreach (var obj in objects) {
+        ...
+    }
+
+結果は、NbObject の IEnumerable で返却されます。
+
+クエリ条件は、NbQuery クラスを使用して指定します。
+NbQuery を生成し、メソッドを呼び出して条件を追加していきます。
+
+クエリ条件の指定
+================
+
+検索条件には NbQuery を使用します。以下に例を示します。
+
+.. code-block:: csharp
+
+    var query = new NbQuery()
+        .EqualTo("name", "foo") // 一致条件
+        .LessThan("age", 30) // 比較条件
+        .In("prefecture", "Tokyo", "Kanagawa", "Saitama") // 配列検索
+        .Regex("description", "^[a-c].*", "") // 正規表現一致
+
+論理演算
+========
+
+論理演算 (and, or, not) で複数の NbQuery を結合することも可能です。
+
+.. code-block:: csharp
+
+    var query1 = ...;
+    var query2= ...;
+
+    var orQuery = NbQuery.Or(query1, query2);
+
+注: 論理演算の引数に指定したクエリの Skip, Limit, OrderBy などはすべて無視されます。
+
+ソート順序の指定
+================
+
+ソート順序は、OrderBy() で指定します。
+
+.. code-block:: csharp
+
+    query.OrderBy("name", "-updatedAt");
+
+ここでは、第1優先で name 昇順、第2優先で updatedAt 降順を指定しています。
+降順を指定する場合は先頭に "-" を付与します。
+
+
+スキップ数・検索上限数の指定
+============================
+
+検索におけるスキップ数・上限数は、それぞれ Skip, Limit で指定します。
+
+以下の例では、100件目から最大10件を読むという指定になります。
+
+.. code-block:: csharp
+
+    query.Skip(100).Limit(10);
+
+なお、Limit の値はデフォルトで -1 (無限大) となっています。
+また、Skip を指定した場合、Limit 指定は必須となります。
+
+また、Skip, Limit を設定した状態で、Skip, Limit 無しの全件数も取得したい場合は
+QueryWithCountAsync() メソッドを使用します。
+
+.. code-block:: csharp
+
+    var result = await bucket.QueryWithCountAsync(query);
+    var objects = result.Objects;
+    var count = result.Count;
+
+QueryWithCountAsync() の返り値は NbObjectQueryResult 構造体で、
+Objects にオブジェクトのリスト(IEnumerator)、Count に件数が入ります。
+
+.. attention::
+
+   QueryAsync() で上限数を指定するとヒット件数が上限に達した時点で検索が打ち切られますが、
+   QueryWithCountAsync() では上限数にかかわらず全検索を行うため検索に要する時間が増加します。

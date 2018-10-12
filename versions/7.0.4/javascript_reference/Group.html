@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Class: Group</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AclGroup.html">AclGroup</a></li><li><a href="AclPermission.html">AclPermission</a></li><li><a href="Nebula.html">Nebula</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AccountLink.html">AccountLink</a></li><li><a href="Acl.html">Acl</a></li><li><a href="BatchRequest.html">BatchRequest</a></li><li><a href="Clause.html">Clause</a></li><li><a href="CustomApi.html">CustomApi</a></li><li><a href="FileBucket.html">FileBucket</a></li><li><a href="FileMetadata.html">FileMetadata</a></li><li><a href="Group.html">Group</a></li><li><a href="HttpRequest.html">HttpRequest</a></li><li><a href="NebulaService.html">NebulaService</a></li><li><a href="ObjectBucket.html">ObjectBucket</a></li><li><a href="ObjectQuery.html">ObjectQuery</a></li><li><a href="PushSender.html">PushSender</a></li><li><a href="PushSender.ApnsFields.html">PushSender.ApnsFields</a></li><li><a href="PushSender.GcmFields.html">PushSender.GcmFields</a></li><li><a href="PushSender.SseFields.html">PushSender.SseFields</a></li><li><a href="User.html">User</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: Group</h1>
+<section>
+
+<header>
+    
+        <h2>
+        Group
+        </h2>
+        
+            <div class="class-description"><p>グループ管理クラス</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="Group"><span class="type-signature"></span>new Group(groupname)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループオブジェクトを生成する</p>
+<p><p>
+・オブジェクトを生成しただけでは、まだサーバにグループ登録されていない。グループ登録は、<a href="Group.html#save">Group#save</a> で実施する。<br>
+・グループはアプリ毎ではなく、テナント毎に作成される。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>groupname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>グループ名。
+グループ名に使用できる文字は、１バイト英数のみ。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>新規グループオブジェクトのインスタンス</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Group.html">Group</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var group = new Nebula.Group(&quot;group1&quot;);</pre>
+
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="_id">
+    <h4 id="_id"><span class="type-signature"></span>_id<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>グループID</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="acl">
+    <h4 id="acl"><span class="type-signature"></span>acl<span class="type-signature"> :<a href="Acl.html">Acl</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>ACL</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Acl.html">Acl</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="createdAt">
+    <h4 id="createdAt"><span class="type-signature"></span>createdAt<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>作成日時</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="etag">
+    <h4 id="etag"><span class="type-signature"></span>etag<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>ETag</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="groupname">
+    <h4 id="groupname"><span class="type-signature"></span>groupname<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>グループ名</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="groups">
+    <h4 id="groups"><span class="type-signature"></span>groups<span class="type-signature"> :Array.&lt;String></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>グループ名の一覧(配列)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="updatedAt">
+    <h4 id="updatedAt"><span class="type-signature"></span>updatedAt<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>更新日時</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="users">
+    <h4 id="users"><span class="type-signature"></span>users<span class="type-signature"> :Array.&lt;String></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>ユーザIDの一覧(配列)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".delete"><span class="type-signature">&lt;static> </span>delete()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループを削除する (Deprecated)<br>
+・本APIは Deprecated である。<a href="Group.html#.remove">Group.remove</a> を使用すること。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li>since v4.0.1</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".query"><span class="type-signature">&lt;static> </span>query(conditions, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループ検索</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>conditions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>取得条件</p>
+<pre>
+・conditions にnull を指定した場合は全グループ一を取得する。
+・conditions は、JSON 形式で指定する。
+    {
+        "groupname" : "group1"
+    }
+    (プロパティ名)
+    groupname    : グループ名
+</pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(groups)
+            groups : 取得した Nebula.Group インスタンスの配列
+            各要素に以下のグループのプロパティが更新される
+                (プロパティ名)
+                groupname   : グループ名
+                users       : 所属ユーザIDの一覧
+                groups      : 所属サブグループ名の一覧
+                acl         : ACL
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".remove"><span class="type-signature">&lt;static> </span>remove(group, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループ削除</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>group</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Group.html">Group</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>削除するグループオブジェクトのインスタンス</p>
+<pre>
+・group にnull は指定できない。
+・グループ削除に必要なインスタンスのプロパティは、以下の通りとする。
+    (プロパティ名)
+    groupname   : グループ名（必須）
+    etag        : グループに設定されるETag値（オプション）
+・ETag値は、グループ新規保存した場合にサーバで追加され、
+  グループを更新する度にサーバで変更される固有値である。
+  ETag値は、グループの "etag"プロパティに格納される。
+・etagを指定すると、サーバに保存されているグループのETag値と照合される。
+  一致しなかった場合は、データ衝突として「409 Conflict」エラーとなり、グループは削除されない。
+  etagがnullの場合は、ETag値は照合されずグループは無条件で削除される。
+</pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<p><p>
+・処理が成功した場合、success の呼び出しにて通知する。
+  success の引数は無し。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>v4.0.1</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="addEntry"><span class="type-signature"></span>addEntry(entry)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループエントリ追加</p>
+<p><p>
+・登録するグループにユーザまたはグループを追加する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Nebula.User またはNebula.Group のインスタンス</p>
+<pre>
+・entry は、グループに追加する Nebula.User または Nebula.Group のインスタンスを指定する。
+  各インスタンスには以下のプロパティが設定されていること。
+    Nebula.User
+    (プロパティ名)
+    _id             : ユーザのID（*）
+    (*) ユーザID は、ユーザ登録が成功した場合にSDK がユーザプロパティに設定する。
+        ユーザ取得、ログイン、カレントユーザ取得で取得したNebula.User のインスタンスには登録時のユーザID が設定されている。
+    Nebula.Group
+    (プロパティ名)
+    groupname       : 登録済みグループ名
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>value エントリ結果</p>
+<pre>
+・value は、エントリとして追加した場合 true、パラメータが不正の場合false が返る。
+・処理の成功により、以下のグループオブジェクトのプロパティが更新される。
+    (プロパティ名)
+    users       : グループにエントリされるユーザ(ID)の配列（*）
+    groups      : グループにエントリされるグループ名の配列（*）
+    (*) グループプロパティ設定（group.set） でプロパティを設定した場合、エントリ追加した内容は上書きされる。
+</pre>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="addMembers"><span class="type-signature"></span>addMembers(userIds, groups, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループメンバ追加</p>
+<p><p>
+・グループにユーザ・子グループを追加する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>追加するユーザIDの配列</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groups</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>追加するグループ名の配列</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<p><p>
+処理が成功した場合、success の呼び出しにて通知する。
+success の引数は以下の通り。</p>
+<pre>
+    success(group)
+        group : 変更したグループオブジェクトのインスタンス
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.5.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="get"><span class="type-signature"></span>get(property)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループプロパティ取得 (Deprecated)</p>
+<p><p>
+・グループオブジェクトのプロパティを取得する。<br>
+・取得可能なプロパティの詳細は、各メソッドの説明を参照のこと。<br>
+・本メソッドは Deprecated である。各フィールドの getter を使用すること。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロパティ名</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li>since 5.0.0</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>value プロパティ値</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="removeEntry"><span class="type-signature"></span>removeEntry(entry)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループエントリ削除</p>
+<p><p>
+・グループからユーザまたはグループを削除する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Nebula.User またはNebula.Group のインスタンス</p>
+<pre>
+・entry は、グループから削除する Nebula.User または Nebula.Group のインスタンスを指定する。
+  各インスタンスには以下のプロパティが設定されていること。
+    Nebula.User
+    (プロパティ名)
+    _id             : ユーザのID（*）
+    (*) ユーザID は、ユーザ登録が成功した場合にSDK がユーザプロパティに設定する。
+        ユーザ取得、ログイン、カレントユーザ取得で取得したNebula.User のインスタンスには登録時のユーザID が設定されている。
+    Nebula.Group
+    (プロパティ名)
+    groupname       : 登録済みグループ名
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>value エントリ結果</p>
+<pre>
+・value は、エントリから削除した場合 true、パラメータが不正の場合false が返る。
+・処理の成功により、以下のグループオブジェクトのプロパティが更新される。
+    (プロパティ名)
+    users       : グループにエントリされるユーザ(ID)の配列（*）
+    groups      : グループにエントリされるグループ名の配列（*）
+    (*) グループプロパティ設定（group.set） でプロパティを設定した場合、エントリ追加した内容は上書きされる。
+</pre>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="removeMembers"><span class="type-signature"></span>removeMembers(userIds, groups, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループメンバ削除</p>
+<p><p>
+・グループからにユーザ・子グループを削除する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userIds</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>削除するユーザIDの配列</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groups</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>削除するグループ名の配列</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(group)
+            group : 変更したグループオブジェクトのインスタンス
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>6.5.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="save"><span class="type-signature"></span>save(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループ登録・更新</p>
+<p><p>
+・グループを登録する。<br>
+・既に同一名称のグループが登録されている場合は更新となる。<br>
+・グループ登録(又は更新)に必要なグループプロパティは、以下の通り。</p>
+<p><ul>
+  <li>groupname   : グループ名（必須）</li>
+  <li>users       : グループに登録されるユーザ(ID)の配列（※）</li>
+  <li>groups      : グループに登録されるグループ名の配列（※）      </li>
+  <li>acl         : グループに設定されるNebula.Acl のインスタンス（オプション)</li>
+  <li>etag        : グループに設定されるETag値（オプション)</li>
+ </ul>
+ (※) グループに登録されるユーザ(ID)とグループ名の配列は、グループ
+ プロパティ設定で配列を設定する方法とグループエントリの追加／
+ 削除で個別に設定する方法がある。
+ <br><br>
+・ETag値は、グループを登録した場合にサーバで追加され、
+  グループを更新する度にサーバで変更される固有値である。
+  ETag値は、グループの &quot;etag&quot;プロパティに格納される。
+  グループの登録の場合は、etagがないため必ず新規に生成・保存される。<br>
+・グループプロパティにETag値が含まれる場合、サーバに保存されているグループのETag値と照合される。
+  一致しなかった場合は、データ衝突として「409 Conflict」エラーとなり、グループは更新されない。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(group)
+            group : 登録したグループオブジェクトのインスタンス
+            acl を設定しなかった場合は以下のNebula.Acl インスタンスが自動的に設定される。
+            ・ログイン済みの場合    ：全フィールドが空。
+                                      オーナ（作成ユーザ）のみアクセス可。
+            ・未ログイン状態の場合  ：r, w に "g:anonymous" が設定される。
+                                      誰でも読み書き可。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="set"><span class="type-signature"></span>set(property, value)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>グループプロパティ設定 (Deprecated)</p>
+<p><p>
+・グループオブジェクトのプロパティを設定する。<br>
+・設定可能なプロパティの詳細は、各メソッドの説明を参照のこと。<br>
+・本メソッドは Deprecated である。各フィールドの setter を使用すること。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロパティ名</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロパティ値</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li>since 5.0.0</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Group.html">Group</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018-08-31T11:30:55+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

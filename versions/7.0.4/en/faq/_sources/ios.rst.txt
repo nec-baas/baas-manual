@@ -1,0 +1,29 @@
+.. include:: ../common/linkdef.rst
+
+==========
+iOS 開発
+==========
+
+iOS 9を使用していますが、httpの通信ができません。
+===================================================
+
+iOS 9から、ATS(App Transport Security)が有効となったため、デフォルトでは、httpの使用は許可されません。
+
+サーバに適切なTLS証明書を設定し、httpsを使用して下さい。
+
+テスト等でhttpを使用する場合、アプリケーションの `Info.plist` を編集します。
+
+NSAppTransportSecurity -> NSAllowsArbitraryLoadsをtrueに設定して下さい。
+
+.. code-block:: xml
+
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+  </dict>
+
+httpの使用が可能ですが、本番環境での使用は避けて下さい。
+
+関連するプロパティは、 `Information Property List Key Reference - Cocoa Keys <https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html>`_ を参照して下さい。
+

@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. コンフィグレーション &mdash; Server User Guide 7.0.4 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.1. 設定ファイル" href="config_file.html" />
+    <link rel="prev" title="3.7. デベロッパーコンソール利用手順" href="../usage/devconsole.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. コンフィグレーション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html">4.1. 設定ファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">4.2. その他の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html">4.3. ロギング設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluentd.html">4.4. fluentd を利用したロギング</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>4. コンフィグレーション</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. コンフィグレーション<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>目次:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">4.1. 設定ファイル</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#id2">4.1.1. 設定ファイルサンプル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#uri">4.1.2. URI設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#mongodb">4.1.3. MongoDB設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#amqp">4.1.4. AMQP設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html#id4">4.1.5. その他の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">4.2. その他の設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#id21">4.2.1. メモリ使用量の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#id22">4.2.2. ログレベルの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#index-0">4.2.3. プロファイルの選択</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#config-mongodb">4.2.4. MongoDB の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#id30">4.2.5. システム設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#alpn">4.2.6. ALPN 設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#sse-push">4.2.7. SSE Push サーバの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">4.3. ロギング設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#id21">4.3.1. ログ出力場所</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#config-loglevel">4.3.2. ログ設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#id26">4.3.3. ログフォーマット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#id27">4.3.4. fluentd の利用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fluentd.html">4.4. fluentd を利用したロギング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fluentd.html#install-fluentd">4.4.1. fluentd のインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fluentd.html#id22">4.4.2. fluentd の利用設定</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="config_file.html" class="btn btn-neutral float-right" title="4.1. 設定ファイル" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../usage/devconsole.html" class="btn btn-neutral" title="3.7. デベロッパーコンソール利用手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.4',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

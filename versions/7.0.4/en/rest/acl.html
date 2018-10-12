@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. セキュリティ : ACL &mdash; REST API Guide 7.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="4. オブジェクトストレージ" href="object_storage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">1. チュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">2. REST API の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_management.html">3. ユーザ管理機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">4. オブジェクトストレージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. セキュリティ : ACL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">5.1. ACL の概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.2. ACL の表記方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contentacl">5.3. contentACL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">6. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">7. PUSH</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. セキュリティ : ACL</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="acl">
+<h1>5. セキュリティ : ACL<a class="headerlink" href="#acl" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>5.1. ACL の概要<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>NEC BaaS では、アクセス制御に ACL (Access Control List) を使用します。</p>
+<p>ACL は、グループ、オブジェクトストレージ(バケット、オブジェクト)、
+ファイルストレージ(バケット、ファイル)などに付与し、
+アクセス制限を行うことができます。</p>
+<p>ACLには、対象データのオーナ、読み書き可能なユーザ・グループ、
+管理ユーザ・グループのリストなどを記述します。</p>
+</div>
+<div class="section" id="id2">
+<h2>5.2. ACL の表記方法<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>ACL の表記は、各サービス毎に共通のため、ここで表記方法について説明します。</p>
+<p>ACL は JSON 形式で表記し、対象の JSON 内に埋め込みます。
+オブジェクトストレージのオブジェクトデータに埋め込む場合は、
+以下のように “ACL” プロパティに埋め込む形になります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;xxxxxxx&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;itemName&quot;</span><span class="p">:</span> <span class="s2">&quot;Computer 12345&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">120000</span><span class="p">,</span>
+   <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-03-04&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;r&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;w&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;c&quot;</span> <span class="p">:</span> <span class="p">[],</span>
+       <span class="s2">&quot;u&quot;</span> <span class="p">:</span> <span class="p">[],</span>
+       <span class="s2">&quot;d&quot;</span> <span class="p">:</span> <span class="p">[],</span>
+       <span class="s2">&quot;admin&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span> <span class="p">],</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>ACL の各プロパティは以下の意味を持ちます。</p>
+<ul class="simple">
+<li>owner : オブジェクトのオーナとなるユーザIDです。オーナはオブジェクトに対するすべての権限を持ちます。</li>
+<li>r : オブジェクトを読み込み可能なユーザ・グループ一覧です。</li>
+<li>w : オブジェクトを書き込み可能なユーザ・グループ一覧。以下 “c”, “u”, “d” 権限を包含します。</li>
+<li>c : オブジェクトを作成可能なユーザ・グループ一覧。（後述する contentACL でのみ有効)</li>
+<li>u : オブジェクトを更新可能なユーザ・グループ一覧。</li>
+<li>d : オブジェクトを削除可能なユーザ・グループ一覧。</li>
+<li>admin : オブジェクトの ACL を変更可能なユーザ・グループ一覧。</li>
+</ul>
+<p>グループを指定する場合は、グループ名の前に “g:” プレフィクスを指定します。</p>
+<p>また、以下の特殊グループ名を使用できます。</p>
+<ul class="simple">
+<li>anonymous : 未ログインユーザを含む全ユーザを含むグループです。</li>
+<li>authenticated : ログイン済みの全ユーザを含むグループです。</li>
+</ul>
+</div>
+<div class="section" id="contentacl">
+<h2>5.3. contentACL<a class="headerlink" href="#contentacl" title="Permalink to this headline">¶</a></h2>
+<p>ACL 付与対象がバケットの場合は、バケットそのものに対する ACL と、
+バケットの中身に対する contentACL の２つを指定することができます。</p>
+<p>以下、バケット情報の例を示します。
+以下のように “ACL” および “contentACL” プロパティの2箇所に埋め込む形になります。
+なお、contentACL には owner および admin フィールドはありません。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;BucketName&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;r&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;admin&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span> <span class="p">],</span>
+   <span class="p">},</span>
+   <span class="s2">&quot;contentACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="s2">&quot;r&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+       <span class="s2">&quot;w&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="6. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_storage.html" class="btn btn-neutral" title="4. オブジェクトストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+      <script type="text/javascript" src="_static/analytics.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

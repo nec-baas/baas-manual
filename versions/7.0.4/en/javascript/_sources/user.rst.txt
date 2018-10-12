@@ -1,0 +1,327 @@
+
+.. _js_users:
+
+============
+ユーザ管理
+============
+
+ここではユーザ管理機能の利用方法について説明します。
+
+ユーザの作成
+==============
+
+最初にユーザオブジェクトを作成して登録するユーザ情報をプロパティに設定します。
+
+.. code-block:: javascript
+
+    var user = new Nebula.User();
+    var option = {
+        "company"  : "NEC",
+        "department"  : "AAA",
+        "tel"  : "xxx-xxx-xxxx"
+    }
+
+    user.set("email", "Eメールアドレス"); // 必須
+    user.set("password", "パスワード");  // 必須
+    user.set("username", "ユーザ名");   // オプション
+    user.set("option", option);        // オプション
+
+ユーザの登録
+--------------
+
+作成したユーザをBaaS サーバに登録するには、ユーザオブジェクトの register() を呼び出します。
+
+.. code-block:: javascript
+
+    user.register()
+        .then(function(userObj) {
+            // 成功時の処理
+            // userObj: 登録されたユーザオブジェクト(プロパティに登録日時等の追加あり)
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+ユーザの取得
+==============
+
+ユーザを取得するには、 query() の引数に検索条件を指定して呼び出します。
+
+検索条件 conditions のプロパティには、_id, email, username のいずれかを指定します。
+(conditions に null を指定した場合は全件検索になります)
+
+レスポンスには、検索条件に一致したユーザオブジェクトの配列が返ります。
+
+.. code-block:: javascript
+
+    var conditions = {
+        "_id"  : "ユーザID"
+    }
+
+    Nebula.User.query(conditions)
+        .then(function(users) {
+            // 成功時の処理
+            // users: ユーザオブジェクトの配列
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+ユーザの更新
+==============
+
+ユーザを更新するには、 update() の引数にユーザオブジェクトのインスタンス(更新後のユーザ情報)を指定して呼び出します。
+
+ユーザオブジェクトに設定するユーザIDは必須になります。
+
+※ カレントユーザ以外を更新する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する
+必要があります。
+
+.. code-block:: javascript
+
+    // あらかじめ更新対象のユーザオブジェクトを query() メソッドなどで取得
+
+    var option = {
+        "company"  : "NEC",
+        "department"  : "AAA",
+        "tel"  : "xxx-xxx-xxxx"
+    }
+
+    user.set("_id", "ユーザID");        // 必須
+    user.set("email", "Eメールアドレス"); // オプション
+    user.set("password", "パスワード");  // オプション
+    user.set("username", "ユーザ名");   // オプション
+    user.set("option", option);        // オプション
+
+    Nebula.User.update(user)
+        .then(function(userObj) {
+            // 成功時の処理
+            // userObj: 更新後のユーザオブジェクト
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+ユーザの削除
+==============
+
+ユーザを削除するには、remove() の引数にユーザオブジェクトのインスタンスを指定して呼び出します。
+
+ユーザオブジェクトに設定するユーザIDは必須になります。
+
+.. code-block:: javascript
+
+    // あらかじめ削除対象のユーザオブジェクトを query() メソッドなどで取得
+
+    user.set("_id", "ユーザID"); // 必須
+
+    Nebula.User.remove(user)
+        .then(function() {
+            // 成功時の処理
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+.. attention::
+
+  カレントユーザ以外を削除する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。
+
+ユーザのログイン
+=================
+
+ユーザがログインする場合には、login() を呼び出します。
+
+login() の引数にはユーザ情報を JSON で指定します。
+
+.. code-block:: javascript
+
+    var userInfo = {
+        "email"  : "Eメールアドレス"
+        "password"  : "パスワード"
+    };
+
+    Nebula.User.login(userInfo)
+        .then(function(userObj) {
+            // 成功時の処理
+            // userObj: ログイン後のユーザオブジェクト(ログイン有効期間等の追加あり)
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+カレントユーザの取得
+====================
+
+ログイン中のカレントユーザの情報を取得するには、current() を呼び出します。
+
+.. code-block:: javascript
+
+   Nebula.User.current()
+       .then(function(user) {
+           // user はログイン中のユーザオブジェクト
+       }
+       .catch(function(error) {
+           // 失敗時の処理。
+           // ログイン中状態でない場合はこちらが呼ばれる
+       };
+
+
+ユーザのログアウト
+===================
+
+ユーザがログアウトする場合には、logout() を呼び出します。
+
+.. code-block:: javascript
+
+    // あらかじめカレントユーザオブジェクトのインスタンスを取得しておく
+
+    Nebula.User.logout()
+        .then(function() {
+            // 成功時の処理
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+
+
+
+クライアント証明書認証 (Node.jsのみ)
+====================================
+
+クライアント証明書認証を使用すると、ユーザはログインを明示的に行わずに、認証済みユーザとして各種APIを使用することができます。
+
+プロキシを使用しない場合は、NebulaService#setClientCertificate() で証明書情報の設定を行います。
+クライアント証明書(PKCS#12形式)、証明書のパスフレーズを含むオブジェクト、もしくは、クライアント証明書(PEM形式)と、その秘密鍵(PEM形式)を指定します。
+あわせて信頼するCA証明書を追加指定することもできます。
+
+**NebulaService#setClientCertificate()の使用例**
+
+.. code-block:: javascript
+
+    const fs = require('fs');
+    // PKCS#12(pfx)と、そのパスフレーズを指定します
+    const certOptions = {
+        pfx: fs.readFileSync(CLIENT_CERT_PFX_PATH),
+        passphrase: CLIENT_CERT_PASSPHRASE,
+        ca: fs.readFileSync(TRUSTED_CA_PEM_PATH)
+    };
+
+    // cert、key を別々に指定することもできます
+    // const certOptions = {
+    //    cert: fs.readFileSync(CLIENT_CERT_PEM_PATH),
+    //    key: fs.readFileSync(CLIENT_CERT_KEY_PEM_PATH),
+    //    // CA証明書は複数件指定することができます
+    //    ca: [ fs.readFileSync(TRUSTED_CA_PEM_PATH_1), fs.readFileSync(TRUSTED_CA_PEM_PATH_2)]
+    //};
+
+    Nebula.setClientCertificate(certOptions);
+
+.. note::
+    サーバ側でログインの状態を管理するため、login(),logout()などは使用しません。
+    自ユーザ情報の取得が必要な場合、User.queryCurrent()を使用してサーバに問い合わせを行います。
+
+.. note::
+    クライアント証明書認証を使用するためには、事前にサーバの環境構築、設定が必要となります。
+    詳細は `クライアント証明書認証 <../auth/clientcert/index.html>`_ を参照してください。
+
+    また、Tomcatで直接認証を行う場合、クライアント証明書の期限切れ等の問題があると
+    TLSのセッション確立ができません。
+    クライアントは通信失敗として扱い、ステータスコード0のエラーが返却されます。
+
+    クライアント証明書を使用した場合にのみ通信ができない場合、サーバの設定とあわせ、証明書に問題が無いかご確認下さい。
+
+HTTPSプロキシを使用する場合
+---------------------------
+
+HTTPS プロキシを使用する場合は、setClientCertificate() ではなく、NebulaService#setHttpsProxy()のオプションパラメータとして証明書情報を付与します。
+設定する内容はsetClientCertificate()と同様です。
+
+NebulaService#setClientCertificate()とNebulaService#setHttpsProxy() を両方設定した場合は、
+setHttpsProxy() の設定が優先されます。
+
+**NebulaService#setHttpsProxy()の使用例**
+
+.. code-block:: javascript
+
+    const fs = require('fs');
+
+    // p12(pfx)形式のクライアント証明書(証明書/秘密鍵)を指定、p12ファイルのパスフレーズを指定
+    // 信頼するCA証明書として、2件を指定する場合
+    Nebula.setHttpsProxy({ host: 'proxysv.example.com', port: 8080}, {
+        pfx: fs.readFileSync('clientCertificate.p12'),
+        passphrase: 'password',
+        ca: [fs.readFileSync('caCert1.pem'), fs.readFileSync('caCert2.pem')]
+    });
+     
+    // pem形式のクライアント証明、キーを使用。CA証明書を1件指定
+    Nebula.setHttpsProxy({ host: 'proxysv.example.com', port: 8080}, {
+        cert: fs.readFileSync('clientCert.pem'),
+        key: fs.readFileSync('clientKey.pem'),
+        ca: fs.readFileSync('caCert1.pem')
+    });   
+
+
+.. _js_getlinks:
+
+OpenID Connectリンク情報取得
+=============================
+
+OpenID Connectリンク情報を取得するには、getAccountLinks() の引数にユーザオブジェクトのインスタンスを指定して呼び出します。
+
+ユーザオブジェクトに設定するユーザIDは必須になります。
+
+.. code-block:: javascript
+
+    // あらかじめリンク情報取得対象のユーザオブジェクトを query() メソッドなどで取得
+
+    user._id = "ユーザID"; // 必須
+
+    Nebula.User.getAccountLinks(user)
+        .then(function(links) {
+            // 成功時の処理
+            // links: リンク情報 (Nebula.AccountLink インスタンス) の配列
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+.. attention::
+
+  カレントユーザ以外のリンク情報を取得する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。
+
+.. note::
+  オフライン機能/SDE4SD使用時は使用できません。
+
+
+.. _js_dellink:
+
+OpenID Connectリンク情報削除
+=============================
+
+OpenID Connectリンク情報を削除するには、deleteAccountLink() の第一引数にユーザオブジェクトのインスタンス、第二引数に削除するリンクユーザIDを指定して呼び出します。
+
+ユーザオブジェクトに設定するユーザIDは必須になります。
+
+.. code-block:: javascript
+
+    // あらかじめリンク情報削除対象のユーザオブジェクトを query() メソッドなどで取得
+
+    user._id = "ユーザID"; // 必須
+
+    Nebula.User.deleteAccountLink(user, "リンクユーザID")
+        .then(function() {
+            // 成功時の処理
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+.. attention::
+
+  カレントユーザ以外のリンク情報を削除する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。
+
+.. note::
+  オフライン機能/SDE4SD使用時は使用できません。
+

@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10. Swift の利用 &mdash; iOS SDK Guide 5.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="11. マイグレーションガイド" href="migration.html" />
+    <link rel="prev" title="9. HTTPS通信について" href="https.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> iOS SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                5.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS iOS API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">8. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https.html">9. HTTPS通信について</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. Swift の利用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">10.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">10.2. 名前の変換規則</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">11. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">iOS SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>10. Swift の利用</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="swift">
+<span id="id1"></span><h1>10. Swift の利用<a class="headerlink" href="#swift" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id21">
+<h2>10.1. 概要<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<p>Swift から Nebula API を利用することができます。
+利用可能な Swift のバージョンは 3 以上です。</p>
+<p>iOS SDK は Objective-C で記述されているため、Swift から呼び出すためには Bridging Header をプロジェクトに追加する必要があります。
+Briding Header からは Nebula.h ヘッダを import してください。</p>
+<p>詳細は <a class="reference external" href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/">Using Swift with Cocoa and Objective-C</a> を参照してください。</p>
+</div>
+<div class="section" id="id22">
+<h2>10.2. 名前の変換規則<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p>Swift から Nebula API を呼び出す際は、Swift3 の規則に従ったメソッド名の
+自動変換が行われます。</p>
+<p>また、一部のメソッドについては個別に Swift の名称を定義しています。
+詳細は SDK の各ヘッダ内に NS_SWIFT_NAME マクロで記述していますので、
+こちらを参照してください。</p>
+<p>また、’block:’ 引数ラベルはすべて ‘completion:’ ラベルに変更していますので
+注意してください。</p>
+<p>以下に変換例を示します。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 変換前(Objective-C)</span>
+<span class="p">[</span><span class="n">NBCore</span> <span class="nl">setUpWithAppId</span><span class="p">:</span><span class="s">@&quot;appId&quot;</span> <span class="nl">appKey</span><span class="p">:</span><span class="s">@&quot;appKey&quot;</span> <span class="nl">tenantId</span><span class="p">:</span><span class="s">@&quot;tenantId&quot;</span><span class="p">];</span>
+<span class="p">[</span><span class="n">NBCore</span> <span class="nl">setEndPointUri</span><span class="p">:</span><span class="s">@&quot;http://example.com/api&quot;</span><span class="p">];</span>
+
+<span class="n">NBObjectBucket</span> <span class="o">*</span><span class="n">bucket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NBObjectBucket</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithBucketName</span><span class="p">:</span> <span class="s">@&quot;bucket1&quot;</span><span class="p">];</span>
+
+<span class="n">NBQuery</span> <span class="o">*</span><span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBQuery</span> <span class="n">new</span><span class="p">];</span>
+<span class="p">[</span><span class="n">query</span> <span class="nl">setSortOrderWithKey</span><span class="p">:</span><span class="s">@&quot;updatedAt&quot;</span> <span class="nl">isAscend</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">bucket</span> <span class="nl">queryInBackgroundWithQuery</span><span class="p">:</span><span class="n">query</span> <span class="nl">block</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSArray</span> <span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">// 変換後(Swift3)</span>
+<span class="n">NBCore</span><span class="p">.</span><span class="n">setUp</span><span class="p">(</span><span class="n">appId</span><span class="p">:</span><span class="s">&quot;appId&quot;</span> <span class="n">appKey</span><span class="p">:</span><span class="s">&quot;appKey&quot;</span> <span class="n">tenantId</span><span class="p">:</span><span class="s">&quot;tenantId&quot;</span><span class="p">)</span>
+<span class="n">NBCore</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="n">endPointUri</span><span class="p">:</span><span class="s">&quot;http://example.com/api&quot;</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nv">bucket</span> <span class="p">=</span> <span class="n">NBObjectBucket</span><span class="p">(</span><span class="n">bucketName</span><span class="p">:</span> <span class="s">&quot;bucket1&quot;</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nv">query</span> <span class="p">=</span> <span class="n">NBQuery</span><span class="p">()</span>
+<span class="n">query</span><span class="p">.</span><span class="n">setSortOrder</span><span class="p">(</span><span class="n">key</span><span class="p">:</span><span class="s">&quot;updatedAt&quot;</span> <span class="n">isAscend</span><span class="p">:</span><span class="kc">true</span><span class="p">)</span>
+
+<span class="n">bucket</span><span class="p">.</span><span class="n">queryInBackground</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="p">{</span><span class="n">objects</span><span class="p">,</span> <span class="bp">count</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="p">...</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="migration.html" class="btn btn-neutral float-right" title="11. マイグレーションガイド" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="https.html" class="btn btn-neutral" title="9. HTTPS通信について" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'5.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS SSE Push Server User Manual &mdash; SSE Push Server User Manual 7.0.2 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="1. イントロダクション" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> SSE Push Server User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">2. 必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_configuration.html">3. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">4. インストール手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">5. 設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">6. ロギング設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">7. サイジング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">8. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">SSE Push Server User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS SSE Push Server User Manual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-sse-push-server-user-manual">
+<h1>NEC BaaS SSE Push Server User Manual<a class="headerlink" href="#nec-baas-sse-push-server-user-manual" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#id21">1.1. 本文書の位置づけ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#sse-push">1.2. SSE Push サーバについて</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">2. 必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_configuration.html">3. システム構成</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system_configuration.html#id21">3.1. 構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_configuration.html#id26">3.2. クラスタ構成</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">4. インストール手順</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#id21">4.1. インストール: RabbitMQ サーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#sse-push">4.2. インストール: SSE Push サーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#id29">4.3. ロードバランサの設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">5. 設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#id21">5.1. 設定ファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#clustering">5.2. クラスタリング</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">6. ロギング設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#id21">6.1. ログ出力場所</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logger.html#config-loglevel">6.2. ログ設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sizing.html">7. サイジング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sizing.html#id2">7.1. サーバ台数について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sizing.html#tomcat">7.2. Tomcat の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">8. マイグレーションガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-7-0-0-7-0-2">8.1. ver 7.0.0 → 7.0.2 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-3-6-5-4">8.2. ver 6.5.3 → 6.5.4 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-0-7-0-0">8.3. ver 6.5.0 → 7.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-5-0-6-5-3">8.4. ver 6.5.0 → 6.5.3 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-0-1-6-5-0">8.5. ver 6.0.1 → 6.5.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-6-0-0-6-0-1">8.6. ver 6.0.0 → 6.0.1 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-5-0-1-6-0-0">8.7. ver 5.0.1 → 6.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#ver-5-0-0-5-0-1">8.8. ver 5.0.0 → 5.0.1 での変更点</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">検索ページ</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. イントロダクション" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.2',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

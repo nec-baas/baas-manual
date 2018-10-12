@@ -1,0 +1,532 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. チュートリアル &mdash; REST API Guide 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="2. REST API の概要" href="intro.html" />
+    <link rel="prev" title="NEC BaaS REST API Guide" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. チュートリアル</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.1. テナントの作成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.1.1. デベロッパコンソールへのログイン</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.1.2. テナントの作成</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.2. アプリケーションの作成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.2.1. アプリケーションの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rest-api">1.2.2. REST API の基本</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">1.3. チュートリアル1 : ユーザ管理機能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">1.3.1. サインアップ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">1.3.2. ログイン</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">1.4. チュートリアル2 : オブジェクトストレージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">1.4.1. バケットの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">1.4.2. オブジェクトの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">1.4.3. オブジェクトの取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">1.4.4. クエリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">1.4.5. 条件指定クエリ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">1.4.6. 削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">2. REST API の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_management.html">3. ユーザ管理機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">4. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acl.html">5. セキュリティ : ACL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">6. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">7. PUSH</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. チュートリアル</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>1. チュートリアル<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>HTTP / REST API を使って、簡単なユーザ登録・認証、データ作成・取得を行います。
+本チュートリアルでは curl を使って REST API を発行し、モバイルバックエンド基盤サーバ(以下 BaaS サーバ)の機能を利用します。</p>
+<p>なお、BaaS サーバのセットアップはすでに完了しているものとして説明します。</p>
+<div class="section" id="id2">
+<h2>1.1. テナントの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下の手順は BaaS サーバのシステム管理者権限が必要です。</p>
+<p>システム管理者権限がない場合は、システム管理者に依頼してテナント作成と
+デベロッパ登録を依頼してください。</p>
+<div class="section" id="id3">
+<h3>1.1.1. デベロッパコンソールへのログイン<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>BaaS サーバのシステム管理者権限でデベロッパコンソールにログインします。</p>
+<ol class="arabic simple">
+<li>デベロッパーコンソールにアクセスします。URL は <a class="reference external" href="https:/">https:/</a>/{server}/console です ({server} は、BaaS サーバのホスト名に読み替えてください。)</li>
+<li>システム管理者の E-mail アドレスとパスワードでログインします。</li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h3>1.1.2. テナントの作成<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>システム管理者権限で「テナント」を作成します。</p>
+<p>テナントとは、複数のアプリケーションを収容することができる
+データ領域のことと考えてください。アプリケーションのデータベースや、
+アプリケーションの認証に使用するユーザ・グループなどの情報は
+テナント内に格納されます。</p>
+<p>同一テナント内に所属するアプリケーション同士は、上記のデータを
+共通に使用することができます。</p>
+<p>テナントの作成手順は以下のとおりです。</p>
+<ol class="arabic simple">
+<li>デベロッパーコンソールにシステム管理アカウントでログインします。</li>
+<li>「管理」⇒「テナント管理」より、「追加」をクリックしてテナントを追加してください。</li>
+</ol>
+<p>テナントに管理者を追加するには以下のようにします。</p>
+<p>テナント追加後に「テナントID」が表示されます。
+API呼び出し時には「テナントID」または「テナント名」が必要になりますので、メモしておいてください。
+以降の説明ではこれを {tenant} として表記します。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">v7.0 より、テナント名をテナントIDの代わりに利用することができるようになりました。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>1.2. アプリケーションの作成<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>「アプリケーション」とは、NEC BaaS を利用するアプリケーションの単位のことです。
+BaaS サーバを利用するためには、必ず事前にアプリケーションを登録しておく必要があります。</p>
+<div class="section" id="id6">
+<h3>1.2.1. アプリケーションの作成<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>デベロッパーコンソールにログインしてください。</p>
+<p>「テナント」からテナントを選択すると、アプリケーション一覧画面に遷移します。
+「追加」をクリックして、テナントにアプリケーションを追加してください。</p>
+<p>アプリケーションIDとアプリケーションキーの値をメモしてください。
+これは以降の API 呼び出しで必要です。</p>
+<p>以下の説明では、アプリケーションID を {app_id}, アプリケーションキーを
+{app_key} として説明します。</p>
+</div>
+<div class="section" id="rest-api">
+<h3>1.2.2. REST API の基本<a class="headerlink" href="#rest-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>REST API は HTTP ベースの API です。
+curl などを使って動作確認を行うことができます。</p>
+<p>API 呼び出しの例を示します（この例はユーザ作成の例です)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;email&quot;:&quot;foo@example.com&quot;, &quot;password&quot;:&quot;PASS&quot;}&#39;</span> \
+  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">users</span>
+</pre></div>
+</div>
+<p>-X オプションで HTTP のメソッド (GET/POST/PUT/DELETE) を指定します。
+使用するメソッドは API によって異なりますが、それぞれ CRUD (Create/Read/Update/Delte)
+操作に対応付けられます。</p>
+<ul class="simple">
+<li>GET : 取得系 (Read)</li>
+<li>POST : 作成系 (Create)</li>
+<li>PUT : 更新系 (Update)</li>
+<li>DELETE : 削除系 (Delete)</li>
+</ul>
+<p>-H オプションで X-Application-Id と X-Application-Key の２つの HTTPヘッダを指定する必要があります。
+ここには、上記管理画面で割り当てられたアプリケーションのIDとキーを指定
+してください。</p>
+<p>API で HTTP の POST/PUT などを使う場合は、リクエストボディに JSON データを埋め込んで
+ください。以下の点に注意してください。</p>
+<ul class="simple">
+<li>Content-Type を正しく設定すること。application/json。</li>
+<li>curl を使う場合、-d オプションで、送信するデータボディを指定する。</li>
+</ul>
+<p>HTTP GET を使う場合は、URL にパラメータを付ける必要があります。
+curl の -G, --data-urlencode オプションを使用してください。</p>
+<p>最後の引数は URL です。
+API のエンドポイントは <a class="reference external" href="https:/">https:/</a>/{server}/api/1/{tenant} で、
+この後ろに API 毎のパスが付きます。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>1.3. チュートリアル1 : ユーザ管理機能<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id8">
+<h3>1.3.1. サインアップ<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ユーザを作成します。なお、ユーザはテナント内で共通です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \
+  <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;uername&quot;:&quot;foo&quot;,&quot;email&quot;:&quot;foo@example.com&quot;, &quot;password&quot;:&quot;PASS&quot;}&#39;</span> \
+  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">users</span>
+</pre></div>
+</div>
+<p>JSON フォーマットでユーザ情報(username, email, password) を指定します。</p>
+<p>成功すると、200 OK が返り、BODY でユーザ情報が返却されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;foo@example.com&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>1.3.2. ログイン<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+  <span class="o">-</span><span class="n">G</span> \
+ <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;username=foo&#39;</span> \
+ <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;password=PASS&#39;</span> \
+  <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">login</span>
+</pre></div>
+</div>
+<p>username と password を指定してログインします。</p>
+<p>ログインが成功すると、200 OK が返り、BODY でパラメータが返却されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sessionToken&quot;</span><span class="p">:</span><span class="s2">&quot;eyJ1c2VyX2lkIjp7IiRvaWQiOiAiNTIxMTZmMDFhYzUyMWUxNzQyMDAwMDAxIn0sImV4cGlyZSI6MTM3Njg3ODIzOX0=--5d44532510f4ad2236ec39a403dde3c3f704c5cd&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;expire&quot;</span><span class="p">:</span><span class="mi">1376878239</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>パラメータは以下の通りです。</p>
+<ul class="simple">
+<li>_id: ユーザID</li>
+<li>sessionToken: セッショントークン。以後の API 呼び出しでは、X-Session-Token ヘッダにこの値を入れること。</li>
+<li>expire: セッションの有効期限。unix time。</li>
+</ul>
+<p>ログイン失敗時は 401 Unauthorized エラーとなります。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>1.4. チュートリアル2 : オブジェクトストレージ<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>JSON 形式でオブジェクトを保存、読み出しすることができます。</p>
+<p>オブジェクトは「バケット」毎に分類されます。
+バケットとは、SQL データベースでいうところの「テーブル」に該当する概念で、
+同一種類のオブジェクトの集合です。</p>
+<div class="section" id="id11">
+<h3>1.4.1. バケットの作成<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ここでは 'scores' という名前のバケットを作成します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \
+ <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">buckets</span><span class="o">/</span><span class="nb">object</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>1.4.2. オブジェクトの作成<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \
+ <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;name&quot;:&quot;Foo&quot;, &quot;score&quot;:90}&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+<p>ここでは scores バケットに JSON オブジェクトを書き込んでいます。</p>
+<p>正常にオブジェクトが書き込まれると、200 OK が返り、以下のように登録した
+オブジェクトが返却されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;score&quot;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;r&quot;</span><span class="p">:[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span> <span class="s2">&quot;w&quot;</span><span class="p">:[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">]</span> <span class="p">},</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-06-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-06-27T05:19:16.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>_id : フィールドにはオブジェクトを一意に識別する ID が指定されます。</li>
+<li>ACL : には、このオブジェクトのアクセス制御リストが格納されます。<ul>
+<li>上記例では、誰でも(anonymous)読み書き可能な権限となります。</li>
+</ul>
+</li>
+<li>createdAt: オブジェクトの作成日時です。</li>
+<li>updatedAt: オブジェクトの更新日時です。</li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3>1.4.3. オブジェクトの取得<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span><span class="o">/</span><span class="mi">52117490</span><span class="n">ac521e5637000001</span>
+</pre></div>
+</div>
+<p>オブジェクトIDを指定することでデータを読み出します。
+以下のように結果が得られます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="s2">&quot;52117490ac521e5637000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;score&quot;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;r&quot;</span><span class="p">:[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span> <span class="s2">&quot;w&quot;</span><span class="p">:[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">]</span> <span class="p">},</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-06-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2014-06-27T05:19:16.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>1.4.4. クエリ<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下のようにすると、すべてのオブジェクトのリストを読み出します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+<p>結果は、以下のように、results 内に、配列でオブジェクトが格納された形で得られます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;results&quot;</span><span class="p">:[{</span><span class="o">...</span><span class="p">},</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="p">{</span><span class="o">...</span><span class="p">}]}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>1.4.5. 条件指定クエリ<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>条件指定は where= パラメータで行います。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">G</span> \
+ <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">urlencode</span> <span class="s1">&#39;where={&quot;name&quot;:&quot;Foo&quot;}&#39;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span>
+</pre></div>
+</div>
+<p>where には JSON でパラメータを指定します。</p>
+<p>特定のキーに対して完全一致させたい場合は、以下のように JSON で指定します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>比較を行う場合は、以下の演算子を利用できます。</p>
+<ul class="simple">
+<li>$lt, $gt : Less Than / Greater Than</li>
+<li>$lte, $gte : Less or Equal / Greater of Equal</li>
+<li>$ne : Not equal to</li>
+</ul>
+<p>例) score が 70 超のものを選択したい場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gt&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>その他の演算子。これらは MongoDB のクエリがそのまま使用できます。</p>
+<ul class="simple">
+<li>$in</li>
+<li>$all</li>
+<li>/^m/</li>
+<li>$exists</li>
+<li>$not</li>
+<li>$or</li>
+<li>$and</li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h3>1.4.6. 削除<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>DELETE メソッドで、オブジェクトの URI を指定して削除を行います。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Id: </span><span class="si">{app_id}</span><span class="s2">&quot;</span> \
+ <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;X-Application-Key: </span><span class="si">{app_key}</span><span class="s2">&quot;</span> \
+ <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="p">{</span><span class="n">server</span><span class="p">}</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="p">{</span><span class="n">tenant</span><span class="p">}</span><span class="o">/</span><span class="n">objects</span><span class="o">/</span><span class="n">scores</span><span class="o">/</span><span class="mi">52117490</span><span class="n">ac521e5637000001</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="2. REST API の概要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="NEC BaaS REST API Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: nb_file_metadata.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_67ddc83a51c7c70dde674a18e8d37b86.html">necbaas</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">nb_file_metadata.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="nb__file__metadata_8h.html">説明を見る。</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * COPYRIGHT (C) 2017 NEC CORPORATION</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * ALL RIGHTS RESERVED BY NEC CORPORATION,  THIS PROGRAM</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * MUST BE USED SOLELY FOR THE PURPOSE FOR WHICH IT WAS</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * FURNISHED BY NEC CORPORATION,  NO PART OF THIS PROGRAM</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * MAY BE REPRODUCED OR DISCLOSED TO OTHERS,  IN ANY FORM</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * WITHOUT THE PRIOR WRITTEN PERMISSION OF NEC CORPORATION.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * NEC CONFIDENTIAL AND PROPRIETARY</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef NECBAAS_NBFILEMETADATA_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NECBAAS_NBFILEMETADATA_H</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__json__object_8h.html">necbaas/nb_json_object.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="nb__acl_8h.html">necbaas/nb_acl.h</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>necbaas {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbFileMetadata.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnecbaas_1_1NbFileMetadata.html">NbFileMetadata</a> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classnecbaas_1_1NbFileMetadata.html#adb27b395d12f61b5fa355952a5ab4f8f">NbFileMetadata</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classnecbaas_1_1NbFileMetadata.html#adb27b395d12f61b5fa355952a5ab4f8f">NbFileMetadata</a>(<span class="keyword">const</span> std::string &amp;bucket_name, <span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;json);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classnecbaas_1_1NbFileMetadata.html#ab903b1755008263cb11ec9e8b9ec53d7">~NbFileMetadata</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbFileMetadata.html#aa3ca5ad99d1faa4a529773c0f2717b21">GetFileName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbFileMetadata.html#a7009c0383900e73f6144a4df70982218">GetContentType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <a class="code" href="classnecbaas_1_1NbAcl.html">NbAcl</a> &amp;<a class="code" href="classnecbaas_1_1NbFileMetadata.html#a21ce648d9e5b16a9eda22bf25bb39b0d">GetAcl</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classnecbaas_1_1NbFileMetadata.html#a4fc68dc7a4c64aade60c0b28c1308244">GetLength</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::tm <a class="code" href="classnecbaas_1_1NbFileMetadata.html#a89fe594652e23911895b24dcb7d04db1">GetCreatedTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::tm <a class="code" href="classnecbaas_1_1NbFileMetadata.html#aa43c2b305dfc90d8af7c21cf96531573">GetUpdatedTime</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbFileMetadata.html#a0350ab2da8609e9da3576b72ba316ce1">GetMetaETag</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbFileMetadata.html#abe77a5a0dd3b3e6dbe7a1fa5f1fc8b13">GetFileETag</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classnecbaas_1_1NbFileMetadata.html#a61fbc2d1f6b69b8a49e2a3ec20745f95">IsCacheDisabled</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classnecbaas_1_1NbFileMetadata.html#a0ba43cac548495654d62265e47168099">IsDeleted</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    std::string file_name_;      </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    std::string content_type_;   </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <a class="code" href="classnecbaas_1_1NbAcl.html">NbAcl</a> acl_;                  </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">int</span> length_{0};              </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    std::string created_time_;   </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    std::string updated_time_;   </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    std::string meta_etag_;      </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    std::string file_etag_;      </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">bool</span> cache_disabled_{<span class="keyword">false</span>}; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">bool</span> deleted_{<span class="keyword">false</span>};        </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    std::string parent_bucket_name_; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;};</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}  <span class="comment">// namespace necbaas</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif  // NECBAAS_NBFILEMETADATA_H</span></div>
+<div class="ttc" id="classnecbaas_1_1NbAcl_html"><div class="ttname"><a href="classnecbaas_1_1NbAcl.html">necbaas::NbAcl</a></div><div class="ttdoc">ACLクラス. </div><div class="ttdef"><b>Definition:</b> nb_acl.h:30</div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_aa43c2b305dfc90d8af7c21cf96531573"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#aa43c2b305dfc90d8af7c21cf96531573">necbaas::NbFileMetadata::GetUpdatedTime</a></div><div class="ttdeci">std::tm GetUpdatedTime() const </div><div class="ttdoc">ファイル更新日時取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_a0350ab2da8609e9da3576b72ba316ce1"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#a0350ab2da8609e9da3576b72ba316ce1">necbaas::NbFileMetadata::GetMetaETag</a></div><div class="ttdeci">const std::string &amp; GetMetaETag() const </div><div class="ttdoc">メタデータのETag取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_a4fc68dc7a4c64aade60c0b28c1308244"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#a4fc68dc7a4c64aade60c0b28c1308244">necbaas::NbFileMetadata::GetLength</a></div><div class="ttdeci">int GetLength() const </div><div class="ttdoc">ファイルサイズ取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_a0ba43cac548495654d62265e47168099"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#a0ba43cac548495654d62265e47168099">necbaas::NbFileMetadata::IsDeleted</a></div><div class="ttdeci">bool IsDeleted() const </div><div class="ttdoc">論理削除状態取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_ab903b1755008263cb11ec9e8b9ec53d7"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#ab903b1755008263cb11ec9e8b9ec53d7">necbaas::NbFileMetadata::~NbFileMetadata</a></div><div class="ttdeci">~NbFileMetadata()</div><div class="ttdoc">デストラクタ. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_a89fe594652e23911895b24dcb7d04db1"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#a89fe594652e23911895b24dcb7d04db1">necbaas::NbFileMetadata::GetCreatedTime</a></div><div class="ttdeci">std::tm GetCreatedTime() const </div><div class="ttdoc">ファイル作成日時取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_a7009c0383900e73f6144a4df70982218"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#a7009c0383900e73f6144a4df70982218">necbaas::NbFileMetadata::GetContentType</a></div><div class="ttdeci">const std::string &amp; GetContentType() const </div><div class="ttdoc">Content-Type取得. </div></div>
+<div class="ttc" id="nb__acl_8h_html"><div class="ttname"><a href="nb__acl_8h.html">nb_acl.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_aa3ca5ad99d1faa4a529773c0f2717b21"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#aa3ca5ad99d1faa4a529773c0f2717b21">necbaas::NbFileMetadata::GetFileName</a></div><div class="ttdeci">const std::string &amp; GetFileName() const </div><div class="ttdoc">ファイル名取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_abe77a5a0dd3b3e6dbe7a1fa5f1fc8b13"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#abe77a5a0dd3b3e6dbe7a1fa5f1fc8b13">necbaas::NbFileMetadata::GetFileETag</a></div><div class="ttdeci">const std::string &amp; GetFileETag() const </div><div class="ttdoc">ファイル本体のETag取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_a61fbc2d1f6b69b8a49e2a3ec20745f95"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#a61fbc2d1f6b69b8a49e2a3ec20745f95">necbaas::NbFileMetadata::IsCacheDisabled</a></div><div class="ttdeci">bool IsCacheDisabled() const </div><div class="ttdoc">キャッシュ禁止状態取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbJsonObject_html"><div class="ttname"><a href="classnecbaas_1_1NbJsonObject.html">necbaas::NbJsonObject</a></div><div class="ttdoc">Jsonオブジェクト. </div><div class="ttdef"><b>Definition:</b> nb_json_object.h:34</div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html">necbaas::NbFileMetadata</a></div><div class="ttdoc">ファイルメタデータ. </div><div class="ttdef"><b>Definition:</b> nb_file_metadata.h:31</div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_adb27b395d12f61b5fa355952a5ab4f8f"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#adb27b395d12f61b5fa355952a5ab4f8f">necbaas::NbFileMetadata::NbFileMetadata</a></div><div class="ttdeci">NbFileMetadata()</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="nb__json__object_8h_html"><div class="ttname"><a href="nb__json__object_8h.html">nb_json_object.h</a></div></div>
+<div class="ttc" id="classnecbaas_1_1NbFileMetadata_html_a21ce648d9e5b16a9eda22bf25bb39b0d"><div class="ttname"><a href="classnecbaas_1_1NbFileMetadata.html#a21ce648d9e5b16a9eda22bf25bb39b0d">necbaas::NbFileMetadata::GetAcl</a></div><div class="ttdeci">const NbAcl &amp; GetAcl() const </div><div class="ttdoc">ACL取得. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

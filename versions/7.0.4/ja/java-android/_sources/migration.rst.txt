@@ -1,0 +1,490 @@
+========================
+マイグレーションガイド
+========================
+
+本章では、NEC BaaS Java / Android SDK の以前のバージョンからの
+API の変更点や移行方法について説明します。
+
+ver 6.5.0 → 7.0.0 での変更点
+=============================
+
+ライブラリ構成変更
+------------------
+
+SDKライブラリのファイル名(.jar, .aar)および構成が一部変更となりました。
+
+* NebulaClientCore-\*.jar ⇒ baas-client-core-\*.jar
+* NebulaClientAndroid-\*.jar ⇒ baas-client-android-\*.jar
+* SsePushClient-\*.jar ⇒ ssepush-client-\*.jar
+* sde_commons-cipherdb-\*.aar ⇒ 削除 (baas-client-android-\*.jar に包含)
+
+また、Android の場合は baas-client-core-\*.jar の組み込みも合わせて必要となります。
+
+詳細は :ref:`sdk_setup` を参照してください。
+
+API 追加
+--------
+
+以下の API が追加されました。
+
+* JSONオブジェクトストレージ: Aggregation
+* API Gateway 呼び出し
+
+詳細は、 :doc:`object_aggregation` 、:doc:`api_gateway` を参照して下さい。
+
+ver 6.0.0 → 6.5.0 での変更点
+=============================
+
+依存ライブラリの変更
+--------------------
+
+依存ライブラリから httpclient が削除となり、代わりに okhttp が必要になりました。
+詳細は :ref:`sdk_setup` を参照してください。
+
+NbServiceBuilder.setProxy() 削除
+--------------------------------
+
+NbServiceBuilder.setProxy() は削除となりました。
+今後は NbService.setProxy() を使用してください。なお、プロキシ設定は
+全 NbService で１つのみの共通指定となります。
+
+NbUser.login メソッド変更
+-------------------------
+
+NbUser.login の引数が変更となり、ワンタイムトークンを使用したログイン(SAMLなどで使用)
+が可能となりました。
+従来のメソッドもそのまま利用できますが、@Deprecated 扱いとなります。
+
+また、ユーザ名でログインする loginWithUsername() および
+E-mail でログインする loginWithEmail() を新設しました。
+
+コールバック型変更
+------------------
+
+従来は API の結果を受け取るために、用途別に異なるコールバックインタフェース
+(NbUsersCallback, NbObjectCallback など)を使用していましたが、
+コールバックインタフェースを以下の３つに統一しました。
+
+* NbResultCallback : onSuccess() の引数無し
+* NbCallback<T> : onSuccess() の引数は T 型の１個
+* NbCountCallback<T> : onSuccess() の引数は T 型、int 型(カウント)の２個
+
+従来のコールバックインタフェースは原則上記いずれかを継承する形となります。
+(後方互換性は維持されます)
+
+コールバックで複数値を受け取る API を単数値受け取りに変更
+---------------------------------------------------------
+
+以下の API について、コールバック型が変更となります。
+
+* NbUser: login, logout, save, register, getUser, refreshCurrentUser
+* NbGroup: save, getGroup
+* NbObject: save, partUpdateObject
+* NbObjectBucket: getObject
+* NbFileBucket: uploadNewFile, uploadUpdateFile, getFileMetadata, enablePublishFile, disablePublishFile
+
+従来はこれらは List 型で値を受け取るようになっていましたが、
+値は常に1個しか渡されないようになっていたため、
+単一の値を受け取るようにコールバック型を変更しました。
+(旧 API は @Deprecated 扱いとなります)
+
+NbObject.query および NbUser.query メソッド変更
+-----------------------------------------------
+
+NbObject および NbUser の query() メソッドは、
+query() と queryWithCount() の２つのメソッドに分割されました。
+
+query() は全件数取得なし(コールバック型は NbCallback<List<T>> または NbListCallback<T>)、
+queryWithCount() は全件数取得あり(コールバック型は NbCountCallback<List<T>>)
+となります。
+(旧 API は @Deprecated 扱いとなります)
+
+コードの変更例(NbObject.query())を以下に示します。
+
+.. code-block:: java
+
+    // 旧実装
+    bucket.query(query, new NbObjectCallback() {
+        @Override
+        public void onSuccess(List<NbObject> objects, Num count) {
+            ...後略...
+
+    // 新実装(全件数取得不要な場合)
+    bucket.query(query, new NbListCallback<NbObject>() {
+        @Override
+        public void onSuccess(List<NbObject> objects) {
+            ...後略...
+
+    // 新実装(全件数取得必要な場合)
+    bucket.queryWithCount(query, new NbCountCallback<List<NbObject>>() {
+        @Override
+        public void onSuccess(List<NbObject> objects, int count) {
+            ...後略...
+
+
+また、NbQuery のソート順序関連メソッドとして setSortOrders, addSortOrder, getSortOrders が追加されました。
+旧メソッド(setSortOrder, getSortOrder) も使用できますが、@Deprecated 扱いとなります。
+
+クライアント証明書認証
+-------------------------
+
+クライアント証明書認証に対応しました。
+
+NbService.setClinetCertificate を使用してクライアント証明書の設定が可能です。
+対応するサーバとのhttps通信時に、ログインを行わなくともユーザ権限が付与された状態でアクセスできます。
+
+詳細は  `ユーザ管理 <./user.html>`_ を参照してください。
+
+ver 5.0.1 → 6.0.0 での変更点
+=============================
+
+Push
+-----
+
+FCM (Firebase Cloud Messaging) に対応しました。
+
+旧 GCM (Google Cloud Messaging) も使用できますが、FCM に移行することを
+推奨します。詳細は `Push 通知ガイド <../push/index.html>`_ の
+"Android Push (FCM)" を参照してください。
+
+なお、GCM を使用する場合は以下の点にご注意ください。
+
+* NbGCMPushInstallationCallback は廃止となっています NbFcmPushInstallationCallback に変更してください。シグネチャも変更となっているので注意してください。
+* NbGCMPushInstallation クラスは NbFcmPushInstallation を継承するように変更されています。
+
+ver 5.0.0 → 5.0.1 での変更点
+=============================
+
+SSE Push
+--------
+
+以下の不具合を修正しました。
+
+* SSE Push の TCP 接続途中経路が切断した場合に、クライアント側で切断検知できない。
+* SSE Push のハートビート喪失を検出したあと、SSE Push の再接続が実行されない。
+
+これにともない、SSE Push クライアント側に無通信エラーを検知するための API を追加しました。具体的には以下２点です。
+
+* NbSsePushReceiveClient: setHeartbeatInterval() API を追加
+* NbSsePushReceiveCallback: onHeartbeatLost() コールバックを追加
+
+.. attention::
+
+   SSE Push クライアントの API が変更となったため、既存のアプリケーションは修正が必要となります。
+
+詳細は、`Push通知ガイド <../push/index.html>`_
+の `SSE Push受信実装(Pure Java/Android編) <../push/sse/impl_java.html>`_ 、
+および `Java / Android リファレンス <../java-android_reference/index.html>`_ を参照ください。
+
+ver 4.0.0 → 5.0.0 での変更点
+=============================
+
+ユーザ管理
+----------
+
+* ユーザの所属グループ情報を取得する API を追加しました。
+* ユーザ検索時に skip/limit 条件を指定する API を追加しました。
+
+ver 3.0.0 → 4.0.0 での変更点
+=============================
+
+SQLCipher
+----------
+
+オフライン機能のデータベース暗号化に使用する SQLCipher が SDK には含まれなくなりました。
+
+オフライン機能を使用する際は、Maven Central から SQLCipher をダウンロードするようにするため、
+アプリケーション側 build.gradle の dependency に以下の記述を追加する必要があります。
+詳細は :ref:`sdk_setup` を参照してください。
+
+::
+
+   compile 'net.zetetic:android-database-sqlcipher:3.3.1-2'
+
+依存ライブラリの更新
+--------------------
+
+依存ライブラリの一部のバージョンが更新されています。
+:ref:`sdk_setup` を参照して、build.gradle の更新を行ってください。
+
+SSE Push 機能追加
+-----------------
+
+SSE Push 送受信機能が追加されました。
+詳細は `Push通知ガイド <../push/index.html>`_ を参照ください。
+
+SDE Push 機能削除
+-----------------
+
+SDE Push 機能削除が削除されました。ライブラリも削除されています。
+
+ADT Plugin サポート削除
+------------------------
+
+ADT (Android Developer Tools) のサポート終了にともない、
+ADT Plugin 向けのライブラリ類を削除しました。
+
+Eclipse + ADT をお使いの場合は、Gradle + Android Studio への移行が必要です。
+
+ver 1.2.3 →3.0.0 での変更点
+=============================
+
+バッチAPIの追加
+---------------
+
+オブジェクトストレージにバッチ API が追加されました。
+詳細は、APIリファレンスの NbObjectBucket を参照ください。
+
+ユーザオプションフィールドの追加
+--------------------------------
+
+ユーザに任意の情報をオプションとして設定できるようになりました。
+詳細は、APIリファレンス NbUser クラスの setOptions(), getOptions()
+メソッドを参照ください。
+
+SSLv3 無効化
+------------
+
+POODLE脆弱性対策のため、SSLv3 接続を無効化しました。
+
+ver 1.2.2 → 1.2.3 での変更点
+=============================
+
+オフライン機能の改善
+--------------------
+
+オブジェクトバケットのバケットモードに、ローカルモードが追加されました。
+ローカルモードは常にローカルキャッシュを読み書きするモードで、サーバとは同期しません。
+
+また、大量のオブジェクトを同期する際、分割同期を行うことでメモリ使用量を削減しています。
+
+API強化
+-------
+
+以下の API 強化が行われています。
+
+ - ユーザ管理: ユーザ名に "@" を使用可能
+ - ユーザ管理: NbUser にオプションフィールドを追加 (任意の Key-Value 値を格納可能)
+ - グループ管理: グループ保存時に楽観ロックを実施する
+ - 例外対応: API呼び出し時に引数不正の場合は IllegalArgumentException を throw する
+
+マルチテナント対応 (Pure Java のみ)
+-----------------------------------
+
+マルチテナントに対応しました。複数の NbService を同時に使用して、
+複数のサーバ・テナント・アプリに同時接続できます。
+
+API 上は以下の変更が加わっています。
+
+ - NbService
+    
+    - enableMultiTenant() 追加
+
+ - NbUser, NbGroup, NbObject
+
+    - マルチテナント対応メソッド追加
+
+ver 1.2.1 → 1.2.2 での変更点
+=============================
+
+オフライン機能の改善
+--------------------
+
+オブジェクトストレージのオフライン機能が大幅に変更されています。
+
+オブジェクトバケットに、バケットモード(NbBucketMode)が追加されました。
+バケットモードには以下のモードがあります。
+
+ - オンラインモード: 常にサーバと通信するモードです。
+ - レプリカモード: 常にローカルキャッシュを読み書きするモードです。サーバとの通信は、同期時にのみ発生します。
+
+API上は以下の変更が加わっています。
+
+ - キャッシュポリシーおよびネットワークモードの概念および関連 API を削除
+
+ - NbObjectBucketManager
+
+    - getBucket(), deleteBucket() をオンライン / レプリカモード用の2つの API に分離
+    - setSyncScope() / getSyncScope() 削除
+    - registerSyncEventListener() / unregisterSyncEventListener() 削除
+
+ - NbObjectBucket
+
+    - setSyncScope() / getSyncScope() 追加
+    - registerSyncEventListener() / unregisterSyncEventListener() 追加
+    - getLastSyncTime() 追加
+
+ - NbObject
+
+    - コンストラクタの引数変更 (モード引数追加)
+    - sync(), removeCache() 削除
+
+
+オフラインバケットインデックス機能の追加
+----------------------------------------
+
+オフラインバケット(レプリカモード)の検索を高速化するため、
+オブジェクトに対しインデックスを設定できる API を追加しました。
+
+詳細は、NbObjectBucket.setIndexToLocal() APIを参照してください。
+
+インデックス・シャードキー関連
+------------------------------
+
+インデックスキー、シャードキー関連の API は削除されました。
+
+ファイルオフライン機能
+----------------------
+
+ファイルオフライン関連の API は削除されました。
+
+ver 1.2.0 → 1.2.1 での変更点
+=============================
+
+ライブラリJARの変更
+-------------------
+
+Android ネイティブ開発時には、NebulaClientCore-x.x.x.jar は不要になりました。
+NebulaClientCore-x.x.x.jar 相当の機能はすべて NebulaClientAndroid-x.x.x.jar に含まれます。
+
+ユーザ/グループAPIの変更
+------------------------
+
+NbUserInfo, NbGroupInfo クラスは廃止となりました。
+コールバック関数では、代わりに直接 NbUser, NbGroup クラスが渡されるように
+変更しています。
+
+ver 1.1.0 → 1.2.0 での API 変更点
+==================================
+
+1.2.0 では、パッケージ名・クラス名・定数名を大幅に見直ししています。
+
+パッケージの変更
+-----------------
+
+トップレベルパッケージを、com.nec.android.baas から com.nec.baas に
+変更しました(全クラスに影響あり)。
+
+また、機能別にサブパッケージを以下の通り分割しています。
+
+ - core: コア機能
+ - user: ユーザ・グループ管理
+ - object: オブジェクトストレージ
+ - file: ファイルストレージ
+ - json: JSONパーサ・ジェネレータ
+ - push: Push
+ - generic: Pure Java 実装
+
+クラス名の変更
+--------------
+
+すべてのクラス名の先頭に "Nb" プレフィクスを追加しました。
+
+ただし、従来 "Nebula" プレフィクスがついていたクラスは "Nebula"
+を削除して "Nb" に変更しています (例: NebulaObject → NbObject)。
+
+上記ルール以外の変更としては、以下の変更を行っています。
+
+.. csv-table::
+   :header: "変更前", "変更後"
+   :widths: 15, 15
+
+   BucketInfoCallback, NbBucketCallback
+   FileResolveConflict, NbFileConflictResolver
+   FileResolveConflictListener, NbFileConflictResolverListener
+   FileResolveConflictListener.SyncErrorCode, NbFileConflistResolverListener.SyncError
+   NebulaDownloadCallback, NbFileDownloadCallback
+   IndexInfoCallback, NbIndexCallback
+   ResolveConflict, NbObjectConflictResolver
+   SyncEventListener, NbObjectSYncEventListener
+   GroupInfo, NbGroupEntity
+   GroupInfoCllback, NbGroupEntityCallback
+   UserInfo, NbUserEntity
+   UserInfoCallback, NbUserEntityCallback
+
+定数名変更
+----------
+
+NbClause (旧 Clause) の定数を以下のとおり変更しました。
+
+.. csv-table::
+   :header: "変更前", "変更後"
+   :widths: 15, 15
+ 
+   CASE_INSENSITIVITY, IGNORE_CASE
+   CASE_MULTILINE, MULTILINE
+   CASE_EXTENDED, EXTENDED
+   CASE_DOT_MULTILINE, DOT_MATCH_NEWLINE
+
+型変更 (int → enum)
+--------------------
+
+NbObjectSyncEventListener (旧 SyncEventListener) に定義されていたエラーコード(int型)
+を SyncError (enum) に変更しました。さらに、以下の名称変更を行いました。
+
+ - ID_OVERLAP_ERROR → ID_CONFLICTED
+ - PUSH_ERROR_RESYNCING → SYNC_RETRYING
+
+NbSetting クラス(旧NebulaSetting) に以下の変更を行いました。
+
+ - getCachePolicy の返り値の型を int → NbCachePolicy(enum) に変更
+ - setOperationMode の型を int → NbOperationMode(enum) に変更
+
+その他
+------
+
+NbObjectSycnResoltCallback.onFailure() に NbErrorInfo 引数を追加しました。
+
+ver 1.0.0 → 1.1.0 での API 変更点
+===================================
+
+Push 関連 API の追加
+--------------------
+
+Push 関連 API が追加されました。
+
+onFailure メソッド引数変更
+--------------------------
+
+BaseCallback およびこれを継承する全インタフェースの
+onFailure() メソッドに第二引数が追加されました。
+
+第二引数の型は NbErrorInfo であり、エラー理由が格納
+されます。
+
+NetworkMode, CachePolicy, SyncState 型の導入
+--------------------------------------------
+
+ネットワークモード、キャッシュポリシー、同期状態を
+表す列挙型として NetworkMode, CachePolicy, SyncState
+が導入されました。
+
+これにともない、以下のメソッドの返り値が int から
+上記列挙型に変更されました。
+
+ - NebulaService.getNetworkMode()
+ - NebulaService.getCachePolicy()
+ - NebulaObject.getSyncState()
+ - FileMetadata.getFileSyncState()
+ - ObjectBucket.getResolveConflictPolicy()
+ - FileBucket.getResolveConflictPolicy()
+
+また、以下メソッドは Deprecated となります。
+
+ - NebulaService.setNetworkMode(int)
+ - NebulaService.setCachePolicy(int)
+ - ObjectBucket.setResolveConflictPolicy(int)
+ - FileBucket.setResolveConflictPolicy(int)
+
+コールバックスレッドの動作変更(Android実装のみ)
+-----------------------------------------------
+
+従来、Android 実装ではコールバック呼び出し時の
+スレッドは以下のようになっていました。
+
+ - ネットワーク通信を伴うAPI(同期除く) : UIスレッド
+ - オフラインAPI呼び出し : 別スレッド
+ - 同期コールバック : 別スレッド
+
+ver 1.1 では、いずれの場合も UI スレッドでコール
+バックされるように変更されています。

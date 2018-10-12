@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.15. テナント設定 - OpenID Connect設定 &mdash; Developer Console User Manual 7.0.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.16. テナント設定 - クライアント証明書" href="tenant_config_client_cert.html" />
+    <link rel="prev" title="4.14. テナント設定 - テンプレート" href="tenant_config_template.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../login.html">2. ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">3. システム管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. テナント管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="abstract.html">4.1. テナント管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">4.2. アプリケーション管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">4.3. ユーザ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html">4.4. グループ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object.html">4.5. オブジェクトバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file.html">4.6. ファイルバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apigw.html">4.7. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">4.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_stats.html">4.9. API統計情報</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html">4.10. テナント管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_basic.html">4.11. テナント設定 - 基本設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_storage.html">4.12. テナント設定 - 外部ストレージ設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_acl.html">4.13. テナント設定 - 特殊バケットのACL設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_template.html">4.14. テナント設定 - テンプレート</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.15. テナント設定 - OpenID Connect設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">共通設定</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uri">許可するリダイレクト URI の設定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#op">OP リスト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">OP 編集画面</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_client_cert.html">4.16. テナント設定 - クライアント証明書</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. テナント管理</a> &raquo;</li>
+        
+      <li>4.15. テナント設定 - OpenID Connect設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="openid-connect">
+<h1>4.15. テナント設定 - OpenID Connect設定<a class="headerlink" href="#openid-connect" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id20">
+<h2>概要<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>OpenID Connect に関する設定を行うことができます。</p>
+<p>本設定は、テナント認証方式が「通常認証+OIDC認証」の場合のみ、表示されます。</p>
+<p>表示・設定には、アプリケーション管理者以上の権限が必要です。</p>
+</div>
+<div class="section" id="id21">
+<h2>共通設定<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="uri">
+<h3>許可するリダイレクト URI の設定<a class="headerlink" href="#uri" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>OpenID Connect 認証結果を受け取る URI を記載します。</p>
+<p>これは、攻撃者が OpenID Connect 認証時にリダイレクト URI に不正な値を指定して、ワンタイムトークンが悪意のあるサイトに送信されること(Covert Redirect 攻撃)を防ぐために必要です。</p>
+<p>OpenID Connect 認証時に本設定と異なるリダイレクト URI を指定した場合は、 OpenID Connect 認証が失敗します。</p>
+<p>下記のように設定します。</p>
+<a class="reference internal image-reference" href="../_images/oidcRedirectURI.png"><img alt="../_images/oidcRedirectURI.png" src="../_images/oidcRedirectURI.png" style="width: 351.6px; height: 351.0px;" /></a>
+<p>カンマや改行区切りで、 URI を複数指定すること可能です。</p>
+<p>また、 ローカルホスト (<a class="reference external" href="http://localhost:~">http://localhost:~</a>) で受け取る場合は記載不要です。</p>
+</div>
+</div>
+<div class="section" id="op">
+<h2>OP リスト<a class="headerlink" href="#op" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下の OpenID Connectプロバイダ (OP) に関する設定が可能です。</p>
+<ul class="simple">
+<li>google</li>
+<li>adfs</li>
+<li>other</li>
+</ul>
+<p>other は、Google、ADFS 以外の OP と接続する場合に選択してください。(ただし、OpenAM 以外の OP は動作保証範囲外となります)</p>
+<p>例えば、Google と ADFS に OpenID Connect 連携する場合は、google と adfs の設定を行ってください。</p>
+<p>「編集」を選択すると、編集画面に遷移します。</p>
+</div>
+<div class="section" id="id22">
+<h2>OP 編集画面<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>OP 編集画面では、以下が設定可能です。</p>
+<ul>
+<li><p class="first">Client ID</p>
+<ul class="simple">
+<li>OP によって発行された、クライアントの固有IDです。</li>
+</ul>
+</li>
+<li><p class="first">Client Secret</p>
+<ul class="simple">
+<li>OP によって発行された、クライアントのシークレットキーです。</li>
+</ul>
+</li>
+<li><p class="first">OP Configuration設定方法</p>
+<ul class="simple">
+<li>「Discovery」と「JSON」のどちらかを選択可能です。</li>
+<li>OP が OpenID Connect Discovery に対応している場合は、「Discovery」を選択してください。<ul>
+<li>google の場合は、「Discovery」のみ選択可能です。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">Discovery URL</p>
+<ul>
+<li><p class="first">OP Configuration設定方法で「Discovery」を選択すると、設定可能となります。</p>
+</li>
+<li><p class="first">各 OP の値は以下となります。</p>
+<ul>
+<li><p class="first">google :</p>
+<p><a class="reference external" href="https://accounts.google.com/.well-known/openid-configuration">https://accounts.google.com/.well-known/openid-configuration</a></p>
+</li>
+<li><p class="first">adfs :</p>
+<p><a class="reference external" href="https:/">https:/</a>/{adfs_servername}/adfs/.well-known/openid-configuration</p>
+</li>
+<li><p class="first">other (OpenAM) : スキーム (http/https) は 構築環境に依存します</p>
+<p><a class="reference external" href="https:/">https:/</a>/{openam_servername}/openam/oauth2/.well-known/openid-configuration</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">OP Metadata</p>
+<ul class="simple">
+<li>OP Configuration設定方法で「JSON」を選択すると、設定可能となります。</li>
+<li>入力形式は、 <a class="reference external" href="https://openid.net/specs/openid-connect-discovery-1_0.html">OpenID Connect Discovery 1.0</a> を参照してください。</li>
+<li>以下のフィールドのみ、有効となります。<ul>
+<li>issuer (必須)</li>
+<li>authorization_endpoint (必須)</li>
+<li>token_endpoint (必須)</li>
+<li>userinfo_endpoint (オプション)</li>
+<li>scopes_supported (オプション)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="first">JWK セット</p>
+<ul class="simple">
+<li>OP Configuration設定方法で「JSON」を選択すると、設定可能となります。</li>
+<li>jwks_uriから取得するJWKセットと同様のJSON形式で入力してください。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tenant_config_client_cert.html" class="btn btn-neutral float-right" title="4.16. テナント設定 - クライアント証明書" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tenant_config_template.html" class="btn btn-neutral" title="4.14. テナント設定 - テンプレート" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'7.0.0',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

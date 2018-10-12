@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. チュートリアル1 : TODOアプリ (Swift版) &mdash; Tutorials (iOS) 5.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. チュートリアル2 : ログイン機能" href="tutorial2.html" />
+    <link rel="prev" title="3. チュートリアル1 : TODOアプリの実装" href="tutorial1_code.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (iOS)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                5.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ (Objective-C版)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_code.html">3. チュートリアル1 : TODOアプリの実装</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. チュートリアル1 : TODOアプリ (Swift版)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">4.1. サンプルコードの変更と実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nec-baas-sdk-framework">4.2. NEC BaaS SDK Framework の追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import">4.3. ヘッダファイルの import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appdelegate">4.4. AppDelegate クラス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#todolistviewcontroller">4.5. TodoListViewController クラス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#viewdidload">4.5.1. 初期化 (viewDidLoad)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#todo">4.5.2. Todo 一覧の取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.5.3. 画面描画</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">4.5.4. Todo の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.5.5. Todo の削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">5. チュートリアル2 : ログイン機能</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (iOS)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. チュートリアル1 : TODOアプリ (Swift版)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="todo-swift">
+<h1>4. チュートリアル1 : TODOアプリ (Swift版)<a class="headerlink" href="#todo-swift" title="Permalink to this headline">¶</a></h1>
+<p>本チュートリアルは、チュートリアル1(Objective-C)版と全く同じですが、
+実装を Objective-C ではなく Swift で行っています。</p>
+<p>BaaSサーバ側の設定手順は Objective-C 版と同じため割愛します。</p>
+<div class="section" id="id1">
+<h2>4.1. サンプルコードの変更と実行<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>チュートリアル1(Swift)のサンプルコードを設定し、動作させてみます。</p>
+<p>Xcode から tutorial1-swift ディレクトリを開いてください。</p>
+<p>NebulaTutorial1/Config.swift ファイルを修正します。</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">// テナントID</span>
+<span class="kd">let</span> <span class="nv">TENANT_ID</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+
+<span class="c1">// アプリケーションID</span>
+<span class="kd">let</span> <span class="nv">APP_ID</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+
+<span class="c1">// アプリケーションキー</span>
+<span class="kd">let</span> <span class="nv">APP_KEY</span>  <span class="p">=</span> <span class="s">&quot;&quot;</span>
+
+<span class="c1">// エンドポイント URI</span>
+<span class="kd">let</span> <span class="nv">ENDPOINT_URI</span> <span class="p">=</span> <span class="s">&quot;https://baas.example.com/api/&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>テナントID, アプリケーションID/キー, エンドポイントURIを指定します。
+内容は Objective-C 版と同じです。
+変更が完了したら、ビルド・実行してください。</p>
+<p>以下、実装手順について説明します。</p>
+</div>
+<div class="section" id="nec-baas-sdk-framework">
+<h2>4.2. NEC BaaS SDK Framework の追加<a class="headerlink" href="#nec-baas-sdk-framework" title="Permalink to this headline">¶</a></h2>
+<p>NEC BaaS iOS SDK を利用するためには、アプリケーションに Nebula SDK Framework
+を追加する必要があります。この手順は Objective-C 版と同じです。</p>
+</div>
+<div class="section" id="import">
+<h2>4.3. ヘッダファイルの import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h2>
+<p>iOS SDK を使用するソースファイルは、適宜 nebulaIosSdk/Nebula.h ファイルを import する必要があります。
+Swift を使用するプロジェクトでは、Bridging ヘッダ(プロジェクト名-Bridging-Header.h)に以下の1行を追加します。</p>
+<div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="cp">#import &quot;nebulaIosSdk/Nebula.h&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="appdelegate">
+<h2>4.4. AppDelegate クラス<a class="headerlink" href="#appdelegate" title="Permalink to this headline">¶</a></h2>
+<p>AppDelegate クラスの application() メソッド内で、
+iOS SDK の初期化処理を行います。</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="bp">NSObject</span><span class="p">:</span><span class="nb">AnyObject</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+    <span class="c1">// Nebula 初期化処理</span>
+    <span class="n">NBCore</span><span class="p">.</span><span class="n">setUpWithAppId</span><span class="p">(</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">appKey</span><span class="p">:</span> <span class="n">APP_KEY</span><span class="p">,</span> <span class="n">tenantId</span><span class="p">:</span> <span class="n">TENANT_ID</span><span class="p">);</span>
+    <span class="n">NBCore</span><span class="p">.</span><span class="n">setEndPointUri</span><span class="p">(</span><span class="n">ENDPOINT_URI</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>SDK の初期化には NBCore クラスを使用します。
+setupWithAppId() を使用して以下のパラメータを設定します。</p>
+<ul class="simple">
+<li>テナントID</li>
+<li>アプリケーションID</li>
+<li>アプリケーションキー</li>
+</ul>
+<p>また、setEndPointUri() を使用して、エンドポイントURIを設定します。</p>
+</div>
+<div class="section" id="todolistviewcontroller">
+<h2>4.5. TodoListViewController クラス<a class="headerlink" href="#todolistviewcontroller" title="Permalink to this headline">¶</a></h2>
+<p>アプリケーション本体は TodoListViewController クラスに実装します。
+本クラスは UITableViewController を継承しており、Todo を Table View で表示します。</p>
+<div class="section" id="viewdidload">
+<h3>4.5.1. 初期化 (viewDidLoad)<a class="headerlink" href="#viewdidload" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+    <span class="n">tableView</span><span class="p">.</span><span class="n">registerClass</span><span class="p">(</span><span class="bp">UITableViewCell</span><span class="p">.</span><span class="kc">self</span><span class="p">,</span> <span class="n">forCellReuseIdentifier</span><span class="p">:</span> <span class="s">&quot;TodoCell&quot;</span><span class="p">)</span>
+
+    <span class="n">reloadTodos</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>初期化は viewDidLoad で行います。</p>
+<p>ここでは reloadTodos() を呼び出し、Todo 一覧の取得を開始しています。</p>
+</div>
+<div class="section" id="todo">
+<h3>4.5.2. Todo 一覧の取得<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="c1">// Todo 一覧を取得する</span>
+<span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">reloadTodos</span><span class="p">(</span><span class="n">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="c1">// バケット取得</span>
+    <span class="kd">var</span> <span class="nv">bucket</span> <span class="p">=</span> <span class="n">NBObjectBucket</span><span class="p">(</span><span class="n">bucketName</span><span class="p">:</span> <span class="n">BUCKET_NAME</span><span class="p">)</span>
+
+    <span class="c1">// クエリ生成</span>
+    <span class="kd">var</span> <span class="nv">query</span> <span class="p">=</span> <span class="n">NBQuery</span><span class="p">()</span>
+    <span class="n">query</span><span class="p">.</span><span class="n">setSortOrderWithKey</span><span class="p">(</span><span class="s">&quot;updatedAt&quot;</span><span class="p">,</span> <span class="n">isAscend</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+
+    <span class="c1">// クエリ実行</span>
+    <span class="n">bucket</span><span class="p">.</span><span class="n">queryInBackgroundWithQuery</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="p">{</span><span class="n">objects</span><span class="p">,</span> <span class="bp">count</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">hideIndicator</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">error</span> <span class="p">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">todos</span> <span class="p">=</span> <span class="n">objects</span> <span class="k">as</span> <span class="p">[</span><span class="n">NBObject</span><span class="p">];</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">tableView</span><span class="p">.</span><span class="n">reloadData</span><span class="p">()</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">NSLog</span><span class="p">(</span><span class="s">&quot;query error: %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+    <span class="n">showIndicator</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>reloadTodos() で、サーバから Todo データの一覧を取得します。</p>
+<p>最初にオブジェクトバケットのインスタンスを取得します。オブジェクトバケットは NBObjectBucket クラスの
+インスタンスとして作成し、コンストラクタでバケット名をセットします。</p>
+<p>Todo データは、NBObjectBucket に対して queryInBackgroundWithQuery() を呼び出すことで取得できます。
+クエリ(取得条件)は NBQuery クラスのインスタンスとして作成します。
+ここでは更新日時(updatedAt)フィールド昇順で、全件取得するというクエリを作成しています。</p>
+<p>処理が完了すると、block: 引数に指定したクロージャが呼び出されます。
+正常時は objects にオブジェクトの一覧が、error に nil が格納されます。
+ここでは todos プロパティに objects を保存し、tableView の reloadData を呼び出して画面描画を行います。</p>
+</div>
+<div class="section" id="id2">
+<h3>4.5.3. 画面描画<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">numberOfSectionsInTableView</span><span class="p">(</span><span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="kr">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="n">section</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">todos</span><span class="p">.</span><span class="bp">count</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">cellForRowAtIndexPath</span> <span class="n">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="bp">UITableViewCell</span> <span class="p">{</span>
+    <span class="n">tableView</span><span class="p">.</span><span class="n">dequeueReusableCellWithIdentifier</span><span class="p">(</span><span class="s">&quot;TodoCell&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nv">cell</span> <span class="p">=</span> <span class="n">tableView</span><span class="p">.</span><span class="n">dequeueReusableCellWithIdentifier</span><span class="p">(</span><span class="s">&quot;TodoCell&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="bp">UITableViewCell</span>
+
+    <span class="kd">var</span> <span class="nv">todo</span> <span class="p">=</span> <span class="n">todos</span><span class="p">[</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">]</span>
+    <span class="n">cell</span><span class="p">.</span><span class="n">textLabel</span><span class="p">?.</span><span class="n">text</span> <span class="p">=</span> <span class="n">todo</span><span class="p">.</span><span class="n">objectForKey</span><span class="p">(</span><span class="s">&quot;description&quot;</span><span class="p">)</span> <span class="k">as</span><span class="p">?</span> <span class="nb">String</span>
+
+    <span class="k">return</span> <span class="n">cell</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>UITableView の描画は UITableViewDelegate の対応するメソッドで行います。</p>
+<p>サーバから取得した Todo データは todos プロパティに格納されています。
+numberOfRowsInSection() は、todos に格納されているオブジェクト数をテーブルの行数として返します。</p>
+<p>cellForRowAtIndexPath() で、具体的な TableView の cell を返却します。
+todos の indexPath.row 番目の要素を取り出し、”description” キーに格納された文字列を cell のテキストとして
+設定して返却します。</p>
+</div>
+<div class="section" id="id3">
+<h3>4.5.4. Todo の追加<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>画面右上の Add ボタンを押すと、Todo の追加処理に移ります。
+この処理は Segue 経由で TodoEditViewController を起動することで行っています。</p>
+<p>TodoEditViewController の Done ボタンを押すと TodoListViewController に戻りますが、
+この際 todoText プロパティに設定されたテキストを保管します。</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">prepareForSegue</span><span class="p">(</span><span class="n">segue</span><span class="p">:</span> <span class="bp">UIStoryboardSegue</span><span class="p">,</span> <span class="n">sender</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">!)</span> <span class="p">{</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">todoText</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">textView</span><span class="p">!.</span><span class="n">text</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>TodoListViewController は、上記テキストを取り出し、addTodo() を呼び出します。</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">firstViewReturnActionForSegue</span><span class="p">(</span><span class="n">segue</span><span class="p">:</span> <span class="bp">UIStoryboardSegue</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">segue</span><span class="p">.</span><span class="n">identifier</span> <span class="p">==</span> <span class="s">&quot;done&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nv">vc</span> <span class="p">=</span> <span class="n">segue</span><span class="p">.</span><span class="n">sourceViewController</span> <span class="k">as</span> <span class="n">TodoEditViewController</span>
+        <span class="kd">var</span> <span class="nv">todo</span> <span class="p">=</span> <span class="n">vc</span><span class="p">.</span><span class="n">todoText</span>
+        <span class="n">addTodo</span><span class="p">(</span><span class="n">todo</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>addTodo() では、Todo の追加処理を行います。</p>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="nf">addTodo</span><span class="p">(</span><span class="n">description</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// オブジェクト作成</span>
+    <span class="kd">var</span> <span class="nv">todo</span> <span class="p">=</span> <span class="n">NBObject</span><span class="p">(</span><span class="n">bucketName</span><span class="p">:</span> <span class="n">BUCKET_NAME</span><span class="p">)</span>
+
+    <span class="c1">// オブジェクトに値を設定</span>
+    <span class="n">todo</span><span class="p">.</span><span class="n">setObject</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;description&quot;</span><span class="p">)</span>
+
+    <span class="c1">// オブジェクト保存</span>
+    <span class="n">showIndicator</span><span class="p">()</span>
+
+    <span class="n">todo</span><span class="p">.</span><span class="n">saveInBackgroundWithBlock</span><span class="p">({</span><span class="n">objects</span><span class="p">,</span> <span class="bp">count</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">hideIndicator</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">error</span> <span class="p">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">reloadTodos</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">NSLog</span><span class="p">(</span><span class="s">&quot;save error : %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Todo データを NBObject クラスのインスタンスとして生成します。このとき、バケット名を指定します。</p>
+<p>また、setObject() を呼び出して、description フィールドに Todo のテキストをセットします。</p>
+<p>データの保存には saveInBackgroundWithBlock() メソッドを使用します。
+このメソッドが呼び出されるとサーバにデータが送信され、処理が終了するとクロージャが呼び出されます。
+ここでは reloadTodos() を呼び出して画面更新処理を行います。</p>
+</div>
+<div class="section" id="id4">
+<h3>4.5.5. Todo の削除<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-swift notranslate"><div class="highlight"><pre><span></span><span class="kr">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">canEditRowAtIndexPath</span> <span class="n">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span> <span class="c1">// 削除可能</span>
+<span class="p">}</span>
+
+<span class="kr">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">tableView</span><span class="p">:</span> <span class="bp">UITableView</span><span class="p">,</span> <span class="n">commitEditingStyle</span> <span class="n">editingStyle</span><span class="p">:</span> <span class="n">UITableViewCellEditingStyle</span><span class="p">,</span> <span class="n">forRowAtIndexPath</span> <span class="n">indexPath</span><span class="p">:</span> <span class="bp">NSIndexPath</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">obj</span> <span class="p">=</span> <span class="n">todos</span><span class="p">[</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">]</span>
+
+
+    <span class="c1">// オブジェクト削除</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">deleteInBackgroundWithBlock</span><span class="p">({</span><span class="n">error</span> <span class="k">in</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">hideIndicator</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">error</span> <span class="p">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">reloadTodos</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">NSLog</span><span class="p">(</span><span class="s">&quot;Delete failed: %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+    <span class="n">showIndicator</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Todo の削除処理は、tableView:commitEditingStyle:forRowAtIndexPath: で行います。
+本処理は、Todo を左スワイプしたときに呼び出されます。</p>
+<p>todos プロパティから、該当 NBObject インスタンスを取得し、
+deleteInBackgroundWithBlock() を呼び出すとサーバに削除指示が送信されます。</p>
+<p>削除が正常に完了するとクロージャが呼び出されますので、画面をリロードします。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial2.html" class="btn btn-neutral float-right" title="5. チュートリアル2 : ログイン機能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial1_code.html" class="btn btn-neutral" title="3. チュートリアル1 : TODOアプリの実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'5.0.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

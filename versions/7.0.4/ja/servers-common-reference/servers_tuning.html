@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. サーバのチューニング &mdash; サーバ共通リファレンス 6.5.4 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="2. 各サーバのデータとその格納先" href="servers_data.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> サーバ共通リファレンス
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.5.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mws_ports.html">1. 各サーバのミドルウェア・使用ポート</a></li>
+<li class="toctree-l1"><a class="reference internal" href="servers_data.html">2. 各サーバのデータとその格納先</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. サーバのチューニング</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux-os">3.1. Linux OS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ulimit">3.1.1. ulimit の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transparent-huge-pages-thp">3.1.2. Transparent Huge Pages (THP) の無効化</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">3.2. Tomcat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id23">3.3. MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">3.4. Fluentd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">3.5. RabbitMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-console">3.6. API/Console サーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssepush">3.7. SSEPush サーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cloud-functions">3.8. Cloud Functions サーバ</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">サーバ共通リファレンス</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. サーバのチューニング</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>3. サーバのチューニング<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>OS、ミドルウェアと各サーバのチューニングについて説明します。</p>
+<p>各サーバで利用するミドルウェアについては、<a class="reference internal" href="mws_ports.html#middlewares-correspondence-table"><span class="std std-ref">ミドルウェア</span></a> を参照ください。</p>
+<div class="section" id="linux-os">
+<h2>3.1. Linux OS<a class="headerlink" href="#linux-os" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Linux OS の場合は、下記のカーネルパラメータをチューニングしてください。</p>
+<div class="section" id="ulimit">
+<h3>3.1.1. ulimit の設定<a class="headerlink" href="#ulimit" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ulimit 設定のOSデフォルト値が小さすぎるため、サーバとして運用するときは大きめに設定してください（特に、APサーバとDBサーバ）。</p>
+<ul class="simple">
+<li>nproc: ユーザ毎に起動できるプロセス数</li>
+<li>nofile: プロセス毎に同時に開けるファイル数の上限</li>
+</ul>
+<p>設定方法は、<a class="reference external" href="../server/usage/quickstart_rhel.html#ulimit">ulimit の設定</a>  を参照ください。</p>
+</div>
+<div class="section" id="transparent-huge-pages-thp">
+<h3>3.1.2. Transparent Huge Pages (THP) の無効化<a class="headerlink" href="#transparent-huge-pages-thp" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MongoDB サーバが稼働する環境向けの設定です。</p>
+<p>THP はカーネルのメモリ性能改善機能の一つです。メモリのシーケンシャルアクセスには有益ですが、
+DB のようなランダムアクセスが多い場合はパフォーマンスが落ちることがあるため、無効にする必要があります。</p>
+<p>設定方法は、 <a class="reference external" href="https://docs.mongodb.com/manual/tutorial/transparent-huge-pages/">MongoDB disable transparent-huge-pages</a> を参照ください。</p>
+</div>
+</div>
+<div class="section" id="id22">
+<h2>3.2. Tomcat<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>下記の JVM ヒープサイズと接続数上限について、必要に応じてチューニングしてください。
+対象は後述する API/Console サーバおよび SSE Push サーバです。</p>
+<ul class="simple">
+<li>-Xmx: JVM ヒープサイズの最大メモリ量</li>
+<li>-Xms: JVM ヒープサイズの最小メモリ量</li>
+<li>maxConnections: 同時に受け付けるコネクション数の上限</li>
+</ul>
+<p>JVM ヒープサイズ設定は、<a class="reference external" href="../server/usage/quickstart_rhel.html#tomcat-service-config">JVM ヒープサイズ設定</a> を参照ください。</p>
+<p>接続数上限設定は、設定ファイル（$TOMCAT_HOME]/conf/server.xml） の Connectorタグに設定してください。</p>
+</div>
+<div class="section" id="id23">
+<h2>3.3. MongoDB<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>前述の ulimit の設定 と Transparent Huge Pages (THP) の無効化が必要です。</p>
+</div>
+<div class="section" id="id24">
+<h2>3.4. Fluentd<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDB Output Pluginの cappedコレクション容量を必要に応じてチューニングしてください。</p>
+<ul class="simple">
+<li>capped_size: capped コレクション容量。 MongoDB に保存するログデータ量に応じて調整してください。</li>
+<li>設定方法は、<a class="reference external" href="../server/configure/logger.html#use-fluentd">Fluentdの利用設定</a> を参照ください。</li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h2>3.5. RabbitMQ<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>前述の ulimit の設定が必要です。</p>
+</div>
+<div class="section" id="api-console">
+<h2>3.6. API/Console サーバ<a class="headerlink" href="#api-console" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>前述の ulimit と Tomcat の設定が必要です。</p>
+<p>また、必要に応じて MongoDB サーバに対して接続する際の最大TCPコネクション数（mongo.maxConnectionsPerHost）を
+チューニングします。</p>
+<p>Tomcat の設定について</p>
+<ul class="simple">
+<li>低負荷運用の場合(同時アクセス数低、データ量少ない)は、 ヒープサイズの設定は &quot;-Xmx1024m -Xms512m&quot; で十分です。</li>
+<li>オブジェクトの書込（1KB）とクエリ（1MB）を秒間リクエスト500回で実行する場合、VM ヒープサイズの使用量(実測)は 500MB弱になります。</li>
+<li>高負荷運用（同時アクセス数高、データ量多い）の場合は、ヒープサイズとコネクション数上限を引き上げてください。</li>
+</ul>
+<p>mongo.maxConnectionsPerHost: 各APIサーバから MongoDB サーバに対して接続する際の最大TCPコネクション数</p>
+<ul class="simple">
+<li>mongo.maxConnectionsPerHost を大きく設定することでピーク性能を上げることができます。
+ただしAPIサーバをスケールさせた場合、MongoDB へのコネクション数が多くなりすぎすぎ、接続エラー
+が発生する可能性がありますので注意が必要です。</li>
+<li>設定方法は、<a class="reference external" href="../server/configure/config_file.html#mongodb">MongoDB設定</a> を参照ください。</li>
+</ul>
+</div>
+<div class="section" id="ssepush">
+<h2>3.7. SSEPush サーバ<a class="headerlink" href="#ssepush" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>前述の ulimit と Tomcat の設定が必要です。</p>
+<p>Tomcat の設定について</p>
+<ul class="simple">
+<li>同時アクセス数(クライアント数)が多い場合は、Tomcatの maxConnections を同時接続するクライアント数より大きな値に設定してください。
+推奨値は数千～10,000程度までです。</li>
+<li>実測では、10,000接続の場合は、JVM ヒープサイズの最大メモリ量は、3GB程度が必要です。</li>
+</ul>
+</div>
+<div class="section" id="cloud-functions">
+<h2>3.8. Cloud Functions サーバ<a class="headerlink" href="#cloud-functions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>前述の ulimit の設定が必要です。</p>
+<p>サーバマネジャー（Cloudfn-server-manager）の JVM ヒープサイズ 設定は、一般的に変更不要ですが、下記の方法でチューニングできます。</p>
+<p>Cloudfn-server-manager の service ファイル（CentOS7 の場合は、 cloudfn-server-manager.service）にある環境変数定義（JAVA_OPTS） で調整してください。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[service]
+Environment=&quot;JAVA_OPTS=-Xmx1024m -Xms512m&quot;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="servers_data.html" class="btn btn-neutral" title="2. 各サーバのデータとその格納先" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'6.5.4',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

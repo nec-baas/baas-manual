@@ -1,0 +1,110 @@
+=================================
+Native アプリケーション (Android)
+=================================
+
+Android による SAML 認証の実装方法を記載します。
+
+大きく分けて、以下の4つの処理を実装します。
+
+* カスタムスキームの登録
+* SAML 認証開始 REST API の実行
+* SAML 認証完了時の処理
+* BaaS サーバへのログイン
+
+カスタムスキームの登録
+======================
+
+SAML 認証結果を受け取るためのカスタム URL スキームを登録します。
+
+ここでは例として "sampleapp1://" スキームを使用することにします。
+(実際にはアプリ固有の名称に変更してください)
+
+AndroidManifest.xml に以下のように intent-filter を設定します。
+ここではカスタム URL スキームが起動されたときに Activity が起動されるように設定しています。
+
+.. code-block:: text
+
+  <activity android:name="{Activityクラス名}"
+      ...
+      <intent-filter>
+          <action android:name=android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="sampleapp1" android:host="saml_callback" />
+      </intent-filter>
+  </activity>
+
+
+SAML認証開始
+============
+
+ブラウザを起動して SAML 認証開始の REST API を実行します。
+
+REST API の URI は、以下のとおりです。
+
+    {endpointUri}/1/{tenantId}/auth/saml/init?redirect={redirectUri}
+
+以下にサンプルコードを示します。
+
+.. code-block:: java
+
+    // リダイレクト URI            
+    final String redirectUri = "sampleapp1://saml_callback"
+
+    final String endpointUri = "{エンドポイントURI}"
+    final String tenantId = "{テナントID}"
+
+    // 起動用 URI 生成
+    Uri uri = Uri.parse(String.format("%s/1/%s/auth/saml/init?redirect=%s",
+        endpointUri, tenantId, URLEncoder.encode(redirectUri, "UTF-8")));
+
+    // ブラウザ起動
+    Intent intent = new intent(Intent.ACTION_VIEW, uri);
+    startActivity(intent);
+
+
+SAML認証完了時の処理
+====================
+
+SAML 認証完了が完了すると、カスタムスキームURIにリダイレクトされます。
+リダイレクトURIは以下のようにワンタイムトークンがクエリパラメータに格納された形になります。
+
+    sampleapp1://saml_callback?token=123456789abcdef
+
+カスタムスキームURIが起動されると、上記で設定した intent-filter の指定により Activity の
+onNewIntent() が呼び出されます。
+Intent の Data にリダイレクト URI が格納されており、この中に認証用の「ワンタイムトークン」
+が含まれています。これを NbUser.extractOneTimeTokenFromUri() で取り出します。
+
+以下にサンプルコードを示します。
+
+.. code-block:: java
+
+    @Override
+    protected void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+
+        // リダイレクト URI を取り出す
+        Uri uri = intent.getData();
+
+        // ワンタイムトークンを取り出す
+        LoginParam param = NbUser.extractOneTimeTokenFromUri(uri.toString());
+
+        ...
+
+BaaS サーバへのログイン
+=======================
+
+ワンタイムトークンを指定してログインします。
+
+上記で取得した LoginParam を指定して NbUser.login() を呼び出してください。
+
+サーバからセッショントークンが払いだされ、以降は本セッショントークンで認証が行われます。
+以下にサンプルコードを示します。
+
+.. code-block:: java
+
+            // ログイン
+            NbUser.login(loginParam, new NbUserCallback() {
+                /* 中略 */
+            });
