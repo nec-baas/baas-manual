@@ -139,6 +139,8 @@ a/b           NG      先頭が '/' でない
 /a/b{c}       NG      パステンプレートが不正
 ============= ======  ==========================
 
+.. _create_function_def:
+
 ファンクション定義の作成
 ========================
 
@@ -163,7 +165,7 @@ Node.js の場合:
 
     # 実行環境
     env:
-      spec: node8
+      spec: node
       timeout: 600
       memorySize: 256
 
@@ -181,7 +183,7 @@ Java の場合:
     handler: com.example.Hello::sayHello
     # 実行環境
     env:
-      spec: java8
+      spec: java
       timeout: 600
       memorySize: 512
 
@@ -217,6 +219,15 @@ Java の場合:
 * Java の場合は、"java" がデフォルトです。
 
 スペックの詳細は `Cloud Functionsサーバ 利用手順書 <../../../server/ja/cloudfunctions-server/index.html>`_ の「設定」の章を参照してください。
+
+.. attention::
+
+  ver 7.5 より、スペックのデフォルト値が "node6"/"java8" から "node"/"java" と
+  バージョン番号を指定しない形式に変更になりました。本形式はサーバにインストールされて
+  いる最新版を指すようになっています。
+
+  従来のバージョン番号を指定する形式も引き続き利用可能です。
+  利用可能な設定値は Cloud Functions サーバの設定値に依存します。
 
 .. attention::
 

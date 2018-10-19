@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2.1. JSONオブジェクトストレージ &mdash; NEC BaaS Notes 7.5.0 ドキュメント</title>
+  <title>2.2. JSONオブジェクトストレージ &mdash; NEC BaaS Notes 7.5.0 ドキュメント</title>
   
 
   
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="2.2. ファイルストレージ" href="file_storage.html" />
-    <link rel="prev" title="2. SDK" href="index.html" /> 
+    <link rel="next" title="2.3. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="2.1. ユーザ管理" href="user.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,35 +86,36 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../support.html">1. 品質保証範囲</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. SDK</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. JSONオブジェクトストレージ</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">2.1.1. オブジェクトクエリ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user.html">2.1. ユーザ管理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.2.1. オブジェクトクエリ</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id2">ソート条件</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id3">クエリ条件式</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4">大量データのクエリ</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#object-delete">2.1.2. オブジェクト削除</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#object-delete">2.2.2. オブジェクト削除</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id6">物理削除と論理削除</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id7">論理削除オブジェクトの自動定期削除</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id8">論理削除オブジェクトの手動一括削除手順</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">2.1.3. リクエストトークン</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.2.3. リクエストトークン</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id10">リクエストトークンの仕様</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id11">リクエストトークンを利用する場合の注意点</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.2. ファイルストレージ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="android.html">2.3. Android SDK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="javascript.html">2.4. JavaScript SDK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dotnet.html">2.5. .NET SDK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="push.html">2.6. Push</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">2.7. Cloud Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="offline.html">2.8. オフライン・同期</a></li>
-<li class="toctree-l2"><a class="reference internal" href="string_limit.html">2.9. 文字種・文字列長制約</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comparison_table.html">2.10. SDKの機能比較表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.3. ファイルストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="android.html">2.4. Android SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">2.5. JavaScript SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dotnet.html">2.6. .NET SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html">2.7. Push</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">2.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="offline.html">2.9. オフライン・同期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_limit.html">2.10. 文字種・文字列長制約</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparison_table.html">2.11. SDKの機能比較表</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changes.html">3. 改訂履歴</a></li>
@@ -165,7 +166,7 @@
         
           <li><a href="index.html">2. SDK</a> &raquo;</li>
         
-      <li>2.1. JSONオブジェクトストレージ</li>
+      <li>2.2. JSONオブジェクトストレージ</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -183,9 +184,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="json">
-<h1>2.1. JSONオブジェクトストレージ<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>2.2. JSONオブジェクトストレージ<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
-<h2>2.1.1. オブジェクトクエリ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>2.2.1. オブジェクトクエリ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id2">
 <h3>ソート条件<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
@@ -220,7 +221,7 @@
 </div>
 </div>
 <div class="section" id="object-delete">
-<span id="id5"></span><h2>2.1.2. オブジェクト削除<a class="headerlink" href="#object-delete" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<span id="id5"></span><h2>2.2.2. オブジェクト削除<a class="headerlink" href="#object-delete" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id6">
 <h3>物理削除と論理削除<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>オブジェクトストレージのオブジェクト削除動作は、SDK によって動作が異なります。</p>
@@ -275,7 +276,7 @@ curl –X DELETE <span class="se">\</span>
 </div>
 </div>
 <div class="section" id="id9">
-<h2>2.1.3. リクエストトークン<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>2.2.3. リクエストトークン<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id10">
 <h3>リクエストトークンの仕様<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>直接 REST API を用いて、オブジェクトの作成・バッチリクエストを行う場合、リクエストトークンを指定することができます。</p>
@@ -298,10 +299,10 @@ SDKを利用する場合は、SDK内で考慮されるため問題ありませ�
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="file_storage.html" class="btn btn-neutral float-right" title="2.2. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="2.3. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="2. SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="user.html" class="btn btn-neutral" title="2.1. ユーザ管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -310,7 +311,7 @@ SDKを利用する場合は、SDK内で考慮されるため問題ありませ�
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation.
+        &copy; Copyright 2013-2018, NEC Corporation
 
     </p>
   </div>
@@ -329,24 +330,17 @@ SDKを利用する場合は、SDK内で考慮されるため問題ありませ�
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'7.5.0',
-            LANGUAGE:'ja',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
-      <script type="text/javascript" src="../_static/analytics.js"></script>
-      <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

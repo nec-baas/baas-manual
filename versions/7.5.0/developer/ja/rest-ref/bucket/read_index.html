@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7.5. インデックス一覧の取得 &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  <title>7.6. インデックス一覧の取得 &mdash; REST API Reference 7.5.0 ドキュメント</title>
   
 
   
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="7.6. シャードキーの取得" href="read_shard_key.html" />
-    <link rel="prev" title="7.4. バケットの削除" href="delete.html" /> 
+    <link rel="next" title="7.7. インデックスの削除" href="delete_index.html" />
+    <link rel="prev" title="7.5. インデックスの作成" href="create_index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -95,8 +95,11 @@
 <li class="toctree-l2"><a class="reference internal" href="find.html">7.2. バケット一覧取得</a></li>
 <li class="toctree-l2"><a class="reference internal" href="read.html">7.3. バケット情報の取得</a></li>
 <li class="toctree-l2"><a class="reference internal" href="delete.html">7.4. バケットの削除</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">7.5. インデックス一覧の取得</a></li>
-<li class="toctree-l2"><a class="reference internal" href="read_shard_key.html">7.6. シャードキーの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_index.html">7.5. インデックスの作成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.6. インデックス一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_index.html">7.7. インデックスの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_shard_key.html">7.8. シャードキーの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read_shard_key.html">7.9. シャードキーの取得</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../object/index.html">8. JSONオブジェクトストレージ</a></li>
@@ -152,7 +155,7 @@
         
           <li><a href="index.html">7. バケット管理</a> &raquo;</li>
         
-      <li>7.5. インデックス一覧の取得</li>
+      <li>7.6. インデックス一覧の取得</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -170,7 +173,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="bucket-read-index">
-<span id="id1"></span><h1>7.5. インデックス一覧の取得<a class="headerlink" href="#bucket-read-index" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<span id="id1"></span><h1>7.6. インデックス一覧の取得<a class="headerlink" href="#bucket-read-index" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <dl class="get">
 <dt id="get--1-(tenantId)-buckets-object-(bucketName)-index">
 <code class="descname">GET </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/buckets/object/</code><span class="sig-paren">(</span><em>bucketName</em><span class="sig-paren">)</span><code class="descname">/index</code><a class="headerlink" href="#get--1-(tenantId)-buckets-object-(bucketName)-index" title="この定義へのパーマリンク">¶</a></dt>
@@ -245,10 +248,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="read_shard_key.html" class="btn btn-neutral float-right" title="7.6. シャードキーの取得" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="delete_index.html" class="btn btn-neutral float-right" title="7.7. インデックスの削除" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="delete.html" class="btn btn-neutral" title="7.4. バケットの削除" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="create_index.html" class="btn btn-neutral" title="7.5. インデックスの作成" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -257,7 +260,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation.
+        &copy; Copyright 2013-2018, NEC Corporation
 
     </p>
   </div>
@@ -276,24 +279,17 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'7.5.0',
-            LANGUAGE:'ja',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
-      <script type="text/javascript" src="../_static/analytics.js"></script>
-      <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

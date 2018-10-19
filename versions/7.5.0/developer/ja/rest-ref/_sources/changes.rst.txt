@@ -2,8 +2,8 @@
 改版履歴
 ========
 
-ver 7.5.0 : 2018/7/27
----------------------
+ver 7.5.0 : 2018/10/11
+----------------------
 
 * フォーマットを PDF から HTML に変更
 * :ref:`basic_auth` 追加
@@ -32,6 +32,7 @@ ver 7.5.0 : 2018/7/27
 * :ref:`bucket`
 
   - ACLレスバケット機能(noAcl)追加
+  - インデックスキー・シャードキー更新APIを追加
 * :ref:`user`
 
   - :ref:`user_signup`: ID指定による登録をサポート
@@ -44,7 +45,7 @@ ver 7.5.0 : 2018/7/27
       - :ref:`user_login`
       - :ref:`user_update`
       - :ref:`user_find`
-
+  - :ref:`user_update`: パスワード変更時に該当ユーザの全セッショントークンを無効化
 * :ref:`admin_apistats`
 
   - tenantId パス/クエリパラメータ重複してもエラーとしない

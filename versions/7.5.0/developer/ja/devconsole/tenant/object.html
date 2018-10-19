@@ -194,50 +194,47 @@
 <h2>オブジェクトバケットの追加<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>例として、オブジェクトバケットの追加方法を説明します。</p>
 <p>オブジェクトバケット一覧画面で、「追加」を選択してください。</p>
-<a class="reference internal image-reference" href="../_images/objMenu_1.png"><img alt="../_images/objMenu_1.png" src="../_images/objMenu_1.png" style="width: 590.4px; height: 225.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/objMenu_1.png"><img alt="../_images/objMenu_1.png" src="../_images/objMenu_1.png" style="width: 669.6px; height: 157.79999999999998px;" /></a>
 <p>新規オブジェクトバケット登録画面が表示されますので、「バケット名」、「説明」(任意)、「バケットACL」、「コンテンツACL」と「オブジェクトACL無効」を入力し、「保存」を選択してください(「バケットACL」と「コンテンツACL」にはデフォルト値が入っています)。</p>
-<p>「オブジェクトACL無効」がチェックされた場合は、ACLレスバケットとなります。</p>
+<p>「オブジェクトACL無効」がチェックされた場合は、 <a class="reference external" href="../../developer/functions/acl.html#acl-less">ACLレスバケット</a> となります。</p>
 <a class="reference internal image-reference" href="../_images/objMenu_2-1.png"><img alt="../_images/objMenu_2-1.png" src="../_images/objMenu_2-1.png" style="width: 604.8px; height: 544.1999999999999px;" /></a>
 <p>これでテナントにオブジェクトバケットが追加されました。</p>
 <p>追加したオブジェクトバケットの情報が表示されます。</p>
-<a class="reference internal image-reference" href="../_images/objMenu_3.png"><img alt="../_images/objMenu_3.png" src="../_images/objMenu_3.png" style="width: 834.6px; height: 418.2px;" /></a>
+<a class="reference internal image-reference" href="../_images/objMenu_3.png"><img alt="../_images/objMenu_3.png" src="../_images/objMenu_3.png" style="width: 673.8px; height: 395.4px;" /></a>
 </div>
 <div class="section" id="id22">
 <h2>オブジェクトバケットの編集、削除<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>テナント内のオブジェクトバケットの編集、削除は、オブジェクトバケット一覧画面で「編集」を選択後、表示されるオブジェクトバケット編集画面で実施できます。</p>
 <div class="admonition attention">
 <p class="first admonition-title">注意</p>
-<dl class="last docutils">
-<dt>「オブジェクトACL無効」変更の注意点</dt>
-<dd><ul class="first last simple">
-<li><dl class="first docutils">
-<dt>通常バケットから、 ACLレスバケットに変更する場合</dt>
-<dd><ul class="first last">
+<p>「オブジェクトACL無効」変更の注意点</p>
+<blockquote class="last">
+<div><ul>
+<li><p class="first">通常バケットから、 ACLレスバケットに変更する場合</p>
+<blockquote>
+<div><ul class="simple">
 <li>全オブジェクトのACLフィールドは残ったままとなります。</li>
 <li>削りたい場合は、１件毎に更新する必要があります。</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>ACLレスバケットから、通常バケットに変更する場合</dt>
-<dd><ul class="first last">
+<li><p class="first">ACLレスバケットから、通常バケットに変更する場合</p>
+<blockquote>
+<div><ul class="simple">
 <li>既存オブジェクトのACLフィールドが存在しない状態となります。</li>
 <li>デフォルトACL値は自動付与されないので、マスターキーでアクセスする必要があります。</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="id23">
 <h2>インデックスの作成<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>指定フィールドへのインデックス作成方法を説明します。</p>
 <p>オブジェクトバケット一覧画面で、「インデックス」を選択してください。</p>
-<a class="reference internal image-reference" href="../_images/objMenu_9-1.png"><img alt="../_images/objMenu_9-1.png" src="../_images/objMenu_9-1.png" style="width: 591.0px; height: 213.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/objMenu_9-1.png"><img alt="../_images/objMenu_9-1.png" src="../_images/objMenu_9-1.png" style="width: 668.4px; height: 162.0px;" /></a>
 <p>インデックス一覧画面が表示されますので、「追加」を選択してください。</p>
 <a class="reference internal image-reference" href="../_images/objMenu_9-2.png"><img alt="../_images/objMenu_9-2.png" src="../_images/objMenu_9-2.png" style="width: 597.6px; height: 360.0px;" /></a>
 <p>新規インデックス追加画面で「インデックス名」「キー」「オプション」を入力し、「保存」を選択してください。</p>
@@ -305,7 +302,7 @@
 <h3>データのエクスポート<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>次に、オブジェクトバケット内のデータのエクスポートを説明します。</p>
 <p>オブジェクトバケット一覧画面で対象バケットの「データ」を選択します。</p>
-<a class="reference internal image-reference" href="../_images/objMenu_4.png"><img alt="../_images/objMenu_4.png" src="../_images/objMenu_4.png" style="width: 591.0px; height: 213.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/objMenu_4.png"><img alt="../_images/objMenu_4.png" src="../_images/objMenu_4.png" style="width: 668.4px; height: 162.0px;" /></a>
 <p>オブジェクトデータ一覧が表示されますので、「エクスポート」を選択するとデータがJSON形式でエクスポートされます。ファイルは、「&quot;オブジェクトバケット名&quot;.json」となります。</p>
 <a class="reference internal image-reference" href="../_images/objMenu_5.png"><img alt="../_images/objMenu_5.png" src="../_images/objMenu_5.png" style="width: 682.1999999999999px; height: 518.4px;" /></a>
 <p>JSON形式のデータをインポートすることもできます。</p>
@@ -356,7 +353,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation.
+        &copy; Copyright 2013-2018, NEC Corporation
 
     </p>
   </div>
@@ -375,24 +372,17 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'7.5.0',
-            LANGUAGE:'ja',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
-      <script type="text/javascript" src="../_static/analytics.js"></script>
-      <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

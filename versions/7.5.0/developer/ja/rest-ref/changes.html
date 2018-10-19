@@ -96,7 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="admin/index.html">11. 管理系API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events/index.html">12. イベント駆動</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">13. 改版履歴</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ver-7-5-0-2018-7-27">13.1. ver 7.5.0 : 2018/7/27</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-5-0-2018-10-11">13.1. ver 7.5.0 : 2018/10/11</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ver-7-0-2-2017-12-26">13.2. ver 7.0.2: 2017/12/26</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ver-7-0-1-2017-10-19">13.3. ver 7.0.1: 2017/10/19</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-2017-9-28">13.4. ver 7.0.0: 2017/9/28</a></li>
@@ -167,8 +167,8 @@
             
   <div class="section" id="id1">
 <h1>13. 改版履歴<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="section" id="ver-7-5-0-2018-7-27">
-<h2>13.1. ver 7.5.0 : 2018/7/27<a class="headerlink" href="#ver-7-5-0-2018-7-27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="ver-7-5-0-2018-10-11">
+<h2>13.1. ver 7.5.0 : 2018/10/11<a class="headerlink" href="#ver-7-5-0-2018-10-11" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>フォーマットを PDF から HTML に変更</li>
 <li><a class="reference internal" href="auth.html#basic-auth"><span class="std std-ref">Basic認証</span></a> 追加</li>
@@ -201,6 +201,7 @@
 </li>
 <li><a class="reference internal" href="bucket/index.html#bucket"><span class="std std-ref">バケット管理</span></a><ul>
 <li>ACLレスバケット機能(noAcl)追加</li>
+<li>インデックスキー・シャードキー更新APIを追加</li>
 </ul>
 </li>
 <li><a class="reference internal" href="user/index.html#user"><span class="std std-ref">ユーザ管理</span></a><ul>
@@ -216,6 +217,7 @@
 </li>
 </ul>
 </li>
+<li><a class="reference internal" href="user/update.html#user-update"><span class="std std-ref">ユーザ情報変更 (パスワード変更を含む)</span></a>: パスワード変更時に該当ユーザの全セッショントークンを無効化</li>
 </ul>
 </li>
 <li><a class="reference internal" href="admin/apistats.html#admin-apistats"><span class="std std-ref">API統計情報取得</span></a><ul>
@@ -296,7 +298,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation.
+        &copy; Copyright 2013-2018, NEC Corporation
 
     </p>
   </div>
@@ -315,24 +317,17 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'7.5.0',
-            LANGUAGE:'ja',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
-      <script type="text/javascript" src="_static/analytics.js"></script>
-      <script type="text/javascript" src="_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
