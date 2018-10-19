@@ -99,7 +99,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#path-string-restrictions">パス使用可能文字列の制約</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">5.3.2. ファンクション定義の作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-function-def">5.3.2. ファンクション定義の作成</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">5.3.3. API定義とファンクション定義の登録</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cli">CLIを使用する場合</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id7">デベロッパーコンソールを使用する場合</a></li>
@@ -336,8 +336,8 @@ basePath に &quot;/api/1/{<em>tenantId</em>}/api/{<em>apiname</em>}&quot; を�
 </table>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>5.3.2. ファンクション定義の作成<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="create-function-def">
+<span id="id4"></span><h2>5.3.2. ファンクション定義の作成<a class="headerlink" href="#create-function-def" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ファンクションは、カスタム API とコードのひも付け定義です。
 ファンクションも YAML または JSON で記述します。</p>
 <p>hello-function.yml という名前でファイルを作成してください。</p>
@@ -354,7 +354,7 @@ basePath に &quot;/api/1/{<em>tenantId</em>}/api/{<em>apiname</em>}&quot; を�
 
   <span class="c1"># 実行環境</span>
   <span class="l l-Scalar l-Scalar-Plain">env</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node8</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">node</span>
     <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">600</span>
     <span class="l l-Scalar l-Scalar-Plain">memorySize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">256</span>
 </pre></div>
@@ -370,7 +370,7 @@ basePath に &quot;/api/1/{<em>tenantId</em>}/api/{<em>apiname</em>}&quot; を�
   <span class="l l-Scalar l-Scalar-Plain">handler</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">com.example.Hello::sayHello</span>
   <span class="c1"># 実行環境</span>
   <span class="l l-Scalar l-Scalar-Plain">env</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">java8</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">java</span>
     <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">600</span>
     <span class="l l-Scalar l-Scalar-Plain">memorySize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">512</span>
 </pre></div>
@@ -408,6 +408,14 @@ basePath に &quot;/api/1/{<em>tenantId</em>}/api/{<em>apiname</em>}&quot; を�
 <li>Java の場合は、&quot;java&quot; がデフォルトです。</li>
 </ul>
 <p>スペックの詳細は <a class="reference external" href="../../../server/ja/cloudfunctions-server/index.html">Cloud Functionsサーバ 利用手順書</a> の「設定」の章を参照してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>ver 7.5 より、スペックのデフォルト値が &quot;node6&quot;/&quot;java8&quot; から &quot;node&quot;/&quot;java&quot; と
+バージョン番号を指定しない形式に変更になりました。本形式はサーバにインストールされて
+いる最新版を指すようになっています。</p>
+<p class="last">従来のバージョン番号を指定する形式も引き続き利用可能です。
+利用可能な設定値は Cloud Functions サーバの設定値に依存します。</p>
+</div>
 <div class="admonition attention">
 <p class="first admonition-title">注意</p>
 <p>memorySize は Docker レス構成時は無効です。</p>
@@ -459,7 +467,7 @@ $ nebula create-function hello-function.yml
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation.
+        &copy; Copyright 2013-2018, NEC Corporation
 
     </p>
   </div>
@@ -478,24 +486,17 @@ $ nebula create-function hello-function.yml
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'7.5.0',
-            LANGUAGE:'ja',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
-      <script type="text/javascript" src="_static/analytics.js"></script>
-      <script type="text/javascript" src="_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

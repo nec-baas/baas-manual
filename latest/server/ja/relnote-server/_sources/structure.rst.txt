@@ -7,11 +7,17 @@
 
 * NECモバイルバックエンド基盤 サーバ
 
-  - APIサーバ
-  - デベロッパーコンソールサーバ
-  - SSE Push サーバ
-  - Cloud Functionsサーバ一式
-* サーバマニュアル
+
+    | InstallMedia/
+    |      ├── baas-server-\*.tar.gz
+    |      ├── cloudfn-servers-\*.tar.gz
+    |      ├── ssepush-server-\*.tar.gz
+    |      └── readme.txt
+
+    - baas-server-\*.tar.gz : API サーバ、コンソールサーバ 配布物
+    - cloudfn-servers-\*.tar.gz : SSE Push サーバ 配布物
+    - ssepush-server-\*.tar.gz : Cloud Functions サーバ 配布物
+    - readme.txt ： 配布物の説明
 
 .. attention::
 

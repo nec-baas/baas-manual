@@ -5,14 +5,16 @@ SSE Push 受信実装 (.NET編)
 ライブラリの組み込み
 ====================
 
-事前に Nebula .NET SDK のセットアップを行っておいて下さい。
+事前に NEC BaaS .NET SDK のセットアップを行っておいて下さい。
 ついで、プロジェクトに SSE Push ライブラリの組み込みを行います。
 
-以下のライブラリが必要になります。
+SSE Push ライブラリは GitHub の `baas-ssepush-dotnet <https://github.com/nec-baas/baas-ssepush-dotnet>`_ で配布しています。
+
+SSE Push ライブラリには以下の DLL ファイルが含まれます。
 
 * ServerSentEvents.dll : SSE ライブラリ
-* SsePushClient.dll : SSE Push 受信ライブラリ (Nebula非依存)
-* Nec.Nebula.Push.dll : SSE Push 受信ライブラリ (Nebula用)
+* SsePushClient.dll : SSE Push 受信ライブラリ (BaaS非依存部)
+* Nec.Nebula.Push.dll : SSE Push 受信ライブラリ (BaaS依存部)
 
 各 DLL に対して、以下の手順を実施してください。
 

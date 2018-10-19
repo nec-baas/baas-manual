@@ -173,13 +173,14 @@
 <h1>5.2. SSE Push 受信実装 (.NET編)<a class="headerlink" href="#sse-push-net" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>5.2.1. ライブラリの組み込み<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>事前に Nebula .NET SDK のセットアップを行っておいて下さい。
+<p>事前に NEC BaaS .NET SDK のセットアップを行っておいて下さい。
 ついで、プロジェクトに SSE Push ライブラリの組み込みを行います。</p>
-<p>以下のライブラリが必要になります。</p>
+<p>SSE Push ライブラリは GitHub の <a class="reference external" href="https://github.com/nec-baas/baas-ssepush-dotnet">baas-ssepush-dotnet</a> で配布しています。</p>
+<p>SSE Push ライブラリには以下の DLL ファイルが含まれます。</p>
 <ul class="simple">
 <li>ServerSentEvents.dll : SSE ライブラリ</li>
-<li>SsePushClient.dll : SSE Push 受信ライブラリ (Nebula非依存)</li>
-<li>Nec.Nebula.Push.dll : SSE Push 受信ライブラリ (Nebula用)</li>
+<li>SsePushClient.dll : SSE Push 受信ライブラリ (BaaS非依存部)</li>
+<li>Nec.Nebula.Push.dll : SSE Push 受信ライブラリ (BaaS依存部)</li>
 </ul>
 <p>各 DLL に対して、以下の手順を実施してください。</p>
 <ol class="arabic simple">
@@ -307,7 +308,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation.
+        &copy; Copyright 2013-2018, NEC Corporation
 
     </p>
   </div>
@@ -326,24 +327,17 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'7.5.0',
-            LANGUAGE:'ja',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
-      <script type="text/javascript" src="../_static/analytics.js"></script>
-      <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

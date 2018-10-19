@@ -5,6 +5,7 @@ SDK
 .. toctree::
    :maxdepth: 2
 
+   user
    object_storage
    file_storage
    android
