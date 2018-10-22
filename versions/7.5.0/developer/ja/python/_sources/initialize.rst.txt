@@ -26,12 +26,12 @@ Python SDK を利用するには、baas.Service クラスのインスタンス�
 .. code-block:: python
 
     params = {
-        "baseUri": "https://api.example.com/api"
-        "tenantId": "mytenant"
-        "appId": "123456789abcdef123456"
-        "appKey": "123456789abcdef123456"
+        "baseUrl": "https://api.example.com/api",
+        "tenantId": "mytenant",
+        "appId": "123456789abcdef123456",
+        "appKey": "123456789abcdef123456",
         "proxy": {
-            "http": "proxy.example.com:8080"
+            "http": "proxy.example.com:8080",
             "https": "proxy.example.com:8443"
         }
     }
@@ -39,7 +39,7 @@ Python SDK を利用するには、baas.Service クラスのインスタンス�
 
 baas.Service() の引数に、パラメータを指定します。パラメータには以下の指定を行ってください。
 
-* baseUri: BaaS APIサーバのエンドポイントURI
+* baseUrl: BaaS APIサーバのエンドポイントURI
 * tenantId: テナントIDまたはテナント名
 * appId: アプリケーションID
 * appKey: アプリケーションキー
@@ -51,8 +51,14 @@ baas.Service() の引数に、パラメータを指定します。パラメー�
 BaaSサーバ接続先自動設定
 ========================
 
-BaaS サーバへ接続するための設定情報はYAML形式で記載したファイルから自動で設定可能です。
-以下に例を示します。
+BaaS サーバへ接続するための設定情報は、設定ファイルから自動でロードすることが可能です。
+設定ファイルが存在する場合は、Service インスタンスはパラメータ無しで生成できます。
+
+.. code-block:: python
+
+    service = baas.Service()
+
+設定ファイルは YAML 形式で作成します。以下に例を示します。
 
 .. code-block:: yaml
 
@@ -64,8 +70,7 @@ BaaS サーバへ接続するための設定情報はYAML形式で記載した�
         http: proxy.example.com:8080
         https: proxy.example.com:8443
 
-設定ファイルの名称を `python_config.yaml` とし、以下いずれかのディレクトリへ格納することで
-Service のインスタンス生成時に自動的にロードされます。
+設定ファイルの名称を `python_config.yaml` とし、以下いずれかのディレクトリへ格納してください。
 両ディレクトリへファイルを格納した場合は、ホームディレクトリ下のファイルを採用します。
 
 * `~/.baas/python/`

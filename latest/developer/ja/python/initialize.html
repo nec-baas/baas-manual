@@ -183,12 +183,12 @@ import 文でインポートを行ってください。</p>
 <p>Python SDK を利用するには、baas.Service クラスのインスタンスを生成する必要があります。
 以下に例を示します。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;baseUri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.example.com/api&quot;</span>
-    <span class="s2">&quot;tenantId&quot;</span><span class="p">:</span> <span class="s2">&quot;mytenant&quot;</span>
-    <span class="s2">&quot;appId&quot;</span><span class="p">:</span> <span class="s2">&quot;123456789abcdef123456&quot;</span>
-    <span class="s2">&quot;appKey&quot;</span><span class="p">:</span> <span class="s2">&quot;123456789abcdef123456&quot;</span>
+    <span class="s2">&quot;baseUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.example.com/api&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tenantId&quot;</span><span class="p">:</span> <span class="s2">&quot;mytenant&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appId&quot;</span><span class="p">:</span> <span class="s2">&quot;123456789abcdef123456&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appKey&quot;</span><span class="p">:</span> <span class="s2">&quot;123456789abcdef123456&quot;</span><span class="p">,</span>
     <span class="s2">&quot;proxy&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="s2">&quot;proxy.example.com:8080&quot;</span>
+        <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="s2">&quot;proxy.example.com:8080&quot;</span><span class="p">,</span>
         <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="s2">&quot;proxy.example.com:8443&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -197,7 +197,7 @@ import 文でインポートを行ってください。</p>
 </div>
 <p>baas.Service() の引数に、パラメータを指定します。パラメータには以下の指定を行ってください。</p>
 <ul class="simple">
-<li>baseUri: BaaS APIサーバのエンドポイントURI</li>
+<li>baseUrl: BaaS APIサーバのエンドポイントURI</li>
 <li>tenantId: テナントIDまたはテナント名</li>
 <li>appId: アプリケーションID</li>
 <li>appKey: アプリケーションキー</li>
@@ -207,8 +207,12 @@ import 文でインポートを行ってください。</p>
 </div>
 <div class="section" id="baas">
 <h2>3.3. BaaSサーバ接続先自動設定<a class="headerlink" href="#baas" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>BaaS サーバへ接続するための設定情報はYAML形式で記載したファイルから自動で設定可能です。
-以下に例を示します。</p>
+<p>BaaS サーバへ接続するための設定情報は、設定ファイルから自動でロードすることが可能です。
+設定ファイルが存在する場合は、Service インスタンスはパラメータ無しで生成できます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">baas</span><span class="o">.</span><span class="n">Service</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>設定ファイルは YAML 形式で作成します。以下に例を示します。</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">baseUrl</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://api.example.com/api</span>
 <span class="l l-Scalar l-Scalar-Plain">tenantId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mytenant</span>
 <span class="l l-Scalar l-Scalar-Plain">appId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">123456789abcdef123456</span>
@@ -218,8 +222,7 @@ import 文でインポートを行ってください。</p>
     <span class="l l-Scalar l-Scalar-Plain">https</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">proxy.example.com:8443</span>
 </pre></div>
 </div>
-<p>設定ファイルの名称を <cite>python_config.yaml</cite> とし、以下いずれかのディレクトリへ格納することで
-Service のインスタンス生成時に自動的にロードされます。
+<p>設定ファイルの名称を <cite>python_config.yaml</cite> とし、以下いずれかのディレクトリへ格納してください。
 両ディレクトリへファイルを格納した場合は、ホームディレクトリ下のファイルを採用します。</p>
 <ul class="simple">
 <li><cite>~/.baas/python/</cite></li>
