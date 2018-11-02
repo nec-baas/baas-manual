@@ -96,16 +96,16 @@
 <li class="toctree-l4"><a class="reference internal" href="#oracle-java-se-development-kit">Oracle Java SE Development Kit を使用する場合</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id20">3.2.4. Tomcat のインストール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">3.2.4. Tomcat のインストール</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#tomcat-service-config">起動設定</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#server-xml">server.xml の設定</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">3.2.5. MongoDB のインストール</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">3.2.6. ファイヤウォール設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">3.2.5. MongoDB のインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">3.2.6. ファイヤウォール設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#baas">3.2.7. BaaS サーバのデプロイ</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id24">3.2.8. 動作確認</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id25">3.2.9. 補足事項</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">3.2.8. 動作確認</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">3.2.9. 補足事項</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart_windows.html">3.3. クイックスタート (Windows Server 2016)</a></li>
@@ -184,6 +184,9 @@
   <div class="section" id="rhel-7-centos-7">
 <h1>3.2. クイックスタート (RHEL 7, CentOS 7)<a class="headerlink" href="#rhel-7-centos-7" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>ここでは、BaaS APIサーバ/コンソールサーバ を RHEL 7, CentOS 7 にインストール・起動する手順を説明します。</p>
+<p>なお、Ansible を使って自動デプロイするための Playbook を別途提供していますので、こちらをお使いいただくことを推奨します。
+Ansible Playbook は <a class="reference external" href="https://nec-baas.github.io/downloads.html">こちら</a> から入手できます。</p>
+<p>以下は Ansible Playbook を使わず手動でインストールする場合の手順となります。</p>
 <div class="section" id="ulimit">
 <h2>3.2.1. ulimit の設定<a class="headerlink" href="#ulimit" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>/etc/security/limits.d/99-mongodb-nproc.conf に以下の内容の設定ファイルを新規作成してください。</p>
@@ -220,8 +223,8 @@ permissive または disabled に変更し、再起動を行って下さい。</
 </div>
 </div>
 </div>
-<div class="section" id="id20">
-<h2>3.2.4. Tomcat のインストール<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id21">
+<h2>3.2.4. Tomcat のインストール<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Tomcat 8.5 以上(推奨は 9) をインストールします。</p>
 <p>Tomcat を実行するユーザを作成します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo useradd --no-create-home -s /bin/bash tomcat
@@ -237,7 +240,7 @@ $ sudo ln -s /opt/apache-tomcat-9.0.11 /opt/tomcat
 </pre></div>
 </div>
 <div class="section" id="tomcat-service-config">
-<span id="id21"></span><h3>起動設定<a class="headerlink" href="#tomcat-service-config" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<span id="id22"></span><h3>起動設定<a class="headerlink" href="#tomcat-service-config" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Tomcat を起動するための systemd 用の Unit ファイルを作成します。</p>
 <p>/etc/systemd/system/ ディレクトリに 'tomcat.service' という名前のファイルを作成してください。
 例を以下に示します。</p>
@@ -279,8 +282,8 @@ $ sudo systemctl start tomcat.service
 (特に Connector 設定)</p>
 </div>
 </div>
-<div class="section" id="id22">
-<h2>3.2.5. MongoDB のインストール<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h2>3.2.5. MongoDB のインストール<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>MongoDB 3.6 以上(推奨は 4.0 以上)をインストールします。</p>
 <p><a class="reference external" href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/">Install MongoDB on Red Hat</a> の手順に従い、インストールを行ってください。</p>
 <p>詳細な手順は以下のとおりです。
@@ -304,8 +307,8 @@ $ sudo systemctl start tomcat.service
 詳細は <a class="reference internal" href="../extended/mongodb_upgrade.html#mongodb-upgrade"><span class="std std-ref">MongoDBをアップグレードする際の注意</span></a> を参照してください。</p>
 </div>
 </div>
-<div class="section" id="id23">
-<h2>3.2.6. ファイヤウォール設定<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id24">
+<h2>3.2.6. ファイヤウォール設定<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>必要に応じて、ファイヤウォールで TCP 8080 ポートの通信を許可します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo firewall-cmd --add-port <span class="m">8080</span>/tcp --permanent
 $ sudo firewall-cmd --reload
@@ -327,8 +330,8 @@ $ sudo cp console.war /opt/tomcat/webapps
 </pre></div>
 </div>
 </div>
-<div class="section" id="id24">
-<h2>3.2.8. 動作確認<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id25">
+<h2>3.2.8. 動作確認<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ブラウザを開き、 <code class="docutils literal notranslate"><span class="pre">http://[hostname:8080]/console</span></code> (hostname はBaaSサーバを起動したサーバ名)
 にアクセスし、正常にコンソールページが表示されることを確認してください。</p>
 <p>また、 <code class="docutils literal notranslate"><span class="pre">http://[hostname:8080]/api/</span></code> にアクセスし、以下の JSON 応答が
@@ -337,8 +340,8 @@ $ sudo cp console.war /opt/tomcat/webapps
 </pre></div>
 </div>
 </div>
-<div class="section" id="id25">
-<h2>3.2.9. 補足事項<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id26">
+<h2>3.2.9. 補足事項<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>本手順では、HTTP 8080 番ポートでサーバを起動しています。</p>
 <p>実運用時は HTTPS 443 番ポートでリクエストを受け付けるようするか、前段にロードバランサやリバースプロキシ
 を入れて HTTPS で通信するようにしてください。

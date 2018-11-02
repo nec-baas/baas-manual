@@ -6,6 +6,11 @@
 
 ここでは、BaaS APIサーバ/コンソールサーバ を RHEL 7, CentOS 7 にインストール・起動する手順を説明します。
 
+なお、Ansible を使って自動デプロイするための Playbook を別途提供していますので、こちらをお使いいただくことを推奨します。 
+Ansible Playbook は `こちら <https://nec-baas.github.io/downloads.html>`_ から入手できます。
+
+以下は Ansible Playbook を使わず手動でインストールする場合の手順となります。
+
 ulimit の設定
 =============
 
