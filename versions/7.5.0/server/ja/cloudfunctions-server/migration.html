@@ -92,38 +92,39 @@
 <li class="toctree-l1"><a class="reference internal" href="test.html">7. 動作確認</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logs.html">8. ログ</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">9. マイグレーションガイド</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-x-7-5-0">9.1. ver 7.0.x → 7.5.0 での変更点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-7-0-2">9.2. ver 7.0.0 → 7.0.2 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">9.2.1. 不具合修正</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">9.2.2. 機能追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">9.1. 最新版へのバージョンアップ方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-x-7-5-0">9.2. ver 7.0.x → 7.5.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-7-0-2">9.3. ver 7.0.0 → 7.0.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">9.3.1. 不具合修正</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">9.3.2. 機能追加</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-3-6-5-4">9.3. ver 6.5.3 → 6.5.4 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">9.3.1. 不具合修正</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">9.3.2. 機能追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-3-6-5-4">9.4. ver 6.5.3 → 6.5.4 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">9.4.1. 不具合修正</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">9.4.2. 機能追加</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-x-7-0-0">9.4. ver 6.5.x → 7.0.0 での変更点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-1-6-5-3">9.5. ver 6.5.1 → 6.5.3 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">9.5.1. 機能追加</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">9.5.2. 不具合修正</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-x-7-0-0">9.5. ver 6.5.x → 7.0.0 での変更点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-1-6-5-3">9.6. ver 6.5.1 → 6.5.3 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">9.6.1. 機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">9.6.2. 不具合修正</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-6-5-1">9.6. ver 6.5.0 → 6.5.1 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">9.6.1. 不具合修正</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-6-5-1">9.7. ver 6.5.0 → 6.5.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">9.7.1. 不具合修正</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-0-6-5-0">9.7. ver 6.0.0 → 6.5.0 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#java">9.7.1. Java ロジックサーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-0-6-5-0">9.8. ver 6.0.0 → 6.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#java">9.8.1. Java ロジックサーバ</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-5-0-x-6-0-0">9.8. ver 5.0.x → 6.0.0 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">9.8.1. Java 対応</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#docker">9.8.2. Docker レス対応</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">9.8.3. 名称変更・ファイル名変更</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fluentd">9.8.4. fluentd 設定ファイル変更</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">9.8.5. 設定ファイル書式変更</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rabbitmq">9.8.6. RabbitMQ 関連</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-5-0-x-6-0-0">9.9. ver 5.0.x → 6.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">9.9.1. Java 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">9.9.2. Docker レス対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">9.9.3. 名称変更・ファイル名変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fluentd">9.9.4. fluentd 設定ファイル変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">9.9.5. 設定ファイル書式変更</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rabbitmq">9.9.6. RabbitMQ 関連</a></li>
 </ul>
 </li>
 </ul>
@@ -194,8 +195,18 @@
 <h1>9. マイグレーションガイド<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>本章では、Cloud Functions サーバの以前のバージョンからの
 変更点や移行方法について説明します。</p>
+<div class="section" id="id2">
+<h2>9.1. 最新版へのバージョンアップ方法<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>必要なファイル(サーババイナリ・設定ファイル等)を差し替えてサービスを再起動してください。</p>
+<p>再起動時に実行状態にある Function はキャンセルされます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">Cloud Functions の Java コードについては、そのままでは動作しない場合があります。
+この場合は、最新版の SDK で Function を再ビルドしてコードを再登録する必要があります。</p>
+</div>
+</div>
 <div class="section" id="ver-7-0-x-7-5-0">
-<h2>9.1. ver 7.0.x → 7.5.0 での変更点<a class="headerlink" href="#ver-7-0-x-7-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>9.2. ver 7.0.x → 7.5.0 での変更点<a class="headerlink" href="#ver-7-0-x-7-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <ul class="simple">
 <li>Node.js 8 対応を追加しました。</li>
 <li><a class="reference internal" href="configure.html#config-file"><span class="std std-ref">サーバマネージャ設定ファイル</span></a> サンプルの spec 記載を改善しました。
@@ -203,16 +214,16 @@
 </ul>
 </div>
 <div class="section" id="ver-7-0-0-7-0-2">
-<h2>9.2. ver 7.0.0 → 7.0.2 での変更点<a class="headerlink" href="#ver-7-0-0-7-0-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id2">
-<h3>9.2.1. 不具合修正<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h2>9.3. ver 7.0.0 → 7.0.2 での変更点<a class="headerlink" href="#ver-7-0-0-7-0-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h3>9.3.1. 不具合修正<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>サーバマネージャに以下の不具合修正を行いました。</p>
 <ul class="simple">
 <li>Java Functionを連続呼び出しするとエラーになる場合がある</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h3>9.2.2. 機能追加<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id4">
+<h3>9.3.2. 機能追加<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li>サーバマネジャーのサービス起動設定に Java ヒープサイズ設定の追加</li>
 <li>起動時にバージョン番号をログに出力する</li>
@@ -220,16 +231,16 @@
 </div>
 </div>
 <div class="section" id="ver-6-5-3-6-5-4">
-<h2>9.3. ver 6.5.3 → 6.5.4 での変更点<a class="headerlink" href="#ver-6-5-3-6-5-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id4">
-<h3>9.3.1. 不具合修正<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h2>9.4. ver 6.5.3 → 6.5.4 での変更点<a class="headerlink" href="#ver-6-5-3-6-5-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h3>9.4.1. 不具合修正<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>サーバマネージャに以下の不具合修正を行いました。</p>
 <ul class="simple">
 <li>Java Functionを連続呼び出しするとエラーになる場合がある</li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h3>9.3.2. 機能追加<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id6">
+<h3>9.4.2. 機能追加<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <ul class="simple">
 <li>サーバマネジャーのサービス起動設定に Java ヒープサイズ設定の追加</li>
 <li>起動時にバージョン番号をログに出力する</li>
@@ -237,21 +248,21 @@
 </div>
 </div>
 <div class="section" id="ver-6-5-x-7-0-0">
-<h2>9.4. ver 6.5.x → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-x-7-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>9.5. ver 6.5.x → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-x-7-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>内蔵する OSS の最新化を行いました。</p>
 <p>機能面での差異はありません。</p>
 </div>
 <div class="section" id="ver-6-5-1-6-5-3">
-<h2>9.5. ver 6.5.1 → 6.5.3 での変更点<a class="headerlink" href="#ver-6-5-1-6-5-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id6">
-<h3>9.5.1. 機能追加<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h2>9.6. ver 6.5.1 → 6.5.3 での変更点<a class="headerlink" href="#ver-6-5-1-6-5-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id7">
+<h3>9.6.1. 機能追加<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>サーバマネージャに以下の機能追加を行いました。</p>
 <ul class="simple">
 <li>Fluentd 使用していないときでも、Function ログを記録できるようにした(Server Manager ログに合わせて記録)</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h3>9.5.2. 不具合修正<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id8">
+<h3>9.6.2. 不具合修正<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>サーバマネージャ / Java ロジックサーバに以下の不具合修正を行いました。
 サーババージョンは v6.5.3 となります。</p>
 <ul class="simple">
@@ -261,9 +272,9 @@
 </div>
 </div>
 <div class="section" id="ver-6-5-0-6-5-1">
-<h2>9.6. ver 6.5.0 → 6.5.1 での変更点<a class="headerlink" href="#ver-6-5-0-6-5-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id8">
-<h3>9.6.1. 不具合修正<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h2>9.7. ver 6.5.0 → 6.5.1 での変更点<a class="headerlink" href="#ver-6-5-0-6-5-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id9">
+<h3>9.7.1. 不具合修正<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Java ロジックサーバ / Node ロジックサーバに以下の不具合修正を行いました。
 サーババージョンは v6.5.1 となります。</p>
 <ul class="simple">
@@ -272,9 +283,9 @@
 </div>
 </div>
 <div class="section" id="ver-6-0-0-6-5-0">
-<h2>9.7. ver 6.0.0 → 6.5.0 での変更点<a class="headerlink" href="#ver-6-0-0-6-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>9.8. ver 6.0.0 → 6.5.0 での変更点<a class="headerlink" href="#ver-6-0-0-6-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="java">
-<h3>9.7.1. Java ロジックサーバ<a class="headerlink" href="#java" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>9.8.1. Java ロジックサーバ<a class="headerlink" href="#java" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>内蔵する BaaS SDK のバージョンを 6.5.0 に更新しました。
 機能的な変更点はありません。</p>
 <div class="admonition attention">
@@ -286,24 +297,24 @@
 </div>
 </div>
 <div class="section" id="ver-5-0-x-6-0-0">
-<h2>9.8. ver 5.0.x → 6.0.0 での変更点<a class="headerlink" href="#ver-5-0-x-6-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>9.9. ver 5.0.x → 6.0.0 での変更点<a class="headerlink" href="#ver-5-0-x-6-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="admonition attention">
 <p class="first admonition-title">注意</p>
 <p class="last">Cloud Functions v6 サーバは、APIサーバ v5 との接続互換性がありません。
 全サーバを一斉にアップデートしていただく必要がありますので、ご注意ください。</p>
 </div>
-<div class="section" id="id9">
-<h3>9.8.1. Java 対応<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id10">
+<h3>9.9.1. Java 対応<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Node.js に加え Java コード実行に対応しました。</p>
 <p>インストール手順に従って Java ロジックサーバをインストールすることで使用できるようになります。</p>
 </div>
 <div class="section" id="docker">
-<h3>9.8.2. Docker レス対応<a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>9.9.2. Docker レス対応<a class="headerlink" href="#docker" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Docker を使用せずにロジックサーバを起動できる機能を追加しました。</p>
 <p>設定手順は <a class="reference internal" href="configure.html#config-file"><span class="std std-ref">サーバマネージャ設定ファイル</span></a> を参照してください。</p>
 </div>
-<div class="section" id="id10">
-<h3>9.8.3. 名称変更・ファイル名変更<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id11">
+<h3>9.9.3. 名称変更・ファイル名変更<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>「コンテナマネージャ」は「サーバマネージャ」に名称が変更されました。
 これにともない、設定ファイル名が以下のように変更されています。</p>
 <ul class="simple">
@@ -320,19 +331,19 @@
 </ul>
 </div>
 <div class="section" id="fluentd">
-<h3>9.8.4. fluentd 設定ファイル変更<a class="headerlink" href="#fluentd" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>9.9.4. fluentd 設定ファイル変更<a class="headerlink" href="#fluentd" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>上記名称変更に伴い、fluentd の設定ファイル(td-agent.conf)の記述が１箇所変更になります。
 具体的には &lt;match nebula.customlogic&gt; という記述を &lt;match nebula.cloudfn&gt; という記述に変更する必要があります。</p>
 <p>詳細は <a class="reference internal" href="configure.html#fluentd-config"><span class="std std-ref">Fluentd の設定</span></a> を参照してください。</p>
 </div>
-<div class="section" id="id11">
-<h3>9.8.5. 設定ファイル書式変更<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id12">
+<h3>9.9.5. 設定ファイル書式変更<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>サーバマネージャ設定ファイルが Java プロパティファイル形式から YAML 形式に変更となりましたので、
 移行が必要です。</p>
 <p>詳細は <a class="reference internal" href="configure.html#config-file"><span class="std std-ref">サーバマネージャ設定ファイル</span></a> を参照してください。</p>
 </div>
 <div class="section" id="rabbitmq">
-<h3>9.8.6. RabbitMQ 関連<a class="headerlink" href="#rabbitmq" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>9.9.6. RabbitMQ 関連<a class="headerlink" href="#rabbitmq" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>以下の改善を実施しました。</p>
 <ul class="simple">
 <li>起動時の RabbitMQ 接続をリトライするように改善</li>
