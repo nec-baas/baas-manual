@@ -205,7 +205,7 @@
 <div class="highlight-objc notranslate"><div class="highlight"><pre><span></span><span class="n">NBAcl</span> <span class="o">*</span><span class="n">acl</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBAcl</span> <span class="n">new</span><span class="p">];</span>
 <span class="n">acl</span><span class="p">.</span><span class="n">owner</span> <span class="o">=</span> <span class="s">@&quot;オーナID&quot;</span><span class="p">;</span>
 <span class="p">[</span><span class="n">acl</span> <span class="nl">addEntry</span><span class="p">:</span><span class="s">@&quot;ユーザID&quot;</span> <span class="nl">permission</span><span class="p">:</span><span class="n">NBAclReadable</span><span class="p">];</span>
-<span class="p">[</span><span class="n">acl</span> <span class="nl">addEntry</span><span class="p">:</span><span class="s">@&quot;g:グループID&quot;</span> <span class="nl">permission</span><span class="p">:</span><span class="n">NBAclReadable</span><span class="p">];</span>
+<span class="p">[</span><span class="n">acl</span> <span class="nl">addEntry</span><span class="p">:</span><span class="s">@&quot;g:グループ名&quot;</span> <span class="nl">permission</span><span class="p">:</span><span class="n">NBAclReadable</span><span class="p">];</span>
 <span class="p">[</span><span class="n">acl</span> <span class="nl">addEntry</span><span class="p">:</span><span class="s">@&quot;ユーザID&quot;</span> <span class="nl">permission</span><span class="p">:</span><span class="n">NBAclWritable</span><span class="p">];</span>
 
 <span class="n">NBObject</span> <span class="o">*</span><span class="n">obj</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBObject</span> <span class="nl">objectWithBucketName</span><span class="p">:</span><span class="s">@&quot;TodoTutorial1&quot;</span><span class="p">];</span>
@@ -213,9 +213,9 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li>owner プロパティにオーナIDを設定します。</li>
+<li>owner プロパティにオーナID(オーナのユーザID)を設定します。</li>
 <li>addEntry:permission: でエントリを追加します。<ul>
-<li>第1引数に、ユーザID/グループIDを指定します。グループIDを指定する場合は g: プレフィクスを付与します。</li>
+<li>第1引数に、ユーザID/グループ名を指定します。グループ名を指定する場合は g: プレフィクスを付与します。</li>
 <li>第2引数に、権限種別を指定します。</li>
 </ul>
 </li>

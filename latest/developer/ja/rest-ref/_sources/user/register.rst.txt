@@ -17,7 +17,7 @@
     :reqheader Content-Type: application/json
 
     :<json string _id: ユーザID(オプション)
-    :<json string username: ユーザネーム(オプション)
+    :<json string username: ユーザ名(オプション)
     :<json string email: E-mailアドレス(必須)
     :<json string password: パスワード(必須)
     :<json object options: オプション情報(オプション)。JSON形式で記述された任意のオブジェクトを指定できる。
@@ -31,7 +31,7 @@
     :statuscode 415: Content-Type 不正
 
     :>json string _id: ユーザID
-    :>json string username: ユーザネーム
+    :>json string username: ユーザ名
     :>json string email: E-mail アドレス
     :>json object options: オプション情報
     :>json string createdAt: ユーザ作成日時

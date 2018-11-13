@@ -48,16 +48,16 @@
     NBAcl *acl = [NBAcl new];
     acl.owner = @"オーナID";
     [acl addEntry:@"ユーザID" permission:NBAclReadable];
-    [acl addEntry:@"g:グループID" permission:NBAclReadable];
+    [acl addEntry:@"g:グループ名" permission:NBAclReadable];
     [acl addEntry:@"ユーザID" permission:NBAclWritable];
 
     NBObject *obj = [NBObject objectWithBucketName:@"TodoTutorial1"];
     obj.acl = acl;
 
-* owner プロパティにオーナIDを設定します。
+* owner プロパティにオーナID(オーナのユーザID)を設定します。
 * addEntry:permission: でエントリを追加します。
 
-  - 第1引数に、ユーザID/グループIDを指定します。グループIDを指定する場合は g: プレフィクスを付与します。
+  - 第1引数に、ユーザID/グループ名を指定します。グループ名を指定する場合は g: プレフィクスを付与します。
   - 第2引数に、権限種別を指定します。
 
 オブジェクトのクエリ

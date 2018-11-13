@@ -96,11 +96,11 @@ NbJSONObject, NbJSONArray に格納できる値も上記いずれかのクラス
     NbObject obj = new NbObject("Todos", nebulaService);
     obj.setAcl(acl);
 
-* setOwner() でオーナIDを設定します。
+* setOwner() でオーナID(オーナのユーザID)を設定します。
 * addEntry() でエントリを追加します。
 
   - 第1引数に権限種別を指定します。
-  - 第2引数に、ユーザID/グループIDを指定します。NbUser, NbGroup も指定可能です。
+  - 第2引数に、ユーザID/グループ名を指定します。NbUser, NbGroup も指定可能です。
 
 オブジェクトの更新
 ==================

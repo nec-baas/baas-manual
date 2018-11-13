@@ -87,7 +87,7 @@ NbJsonObject, NbJsonArray に格納できる値も上記いずれかのクラス
     var obj = NbObject.New("Todos");
     obj.ACL = acl;
 
-* Owner にオーナIDを設定します。
+* Owner にオーナID(オーナのユーザID)を設定します。
 * R, W, C, U, D プロパティにエントリを追加します。
 
   - これらは HashSet<string> になっており、Add で値を追加できます。

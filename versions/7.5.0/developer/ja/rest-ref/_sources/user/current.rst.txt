@@ -15,7 +15,7 @@
     :statuscode 401: 認証エラー
 
     :>json string _id: ユーザID
-    :>json string username: ユーザネーム
+    :>json string username: ユーザ名
     :>json string email: E-mail アドレス
     :>json array groups: ユーザが所属する全グループ名の一覧 (authenticated, anonymous は含まず)
     :>json object options: オプション情報

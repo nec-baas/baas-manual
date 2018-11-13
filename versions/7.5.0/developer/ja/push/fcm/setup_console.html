@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.2. NEC BaaS サーバへの API キーの設定 &mdash; Push Notification Guide 7.5.0 ドキュメント</title>
+  <title>4.2. NEC BaaS サーバへのサーバーキーの設定 &mdash; Push Notification Guide 7.5.0 ドキュメント</title>
   
 
   
@@ -30,7 +30,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="4.3. Pushを受信するための実装" href="impl_fcm.html" />
-    <link rel="prev" title="4.1. APIキーの取得手順" href="apikey.html" /> 
+    <link rel="prev" title="4.1. サーバーキーの取得手順" href="apikey.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -88,10 +88,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../send_console.html">2. コンソールからのPush送信方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../apns/index.html">3. iOS Push (APNs)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Android Push (FCM)</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="apikey.html">4.1. APIキーの取得手順</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. NEC BaaS サーバへの API キーの設定</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apikey.html">4.1. サーバーキーの取得手順</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. NEC BaaS サーバへのサーバーキーの設定</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">4.2.1. アプリケーションの作成</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#api">4.2.2. APIキーの登録</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">4.2.2. サーバーキーの登録</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="impl_fcm.html">4.3. Pushを受信するための実装</a></li>
@@ -147,7 +147,7 @@
         
           <li><a href="index.html">4. Android Push (FCM)</a> &raquo;</li>
         
-      <li>4.2. NEC BaaS サーバへの API キーの設定</li>
+      <li>4.2. NEC BaaS サーバへのサーバーキーの設定</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,15 +164,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nec-baas-api">
-<h1>4.2. NEC BaaS サーバへの API キーの設定<a class="headerlink" href="#nec-baas-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="nec-baas">
+<h1>4.2. NEC BaaS サーバへのサーバーキーの設定<a class="headerlink" href="#nec-baas" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="section" id="id1">
 <h2>4.2.1. アプリケーションの作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>APIキーが取得できたら、MBaaS サーバに APIキーを登録します。
-MBaaS デベロッパコンソールにログインし、アプリケーションを作成してください。</p>
+<p>FCM のサーバーキーが取得できたら、MBaaS サーバにキーを登録します。</p>
+<p>まずMBaaS デベロッパコンソールにログインし、アプリケーションを作成しておいてください。</p>
 </div>
-<div class="section" id="api">
-<h2>4.2.2. APIキーの登録<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h2>4.2.2. サーバーキーの登録<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>デベロッパコンソールのアプリケーションの編集画面に移動してください。</p>
 <img alt="../_images/Console1.png" src="../_images/Console1.png" />
 <p>「FCM設定」の「サーバーキー」欄にFCM のサーバーキーを入力してください。
@@ -193,7 +193,7 @@ MBaaS デベロッパコンソールにログインし、アプリケーショ�
         <a href="impl_fcm.html" class="btn btn-neutral float-right" title="4.3. Pushを受信するための実装" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="apikey.html" class="btn btn-neutral" title="4.1. APIキーの取得手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="apikey.html" class="btn btn-neutral" title="4.1. サーバーキーの取得手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

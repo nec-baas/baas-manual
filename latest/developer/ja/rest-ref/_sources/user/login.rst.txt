@@ -13,7 +13,7 @@
     :reqheader X-Application-Key: アプリケーションキー(必須)
     :reqheader Content-Type: application/json
 
-    :<json string username: ユーザネーム (username / email / token の何れか必須)
+    :<json string username: ユーザ名 (username / email / token の何れか必須)
     :<json string email: E-mail アドレス (username / email / token の何れか必須)
     :<json string token: ワンタイムトークン(username / email / token の何れか必須)
     :<json string password: パスワード(token が指定されていない場合は必須)
@@ -26,7 +26,7 @@
     :>json string _id: ユーザID
     :>json string sessionToken: セッショントークン
     :>json integer expire: セッショントークンの有効期限。UNIX Time (1970-01-01 00:00:00 UTCからの経過秒数)で表現する。デフォルトはログインから24時間後。
-    :>json string username: ユーザネーム
+    :>json string username: ユーザ名
     :>json string email: E-mail アドレス
     :>json array groups: ユーザが所属する全グループの一覧 (authenticated, anonymous は含まず)
     :>json object options: オプション情報
@@ -41,7 +41,7 @@
 
     **リクエストボディの例**
 
-    ユーザネームとパスワードでログインする場合
+    ユーザ名とパスワードでログインする場合
 
     .. code-block:: json
 

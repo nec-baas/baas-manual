@@ -198,7 +198,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
 <tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
-<li><strong>username</strong> (<em>string</em>) -- ユーザネーム (username / email / token の何れか必須)</li>
+<li><strong>username</strong> (<em>string</em>) -- ユーザ名 (username / email / token の何れか必須)</li>
 <li><strong>email</strong> (<em>string</em>) -- E-mail アドレス (username / email / token の何れか必須)</li>
 <li><strong>token</strong> (<em>string</em>) -- ワンタイムトークン(username / email / token の何れか必須)</li>
 <li><strong>password</strong> (<em>string</em>) -- パスワード(token が指定されていない場合は必須)</li>
@@ -218,7 +218,7 @@
 <li><strong>_id</strong> (<em>string</em>) -- ユーザID</li>
 <li><strong>sessionToken</strong> (<em>string</em>) -- セッショントークン</li>
 <li><strong>expire</strong> (<em>integer</em>) -- セッショントークンの有効期限。UNIX Time (1970-01-01 00:00:00 UTCからの経過秒数)で表現する。デフォルトはログインから24時間後。</li>
-<li><strong>username</strong> (<em>string</em>) -- ユーザネーム</li>
+<li><strong>username</strong> (<em>string</em>) -- ユーザ名</li>
 <li><strong>email</strong> (<em>string</em>) -- E-mail アドレス</li>
 <li><strong>groups</strong> (<em>array</em>) -- ユーザが所属する全グループの一覧 (authenticated, anonymous は含まず)</li>
 <li><strong>options</strong> (<em>object</em>) -- オプション情報</li>
@@ -236,7 +236,7 @@
 </tbody>
 </table>
 <p><strong>リクエストボディの例</strong></p>
-<p>ユーザネームとパスワードでログインする場合</p>
+<p>ユーザ名とパスワードでログインする場合</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;tarou&quot;</span><span class="p">,</span>
     <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;Passw0rd&quot;</span>

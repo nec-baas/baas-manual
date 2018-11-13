@@ -175,7 +175,7 @@
 </div>
 <div class="section" id="id3">
 <h2>3.2. ユーザの識別<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>ローカル認証では、ユーザの識別に「ユーザネーム」または「E-mailアドレス」のいずれかまたは両方を使用します。
+<p>ローカル認証では、ユーザの識別に「ユーザ名」または「E-mailアドレス」のいずれかまたは両方を使用します。
 また、認証ではパスワードを用います。</p>
 <p>内部ではそれぞれのユーザに自動的にユニークな「ユーザID」が割り当てられます。
 ユーザIDは &quot;54d47018aea788df195e8666&quot; のような24文字の文字列です。</p>
@@ -183,7 +183,7 @@
 <div class="section" id="id4">
 <h2>3.3. サインアップ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>サインアップ API を用いて、ユーザの登録を行うことができます。登録には上記の
-「ユーザネーム」「E-mailアドレス」のいずれかまたは両方と、「パスワード」を指定して行います。</p>
+「ユーザ名」「E-mailアドレス」のいずれかまたは両方と、「パスワード」を指定して行います。</p>
 </div>
 <div class="section" id="id5">
 <h2>3.4. 認証方式<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -191,7 +191,7 @@
 <div class="section" id="api">
 <h3>3.4.1. APIログイン認証<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>APIログイン認証では、ログインAPIを使用呼び出して認証を行います。
-認証時に ID(ユーザネームまたは E-mailアドレス)とパスワードをサーバに提示します。</p>
+認証時に ID(ユーザ名または E-mailアドレス)とパスワードをサーバに提示します。</p>
 <p>認証が完了すると、BaaSサーバは「セッショントークン」という文字列が払い出されます。
 クライアントは以後の API 呼び出しで X-Session-Token HTTP ヘッダにセッショントークンを指定することで
 API を利用することができます。</p>
@@ -199,8 +199,9 @@ API を利用することができます。</p>
 <div class="section" id="basic">
 <span id="basic-auth"></span><h3>3.4.2. Basic認証<a class="headerlink" href="#basic" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Basic 認証を使用する場合は、各 API の呼び出し時に毎回IDとパスワードをサーバに提示します。</p>
-<p>具体的には、Authorization HTTP ヘッダに ID とパスワードを指定して API を呼び出します。:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Authorization</span><span class="p">:</span> <span class="n">Basic</span> <span class="p">[</span><span class="s2">&quot;ID:パスワード&quot;</span><span class="n">をBase64エンコードした文字列</span><span class="p">]</span>
+<p>具体的には、Authorization HTTP ヘッダにユーザ名とパスワードを指定して API を呼び出します。
+(E-mailアドレスは使用できません)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Authorization</span><span class="p">:</span> <span class="n">Basic</span> <span class="p">[</span><span class="s2">&quot;ユーザ名:パスワード&quot;</span><span class="n">をBase64エンコードした文字列</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="admonition attention">

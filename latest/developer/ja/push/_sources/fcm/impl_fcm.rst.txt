@@ -4,7 +4,7 @@ Pushを受信するための実装
 
 .. include:: ../../common/linkdef.rst
 
-BaaS を使用してFCM を受信するサンプル・アプリケーションを別途配布しています。
+BaaS を使用してFCM を受信するサンプル・アプリケーションを `GitHub <https://github.com/nec-baas/fcm-sample-android>`_ にて公開しています。
 
 また、FCM の `Firebase Cloud Messaging`_  も参考にしてください。
 

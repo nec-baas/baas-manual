@@ -30,7 +30,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="4.4. GCM から FCM への移行" href="migrate_gcm_fcm.html" />
-    <link rel="prev" title="4.2. NEC BaaS サーバへの API キーの設定" href="setup_console.html" /> 
+    <link rel="prev" title="4.2. NEC BaaS サーバへのサーバーキーの設定" href="setup_console.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -88,8 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../send_console.html">2. コンソールからのPush送信方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../apns/index.html">3. iOS Push (APNs)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Android Push (FCM)</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="apikey.html">4.1. APIキーの取得手順</a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup_console.html">4.2. NEC BaaS サーバへの API キーの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apikey.html">4.1. サーバーキーの取得手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_console.html">4.2. NEC BaaS サーバへのサーバーキーの設定</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. Pushを受信するための実装</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#firebase-fcm-sdk">4.3.1. Firebase および FCM SDK の設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fcm-sdk">4.3.2. FCM SDK の設定</a></li>
@@ -174,7 +174,7 @@
             
   <div class="section" id="push">
 <h1>4.3. Pushを受信するための実装<a class="headerlink" href="#push" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>BaaS を使用してFCM を受信するサンプル・アプリケーションを別途配布しています。</p>
+<p>BaaS を使用してFCM を受信するサンプル・アプリケーションを <a class="reference external" href="https://github.com/nec-baas/fcm-sample-android">GitHub</a> にて公開しています。</p>
 <p>また、FCM の <a class="reference external" href="https://firebase.google.com/docs/cloud-messaging/">Firebase Cloud Messaging</a>  も参考にしてください。</p>
 <div class="section" id="firebase-fcm-sdk">
 <h2>4.3.1. Firebase および FCM SDK の設定<a class="headerlink" href="#firebase-fcm-sdk" title="このヘッドラインへのパーマリンク">¶</a></h2>
@@ -369,7 +369,7 @@ FirebaseMessagingService を継承します。</p>
         <a href="migrate_gcm_fcm.html" class="btn btn-neutral float-right" title="4.4. GCM から FCM への移行" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="setup_console.html" class="btn btn-neutral" title="4.2. NEC BaaS サーバへの API キーの設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="setup_console.html" class="btn btn-neutral" title="4.2. NEC BaaS サーバへのサーバーキーの設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

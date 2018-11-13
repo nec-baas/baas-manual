@@ -11,7 +11,7 @@
     MongoDB の Aggregation と同等の処理である。
 
     :reqheader X-Application-Id: アプリケーションID(必須)
-    :reqheader X-Application-Key: マスターキー(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
     :reqheader X-Session-Token: セッショントークン(オプション)
     :reqheader Content-Type: application/json
 
