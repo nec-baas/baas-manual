@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS Developer Manual &mdash; Developer Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="1. イントロダクション" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">2. 機能ガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limits.html">3. 制限値・スレショルド・文字制約</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS Developer Manual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-developer-manual">
+<h1>NEC BaaS Developer Manual<a class="headerlink" href="#nec-baas-developer-manual" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#id2">1.1. 本文書の位置づけ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">2. 機能ガイド</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions/application.html">2.1. テナントとアプリケーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions/application.html#id2">2.1.1. テナントとアプリケーションの概念</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/application.html#id-id">2.1.2. テナントID / アプリケーションID / アプリケーションキー</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions/user_management.html">2.2. ユーザ管理・認証機能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions/user_management.html#id2">2.2.1. ユーザ管理の概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/user_management.html#id4">2.2.2. ユーザの識別</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/user_management.html#id5">2.2.3. ログインとセッショントークン</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/user_management.html#basic">2.2.4. Basic認証</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions/group_management.html">2.3. グループ管理機能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions/group_management.html#id2">2.3.1. グループ管理の概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/group_management.html#id3">2.3.2. グループ管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/group_management.html#id4">2.3.3. グループ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/group_management.html#id5">2.3.4. グループへの所属</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/group_management.html#id6">2.3.5. グループのアクセス権限</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions/object_storage.html">2.4. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id20">2.4.1. JSONオブジェクトストレージの概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id21">2.4.2. オブジェクトバケット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id24">2.4.3. バケットの操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id25">2.4.4. オブジェクトの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#json-spec">2.4.5. JSON仕様について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id27">2.4.6. アクセス制御</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#json-encryption">2.4.7. データ暗号化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id35">2.4.8. オブジェクトの更新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id37">2.4.9. オブジェクトの検索（クエリ)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id41">2.4.10. インデックス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#id42">2.4.11. 集計(Aggregation)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#batch">2.4.12. バッチオペレーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_storage.html#transaction">2.4.13. トランザクション</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions/file_storage.html">2.5. ファイルストレージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions/file_storage.html#id2">2.5.1. ファイルストレージの概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/file_storage.html#id4">2.5.2. ファイルストレージのバックエンド</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/file_storage.html#id6">2.5.3. ファイルバケット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/file_storage.html#id7">2.5.4. ファイル</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/file_storage.html#api">2.5.5. ファイル操作API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/file_storage.html#id8">2.5.6. ファイルの公開</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/file_storage.html#id9">2.5.7. ファイルの同時アクセスの排他制御</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions/acl.html">2.6. セキュリティ : ACL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions/acl.html#id2">2.6.1. ACL の概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/acl.html#id3">2.6.2. ACL の表記方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/acl.html#contentacl">2.6.3. contentACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/acl.html#acl-contentacl">2.6.4. データの ACL とバケットの contentACL の関係</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/acl.html#acl-less">2.6.5. ACLレスバケット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/acl.html#id5">2.6.6. 特殊バケット</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions/cors.html">2.7. Cross Origin Resource Sharing (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions/object_offline.html">2.8. オフライン機能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_offline.html#id2">2.8.1. オフライン機能の概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_offline.html#id3">2.8.2. 暗号化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_offline.html#id4">2.8.3. 同期処理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions/object_offline.html#id5">2.8.4. データ衝突の解決</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="functions/push.html">2.9. Push通知</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions/apigw.html">2.10. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions/cloud_func.html">2.11. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions/events.html">2.12. イベント駆動</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions/admin.html">2.13. 管理者向け機能</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="limits.html">3. 制限値・スレショルド・文字制約</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id21">3.1. テナント</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id22">3.1.1. テナント数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id23">3.1.2. テナント名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id24">3.2. アプリケーション</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id25">3.2.1. アプリケーション数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id26">3.3. バケット</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id27">3.3.1. バケット数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id28">3.3.2. バケット名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id29">3.4. ユーザ管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id30">3.4.1. ユーザ名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#e-mail">3.4.2. E-mail アドレス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id31">3.4.3. ユーザパスワード</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id32">3.5. グループ管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id33">3.5.1. グループ名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#json">3.6. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id34">3.7. ファイルストレージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id35">3.7.1. ファイル名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id36">3.7.2. ファイルサイズ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#push">3.8. Push</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id37">3.8.1. FCMサーバーキー</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id38">3.9. デベロッパーコンソール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id39">3.9.1. デベロッパーパスワード</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id40">3.9.2. オブジェクトストレージインデックス名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#api-gateway">3.10. API Gateway</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#api">3.10.1. API名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#basepath">3.10.2. basePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id41">3.10.3. サブパス</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#cloud-functions">3.11. Cloud Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#operationid">3.11.1. operationId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id42">3.11.2. ハンドラ名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id43">3.11.3. ファンクション名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#id44">3.11.4. コードファイル名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#id45">3.12. RabbitMQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#routing-key">3.12.1. Routing Key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="limits.html#event-subscription">3.13. Event Subscription</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="limits.html#name">3.13.1. name</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">検索ページ</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. イントロダクション" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

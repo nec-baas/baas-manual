@@ -1,0 +1,75 @@
+===================
+SDKセットアップ手順
+===================
+
+ここでは、.NET SDK をアプリケーションに組み込む方法について説明します。
+
+事前準備
+--------
+
+Visual Studio 2013 Professional 以上が必要です。
+
+また、.NET Framework 4.5.2 以上が必要です。
+
+
+ライブラリの組み込み
+--------------------
+
+アプリケーションプロジェクトを開き、NEC BaaS .NET SDK クラスライブラリを組み込みます。
+
+下記手順で、 NuGet ギャラリーから取得します。
+
+1. プロジェクトを選択し、「プロジェクト」⇒「NuGet パッケージの管理」を選択
+2. 「オンラインの検索」で、「NEC」を入力して検索
+3. 「NEC BaaS .NET Core SDK」を選択して インストール
+
+Core ライブラリは PCL(Portable Compatibility Library)のため、
+Windows 8.1 ストアアプリ、Windows Phone 8.1 アプリでも利用可能です。
+
+オフライン機能を使用する場合は 「NEC BaaS .NET Offline SDK」 も同様に追加してください。
+Offline ライブラリはデスクトップアプリ専用です。
+
+App.config ファイルの確認
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+オフライン機能を使用する場合は、App.config ファイルの確認が必要です。
+
+まず、DbProviderFactories タグ内に以下の４つの設定が存在しているか確認してください。
+無い場合は追記してください。
+
+.. code-block:: xml
+
+  <configuration>
+    ...
+    <system.data>
+      <DbProviderFactories>
+        <remove invariant="System.Data.SQLite.EF6"/>
+        <add name="SQLite Data Provider (Entity Framework 6)" invariant="System.Data.SQLite.EF6"
+          description=".NET Framework Data Provider for SQLite (Entity Framework 6)" type="System.Data.SQLite.EF6.SQLiteProviderFactory, System.Data.SQLite.EF6"/>
+        <remove invariant="System.Data.SQLite"/>
+        <add name="SQLite Data Provider" invariant="System.Data.SQLite"
+          description=".NET Framework Data Provider for SQLite" type="System.Data.SQLite.SQLiteFactory, System.Data.SQLite"/>
+      </DbProviderFactories>
+    </system.data>
+    ...
+  </configuration>
+
+次に、entityFramework の providers タグ内に以下の3つの設定が存在しているか確認してください。
+無い場合は追記してください。
+
+.. code-block:: xml
+
+  <configuration>
+    ...
+    <entityFramework>
+      ...
+      <providers>
+        <provider invariantName="System.Data.SQLite" type="System.Data.SQLite.EF6.SQLiteProviderServices, System.Data.SQLite.EF6"/>
+        <provider invariantName="System.Data.SQLite.EF6" type="System.Data.SQLite.EF6.SQLiteProviderServices, System.Data.SQLite.EF6"/>
+        <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer"/>
+      </providers>
+      ...
+    </entityFramework>
+    ...
+  </configuration>
+

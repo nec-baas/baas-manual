@@ -1,0 +1,74 @@
+.. _developer_create:
+
+管理者登録
+==========
+
+.. http:post:: /1/_sysadm/_/developers
+
+    管理者を登録する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（オプション）
+    :reqheader Content-Type: application/json, application/yaml のいずれか
+
+    :<json string developer.name: 名前（必須）
+    :<json string developer.email: E-Mail（必須）
+    :<json string developer.password: パスワード（必須）
+    :<json boolean developer.forceChangePassword: 次回ログイン時パスワード強制変更フラグ（オプション）
+    :<json boolean developer.isSysAdmin: システム管理者の有効フラグ（オプション）
+
+    :statuscode 200: 正常登録した
+    :statuscode 400: リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 409: 該当ユーザが存在している。
+    :statuscode 415: Content-Type 不正
+
+    :>json string developer._id: 管理者ユーザID
+    :>json string developer.name: 名前
+    :>json string developer.email: E-Mail
+    :>json boolean developer.forceChangePassword: 次回ログイン時パスワード強制変更フラグ
+    :>json boolean developer.isSysAdmin: システム管理者の有効フラグ
+
+    **リクエストボディ**
+
+    YAML 形式によるリクエストの例を以下に示す。
+
+    .. code-block:: yaml
+
+        developer:
+          name: developer1
+          email: example@test.com
+          password: passWord
+          forceChangePassword: true
+          isSysAdmin: false
+
+    **レスポンスボディ**
+
+    レスポンスは JSON で返却される。例を示す。
+
+    .. code-block:: json
+
+        {
+          "developer":{
+            "_id": "5a93e8005bd67428ee3fac08",
+            "name": "developer1",
+            "email": "example@test.com",
+            "forceChangePassword": true,
+            "isSysAdmin": false
+          }
+        }
+
+    **注意事項**
+
+    * システム管理者権限が必要。
+    * セルフサインアップ設定が有効の場合、未ログインユーザによる登録が可能。
+    * 以下のフィールドはシステム管理者権限でのみ設定可能。
+
+      - forceChangePassword
+      - isSysAdmin
+    * 名前、メールアドレス、パスワードは必須フィールドである。
+    * 必須以外のフィールド省略時は、デフォルト値を設定する。
+
+      - forceChangePassword : false
+      - isSysAdmin : false
+

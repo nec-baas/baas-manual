@@ -1,0 +1,216 @@
+============================================
+チュートリアル2 : ログイン機能とアクセス制御
+============================================
+
+チュートリアル2では、チュートリアル1の Todo アプリにユーザ登録・ログイン機能を追加します。
+
+また、チュートリアル1ではデータは全員で共有していましたが、本チュートリアルでは
+ユーザはそれぞれのユーザ毎に別々に管理するようにします。
+
+サンプルの実行
+==============
+
+チュートリアル1と同じように、デベロッパコンソールからアプリケーションを新たに作成し、
+config.js に設定を行って下さい。
+
+.. code-block:: javascript
+
+    var NebulaConfig = {
+            "tenant": "5657fe61240d3e15d40acd37",
+            "appId": "56ea65bb240d3e27263af479",
+            "appKey": "KPQOlhm949cN6s1cXNsSRFwh8qUTKh8KE81SCFC7",
+            "baseUri": "https://api.example.com/api/",
+            "offline" : false,
+            "debugMode": "debug"
+    };
+
+
+また、デベロッパコンソールから、オブジェクトバケットを作成します。
+バケット名は "TodoTutorial2" としてください。なお、ACL はデフォルトのまま
+(認証ユーザのみ読み書き可能)で構いません。
+
+index.html をブラウザで開くと、ログイン・サインアップ画面が表示されます。
+最初にサインアップを行って下さい。E-mail アドレスとパスワード(8文字以上)を入力してサインアップします。
+
+サインアップが完了したらログインを行って下さい。チュートリアル１と同様のアプリ画面が表示されます。
+データを入れて動作を確認したら、ログアウトしてください。
+
+ログイン画面に戻りますので、今度は違うユーザ名でサインアップを行い、ログインしてみてください。
+入力するデータはユーザ毎に異なるものになっていることを確認してください。
+
+ディレクトリ構成
+================
+
+チュートリアル2 のソースは以下のようなディレクトリ構成になっています。
+
+* index.html : ログイン画面
+* signup.html : サインアップ画面
+* reset_password.html : パスワードリセット画面
+* app.html : アプリケーション画面の HTML ファイル (チュートリアル1 の index.html と同じ)
+* js
+
+  * baas.js : NEC BaaS JavaScript ライブラリ
+  * config.js : 設定用 JavaScript
+  * login.js : ログイン処理
+  * signup.js : サインアップ処理
+  * reset_password.js : パスワードリセット処理
+  * application.js : Todoアプリ JavaScript
+
+* css
+
+  * style.css : スタイルシート
+  * login.css : ログイン画面のスタイルシート
+
+サインアップ
+============
+
+サインアップは signup.html と signup.js で行っています。
+処理本体は signup 関数にあります。
+
+.. code-block:: javascript
+
+    var signup = function() {
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var password_confirmation = $("#password_confirm").val();
+
+        if (password !== password_confirmation) {
+            alert("Passwords does not match.");
+            return;
+        }
+
+        var user = new Nebula.User();
+        user.set("email", email);
+        user.set("password", password);
+        user.register()
+            .then(function(u) {
+                alert("User registered.");
+                window.location.href = "index.html";
+            })
+            .catch(function(e) {
+                alert(e.statusText);
+                clear();
+            })
+    };
+
+サインアップを行うには、まず Nebula.User クラスのインスタンスを生成します。
+set() を使用して email と password をセットし、register() を呼び出すと
+ユーザ登録が実行されます。登録が成功すると、.then() が実行されます。
+
+ログイン
+======================
+
+ログイン処理は index.html と login.js の２つのファイルで行っています。
+処理本体は login 関数にあります。
+
+.. code-block:: javascript
+
+    var login = function() {
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var userInfo = { "email": email, "password": password };
+        Nebula.User.login(userInfo)
+            .then(function(user) {
+                window.location.href = "app.html";
+            })
+            .catch(function(e) {
+                alert(e.statusText);
+            });
+    };
+
+ログインは Nebula.User.login() で行います。
+引数には JSON 形式で email と password を渡します。
+
+ログインが成功すると .then() が実行されます。
+ここでは app.html にページ遷移します。
+
+アプリ本体
+==========
+
+アプリケーション本体はチュートリアル1と同様に application.js に記述しています。
+
+application.js の基本的な構造はチュートリアル1とほぼ同じですが、ログイン関連で
+いくつかの違いがあります。
+
+ログインチェック
+----------------
+
+初期化処理時にログインチェックを行っています。
+
+.. code-block:: javascript
+
+        // 初期化(ログインチェック)
+        init: function () {
+            var self = this;
+
+            // ログインチェック
+            Nebula.User.current()
+                .then(function(user) {
+                    if (user === null) {
+                        window.location.href = "index.html"; // 未ログイン
+                        return;
+                    }
+                    self.user = user; // ユーザ情報保存
+                    self.initApp();
+                })
+                .catch(function () {
+                    window.location.href = "index.html"; // 未ログイン
+                });
+        },
+
+Nebula.User.current() を呼び出すと、現在ログイン中のユーザを取得できます。
+
+この値が null の場合はログインしていない状態なので、index.html にページ遷移します。
+ログインしている場合は、ユーザ情報を self.user に保存し、initApp() を呼び出します。
+
+initApp() の処理はチュートリアル1の init() の処理とほぼ同じ(ログアウトボタン処理のみが異なる)です。
+
+ログアウト
+----------
+
+ログアウト処理は以下のように実装しています。
+
+.. code-block:: javascript
+
+        // ログアウト処理
+        logout: function() {
+            Nebula.User.logout()
+                .then(function() {
+                    window.location.href = "index.html";
+                })
+                .catch(function(e) {
+                    window.location.href = "index.html";
+                })
+        },
+
+ログアウト処理は、Nebula.User.logout() で行います。
+引数には User を渡します。
+
+ここではログアウトが完了したら index.html に遷移するようにしています。
+
+保存データのアクセス制御
+------------------------
+
+データの保存処理は、addTodo で行っており、処理はチュートリアル１と全く同じです。
+
+しかし、ログイン状態で作成されるデータは、ログイン中のユーザのみがアクセス可能な
+ACL が自動的に設定されます。具体的には以下のような ACL が設定されます。
+
+.. code-block:: javascript
+
+    {
+        owner: "オーナのユーザID",
+        r: [], w: [], c: [], u: [], d: [], admin: []
+    }
+
+このため、他のユーザが作成したデータは、同一のバケットに入っていても不可視になります。
+また、変更することもできません。
+
+なお、チュートリアル１のように未ログイン状態でデータを作成した場合は、
+以下のように誰でも読み書き可能な状態の ACL が自動的に設定されます。
+
+.. code-block:: javascript
+
+    {
+        r: ["g:anonymous"], w: ["g:anonymous"], c: [], u: [], d: [], admin: []
+    }

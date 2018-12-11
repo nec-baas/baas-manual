@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>改訂履歴 &mdash; NEC BaaS Server Release Note 7.5.1 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="リリース物件の構成" href="structure.html" />
+    <link rel="prev" title="新機能" href="new_features.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> NEC BaaS Server Release Note
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">ごあいさつ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_features.html">新機能</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">改訂履歴</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-5-0-ver-7-5-1">ver 7.5.0 → ver 7.5.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">デベロッパーコンソールサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Cloud Functions サーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-x-ver-7-5-0">ver 7.0.x → ver 7.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#http-2">HTTP/2対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic">Basic認証対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">ユーザ管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json">JSONオブジェクトストレージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">ファイルストレージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rest-api">管理 REST API 追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">REST API アクセスログ出力機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openjdk-11">OpenJDK 11 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb-atlas">MongoDB Atlas 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">イベント駆動追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#swagger-ui">Swagger UI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-3-7-0-4">ver 7.0.3 → 7.0.4 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">デベロッパーコンソールサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-2-ver-7-0-3">ver 7.0.2 → ver 7.0.3 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id19">APIサーバ・デベロッパーコンソールサーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-ver-7-0-2">ver 7.0.0 → ver 7.0.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">APIサーバ・デベロッパーコンソールサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Cloud Functions サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">SSE Push サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#javascript-sdk">JavaScript SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-3-ver-6-5-4">ver 6.5.3 → ver 6.5.4 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">デベロッパーコンソールサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Cloud Functions サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">SSE Push サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">JavaScript SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-x-ver-7-0-0">ver 6.5.x → ver 7.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">APIサーバ・デベロッパーコンソールサーバ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#windows-server-2016">Windows Server 2016 対応</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">オブジェクトストレージ強化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rest-api-url">REST API の URL にテナント名が利用可能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">REST API 統計情報取得機能追加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-gateway">API Gateway</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">SSE Push サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">JavaScript SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#java-android-sdk">Java / Android SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#net-sdk">.NET SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-2-ver-6-5-3">ver 6.5.2 → ver 6.5.3 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id32">APIサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">デベロッパーコンソールサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Cloud Functions サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">SSE Push サーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-1-ver-6-5-2">ver 6.5.1 → ver 6.5.2 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id36">APIサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Cloud Functions サーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id38">JavaScript SDK</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-ver-6-5-1">ver 6.5.0 → ver 6.5.1 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id39">APIサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">JavaScript SDK</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">リリース物件の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">マニュアルの読み方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="caution.html">注意事項・制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NEC BaaS Server Release Note</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>改訂履歴</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>改訂履歴<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>モバイルバックエンド基盤の改訂履歴について以下に記載します。</p>
+<p>なお、以前のバージョンからの移行方法については、サーバおよび各SDKのマニュアルに記載されている「マイグレーションガイド」を参照してください。
+各マイグレーションガイドは以下の通りです。</p>
+<ul class="simple">
+<li><a class="reference external" href="../server/migration.html">サーバ利用手順書 : マイグレーションガイド</a></li>
+<li><a class="reference external" href="../cloudfunctions-server/migration.html">Cloud Functions サーバ利用手順書 : マイグレーションガイド</a></li>
+<li><a class="reference external" href="../ssepush-server/migration.html">SSE Push サーバ利用手順書 : マイグレーションガイド</a></li>
+</ul>
+<p>SDKの改訂履歴については、「デベロッパーマニュアル」⇒「SDKリリースノート」内の改訂履歴を参照してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">本履歴に表示しているバージョン番号はモバイルバックエンド基盤サーバの Suite バージョンであり、
+各サーバのバージョンとは必ずしも一致しません。
+バージョンの対応は、 <a class="reference external" href="../../version_info.html">バージョン対応表</a> を参照してください。</p>
+</div>
+<div class="section" id="ver-7-5-0-ver-7-5-1">
+<h2>ver 7.5.0 → ver 7.5.1 での変更点<a class="headerlink" href="#ver-7-5-0-ver-7-5-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h3>デベロッパーコンソールサーバ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>REST API Reference(Swagger UI)をクロスサイト表示できない</li>
+</ul>
+<p>以下の改善を行いました。</p>
+<ul class="simple">
+<li>ライセンスキー情報に、最大ユーザ数表示項目を追加</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>Cloud Functions サーバ<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Docker を使用する設定の場合、ロジックサーバの Docker イメージ
+を Docker Hub から取得するように改善しました。</p>
+</div>
+</div>
+<div class="section" id="ver-7-0-x-ver-7-5-0">
+<h2>ver 7.0.x → ver 7.5.0 での変更点<a class="headerlink" href="#ver-7-0-x-ver-7-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本バージョンより、サーバマニュアルとデベロッパーマニュアルを分割しました。</p>
+<div class="section" id="http-2">
+<h3>HTTP/2対応<a class="headerlink" href="#http-2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>HTTP/2プロトコルに対応しました。
+大量のリクエストを行う場合等に、効率的に通信を行うことができます。
+詳細は、 <a class="reference external" href="../../../server/ja/server/extended/http2.html">HTTP/2使用手順</a> を参照して下さい。</p>
+</div>
+<div class="section" id="basic">
+<h3>Basic認証対応<a class="headerlink" href="#basic" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>REST API使用時に、<a class="reference external" href="../../../developer/ja/auth/local.html">Basic認証</a>  によるユーザ認証を行うことができます。</p>
+</div>
+<div class="section" id="id8">
+<h3>ユーザ管理<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>ユーザバッチ処理(登録・更新・削除) API 追加<ul>
+<li>REST APIを使用し、管理者が一括してユーザ登録等を行うことができます。
+詳細は、<a class="reference external" href="../../../developer/ja/rest-ref/user/batch.html">バッチオペレーションAPI</a> を参照して下さい。</li>
+</ul>
+</li>
+<li>ユーザ無効化 API 追加<ul>
+<li>REST APIやデベロッパーコンソールから、登録済みのユーザを無効化することができます。
+無効化したユーザは認証に失敗します。
+ユーザ登録、更新通知のメールに、ユーザの有効、無効を示す情報を追加しています。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="json">
+<h3>JSONオブジェクトストレージ<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>JSONフィールド暗号化機能追加<ul>
+<li>特定のフィールドを、暗号化してDBに保存することができます。詳細は、<a class="reference external" href="../../../developer/ja/developer/functions/object_storage.html">データ暗号化</a> を参照して下さい。</li>
+</ul>
+</li>
+<li>バッチ API に MongoDB トランザクション機能を追加<ul>
+<li>複数のドキュメントをアトミックに更新することができます。
+使用にはMongoDB 4.0以上が必要です。詳細は、<a class="reference external" href="../../../developer/ja/rest-ref/object/batch.html">バッチオペレーションAPI</a> を参照して下さい。</li>
+</ul>
+</li>
+<li>ACLレスバケット機能を追加(β版)<ul>
+<li>バケット単位でオブジェクトの ACL 制御を無効化することができます。 詳細は、<a class="reference external" href="../../../developer/ja/developer/functions/acl.html">ACLレスバケット</a> を参照して下さい。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>ファイルストレージ<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>範囲指定ダウンロード機能追加<ul>
+<li>Rangeヘッダを使用したファイルの一部取得、更新有無による取得判定に対応しました。詳細は、<a class="reference external" href="../../../developer/ja/rest-ref/file/download.html">ファイルのダウンロードAPI</a> を参照して下さい。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="rest-api">
+<h3>管理 REST API 追加<a class="headerlink" href="#rest-api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>テナント管理、アプリ管理を、REST APIから操作できます。詳細は、<a class="reference external" href="../../../developer/ja/rest-admin-ref/index.html">管理API</a> を参照して下さい。</p>
+</div>
+<div class="section" id="id14">
+<h3>REST API アクセスログ出力機能追加<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>システムログとアクセスログを、別々に出力することができます。
+詳細は、 <a class="reference external" href="../../../server/ja/server/configure/fluentd.html">fluentd を利用したロギング</a> を参照してください。</p>
+</div>
+<div class="section" id="openjdk-11">
+<h3>OpenJDK 11 対応<a class="headerlink" href="#openjdk-11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>OpenJDK 11 に対応しました。</p>
+</div>
+<div class="section" id="mongodb-atlas">
+<h3>MongoDB Atlas 対応<a class="headerlink" href="#mongodb-atlas" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MongoDB AtlasをバックエンドDBとして使用することができます。
+詳細は、<a class="reference external" href="../../../server/ja/server/extended/mongodb_atlas.html">MongoDB Atlas</a> を参照して下さい。</p>
+</div>
+<div class="section" id="id16">
+<h3>イベント駆動追加<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>モバイルバックエンド基盤内で発生したイベントを検知して、Cloud Functions機能を呼び出す、イベント駆動機能を追加しました。</p>
+<p>詳細は、<a class="reference external" href="../../../developer/ja/events/index.html">イベント駆動開発ガイド</a> を参照してください。</p>
+</div>
+<div class="section" id="swagger-ui">
+<h3>Swagger UI<a class="headerlink" href="#swagger-ui" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Swagger UIをデベロッパーコンソールサーバに追加しました。
+またAPIサーバは、OpenAPI Specification 3.0に準拠したREST API定義を出力できるようになりました。</p>
+<p>REST API一覧の参照や、APIコールのテストを、ブラウザから簡単に行うことができます。</p>
+<p>詳細は、デベロッパーガイドの「REST API ガイド」=&gt;「REST APIの概要」を参照して下さい。</p>
+</div>
+</div>
+<div class="section" id="ver-7-0-3-7-0-4">
+<h2>ver 7.0.3 → 7.0.4 での変更点<a class="headerlink" href="#ver-7-0-3-7-0-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id18">
+<h3>デベロッパーコンソールサーバ<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>オブジェクト数が非常に多い場合、オブジェクト表示ページ総数がずれることがある</li>
+<li>IE11からファイルのアップロードが失敗する場合がある</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-7-0-2-ver-7-0-3">
+<h2>ver 7.0.2 → ver 7.0.3 での変更点<a class="headerlink" href="#ver-7-0-2-ver-7-0-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id19">
+<h3>APIサーバ・デベロッパーコンソールサーバ<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>baas-adminコマンドでエクスポートしたテナントを正常にインポートできない</li>
+<li>コンソールのオブジェクト検索画面カラム操作時に表示不正になることがある</li>
+</ul>
+<p>以下の機能追加を行いました。</p>
+<ul class="simple">
+<li>MongoDB サーバ指定に Connection String URI を利用可能</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-7-0-0-ver-7-0-2">
+<h2>ver 7.0.0 → ver 7.0.2 での変更点<a class="headerlink" href="#ver-7-0-0-ver-7-0-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id20">
+<h3>APIサーバ・デベロッパーコンソールサーバ<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>APIGW(HTTP) リクエスト再送機能を追加</li>
+<li>ログ表示の逆順表示機能追加</li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h3>Cloud Functions サーバ<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>サーバマネジャーのサービス起動設定に Java ヒープサイズ設定を追加</li>
+</ul>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Java Functionを連続呼び出しするとエラーになる場合がある</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h3>SSE Push サーバ<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>クライアントから接続・切断を繰り返すとメモリリークが発生する</li>
+</ul>
+</div>
+<div class="section" id="javascript-sdk">
+<h3>JavaScript SDK<a class="headerlink" href="#javascript-sdk" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Proxy CONNECT 時の Host ヘッダ設定誤り修正 (tunnel -&gt; tunnel-fork モジュールに変更)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-3-ver-6-5-4">
+<h2>ver 6.5.3 → ver 6.5.4 での変更点<a class="headerlink" href="#ver-6-5-3-ver-6-5-4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id23">
+<h3>デベロッパーコンソールサーバ<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>ログ表示の逆順表示機能追加</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h3>Cloud Functions サーバ<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>サーバマネジャーのサービス起動設定に Java ヒープサイズ設定を追加</li>
+<li>起動時にバージョン番号をログに出力する</li>
+</ul>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Java Functionを連続呼び出しするとエラーになる場合がある</li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h3>SSE Push サーバ<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>クライアントから接続・切断を繰り返すとメモリリークが発生する</li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h3>JavaScript SDK<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>Node.js で HttpRequest.setDefaultTimeout() の値がHTTPタイムアウトに設定されない</li>
+<li>Proxy CONNECT 時の Host ヘッダ設定誤り修正 (tunnel -&gt; tunnel-fork モジュールに変更)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-x-ver-7-0-0">
+<h2>ver 6.5.x → ver 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-x-ver-7-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id27">
+<h3>APIサーバ・デベロッパーコンソールサーバ<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>ライセンスキー認証を追加</li>
+<li>OpenID Connect認証 アカウントリンク対応を追加</li>
+<li>パスワードハッシュ方式を SHA-256 から BCrypt に変更</li>
+<li>コンソール機能強化<ul>
+<li>API統計情報画面強化(フィルタリング)</li>
+<li>グループ編集機能強化: 所属ユーザ編集機能追加</li>
+</ul>
+</li>
+<li>Tomcat で直接クライアント証明書認証する機能を追加</li>
+</ul>
+<div class="section" id="windows-server-2016">
+<h4>Windows Server 2016 対応<a class="headerlink" href="#windows-server-2016" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>APIサーバ・デベロッパーコンソールサーバ・SSE Push サーバを Windows Server 2016 に対応しました。</p>
+<p>ただし、Cloud Functions サーバは対象外となります。</p>
+</div>
+<div class="section" id="id28">
+<h4>オブジェクトストレージ強化<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>MongoDB の Aggregation Framework、および Extended JSON 表記に対応しました。
+詳細は「デベロッパーマニュアル」⇒「オブジェクトストレージ」をご参照ください。</p>
+<p>これに伴い REST API 仕様を v7.0.2 に更新しました。</p>
+</div>
+<div class="section" id="rest-api-url">
+<h4>REST API の URL にテナント名が利用可能<a class="headerlink" href="#rest-api-url" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>REST API の URL にテナントIDではなくテナント名も使用できるようになりました。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//.../</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="mi">586</span><span class="n">da91204e80e089380c531</span>
+</pre></div>
+</div>
+<p>ではなく</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//.../</span><span class="n">api</span><span class="o">/</span><span class="mi">1</span><span class="o">/</span><span class="n">mytenant</span>
+</pre></div>
+</div>
+<p>のような URL でアクセス可能になります。
+各 SDK では、テナントIDの代わりにテナント名が使用できます。</p>
+</div>
+<div class="section" id="id29">
+<h4>REST API 統計情報取得機能追加<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>MongoDBに保存している、API統計情報を取得するREST APIを追加しました。</p>
+</div>
+<div class="section" id="api-gateway">
+<h4>API Gateway<a class="headerlink" href="#api-gateway" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Model に 以下のキーが使用できるようになりました。</p>
+<ul class="simple">
+<li>request.tenantId</li>
+<li>request.tenantName</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id30">
+<h3>SSE Push サーバ<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>クライアント登録時の安定性を改善しました。</p>
+<p>なお、APIサーバ - SSE Push サーバ間のプロトコル変更に伴い、接続する
+サーバ同士のバージョン関係について注意事項があります。
+詳細はSSE Push サーバ利用手順書の「マイグレーションガイド」を参照してください。</p>
+</div>
+<div class="section" id="id31">
+<h3>JavaScript SDK<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>Node.js パッケージ名を変更 (&quot;nebula&quot; ⇒ &quot;&#64;nec-baas/jssdk&quot;)</li>
+<li>npmjs.com にて JavaScript SDK パッケージを公開</li>
+<li>OpenID Connect認証 アカウントリンク対応 API追加</li>
+<li>Aggregation API追加</li>
+<li>Node.js SSE Push対応</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">BREAKING CHANGES: Node.js で JavaScript SDK を使用している場合、
+SDK の組み込み手順および require の手順が変更となります。
+詳細は「JavaScript SDK ガイド」の「マイグレーションガイド」を参照ください。</p>
+</div>
+</div>
+<div class="section" id="java-android-sdk">
+<h3>Java / Android SDK<a class="headerlink" href="#java-android-sdk" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>ライブラリファイル名(JAR)変更</li>
+<li>API Gateway API追加</li>
+<li>Aggregation API追加</li>
+</ul>
+</div>
+<div class="section" id="net-sdk">
+<h3>.NET SDK<a class="headerlink" href="#net-sdk" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>API Gateway API追加</li>
+<li>Aggregation API追加</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-2-ver-6-5-3">
+<h2>ver 6.5.2 → ver 6.5.3 での変更点<a class="headerlink" href="#ver-6-5-2-ver-6-5-3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id32">
+<h3>APIサーバ<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>API Gateway (HTTP) クエリストリングに使用できない文字がある</li>
+<li>AMQP RPC 応答処理(Cloud Functions応答など)が並列実行されない</li>
+</ul>
+</div>
+<div class="section" id="id33">
+<h3>デベロッパーコンソールサーバ<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>ユーザ検索後のページネーションが動作しない</li>
+</ul>
+</div>
+<div class="section" id="id34">
+<h3>Cloud Functions サーバ<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>サーバマネージャに以下の機能追加を行いました。</p>
+<ul class="simple">
+<li>Fluentd 使用していないときでも、Function ログを記録できるようにした(Server Manager ログに合わせて記録)</li>
+</ul>
+<p>サーバマネージャ / Java ロジックサーバに以下の不具合修正を行いました。</p>
+<ul class="simple">
+<li>クライアントからカスタムAPI呼び出しを連続して繰り返し実行するとエラーとなる</li>
+</ul>
+</div>
+<div class="section" id="id35">
+<h3>SSE Push サーバ<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>脆弱性修正のため、Jackson Databind を 2.9.4 に更新しました。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-1-ver-6-5-2">
+<h2>ver 6.5.1 → ver 6.5.2 での変更点<a class="headerlink" href="#ver-6-5-1-ver-6-5-2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id36">
+<h3>APIサーバ<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。サーババージョンは v6.5.2 となります。</p>
+<ul class="simple">
+<li>SSE Push 送信先が 4096 個を超えると送信エラーになる</li>
+<li>オブジェクトストレージ: 部分更新で一部の演算子を使うと、update権限のみでACLを変更できてしまう</li>
+<li>ファイルストレージ: ファイル名に日本語が含まれるときに、Content-Disposition ヘッダのファイル名が文字化けする</li>
+<li>ファイルストレージ: メモリ不足が原因で、AWS S3 に対する大容量ファイルアップロードが失敗することがある</li>
+</ul>
+<p>また、脆弱性対応のため内蔵する OSS を以下の通りアップデートしました。</p>
+<ul class="simple">
+<li>Jackson 2.9.4</li>
+<li>Spring Framework 4.3.14</li>
+<li>Spring Security 4.2.4</li>
+</ul>
+</div>
+<div class="section" id="id37">
+<h3>Cloud Functions サーバ<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Java ロジックサーバ / Node ロジックサーバに以下の不具合修正を行いました。
+サーババージョンは v6.5.1 となります。</p>
+<ul class="simple">
+<li>Content-Type にパラメータ (;charset=utf-8など)が付与されているとエラーになる</li>
+</ul>
+</div>
+<div class="section" id="id38">
+<h3>JavaScript SDK<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下の不具合修正を行いました。バージョンは v6.5.2 となります。</p>
+<ul class="simple">
+<li>CSPヘッダの設定次第で、SDK のロードがエラーになる場合がある</li>
+</ul>
+</div>
+</div>
+<div class="section" id="ver-6-5-0-ver-6-5-1">
+<h2>ver 6.5.0 → ver 6.5.1 での変更点<a class="headerlink" href="#ver-6-5-0-ver-6-5-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id39">
+<h3>APIサーバ<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>MongoDB 最大コネクション数のデフォルト値を 2000 から 200 に変更</li>
+<li>テナント名に使用できる文字制約を追加 (先頭は英数字のみ、24文字hex文字列使用不可)</li>
+<li>サーバログ改善: (ログイン成功時にセッショントークンの一部を出力)</li>
+</ul>
+</div>
+<div class="section" id="id40">
+<h3>JavaScript SDK<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>TypeScript 対応を強化しました</li>
+<li>Node.js から JavaScript SDK の require 手順が変更となります</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">BREAKING CHANGES: Node.js で JavaScript SDK を使用している場合、require の手順が変更となります。
+(require('nebula') を require('nebula').Nebula へ置換する必要があります)。
+詳細は「JavaScript SDK ガイド」の「マイグレーションガイド」 を参照ください。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="structure.html" class="btn btn-neutral float-right" title="リリース物件の構成" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="new_features.html" class="btn btn-neutral" title="新機能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

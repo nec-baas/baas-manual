@@ -1,0 +1,19 @@
+.. include:: ../common/linkdef.rst
+
+========
+必要環境
+========
+
+SSE Push サーバの動作には以下の環境が必要です。
+
+* `Java SE`_ Development Kit 8 以上
+* APサーバ
+
+  * `Apache Tomcat`_ 8.0.32 以上 (推奨は 8.5.x)
+  * 注: Tomcat 7 では動作しません
+
+* `RabbitMQ`_ 3.6.1 以上
+
+OS には特に依存しませんが、原則 Linux を使用して下さい。
+推奨 OS は RHEL7 / CentOS 7 以上となります。
+

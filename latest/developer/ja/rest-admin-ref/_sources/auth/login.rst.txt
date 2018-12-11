@@ -1,0 +1,48 @@
+.. _auth_login:
+
+ログイン
+========
+
+.. http:post:: /1/_sysadm/_/auth/login
+
+    ログインを行う。ログインが成功すると、管理者用セッショントークンが払い出される。
+
+    :reqheader Content-Type: application/json
+
+    :<json string email: E-mail アドレス (必須)
+    :<json string password: パスワード (必須)
+
+    :statuscode 200: 正常にログインした
+    :statuscode 400: パラメータ/リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 415: Content-Type 不正
+
+    :>json string _id: 管理者ユーザID
+    :>json string developerToken: 管理者用セッショントークン
+    :>json integer expire: 管理者セッショントークンの有効期限
+    :>json string email: E-mail アドレス
+    :>json string name: 名前
+    :>json boolean forceChangePassword: 次回ログイン時パスワード強制変更フラグ
+    :>json boolean isSysAdmin: システム管理者フラグ
+
+    **レスポンスボディの例**
+
+    .. code-block:: json
+
+        {
+          "_id": "52116f01ac521e1742000001",
+          "developerToken": "eyJ1c2VyX2lkI....a403dde3c3f704c5cd",
+          "expire": 1376878239,
+          "email": "admin@example.com",
+          "name": "Administrator",
+          "forceChangePassword": true,
+          "isSysAdmin": true
+        }
+
+    **注意事項**
+
+    * expireは、UNIX Time (1970-01-01 00:00:00 UTCからの経過秒数)で表現する。ログインから24時間後が設定される。
+    * 以後、管理者系APIでは、セッショントークンを X-Developer-Token ヘッダに指定すること。
+    * 管理者セッショントークンには有効期限があるので注意すること。期限切れとなった場合は再度ログインを行うこと。
+    * セッショントークンの利用が終わったら、原則 :ref:`auth_logout` APIを呼び出してトークンを無効化すること。
+

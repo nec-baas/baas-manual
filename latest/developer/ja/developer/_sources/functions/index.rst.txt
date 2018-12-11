@@ -1,0 +1,22 @@
+==========
+機能ガイド
+==========
+
+目次:
+
+.. toctree::
+   :maxdepth: 2
+
+   application
+   user_management
+   group_management
+   object_storage
+   file_storage
+   acl
+   cors
+   object_offline
+   push
+   apigw
+   cloud_func
+   events
+   admin

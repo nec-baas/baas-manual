@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.4.2. JCE (Java Cryptography Extension) の適用 &mdash; Authentication Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.4.3. キーストアの登録" href="keystore.html" />
+    <link rel="prev" title="5.4.1. HTTPS の使用" href="https.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. ADFS / SAML 認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">5.2. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequence.html">5.3. 動作概要</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="setup_system.html">5.4. システムの事前設定</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="https.html">5.4.1. HTTPS の使用</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5.4.2. JCE (Java Cryptography Extension) の適用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#jce">JCE の適用手順</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="keystore.html">5.4.3. キーストアの登録</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="idp.html">5.5. IdP 側の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">5.6. BaaSサーバの設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register.html">5.7. 認証時のユーザ・グループ自動登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devel.html">5.8. アプリケーションの開発</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attention.html">5.9. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. ADFS / SAML 認証</a> &raquo;</li>
+        
+          <li><a href="setup_system.html">5.4. システムの事前設定</a> &raquo;</li>
+        
+      <li>5.4.2. JCE (Java Cryptography Extension) の適用</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="jce-java-cryptography-extension">
+<h1>5.4.2. JCE (Java Cryptography Extension) の適用<a class="headerlink" href="#jce-java-cryptography-extension" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ADFS 2.0 の暗号化機能を使用する場合は、Java に JCE (Java Cryptography Extension) を適用する必要があります。</p>
+<p>JCEを適用しないと AES暗号は 128ビットに制限されるため、
+AES 256ビットを使用する ADFS 2.0 の暗号化機能を使用できません。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>本手順は Oracle Java SE Development Kit (JDK) を使用している場合にのみ必要です。</p>
+<p class="last">OpenJDK を利用している場合は本手順は不要です。</p>
+</div>
+<div class="section" id="jce">
+<h2>JCE の適用手順<a class="headerlink" href="#jce" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Oracle の <a class="reference external" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java SE Downloads</a> にアクセスし、JavaCryptography Extention (JCE) のポリシーファイルを
+ダウンロードします。</p>
+<p>ファイルに含まれる JAR ファイルを、
+BaaS サーバ(APIサーバ/コンソールサーバ)が稼働する全サーバの  ${JAVA_HOME}/jre/lib/security にコピーしてください。</p>
+<p>詳細手順は、ダウンロードファイル中に含まれる README.txt を参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="keystore.html" class="btn btn-neutral float-right" title="5.4.3. キーストアの登録" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="https.html" class="btn btn-neutral" title="5.4.1. HTTPS の使用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10. オブジェクトストレージ(オフライン) &mdash; .NET SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="11. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="9. オブジェクトの集計" href="object_aggregation.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> .NET SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">1. 動作環境・必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS .NET API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">8. オブジェクトストレージ: クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. オブジェクトストレージ(オフライン)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">10.1. オフラインバケットインスタンスの生成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">10.2. オブジェクトの操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">10.3. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbofflineobject">10.4. NbOfflineObject のサブクラス化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">10.5. 同期</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">10.5.1. 同期範囲の設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">10.5.2. 同期の実行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">10.5.3. キャッシュの全クリア</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">11. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html">13. 注意事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">14. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">.NET SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>10. オブジェクトストレージ(オフライン)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>10. オブジェクトストレージ(オフライン)<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではオブジェクトストレージのオフライン機能の利用方法について説明します。</p>
+<div class="section" id="id2">
+<h2>10.1. オフラインバケットインスタンスの生成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オフラインオブジェクトストレージを使用する場合は、最初にオフラインバケットを作成する
+必要があります。</p>
+<p>オフラインバケットに対する読み書き操作は、すべてクライアントのローカルデータベース
+に対する操作となり、サーバにはデータは送信されません。
+サーバとデータをやりとりするためには、サーバ上のバケットとローカルバケットを「同期」
+することになります。</p>
+<p>オフラインバケットは、NbOfflineObjectBucket クラスのインスタンスとして生成します。
+引数にバケット名を指定して NbOfflineObjectBucket を生成します。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">offlineEmpBucket</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NbOfflineObjectBucket</span><span class="p">&lt;</span><span class="n">NbOfflineObject</span><span class="p">&gt;(</span><span class="s">&quot;Employee&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>10.2. オブジェクトの操作<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトの操作方法は、オンラインのときの方法とほとんど同じですが、
+NbObject の代わりに NbOfflineObject を使う必要があります。</p>
+<p>以下、例を示します。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">obj</span> <span class="p">=</span> <span class="n">offlineEmpBucket</span><span class="p">.</span><span class="n">NewObject</span><span class="p">();</span>
+<span class="c1">// または var obj = new NbOfflineObject(&quot;Employee&quot;);</span>
+
+<span class="n">obj</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;Taro Nichiden&quot;</span><span class="p">;</span>
+<span class="n">obj</span><span class="p">[</span><span class="s">&quot;email&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;taro@example.com&quot;</span><span class="p">;</span>
+<span class="n">obj</span><span class="p">[</span><span class="s">&quot;age&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="m">27</span><span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">resultObj</span> <span class="p">=</span> <span class="k">await</span> <span class="n">obj</span><span class="p">.</span><span class="n">SaveAsync</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>10.3. アクセス制御<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>アクセス制御も、オンラインの場合とほぼおなじです。
+オブジェクトの ACL に対してアクセス制限が行われます。
+ただし、オフラインバケットには ACL の概念がないため、アクセス制限は行われません。</p>
+</div>
+<div class="section" id="nbofflineobject">
+<h2>10.4. NbOfflineObject のサブクラス化<a class="headerlink" href="#nbofflineobject" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NbOfflineObject も NbObject と同様にサブクラス化することができます。</p>
+</div>
+<div class="section" id="id5">
+<h2>10.5. 同期<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>クライアント上のオフラインバケットのデータをサーバ上のオンラインバケットと同期させることができます。同期では前回同期から更新のあった差分データのみを同期します。</p>
+<p>同期処理では、下記 1, 2 の処理を行います。</p>
+<ol class="arabic simple">
+<li>サーバ側で更新のあったデータを受信 (Pull)</li>
+<li>クライアント側で更新したデータをサーバへ送信 (Push)</li>
+</ol>
+<p>処理 1. については、以下に述べるように同期範囲を設定しておくことができます。</p>
+<p>オフライン時にクライアント側で更新したデータを、オンライン時にサーバへ送信する手段が必要となるため、 処理 2. では、同期範囲の指定に関係なく、クライアント側で更新のあったデータは全てサーバに送信されます。</p>
+<p>同期を行うには、同期マネージャの NbObjectSyncManager クラスを使用します。</p>
+<div class="section" id="id6">
+<h3>10.5.1. 同期範囲の設定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>同期に先立ち、「同期範囲」を指定する必要があります。これはサーバ側データをクライアント側に同期する際に使用されます。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// 同期マネージャインスタンスを生成</span>
+<span class="kt">var</span> <span class="n">syncManager</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NbObjectSyncManager</span><span class="p">();</span>
+
+<span class="c1">// 同期範囲を設定</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">syncManager</span><span class="p">.</span><span class="n">GetSyncScope</span><span class="p">(</span><span class="s">&quot;Employee&quot;</span><span class="p">)</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">syncManager</span><span class="p">.</span><span class="n">SetSyncScope</span><span class="p">(</span><span class="s">&quot;Employee&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="n">NbQuery</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>同期範囲は SetSyncScope で設定します。条件はクエリ(NbQuery)で指定します。すなわち、特定条件に合致したデータだけを同期することが可能です。上記例ではバケット &quot;Employee&quot; に対して、全範囲を同期するという設定を行っています。</p>
+<p>なお、設定した同期範囲はローカルデータベース上に永続化されます。
+同期範囲が設定済みかどうかは GetSyncScope で確認できます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">同期範囲を設定・変更すると同期条件(最終同期時刻)がクリアされ、次回同期を行う際はかならず全同期になってしまう(差分同期にならない)ので、注意してください。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>10.5.2. 同期の実行<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>同期実行には SycnBucketAsync メソッドを使用します。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// 同期を実行</span>
+<span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">await</span> <span class="n">syncManager</span><span class="p">.</span><span class="n">SyncBucketAsync</span><span class="p">(</span><span class="s">&quot;Employee&quot;</span><span class="p">,</span> <span class="n">NbObjectConflictResolver</span><span class="p">.</span><span class="n">PreferServerResolver</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>SyncBucketAsync に同期を行うバケット名と衝突解決ポリシを指定します。</p>
+<p>衝突解決ポリシは、データの衝突が発生したときにこれを解決する方法です。には以下の2通りがあります。</p>
+<ul class="simple">
+<li>PreferServerResolver: 常にサーバ側のデータを優先してローカルDBのデータを更新します。</li>
+<li>PreferClientResolver: 常にクライアント側のデータを優先してサーバ側の該当データを更新します。</li>
+</ul>
+<p>戻り値には、同期に失敗したオブジェクト一覧が IList&lt;NbBatchResult&gt; 型で返却されます。
+NbBatchResult 内の ResultCode に原因が設定されていますので、適宜処理してください。
+同期が完全に成功した場合は返り値の件数は 0 になります。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">衝突解決ポリシを PreferClientResolver に指定して同期した場合、
+サーバ側で同時に更新が行われるとオブジェクトが衝突状態のまま残る場合があります。
+この場合は戻り値に衝突したオブジェクト一覧が返されます (ResultCode は Conflict になります)。
+衝突状態を解決するためには再度同期を実行してください。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>10.5.3. キャッシュの全クリア<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>前回ログインしたユーザと異なるユーザで利用する場合などに、
+同期済みデータを一旦すべて削除することができます。</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">NbOfflineSerfvice</span><span class="p">.</span><span class="n">DeleteCacheAll</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>本 API を呼び出すと、すべてのオフラインバケットとオフラインバケット内の同期データが消去されます。
+また、設定した同期範囲と最終同期時刻もクリアされます。</p>
+<p>まだサーバに同期していないデータもすべて消去されますので、ご注意ください。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="11. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_aggregation.html" class="btn btn-neutral" title="9. オブジェクトの集計" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

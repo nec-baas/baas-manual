@@ -1,0 +1,26 @@
+.. _admin_info:
+
+サーバ情報取得
+================
+
+.. http:get:: /1/(tenantId)/management/server_info
+
+    BaaSサーバ情報を取得する
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+
+    :statuscode 200: 正常取得した
+    :statuscode 401: 認証エラー
+
+    :>json string version: バージョン番号
+    :>json string buildTime: ビルド日時
+
+    **レスポンスボディの例**
+
+    .. code-block:: json
+
+        {
+            "version": "7.5.0",
+            "buildTime": "2018-08-26T15:57:23Z"
+        }

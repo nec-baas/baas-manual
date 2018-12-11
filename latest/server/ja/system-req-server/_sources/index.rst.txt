@@ -1,0 +1,12 @@
+NEC BaaS Server System Requirements
+====================================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+   :numbered: 3
+
+   server
+   server_changes

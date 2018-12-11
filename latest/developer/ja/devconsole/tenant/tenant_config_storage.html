@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.13. テナント設定 - 外部ストレージ設定 &mdash; Developer Console User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.14. テナント設定 - 特殊バケットのACL設定" href="tenant_config_acl.html" />
+    <link rel="prev" title="4.12. テナント設定 - 基本設定" href="tenant_config_basic.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../login.html">2. ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">3. システム管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. テナント管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="abstract.html">4.1. テナント管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">4.2. アプリケーション管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">4.3. ユーザ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html">4.4. グループ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object.html">4.5. オブジェクトバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file.html">4.6. ファイルバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apigw.html">4.7. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">4.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">4.9. Event Subscription</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_stats.html">4.10. API統計情報</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html">4.11. テナント管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_basic.html">4.12. テナント設定 - 基本設定</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.13. テナント設定 - 外部ストレージ設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">外部ストレージ設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">外部ストレージの利用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-1">a) 全ファイルバケットのファイルを1つのデフォルト外部ストレージバケットに格納</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#b">b) テナントのファイルバケット毎に、ファイルを異なる外部ストレージバケットに格納</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-b">a), b) の混在</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">注意事項</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#baas">BaaS を使用せず 外部ストレージ側で追加したファイルの扱い</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">ファイルが存在する状態での設定変更</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">BaaS ファイルバケットの削除に伴うバケット内のファイル削除</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">ファイル名制約</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_acl.html">4.14. テナント設定 - 特殊バケットのACL設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_template.html">4.15. テナント設定 - テンプレート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_oidc.html">4.16. テナント設定 - OpenID Connect設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_client_cert.html">4.17. テナント設定 - クライアント証明書</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. テナント管理</a> &raquo;</li>
+        
+      <li>4.13. テナント設定 - 外部ストレージ設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="external-storage">
+<span id="id1"></span><h1>4.13. テナント設定 - 外部ストレージ設定<a class="headerlink" href="#external-storage" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>S3互換オブジェクトストレージをファイルストレージのバックエンドとして
+使用するための設定を行います。</p>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaS の「ファイルストレージ」機能は、デフォルトでは MongoDB の GridFS 上に
+ファイルを保存するようになっています。</p>
+<p>この他に、S3互換オブジェクトストレージにファイルの本体を置くことも可能です。
+S3互換オブジェクトストレージを使用することで、より大容量のファイルを安価な
+ストレージ上に置くことが可能になります。</p>
+</div>
+<div class="section" id="id3">
+<h2>外部ストレージ設定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/extfsMenu_1.png"><img alt="../_images/extfsMenu_1.png" src="../_images/extfsMenu_1.png" style="width: 449.4px; height: 559.1999999999999px;" /></a>
+<p>S3互換オブジェクトストレージ(以下外部ストレージ)を使用するためには、
+S3互換オブジェクトストレージに接続するための設定情報を登録する必要があります。
+本設定は、S3互換オブジェクトストレージの「バケット」毎に作成する必要があります。</p>
+<p>デベロッパーコンソールの「外部ストレージ設定」でこの接続設定を行います。</p>
+<p>「追加」ボタンを押して設定を追加します。
+以下の設定が必須となります。</p>
+<ul class="simple">
+<li>ストレージタイプ: AWS S3 を使用する場合は &quot;AWS_S3&quot; を、その他のS3互換ストレージ(NECCIなど)を使用する場合は &quot;AWS_S3_COMPATIBLE&quot; を選択します。</li>
+<li>名前: 設定の識別名を入力します</li>
+<li>外部ストレージのバケット名: S3互換オブジェクトストレージ側のバケット名を指定します。</li>
+<li>アクセスキーID/シークレットアクセスキー: 認証用の情報を指定します。</li>
+<li>リージョン名: AWS S3 を使用する場合はリージョンを指定します。</li>
+<li>エンドポイント: AWS S3以外を使用する場合はエンドポイントを指定します。</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>外部ストレージの利用<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>外部ストレージを利用するためには、２通りの方法があります。</p>
+<div class="section" id="a-1">
+<h3>a) 全ファイルバケットのファイルを1つのデフォルト外部ストレージバケットに格納<a class="headerlink" href="#a-1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>テナントの「基本設定」より、「デフォルト外部ストレージ」に接続設定を指定すると、
+全ファイルバケットのデータは指定された1つの外部ストレージ(バケット)に格納されます。</p>
+<p>ファイル本体はすべて1つの外部ストレージ(バケット)に入りますが、
+BaaS のファイルバケットとファイルの紐付けは BaaS 側で管理していますので、
+ファイルバケット間でデータが混ざることはありません。</p>
+</div>
+<div class="section" id="b">
+<h3>b) テナントのファイルバケット毎に、ファイルを異なる外部ストレージバケットに格納<a class="headerlink" href="#b" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ファイルバケット毎に異なる外部ストレージ(バケット)に格納したい場合は、
+個別の「ファイルバケット」の設定より「外部ストレージ」を個別に指定します。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">1つの外部ストレージ設定に紐付けることができるのは、1つのファイルバケットもしくは
+テナントのデフォルト外部ストレージのみです。複数のファイルバケットに紐付けることは
+できません。</p>
+</div>
+</div>
+<div class="section" id="a-b">
+<h3>a), b) の混在<a class="headerlink" href="#a-b" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>a), b) を混在させることもできます。</p>
+<p>ファイルバケットで個別に 外部ストレージバケットを指定している場合は、
+そのファイルバケットに格納するファイルは指定された外部ストレージバケットに
+格納されます。</p>
+<p>指定がない場合は、デフォルト外部ストレージバケットに格納されます。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>注意事項<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="baas">
+<h3>BaaS を使用せず 外部ストレージ側で追加したファイルの扱い<a class="headerlink" href="#baas" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>BaaS を使用せず直接外部ストレージ側にファイルを追加した場合は、以下のような扱いとなります。</p>
+<ul class="simple">
+<li>外部ストレージ側に直接追加したファイルにはアクセスできません。</li>
+</ul>
+<p>ただし、上記 b) の設定を行ったファイルバケットに限り、以下の条件において外部ストレージ側で追加したファイルにもアクセス可能です。</p>
+<ul>
+<li><p class="first">ファイルメタデータ取得、またはファイルダウンロード REST API では、指定したファイル名に合致するファイルのメタデータ取得とダウンロードが可能です。</p>
+<blockquote>
+<div><ul class="simple">
+<li>この際、ファイルの Content ACL は、anonymous で Read/Write できるように設定されます。変更したい場合は、別途ファイルメタデータ変更 REST APIを呼び出してください。</li>
+<li>上記の REST API が一度実行されると BaaS側にファイルメタデータが作成されるため、ファイル一覧 REST API で該当ファイルの情報を取得できるようになります。</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>ファイルが存在する状態での設定変更<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ファイルがすでに存在する状態で以下の変更を行うと、ファイルデータにアクセスできなくなりますので、
+原則変更しないようにしてください。</p>
+<ul class="simple">
+<li>テナントの「デフォルト外部ストレージ」の変更</li>
+<li>ファイルバケットの「外部ストレージ」の変更</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>BaaS ファイルバケットの削除に伴うバケット内のファイル削除<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<ul class="simple">
+<li>MongoDB の GridFSと関連付けたファイルバケットの場合は、バケットの削除に伴い、ファイルのメタデータとファイルが削除されます。</li>
+<li>外部ストレージと関連付けたファイルバケットの場合は、バケットの削除に伴い、ファイルのメタデータのみ削除されます。
+外部ストレージに保存したファイルの削除について、各外部ストレージの管理コンソール上で実施してください。</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>ファイル名制約<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>外部ストレージを使用する場合でも、デフォルトのファイルストレージと同様のファイル名制約が適用されます。
+詳細は <a class="reference external" href="../../developer/limits.html">制限値・スレショルド・文字制約</a> を参照ください。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tenant_config_acl.html" class="btn btn-neutral float-right" title="4.14. テナント設定 - 特殊バケットのACL設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tenant_config_basic.html" class="btn btn-neutral" title="4.12. テナント設定 - 基本設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

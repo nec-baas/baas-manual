@@ -1,0 +1,159 @@
+==================
+利用パターン
+==================
+
+NEC BaaS ノードを使用した組み合わせで利用頻度が高いパターンを以下に記載します。
+
+Store & Search
+==================
+
+オブジェクトストレージへデータを保存したり、オブジェクトストレージからデータを取得するパターンです。
+下記は BaaS サーバ(Database)に対してデータ保存やデータ取得を行う例を示しています。
+
+.. image:: ./images/pattern_store_search.png
+   :scale: 80 %
+   
+オブジェクトデータを保存するパターンでは、 入力された payload を Database に保存します。本例では **保存するデータの指定** の function ノードで保存先のバケット名や保存するデータを指定しています。バケット名は **オブジェクトデータ保存ノード(Database)** のダイアログで設定することもできます。
+
+オブジェクトデータを取得するパターンでは、 **オブジェクトデータ取得ノード(Database)** のダイアログでバケット名や検索条件を指定します。
+
+Delete
+==================
+
+オブジェクトストレージから個別または全てのオブジェクトデータを削除するパターンです。
+下記は BaaS サーバ(Database)に対してデータ削除を行う例を示しています。
+
+.. image:: ./images/pattern_delete.png
+   :scale: 80 %
+   
+個別のデータを削除するパターンでは、事前に削除対象のオブジェクトを検索後、取得したオブジェクトIDに対して削除処理を行います。
+本例では **削除するオブジェクトのID指定** の function ノードで取得したオブジェクトIDを後続の削除処理ノード(Database)の入力値として指定しています。
+
+全てのデータを削除するパターンでは、削除処理ノード(Database)内のダイアログで **Action欄** に **delete all objects** を指定します。
+
+UI パターン
+==================
+
+HTML入力フォームで指定したデータを元に、データ検索やデータ保存を行うパターンです。
+下記は BaaS サーバ(Database)に対してデータ検索やデータ保存を行う例を示しています。
+
+.. image:: ./images/pattern_ui.png
+   :scale: 80 %
+   
+HTML入力フォームで指定した検索キーを使用して、 オブジェクトデータを Database から取得するパターンでは、
+**検索データの指定** の function ノードで GET による検索データを後続の取得処理ノード(Database)で参照可能なプロパティに変換しています。
+
+HTML入力フォームで指定したデータを、 Database に保存するパターンでは、
+**保存データの指定** の function ノードで POST による保存データを後続の保存処理ノード(Database)で参照可能なプロパティに変換しています。
+
+Separator
+==================
+
+取得したオブジェクトデータを分割するパターンです。
+下記は BaaS サーバ(Database)から取得したオブジェクトデータを分割して出力する例を示しています。
+
+.. image:: ./images/pattern_separator.png
+   :scale: 80 %
+   
+ログイン後に取得したユーザ情報を各プロパティに分割して出力するパターンでは、
+**ユーザ情報の分割** の function ノード内でユーザ情報を構成する各プロパティ毎に分割して出力しています。
+
+取得したオブジェクトデータを各プロパティに分割して出力するパターンでは、
+**オブジェクトIDの分離** の function ノード内でオブジェクト ID を分離して出力しています。
+ただし、本取得ノードから出力される msg.payload には配列形式のオブジェクトID一覧が格納されています。
+本例では取得したオブジェクト一覧からオブジェクトID一覧のみを分離して出力しています。
+
+API-GW
+==================
+
+ユーザが定義した REST API を使用して Cloud Functions 機能を呼び出すパターンです。
+下記はユーザが事前に定義した REST API を BaaS サーバ(API-GW)で実行し、 Cloud Functions 機能を呼び出す例を示しています。
+
+.. image:: ./images/pattern_apigw.png
+   :scale: 80 %
+   
+前者の Flow は API-GW ノードの設定ダイアログで実行する REST API を静的に指定しています。
+後者の Flow は 実行する REST API を API-GW ノードの前で動的に指定する例を示しています。
+API-GW ノードの設定ダイアログと入力メッセージ(msg.xxx)で同じ値を重複して指定した場合、後者の入力メッセージの値が優先されます。
+
+Authentication
+==================
+
+認証に関するパターンです。
+下記は BaaS サーバ(login)に対してパスワード認証する例を示しています。
+
+.. image:: ./images/pattern_auth_pw.png
+   :scale: 80 %
+   
+定期的にログインする必要がある場合は、認証ノードの前にある inject ノードの設定ダイアログで **Repeat** 情報を設定します。
+これにより定期的に認証ノードが呼び出されます。
+
+Node-RED の Deploy ボタン押下のタイミングに合わせて、認証ノードのログイン処理も実行したい場合は、 inject ノードの設定ダイアログで
+**Inject once at start?** を有効にします。
+
+下記は BaaS サーバ(cert)に対してクライアント証明書認証を行う例を示しています。
+
+.. image:: ./images/pattern_auth_cert.png
+   :scale: 80 %
+
+Node-RED の Deploy ボタン押下のタイミングに合わせて、認証ノードのクライアント証明書の指定も実行したい場合は、 inject ノードの設定ダイアログで
+**Inject once at start?** を有効にします。
+   
+ユーザ認証なし( anonymous 権限)で BaaS サーバ(Database)対してデータ検索やデータ保存を行う場合は、以下の対応が必要です。
+
+* 事前に BaaS サーバ側で anonymous 権限でアクセス可能なバケットを作成してください。
+* Flow 画面内に認証ノードの代わりに Function ノードを配置して、 設定ダイアログの **Config** 欄に BaaS サーバ 情報を設定してください。
+
+    
+サンプル
+==================
+
+上記で示した各パターンの Flow サンプルです。下記のサンプルは、 Node-RED　の UI　上でインポートして使用してください。
+
+.. attention::
+
+   サンプルを実際に動作させる場合は、 BaaS の認証ノードまたは Function ノードの設定ダイアログで BaaS サーバ情報(アクセス先)及びユーザアカウント情報を設定してください。
+   
+Store & Search
+-----------------------------
+
+.. code-block:: json
+
+    [{"id":"d848ab19.addfa8","type":"inject","z":"aa095410.454ad8","name":"Input data","topic":"","payload":"{\"bucketname\":\"bucket\", \"data\":{\"name\":\"foo\", \"age\":30}}","payloadType":"json","repeat":"","crontab":"","once":false,"x":142.765625,"y":108,"wires":[["9f671aa7.ffa548"]]},{"id":"6dfb9774.3af178","type":"object out","z":"aa095410.454ad8","bucketName":"","action":"SAVE_OBJECT","createBucket":true,"name":"Database","x":596.5269775390625,"y":107.31533813476562,"wires":[["b5f0e135.f03ef"]]},{"id":"b5f0e135.f03ef","type":"debug","z":"aa095410.454ad8","name":"debug","active":true,"console":"false","complete":"true","x":796.765625,"y":107,"wires":[]},{"id":"9f671aa7.ffa548","type":"function","z":"aa095410.454ad8","name":"保存するデータの指定","func":"\nvar bucketname = msg.payload[\"bucketname\"];\nvar data = msg.payload[\"data\"];\n\nmsg.bucketname = bucketname;\nmsg.payload = data;\n\nreturn msg;\n","outputs":1,"noerr":0,"x":369.7655944824219,"y":107.63638305664062,"wires":[["6dfb9774.3af178"]]},{"id":"598292a0.23b94c","type":"comment","z":"aa095410.454ad8","name":"オブジェクトデータ保存","info":"","x":160.765625,"y":48,"wires":[]},{"id":"185a1cc5.74a533","type":"inject","z":"aa095410.454ad8","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":false,"x":139.765625,"y":259,"wires":[["e0e5a73b.2741a8"]]},{"id":"fa8ab082.aa9dc","type":"debug","z":"aa095410.454ad8","name":"debug","active":true,"console":"false","complete":"true","x":567.765625,"y":259,"wires":[]},{"id":"87e836c7.cedf18","type":"comment","z":"aa095410.454ad8","name":"オブジェクトデータ検索","info":"","x":160.765625,"y":198,"wires":[]},{"id":"e0e5a73b.2741a8","type":"object in","z":"aa095410.454ad8","name":"Database","bucketName":"bucket","isClause":true,"rules":[{"t":"eq","k":"name","v":"foo","vt":"str"},{"t":"eq","k":"age","v":"30","vt":"num"}],"operator":"AND","sortKey":"age","sortType":"ASC","skipCount":"","limit":"","projection":"","x":334.765625,"y":259,"wires":[["fa8ab082.aa9dc"]]}]
+
+Delete
+-----------------------------
+
+.. code-block:: json
+
+    [{"id":"41a77ee8.ab775","type":"object out","z":"726cb38b.e3bccc","bucketName":"bucket","action":"DEL_OBJECT","createBucket":false,"name":"Database","x":755.765625,"y":182.6846273988486,"wires":[["faa8b09d.2646a"]]},{"id":"faa8b09d.2646a","type":"debug","z":"726cb38b.e3bccc","name":"debug","active":true,"console":"false","complete":"true","x":961.0042724609375,"y":182.36925874650484,"wires":[]},{"id":"655f0297.ddc49c","type":"function","z":"726cb38b.e3bccc","name":"削除するオブジェクトのID指定","func":"var objects = msg.payload;\n\nif (objects.length === 0) {\n    node.warn(\"Object not found\");\n}\n\nfor(var i=0; i<objects.length; i++) {\n    var id = objects[i]._id;\n    msg.bucketname = \"bucket\";\n    msg.objectId = id;\n    node.send(msg);\n}\n\nreturn;","outputs":1,"noerr":0,"x":515.0042724609375,"y":183.0056723207236,"wires":[["41a77ee8.ab775"]]},{"id":"76ec1e1a.169a5","type":"object in","z":"726cb38b.e3bccc","name":"Database","bucketName":"bucket","isClause":true,"rules":[{"t":"eq","k":"name","v":"foo","vt":"str"}],"operator":"AND","sortKey":"","sortType":"ASC","skipCount":"","limit":"","projection":"","x":334.0042724609375,"y":104.99999605119234,"wires":[["8dada5c0.9a6988","655f0297.ddc49c"]]},{"id":"289229b3.4d2f06","type":"inject","z":"726cb38b.e3bccc","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":false,"x":145.0042724609375,"y":104.99999605119234,"wires":[["76ec1e1a.169a5"]]},{"id":"8dada5c0.9a6988","type":"debug","z":"726cb38b.e3bccc","name":"debug","active":false,"console":"false","complete":"true","x":564.0042724609375,"y":104.49999605119234,"wires":[]},{"id":"b39d239b.ddc3e","type":"comment","z":"726cb38b.e3bccc","name":"オブジェクトデータ削除","info":"","x":160.0042724609375,"y":45.99999605119234,"wires":[]},{"id":"b8493ca.85d9ec","type":"inject","z":"726cb38b.e3bccc","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":false,"x":134.7698974609375,"y":350.4346273988486,"wires":[["8d8114a1.3cd588"]]},{"id":"4bebac44.366984","type":"comment","z":"726cb38b.e3bccc","name":"全オブジェクトデータ削除","info":"","x":159.5355224609375,"y":292.6846273988486,"wires":[]},{"id":"8d8114a1.3cd588","type":"object out","z":"726cb38b.e3bccc","bucketName":"bucket","action":"DEL_ALL_OBJECTS","createBucket":false,"name":"Database","x":510.66571044921875,"y":348.7957523912192,"wires":[["3a8a601e.d492"]]},{"id":"3a8a601e.d492","type":"debug","z":"726cb38b.e3bccc","name":"debug","active":true,"console":"false","complete":"true","x":750.6657104492188,"y":348.7957523912192,"wires":[]},{"id":"a6662c3d.a0c38","type":"comment","z":"726cb38b.e3bccc","name":"↑オブジェクトID単位で分割して順次出力","info":"","x":570.7698974609375,"y":234.1846273988486,"wires":[]},{"id":"4b809fc8.33ca8","type":"comment","z":"726cb38b.e3bccc","name":"↑オブジェクトデータ削除","info":"","x":861.7698974609375,"y":232.9346273988486,"wires":[]},{"id":"c81f2abf.86af58","type":"comment","z":"726cb38b.e3bccc","name":"オブジェクトデータ検索↑","info":"","x":248.7698974609375,"y":156.9346273988486,"wires":[]},{"id":"87bd6c15.a8105","type":"comment","z":"726cb38b.e3bccc","name":"↑全オブジェクトデータ削除","info":"","x":590.7698974609375,"y":402.9346273988486,"wires":[]}]
+
+UI パターン
+-----------------------------
+
+.. code-block:: json
+
+    [{"id":"3ccfb437.8a217c","type":"object in","z":"82fbf813.525008","name":"Database","bucketName":"bucket","isClause":true,"rules":[{"t":"eq","k":"name","v":"name","vt":"msg"},{"t":"eq","k":"age","v":"age","vt":"msg"}],"operator":"OR","sortKey":"age","sortType":"ASC","skipCount":"","limit":"","projection":"","x":389.765625,"y":405.25,"wires":[["e3693699.173b28","dae50275.2b77a"]]},{"id":"3a7199c2.cd3d66","type":"template","z":"82fbf813.525008","name":"HTML化","field":"payload","fieldType":"msg","format":"html","syntax":"mustache","template":"<html>\n    <body bgcolor=\"#ffffcc\">\n        取得データ：<br>   {{{payload}}}        \n    </body>\n</html>","x":794.765625,"y":405.25,"wires":[["55897cf.02adf84","38d8047c.524bec"]]},{"id":"38d8047c.524bec","type":"debug","z":"82fbf813.525008","name":"debug","active":true,"console":"false","complete":"true","x":973.765625,"y":462.5,"wires":[]},{"id":"55897cf.02adf84","type":"http response","z":"82fbf813.525008","name":"HTTP_Response","x":1013.625,"y":405.0078125,"wires":[]},{"id":"26b16525.fc446a","type":"http in","z":"82fbf813.525008","name":"","url":"/query_output","method":"get","swaggerDoc":"","x":187.62890625,"y":297.640625,"wires":[["d42a483e.621588"]]},{"id":"dae50275.2b77a","type":"json","z":"82fbf813.525008","name":"Json_->_String","x":600.625,"y":405.4921875,"wires":[["3a7199c2.cd3d66"]]},{"id":"d42a483e.621588","type":"function","z":"82fbf813.525008","name":"検索データの指定","func":"\nmsg.name = msg.req ? (msg.req.query.name ?  msg.req.query.name : null) : null;\nmsg.age = msg.req ? (msg.req.query.age? Number(msg.req.query.age) : null) : null;\n\nreturn msg;","outputs":1,"noerr":0,"x":454.62890625,"y":297.66015625,"wires":[["3ccfb437.8a217c","1f5b1c58.c4f194","44d1b403.016a5c"]]},{"id":"1f5b1c58.c4f194","type":"debug","z":"82fbf813.525008","name":"","active":true,"console":"false","complete":"age","x":798.640625,"y":298.29296875,"wires":[]},{"id":"44d1b403.016a5c","type":"debug","z":"82fbf813.525008","name":"","active":true,"console":"false","complete":"name","x":809.765625,"y":250,"wires":[]},{"id":"fc474533.8a9218","type":"comment","z":"82fbf813.525008","name":"↓GETアクセス時にクエリパラメータ指定する場合を想定 (/query?name=bar)","info":"","x":353.765625,"y":241.5,"wires":[]},{"id":"a8150a23.fdbe88","type":"comment","z":"82fbf813.525008","name":"↓ POSTアクセス時にデータを保存","info":"","x":256.13671875,"y":806.5,"wires":[]},{"id":"865aefb6.47df9","type":"http in","z":"82fbf813.525008","name":"","url":"/save_output","method":"post","swaggerDoc":"","x":172.765625,"y":859.25,"wires":[["afaf5457.c72cf8"]]},{"id":"316dc95c.032446","type":"http response","z":"82fbf813.525008","name":"HTTP Response","x":1011.8609352111816,"y":959.7736864089966,"wires":[]},{"id":"e7cb85cb.97f3f8","type":"template","z":"82fbf813.525008","name":"HTML化","field":"payload","fieldType":"msg","format":"html","syntax":"mustache","template":"<html>\n    <body bgcolor=\"#ffffcc\">\n        保存データ：<br>   {{payload}}        \n    </body>\n</html>","x":789.765625,"y":959.91650390625,"wires":[["316dc95c.032446","79337170.01fed"]]},{"id":"79337170.01fed","type":"debug","z":"82fbf813.525008","name":"debug","active":true,"console":"false","complete":"payload","x":972.3550720214844,"y":1015.3525390625,"wires":[]},{"id":"4680856c.e9120c","type":"http response","z":"82fbf813.525008","name":"HTTP Response","x":646.2816772460938,"y":723.2499084472656,"wires":[]},{"id":"9662db7.3399e28","type":"http in","z":"82fbf813.525008","name":"","url":"/save","method":"get","swaggerDoc":"","x":142.9482078552246,"y":724.249921798706,"wires":[["d2a331e4.979ba"]]},{"id":"d2a331e4.979ba","type":"template","z":"82fbf813.525008","name":"HTML入力フォーム","field":"payload","fieldType":"msg","format":"html","syntax":"mustache","template":"<HTML><BODY><FORM method='POST' action='save_output'>保存先バケット名: <INPUT type='text' name='bucket' value=\"bucket\"> <br> 名前: <INPUT type='text' name='name'><br> 年齢: <INPUT type='number' name='age' value=10><INPUT type='submit'></FORM></BODY></HTML>","x":404.6148681640625,"y":723.9165573120117,"wires":[["4680856c.e9120c"]]},{"id":"563e06fc.332068","type":"comment","z":"82fbf813.525008","name":"↓ 保存用入力フォーム作成","info":"","x":485.7656555175781,"y":670.08349609375,"wires":[]},{"id":"1d157920.4a73a7","type":"object out","z":"82fbf813.525008","bucketName":"","action":"SAVE_OBJECT","createBucket":true,"name":"Database","x":349.765625,"y":959.75,"wires":[["8214a11.7324f6"]]},{"id":"afaf5457.c72cf8","type":"function","z":"82fbf813.525008","name":"保存データの指定","func":"\nmsg.bucketname = msg.req ? (msg.req.body.bucket ? msg.req.body.bucket : null) : null;\nvar name = msg.req ? (msg.req.body.name ? msg.req.body.name : null) : null;\nvar age = msg.req ? (msg.req.body.age ? Number(msg.req.body.age) : null) : null;\n\nmsg.payload ={\"name\": name, \"age\": age};\n\nreturn msg;\n","outputs":1,"noerr":0,"x":449.0042724609375,"y":859.071044921875,"wires":[["bd22da34.cacfe8","1d157920.4a73a7"]]},{"id":"bd22da34.cacfe8","type":"debug","z":"82fbf813.525008","name":"msg.payload","active":true,"console":"false","complete":"true","x":701.765625,"y":859.5,"wires":[]},{"id":"8214a11.7324f6","type":"json","z":"82fbf813.525008","name":"Json_->_String","x":581.765625,"y":960,"wires":[["e7cb85cb.97f3f8"]]},{"id":"37117c22.338954","type":"comment","z":"82fbf813.525008","name":"オブジェクトデータ検索","info":"","x":157.765625,"y":49,"wires":[]},{"id":"72964695.9c5ca8","type":"comment","z":"82fbf813.525008","name":"オブジェクトデータ保存","info":"","x":156.765625,"y":631.75,"wires":[]},{"id":"a70772c7.e9bea","type":"http response","z":"82fbf813.525008","name":"HTTP Response","x":665.3334693908691,"y":146.5,"wires":[]},{"id":"fe456d54.77cac","type":"http in","z":"82fbf813.525008","name":"","url":"/query","method":"get","swaggerDoc":"","x":162,"y":147.50001335144043,"wires":[["a9d76545.c673a8"]]},{"id":"a9d76545.c673a8","type":"template","z":"82fbf813.525008","name":"HTML入力フォーム","field":"payload","fieldType":"msg","format":"html","syntax":"mustache","template":"<HTML><BODY><FORM method='GET' action='query_output'>取得先バケット名: <INPUT type='text' name='bucket' value=\"bucket\"> <br> 名前: <INPUT type='text' name='name'><br> 年齢: <INPUT type='number' name='age' value=10><INPUT type='submit'></FORM></BODY></HTML>","x":423.6666603088379,"y":147.1666488647461,"wires":[["a70772c7.e9bea"]]},{"id":"a714dfcd.cad2f","type":"comment","z":"82fbf813.525008","name":"↓ 検索用入力フォーム作成","info":"","x":494.81744384765625,"y":96.33349609375,"wires":[]},{"id":"e3693699.173b28","type":"function","z":"82fbf813.525008","name":"テーブル表示","func":"var objects = msg.payload;\nvar html;\n\nif (objects.length === 0) {\n    node.warn(\"Object not found\");\n}\n\nhtml = \"<table border=\\\"1\\\" cellspacing=\\\"0\\\" cellpadding=\\\"4\\\" id=\\\"table1\\\"><tr><th>ID</th><th>名前</th><th>年齢</th></tr>\";\n\nfor(var i=0; i<objects.length; i++) {\n    var id = objects[i]._id;\n    var name = objects[i].name;\n    var age = objects[i].age;\n\n    html += \"<tr><td>\" + id + \"</td>\" + \"<td>\" + name + \"</td>\" + \"<td>\" + age + \"</td></tr>\";\n}\n\nhtml += \"</table>\";\n\nmsg.payload = html;\n\nreturn msg;","outputs":1,"noerr":0,"x":600.63671875,"y":465.6484375,"wires":[[]]},{"id":"34544f93.9966","type":"comment","z":"82fbf813.525008","name":"↑ テーブル表示する場合は本ノードをHTML化に接続","info":"","x":736.765625,"y":518.25,"wires":[]}]
+
+Separator
+-----------------------------
+
+.. code-block:: json
+
+    [{"id":"db877a60.450258","type":"inject","z":"1a841d6.6af50e3","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":false,"x":137.765625,"y":145.75,"wires":[["b3e615a1.914408"]]},{"id":"768b9b32.d9c964","type":"debug","z":"1a841d6.6af50e3","name":"_id","active":true,"console":"false","complete":"payload","x":956.765625,"y":92.75,"wires":[]},{"id":"b3e615a1.914408","type":"auth","z":"1a841d6.6af50e3","initFlag":true,"name":"login","nebulaServer":"5eedf45f.7b438c","action":"LOGIN","email":"","userName":"","password":"","x":357.5354919433594,"y":146.7017059326172,"wires":[["e0566518.11ce68"]]},{"id":"e0566518.11ce68","type":"function","z":"1a841d6.6af50e3","name":"ユーザ情報の分割","func":"\nvar msg0 = {};\nvar msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\nvar msg4 = {};\nvar msg5 = {};\n\nmsg0.payload = msg.result;\n\nif (msg.result === \"ok\") {\n    msg1.payload = msg.payload._id;\n    msg2.payload = msg.payload._username;\n    msg3.payload = msg.payload._email; \n    msg4.payload = msg.payload._options;\n    msg5.payload = msg.payload._groups;\n}\n\nreturn [msg0, msg1, msg2, msg3, msg4, msg5];","outputs":"6","noerr":0,"x":634.765625,"y":146.5,"wires":[["e14c0b5c.d4ec88"],["768b9b32.d9c964"],["e649c659.cb8318"],["40d1e57b.a02bfc"],["23973e76.617e42"],["399e56a4.53839a"]]},{"id":"e649c659.cb8318","type":"debug","z":"1a841d6.6af50e3","name":"_username","active":true,"console":"false","complete":"payload","x":976.765625,"y":138.5,"wires":[]},{"id":"40d1e57b.a02bfc","type":"debug","z":"1a841d6.6af50e3","name":"_emal","active":true,"console":"false","complete":"payload","x":956.765625,"y":182.5,"wires":[]},{"id":"23973e76.617e42","type":"debug","z":"1a841d6.6af50e3","name":"_options","active":true,"console":"false","complete":"payload","x":968.765625,"y":230.5,"wires":[]},{"id":"399e56a4.53839a","type":"debug","z":"1a841d6.6af50e3","name":"_group","active":true,"console":"false","complete":"payload","x":969.765625,"y":277.5,"wires":[]},{"id":"e14c0b5c.d4ec88","type":"debug","z":"1a841d6.6af50e3","name":"result","active":true,"console":"false","complete":"payload","x":957.6328125,"y":43.53125,"wires":[]},{"id":"d5980c9d.6b72e","type":"inject","z":"1a841d6.6af50e3","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":false,"x":135.765625,"y":366.75,"wires":[["c62b5b85.12be08"]]},{"id":"7a327502.633dec","type":"debug","z":"1a841d6.6af50e3","name":"result","active":true,"console":"false","complete":"payload","x":960.765625,"y":353.75,"wires":[]},{"id":"562b44.2a7574bc","type":"comment","z":"1a841d6.6af50e3","name":"オブジェクトデータ検索","info":"","x":156.765625,"y":301.75,"wires":[]},{"id":"c62b5b85.12be08","type":"object in","z":"1a841d6.6af50e3","name":"Database","bucketName":"bucket","isClause":false,"rules":[],"operator":"AND","sortKey":"age","sortType":"ASC","skipCount":"","limit":"","projection":"","x":352.765625,"y":366.75,"wires":[["79c08561.bb0cbc"]]},{"id":"79c08561.bb0cbc","type":"function","z":"1a841d6.6af50e3","name":"オブジェクトIDの分離","func":"\nvar objects = msg.payload;\n\nvar msg0 = {};\nmsg0.payload = msg.result;\n\nvar msg1 = {};\nmsg1.payload = []; // id list\n\nvar msg2 = {};\nmsg2.payload = objects; // object list\n    \nif (msg.result === \"ok\") {\n\n    if (objects.length === 0) {\n        node.warn(\"Object not found\");\n    }\n    \n    for(var i=0; i<objects.length; i++) {\n        var id = objects[i]._id;\n        msg1.payload.push(id);\n    }\n}\n\nreturn [msg0, msg1, msg2];","outputs":"3","noerr":0,"x":637.765625,"y":366.25,"wires":[["7a327502.633dec"],["634488a1.715068"],["3edf257.d60c5da"]]},{"id":"634488a1.715068","type":"debug","z":"1a841d6.6af50e3","name":"id_list","active":true,"console":"false","complete":"payload","x":958.765625,"y":403.25,"wires":[]},{"id":"3edf257.d60c5da","type":"debug","z":"1a841d6.6af50e3","name":"object_list","active":true,"console":"false","complete":"payload","x":967.765625,"y":453.25,"wires":[]},{"id":"cf339da6.eab59","type":"comment","z":"1a841d6.6af50e3","name":"ユーザ認証","info":"","x":122.765625,"y":82.75,"wires":[]},{"id":"5eedf45f.7b438c","type":"nebula-server","z":"","appId":"","appKey":"","tenantId":"","baseUri":""}]
+
+API-GW
+-----------------------------
+
+.. code-block:: json
+
+    [{"id":"a7928458.ed86f8","type":"apigw out","z":"52574116.d2f6b","name":"API-GW","apiname":"hello","method":"GET","subpath":"sayHello","apidata":"{\"name\":\"foo\"}","isBinaryResponse":false,"isAddHeaders":true,"rules":[{"k":"header1","v":"aaa","vt":"str"}],"isClearHeaders":false,"contentType":"text/html","x":532.9999389648438,"y":44.75,"wires":[["796aafaf.aaaf2"]]},{"id":"db4ed05.a049d3","type":"inject","z":"52574116.d2f6b","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":false,"x":130,"y":44.60511779785156,"wires":[["a7928458.ed86f8"]]},{"id":"796aafaf.aaaf2","type":"debug","z":"52574116.d2f6b","name":"debug","active":true,"console":"false","complete":"true","x":743.9970550537109,"y":44.82386016845703,"wires":[]},{"id":"dcdde31c.1fc4","type":"debug","z":"52574116.d2f6b","name":"debug","active":true,"console":"false","complete":"true","x":744.9970550537109,"y":126.1590805053711,"wires":[]},{"id":"f39f728.ec9e09","type":"apigw out","z":"52574116.d2f6b","name":"API-GW","apiname":"","method":"GET","subpath":"","apidata":"","isBinaryResponse":false,"isAddHeaders":false,"rules":[],"isClearHeaders":false,"contentType":"","x":535.9999389648438,"y":126.08522033691406,"wires":[["dcdde31c.1fc4"]]},{"id":"6e071d7d.2f5644","type":"function","z":"52574116.d2f6b","name":"APIデータの指定","func":"msg.apiname = \"hello\";\nmsg.method = \"GET\";\nmsg.subpath = \"sayHello\";\nmsg.apidata = {\"name\":\"foo\"};\nmsg.header = {\n    addHeaders: {\"header1\":\"aaa\"},\n    isClearHeaders: false,\n    contentType: \"text/html\"\n}\nmsg.isBinaryResponse = false;\n\nreturn msg;","outputs":1,"noerr":0,"x":331.2301025390625,"y":126.08522033691406,"wires":[["f39f728.ec9e09"]]},{"id":"13e4fb51.94bc15","type":"inject","z":"52574116.d2f6b","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":false,"x":131,"y":125.94033813476562,"wires":[["6e071d7d.2f5644"]]}]
+
+Authentication
+-----------------------------
+
+.. code-block:: json
+
+    [{"id":"482e379f.032738","type":"inject","z":"5ac3b162.5e24c","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"86400","crontab":"","once":true,"x":151.765625,"y":152.99998716637515,"wires":[["b2373164.bc67b"]]},{"id":"85b79bac.de6d88","type":"debug","z":"5ac3b162.5e24c","name":"debug","active":true,"console":"false","complete":"true","x":587.765625,"y":152.99998716637515,"wires":[]},{"id":"b2373164.bc67b","type":"auth","z":"5ac3b162.5e24c","initFlag":true,"name":"login","nebulaServer":"aaf02087.7d3a7","action":"LOGIN","pfxType":false,"pemType":false,"pfxCertPath":"","passPhrase":"","pemCertPath":"","pemKeyPath":"","caCertPath":"","x":371.5354919433594,"y":152.95169309899234,"wires":[["85b79bac.de6d88"]]},{"id":"2c131003.7204b","type":"comment","z":"5ac3b162.5e24c","name":"パスワード認証","info":"","x":148.765625,"y":93.99998716637515,"wires":[]},{"id":"5bc823c1.619dfc","type":"auth","z":"5ac3b162.5e24c","initFlag":true,"name":"cert","nebulaServer":"aaf02087.7d3a7","action":"USE_CLIENT_CERT","pfxType":false,"pemType":true,"pfxCertPath":"/home/cert/client.p12","passPhrase":"1234","pemCertPath":"/home/cert/client.pem","pemKeyPath":"/home/cert/client.key","caCertPath":"/home/cert/ca.pem","x":370.765625,"y":286.24998716637515,"wires":[["e4741808.0ab1f8"]]},{"id":"6114e567.ee167c","type":"inject","z":"5ac3b162.5e24c","name":"","topic":"","payload":"{}","payloadType":"json","repeat":"","crontab":"","once":true,"x":153.7734375,"y":287.20701841637515,"wires":[["5bc823c1.619dfc"]]},{"id":"e4741808.0ab1f8","type":"debug","z":"5ac3b162.5e24c","name":"","active":true,"console":"false","complete":"true","x":583.76171875,"y":286.04686216637515,"wires":[]},{"id":"9307299c.c814d8","type":"comment","z":"5ac3b162.5e24c","name":"クライアント証明書認証","info":"","x":179.765625,"y":230.24998716637515,"wires":[]},{"id":"aaf02087.7d3a7","type":"nebula-server","z":"","name":"beta","tenantId":"58cb3232cb6a3b149c6782bb","baseUri":"https://beta.example.com/apia","useProxy":true}]
+
+

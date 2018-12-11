@@ -1,0 +1,116 @@
+===========================
+SSE Push 受信実装 (.NET編)
+===========================
+
+ライブラリの組み込み
+====================
+
+事前に NEC BaaS .NET SDK のセットアップを行っておいて下さい。
+ついで、プロジェクトに SSE Push ライブラリの組み込みを行います。
+
+下記手順で、 NuGet ギャラリーから取得します。
+
+1. プロジェクトを選択し、「プロジェクト」⇒「NuGet パッケージの管理」を選択
+2. 「オンラインの検索」で、「NEC」を入力して検索
+3. 「NEC BaaS SSE Push SDK」を選択して インストール
+
+
+実装の概要
+==========
+
+下記の2ステップにより、Pushメッセージを受信できるようになります。
+
+1. `インスタレーションを登録する`_
+2. `Pushの待受を開始する`_
+
+インスタレーションを登録する
+============================
+
+インスタレーションオブジェクトの ``Save`` メソッドを呼ぶことで、インスタレーションを NEC BaaS サーバに登録できます。この登録により、サーバはあなたのアプリケーションをPushの宛先として認識します。登録以降は、Pushの待受を開始できるようになります。
+
+この処理は、アプリケーションの起動時(Nebula初期化後)に実施してください。
+
+なお、すでに登録済みであっても、 ``Save`` メソッドを重ねて呼び出して問題ありません。
+
+.. code-block:: csharp
+
+    public async void registerInstallation() {
+        // インスタレーションの更新ロックを取得
+        NbSsePushReceiveClient.AcquireLock();
+
+        try {
+            // インスタレーションを取得する
+            var installation = NbSsePushInstallation.GetCurrentInstallation();
+
+            // 必須プロパティを設定する (設定例は後述)
+            installation.Channels = ...;
+            installation.AllowedSenders = ...;
+    
+            // インスタレーションをサーバに登録する
+            await installation.Save();
+        } finally {
+            // インスタレーションの更新ロックを解除
+            NbSsePushReceiveClient.ReleaseLock();
+        }
+    }
+
+インスタレーションの登録を行う際は、必ず NbSsePushReceiveClient の AcquireLock() を呼び出して、
+インスタレーションの更新ロックを取得する必要があります。ロック解除は releaseLock() で行って下さい。
+
+Pushの待受を開始する
+========================
+
+インスタレーションの登録に成功すると、Pushの待受を開始できるようになります。
+
+Pushの待受を開始するには、``NbSsePushReceiveClient`` オブジェクトの ``Connect`` メソッドを呼びます。
+
+メッセージを受信するためには NbSsePushReceiveClient にコールバックを設定します。
+以下に例を示します。
+
+.. code-block:: csharp
+
+    // Push受信クライアント
+    private var _pushClient = new NbSsePushReceiveClient();
+
+    public void startPushReceive() {
+        // メッセージ受信コールバック
+        _pushClient.RegisterOnMessage("message", msg => {
+            // msg.Data に受信メッセージ(文字列)が引き渡される
+        });
+
+        // エラーコールバック
+        _pushClient.RegisterOnError((statusCode, errorInfo) => {
+            // エラー処理を行う。
+            if (statusCode == 401) {
+                // 401 エラーが発生した場合は、一定時間待ってから
+                // インスタレーションの登録からやりなおす。
+                retryRegisterInstallation();
+            } else {
+                // その他のエラー
+            }
+        });
+
+        // 接続を開始する
+        _pushClient.Connect();
+    }
+
+備考: 必須プロパティの設定例
+============================
+
+インスタレーションの必須プロパティの設定例を示します。
+
+* ``NewsChannel`` と ``AlarmChannel`` へのPushを購読します。
+* 任意の送信者からのPushを受け付けます
+
+.. code-block:: csharp
+
+    installation.Channels = new HashSet<string>{"NewsChannel", "AlarmChannel"};
+    installation.AllowedSenders = new HashSet<string>{"g:anonymous"};    
+
+
+備考: ユーザの紐付け
+====================
+
+インスタレーションは、インスタレーション保存のタイミングでログイン中だったユーザに紐付けられます。
+
+紐付けを変更したい場合は、ログイン操作・ログアウト操作の完了時に、 あらためてインスタレーションの保存処理を行う必要があります。

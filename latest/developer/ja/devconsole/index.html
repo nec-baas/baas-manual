@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS Developer Console User Manual &mdash; Developer Console User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="1. デベロッパーコンソールの概要" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login.html">2. ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system/index.html">3. システム管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tenant/index.html">4. テナント管理</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS Developer Console User Manual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-developer-console-user-manual">
+<h1>NEC BaaS Developer Console User Manual<a class="headerlink" href="#nec-baas-developer-console-user-manual" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. デベロッパーコンソールの概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#id2">1.1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#account-types">1.2. アカウント種別について</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="login.html">2. ログイン</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="login.html#id2">2.1. デベロッパーコンソールへのログイン</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system/index.html">3. システム管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system/abstract.html">3.1. システム管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/tenant/index.html">3.2. テナント管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system/tenant/tenant.html">テナントの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/tenant/tenant_management.html">一般設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/tenant/tenant_management.html#mongodb">MongoDB個別接続設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/tenant/ldap.html">LDAP連携</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/tenant/ratelimit.html">APIレートリミット(スロットリング)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system/administrator.html">3.3. 管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/system_config.html">3.4. システム設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system/system_config.html#id21">一般設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/system_config.html#id22">データベース設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/system_config.html#id23">デベロッパーコンソール設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/system_config.html#id24">メール設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/system_config.html#id25">プロキシサーバ設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/system_config.html#system-config-client-cert">クライアント証明書設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system/system_config.html#id28">ファイルストレージ設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system/saml_keyStore.html">3.5. SAML KeyStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/license.html">3.6. ライセンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/systemlog.html">3.7. システムログ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tenant/index.html">4. テナント管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tenant/abstract.html">4.1. テナント管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/application.html">4.2. アプリケーション管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/application.html#id2">アプリケーションの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/application.html#id3">アプリケーションの編集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/application.html#push">Push送信</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/user.html">4.3. ユーザ管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/user.html#id2">ユーザの登録(通常認証)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/user.html#id3">ユーザの登録(クライアント証明書)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/user.html#id4">ユーザの編集、削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/user.html#id5">ユーザの検索</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/group.html">4.4. グループ管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/group.html#id2">グループの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/group.html#id3">所属ユーザの編集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/group.html#id4">グループの編集、削除</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/object.html">4.5. オブジェクトバケット管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/object.html#id21">オブジェクトバケットの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/object.html#id22">オブジェクトバケットの編集、削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/object.html#id23">インデックスの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/object.html#id25">データ管理機能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/object.html#index-0">クエリプランナー</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/file.html">4.6. ファイルバケット管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/file.html#id2">ファイルバケットの管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/file.html#id3">ファイルデータの管理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/apigw.html">4.7. API Gateway</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/apigw.html#id2">API Gateway の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/apigw.html#id3">API Gateway の編集、削除</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/cloudfn.html">4.8. Cloud Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/cloudfn.html#function">Function 表示・編集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/cloudfn.html#id1">ログ表示</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/events.html">4.9. Event Subscription</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/events.html#id1">イベントサブスクリプションの追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/events.html#id2">イベントサブスクリプションの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/api_stats.html">4.10. API統計情報</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/api_stats.html#id1">統計情報の絞込み</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/api_stats.html#id2">アプリケーション毎の統計情報</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/developer.html">4.11. テナント管理者管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/developer.html#id2">管理者の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/developer.html#id3">管理者の解除</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/tenant_config_basic.html">4.12. テナント設定 - 基本設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_basic.html#id2">概要</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/tenant_config_storage.html">4.13. テナント設定 - 外部ストレージ設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_storage.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_storage.html#id3">外部ストレージ設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_storage.html#id4">外部ストレージの利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_storage.html#id5">注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/tenant_config_acl.html">4.14. テナント設定 - 特殊バケットのACL設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/tenant_config_template.html">4.15. テナント設定 - テンプレート</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_template.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_template.html#id3">テンプレートパラメータ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/tenant_config_oidc.html">4.16. テナント設定 - OpenID Connect設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_oidc.html#id20">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_oidc.html#id21">共通設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_oidc.html#op">OP リスト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_oidc.html#id22">OP 編集画面</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/tenant_config_client_cert.html">4.17. テナント設定 - クライアント証明書</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_client_cert.html#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_client_cert.html#id3">クライアント証明書認証設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_client_cert.html#id4">ユーザに使用する値</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_client_cert.html#id5">証明書ユーザ自動登録</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tenant/tenant_config_client_cert.html#id6">信頼する発行者</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">検索ページ</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. デベロッパーコンソールの概要" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

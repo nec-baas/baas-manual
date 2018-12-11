@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>一般設定 &mdash; Developer Console User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="LDAP連携" href="ldap.html" />
+    <link rel="prev" title="テナントの追加" href="tenant.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../login.html">2. ログイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. システム管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../abstract.html">3.1. システム管理機能について</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. テナント管理</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tenant.html">テナントの追加</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">一般設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodb">MongoDB個別接続設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ldap.html">LDAP連携</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ratelimit.html">APIレートリミット(スロットリング)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administrator.html">3.3. 管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../system_config.html">3.4. システム設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../saml_keyStore.html">3.5. SAML KeyStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../license.html">3.6. ライセンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../systemlog.html">3.7. システムログ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tenant/index.html">4. テナント管理</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">3. システム管理</a> &raquo;</li>
+        
+          <li><a href="index.html">3.2. テナント管理</a> &raquo;</li>
+        
+      <li>一般設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>一般設定<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<a class="reference internal image-reference" href="../../_images/LDAP1.png"><img alt="../../_images/LDAP1.png" src="../../_images/LDAP1.png" style="width: 388.8px; height: 480.8px;" /></a>
+<p>テナント名と説明を入力し、認証方式を選択して「保存」をクリックしてください。</p>
+<p>認証方式は以下の４種類から選択することができます。</p>
+<ul class="simple">
+<li>通常認証: モバイルバックエンド基盤内のユーザDBを用いた認証方式です。</li>
+<li>通常認証+LDAP認証: 通常認証とLDAPサーバを使用した認証が可能な方式です。詳細は <a class="reference internal" href="ldap.html#ldapauth"><span class="std std-ref">LDAP連携</span></a> を参照してください。</li>
+<li>通常認証+SAML認証: 通常認証とSAML(Security Assertion Markup Language)を使用した認証が可能な方式です。詳細は <a class="reference external" href="../../../auth/saml/index.html">ADFS / SAML 認証</a> を参照してください。</li>
+<li>通常認証+OIDC認証: 通常認証とOpenID Connectを使用した認証が可能な方式です。詳細は <a class="reference external" href="../../../auth/oidc/index.html">OpenID Connect 認証</a> を参照してください。</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">一度テナントを作成したあとで認証方式を変更することは、外部認証ユーザ・グループが存在しない場合のみ可能となります。
+ご注意ください。</p>
+</div>
+</div>
+<div class="section" id="mongodb">
+<h1>MongoDB個別接続設定<a class="headerlink" href="#mongodb" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>テナント毎に接続する MongoDB クラスタを変更することができます。
+省略時はプライマリクラスタ(設定ファイルで指定した MongoDB クラスタ)に接続します。</p>
+<ul class="simple">
+<li>MongoDB サーバ: 接続するMongoDBサーバ/ポートを指定します。レプリカセットを使用する場合はカンマ区切りで3台指定します。</li>
+<li>認証ユーザ名: MongoDB 認証を行う場合はユーザ名を指定します。</li>
+<li>認証パスワード: MongoDB 認証を行う場合はパスワードを指定します。</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">ここで指定した内容を後で変更することも可能ですが、別の MongoDB クラスタを指定した場合
+データベースは自動では移行されません。移行が必要な場合は mongodump を使用して手動で
+バックアップ・リストアを行う必要があります。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ldap.html" class="btn btn-neutral float-right" title="LDAP連携" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tenant.html" class="btn btn-neutral" title="テナントの追加" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../../_static/analytics.js"></script>
+        <script type="text/javascript" src="../../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

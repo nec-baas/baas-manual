@@ -1,0 +1,523 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. ユーザ管理 &mdash; JavaScript SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="7. グループ管理" href="group.html" />
+    <link rel="prev" title="5. NEC BaaS JavaScript API の基本" href="basics.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> JavaScript SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. ライブラリの初期化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger.html">4. ログ出力手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">5. NEC BaaS JavaScript API の基本</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. ユーザ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">6.1. ユーザの作成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">6.1.1. ユーザの登録</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">6.2. ユーザの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">6.3. ユーザの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">6.4. ユーザの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">6.5. ユーザのログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">6.6. カレントユーザの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">6.7. ユーザのログアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node-js">6.8. クライアント証明書認証 (Node.jsのみ)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#https">6.8.1. HTTPSプロキシを使用する場合</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#openid-connect">6.9. OpenID Connectリンク情報取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#js-dellink">6.10. OpenID Connectリンク情報削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">7. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">8. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">9. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">10. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">11. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">13. セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitenant.html">14. マルチテナント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">15. マイグレーションガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oss.html">16. JavaScript SDK に含まれるOSS</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JavaScript SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>6. ユーザ管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="js-users">
+<span id="id1"></span><h1>6. ユーザ管理<a class="headerlink" href="#js-users" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではユーザ管理機能の利用方法について説明します。</p>
+<div class="section" id="id2">
+<h2>6.1. ユーザの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>最初にユーザオブジェクトを作成して登録するユーザ情報をプロパティに設定します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;company&quot;</span>  <span class="o">:</span> <span class="s2">&quot;NEC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;department&quot;</span>  <span class="o">:</span> <span class="s2">&quot;AAA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tel&quot;</span>  <span class="o">:</span> <span class="s2">&quot;xxx-xxx-xxxx&quot;</span>
+<span class="p">}</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;Eメールアドレス&quot;</span><span class="p">);</span> <span class="c1">// 必須</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;パスワード&quot;</span><span class="p">);</span>  <span class="c1">// 必須</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;ユーザ名&quot;</span><span class="p">);</span>   <span class="c1">// オプション</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;option&quot;</span><span class="p">,</span> <span class="nx">option</span><span class="p">);</span>        <span class="c1">// オプション</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>6.1.1. ユーザの登録<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>作成したユーザをBaaS サーバに登録するには、ユーザオブジェクトの register() を呼び出します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">user</span><span class="p">.</span><span class="nx">register</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">userObj</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+        <span class="c1">// userObj: 登録されたユーザオブジェクト(プロパティに登録日時等の追加あり)</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>6.2. ユーザの取得<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザを取得するには、 query() の引数に検索条件を指定して呼び出します。</p>
+<p>検索条件 conditions のプロパティには、_id, email, username のいずれかを指定します。
+(conditions に null を指定した場合は全件検索になります)</p>
+<p>レスポンスには、検索条件に一致したユーザオブジェクトの配列が返ります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span>  <span class="o">:</span> <span class="s2">&quot;ユーザID&quot;</span>
+<span class="p">}</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">conditions</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+        <span class="c1">// users: ユーザオブジェクトの配列</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>6.3. ユーザの更新<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザを更新するには、 update() の引数にユーザオブジェクトのインスタンス(更新後のユーザ情報)を指定して呼び出します。</p>
+<p>ユーザオブジェクトに設定するユーザIDは必須になります。</p>
+<p>※ カレントユーザ以外を更新する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する
+必要があります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// あらかじめ更新対象のユーザオブジェクトを query() メソッドなどで取得</span>
+
+<span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;company&quot;</span>  <span class="o">:</span> <span class="s2">&quot;NEC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;department&quot;</span>  <span class="o">:</span> <span class="s2">&quot;AAA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tel&quot;</span>  <span class="o">:</span> <span class="s2">&quot;xxx-xxx-xxxx&quot;</span>
+<span class="p">}</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;_id&quot;</span><span class="p">,</span> <span class="s2">&quot;ユーザID&quot;</span><span class="p">);</span>        <span class="c1">// 必須</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;Eメールアドレス&quot;</span><span class="p">);</span> <span class="c1">// オプション</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;パスワード&quot;</span><span class="p">);</span>  <span class="c1">// オプション</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;ユーザ名&quot;</span><span class="p">);</span>   <span class="c1">// オプション</span>
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;option&quot;</span><span class="p">,</span> <span class="nx">option</span><span class="p">);</span>        <span class="c1">// オプション</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">userObj</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+        <span class="c1">// userObj: 更新後のユーザオブジェクト</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>6.4. ユーザの削除<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザを削除するには、remove() の引数にユーザオブジェクトのインスタンスを指定して呼び出します。</p>
+<p>ユーザオブジェクトに設定するユーザIDは必須になります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// あらかじめ削除対象のユーザオブジェクトを query() メソッドなどで取得</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;_id&quot;</span><span class="p">,</span> <span class="s2">&quot;ユーザID&quot;</span><span class="p">);</span> <span class="c1">// 必須</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">カレントユーザ以外を削除する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>6.5. ユーザのログイン<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザがログインする場合には、login() を呼び出します。</p>
+<p>login() の引数にはユーザ情報を JSON で指定します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;email&quot;</span>  <span class="o">:</span> <span class="s2">&quot;Eメールアドレス&quot;</span>
+    <span class="s2">&quot;password&quot;</span>  <span class="o">:</span> <span class="s2">&quot;パスワード&quot;</span>
+<span class="p">};</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">userObj</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+        <span class="c1">// userObj: ログイン後のユーザオブジェクト(ログイン有効期間等の追加あり)</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>6.6. カレントユーザの取得<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログイン中のカレントユーザの情報を取得するには、current() を呼び出します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">current</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// user はログイン中のユーザオブジェクト</span>
+    <span class="p">}</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理。</span>
+        <span class="c1">// ログイン中状態でない場合はこちらが呼ばれる</span>
+    <span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>6.7. ユーザのログアウト<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザがログアウトする場合には、logout() を呼び出します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// あらかじめカレントユーザオブジェクトのインスタンスを取得しておく</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">logout</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="node-js">
+<h2>6.8. クライアント証明書認証 (Node.jsのみ)<a class="headerlink" href="#node-js" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>クライアント証明書認証を使用すると、ユーザはログインを明示的に行わずに、認証済みユーザとして各種APIを使用することができます。</p>
+<p>プロキシを使用しない場合は、NebulaService#setClientCertificate() で証明書情報の設定を行います。
+クライアント証明書(PKCS#12形式)、証明書のパスフレーズを含むオブジェクト、もしくは、クライアント証明書(PEM形式)と、その秘密鍵(PEM形式)を指定します。
+あわせて信頼するCA証明書を追加指定することもできます。</p>
+<p><strong>NebulaService#setClientCertificate()の使用例</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+<span class="c1">// PKCS#12(pfx)と、そのパスフレーズを指定します</span>
+<span class="kr">const</span> <span class="nx">certOptions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">pfx</span><span class="o">:</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">CLIENT_CERT_PFX_PATH</span><span class="p">),</span>
+    <span class="nx">passphrase</span><span class="o">:</span> <span class="nx">CLIENT_CERT_PASSPHRASE</span><span class="p">,</span>
+    <span class="nx">ca</span><span class="o">:</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">TRUSTED_CA_PEM_PATH</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="c1">// cert、key を別々に指定することもできます</span>
+<span class="c1">// const certOptions = {</span>
+<span class="c1">//    cert: fs.readFileSync(CLIENT_CERT_PEM_PATH),</span>
+<span class="c1">//    key: fs.readFileSync(CLIENT_CERT_KEY_PEM_PATH),</span>
+<span class="c1">//    // CA証明書は複数件指定することができます</span>
+<span class="c1">//    ca: [ fs.readFileSync(TRUSTED_CA_PEM_PATH_1), fs.readFileSync(TRUSTED_CA_PEM_PATH_2)]</span>
+<span class="c1">//};</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">setClientCertificate</span><span class="p">(</span><span class="nx">certOptions</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">サーバ側でログインの状態を管理するため、login(),logout()などは使用しません。
+自ユーザ情報の取得が必要な場合、User.queryCurrent()を使用してサーバに問い合わせを行います。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>クライアント証明書認証を使用するためには、事前にサーバの環境構築、設定が必要となります。
+詳細は <a class="reference external" href="../auth/clientcert/index.html">クライアント証明書認証</a> を参照してください。</p>
+<p>また、Tomcatで直接認証を行う場合、クライアント証明書の期限切れ等の問題があると
+TLSのセッション確立ができません。
+クライアントは通信失敗として扱い、ステータスコード0のエラーが返却されます。</p>
+<p class="last">クライアント証明書を使用した場合にのみ通信ができない場合、サーバの設定とあわせ、証明書に問題が無いかご確認下さい。</p>
+</div>
+<div class="section" id="https">
+<h3>6.8.1. HTTPSプロキシを使用する場合<a class="headerlink" href="#https" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>HTTPS プロキシを使用する場合は、setClientCertificate() ではなく、NebulaService#setHttpsProxy()のオプションパラメータとして証明書情報を付与します。
+設定する内容はsetClientCertificate()と同様です。</p>
+<p>NebulaService#setClientCertificate()とNebulaService#setHttpsProxy() を両方設定した場合は、
+setHttpsProxy() の設定が優先されます。</p>
+<p><strong>NebulaService#setHttpsProxy()の使用例</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+
+<span class="c1">// p12(pfx)形式のクライアント証明書(証明書/秘密鍵)を指定、p12ファイルのパスフレーズを指定</span>
+<span class="c1">// 信頼するCA証明書として、2件を指定する場合</span>
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">setHttpsProxy</span><span class="p">({</span> <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;proxysv.example.com&#39;</span><span class="p">,</span> <span class="nx">port</span><span class="o">:</span> <span class="mi">8080</span><span class="p">},</span> <span class="p">{</span>
+    <span class="nx">pfx</span><span class="o">:</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;clientCertificate.p12&#39;</span><span class="p">),</span>
+    <span class="nx">passphrase</span><span class="o">:</span> <span class="s1">&#39;password&#39;</span><span class="p">,</span>
+    <span class="nx">ca</span><span class="o">:</span> <span class="p">[</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;caCert1.pem&#39;</span><span class="p">),</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;caCert2.pem&#39;</span><span class="p">)]</span>
+<span class="p">});</span>
+
+<span class="c1">// pem形式のクライアント証明、キーを使用。CA証明書を1件指定</span>
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">setHttpsProxy</span><span class="p">({</span> <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;proxysv.example.com&#39;</span><span class="p">,</span> <span class="nx">port</span><span class="o">:</span> <span class="mi">8080</span><span class="p">},</span> <span class="p">{</span>
+    <span class="nx">cert</span><span class="o">:</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;clientCert.pem&#39;</span><span class="p">),</span>
+    <span class="nx">key</span><span class="o">:</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;clientKey.pem&#39;</span><span class="p">),</span>
+    <span class="nx">ca</span><span class="o">:</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;caCert1.pem&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="openid-connect">
+<span id="js-getlinks"></span><h2>6.9. OpenID Connectリンク情報取得<a class="headerlink" href="#openid-connect" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>OpenID Connectリンク情報を取得するには、getAccountLinks() の引数にユーザオブジェクトのインスタンスを指定して呼び出します。</p>
+<p>ユーザオブジェクトに設定するユーザIDは必須になります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// あらかじめリンク情報取得対象のユーザオブジェクトを query() メソッドなどで取得</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">_id</span> <span class="o">=</span> <span class="s2">&quot;ユーザID&quot;</span><span class="p">;</span> <span class="c1">// 必須</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">getAccountLinks</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">links</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+        <span class="c1">// links: リンク情報 (Nebula.AccountLink インスタンス) の配列</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">カレントユーザ以外のリンク情報を取得する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">オフライン機能/SDE4SD使用時は使用できません。</p>
+</div>
+</div>
+<div class="section" id="js-dellink">
+<span id="id11"></span><h2>6.10. OpenID Connectリンク情報削除<a class="headerlink" href="#js-dellink" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>OpenID Connectリンク情報を削除するには、deleteAccountLink() の第一引数にユーザオブジェクトのインスタンス、第二引数に削除するリンクユーザIDを指定して呼び出します。</p>
+<p>ユーザオブジェクトに設定するユーザIDは必須になります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// あらかじめリンク情報削除対象のユーザオブジェクトを query() メソッドなどで取得</span>
+
+<span class="nx">user</span><span class="p">.</span><span class="nx">_id</span> <span class="o">=</span> <span class="s2">&quot;ユーザID&quot;</span><span class="p">;</span> <span class="c1">// 必須</span>
+
+<span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">deleteAccountLink</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="s2">&quot;リンクユーザID&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 成功時の処理</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">カレントユーザ以外のリンク情報を削除する場合は、SDK 初期化時のアプリケーションキーにマスターキーを指定する必要があります。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">オフライン機能/SDE4SD使用時は使用できません。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group.html" class="btn btn-neutral float-right" title="7. グループ管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="basics.html" class="btn btn-neutral" title="5. NEC BaaS JavaScript API の基本" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

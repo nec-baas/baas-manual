@@ -1,0 +1,22 @@
+.. include:: ../common/linkdef.rst
+
+======================
+Android 開発
+======================
+
+Android Emulator から HTTPSの接続時にエラーが発生します(SSL23_GET_SERVER_HELLO:unknown protocol)
+================================================================================================
+
+Android エミュレータから HTTPS で接続する際、Proxy を使用するようになっていると
+SSL のハンドシェークがエラーになります (SSL23_GET_SERVER_HELLO:unknown protocol)。
+これは Android Emulator 自体のバグです (詳細は `Issue 75221`_ をご覧ください)。
+
+サーバに直接接続可能(Proxy不要)な場合は、Proxy を通らないように設定してください。
+具体的には以下の点をご確認ください。
+
+* 環境変数 http_proxy が設定されていないこと
+* エミュレータ起動時の引数に -http-proxy が設定されていないこと
+
+Proxy を通す必要が有る場合は、本問題に対処するフォワーダを使用することもできます。
+詳細は `Android Emulator Proxy Fix Forwarder`_ を参照ください。
+

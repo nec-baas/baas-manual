@@ -1,0 +1,12 @@
+.. _tenant_developers:
+
+======================
+テナント所属管理者操作
+======================
+
+.. toctree::
+   :maxdepth: 1
+
+   upsert
+   list
+   delete

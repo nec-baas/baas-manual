@@ -1,0 +1,190 @@
+=========================================
+SSE Push 受信実装 (Pure Java / Android編)
+=========================================
+
+.. include:: ../../common/linkdef.rst
+
+ライブラリの組み込み
+====================
+
+モバイルバックエンド基盤ライブラリの他に、SSE Push で必要になるライブラリ(ssepush-client)をプロジェクトに組み込みます。
+
+Android の場合は、build.gradle の dependencies セクションに以下の2行を追記してください。
+
+.. code-block:: groovy
+
+    dependencies {
+        implementation 'com.nec.baas:baas-client-core:7.5.0'
+        implementation 'com.nec.baas.ssepush:ssepush-client:7.5.0'
+    }
+
+Pure Java の場合も、Gradle を使用している場合は上記と同様の追記を行って下さい。
+
+Maven を使用している場合は pom.xml の dependency に上記指定のライブラリを追加してください。
+
+
+実装の概要
+==========
+
+下記の2ステップにより、プッシュメッセージを受信できるようになります。
+
+1. `インスタレーションを登録する`_
+2. `プッシュの待受を開始する`_
+
+インスタレーションを登録する
+============================
+
+インスタレーションオブジェクトの ``save`` メソッドを呼ぶことで、インスタレーションを NEC BaaS サーバに登録できます。この登録により、サーバはあなたのアプリケーションをプッシュの宛先として認識します。登録以降は、プッシュの待受を開始できるようになります。
+
+なお、すでに登録済みであっても、 ``save`` メソッドを重ねて呼び出して問題ありません。
+
+.. code-block:: java
+
+    public void registerInstallation() {
+        // インスタレーションの更新ロックを取得
+        NbSsePushReceiveClient.acquireLock();
+
+        // インスタレーションを取得する
+        NbSsePushInstallation installation = NbSsePushInstallation.getCurrentInstallation();
+
+        // 必須プロパティを設定する (設定例は後述する)
+        installation.setChannels(...);
+        installation.setAllowedSenders(...);
+    
+        // インスタレーションをサーバに登録する
+        installation.save(new NbSsePushInstallationCallback() {
+            @Override
+            public void onSuccess(NbSsePushInstallation installation) {
+                // インスタレーションの更新ロックを解放
+                NbSsePushReceiveClient.releaseLock();
+
+                // プッシュの待受を開始する
+                startPolling(); // この処理の実装については、後述する。
+            }
+
+            @Override
+            public void onFailure(int statusCode, NbErrorInfo errorInfo) {
+                // インスタレーションの更新ロックを解放
+                NbSsePushReceiveClient.releaseLock();
+                ...
+            }
+        });
+    }
+
+インスタレーションの登録を行う際は、必ず NbSsePushReceiveClient.acquireLock() を呼び出して、
+インスタレーションの更新ロックを取得する必要があります。ロック解除は releaseLock() で行って下さい。
+
+プッシュの待受を開始する
+========================
+
+インスタレーションの登録に成功すると、プッシュの待受を開始できるようになります。
+
+プッシュの待受を開始するには、``NbSsePushReceiveClient`` オブジェクトの ``connect`` メソッドを呼びます。
+
+待受を開始すると、それ以降はメッセージがプッシュされるたびに、``onMessage(JSONObject message)`` コールバックが呼ばれるようになります。
+
+.. code-block:: java
+
+    public void startPolling() {
+        // Push受信クライアント
+        NbSsePushReceiveClient client = new NbSsePushReceiveClient();
+
+        // イベントタイプを設定
+        HashSet<String> eventTypes = new HashSet<>();
+        eventTypes.add("message");
+
+        // ハートビート間隔を設定
+        client.setHeartbeatInterval(30, TimeUnit.SECONDS);
+
+        // SSE Push サーバ接続開始
+        client.connect(eventTypes, new NbSsePushReceiveCallback() {
+            @Override
+            public void onConnect() {
+                // 接続時の処理
+            }
+
+            @Override
+            public void onDisconnect() {
+                // 切断時の処理
+            }
+
+            @Override
+            public void onMessage(NbJSONObject message) {
+                // プッシュされたメッセージを処理する
+            }
+
+            @Override
+            public void onError(int statusCode, NbErrorInfo errorInfo) {
+                // エラー時の処理
+            }
+
+            @Override
+            public void onHeartbeatLost() {
+                // サーバからのハートビート喪失時の処理
+                // (以下は再接続を行う例)
+                client.disconnect();
+                startPolling();
+            }
+        });
+    }
+
+
+Android Service 実装
+---------------------
+
+Android の場合、アプリケーションがバックグランド状態になってもプッシュ受信をできるようにするためには、
+上記の待ち受け処理を `Service | Android Developers`_
+内で実装する必要があります。
+
+また、ネットワーク切断時や再接続時に、待受停止や待受開始処理を行うようにすることを推奨します。
+これを行うには、android.net.conn.CONNECTIVITY_CHANGE Intent を Broadcast Receiver で受信し、
+適宜処理を行うようにしてください。
+
+ハートビート喪失の検出
+----------------------
+
+.. note::
+
+   ハートビート喪失検出機能は Java / Android SDK 4.0.1 / 5.0.1 で新規追加されました。
+
+SSE Push サーバは、SSE Push コネクションを維持するために定期的に
+ハートビートをクライアントに対して送信しています。
+ネットワーク途中経路が切断された場合ハートビートが届かなくなるため、
+クライアント側でこれ監視することでネットワーク切断を検出できます。
+
+* クライアント側でハートビートが喪失したことを正しく検出するため、
+  setHeartbeatInterval() でハートビート間隔を設定してください。
+  ハートビート間隔を設定しないとハートビート喪失は検出できません。
+* ハートビート喪失を検出すると、onHeartbeatLost() コールバックが呼び出されます。
+* ハートビート喪失を検出した後は、コネクションを切断し再接続する
+  などの処理を行ってください(SDK 側で自動再接続は行いません)
+* ハートビート間隔は SSE Push サーバの設定により異なりますので、サーバの設定ファイルを確認してください。デフォルトは 30 秒です。
+
+
+備考: 必須プロパティの設定例
+============================
+
+インスタレーションの必須プロパティの設定例を示します。
+
+* ``NewsChannel`` と ``AlarmChannel`` へのプッシュを購読します。
+* 任意の送信者からのプッシュを受け付けます
+
+.. code-block:: java
+
+    Set<String> channels = new HashSet<>();
+    channels.add("NewsChannel");
+    channels.add("AlarmChannel");
+    
+    Set<String> allowedSenders = new HashSet<>();
+    allowedSenders.add("g:anonymous");
+    
+    installation.setChannels(channels);
+    installation.setAllowedSenders(allowedSenders);
+
+
+備考: ユーザの紐付け
+====================
+
+インスタレーションは、インスタレーション保存のタイミングでログイン中だったユーザに紐付けられます。
+
+紐付けを変更したい場合は、ログイン操作・ログアウト操作の完了時に、 あらためてインスタレーションの保存処理を行う必要があります。

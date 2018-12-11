@@ -1,0 +1,157 @@
+.. index::
+   single: コンテキスト(Java)
+.. index::
+   single: context(Java)
+
+.. _context_java:
+
+============
+コンテキスト
+============
+
+Java のハンドラ第二引数に引き渡される context の詳細について説明します。
+
+context は com.nec.baas.cloudfn.sdk.Context クラス型です。
+
+context には以下のメソッドが設定されています。
+
+* succeed() : 成功時に呼び出す
+* fail() : 失敗時に呼び出す
+* httpError() : HTTPエラーを生成する
+* logger() : Logger を取得する
+* clientContext(): Client Context を取得する
+
+context.succeed() : ハンドラの正常終了
+======================================
+
+.. code-block:: java
+
+    succeed(ApigwResponse response);
+    succeed(String result);
+    succeed(Object pojo);
+
+ハンドラの実行が正常終了したことを通知します。
+result に指定した値が呼び出し元に返却されます。
+result に指定できる型は以下のいずれかです。
+
+* ApigwResponse : 設定されたステータスコード、ヘッダ、データが返却されます。
+* String : そのままテキストとして返却されます。Content-Type は text/plain 固定となります。
+* Object : JSON文字列に変換されます。変換には Jackson databind が使用されます。Content-Type は application/json 固定となります。
+
+ステータスコードや Content-Type を指定したい場合は ApigwResponse を使用します(後述)
+
+.. attention::
+
+   ApigwResponse を使用しない場合はステータスコードは 200 OK 固定となります。
+
+.. attention::
+
+   現在の仕様では、succeedにバイト列(byte[])を引き渡すと、succeed(Object pojo)にディスパッチされ、Base64エンコードされます。
+   この仕様はわかりにくいため、将来的に変更される可能性があります。
+   安全のため、現時点ではsucceedに直接バイト列を引き渡すのは避け、ApigwResponseにバイト列を格納した上で引き渡してください。
+
+.. index::
+   single: ApigwResponse(Java)
+
+ApigwResponse
+-------------
+
+ステータスコードや Content-Type などを指定したい場合は ApigwResponse クラスを使用します。
+ApigwResponse は context.apigwResponse() メソッドで生成します。
+
+以下に例を示します。
+
+.. code-block:: java
+
+  ApigwResponse response = ApigwResponse
+      .status(200)
+      .entity("Hello world.")
+      .contentType("text/plain")
+      .build();
+
+* status() : HTTP ステータスコードを指定します。
+* entity() : 返却するデータを指定します。
+* contentType() : Content-Type を指定します。
+
+詳細は Javadoc を参照してください。
+
+context.fail() : ハンドラの異常終了
+===================================
+
+.. code-block:: java
+
+   fail(Sring message);
+   fail(HttpError httpError);
+   fail(ApigwResponse response);
+
+ハンドラの実行がエラー終了したことを通知します。
+引数の型には以下のものが指定できます。
+
+* ApigwResponse : レスポンス
+* HttpError : HTTPエラー
+* String : エラーメッセージ
+
+String を指定した場合は、HTTP ステータスコードは 500 Internal Server Error 固定となります。
+500 以外のステータスコードを返却したい場合は ApigwResponse または HttpError を使用してください。
+
+HttpError を指定した場合は、Content-Type は "text/plain" 固定となります。
+
+HttpError
+---------
+
+HTTP エラーを返したい場合には HttpError を使用できます。
+
+.. code-block:: java
+
+   HttpError error = HttpError.builder()
+       .status(403)
+       .message("Forbidden")
+       .build();
+
+* status(): ステータスコードを指定します。
+* message(): エラーメッセージを指定します。
+
+.. index::
+   single: clientContext(Java)
+
+.. _clientContextJava:
+
+context.clientContext : クライアントコンテキスト
+================================================
+
+クライアントコンテキストは context.clientContext() で取得できます。
+クライアントコンテキストには以下のメソッドがあります。
+
+* contentType() : Content-Type を取得
+* method() : HTTP メソッドを取得
+* uri() : URI 文字列を取得
+* queryParams() : クエリパラメータを取得 (Map<String,List<String>>型)
+* pathParams() : パスパラメータを取得 (Map<String,String>型)
+* headers() : ヘッダパラメータを取得 (Map<String,List<String>>型)
+* nebula() : NebulaContext を取得
+* function() : Function 定義を取得 (Map<String,Object>型)
+
+.. index::
+   single: NebulaContext(Java)
+
+NebulaContext :  モバイルバックエンド基盤接続情報
+--------------------------------------------------
+
+NebulaContext には、テナントID/アプリID/キーなど、モバイルバックエンド基盤に接続するための情報が格納されています。
+詳細は Javadoc を参照してください。
+
+詳細は :ref:`use_nebula_java` を参照してください。
+
+
+.. index::
+   single: logger(Java)
+
+context.logger : ロガー
+=======================
+
+ユーザコードでログ出力したい場合は、context.logger を使用してください。
+
+logger は org.slf4j.Logger 型です。詳細は slf4j のマニュアルを参照してください。
+
+出力されたログはデベロッパーコンソール上で閲覧することができます。
+また、CLI ツールを使って取得することも可能です。

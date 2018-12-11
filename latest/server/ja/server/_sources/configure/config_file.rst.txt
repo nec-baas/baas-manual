@@ -1,0 +1,224 @@
+.. index::
+   single: 設定ファイル
+
+.. _configuration_file:
+
+============
+設定ファイル
+============
+
+データベース接続やRabbitMQサーバ接続などの各種設定は、設定ファイル(プロパティファイル)で設定します。
+プロパティファイルのファイル名は、 :ref:`profile` に応じて production.xml または development.xml というファイル名で
+作成し、以下いずれかのフォルダに格納します。
+
+1) /etc/baas
+2) c:/NEC/BaaS/etc/  (Windowsの場合)
+3) Tomcat実行ユーザホームディレクトリの ~/.baas/
+4) [デプロイディレクトリ]/WEB-INF/classes/ (クラスパス)
+
+複数配置した場合は、下のほうの設定が優先されます。(上で設定した値を下の設定で上書きします)
+
+なお設定値はサーバ起動時のシステムプロパティや環境変数、およびデベロッパーコンソール
+でも設定できます。複数設定した場合は、以下の下のほうの設定が優先されます。
+
+1) プロパティファイル
+2) 環境変数
+3) システムプロパティ
+4) デベロッパーコンソールのシステム設定値
+
+設定ファイルサンプル
+====================
+
+以下に設定ファイルのテンプレートを記載します。同じものが配布物件内の sample-properties.xml にあります。
+
+.. code-block:: xml
+
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+ <!--
+ プロパティ設定 XML ファイル。
+ 
+ 本ファイルは、BaaSの設定を行うためのものである。
+ 以下いずれかのディレクトリに production.xml, development.xml, test.xml の名称で配置する。
+ 複数置いた場合は、下のものが優先される。
+
+  1) /etc/baas/
+  2) c:/NEC/BaaS/etc/ (Windows)
+  3) ~/.baas/
+  4) [デプロイディレクトリ]/WEB-INF/classes/ (クラスパス)
+
+ なお設定値はサーバ起動時のシステムプロパティや環境変数、およびデベロッパーコンソール
+ でも設定できる。複数設定した場合は、下のものが優先される。
+
+  1) XMLファイル
+  2) 環境変数
+  3) システムプロパティ
+  4) デベロッパーコンソールのシステム設定値
+
+ なお、Spring のプロファイル(production/development/test)の切り替えはここではできない。
+ WARファイル内の web.xml ファイルを変更するか、
+ JVM オプション -Dspring.profiles.active で起動時に指定する。
+ 
+ logback の設定は、このファイルではなく logback.xml ファイルで行う。
+ -->
+ <properties>
+    <!-- APIサーバ ベースURI デフォルト設定 -->
+    <!-- <entry key="api.baseUrl">http://baas.example.com/api</entry> -->
+
+    <!-- APIサーバ 内部向けベースURI デフォルト設定 -->
+    <!-- 省略時は api.baseUrl の値が使用される -->
+    <!-- <entry key="api.internalBaseUrl"></entry> -->
+
+    <!-- Consoleサーバ ベースURI デフォルト設定 -->
+    <!-- 注: デベロッパーコンソール システム設定の値のほうが優先される -->
+    <!-- <entry key="console.baseUrl">http://baas.example.com/console</entry> -->
+
+    <!--
+        MongoDB 設定
+    -->
+    <!--
+      MongoDB サーバ。MongoDB Connection String URI で指定する。
+      ("mongodb://" は省略可。)
+
+      例1) ローカル接続
+        mongodb://localhost:27017
+      例2) レプリカセットの場合
+        mongodb://server1:27017,server2:27017,server3:27017
+    -->
+    <entry key="mongo.servers">mongodb://localhost:27017</entry>
+
+    <!-- MongoDB認証ユーザ名 -->
+    <entry key="mongo.username"></entry>
+    <!-- MongoDB認証パスワード -->
+    <entry key="mongo.password"></entry>
+
+    <!-- MongoDB ホスト当たり最大コネクション数 -->
+    <!-- <entry key="mongo.maxConnectionsPerHost">200</entry> -->
+
+
+    <!--
+        AMQP サーバ設定 (SSE Push/カスタムロジック に必要)。
+        amqp.{addrs,username,password,vhost} を設定する、amqp.uri を設定するか、いずれか選択。
+        両方設定した場合は前者(addrs,...)が優先される。
+    -->
+    <!-- <entry key="amqp.addrs">localhost:5672,localhost:5673</entry> -->
+    <!-- <entry key="amqp.username">guest</entry> -->
+    <!-- <entry key="amqp.password">guest</entry> -->
+    <!-- <entry key="amqp.vhost">vhost1</entry> -->
+    <!-- <entry key="amqp.uri">amqp://guest:guest@localhost:5672</entry> -->
+
+    <!-- APIカウント対象外キー : サーバマネージャ側と設定をあわせること -->
+    <entry key="system.noChargeKey">sAmPleNoChargeKey12345678</entry>
+
+ </properties>
+
+.. attention::
+
+   バージョン6よりいくつかの設定は削除され、デベロッパーコンソールの「システム設定」に移行しました。
+   詳細は「デベロッパーコンソール利用ガイド」の「システム設定」を参照してください。
+
+URI設定
+===========
+
+* api.baseUrl: クライアント側から見た APIサーバのベース URI を指定します。
+
+  - ロードバランサやリバースプロキシを使用している場合は、外部に見えている URI を指定します。
+  - この値は、パスワードリセット時の確認メール内に URI 記述する際などに使用されます。
+  - この値はデベロッパーコンソールのシステム設定で上書き可能です。
+
+* api.internalBaseUrl: 内部サーバから見た API サーバのベース URI を指定します。
+
+  - 外部(Internet側)URL と内部向けURL が異なる場合に指定します。省略時は api.baseUrl の値が使用されます。
+  - この値は、Cloud Functions が API サーバにアクセスする際に使用します。したがって、Cloud Functions 機能を使用する場合は、api.baseUrl または api.internalBaseUrl の指定は必須です。
+  - この値はデベロッパーコンソールのシステム設定で上書き可能です。
+
+* console.baseUrl: クライアント側からみたデベロッパーコンソールサーバのベース URI を指定します。
+
+  - ロードバランサやリバースプロキシを使用している場合は、外部に見えている URI を指定します。
+  - この値は、パスワードリセット時の確認メール内に URI 記述する際などに使用されます。
+  - この値はデベロッパーコンソールのシステム設定で上書き可能です。
+
+.. attention::
+
+   NEC Cloud IaaS 上で Cloud Functions を使用する場合、api.internalBaseUrl の指定は必須です。
+   これは、内部サーバからは外部IPアドレス(仮想FWのNATグローバルアドレス)にはアクセスができないためです。
+
+
+.. _mongodb_config:
+
+MongoDB設定
+===========
+
+MongoDB関連の設定を行います。
+指定可能なパラメータは以下のとおりです。
+
+* mongo.servers: MongoDB サーバ接続設定を `Connection String URI <https://docs.mongodb.com/manual/reference/connection-string/>`_  形式で記述します。
+
+  - 先頭の "mongodb://" は省略可能です
+  - username:password@ は指定不要です。以下の mongo.username, mongo.password 設定が使用されます。
+  - データベース名 (/database) は指定しないでください
+  - オプション(?options) は指定可能です
+  - DNS SRV レコードを参照する形式 (mongodb+srv://) も使用可能です(MongoDB 3.6以降)
+
+* mongo.username, mongo.password: MongoDB 認証を使用する場合に、ユーザ名とパスワードを指定します。
+
+  - このユーザは admin データベースの root role を持っている必要があります。
+
+* mongo.maxConnectionsPerHost: 各APIサーバから MongoDB サーバに対して接続する際の最大TCPコネクション数を指定します。
+
+mongo.servers の指定例を示します。
+::
+
+  # シングルサーバ構成またはシャーディング構成の場合
+  mongodb://server1:27017
+
+  # 先頭の mongodb:// は省略可能。
+  server1:27017
+
+  # レプリカセット構成の場合
+  mongodb://server1:27017,server2:27017,server3:27017
+
+  # DNS SRVレコードを使用する場合 (MongoDB 3.6以降)
+  mongodb+srv://server.example.com
+
+.. attention::
+
+  バージョン 7.0.3 より、mongo.servers に Connection String URI 形式の指定ができるようになりました。
+  7.0.2以前のバージョンではURI指定できませんので、ご注意ください。
+
+AMQP設定
+========
+
+AMQP(RabbitMQ)接続に必要なパラメータを設定します。
+
+URI で指定する方法と、各パラメータを分割して指定する方法があります。
+RabbitMQ クラスタに接続する場合は後者の方法で指定する必要があります。
+
+URI で指定する場合は、以下パラメータを設定します。
+
+* amqp.uri: AMQP URI を指定します (例: amqp://guest:guest@localhost:5672)
+
+パラメータを分割して指定する場合は、以下パラメータを設定します。
+
+* amqp.addrs: AMQPホストを指定します。
+
+  - "ホスト名:ポート番号" 形式で指定します。
+  - AMQPクラスタを指定する場合は、カンマで区切ります (例: "host1:5672,host2:5672")
+
+* amqp.username: 認証ユーザ名を指定します。
+* amqp.password: 認証パスワードを指定します。
+* amqp.vhost: vhost を指定します。
+
+.. attention::
+
+   AMQP(RabbitMQ)を使用しない場合は、AMQP関連の設定は有効化しないでください。
+   AMQP サーバに接続できない場合、正常にモバイルバックエンド基盤サーバが起動しません。
+
+その他の設定
+============
+
+* system.noChargeKey: メータリングにおいて、内部API呼び出しをカウント対象外とするための認証キーを指定します。
+
+  - このキーは Cloud Functions サーバマネージャの設定と同じ文字列を指定する必要があります。
+  - このキーは漏洩しないよう注意して管理してください。
+

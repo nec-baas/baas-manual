@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10.1. インスタレーションの登録・再登録 &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="10.2. インスタレーション情報の取得" href="read.html" />
+    <link rel="prev" title="10. Push通知" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">10. Push通知</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10.1. インスタレーションの登録・再登録</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sse-push">10.1.1. SSE Push</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">10.2. インスタレーション情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">10.3. インスタレーションの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">10.4. インスタレーションの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">10.5. インスタレーションの検索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="send.html">10.6. Push送信</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">10. Push通知</a> &raquo;</li>
+        
+      <li>10.1. インスタレーションの登録・再登録</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="push-upsert">
+<span id="id1"></span><h1>10.1. インスタレーションの登録・再登録<a class="headerlink" href="#push-upsert" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="post">
+<dt id="post--1-(tenantId)-push-installations">
+<code class="descname">POST </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/push/installations</code><a class="headerlink" href="#post--1-(tenantId)-push-installations" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>インスタレーションを新規登録・再登録する。</p>
+<p>_deviceToken / _pushType ペアが新規の場合は新規登録となり、
+すでに存在していた場合は既存のインスタレーションIDで再登録(更新)となる。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- アプリケーションキー(必須)</li>
+<li><em>X-Session-Token</em> -- セッショントークン(オプション)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- &quot;application/json&quot;</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>_osType</strong> (<em>string</em>) -- OS種別</li>
+<li><strong>_osVersion</strong> (<em>string</em>) -- OSバージョン</li>
+<li><strong>_deviceToken</strong> (<em>string</em>) -- デバイス固有トークン</li>
+<li><strong>_pushType</strong> (<em>string</em>) -- 使用するPushテクノロジ</li>
+<li><strong>_channels</strong> (<em>array</em>) -- 購読するチャネルの一覧</li>
+<li><strong>_appVersionCode</strong> (<em>int</em>) -- アプリケーションのバージョンコード</li>
+<li><strong>_appVersionString</strong> (<em>string</em>) -- アプリケーションのバージョン</li>
+<li><strong>_allowedSenders</strong> (<em>array</em>) -- 送信可能ユーザ・グループ</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常終了</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ・リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">415 Unsupported Media Type</a> -- Content-Type 不正</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>リクエストボディ</strong></p>
+<p>インスタレーション情報は JSON で以下のように指定する。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;_osType&quot;</span><span class="o">:</span> <span class="s2">&quot;ios&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_osVersion&quot;</span><span class="o">:</span> <span class="s2">&quot;10.0.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_deviceToken&quot;</span><span class="o">:</span> <span class="s2">&quot;xxxx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_pushType&quot;</span><span class="o">:</span> <span class="s2">&quot;apns&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_channels&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;chan1&quot;</span><span class="p">,</span> <span class="s2">&quot;chan2&quot;</span> <span class="p">],</span>
+    <span class="s2">&quot;_appVersionCode&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s2">&quot;_appVersionString&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.5&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_allowedSenders&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;g:anonymous&quot;</span><span class="p">,</span> <span class="s2">&quot;55ed50600c69293704e34f9d &quot;</span> <span class="p">],</span>
+
+    <span class="cm">/* ここから下は自由設定 */</span>
+    <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;foo@example.com&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>以下のプロパティは、必須である。</p>
+<ul class="simple">
+<li>_osType : OS種別。以下のいずれか。<ul>
+<li>&quot;ios&quot; : iOS</li>
+<li>&quot;android&quot; : Android</li>
+<li>&quot;dotnet&quot; : .NET</li>
+<li>&quot;java&quot; : Java</li>
+<li>&quot;js&quot;: JavaScript</li>
+<li>&quot;other&quot;: その他/不明</li>
+</ul>
+</li>
+<li>_osVersion : OSバージョン<ul>
+<li>Android の場合は Build.VERSION.SDK_INT で API レベルを取得する。</li>
+<li>iOS の場合は UIDevice の systemVersion の値を取得する。</li>
+<li>.NET、その他不明の場合は &quot;Unknown&quot; を指定する。</li>
+</ul>
+</li>
+<li>_deviceToken : デバイス固有トークン。<ul>
+<li>APNs の場合は Device Token を指定すること。16進数表記(0～9a～f、1バイト2文字分)とすること。</li>
+<li>FCM / GCM の場合は Registration ID/Token　を指定すること。</li>
+<li>SSEの場合は任意の識別子を使用できる(ANDROID_ID，MACアドレス，UUIDなど)</li>
+</ul>
+</li>
+<li>_pushType : 使用する Push テクノロジを指定する。以下のいずれか。<ul>
+<li>&quot;apns&quot; : APNs</li>
+<li>&quot;gcm&quot; : FCM/GCM</li>
+<li>&quot;sse&quot; : SSE Push</li>
+</ul>
+</li>
+<li>_channels : 購読するチャネルの一覧。</li>
+<li>_appVersionCode : アプリケーションのバージョンコードを整数値で指定する。<ul>
+<li>Android の場合は AndroidManifest.xml の versionCode を指定する。</li>
+<li>iOS の場合は CFBundleVersion の値を以下のルールで整数値に変換したものを指定する。<ul>
+<li>x.y.z の場合は、 x * 1,000,000 + y * 1,000 + z (ここで、x/y/z はいずれも整数)</li>
+<li>x.y の場合は、x * 1,000,000 + y * 1,000</li>
+<li>x の場合は x * 1,000,000</li>
+<li>上記フォーマットに従わない場合は、0 とする。</li>
+</ul>
+</li>
+<li>.NET、その他の場合は -1 を整数値で指定する．</li>
+</ul>
+</li>
+<li>_appVersionString: アプリケーションのバージョンを指定する。<ul>
+<li>Android の場合は AndroidManifest.xml の versionName を指定する。</li>
+<li>iOS の場合は CFBundleShortVersionString の値を指定する。</li>
+<li>.NETの場合はアセンブリバージョンの値を指定する</li>
+</ul>
+</li>
+<li>_allowedSenders: このインスタレーションに対して Push を送信可能なユーザ・グループを配列で指定する。
+ユーザはユーザIDで指定し、グループはグループ名の先頭に &quot;g:&quot; を付加して指定する。
+この設定に関わらず、デベロッパコンソールおよびマスターキーを指定した送信は可能である。</li>
+</ul>
+<p>上記以外のプロパティについては、クライアント側で自由に設定して良い。
+これらは Push 送信時にインスタレーションを絞り込む際に使用できる。
+ただし、&quot;_protected&quot; はプロパティに使用しないこと。プロパティが暗号化されるため、インスタレーションの絞り込みに使用できない。</p>
+<p><strong>レスポンスボディ</strong></p>
+<p>正常登録された場合、以下のようにリクエストと同等の JSON に _id が設定されたレスポンスが返却される。
+_id はインスタレーションIDで、インスタレーションの更新・削除時に必要になるため、クライアント側で保存しておかなければならない。</p>
+<p>また、ログイン状態でインスタレーションを登録した場合、自動的に &quot;owner&quot; フィールドにユーザIDが設定される。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;541bc0a0e4b03de4b0287b2e&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;_osType&quot;</span><span class="p">:</span> <span class="s2">&quot;ios&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;_osVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;10.0.0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;_deviceToken&quot;</span><span class="p">:</span> <span class="s2">&quot;xxxx&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;_pushType&quot;</span><span class="p">:</span> <span class="s2">&quot;apns&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;_channels&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;chan1&quot;</span><span class="p">,</span> <span class="s2">&quot;chan2&quot;</span> <span class="p">],</span>
+    <span class="nt">&quot;_appVersionCode&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="nt">&quot;_appVersionString&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.5&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;foo@example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;_owner&quot;</span><span class="p">:</span> <span class="s2">&quot;yyyyy&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>同一の deviceToken / pushType ペアがすでに存在していた場合、インスタレーション情報を上書きし、更新後のデータが返却される。</p>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>インスタレーションIDは漏洩しないようにすること。漏洩すると、第三者にインスタレーション情報を改ざんされるおそれがある。</li>
+</ul>
+</dd></dl>
+
+<div class="section" id="sse-push">
+<h2>10.1.1. SSE Push<a class="headerlink" href="#sse-push" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>SSE Push を使用する場合、レスポンスには以下のように &quot;_sse&quot; キー以下の &quot;username&quot;, &quot;password&quot;, &quot;uri&quot; プロパティに
+それぞれユーザ名とパスワード、PushサーバのURIが設定される。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;541bc0a0e4b03de4b0287b2e&quot;</span><span class="p">,</span>
+    <span class="cm">/* 中略 */</span><span class="p">,</span>
+    <span class="s2">&quot;_sse&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;password&quot;</span><span class="o">:</span> <span class="s2">&quot;yyy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uri&quot;</span><span class="o">:</span> <span class="s2">&quot;https://push-server.example.com/events/foo/bar&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上記 uri に接続することで、Server-Sent Event でイベントの受信を行うことができる。</p>
+<p>この際、username と password の値を使用して認証を行う必要がある。
+認証には BASIC 認証を用いる。HTTPS を使用し、認証情報が漏洩しないようにすること。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="read.html" class="btn btn-neutral float-right" title="10.2. インスタレーション情報の取得" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="10. Push通知" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

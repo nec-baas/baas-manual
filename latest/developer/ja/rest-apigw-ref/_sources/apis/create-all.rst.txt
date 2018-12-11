@@ -1,0 +1,48 @@
+.. _api_create_all:
+
+カスタムAPIの一括登録
+=====================
+
+.. http:put:: /1/(tenantId)/apigw/apis
+
+    カスタムAPIを一括登録する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+    :reqheader Content-Type: application/json
+
+    :statuscode 200: 正常にAPIを登録した
+    :statuscode 400: パラメータ/リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 415: Content-Type 不正
+    :statuscode 504: タイムアウトエラー
+
+    **リクエストボディ**
+
+    APIテーブルJSONを指定する。フォーマットは以下の通り。
+
+    .. code-block:: javascript
+
+        {
+          "{api-name-1}": { /* swagger形式のjson */ },
+          "{api-name-2}": { /* swagger形式のjson */ },
+          //…
+        }
+
+    **レスポンス**
+
+    リクエスト成功時は以下。
+
+    .. code-block:: json
+
+        {
+            "result":"ok"
+        }
+
+    エラー時は JSON 形式でエラー通知される。Content-Type ヘッダは "application/json" となる。
+
+    **注意事項**
+
+    * 指定したapi-nameで、既にAPIが登録されていた場合、上書きする。
+    * api-nameは任意のパス文字列とし、クライアントが指定する

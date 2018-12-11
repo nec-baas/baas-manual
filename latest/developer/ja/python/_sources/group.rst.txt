@@ -1,0 +1,106 @@
+============
+グループ管理
+============
+
+ここではグループ管理機能の利用方法について説明します。
+
+グループの作成・更新
+====================
+
+最初にグループオブジェクトを作成します。
+
+.. code-block:: python
+
+    group = baas.Group(service, group_name="name1")
+
+所属するユーザ、グループをそれぞれ users,groups へ list で指定し、 upsert() メソッドで保存します。
+また、グループには以下の予約グループを追加することもできます。
+
+* authenticated: 全認証済ユーザ
+* anonymous: 未認証ユーザを含む全ユーザ
+
+.. code-block:: python
+    
+    users = ["user_id1", "user_id2"] # ユーザ追加の例
+    groups = ["child_group1", "child_group2"] # 子グループ追加の例
+
+    response = group.upsert(users, groups)
+
+アクセス制御
+============
+
+グループ単位でアクセス制御を行うことができます。
+upsert()にACLを設定することでアクセス権を指定できます。
+
+.. code-block:: python
+
+    acl = {
+        "owner": "オーナID",
+        "r": ["ユーザID", "g:グループ名"],
+        "w": ["ユーザID"],
+        "u": [],
+        "d": [],
+        "admin": []
+    }
+
+    group = baas.Group(service, group_name="name1")
+    response = group.upsert(acl=acl);
+
+ACL の詳細については `デベロッパーマニュアル <../developer/index.html>`_ の「セキュリティ:ACL」の節をご覧ください。
+
+グループの取得
+==============
+
+グループ名から、グループ情報を取得するには、 get() メソッドを使用します。
+以下の例では "name1" グループを取得しています。
+
+.. code-block:: python
+
+    group = baas.Group(service, group_name="name1")
+    response = group.get()
+
+グループ一覧の取得
+==================
+
+グループ一覧を取得するには、 query() メソッドを使用します。
+
+.. code-block:: python
+
+    groups = baas.Group.query(service)
+
+グループの削除
+==============
+
+グループを削除するには、remove() メソッドを使用します。
+以下の例では "name1" グループを削除しています。
+
+.. code-block:: python
+
+    group = baas.Group(service, group_name="name1")
+    group.remove()
+
+所属ユーザ・グループの追加
+==========================
+
+グループに所属ユーザ・グループを追加するには、add_members() メソッドを使用します。
+
+.. code-block:: python
+
+    group = baas.Group(service, group_name="name1")
+    users = ["user_id1", "user_id2"]
+    groups = ["child_group1", "child_group2"]
+
+    groupInfo = group.add_members(users, groups)
+
+所属ユーザ・グループの削除
+==========================
+
+グループから所属ユーザ・グループを削除するには、remove_members() メソッドを使用します。
+
+.. code-block:: python
+
+    group = baas.Group(service, group_name="name1")
+    users = ["user_id1", "user_id2"]
+    groups = ["child_group1", "child_group2"]
+
+    groupInfo = group.remove_members(users, groups)

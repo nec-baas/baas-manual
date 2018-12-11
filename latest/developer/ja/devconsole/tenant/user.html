@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.3. ユーザ管理 &mdash; Developer Console User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.4. グループ管理" href="group.html" />
+    <link rel="prev" title="4.2. アプリケーション管理" href="application.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../login.html">2. ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">3. システム管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. テナント管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="abstract.html">4.1. テナント管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">4.2. アプリケーション管理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. ユーザ管理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">ユーザの登録(通常認証)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">ユーザの登録(クライアント証明書)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">ユーザの編集、削除</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">ユーザの検索</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="group.html">4.4. グループ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object.html">4.5. オブジェクトバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file.html">4.6. ファイルバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apigw.html">4.7. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">4.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">4.9. Event Subscription</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_stats.html">4.10. API統計情報</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html">4.11. テナント管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_basic.html">4.12. テナント設定 - 基本設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_storage.html">4.13. テナント設定 - 外部ストレージ設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_acl.html">4.14. テナント設定 - 特殊バケットのACL設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_template.html">4.15. テナント設定 - テンプレート</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_oidc.html">4.16. テナント設定 - OpenID Connect設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_client_cert.html">4.17. テナント設定 - クライアント証明書</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. テナント管理</a> &raquo;</li>
+        
+      <li>4.3. ユーザ管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tenant-user">
+<span id="id1"></span><h1>4.3. ユーザ管理<a class="headerlink" href="#tenant-user" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ユーザの追加、編集、削除を行うことができます。</p>
+<div class="section" id="id2">
+<h2>ユーザの登録(通常認証)<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>例として、ユーザの追加方法を説明します。</p>
+<p>ユーザ一覧画面で、「追加」を選択してください。</p>
+<a class="reference internal image-reference" href="../_images/userMenu_1.png"><img alt="../_images/userMenu_1.png" src="../_images/userMenu_1.png" style="width: 669.0px; height: 209.4px;" /></a>
+<p>「通常認証」を選択します。</p>
+<p>ユーザ追加画面が表示されますので、「ユーザ名」、「E-mail」、「パスワード」等を入力し、「保存」を選択してください。</p>
+<p>追加したユーザにE-mailで通知することもできます。</p>
+<a class="reference internal image-reference" href="../_images/userMenu_2-1.png"><img alt="../_images/userMenu_2-1.png" src="../_images/userMenu_2-1.png" style="width: 321.59999999999997px; height: 537.6px;" /></a>
+<p>これでテナントにユーザが追加されました。</p>
+<a class="reference internal image-reference" href="../_images/userMenu_3.png"><img alt="../_images/userMenu_3.png" src="../_images/userMenu_3.png" style="width: 670.1999999999999px; height: 250.2px;" /></a>
+</div>
+<div class="section" id="id3">
+<h2>ユーザの登録(クライアント証明書)<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>クライアント証明書認証用のユーザを追加します。</p>
+<p>ユーザ一覧画面で、「追加」を選択してください。</p>
+<p>「クライアント証明書」を選択します。</p>
+<a class="reference internal image-reference" href="../_images/userMenu_2-2.png"><img alt="../_images/userMenu_2-2.png" src="../_images/userMenu_2-2.png" style="width: 309.59999999999997px; height: 339.59999999999997px;" /></a>
+<p>「ユーザ名」を入力します。入力完了後に「保存」を選択してください。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">ユーザ作成後、E-mailにはランダムな値が入力されています。この値は使用することができません。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>ユーザの編集、削除<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザの編集、削除は、ユーザ一覧画面で「編集」、「削除」を選択してください。</p>
+<p>「ユーザ編集」画面で、ユーザの 有効/無効 の設定ができます。無効に設定した場合は、該当ユーザが BaaS にログインすることができなくなります。</p>
+</div>
+<div class="section" id="id5">
+<h2>ユーザの検索<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザ一覧画面で、「検索」を選択してください。</p>
+<a class="reference internal image-reference" href="../_images/userMenu_4.png"><img alt="../_images/userMenu_4.png" src="../_images/userMenu_4.png" style="width: 669.0px; height: 209.4px;" /></a>
+<p>ユーザ検索画面が表示されますので、検索対象の「ユーザ名」、「E-mail」等を入力し、「検索実行」を選択してください。「ユーザ名」と「E-mail」は、 OR 検索または AND 検索を選択できます。</p>
+<a class="reference internal image-reference" href="../_images/userMenu_5.png"><img alt="../_images/userMenu_5.png" src="../_images/userMenu_5.png" style="width: 588.6px; height: 301.2px;" /></a>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="group.html" class="btn btn-neutral float-right" title="4.4. グループ管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="application.html" class="btn btn-neutral" title="4.2. アプリケーション管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

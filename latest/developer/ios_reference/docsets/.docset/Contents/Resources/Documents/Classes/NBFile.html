@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NBFile Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/objc/Class/NBFile" class="dashAnchor"></a>
+    <a title="NBFile Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (99% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        NBFile Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/NBAPNSFields.html">NBAPNSFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBAcl.html">NBAcl</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBAclBase.html">NBAclBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBClause.html">NBClause</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:objc(cs)NBContentAcl">NBContentAcl</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBCore.html">NBCore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBFile.html">NBFile</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBFileBucket.html">NBFileBucket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBFileBucketManager.html">NBFileBucketManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBGCMFields.html">NBGCMFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBGroup.html">NBGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBObject.html">NBObject</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBObjectBucket.html">NBObjectBucket</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBObjectBucketManager.html">NBObjectBucketManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBPush.html">NBPush</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBPushInstallation.html">NBPushInstallation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBQuery.html">NBQuery</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBSettings.html">NBSettings</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NBUser.html">NBUser</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/NBAclPermission.html">NBAclPermission</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NBErrorCode.html">NBErrorCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NBFileCondition.html">NBFileCondition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NBOperationMode.html">NBOperationMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NBRegexCaseOptions.html">NBRegexCaseOptions</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Type Definitions.html">Type Definitions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileDownloadBlock">NBFileDownloadBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBGroupsBlock">NBGroupsBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBObjectsBlock">NBObjectsBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBPushBlock">NBPushBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBPushInstallationBlock">NBPushInstallationBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBResultBlock">NBResultBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBUserBlock">NBUserBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Type Definitions.html#/c:NBBlocks.h@T@NBUsersBlock">NBUsersBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>NBFile</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">NBFile</span> <span class="p">:</span> <span class="nc">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>ファイルストレージクラス</p>
+
+<p>ファイルストレージに格納される ファイル1件を表現する。</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)bucketName"></a>
+                    <a name="//apple_ref/objc/Property/bucketName" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)bucketName">bucketName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイルバケット名</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">bucketName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">bucketName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)objectId"></a>
+                    <a name="//apple_ref/objc/Property/objectId" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)objectId">objectId</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>メタデータのID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">objectId</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">objectId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)fileName"></a>
+                    <a name="//apple_ref/objc/Property/fileName" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)fileName">fileName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイル名</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">fileName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">fileName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)contentType"></a>
+                    <a name="//apple_ref/objc/Property/contentType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)contentType">contentType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Content-Type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">contentType</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">contentType</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)contentLength"></a>
+                    <a name="//apple_ref/objc/Property/contentLength" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)contentLength">contentLength</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイルサイズ（バイト数）</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">contentLength</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">contentLength</span><span class="p">:</span> <span class="kt">Int64</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)acl"></a>
+                    <a name="//apple_ref/objc/Property/acl" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)acl">acl</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ACL</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n"><a href="../Classes/NBAcl.html">NBAcl</a></span> <span class="o">*</span><span class="n">acl</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">acl</span><span class="p">:</span> <span class="kt"><a href="../Classes/NBAcl.html">NBAcl</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)created"></a>
+                    <a name="//apple_ref/objc/Property/created" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)created">created</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>作成日時</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDate</span> <span class="o">*</span><span class="n">created</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">created</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)updated"></a>
+                    <a name="//apple_ref/objc/Property/updated" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)updated">updated</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>更新日時</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSDate</span> <span class="o">*</span><span class="n">updated</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">updated</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)etag"></a>
+                    <a name="//apple_ref/objc/Property/etag" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)etag">etag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>メタデータのETag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">etag</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">etag</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)fileEtag"></a>
+                    <a name="//apple_ref/objc/Property/fileEtag" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)fileEtag">fileEtag</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイル本体のETag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">assign</span><span class="p">,</span> <span class="n">readwrite</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">fileEtag</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">fileEtag</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(py)publicUrl"></a>
+                    <a name="//apple_ref/objc/Property/publicUrl" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(py)publicUrl">publicUrl</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>公開URL</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readonly</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">publicUrl</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">publicUrl</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(cm)objectWithBucketName:"></a>
+                    <a name="//apple_ref/objc/Method/+objectWithBucketName:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(cm)objectWithBucketName:">+objectWithBucketName:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bucket名を指定したNBFileの生成を行う</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">+</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">objectWithBucketName</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">bucketName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bucketName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Objectが所属するBucket名</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>NBFileのインスタンス</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)initWithBucketName:"></a>
+                    <a name="//apple_ref/objc/Method/-initWithBucketName:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)initWithBucketName:">-initWithBucketName:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bucketを指定したイニシャライザ</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">nonnull</span> <span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithBucketName</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">bucketName</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">bucketName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bucketName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Objectが所属するBucket名</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>NBFileのインスタンス</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)uploadNewFileInBackgroundWithURL:resultBlock:progressBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-uploadNewFileInBackgroundWithURL:resultBlock:progressBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)uploadNewFileInBackgroundWithURL:resultBlock:progressBlock:">-uploadNewFileInBackgroundWithURL:resultBlock:progressBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイルを新規アップロードする（Url指定）</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名
+  ・ACL
+  ・Content-Type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">uploadNewFileInBackgroundWithURL</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+                             <span class="nf">resultBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">resultBlock</span>
+                           <span class="nf">progressBlock</span><span class="p">:</span>
+                               <span class="p">(</span><span class="n">nullable</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">)</span><span class="nv">progressBlock</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">uploadNewFileInBackground</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">resultBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">,</span> <span class="n">progress</span> <span class="nv">progressBlock</span><span class="p">:</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ファイルパス</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resultBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progressBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>転送進捗を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)uploadNewFileInBackgroundWithData:resultBlock:progressBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-uploadNewFileInBackgroundWithData:resultBlock:progressBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)uploadNewFileInBackgroundWithData:resultBlock:progressBlock:">-uploadNewFileInBackgroundWithData:resultBlock:progressBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイルを新規アップロードする（Data指定）</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名
+  ・ACL
+  ・Content-Type</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">uploadNewFileInBackgroundWithData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span>
+                              <span class="nf">resultBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">resultBlock</span>
+                            <span class="nf">progressBlock</span><span class="p">:</span>
+                                <span class="p">(</span><span class="n">nullable</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">)</span><span class="nv">progressBlock</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">uploadNewFileInBackground</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">resultBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">,</span> <span class="n">progress</span> <span class="nv">progressBlock</span><span class="p">:</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ファイルデータ</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resultBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progressBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>転送進捗を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)downloadFileInBackgroundWithURL:downloadBlock:progressBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-downloadFileInBackgroundWithURL:downloadBlock:progressBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)downloadFileInBackgroundWithURL:downloadBlock:progressBlock:">-downloadFileInBackgroundWithURL:downloadBlock:progressBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイルをダウンロードする</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="nf">downloadFileInBackgroundWithURL</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+                  <span class="nf">downloadBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileDownloadBlock">NBFileDownloadBlock</a></span><span class="p">)</span><span class="nv">downloadBlock</span>
+                  <span class="nf">progressBlock</span><span class="p">:(</span><span class="n">nullable</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">)</span><span class="nv">progressBlock</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">downloadInBackground</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">downloadBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileDownloadBlock">NBFileDownloadBlock</a></span><span class="p">,</span> <span class="n">progress</span> <span class="nv">progressBlock</span><span class="p">:</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>保存先</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>downloadBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progressBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>転送進捗を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)uploadUpdateFileInBackgroundWithURL:resultBlock:progressBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-uploadUpdateFileInBackgroundWithURL:resultBlock:progressBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)uploadUpdateFileInBackgroundWithURL:resultBlock:progressBlock:">-uploadUpdateFileInBackgroundWithURL:resultBlock:progressBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイルを更新アップロードする（Url指定）</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名
+  ・Content-Type
+  ・メタデータのETag
+  ・ファイル本体のETag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">uploadUpdateFileInBackgroundWithURL</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSURL</span> <span class="o">*</span><span class="p">)</span><span class="nv">url</span>
+                                <span class="nf">resultBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">resultBlock</span>
+                              <span class="nf">progressBlock</span><span class="p">:</span>
+                                  <span class="p">(</span><span class="n">nullable</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">)</span><span class="nv">progressBlock</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">uploadUpdateFileInBackground</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">resultBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">,</span> <span class="n">progress</span> <span class="nv">progressBlock</span><span class="p">:</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ファイルパス</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resultBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progressBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>転送進捗を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)uploadUpdateFileInBackgroundWithData:resultBlock:progressBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-uploadUpdateFileInBackgroundWithData:resultBlock:progressBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)uploadUpdateFileInBackgroundWithData:resultBlock:progressBlock:">-uploadUpdateFileInBackgroundWithData:resultBlock:progressBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ファイルを更新アップロードする（Data指定）</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名
+  ・Content-Type
+  ・メタデータのETag
+  ・ファイル本体のETag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">uploadUpdateFileInBackgroundWithData</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span>
+                                 <span class="nf">resultBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">resultBlock</span>
+                               <span class="nf">progressBlock</span><span class="p">:</span>
+                                   <span class="p">(</span><span class="n">nullable</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">)</span><span class="nv">progressBlock</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">uploadUpdateFileInBackground</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">completion</span> <span class="nv">resultBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">,</span> <span class="n">progress</span> <span class="nv">progressBlock</span><span class="p">:</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFileProgressBlock">NBFileProgressBlock</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ファイルデータ</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resultBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progressBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>転送進捗を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)updateFileInBackgroundWithFilename:block:"></a>
+                    <a name="//apple_ref/objc/Method/-updateFileInBackgroundWithFilename:block:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)updateFileInBackgroundWithFilename:block:">-updateFileInBackgroundWithFilename:block:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>特定ファイルのメタデータを更新する</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・メタデータのETag
+  ・ファイル名
+  ・Content-Type
+  ・ACL</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">updateFileInBackgroundWithFilename</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">filename</span>
+                                     <span class="nf">block</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateInBackground</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">comletion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filename</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>更新対象ファイル名</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)deleteFileInBackgroundWithBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-deleteFileInBackgroundWithBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)deleteFileInBackgroundWithBlock:">-deleteFileInBackgroundWithBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>特定ファイルを削除する</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名
+  ・メタデータのETag
+  ・ファイル本体のETag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">deleteFileInBackgroundWithBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">deleteInBackground</span><span class="p">(</span><span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)enablePublishFileInBackgroundWithBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-enablePublishFileInBackgroundWithBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)enablePublishFileInBackgroundWithBlock:">-enablePublishFileInBackgroundWithBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>特定ファイルを公開する</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名
+  ・メタデータのETag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">enablePublishFileInBackgroundWithBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">enablePublishInBackground</span><span class="p">(</span><span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)disablePublishFileInBackgroundWithBlock:"></a>
+                    <a name="//apple_ref/objc/Method/-disablePublishFileInBackgroundWithBlock:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)disablePublishFileInBackgroundWithBlock:">-disablePublishFileInBackgroundWithBlock:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>特定ファイルの公開を解除する</p>
+
+<p>以下のパラメータをプロパティにて指定可能
+  ・ファイル名
+  ・メタデータのETag</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">disablePublishFileInBackgroundWithBlock</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span><span class="nv">block</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">disablePublishInBackground</span><span class="p">(</span><span class="n">completion</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Type Definitions.html#/c:NBBlocks.h@T@NBFilesBlock">NBFilesBlock</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>block</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>実行結果を受け取るブロック</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NBFile(im)setPropertiesWithDictionary:"></a>
+                    <a name="//apple_ref/objc/Method/-setPropertiesWithDictionary:" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NBFile(im)setPropertiesWithDictionary:">-setPropertiesWithDictionary:</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>プロパティにdictionaryの情報を反映する</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Objective-C</p>
+                          <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setPropertiesWithDictionary</span><span class="p">:(</span><span class="n">nonnull</span> <span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">dictionary</span><span class="p">;</span></code></pre>
+
+                        </div>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setProperties</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyHashable</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dictionary</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>オブジェクトに設定するkey-Valueのdictionary</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright (C) 2014-2018, NEC Corporation.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

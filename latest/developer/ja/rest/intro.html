@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. REST API の概要 &mdash; REST API Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. ユーザ管理機能" href="user_management.html" />
+    <link rel="prev" title="1. チュートリアル" href="tutorial.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">1. チュートリアル</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. REST API の概要</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id20">2.1. エンドポイント</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id">2.2. テナント, アプリケーションID, アプリケーションキー</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id21">2.3. セッショントークン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id22">2.4. レスポンスフォーマット</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curl-api">2.5. curl を用いた API の呼び出し</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cross-origin-resource-sharing-cors">2.6. Cross Origin Resource Sharing (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#open-api-specification-v3-swagger-ui">2.7. Open API Specification v3 とSwagger-UI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">2.7.1. REST APIコールの例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user_management.html">3. ユーザ管理機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">4. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acl.html">5. セキュリティ : ACL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">6. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push.html">7. PUSH</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. REST API の概要</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rest-api">
+<h1>2. REST API の概要<a class="headerlink" href="#rest-api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>REST API は、モバイルバックエンド基盤の最もプリミティブな API で、HTTPS を用いて
+モバイルバックエンド基盤サーバの機能を呼び出します。</p>
+<p>なお、本文書では REST API の一部の機能についてのみ説明しています。
+全 API の詳細については「REST API リファレンス」をご参照ください。</p>
+<div class="section" id="id20">
+<h2>2.1. エンドポイント<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-0">REST API は、以下のエンドポイントに対して発行します。
+{server} は、NEC BaaS を運用するサーバホスト名に適宜読み替えてください。</p>
+<blockquote>
+<div><a class="reference external" href="http:/">http:/</a>/{server}/api/1</div></blockquote>
+</div>
+<div class="section" id="id">
+<h2>2.2. テナント, アプリケーションID, アプリケーションキー<a class="headerlink" href="#id" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-1">REST API を発行する際は、テナントIDまたはテナント名、および
+アプリケーション毎に発行されたアプリケーションID とアプリケーションキーを送信する必要があります。</p>
+<p>テナントIDまたはテナント名は API の URI に埋め込みます。以下の説明では {tenant} として
+説明しています。</p>
+<p>アプリケーションIDとアプリケーションキーは以下のとおり HTTP ヘッダに指定してください。</p>
+<ul class="simple">
+<li>X-Application-Id ... アプリケーションID</li>
+<li>X-Application-Key ... アプリケーションキー</li>
+</ul>
+<p>アプリケーションID/アプリケーションキーはデベロッパコンソール上で確認してください。</p>
+<p>なお、アプリケーションには「マスターキー」も払い出されます。
+X-Application-Key にマスターキーを指定すると、アクセス権限を無視し、
+すべてのデータにアクセスすることが可能です。
+マスターキーは管理用にのみ使用してください
+(セキュリティ上、アプリケーションには埋め込まないでください)。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">{tenant} をURIに埋め込む代わりに、&quot;X-Tenant-Id&quot; ヘッダに{tenant}を指定することができます。</p>
+</div>
+</div>
+<div class="section" id="id21">
+<h2>2.3. セッショントークン<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p id="index-2">一部の API は、ユーザがログインした状態で呼び出す必要があります。
+ユーザ管理機能の「ログイン」API を呼び出すと、サーバからセッショントークンが払い出されます。
+この値を以下の HTTP ヘッダに埋め込んで送信してください。</p>
+<ul class="simple">
+<li>X-Session-Token</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2>2.4. レスポンスフォーマット<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>REST API の呼び出し応答は、通常 JSON オブジェクト形式で返却されます。
+Content-Type は &quot;application/json&quot; となります。</p>
+</div>
+<div class="section" id="curl-api">
+<h2>2.5. curl を用いた API の呼び出し<a class="headerlink" href="#curl-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>curl コマンドを用いると、簡単に API を呼び出すことができます。
+以下に一例を示します。</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
+  -H <span class="s2">&quot;X-Appliation-Id: {app_id}&quot;</span> <span class="se">\</span>
+  -H <span class="s2">&quot;X-Appliation-Key: {app_key}&quot;</span> <span class="se">\</span>
+  https://<span class="o">{</span>server<span class="o">}</span>/api/1/<span class="o">{</span>tenant<span class="o">}</span>/users
+</pre></div>
+</div>
+<p>また、Swagger-UIを使用すると、ブラウザからAPIを呼び出すことができます。</p>
+<p>詳細は、 <a class="reference internal" href="#open-api-spec-v3-swagger-ui"><span class="std std-ref">Open API Specification v3 とSwagger-UI</span></a> を参照して下さい。</p>
+</div>
+<div class="section" id="cross-origin-resource-sharing-cors">
+<h2>2.6. Cross Origin Resource Sharing (CORS)<a class="headerlink" href="#cross-origin-resource-sharing-cors" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaS サーバは CORS (Cross Origin Resource Sharing) に対応しています。
+CORS はブラウザがオリジン(HTMLファイルをダウンロードしたサーバ)
+以外のサーバに対し Ajax 通信(XMLHttpRequest)を許可するためのものです。</p>
+<p>CORS 対応ブラウザからは、クロスドメインで Ajax 通信が可能です。</p>
+<p>CORS の詳細については <a class="reference external" href="https://developer.mozilla.org/ja/docs/HTTP_access_control">HTTP access control (CORS) | MDN</a> などを参照してください。</p>
+<p>NEC BaaS は以下のように動作します。</p>
+<ul class="simple">
+<li>デフォルトでは全ドメインからのクロスドメインアクセスを許可します。具体的には Access-Control-Allow-Origin を '*' で応答します。この値は、デベロッパーコンソールから変更可能です。</li>
+<li>クレデンシャルの送信は許可しません。Access-Control-Allow-Credentials ヘッダは送信しません。</li>
+<li>プリフライトリクエスト(OPTIONS)に対して以下のように応答します。<ul>
+<li>Access-Control-Allow-Methods は GET, POST, PUT, PATCH, DELETE, OPTIONS を応答します。</li>
+<li>Access-Control-Allow-Headers は、Content-Type, X-Application-Id, X-Application-Key, X-Session-Token, X-Requested-With を応答します。</li>
+<li>Accessl-Control-Max-Age は 7日間です。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="open-api-specification-v3-swagger-ui">
+<span id="open-api-spec-v3-swagger-ui"></span><h2>2.7. Open API Specification v3 とSwagger-UI<a class="headerlink" href="#open-api-specification-v3-swagger-ui" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NEC BaaSは、Open API Specification v3に基づいたREST API仕様を提供しています。
+以下のURIにアクセスすることで、NEC BaaSのAPI定義を参照することができます。</p>
+<blockquote>
+<div><a class="reference external" href="http:/">http:/</a>/{server}/api/openapi.json</div></blockquote>
+<p>各種APIゲートウェイ製品などのツールから、NEC BaaSのREST APIを参照する場合、上記URIを指定してください。</p>
+<p>API定義はJSONで記述されているため、そのままではユーザの参照に適しません。
+デベロッパーコンソール組み込みのSwagger-UIから、&quot;openapi.json&quot;のURIを指定して下さい。</p>
+<p>Swagger-UIは、以下URIからアクセスすることができます。</p>
+<blockquote>
+<div><a class="reference external" href="http:/">http:/</a>/{server}/console/swagger-ui</div></blockquote>
+<p>Swagger-UIから、REST APIの一覧や、API呼び出しの確認をすることができます。
+詳細は、 <a class="reference external" href="http://swagger.io/">Swagger</a> を参照して下さい。</p>
+<a class="reference internal image-reference" href="_images/swagger-ui.png"><img alt="_images/swagger-ui.png" src="_images/swagger-ui.png" style="width: 743.5px; height: 393.0px;" /></a>
+<div class="section" id="id23">
+<h3>2.7.1. REST APIコールの例<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Swagger-UIから、REST APIの呼び出しを行います。
+例として、新規オブジェクトを作成します。</p>
+<p>まず画面右の&quot;Authorize&quot;(鍵アイコン)を選択します。</p>
+<p>ここではBaaSの接続先アプリケーションを指定します。
+&quot;X-Application-Id&quot;、&quot;X-Application-Key&quot;を入力します。
+これらの値は、デベロッパーコンソールから確認することができます。
+その他、Basic認証や、セッショントークンを付与することもできます。</p>
+<p>入力後、Authorizeボタンを押すと、リクエストに該当の値を付与します。</p>
+<a class="reference internal image-reference" href="_images/swagger-ui-api-call_002.png"><img alt="_images/swagger-ui-api-call_002.png" src="_images/swagger-ui-api-call_002.png" style="width: 350.0px; height: 315.0px;" /></a>
+<p>JSON Object Storage =&gt; Insert object を表示し、
+&quot;Try It Out&quot;を選択すると、API特有のパラメータ入力を行うことができます。
+&quot;bucketName&quot;、&quot;tenantId&quot;を入力します。&quot;tenantId&quot;には、IDもしくはテナント名が使用できます。
+完了後、Executeを選択します。</p>
+<a class="reference internal image-reference" href="_images/swagger-ui-api-call_003.png"><img alt="_images/swagger-ui-api-call_003.png" src="_images/swagger-ui-api-call_003.png" style="width: 723.0px; height: 433.0px;" /></a>
+<p>成功するとレスポンスボディ、ヘッダが表示され、
+サーバにオブジェクトが生成されます。</p>
+<a class="reference internal image-reference" href="_images/swagger-ui-api-call_004.png"><img alt="_images/swagger-ui-api-call_004.png" src="_images/swagger-ui-api-call_004.png" style="width: 703.0px; height: 420.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="user_management.html" class="btn btn-neutral float-right" title="3. ユーザ管理機能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral" title="1. チュートリアル" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

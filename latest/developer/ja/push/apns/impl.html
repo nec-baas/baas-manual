@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.4. Pushを受信するための実装 &mdash; Push Notification Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4. Android Push (FCM)" href="../fcm/index.html" />
+    <link rel="prev" title="3.3.2. モバイルバックエンド基盤サーバへの APNs 証明書の設定" href="tls_auth/setup_console.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Push Notification Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. Push通知機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../send_console.html">2. コンソールからのPush送信方法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. iOS Push (APNs)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="auth_type.html">3.1. 認証方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="token_auth/index.html">3.2. トークン認証</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tls_auth/index.html">3.3. TLS認証</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. Pushを受信するための実装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">3.4.1. サンプルプログラム</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">3.4.2. 端末情報の登録</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">3.4.3. チャネルの購読</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">3.4.4. ユーザの紐付け</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">3.4.5. Push通知の受信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voip-push-pushkit">3.4.6. VoIP Push (PushKit) を使用する場合</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fcm/index.html">4. Android Push (FCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sse/index.html">5. SSE Push (Server-Sent Event Push)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../send/index.html">6. クライアントからの Push 送信</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Push Notification Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">3. iOS Push (APNs)</a> &raquo;</li>
+        
+      <li>3.4. Pushを受信するための実装</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="push">
+<h1>3.4. Pushを受信するための実装<a class="headerlink" href="#push" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id20">
+<h2>3.4.1. サンプルプログラム<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サンプルプログラムを <a class="reference external" href="https://github.com/nec-baas/apnsSample">GitHub</a> にて公開しています。</p>
+</div>
+<div class="section" id="id21">
+<h2>3.4.2. 端末情報の登録<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>アプリを起動する際に、デバイストークンの取得を行う処理が必要になります。</p>
+<p>AppDelegate 実装ファイル内の application:didFinishLaunchingWithOptions: メソッド内に、
+Push 通知を受けるための登録処理を追加します。</p>
+<p>以下のようにコードを追加してください。iOS10未満とiOS10以降で実装が異なるので注意してください。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
+    <span class="c1">// その他の処理</span>
+
+    <span class="c1">// Push受信用の処理</span>
+    <span class="bp">NSProcessInfo</span> <span class="o">*</span><span class="n">pi</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSProcessInfo</span> <span class="n">processInfo</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">pi</span> <span class="nl">isOperatingSystemAtLeastVersion</span><span class="p">:(</span><span class="n">NSOperatingSystemVersion</span><span class="p">){</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">}])</span> <span class="p">{</span>
+        <span class="c1">// iOS 10 以降</span>
+        <span class="n">UNUserNotificationCenter</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">UNUserNotificationCenter</span> <span class="n">currentNotificationCenter</span><span class="p">];</span>
+        <span class="n">UNAuthorizationOptions</span> <span class="n">options</span> <span class="o">=</span> <span class="n">UNAuthorizationOptionAlert</span> <span class="o">|</span> <span class="n">UNAuthorizationOptionAlert</span> <span class="o">|</span> <span class="n">UNAuthorizationOptionSound</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">c</span> <span class="nl">requestAuthorizationWithOptions</span><span class="p">:</span><span class="n">options</span> <span class="nl">completionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">granted</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;requestAuthorizationWithOptions error: %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">granted</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// ユーザが Push 通知を許可するとここに来る</span>
+                <span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span> <span class="p">{</span>
+                    <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">registerForRemoteNotifications</span><span class="p">];</span>
+                <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">}];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// iOS 8 - 9</span>
+        <span class="n">UIUserNotificationType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">UIUserNotificationTypeAlert</span> <span class="o">|</span> <span class="n">UIUserNotificationTypeBadge</span> <span class="o">|</span> <span class="n">UIUserNotificationTypeSound</span><span class="p">;</span>
+        <span class="bp">UIUserNotificationSettings</span> <span class="o">*</span><span class="n">setting</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIUserNotificationSettings</span> <span class="nl">settingsForTypes</span><span class="p">:</span><span class="n">type</span> <span class="nl">categories</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+        <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">registerUserNotificationSettings</span><span class="p">:</span><span class="n">setting</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="c1">// その他の処理</span>
+
+    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// iOS10未満の場合</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didRegisterUserNotificationSettings:</span><span class="p">(</span><span class="bp">UIUserNotificationSettings</span> <span class="o">*</span><span class="p">)</span><span class="nv">notificationSettings</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">application</span> <span class="n">registerForRemoteNotifications</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>また、OS側からデバイストークンを受け取るため、application:didRegisterForRemoteNotificationsWithDeviceToken: メソッドを追加します。
+このメソッド内で、受け取ったデバイストークンを MBaaS 側に登録します。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Device Token 受領処理</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didRegisterForRemoteNotificationsWithDeviceToken:</span><span class="p">(</span><span class="bp">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">deviceToken</span> <span class="p">{</span>
+    <span class="n">NBPushInstallation</span> <span class="o">*</span><span class="n">installation</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBPushInstallation</span> <span class="n">currentInstallation</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">installation</span> <span class="nl">setDeviceTokenFromData</span><span class="p">:</span><span class="n">deviceToken</span><span class="p">];</span>
+
+    <span class="c1">// 購読チャネルを設定 (設定必須。ここでは空配列を指定)</span>
+    <span class="n">installation</span><span class="p">.</span><span class="n">channels</span> <span class="o">=</span> <span class="l">@[]</span><span class="p">;</span>
+
+    <span class="p">[</span><span class="n">installation</span> <span class="nl">saveInBackgroundWithBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NBPushInstallation</span> <span class="o">*</span><span class="n">installation</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 正常登録完了</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 登録エラー</span>
+        <span class="p">}</span>
+    <span class="p">}];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>最初に NBPushInstallation の currentInstallation を呼び出して NBPushInstallation の
+インスタンスを取得します。</p>
+<p>ついで setDeviceTokenFromData を呼び出してトークンをセットし、
+saveInBackgroundWithBlock: を呼び出してインスタレーションを保存(サーバ登録)します。</p>
+</div>
+<div class="section" id="id22">
+<h2>3.4.3. チャネルの購読<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>チャネルを購読する場合は、NBPushInstallation の channels プロパティにチャネルの一覧を
+設定します。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="n">NBPushInstallation</span> <span class="o">*</span><span class="n">installation</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBPushInstallation</span> <span class="n">currentInstallation</span><span class="p">];</span>
+
+<span class="c1">// 購読チャネルを設定</span>
+<span class="n">installation</span><span class="p">.</span><span class="n">channels</span> <span class="o">=</span> <span class="l">@[</span><span class="s">@&quot;Channel1&quot;</span><span class="p">,</span> <span class="s">@&quot;Channel2&quot;</span><span class="l">]</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">installation</span> <span class="nl">saveInBackgroundWithBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NBPushInstallation</span> <span class="o">*</span><span class="n">installation</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">....</span>
+<span class="p">}];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h2>3.4.4. ユーザの紐付け<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>インスタレーションは、インスタレーション保存のタイミングでログイン中だったユーザに紐付けられます。</p>
+<p>紐付けを変更したい場合は、ログイン操作・ログアウト操作の完了時に、
+あらためてインスタレーションの保存処理を行う必要があります。</p>
+</div>
+<div class="section" id="id24">
+<h2>3.4.5. Push通知の受信<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Push通知の受信は、AppDelegate の application:didReceiveRemoteNotification: メソッドで
+実装します。</p>
+<p>本メソッドは、Push通知を受信したときに呼ばれます。</p>
+<ul class="simple">
+<li>アプリがフォアグラウンドで実行されている場合は、直接本メソッドが呼ばれます。</li>
+<li>アプリがバックグランド起動している場合は、Push通知受信時に通知センターに通知が表示され、
+これをタップしたときにアプリが起動され、その後で呼ばれます。</li>
+</ul>
+<p>以下に実装例を示します。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Push 受信</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didReceiveRemoteNotification:</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">userInfo</span> <span class="p">{</span>
+    <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">aps</span> <span class="o">=</span> <span class="n">userInfo</span><span class="p">[</span><span class="s">@&quot;aps&quot;</span><span class="p">];</span>
+    <span class="bp">NSString</span> <span class="o">*</span><span class="n">alert</span> <span class="o">=</span> <span class="n">aps</span><span class="p">[</span><span class="s">@&quot;alert&quot;</span><span class="p">][</span><span class="s">@&quot;body&quot;</span><span class="p">];</span>
+
+    <span class="c1">// 受信処理をここに記述する</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Message = %@&quot;</span><span class="p">,</span> <span class="n">alert</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Push通知は userInfo 引数に渡されます。
+userInfo の &quot;aps&quot; キーに NSDictionary 側で情報が入っています。
+Pushメッセージは &quot;alert&quot; → &quot;body&quot; キーに格納されています。</p>
+<p>上記サンプルではログにメッセージを表示しています。
+アプリケーションの要件に合わせて、画面に情報を表示したり更新するなど、適宜処理を追加してください。</p>
+</div>
+<div class="section" id="voip-push-pushkit">
+<h2>3.4.6. VoIP Push (PushKit) を使用する場合<a class="headerlink" href="#voip-push-pushkit" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>通常 Push ではなく VoIP Push を使用する場合は、以下のように実装を変更します。</p>
+<p>なお、VoIP Push の実装方法の詳細は <a class="reference external" href="https://developer.apple.com/library/content/documentation/Performance/Conceptual/EnergyGuide-iOS/OptimizeVoIP.html">Voice Over IP (VoIP) Best Practices</a> を参照してください。</p>
+<p>AppDelegate 実装ファイルの application:didFinishLaunchingWithOptions: メソッド内にある、
+Push 通知を受けるための登録処理を以下のように変更します。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// PushKit 登録処理</span>
+<span class="n">dispatch_queue_t</span> <span class="n">mainQueue</span> <span class="o">=</span> <span class="n">dispatch_get_main_queue</span><span class="p">();</span>
+<span class="bp">PKPushRegistry</span> <span class="o">*</span><span class="n">voipRegistry</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">PKPushRegistry</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithQueue</span><span class="p">:</span><span class="n">mainQueue</span><span class="p">];</span>
+<span class="n">voipRegistry</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="n">voipRegistry</span><span class="p">.</span><span class="n">desiredPushTypes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSSet</span> <span class="nl">setWithObject</span><span class="p">:</span><span class="n">PKPushTypeVoIP</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>デバイストークンの取得処理は、pushRegistry:didUpdatePushCredentials:forType: で行います。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">pushRegistry:</span><span class="p">(</span><span class="bp">PKPushRegistry</span> <span class="o">*</span><span class="p">)</span><span class="nv">registry</span> <span class="nf">didUpdatePushCredentials:</span><span class="p">(</span><span class="bp">PKPushCredentials</span> <span class="o">*</span><span class="p">)</span><span class="nv">credentials</span> <span class="nf">forType:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">type</span> <span class="p">{</span>
+    <span class="bp">NSData</span> <span class="o">*</span><span class="n">deviceToken</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">.</span><span class="n">token</span><span class="p">;</span>
+
+    <span class="n">NBPushInstallation</span> <span class="o">*</span><span class="n">installation</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBPushInstallation</span> <span class="n">currentInstallation</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">installation</span> <span class="nl">setDeviceTokenFromData</span><span class="p">:</span><span class="n">deviceToken</span><span class="p">];</span>
+    <span class="c1">// 以降は application:didRegisterForRemoteNotificationsWithDeviceToken: と同じ</span>
+    <span class="p">...</span>
+</pre></div>
+</div>
+<p>Push の受信処理は pushRegistry:didReceiveIncomingPushWithPayload:forType: で行います。</p>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">pushRegistry:</span><span class="p">(</span><span class="bp">PKPushRegistry</span> <span class="o">*</span><span class="p">)</span><span class="nv">registry</span> <span class="nf">didReceiveIncomingPushWithPayload:</span><span class="p">(</span><span class="bp">PKPushPayload</span> <span class="o">*</span><span class="p">)</span><span class="nv">payload</span> <span class="nf">forType:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">type</span> <span class="p">{</span>
+    <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">userInfo</span> <span class="o">=</span> <span class="n">payload</span><span class="p">.</span><span class="n">dictionaryPayload</span><span class="p">;</span>
+
+    <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">aps</span> <span class="o">=</span> <span class="n">userInfo</span><span class="p">[</span><span class="s">@&quot;aps&quot;</span><span class="p">];</span>
+    <span class="bp">NSString</span> <span class="o">*</span><span class="n">alert</span> <span class="o">=</span> <span class="n">aps</span><span class="p">[</span><span class="s">@&quot;alert&quot;</span><span class="p">][</span><span class="s">@&quot;body&quot;</span><span class="p">];</span>
+    <span class="c1">// 以降は application:didReceiveRemoteNotification: と同じ</span>
+</pre></div>
+</div>
+<p>なお、VoIP Push を使用する場合は、Info.plist の UIBackgroundModes に &quot;voip&quot; を追加する必要があります。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fcm/index.html" class="btn btn-neutral float-right" title="4. Android Push (FCM)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tls_auth/setup_console.html" class="btn btn-neutral" title="3.3.2. モバイルバックエンド基盤サーバへの APNs 証明書の設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

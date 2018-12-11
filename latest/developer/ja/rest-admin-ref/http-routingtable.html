@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP Routing Table &mdash; REST API Reference (Administration) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+ 
+
+    <script type="text/javascript">
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Reference (Administration)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth/index.html">5. 管理者ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tenants/index.html">6. テナント操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/index.html">7. アプリケーション操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers/index.html">8. 管理者操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tenant_developers/index.html">9. テナント所属管理者操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license/index.html">10. ライセンスキー操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_config/index.html">11. システム設定操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">12. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Reference (Administration)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>HTTP Routing Table</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+
+   <h1>HTTP Routing Table</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-/1"><strong>/1</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/1"><td></td><td>
+       <strong>/1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="apps/list.html#get--1-_sysadm-(tenantId)-apps"><code class="xref">GET /1/_sysadm/(tenantId)/apps</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="apps/read.html#get--1-_sysadm-(tenantId)-apps-(appId)"><code class="xref">GET /1/_sysadm/(tenantId)/apps/(appId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenant_developers/list.html#get--1-_sysadm-(tenantId)-tenantDevelopers"><code class="xref">GET /1/_sysadm/(tenantId)/tenantDevelopers</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="developers/find.html#get--1-_sysadm-_-developers"><code class="xref">GET /1/_sysadm/_/developers</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="developers/read.html#get--1-_sysadm-_-developers-(developerId)"><code class="xref">GET /1/_sysadm/_/developers/(developerId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="developers/current.html#get--1-_sysadm-_-developers-current"><code class="xref">GET /1/_sysadm/_/developers/current</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="license/read.html#get--1-_sysadm-_-licensekey"><code class="xref">GET /1/_sysadm/_/licensekey</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="system_config/read.html#get--1-_sysadm-_-systemconfig"><code class="xref">GET /1/_sysadm/_/systemconfig</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenants/list.html#get--1-_sysadm-_-tenants"><code class="xref">GET /1/_sysadm/_/tenants</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenants/read.html#get--1-_sysadm-_-tenants-(tenantId)"><code class="xref">GET /1/_sysadm/_/tenants/(tenantId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="apps/create.html#post--1-_sysadm-(tenantId)-apps"><code class="xref">POST /1/_sysadm/(tenantId)/apps</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="auth/login.html#post--1-_sysadm-_-auth-login"><code class="xref">POST /1/_sysadm/_/auth/login</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="developers/create.html#post--1-_sysadm-_-developers"><code class="xref">POST /1/_sysadm/_/developers</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenants/create.html#post--1-_sysadm-_-tenants"><code class="xref">POST /1/_sysadm/_/tenants</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="apps/update.html#put--1-_sysadm-(tenantId)-apps-(appId)"><code class="xref">PUT /1/_sysadm/(tenantId)/apps/(appId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenant_developers/upsert.html#put--1-_sysadm-(tenantId)-tenantDevelopers"><code class="xref">PUT /1/_sysadm/(tenantId)/tenantDevelopers</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="developers/update.html#put--1-_sysadm-_-developers-(developerId)"><code class="xref">PUT /1/_sysadm/_/developers/(developerId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="license/upsert.html#put--1-_sysadm-_-licensekey"><code class="xref">PUT /1/_sysadm/_/licensekey</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="system_config/upsert.html#put--1-_sysadm-_-systemconfig"><code class="xref">PUT /1/_sysadm/_/systemconfig</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenants/update.html#put--1-_sysadm-_-tenants-(tenantId)"><code class="xref">PUT /1/_sysadm/_/tenants/(tenantId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="apps/delete.html#delete--1-_sysadm-(tenantId)-apps-(appId)"><code class="xref">DELETE /1/_sysadm/(tenantId)/apps/(appId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenant_developers/delete.html#delete--1-_sysadm-(tenantId)-tenantDevelopers-(developerId)"><code class="xref">DELETE /1/_sysadm/(tenantId)/tenantDevelopers/(developerId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="auth/logout.html#delete--1-_sysadm-_-auth-login"><code class="xref">DELETE /1/_sysadm/_/auth/login</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="developers/delete.html#delete--1-_sysadm-_-developers-(developerId)"><code class="xref">DELETE /1/_sysadm/_/developers/(developerId)</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="license/delete.html#delete--1-_sysadm-_-licensekey"><code class="xref">DELETE /1/_sysadm/_/licensekey</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="tenants/delete.html#delete--1-_sysadm-_-tenants-(tenantId)"><code class="xref">DELETE /1/_sysadm/_/tenants/(tenantId)</code></a></td><td>
+       <em></em></td></tr>
+   </table>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

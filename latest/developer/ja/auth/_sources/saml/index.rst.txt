@@ -1,0 +1,15 @@
+ADFS / SAML 認証
+================
+
+.. toctree::
+   :maxdepth: 2
+
+   intro
+   glossary
+   sequence
+   setup_system
+   idp
+   setup
+   register
+   devel
+   attention

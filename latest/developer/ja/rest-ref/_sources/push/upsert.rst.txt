@@ -1,0 +1,150 @@
+.. _push_upsert:
+
+インスタレーションの登録・再登録
+================================
+
+.. http:post:: /1/(tenantId)/push/installations
+
+    インスタレーションを新規登録・再登録する。
+
+    _deviceToken / _pushType ペアが新規の場合は新規登録となり、
+    すでに存在していた場合は既存のインスタレーションIDで再登録(更新)となる。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+    :reqheader Content-Type: "application/json"
+
+    :<json string _osType: OS種別
+    :<json string _osVersion: OSバージョン
+    :<json string _deviceToken: デバイス固有トークン
+    :<json string _pushType: 使用するPushテクノロジ
+    :<json array _channels: 購読するチャネルの一覧
+    :<json int _appVersionCode: アプリケーションのバージョンコード
+    :<json string _appVersionString: アプリケーションのバージョン
+    :<json array _allowedSenders: 送信可能ユーザ・グループ
+
+    :statuscode 200: 正常終了
+    :statuscode 400: パラメータ・リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 415: Content-Type 不正
+
+    **リクエストボディ**
+
+    インスタレーション情報は JSON で以下のように指定する。
+
+    .. code-block:: javascript
+
+        {
+            "_osType": "ios",
+            "_osVersion": "10.0.0",
+            "_deviceToken": "xxxx",
+            "_pushType": "apns",
+            "_channels": [ "chan1", "chan2" ],
+            "_appVersionCode": 6,
+            "_appVersionString": "1.0.5",
+            "_allowedSenders": [ "g:anonymous", "55ed50600c69293704e34f9d " ],
+
+            /* ここから下は自由設定 */
+            "email": "foo@example.com"
+        }
+
+    以下のプロパティは、必須である。
+    
+    * _osType : OS種別。以下のいずれか。
+
+      - "ios" : iOS
+      - "android" : Android
+      - "dotnet" : .NET
+      - "java" : Java
+      - "js": JavaScript
+      - "other": その他/不明
+    * _osVersion : OSバージョン
+
+      - Android の場合は Build.VERSION.SDK_INT で API レベルを取得する。
+      - iOS の場合は UIDevice の systemVersion の値を取得する。
+      - .NET、その他不明の場合は "Unknown" を指定する。
+    * _deviceToken : デバイス固有トークン。
+
+      - APNs の場合は Device Token を指定すること。16進数表記(0～9a～f、1バイト2文字分)とすること。
+      - FCM / GCM の場合は Registration ID/Token　を指定すること。
+      - SSEの場合は任意の識別子を使用できる(ANDROID_ID，MACアドレス，UUIDなど)
+    * _pushType : 使用する Push テクノロジを指定する。以下のいずれか。
+
+      - "apns" : APNs
+      - "gcm" : FCM/GCM
+      - "sse" : SSE Push
+    * _channels : 購読するチャネルの一覧。
+    * _appVersionCode : アプリケーションのバージョンコードを整数値で指定する。
+
+      - Android の場合は AndroidManifest.xml の versionCode を指定する。
+      - iOS の場合は CFBundleVersion の値を以下のルールで整数値に変換したものを指定する。
+
+        - x.y.z の場合は、 x * 1,000,000 + y * 1,000 + z (ここで、x/y/z はいずれも整数)
+        - x.y の場合は、x * 1,000,000 + y * 1,000
+        - x の場合は x * 1,000,000
+        - 上記フォーマットに従わない場合は、0 とする。
+      - .NET、その他の場合は -1 を整数値で指定する．
+    * _appVersionString: アプリケーションのバージョンを指定する。
+
+      - Android の場合は AndroidManifest.xml の versionName を指定する。
+      - iOS の場合は CFBundleShortVersionString の値を指定する。
+      - .NETの場合はアセンブリバージョンの値を指定する
+    * _allowedSenders: このインスタレーションに対して Push を送信可能なユーザ・グループを配列で指定する。
+      ユーザはユーザIDで指定し、グループはグループ名の先頭に "g:" を付加して指定する。
+      この設定に関わらず、デベロッパコンソールおよびマスターキーを指定した送信は可能である。
+    
+    上記以外のプロパティについては、クライアント側で自由に設定して良い。
+    これらは Push 送信時にインスタレーションを絞り込む際に使用できる。
+    ただし、"_protected" はプロパティに使用しないこと。プロパティが暗号化されるため、インスタレーションの絞り込みに使用できない。
+
+    **レスポンスボディ**
+
+    正常登録された場合、以下のようにリクエストと同等の JSON に _id が設定されたレスポンスが返却される。
+    _id はインスタレーションIDで、インスタレーションの更新・削除時に必要になるため、クライアント側で保存しておかなければならない。
+    
+    また、ログイン状態でインスタレーションを登録した場合、自動的に "owner" フィールドにユーザIDが設定される。
+
+    .. code-block:: json
+
+        {
+            "_id": "541bc0a0e4b03de4b0287b2e",
+            "_osType": "ios",
+            "_osVersion": "10.0.0",
+            "_deviceToken": "xxxx",
+            "_pushType": "apns",
+            "_channels": [ "chan1", "chan2" ],
+            "_appVersionCode": 6,
+            "_appVersionString": "1.0.5",
+            "email": "foo@example.com",
+            "_owner": "yyyyy"
+        }
+    
+    同一の deviceToken / pushType ペアがすでに存在していた場合、インスタレーション情報を上書きし、更新後のデータが返却される。
+
+    **注意事項**
+
+    * インスタレーションIDは漏洩しないようにすること。漏洩すると、第三者にインスタレーション情報を改ざんされるおそれがある。
+
+SSE Push
+---------
+
+SSE Push を使用する場合、レスポンスには以下のように "_sse" キー以下の "username", "password", "uri" プロパティに
+それぞれユーザ名とパスワード、PushサーバのURIが設定される。
+
+.. code-block:: javascript
+
+    {
+        "_id": "541bc0a0e4b03de4b0287b2e",
+        /* 中略 */,
+        "_sse": {
+            "username": "xxx",
+            "password": "yyy",
+            "uri": "https://push-server.example.com/events/foo/bar"
+        }
+    }
+
+上記 uri に接続することで、Server-Sent Event でイベントの受信を行うことができる。
+
+この際、username と password の値を使用して認証を行う必要がある。
+認証には BASIC 認証を用いる。HTTPS を使用し、認証情報が漏洩しないようにすること。

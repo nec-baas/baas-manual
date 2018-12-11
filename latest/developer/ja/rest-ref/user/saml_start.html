@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.11. SAML認証開始 &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.12. OpenID Connect 認証開始" href="oidc_start.html" />
+    <link rel="prev" title="5.10. バッチオペレーション" href="batch.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. ユーザ管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="register.html">5.1. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login.html">5.2. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logout.html">5.3. ログアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">5.4. ユーザ情報変更 (パスワード変更を含む)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">5.5. ユーザ削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="password_reset.html">5.6. パスワードリセット要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">5.7. ユーザ情報の検索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">5.8. ユーザ情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="current.html">5.9. 自ユーザ情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch.html">5.10. バッチオペレーション</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.11. SAML認証開始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc_start.html">5.12. OpenID Connect 認証開始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc_get_link.html">5.13. OpenID Connect リンク情報取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc_delete_link.html">5.14. OpenID Connect リンク情報削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. ユーザ管理</a> &raquo;</li>
+        
+      <li>5.11. SAML認証開始</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="saml">
+<span id="user-saml-start"></span><h1>5.11. SAML認証開始<a class="headerlink" href="#saml" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="get">
+<dt id="get--1-(tenantId)-auth-saml-init">
+<code class="descname">GET </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/auth/saml/init</code><a class="headerlink" href="#get--1-(tenantId)-auth-saml-init" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>SAML認証を開始する。</p>
+<p>本APIは、SAML認証画面への誘導と認証成功後のログインに使用するワンタイムトークンの通知を行う。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>redirect</strong> (<em>string</em>) -- 認証結果通知先URL(必須)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3">302 Found</a> -- リダイレクト応答(正常処理)</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- クエリパラメータ不正(指定なし含む)</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- SAML認証未使用テナント</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a> -- 認証サーバの認証URI</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc2109#section-4.2.2">Set-Cookie</a> -- SAML認証結果受付用Cookie情報</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>レスポンスの例</strong></p>
+<p>成功時(302 Found)のレスポンスヘッダの例を示す。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Set-Cookie: redirect=http://sample.net; path=/api/1/52116f01ac521e1742000001/auth/saml/landing; expires=Mon, 31 Jan 2011 14:15:13 GMT
+Location: https://baas.example.com/api/1/52116f01ac521e1742000001/auth/saml/start?idp=http://adfs.example.jp/adfs/services/trust
+</pre></div>
+</div>
+<p>エラー時はエラーページ(HTML)が返却される。</p>
+<p>ワンタイムトークンはHTTPリクエストのクエリパラメータとして認証結果通知先URLに通知される。
+クエリパラメータ名は「token」であり、HTTPリクエストは以下のフォーマットとなる。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{認証結果通知先URI}?token={ワンタイムトークン}
+</pre></div>
+</div>
+<p>リダイレクトされるHTTPリクエスト行の例を以下に示す。</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">http://sample.net?token=t568PrrpvB1W7DhqBhlVfTMAc2NhsIw9j60OTZLz</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</pre></div>
+</div>
+<p>SAML認証に成功し、認証されたユーザと同名のユーザが存在しない場合、DBにユーザを登録する。DBに登録するユーザ情報は、下記の通り。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ユーザ情報</th>
+<th class="head">説明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>_id</td>
+<td>ユーザID(DB保存時に自動付加される)</td>
+</tr>
+<tr class="row-odd"><td>tenantId</td>
+<td>テナントID</td>
+</tr>
+<tr class="row-even"><td>username</td>
+<td>SAMLトークンのCommonName属性の値</td>
+</tr>
+<tr class="row-odd"><td>createdAt</td>
+<td>DB上のユーザ作成日時</td>
+</tr>
+<tr class="row-even"><td>updatedAt</td>
+<td>DB上のユーザ更新日時</td>
+</tr>
+<tr class="row-odd"><td>etag</td>
+<td>ログイン時に自動付加されるETAG値</td>
+</tr>
+<tr class="row-even"><td>federated</td>
+<td>外部認証連携有無(常にtrue)</td>
+</tr>
+</tbody>
+</table>
+<p>&quot;username&quot;について、SAMLトークン内にCommonNameがない場合は、NameIDを用いる。</p>
+<p>SAML認証に成功した場合、認証されたユーザに関連する公開グループ情報について、MongoDBへの反映を行う。
+グループ情報は、グループ階層を意識しないフラット構造として扱う。登録、更新対象となるグループ情報は、以下の通り。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">グループ情報</th>
+<th class="head">説明</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>ユーザID(DB保存時に自動付加される)</td>
+</tr>
+<tr class="row-odd"><td>tenantId</td>
+<td>テナントID</td>
+</tr>
+<tr class="row-even"><td>name</td>
+<td>SAMLトークンのGroup属性の値</td>
+</tr>
+<tr class="row-odd"><td>users</td>
+<td>グループに所属するユーザ一覧</td>
+</tr>
+<tr class="row-even"><td>groups</td>
+<td>グループに所属する子グループ一覧</td>
+</tr>
+<tr class="row-odd"><td>createdAt</td>
+<td>DB上のグループ作成日時</td>
+</tr>
+<tr class="row-even"><td>updatedAt</td>
+<td>DB上のグループ更新日時</td>
+</tr>
+<tr class="row-odd"><td>etag</td>
+<td>情報変更時に自動付加されるETag値</td>
+</tr>
+<tr class="row-even"><td>acl</td>
+<td>グループACL</td>
+</tr>
+</tbody>
+</table>
+<p>&quot;acl&quot; には、読み出し権限に &quot;g:authenticated&quot; のみが設定される。</p>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>SAML認証を使用しているテナントに対してのみ実行可能。</li>
+<li>&quot;redirect&quot; には、デベロッパーコンソールで登録したURLを設定すること。登録されていない場合は400エラーを返却する。</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oidc_start.html" class="btn btn-neutral float-right" title="5.12. OpenID Connect 認証開始" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="batch.html" class="btn btn-neutral" title="5.10. バッチオペレーション" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+======================
+オブジェクトストレージ
+======================
+
+ここではオブジェクトストレージの利用方法について説明します。
+
+オブジェクトの追加
+==================
+
+オブジェクトは NBObject クラスのインスタンスとして生成します。
+
+.. code-block:: objc
+
+    NBObject *obj = [NBObject objectWithBucketName:@"TodoTutorial1"];
+
+    obj[@"description"] = @"打ち合わせ資料を作成する";
+    obj[@"dueDate"] = @"2014/12/19";
+
+    // 以下の書き方も可
+    //[obj setObject:@"打ち合わせ資料を作成する" forKey:@"description"];
+    //[obj setObject:@"2014/12/19" forKey:@"dueDate"];
+
+オブジェクトを生成するには、バケット名を指定して objectWithBucketName: メソッドを呼び出します。
+
+値には文字列、整数、NSArray、NSDictionary など、NSJSONSerialization でシリアライズできる任意のオブジェクトを指定することができます。
+
+オブジェクトを保存するには、saveInBackgroundWithBlock: メソッドを呼び出します。
+
+.. code-block:: objc
+
+    [obj saveInBackgroundWithBlock:^(NSArray *objects, NSUInteger count, NSError *error) {
+        if (!error) {
+            // 成功時の処理
+        } else {
+            // エラー時の処理
+        }
+    });
+
+アクセス制御
+============
+
+オブジェクト単位でアクセス制御を行うことができます。
+
+アクセス制御には、NBAcl クラスを使用します。NBObject の acl プロパティに設定します。
+
+.. code-block:: objc
+
+    NBAcl *acl = [NBAcl new];
+    acl.owner = @"オーナID";
+    [acl addEntry:@"ユーザID" permission:NBAclReadable];
+    [acl addEntry:@"g:グループ名" permission:NBAclReadable];
+    [acl addEntry:@"ユーザID" permission:NBAclWritable];
+
+    NBObject *obj = [NBObject objectWithBucketName:@"TodoTutorial1"];
+    obj.acl = acl;
+
+* owner プロパティにオーナID(オーナのユーザID)を設定します。
+* addEntry:permission: でエントリを追加します。
+
+  - 第1引数に、ユーザID/グループ名を指定します。グループ名を指定する場合は g: プレフィクスを付与します。
+  - 第2引数に、権限種別を指定します。
+
+オブジェクトのクエリ
+====================
+
+オブジェクトのクエリは、バケットに対してクエリを発行することで行います。
+
+以下の例では、全件検索を行っています。
+
+.. code-block:: objc
+
+    // バケットインスタンスを作成
+    NBObjectBucket *bucket = [[NBObjectBucket alloc] initWithBucketName:@"TodoTutorial1"];
+
+    NBQuery *query = [NBQuery new];
+    [bucket queryObjectInBackground:query block:^(NSArray *objects, NSUInteger count, NSError *error) {
+        if (!error) {
+            // 正常時
+        } else {
+            // エラー発生時
+        }
+    }];
+
+クエリしたオブジェクトは objects に NBObject の配列で渡されます。
+count には全件数が格納されます。
+
+クエリ条件は、Query クラスに指定します。
+
+クエリ条件の指定
+----------------
+
+検索条件には NBClause を使用します。
+
+NBClause の生成には NBClause のインスタンスメソッドを使用します。
+以下に例を示します。
+
+.. code-block:: objc
+
+    NBClause *c1 = [NBClause equals:@"name" value:@"foo"]; // 一致条件
+    NBClause *c2 = [NBClause lessThan:@"age" value:@30]; // 比較条件
+    NBClause *c3 = [NBClause in:@"prefecture" value:@[@"Tokyo", @"Kanagawa", @"Saitama"]]; // 配列検索
+    NBClause *c4 = [NBClause regex:@"description" expression:@"^[a-c]" option:NBRegexCaseNone]; // 正規表現一致
+
+論理演算 (and, or, not) で複数の NBClause を結合することも可能です。
+
+.. code-block:: objc
+
+    NBClause *c5 = [NBClause and:@[c1, c2, c3, c4]];
+
+NBClause からクエリを生成することができます。
+
+.. code-block:: objc
+
+    NBQuery *query = [NBQuery queryWithClause:c5];
+
+ソート順序の指定
+----------------
+
+ソート順序は、setSortOrderWithKey:isAscend: で指定します。
+
+.. code-block:: objc
+
+    [query setSortOrderWithKey:@"updatedAt" isAscend:YES];
+
+ここでは、updatedAt 昇順を指定しています。
+isAscend: に NO を指定すると降順になります。
+
+検索数・スキップ数の指定
+------------------------
+
+クエリの limit, skip プロパティにそれぞれ検索数、スキップ数を指定できます。
+
+.. code-block:: objc
+
+    query.skip = 100;
+    query.limit = 101;
+
+オブジェクトの更新
+==================
+
+オブジェクトの更新は、部分更新と上書き更新の 2 種類があります。
+
+どちらも対象オブジェクトをクエリで取得し、更新します。
+下記の例では、[@"name" が @"foo" に一致する] オブジェクトを上書きします。
+
+部分更新は、NBObject クラスの partUpdateInBackgroundWithBlock:block: メソッドで行います。
+
+.. code-block:: objc
+
+    NBObjectBucket *bucket = [[NBObjectBucket alloc] initWithBucketName:@"TodoTutorial1"];
+    NBClause *c1 = [NBClause equals:@"name" value:@"foo"]; // 一致条件
+    NBQuery *query = [NBQuery queryWithClause:c1];
+
+    [bucket queryInBackgroundWithQuery:query block:^(NSArray *objects, NSUInteger count, NSError *error) {
+        if (!error) {
+            // 正常時、対象オブジェクトを更新。
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                @"foo", @"name",
+                @"000-0000-0000", @"tel",
+                nil];
+
+            for (NBObject *obj in objects) {
+                [obj partUpdateInBackgroundWithDictionary:dic block:^(NSArrary *objects, NSUnteger count, NSError *error) {
+                    if (!error) { // 成功時の処理
+                    } else {      // エラー時の処理
+                    }
+                }];
+            }
+        } else {
+            // エラー発生時
+        }
+    }];
+
+更新内容を NSDictionary で作成し、第1引数に設定します。
+
+上書き更新は、オブジェクトの追加と同じく saveInBackgroundWithBlock: メソッドで行います。
+
+.. code-block:: objc
+
+    NBObjectBucket *bucket = [[NBObjectBucket alloc] initWithBucketName:@"TodoTutorial1"];
+    NBClause *c1 = [NBClause equals:@"name" value:@"foo"]; // 一致条件
+    NBQuery *query = [NBQuery queryWithClause:c1];
+
+    [bucket queryInBackgroundWithQuery:query block:^(NSArray *objects, NSUInteger count, NSError *error) {
+        if (!error) {
+            // 正常時、対象オブジェクトを上書き。
+            obj[@"name"]    = @"foo";
+            obj[@"tel"]     = @"000-0000-0000";
+            obj[@"address"] = @"Kanagawa";
+
+            for (NBObject *obj in objects) {
+                [obj saveInBackgroundWithBlock:^(NSArray *objects, NSUInteger count, NSError *error) {
+                    if (!error) { // 成功時の処理
+                    } else {      // エラー時の処理
+                    }
+                }];
+            }
+        } else {
+            // エラー発生時
+        }
+    }];
+
+オブジェクトの削除
+==================
+
+オブジェクトの削除は NBObject インスタンスのインスタンスメソッドで行います。
+
+オブジェクトを削除するには、deleteInBackgroundWithBlock: メソッドを呼び出します。
+削除する際、対象のオブジェクトの id が必要なため、一度クエリする必要があります。
+
+下記の例では、[@"name" が @"foo" に一致する] オブジェクトを削除します。
+
+.. code-block:: objc
+
+    NBObjectBucket *bucket = [[NBObjectBucket alloc] initWithBucketName:@"TodoTutorial1"];
+    NBClause *c1 = [NBClause equals:@"name" value:@"foo"]; // 一致条件
+    NBQuery *query = [NBQuery queryWithClause:c1];
+
+    [bucket queryInBackgroundWithQuery:query block:^(NSArray *objects, NSUInteger count, NSError *error) {
+        if (!error) {
+            // 正常時、対象オブジェクトを削除。
+            for (NBObject *obj in objects) {
+                [obj deleteInBackgroundWithBlock:^(NSError *error) {
+                    if (!error) { // 成功時の処理
+                    } else {      // エラー時の処理
+                    }
+                }];
+            }
+        } else {
+            // エラー発生時
+        }
+    }];

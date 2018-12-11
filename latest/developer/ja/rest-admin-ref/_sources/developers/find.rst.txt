@@ -1,0 +1,49 @@
+.. _developer_find:
+
+管理者情報検索
+==============
+
+.. http:get:: /1/_sysadm/_/developers
+
+    管理者情報を検索する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+
+    :query string email: E-mail (オプション)
+
+    :statuscode 200: 正常に取得した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+
+    :>json array developers: 管理者情報の配列
+
+    **レスポンス**
+
+    条件に一致する管理者情報を含む JSON データが返却される。例を以下に示す。
+
+    .. code-block:: json
+
+        {
+          "developers": [
+            {
+              "_id": "5a93e8005bd67428ee3fac08",
+              "name": "developer1",
+              "email": "example@test.com",
+              "forceChangePassword": true,
+              "isSysAdmin": true
+            },
+            {
+              "_id": "5aac80a2dcf78b49d7cf6ca1",
+              "name": "developer2",
+              "email": "example2@test.com",
+              "forceChangePassword": false,
+              "isSysAdmin": false
+            }
+          ]
+        }
+
+    **注意事項**
+
+    * システム管理者権限が必要。
+    * E-Mailをキーに管理者ユーザを検索する。
+    * 検索条件を指定しない場合は、全件検索となる。

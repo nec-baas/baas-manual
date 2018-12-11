@@ -1,0 +1,15 @@
+============
+品質保証範囲
+============
+
+以下は品質保証範囲外(β扱い)となります。
+
+* JSONオブジェクトストレージ: ACLレスバケット機能
+
+* JavaScript SDK の一部
+
+  - SDE4SD 利用時に使用できる、ファイルシステム上ファイルの直接アップロード・ダウンロード機能 (FileBucket.uploadNewFile(), FileBucket.downloadFile())
+* .NET SDK の一部
+
+  - バケット管理系 API
+* iOS SDK : 全体

@@ -1,0 +1,451 @@
+.. _clitool:
+
+====================
+コマンドラインツール
+====================
+
+管理用のコマンドラインツールを提供しています。
+本ツールを使用して、システム管理アカウントの追加や、
+テナント、外部ストレージ設定、アプリ、ユーザ、グループとバケットの一括作成を行うことができます。
+
+コマンドラインツールの使用方法
+===============================
+
+ツールの実行前にモバイルバックエンド基盤の設定を済ませておく必要があります。
+「:ref:`configuration_file`」の指定に基づいて MongoDB にアクセスを行いますので、
+設定ファイルをあらかじめ投入しておいてください。
+
+コマンドラインツールは baas-admin.sh, baas-admin.jar という名前で配布物に含まれています。
+コマンドラインから baas-admin.sh を起動することで使用します。
+起動手順は以下のとおりです。
+
+.. code-block:: bash
+
+  $ ./baas-admin.sh -p [profile] -c [command] [options...]
+
+profile にはモバイルバックエンド基盤の実行プロファイルを指定します。
+'development', 'production' のいずれかを指定してください
+(モバイルバックエンド基盤サーバのデフォルト設定値は 'development' です)。
+
+command にコマンドを指定することで特定の動作を行います。
+command の種類については、"./baas-admin.sh --help" で確認ください。
+
+Windows 環境では、コマンドプロンプトから以下のように jar ファイルを直接指定して起動してください。
+
+::
+
+  > java -jar baas-admin.jar [option...]
+
+
+システム管理アカウントの管理
+============================
+
+システム管理アカウントを追加することができます。
+
+.. code-block:: bash
+
+  $ ./baas-admin.sh -p [profile] -c addDeveloper -E [email] -P [password]
+
+E-mail アドレスとパスワードを指定して追加を行います。
+
+登録されているアカウント一覧を表示する場合は以下のようにしてください。
+
+.. code-block:: bash
+
+  $ ./baas-admin.sh -p [profile] -c showDevelopers
+
+アカウント削除やパスワード変更などの管理はデベロッパーコンソールを使用してください。
+
+テナントのエクスポート
+========================
+
+テナント内の設定項目（テナント設定、外部ストレージ設定、アプリ、ユーザ、グループとバケット）を YAML または JSON データとしてエクスポートできます。
+各項目の出力内容については、基本的にデベロッパーコンソールで設定した内容となります。
+
+.. code-block:: bash
+
+  # YAML形式でエクスポートする場合
+  $ ./baas-admin.sh -c export -n [tenant_name] -f [filename]
+
+  # JSON 形式でエクスポートする場合
+  $ ./baas-admin.sh -c export -n [tenant_name] -f [filename] -j
+
+tenant_name にテナント名を指定して実行してください。
+-f オプションに指定したファイルに　YAML または JSON 形式でデータが出力されます。
+
+.. attention::
+
+  - すべての設定値が出力されるわけではありません
+  - デフォルトではユーザ情報はエクスポートされませんが、オプション（--all）を指定すると、ユーザ情報も含めエクスポートされます。
+  - ユーザのパスワードと外部ストレージ設定のセキュアキーは、そのままエクスポートせず、暗号化済の情報がエクスポートされます。
+  - テナントの MongoDB 個別接続設定内のパスワードと LDAP 設定内のパスワードがエクスポートされません。デベロッパーコンソールで確認してください。
+  - 外部認証連携ユーザ・グループの情報がエクスポートされません。
+
+テナントのインポート
+======================
+
+テナントとテナント内の設定項目（テナント設定、外部ストレージ設定、アプリ、ユーザ、グループ、バケット）をインポートできます。実行結果はデベロッパコンソール上で確認してください。
+
+.. code-block:: bash
+
+  $ ./baas-admin.sh -c import -f [file]
+
+file は、YAMLまたはJSONファイルのパスとなります。
+YAML/JSONデータ内に作成するするテナント、アプリ、ユーザ、グループとバケットを定義します。
+
+.. attention::
+
+  - すでに同一名称のテナントが存在する場合は、インポート時に実行してよいか確認されます。
+    実行する場合でも、テナントの設定は変更(上書き)はされません。それ以外の設定のみがインポートされます。
+
+.. attention::
+
+  - 認証方式が通常認証以外のテナント(LDAP, SAML, OpenID Connect) はインポートできません。
+
+.. attention::
+
+  - 1ユーザに対して、パスワードもしくはパスワードハッシュのいずれかを指定できます。両方指定することはできません。
+  - 1外部ストレージ設定のセキュアキーの指定方法についても、上記と同様になります。
+  - 外部認証連携グループ（グループ名(_EXT-\*)）のインポートはできません。
+  - 入力ファイルはUTF-8形式のテキストファイルを使用してください。
+  - 複数端末から、ツールによる項目作成を同時に実行しないでください。
+  - 項目作成の実行時に、デベロッパーコンソール上で同一テナント内の項目の作成・変更などの操作を行わないでください。
+  - 作成項目数が多い場合、実行時間がかかる場合があります。
+
+YAML/JSONファイルフォーマット
+-----------------------------
+
+以下は YAML ファイルの記載例です。
+
+テナントを１つ作成し、ここに外部ストレージ設定2個、アプリ2個、ユーザ2個、グループ2個、オブジェクトバケット2個（インデックス含む)、
+ファイルバケット2個を一括で作成する例となっています。
+
+.. code-block:: yaml
+
+    # テナントの設定
+    tenant:
+      name: testtenant01                      # テナント名（必須）
+      description: testtenant01               # 説明文
+      defaultExtfsSettingName: extfs01        # デフォルト外部ストレージ設定名
+      enabled: true                           # テナント有効フラグ
+      pwPolicySetting:                        # パスワードポリシー
+        minLength: 8                          # パスワード最小文字数
+        maxLength: 100                        # パスワード最大文字数
+        minUpperCaseLength: 0                 # パスワードに含める大文字の最小文字数
+        minLowerCaseLength: 0                 # パスワードに含める小文字の最小文字数
+        minNumeralLength: 0                   # パスワードに含める数字の最小文字数
+        minSymbolLength: 0                    # パスワードに含める記号の最小文字数
+      maxLoginFailAttempts: 5                 # アカウントロックするログイン失敗回数
+      accountLockDuration: 10                 # アカウントロック期間
+      corsEnabled: true                       # CORS 有効フラグ
+      corsAllowOrigins: "*"                   # CORS 許可ドメイン
+      corsAllowCredentials: false             # CORS Access-Control-Allow-Credentials 有効フラグ
+      sessionTokenValidPeriodInHours: 24      # セッショントークンの有効時間
+      confirmationTokenValidPeriod: 24        # 本人確認トークンの有効期間
+      deletedObjectsKeepDurationInHours: 0    # 論理削除オブジェクトの保持期間
+      authType: NORMAL                        # 認証方式
+      mongoConnectionConfig:                  # MongoDB 個別接続設定
+        servers: "localhost:27017"            # MongoDB サーバ定義
+        username: admin                       # 認証用ユーザ
+        password: admin                       # 認証用パスワード
+      sendUserConfirmationMailEnabled: false  # 本人確認メール送信フラグ
+      sendUserInformationMailEnabled: false   # 本人通知メール送信フラグ
+      rateLimitSetting:                       # レートリミット設定
+        total: 0                              # テナント全体のリミット値
+        customApi:                            # カスタムAPI毎のリミット値設定
+          api01: 6000
+          api02: 6000
+      specialBucket:                          # 特殊バケットの設定
+        # 特殊バケット： _ROOT
+        - name: _ROOT
+          description:
+          ACL:
+            r: ["g:authenticated"]
+            w: []
+            c: []
+            u: []
+            d: []
+            admin: []
+          contentACL:
+            r: []
+            w: []
+            c: ["g:authenticated"]
+            u: []
+            d: []
+        # 特殊バケット: _USERS
+        - name: _USERS
+          description:
+          ACL:
+            r: ["g:authenticated"]
+            w: []
+            c: []
+            u: []
+            d: []
+            admin: []
+          contentACL:
+            r: ["g:authenticated"]
+            w: []
+            c: [g:anonymous]
+            u: []
+            d: []
+        # 特殊バケット _GROUPS
+        - name: _GROUPS
+          description:
+          ACL:
+            r: ["g:authenticated"]
+            w: []
+            c: []
+            u: []
+            d: []
+            admin: []
+          contentACL:
+            r: ["g:authenticated"]
+            w: []
+            c: ["g:authenticated"]
+            u: []
+            d: []
+
+    # 外部ストレージ設定
+    extfsSettings:
+    - name: extfs01                           # 設定名（必須、かつ、重複不可）
+      description: extfs01                    # 説明文
+      bucketName: extfs01_filedata            # 外部ストレージのバケット名（必須）
+      accessKeyId: 1111                       # アクセスキーID（必須）
+      secretAccessKey: EDbWn2Hz6lkaaPk40xtJB2lLmmI54dfeSMvar9wNs57D                       # セキュアキー（secretAccessKey/encryptedSecretAccessKeyいずれか必須）
+      storageType: S3_COMP                    # ストレージタイプ（S3/S3_COMPいずれか選択）
+      endpoint: "http://localhost:12345"      # エンドポイント（ストレージタイプはS3_COMPの場合必須）
+
+    - name: extfs02
+      description: extfs02
+      bucketName: extfs02
+      accessKeyId: 1111
+      secretAccessKey: EG71DKGHKSBSlVxirDZt5PHGT6WieC1jFbAGpckLqlmN
+      storageType: S3
+      protocol: HTTPS                         # プロトコル（ストレージタイプはS3の場合必須、HTTP/HTTPS）
+      regionName: ap-northeast-1              # リージョン（ストレージタイプはS3の場合必須、AWSのリージョン名）
+
+    # アプリケーションの設定
+    apps:
+      - name: app01                           # アプリ名（必須、かつ、重複不可）
+        description: app01                    # 説明文
+        enabled: true                         # アプリの有効フラグ
+        gcmKey: 1234567890                    # GCM/FCM キー
+        allowClientPush: false                # クライアント Push 許可フラグ
+
+      - name: app02
+        description: app02
+        enabled: true
+        gcmKey: 1234567890
+        allowClientPush: false
+
+    # ユーザの設定
+    users:
+      - username: user01                       # ユーザ名（必須、かつ、重複不可）
+        email: user01@nebula.com               # メールアドレス（必須、かつ、重複不可）
+        password: useruser                     # パスワード（password/passwordDigestいずれか必須）
+        options:                               # オプション情報
+          company: nec
+
+      - username: user02
+        email: user02@nebula.com
+        passwordDigest: 04c39a2399c0c4987da534352a779a178fe7abf6cd6ece512031cad79d5d76df87c0da32dc142922       # パスワードハッシュ
+        options:
+          company: nec
+
+    # グループの設定
+    groups:
+      - name: group1                           # グループ名（必須、かつ、重複不可）
+        users: []                              # グループ内のユーザの設定
+        groups: []                             # グループ内の子グループの設定
+        ACL:                                   # グループの ACL の設定
+          r: ["g:authenticated"]
+          w: ["g:authenticated"]
+          c: []
+          u: []
+          d: []
+          admin: []
+
+      - name: group2
+        users: []
+        groups: []
+        ACL:
+          r: ["g:authenticated"]
+          w: ["g:authenticated"]
+          c: []
+          u: []
+          d: []
+          admin: []
+
+    # オブジェクトバケットの設定
+    objectBuckets:
+      - name: objectbucket01                   # オブジェクトバケット名（必須、かつ、重複不可）
+        description: objectbucket01            # 説明文
+        ACL:                                   # オブジェクトバケットの ACL の設定
+          r: ["g:authenticated"]
+          w: []
+          c: []
+          u: []
+          d: []
+          admin: []
+        contentACL:                            # オブジェクトバケットの contentACL の設定
+          r: ["g:authenticated"]
+          w: ["g:authenticated"]
+          c: []
+          u: []
+          d: []
+        indices:                               # 該当オブジェクトバケットのインディックスの設定
+          - name: firstname                    # インデックス名(必須、かつ、重複不可）
+            keys:                              # インデックスキーの設定
+              - name: firstname                # キーの対象名(必須）
+                type: 1                        # キーのタイプ(必須）
+            option:                            # インデックスのオプション
+
+          - name: lastname
+            keys:
+              - name: lastname
+                type: 1
+            option:
+
+      - name: objectbucket02
+        description: objectbucket02
+        ACL:
+          r: ["g:authenticated"]
+          w: []
+          c: []
+          u: []
+          d: []
+          admin: []
+        contentACL:
+          r: ["g:authenticated"]
+          w: ["g:authenticated"]
+          c: []
+          u: []
+          d: []
+        indices:
+          - name: firstname
+            keys:
+              - name: firstname
+                type: 1
+            option:
+          - name: lastname
+            keys:
+              - name: lastname
+                type: 1
+            option:
+
+    # ファイルバケットの設定
+    fileBuckets:
+      - name: filebucket01                     # ファイルバケット名（必須、かつ、重複不可）
+        description: filebucket01              # 説明文
+        extfsSettingName: "extfs01"            # バケットの外部ストレージ設定名
+        ACL:                                   # ファイルバケットの ACL の設定
+          r: ["g:authenticated"]
+          w: []
+          c: []
+          u: []
+          d: []
+          admin: []
+        contentACL:                            # ファイルバケットの contentACL の設定
+          r: ["g:authenticated"]
+          w: ["g:authenticated"]
+          c: []
+          u: []
+          d: []
+
+      - name: filebucket02
+        description: filebucket02
+        extfsSettingName: "extfs02"
+        ACL:
+          r: ["g:authenticated"]
+          w: []
+          c: []
+          u: []
+          d: []
+          admin: []
+        contentACL:
+          r: ["g:authenticated"]
+          w: ["g:authenticated"]
+          c: []
+          u: []
+          d: []
+
+各項目の内容は以下のとおりです。
+
+* "tenant": テナントの設定を記述します。テナントのパラメータ、特殊バケットのACL設定などを記述します。1つのJSON/YAMLファイルに記述できるテナントは1個だけです。なおインポート時に同名のテナントがすでに存在していた場合、そのテナントの設定が変更されません。
+* "extfsSettings": 外部ストレージ設定を記述します。
+* "apps": アプリケーション設定を記述します。Push機能のGCMキーの設定も記述可能です。
+* "users": ユーザ設定を記述します。
+* "groups": グループ設定を記述します。ACLも記述可能です。
+* "objectBuckets": オブジェクトバケットを記述します。ACLとインデックスの設定も記述可能です。
+* "fileBuckets": ファイルバケットを記述します。ACLも記述可能です。
+
+tenant, extfsSettings, apps, users, groups, objectBuckets, fileBuckets の各要素について、デベロッパーコンソール上で設定可能な項目に対応しております。
+必須要素の記述がない場合はエラーとなります。
+また、インポートしようとするテナント内にすでに同名の要素が存在していた場合もエラーとなります。
+
+dry-run オプション
+------------------
+テナント内の項目のインポート時に
+--dry-run (-d) オプションを指定することにより、インプットしようとするファイルに対し文法の検証を事前に実施できます。
+--dry-run オプション指定時は実際の項目のインポートは一切行いません。
+
+.. code-block:: bash
+
+  $ ./baas-admin.sh -p [profile] -c import -f [filename] -d
+
+検証される内容は以下のとおりです。
+
+* JSON/YAML 文法のチェック
+* 項目要素の必須性と正当性のチェック
+
+エラーが検出された場合は、エラーメッセージを参照し、インポートするファイルを修正してください。
+
+same-id オプション
+------------------
+
+エクスポートされた JSON/YAML ファイルを(別のサーバなどで)インポートする場合、
+テナントID、アプリケーションID、キー(アプリケーションキー、マスターキー)とユーザIDは新たに採番されます。
+
+エクスポートされた JSON/YAML ファイルには以下に示すようにこれらの値が含まれています。
+これらの値を変更せずに引き継ぎたい場合は --same-id (-s) オプションを指定してください。
+
+.. attention::
+  - アプリケーションID、キー(アプリケーションキー、マスターキー)を正しく引き継ぐため、すべての値がすべて存在している必要があります。
+  - いずれかの値が未設定、あるいは空値の場合は、すべての値が新たに採番されます。
+  - 同ID（テナントID、アプリケーションIDとユーザID）が既に存在している場合はエラーとなります。
+    上書きされることはありません。
+  - ユーザ情報も引き継ぎたい場合は、--all(-a)オプションと併用してください。
+
+インポートファイルでの設定例を以下に示します。
+
+.. code-block:: yaml
+
+    tenant:
+      _id: 56d02720c77229178c506b48  # テナントID
+      name: testtenant01
+      ...
+
+    apps:
+      - _id: 56d02768c77229178c506b4c  # アプリID
+        appKey: yIaMQwx1LbTWOGlJVqvDLXjMUusMCqxVji2gKsNb  # アプリキー
+        masterKey: k1VaUSc9gD9illQHYzgh2aNodzukbTs4UqFIs6va  # マスターキー
+        name: app01
+        ...
+
+    users:
+      - _id: 577efe8075eefa4b536e587c  # ユーザID
+        username: user01
+        ...
+
+all オプション
+---------------
+
+テナントのエクスポート時に、利用できるオプションです。
+
+通常のエクスポートはユーザ情報はエクスポートされませんが、all オプションを指定するとユーザ情報も含めエクスポートされます。
+
+なお、エクスポートされるユーザ情報には、パスワードではなくパスワードハッシュがエクスポートされます。
+
+
+
+

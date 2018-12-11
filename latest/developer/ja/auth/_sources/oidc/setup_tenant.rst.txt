@@ -1,0 +1,14 @@
+==============
+テナント設定
+==============
+
+ここでは OpenID Connect 認証を行うためのテナント設定手順について説明します。
+
+OpenID Connectプロバイダ (OP) の設定はすでに完了しているものとします。
+
+テナント設定 - OpenID Connect設定
+==================================
+
+接続する OP の設定などを行います。
+詳細は  `テナント設定 - OpenID Connect設定 <../../devconsole/tenant/tenant_config_oidc.html>`_ を参照ください。
+

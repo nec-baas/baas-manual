@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.1. オブジェクトの作成 &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="8.2. オブジェクトの読み込み" href="read.html" />
+    <link rel="prev" title="8. JSONオブジェクトストレージ" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. JSONオブジェクトストレージ</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.1. オブジェクトの作成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#field-encryption">8.1.1. データ暗号化</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">8.2. オブジェクトの読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">8.3. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="long_query.html">8.4. オブジェクトのロングクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">8.5. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">8.6. オブジェクトの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_delete.html">8.7. オブジェクトの一括削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch.html">8.8. バッチオペレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html">8.9. オブジェクトの集計(Aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">8. JSONオブジェクトストレージ</a> &raquo;</li>
+        
+      <li>8.1. オブジェクトの作成</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="object-create">
+<span id="id1"></span><h1>8.1. オブジェクトの作成<a class="headerlink" href="#object-create" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="post">
+<dt id="post--1-(tenantId)-objects-(bucketName)">
+<code class="descname">POST </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/objects/</code><span class="sig-paren">(</span><em>bucketName</em><span class="sig-paren">)</span><a class="headerlink" href="#post--1-(tenantId)-objects-(bucketName)" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>オブジェクトを作成する。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- アプリケーションキー(必須)</li>
+<li><em>X-Session-Token</em> -- セッショントークン(オプション)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- &quot;application/json&quot;</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bucketName</strong> (<em>string</em>) -- バケット名</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>requestToken</strong> (<em>string</em>) -- リクエストトークン</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常終了</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ・リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- 権限エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> -- バケットが存在しない</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> -- データ重複エラー(duplicate_key), ID衝突(duplicate_id)</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.14">413 Request Entity Too Large</a> -- オブジェクトサイズ制限超過</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">415 Unsupported Media Type</a> -- Content-Type 不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> -- シャードキーの制約によるエラー。その他。</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>リクエストボディ</strong></p>
+<p>リクエストボディには、JSON形式で記述された任意のオブジェクトを指定できる。</p>
+<p>以下に例を示す。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+  <span class="nt">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>&quot;ACL&quot; には ACL を指定できる。ACL を指定しなかった場合は以下の ACL が自動的に設定される。
+(ただしバケットの noAcl 属性が true の場合は設定されない)</p>
+<ul class="simple">
+<li>ログイン済みの場合: 全フィールドが空。オーナ(作成ユーザ)のみがアクセス可。</li>
+<li>未ログイン状態の場合 : r, w に &quot;g:anonymous&quot; が設定され、誰でも読み書き可。owner フィールドは設定されない。</li>
+</ul>
+<p>また、クライアント側で &quot;_id&quot; フィールドを指定することができる。
+_id を指定した場合、サーバは _id の値をそのまま受け入れるが、同一の _id を持つデータが既に存在する場合は 409 Conflict エラーを返す。
+_id は MongoDB のオブジェクトIDと同じフォーマットでなければならない。
+_id を指定しない場合は、サーバ側で _id を採番する。</p>
+<p>また、クライアント側から requestToken を指定することができる。
+サーバは requestToken が指定された場合、レスポンスをキャッシュする。
+同一 requestToken を持つリクエストが再送された場合、サーバは処理を行わずキャッシュしたレスポンスのみを返却する。
+なお、クライアントは requestToken をランダムかつ推測不可能な文字列として作成しなければならない。</p>
+<p><strong>レスポンスボディ</strong></p>
+<p>レスポンスボディには作成したオブジェクト情報を含むJSON データが返却される。
+リクエスト時と同じものだが、_id などのフィールドが追加される。
+409 Conflictの場合はその原因をJSON形式で返す。</p>
+<p>レスポンスボディの例:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;521c36d4ac521e1ffa000007&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;xxxxx&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+<span class="nt">&quot;etag&quot;</span><span class="p">:</span> <span class="s2">&quot;8c92c97e-01a7-11e4-9598-53792c688d1b&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>追加されるフィールドは以下のとおり。これらのフィールドは予約名のため、これ以外の用途に使用してはならない。</p>
+<ul class="simple">
+<li>_id : オブジェクトID</li>
+<li>createdAt : 作成日時</li>
+<li>updatedAt :更新日時</li>
+<li>ACL : 指定しなかった場合自動追加される(noAcl = true の場合を除く)。指定した場合でも owner がない場合は owner は自動設定される。</li>
+<li>etag : ETag 値。新規作成・更新の度に変更される固有値。</li>
+</ul>
+<p>409 Conflict の場合は以下の形式のデータが返却される</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;reasonCode&quot;</span><span class="o">:</span> <span class="s2">&quot;etag_mismatch&quot;</span>
+  <span class="s2">&quot;detail&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;521c36d4ac521e1ffa000007&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*…略…*/</span> <span class="p">},</span>
+    <span class="s2">&quot;createdAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;8c92c97e-01a7-11e4-9598-53792c688d1b&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>reasonCode: 原因を示すコード<ul>
+<li>request_conflicted: 更新・削除処理が衝突した場合。</li>
+<li>duplicate_key: データ重複。バケットに設定したインデックスのユニーク制約による。</li>
+<li>duplicate_id: ID重複。オブジェクト作成時に指定したIDが既に存在する</li>
+<li>etag_mismatch: 更新・削除処理でEtagが不一致</li>
+</ul>
+</li>
+<li>detail: エラーに関するデータ</li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>Etag不一致（etag_mismatch） の場合のみサーバ側のデータがJSON形式で格納される</li>
+<li>それ以外場合はエラーメッセージが格納される。</li>
+</ul>
+</div></blockquote>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>バケットcontentACLの create 権限が必要</li>
+<li>MongoDBの制約として次のフィールド名は使用できない。先頭が&quot;$&quot;であるフィールド名。 &quot;.&quot;(ピリオド)を含むフィールド名</li>
+</ul>
+</dd></dl>
+
+<div class="section" id="field-encryption">
+<span id="id2"></span><h2>8.1.1. データ暗号化<a class="headerlink" href="#field-encryption" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDB内のデータ保護を目的として、オブジェクト内の一部フィールドを暗号化してMongoDBに保存することが可能である。</p>
+<p>&quot;_protected&quot; フィールドに設定されたデータが暗号化対象となる。
+ただし、トップレベルの &quot;_protected&quot; フィールドを暗号化対象とし、データ階層内の &quot;_protected&quot; フィールドは暗号化対象外とする。</p>
+<p>&quot;_protected&quot; フィールドには、JSON オブジェクト型でデータを設定する。
+値や文字列等のデータが設定された場合は、400 Bad Request エラーを返す。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;_protected&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Foo&quot;</span><span class="p">},</span> <span class="c1">// 暗号化される</span>
+    <span class="s2">&quot;person&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;_protected&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Bar&quot;</span><span class="p">}</span> <span class="c1">// 暗号化されない</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;_protected&quot;</span><span class="o">:</span> <span class="s2">&quot;message&quot;</span> <span class="c1">// エラー返却</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>暗号化されたデータを読み出した場合は、&quot;_protected&quot; を復号したデータを返す。
+したがって、オブジェクトストレージAPIの暗号化有無による使用上の違いは基本的に発生しない。
+API個別の注意事項については、各APIの注意事項を参照すること。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="read.html" class="btn btn-neutral float-right" title="8.2. オブジェクトの読み込み" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="8. JSONオブジェクトストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

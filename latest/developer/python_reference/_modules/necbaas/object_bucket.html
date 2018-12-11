@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>necbaas.object_bucket &mdash; NEC BaaS Python SDK 7.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> NEC BaaS Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../necbaas.html">necbaas package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NEC BaaS Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>necbaas.object_bucket</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for necbaas.object_bucket</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">JSON Object bucket module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlencode</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">urlencode</span>
+<span class="kn">from</span> <span class="nn">.service</span> <span class="k">import</span> <span class="n">Service</span>
+
+
+<div class="viewcode-block" id="ObjectBucket"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket">[docs]</a><span class="k">class</span> <span class="nc">ObjectBucket</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    JSON Object Storage Bucket.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        service (Service): Service</span>
+<span class="sd">        bucket_name (str): Bucket name</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        service (Service): Service</span>
+<span class="sd">        bucket_name (str): Bucket name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_MAX_QUERY_SIZE</span> <span class="o">=</span> <span class="mi">1500</span>
+    <span class="c1"># type: int</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">):</span>
+        <span class="c1"># type: (Service, str) -&gt; None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="n">service</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span> <span class="o">=</span> <span class="n">bucket_name</span>
+
+<div class="viewcode-block" id="ObjectBucket.query"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delete_mark</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># type: (dict, str, int, int, dict, bool) -&gt; list</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query objects in this bucket.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            ::</span>
+
+<span class="sd">                results = bucket.query(where={&quot;product_name&quot;: &quot;orange&quot;}, order=&quot;-updatedAt&quot;, limit=100)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            where (dict): Query conditions (JSON) (optional)</span>
+<span class="sd">            order (str): Sort conditions (optional)</span>
+<span class="sd">            skip (int): Skip count (optional, default=0)</span>
+<span class="sd">            limit (int): Limit count (optional)</span>
+<span class="sd">            projection (dict): Projection (JSON) (optional)</span>
+<span class="sd">            delete_mark (bool): Include soft deleted data (optional, default=False)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of JSON objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span>
+                          <span class="n">delete_mark</span><span class="o">=</span><span class="n">delete_mark</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ObjectBucket.query_with_count"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.query_with_count">[docs]</a>    <span class="k">def</span> <span class="nf">query_with_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delete_mark</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># type: (dict, str, int, int, dict, bool) -&gt; (list, int)</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query objects in this bucket (with count query).</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            ::</span>
+
+<span class="sd">                (results, count) = bucket.query_with_count(where={&quot;product_name&quot;: &quot;orange&quot;}, order=&quot;-updatedAt&quot;, limit=100)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            where (dict): Query conditions (JSON) (optional)</span>
+<span class="sd">            order (str): Sort conditions (optional)</span>
+<span class="sd">            skip (int): Skip count (optional, default=0)</span>
+<span class="sd">            limit (int): Limit count (optional)</span>
+<span class="sd">            projection (dict): Projection (JSON) (optional)</span>
+<span class="sd">            delete_mark (bool): Include soft deleted data (optional, default=False)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (list, count): Tuple of list of JSON objects and total count of query.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span>
+                          <span class="n">delete_mark</span><span class="o">=</span><span class="n">delete_mark</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delete_mark</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query objects (internal).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            where (dict): Query conditions (JSON) (optional)</span>
+<span class="sd">            order (str): Sort conditions (optional)</span>
+<span class="sd">            skip (int): Skip count (optional, default=0)</span>
+<span class="sd">            limit (int): Limit count (optional)</span>
+<span class="sd">            projection (dict): Projection (JSON) (optional)</span>
+<span class="sd">            delete_mark (bool): Include delete marked data (optional, default=False)</span>
+<span class="sd">            count (bool): Get total count (optional, default=False)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Response in JSON</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query_params</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">where</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;where&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">where</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="k">if</span> <span class="n">skip</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;skip&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">skip</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+        <span class="k">if</span> <span class="n">projection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;projection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">delete_mark</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;deleteMark&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">query_string</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">query_params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">query_string</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ObjectBucket</span><span class="o">.</span><span class="n">_MAX_QUERY_SIZE</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">),</span> <span class="n">query</span><span class="o">=</span><span class="n">query_params</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">/_query&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">query_params</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ObjectBucket.insert"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.insert">[docs]</a>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="c1"># type: (dict) -&gt; dict</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Insert JSON Object</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            ::</span>
+
+<span class="sd">                acl = {&quot;r&quot;: [&quot;g:authenticated&quot;], &quot;w&quot;: [&quot;g:authenticated&quot;]}</span>
+<span class="sd">                result = bucket.insert({&quot;name&quot;: &quot;foo&quot;, &quot;score&quot;: 70, &quot;ACL&quot;: acl})</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (dict): Data (JSON)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Response JSON</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="ObjectBucket.update"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">etag</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># type: (str, dict, str) -&gt; dict</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update JSON Object</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            oid (str): ID of Object</span>
+<span class="sd">            data (dict): Data (JSON)</span>
+<span class="sd">            etag (str): ETag (optional)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Response JSON</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query_params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">etag</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">query_params</span><span class="p">[</span><span class="s2">&quot;etag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">etag</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">oid</span><span class="p">),</span>
+                                      <span class="n">query</span><span class="o">=</span><span class="n">query_params</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="ObjectBucket.remove"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oid</span><span class="p">,</span> <span class="n">soft_delete</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># type: (str, bool) -&gt; dict</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove one JSON Object</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            oid (str): Object ID</span>
+<span class="sd">            soft_delete (bool): Soft delete (optional, default=False)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Response JSON</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">oid</span><span class="p">:</span>  <span class="c1"># fail-safe: check not None nor empty to avoid remove all objects.</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No oid&quot;</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">oid</span><span class="p">),</span>
+                                      <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;deleteMark&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">soft_delete</span> <span class="k">else</span> <span class="mi">0</span><span class="p">})</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="ObjectBucket.remove_with_query"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.remove_with_query">[docs]</a>    <span class="k">def</span> <span class="nf">remove_with_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">soft_delete</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># type: (dict, bool) -&gt; dict</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove multiple JSON Objects</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            where (dict): Query condition (optional)</span>
+<span class="sd">            soft_delete (bool): Soft delete (optional, default=False)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Response JSON</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">where</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">where</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">query_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;where&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">where</span><span class="p">),</span>
+            <span class="s2">&quot;deleteMark&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">soft_delete</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="p">}</span>
+        
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">),</span> <span class="n">query</span><span class="o">=</span><span class="n">query_params</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="ObjectBucket.batch"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.batch">[docs]</a>    <span class="k">def</span> <span class="nf">batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">requests</span><span class="p">,</span> <span class="n">soft_delete</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># type: (list, bool) -&gt; list</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Batch operation</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            ::</span>
+
+<span class="sd">                requests = [</span>
+<span class="sd">                    {&quot;op&quot;: &quot;insert&quot;, &quot;data&quot;: {&quot;name&quot;: &quot;foo&quot;, &quot;score&quot;: 70}},</span>
+<span class="sd">                    {&quot;op&quot;: &quot;insert&quot;, &quot;data&quot;: {&quot;name&quot;: &quot;bar&quot;, &quot;score&quot;: 80}}</span>
+<span class="sd">                ]</span>
+<span class="sd">                results = bucket.batch(requests)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            requests (list): List of batch requests</span>
+<span class="sd">            soft_delete (bool): Soft delete (optional, default=False)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of batch results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;deleteMark&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">soft_delete</span> <span class="k">else</span> <span class="mi">0</span><span class="p">}</span>
+        <span class="n">body_json</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;requests&quot;</span><span class="p">:</span> <span class="n">requests</span>
+        <span class="p">}</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">/_batch&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">),</span>
+                                      <span class="n">json</span><span class="o">=</span><span class="n">body_json</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ObjectBucket.aggregate"><a class="viewcode-back" href="../../necbaas.html#necbaas.object_bucket.ObjectBucket.aggregate">[docs]</a>    <span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># type: (list, dict) -&gt; list</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Aggregation operation</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            ::</span>
+
+<span class="sd">                pipeline = [</span>
+<span class="sd">                    {&quot;$lookup&quot;: { ... }},</span>
+<span class="sd">                    ...</span>
+<span class="sd">                ]</span>
+<span class="sd">                options = {&quot;allowDiskUse&quot;: True}</span>
+<span class="sd">                results = bucket.aggregate(pipeline, options)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pipeline (list): List of aggregation pipeline stage</span>
+<span class="sd">            options (dist): Aggregation option parameter (optional)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of aggregation results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pipeline&quot;</span><span class="p">:</span> <span class="n">pipeline</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">body</span><span class="p">[</span><span class="s2">&quot;options&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">options</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_rest</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;/objects/</span><span class="si">{}</span><span class="s2">/_aggregate&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'7.5.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

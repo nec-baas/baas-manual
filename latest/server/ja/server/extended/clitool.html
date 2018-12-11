@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1. コマンドラインツール &mdash; Server User Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.2. コンテキストパスの変更" href="contextpath.html" />
+    <link rel="prev" title="5. 詳細手順" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure/index.html">4. コンフィグレーション</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 詳細手順</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.1. コマンドラインツール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1.1. コマンドラインツールの使用方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.1.2. システム管理アカウントの管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.1.3. テナントのエクスポート</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5.1.4. テナントのインポート</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#yaml-json">YAML/JSONファイルフォーマット</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dry-run">dry-run オプション</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#same-id">same-id オプション</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#all">all オプション</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contextpath.html">5.2. コンテキストパスの変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiserver.html">5.3. 複数サーバ構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loadbalancer.html">5.4. ロードバランサ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="revproxy.html">5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sslcert.html">5.6. サーバ証明書の作成手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http2.html">5.7. HTTP/2使用手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb_upgrade.html">5.8. MongoDBをアップグレードする際の注意</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb_cluster.html">5.9. MongoDBクラスタ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb_atlas.html">5.10. MongoDB Atlas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. 詳細手順</a> &raquo;</li>
+        
+      <li>5.1. コマンドラインツール</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="clitool">
+<span id="id1"></span><h1>5.1. コマンドラインツール<a class="headerlink" href="#clitool" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>管理用のコマンドラインツールを提供しています。
+本ツールを使用して、システム管理アカウントの追加や、
+テナント、外部ストレージ設定、アプリ、ユーザ、グループとバケットの一括作成を行うことができます。</p>
+<div class="section" id="id2">
+<h2>5.1.1. コマンドラインツールの使用方法<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ツールの実行前にモバイルバックエンド基盤の設定を済ませておく必要があります。
+「<a class="reference internal" href="../configure/config_file.html#configuration-file"><span class="std std-ref">設定ファイル</span></a>」の指定に基づいて MongoDB にアクセスを行いますので、
+設定ファイルをあらかじめ投入しておいてください。</p>
+<p>コマンドラインツールは baas-admin.sh, baas-admin.jar という名前で配布物に含まれています。
+コマンドラインから baas-admin.sh を起動することで使用します。
+起動手順は以下のとおりです。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./baas-admin.sh -p <span class="o">[</span>profile<span class="o">]</span> -c <span class="o">[</span>command<span class="o">]</span> <span class="o">[</span>options...<span class="o">]</span>
+</pre></div>
+</div>
+<p>profile にはモバイルバックエンド基盤の実行プロファイルを指定します。
+'development', 'production' のいずれかを指定してください
+(モバイルバックエンド基盤サーバのデフォルト設定値は 'development' です)。</p>
+<p>command にコマンドを指定することで特定の動作を行います。
+command の種類については、&quot;./baas-admin.sh --help&quot; で確認ください。</p>
+<p>Windows 環境では、コマンドプロンプトから以下のように jar ファイルを直接指定して起動してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">baas</span><span class="o">-</span><span class="n">admin</span><span class="o">.</span><span class="n">jar</span> <span class="p">[</span><span class="n">option</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>5.1.2. システム管理アカウントの管理<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>システム管理アカウントを追加することができます。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./baas-admin.sh -p <span class="o">[</span>profile<span class="o">]</span> -c addDeveloper -E <span class="o">[</span>email<span class="o">]</span> -P <span class="o">[</span>password<span class="o">]</span>
+</pre></div>
+</div>
+<p>E-mail アドレスとパスワードを指定して追加を行います。</p>
+<p>登録されているアカウント一覧を表示する場合は以下のようにしてください。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./baas-admin.sh -p <span class="o">[</span>profile<span class="o">]</span> -c showDevelopers
+</pre></div>
+</div>
+<p>アカウント削除やパスワード変更などの管理はデベロッパーコンソールを使用してください。</p>
+</div>
+<div class="section" id="id4">
+<h2>5.1.3. テナントのエクスポート<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テナント内の設定項目（テナント設定、外部ストレージ設定、アプリ、ユーザ、グループとバケット）を YAML または JSON データとしてエクスポートできます。
+各項目の出力内容については、基本的にデベロッパーコンソールで設定した内容となります。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># YAML形式でエクスポートする場合</span>
+$ ./baas-admin.sh -c <span class="nb">export</span> -n <span class="o">[</span>tenant_name<span class="o">]</span> -f <span class="o">[</span>filename<span class="o">]</span>
+
+<span class="c1"># JSON 形式でエクスポートする場合</span>
+$ ./baas-admin.sh -c <span class="nb">export</span> -n <span class="o">[</span>tenant_name<span class="o">]</span> -f <span class="o">[</span>filename<span class="o">]</span> -j
+</pre></div>
+</div>
+<p>tenant_name にテナント名を指定して実行してください。
+-f オプションに指定したファイルに　YAML または JSON 形式でデータが出力されます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>すべての設定値が出力されるわけではありません</li>
+<li>デフォルトではユーザ情報はエクスポートされませんが、オプション（--all）を指定すると、ユーザ情報も含めエクスポートされます。</li>
+<li>ユーザのパスワードと外部ストレージ設定のセキュアキーは、そのままエクスポートせず、暗号化済の情報がエクスポートされます。</li>
+<li>テナントの MongoDB 個別接続設定内のパスワードと LDAP 設定内のパスワードがエクスポートされません。デベロッパーコンソールで確認してください。</li>
+<li>外部認証連携ユーザ・グループの情報がエクスポートされません。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>5.1.4. テナントのインポート<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>テナントとテナント内の設定項目（テナント設定、外部ストレージ設定、アプリ、ユーザ、グループ、バケット）をインポートできます。実行結果はデベロッパコンソール上で確認してください。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./baas-admin.sh -c import -f <span class="o">[</span>file<span class="o">]</span>
+</pre></div>
+</div>
+<p>file は、YAMLまたはJSONファイルのパスとなります。
+YAML/JSONデータ内に作成するするテナント、アプリ、ユーザ、グループとバケットを定義します。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>すでに同一名称のテナントが存在する場合は、インポート時に実行してよいか確認されます。
+実行する場合でも、テナントの設定は変更(上書き)はされません。それ以外の設定のみがインポートされます。</li>
+</ul>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>認証方式が通常認証以外のテナント(LDAP, SAML, OpenID Connect) はインポートできません。</li>
+</ul>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>1ユーザに対して、パスワードもしくはパスワードハッシュのいずれかを指定できます。両方指定することはできません。</li>
+<li>1外部ストレージ設定のセキュアキーの指定方法についても、上記と同様になります。</li>
+<li>外部認証連携グループ（グループ名(_EXT-*)）のインポートはできません。</li>
+<li>入力ファイルはUTF-8形式のテキストファイルを使用してください。</li>
+<li>複数端末から、ツールによる項目作成を同時に実行しないでください。</li>
+<li>項目作成の実行時に、デベロッパーコンソール上で同一テナント内の項目の作成・変更などの操作を行わないでください。</li>
+<li>作成項目数が多い場合、実行時間がかかる場合があります。</li>
+</ul>
+</div>
+<div class="section" id="yaml-json">
+<h3>YAML/JSONファイルフォーマット<a class="headerlink" href="#yaml-json" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>以下は YAML ファイルの記載例です。</p>
+<p>テナントを１つ作成し、ここに外部ストレージ設定2個、アプリ2個、ユーザ2個、グループ2個、オブジェクトバケット2個（インデックス含む)、
+ファイルバケット2個を一括で作成する例となっています。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># テナントの設定</span>
+<span class="l l-Scalar l-Scalar-Plain">tenant</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">testtenant01</span>                      <span class="c1"># テナント名（必須）</span>
+  <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">testtenant01</span>               <span class="c1"># 説明文</span>
+  <span class="l l-Scalar l-Scalar-Plain">defaultExtfsSettingName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">extfs01</span>        <span class="c1"># デフォルト外部ストレージ設定名</span>
+  <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                           <span class="c1"># テナント有効フラグ</span>
+  <span class="l l-Scalar l-Scalar-Plain">pwPolicySetting</span><span class="p p-Indicator">:</span>                        <span class="c1"># パスワードポリシー</span>
+    <span class="l l-Scalar l-Scalar-Plain">minLength</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>                          <span class="c1"># パスワード最小文字数</span>
+    <span class="l l-Scalar l-Scalar-Plain">maxLength</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>                        <span class="c1"># パスワード最大文字数</span>
+    <span class="l l-Scalar l-Scalar-Plain">minUpperCaseLength</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>                 <span class="c1"># パスワードに含める大文字の最小文字数</span>
+    <span class="l l-Scalar l-Scalar-Plain">minLowerCaseLength</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>                 <span class="c1"># パスワードに含める小文字の最小文字数</span>
+    <span class="l l-Scalar l-Scalar-Plain">minNumeralLength</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>                   <span class="c1"># パスワードに含める数字の最小文字数</span>
+    <span class="l l-Scalar l-Scalar-Plain">minSymbolLength</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>                    <span class="c1"># パスワードに含める記号の最小文字数</span>
+  <span class="l l-Scalar l-Scalar-Plain">maxLoginFailAttempts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>                 <span class="c1"># アカウントロックするログイン失敗回数</span>
+  <span class="l l-Scalar l-Scalar-Plain">accountLockDuration</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>                 <span class="c1"># アカウントロック期間</span>
+  <span class="l l-Scalar l-Scalar-Plain">corsEnabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                       <span class="c1"># CORS 有効フラグ</span>
+  <span class="l l-Scalar l-Scalar-Plain">corsAllowOrigins</span><span class="p p-Indicator">:</span> <span class="s">&quot;*&quot;</span>                   <span class="c1"># CORS 許可ドメイン</span>
+  <span class="l l-Scalar l-Scalar-Plain">corsAllowCredentials</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>             <span class="c1"># CORS Access-Control-Allow-Credentials 有効フラグ</span>
+  <span class="l l-Scalar l-Scalar-Plain">sessionTokenValidPeriodInHours</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">24</span>      <span class="c1"># セッショントークンの有効時間</span>
+  <span class="l l-Scalar l-Scalar-Plain">confirmationTokenValidPeriod</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">24</span>        <span class="c1"># 本人確認トークンの有効期間</span>
+  <span class="l l-Scalar l-Scalar-Plain">deletedObjectsKeepDurationInHours</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>    <span class="c1"># 論理削除オブジェクトの保持期間</span>
+  <span class="l l-Scalar l-Scalar-Plain">authType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">NORMAL</span>                        <span class="c1"># 認証方式</span>
+  <span class="l l-Scalar l-Scalar-Plain">mongoConnectionConfig</span><span class="p p-Indicator">:</span>                  <span class="c1"># MongoDB 個別接続設定</span>
+    <span class="l l-Scalar l-Scalar-Plain">servers</span><span class="p p-Indicator">:</span> <span class="s">&quot;localhost:27017&quot;</span>            <span class="c1"># MongoDB サーバ定義</span>
+    <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>                       <span class="c1"># 認証用ユーザ</span>
+    <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>                       <span class="c1"># 認証用パスワード</span>
+  <span class="l l-Scalar l-Scalar-Plain">sendUserConfirmationMailEnabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>  <span class="c1"># 本人確認メール送信フラグ</span>
+  <span class="l l-Scalar l-Scalar-Plain">sendUserInformationMailEnabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>   <span class="c1"># 本人通知メール送信フラグ</span>
+  <span class="l l-Scalar l-Scalar-Plain">rateLimitSetting</span><span class="p p-Indicator">:</span>                       <span class="c1"># レートリミット設定</span>
+    <span class="l l-Scalar l-Scalar-Plain">total</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>                              <span class="c1"># テナント全体のリミット値</span>
+    <span class="l l-Scalar l-Scalar-Plain">customApi</span><span class="p p-Indicator">:</span>                            <span class="c1"># カスタムAPI毎のリミット値設定</span>
+      <span class="l l-Scalar l-Scalar-Plain">api01</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">6000</span>
+      <span class="l l-Scalar l-Scalar-Plain">api02</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">6000</span>
+  <span class="l l-Scalar l-Scalar-Plain">specialBucket</span><span class="p p-Indicator">:</span>                          <span class="c1"># 特殊バケットの設定</span>
+    <span class="c1"># 特殊バケット： _ROOT</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">_ROOT</span>
+      <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">contentACL</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="c1"># 特殊バケット: _USERS</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">_USERS</span>
+      <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">contentACL</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">g</span><span class="p p-Indicator">:</span><span class="nv">anonymous</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="c1"># 特殊バケット _GROUPS</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">_GROUPS</span>
+      <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">contentACL</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+        <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+        <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+
+<span class="c1"># 外部ストレージ設定</span>
+<span class="l l-Scalar l-Scalar-Plain">extfsSettings</span><span class="p p-Indicator">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">extfs01</span>                           <span class="c1"># 設定名（必須、かつ、重複不可）</span>
+  <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">extfs01</span>                    <span class="c1"># 説明文</span>
+  <span class="l l-Scalar l-Scalar-Plain">bucketName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">extfs01_filedata</span>            <span class="c1"># 外部ストレージのバケット名（必須）</span>
+  <span class="l l-Scalar l-Scalar-Plain">accessKeyId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1111</span>                       <span class="c1"># アクセスキーID（必須）</span>
+  <span class="l l-Scalar l-Scalar-Plain">secretAccessKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">EDbWn2Hz6lkaaPk40xtJB2lLmmI54dfeSMvar9wNs57D</span>                       <span class="c1"># セキュアキー（secretAccessKey/encryptedSecretAccessKeyいずれか必須）</span>
+  <span class="l l-Scalar l-Scalar-Plain">storageType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">S3_COMP</span>                    <span class="c1"># ストレージタイプ（S3/S3_COMPいずれか選択）</span>
+  <span class="l l-Scalar l-Scalar-Plain">endpoint</span><span class="p p-Indicator">:</span> <span class="s">&quot;http://localhost:12345&quot;</span>      <span class="c1"># エンドポイント（ストレージタイプはS3_COMPの場合必須）</span>
+
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">extfs02</span>
+  <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">extfs02</span>
+  <span class="l l-Scalar l-Scalar-Plain">bucketName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">extfs02</span>
+  <span class="l l-Scalar l-Scalar-Plain">accessKeyId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1111</span>
+  <span class="l l-Scalar l-Scalar-Plain">secretAccessKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">EG71DKGHKSBSlVxirDZt5PHGT6WieC1jFbAGpckLqlmN</span>
+  <span class="l l-Scalar l-Scalar-Plain">storageType</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">S3</span>
+  <span class="l l-Scalar l-Scalar-Plain">protocol</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">HTTPS</span>                         <span class="c1"># プロトコル（ストレージタイプはS3の場合必須、HTTP/HTTPS）</span>
+  <span class="l l-Scalar l-Scalar-Plain">regionName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ap-northeast-1</span>              <span class="c1"># リージョン（ストレージタイプはS3の場合必須、AWSのリージョン名）</span>
+
+<span class="c1"># アプリケーションの設定</span>
+<span class="l l-Scalar l-Scalar-Plain">apps</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">app01</span>                           <span class="c1"># アプリ名（必須、かつ、重複不可）</span>
+    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">app01</span>                    <span class="c1"># 説明文</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>                         <span class="c1"># アプリの有効フラグ</span>
+    <span class="l l-Scalar l-Scalar-Plain">gcmKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1234567890</span>                    <span class="c1"># GCM/FCM キー</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowClientPush</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>                <span class="c1"># クライアント Push 許可フラグ</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">app02</span>
+    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">app02</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">gcmKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1234567890</span>
+    <span class="l l-Scalar l-Scalar-Plain">allowClientPush</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="c1"># ユーザの設定</span>
+<span class="l l-Scalar l-Scalar-Plain">users</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">user01</span>                       <span class="c1"># ユーザ名（必須、かつ、重複不可）</span>
+    <span class="l l-Scalar l-Scalar-Plain">email</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">user01@nebula.com</span>               <span class="c1"># メールアドレス（必須、かつ、重複不可）</span>
+    <span class="l l-Scalar l-Scalar-Plain">password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">useruser</span>                     <span class="c1"># パスワード（password/passwordDigestいずれか必須）</span>
+    <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>                               <span class="c1"># オプション情報</span>
+      <span class="l l-Scalar l-Scalar-Plain">company</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nec</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">user02</span>
+    <span class="l l-Scalar l-Scalar-Plain">email</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">user02@nebula.com</span>
+    <span class="l l-Scalar l-Scalar-Plain">passwordDigest</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">04c39a2399c0c4987da534352a779a178fe7abf6cd6ece512031cad79d5d76df87c0da32dc142922</span>       <span class="c1"># パスワードハッシュ</span>
+    <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">company</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nec</span>
+
+<span class="c1"># グループの設定</span>
+<span class="l l-Scalar l-Scalar-Plain">groups</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">group1</span>                           <span class="c1"># グループ名（必須、かつ、重複不可）</span>
+    <span class="l l-Scalar l-Scalar-Plain">users</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>                              <span class="c1"># グループ内のユーザの設定</span>
+    <span class="l l-Scalar l-Scalar-Plain">groups</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>                             <span class="c1"># グループ内の子グループの設定</span>
+    <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>                                   <span class="c1"># グループの ACL の設定</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">group2</span>
+    <span class="l l-Scalar l-Scalar-Plain">users</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">groups</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+
+<span class="c1"># オブジェクトバケットの設定</span>
+<span class="l l-Scalar l-Scalar-Plain">objectBuckets</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">objectbucket01</span>                   <span class="c1"># オブジェクトバケット名（必須、かつ、重複不可）</span>
+    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">objectbucket01</span>            <span class="c1"># 説明文</span>
+    <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>                                   <span class="c1"># オブジェクトバケットの ACL の設定</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">contentACL</span><span class="p p-Indicator">:</span>                            <span class="c1"># オブジェクトバケットの contentACL の設定</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">indices</span><span class="p p-Indicator">:</span>                               <span class="c1"># 該当オブジェクトバケットのインディックスの設定</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">firstname</span>                    <span class="c1"># インデックス名(必須、かつ、重複不可）</span>
+        <span class="l l-Scalar l-Scalar-Plain">keys</span><span class="p p-Indicator">:</span>                              <span class="c1"># インデックスキーの設定</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">firstname</span>                <span class="c1"># キーの対象名(必須）</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>                        <span class="c1"># キーのタイプ(必須）</span>
+        <span class="l l-Scalar l-Scalar-Plain">option</span><span class="p p-Indicator">:</span>                            <span class="c1"># インデックスのオプション</span>
+
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lastname</span>
+        <span class="l l-Scalar l-Scalar-Plain">keys</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lastname</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+        <span class="l l-Scalar l-Scalar-Plain">option</span><span class="p p-Indicator">:</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">objectbucket02</span>
+    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">objectbucket02</span>
+    <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">contentACL</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">indices</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">firstname</span>
+        <span class="l l-Scalar l-Scalar-Plain">keys</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">firstname</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+        <span class="l l-Scalar l-Scalar-Plain">option</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lastname</span>
+        <span class="l l-Scalar l-Scalar-Plain">keys</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lastname</span>
+            <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+        <span class="l l-Scalar l-Scalar-Plain">option</span><span class="p p-Indicator">:</span>
+
+<span class="c1"># ファイルバケットの設定</span>
+<span class="l l-Scalar l-Scalar-Plain">fileBuckets</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">filebucket01</span>                     <span class="c1"># ファイルバケット名（必須、かつ、重複不可）</span>
+    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">filebucket01</span>              <span class="c1"># 説明文</span>
+    <span class="l l-Scalar l-Scalar-Plain">extfsSettingName</span><span class="p p-Indicator">:</span> <span class="s">&quot;extfs01&quot;</span>            <span class="c1"># バケットの外部ストレージ設定名</span>
+    <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>                                   <span class="c1"># ファイルバケットの ACL の設定</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">contentACL</span><span class="p p-Indicator">:</span>                            <span class="c1"># ファイルバケットの contentACL の設定</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">filebucket02</span>
+    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">filebucket02</span>
+    <span class="l l-Scalar l-Scalar-Plain">extfsSettingName</span><span class="p p-Indicator">:</span> <span class="s">&quot;extfs02&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">ACL</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">admin</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+    <span class="l l-Scalar l-Scalar-Plain">contentACL</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">r</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">w</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;g:authenticated&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">c</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">u</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+      <span class="l l-Scalar l-Scalar-Plain">d</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
+</pre></div>
+</div>
+<p>各項目の内容は以下のとおりです。</p>
+<ul class="simple">
+<li>&quot;tenant&quot;: テナントの設定を記述します。テナントのパラメータ、特殊バケットのACL設定などを記述します。1つのJSON/YAMLファイルに記述できるテナントは1個だけです。なおインポート時に同名のテナントがすでに存在していた場合、そのテナントの設定が変更されません。</li>
+<li>&quot;extfsSettings&quot;: 外部ストレージ設定を記述します。</li>
+<li>&quot;apps&quot;: アプリケーション設定を記述します。Push機能のGCMキーの設定も記述可能です。</li>
+<li>&quot;users&quot;: ユーザ設定を記述します。</li>
+<li>&quot;groups&quot;: グループ設定を記述します。ACLも記述可能です。</li>
+<li>&quot;objectBuckets&quot;: オブジェクトバケットを記述します。ACLとインデックスの設定も記述可能です。</li>
+<li>&quot;fileBuckets&quot;: ファイルバケットを記述します。ACLも記述可能です。</li>
+</ul>
+<p>tenant, extfsSettings, apps, users, groups, objectBuckets, fileBuckets の各要素について、デベロッパーコンソール上で設定可能な項目に対応しております。
+必須要素の記述がない場合はエラーとなります。
+また、インポートしようとするテナント内にすでに同名の要素が存在していた場合もエラーとなります。</p>
+</div>
+<div class="section" id="dry-run">
+<h3>dry-run オプション<a class="headerlink" href="#dry-run" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>テナント内の項目のインポート時に
+--dry-run (-d) オプションを指定することにより、インプットしようとするファイルに対し文法の検証を事前に実施できます。
+--dry-run オプション指定時は実際の項目のインポートは一切行いません。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./baas-admin.sh -p <span class="o">[</span>profile<span class="o">]</span> -c import -f <span class="o">[</span>filename<span class="o">]</span> -d
+</pre></div>
+</div>
+<p>検証される内容は以下のとおりです。</p>
+<ul class="simple">
+<li>JSON/YAML 文法のチェック</li>
+<li>項目要素の必須性と正当性のチェック</li>
+</ul>
+<p>エラーが検出された場合は、エラーメッセージを参照し、インポートするファイルを修正してください。</p>
+</div>
+<div class="section" id="same-id">
+<h3>same-id オプション<a class="headerlink" href="#same-id" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>エクスポートされた JSON/YAML ファイルを(別のサーバなどで)インポートする場合、
+テナントID、アプリケーションID、キー(アプリケーションキー、マスターキー)とユーザIDは新たに採番されます。</p>
+<p>エクスポートされた JSON/YAML ファイルには以下に示すようにこれらの値が含まれています。
+これらの値を変更せずに引き継ぎたい場合は --same-id (-s) オプションを指定してください。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<ul class="last simple">
+<li>アプリケーションID、キー(アプリケーションキー、マスターキー)を正しく引き継ぐため、すべての値がすべて存在している必要があります。</li>
+<li>いずれかの値が未設定、あるいは空値の場合は、すべての値が新たに採番されます。</li>
+<li>同ID（テナントID、アプリケーションIDとユーザID）が既に存在している場合はエラーとなります。
+上書きされることはありません。</li>
+<li>ユーザ情報も引き継ぎたい場合は、--all(-a)オプションと併用してください。</li>
+</ul>
+</div>
+<p>インポートファイルでの設定例を以下に示します。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">tenant</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">56d02720c77229178c506b48</span>  <span class="c1"># テナントID</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">testtenant01</span>
+  <span class="l l-Scalar l-Scalar-Plain">...</span>
+
+<span class="l l-Scalar l-Scalar-Plain">apps</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">56d02768c77229178c506b4c</span>  <span class="c1"># アプリID</span>
+    <span class="l l-Scalar l-Scalar-Plain">appKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yIaMQwx1LbTWOGlJVqvDLXjMUusMCqxVji2gKsNb</span>  <span class="c1"># アプリキー</span>
+    <span class="l l-Scalar l-Scalar-Plain">masterKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">k1VaUSc9gD9illQHYzgh2aNodzukbTs4UqFIs6va</span>  <span class="c1"># マスターキー</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">app01</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+
+<span class="l l-Scalar l-Scalar-Plain">users</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">_id</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">577efe8075eefa4b536e587c</span>  <span class="c1"># ユーザID</span>
+    <span class="l l-Scalar l-Scalar-Plain">username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">user01</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="all">
+<h3>all オプション<a class="headerlink" href="#all" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>テナントのエクスポート時に、利用できるオプションです。</p>
+<p>通常のエクスポートはユーザ情報はエクスポートされませんが、all オプションを指定するとユーザ情報も含めエクスポートされます。</p>
+<p>なお、エクスポートされるユーザ情報には、パスワードではなくパスワードハッシュがエクスポートされます。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contextpath.html" class="btn btn-neutral float-right" title="5.2. コンテキストパスの変更" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="5. 詳細手順" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 各サーバのデータとその格納先 &mdash; サーバ共通リファレンス 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. サーバのチューニング" href="servers_tuning.html" />
+    <link rel="prev" title="1. 各サーバのミドルウェア・使用ポート" href="mws_ports.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> サーバ共通リファレンス
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mws_ports.html">1. 各サーバのミドルウェア・使用ポート</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 各サーバのデータとその格納先</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-console">2.1. API/Console サーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sse-push">2.2. SSE Push サーバ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cloudfn">2.3. Cloudfn サーバ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="servers_tuning.html">3. サーバのチューニング</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">サーバ共通リファレンス</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. 各サーバのデータとその格納先</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 各サーバのデータとその格納先<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>各サーバ（API/Console/SSE Push/Cloud Functions（以下 Cloudfn））のデータとその格納先について説明します。</p>
+<p>サーバのデータとは、以下データのことです。</p>
+<ul class="simple">
+<li>バイナリ： サーバソフトウェアの実行ファイル</li>
+<li>設定ファイル: サーバ動作時に必要な設定ファイル</li>
+<li>ログ: サーバ動作時に生成されたログファイル</li>
+<li>DB データ: MongoDB内に格納したユーザデータとログデータなど</li>
+</ul>
+<p>データの格納先とは、各サーバマニュアルのンストール手順に記載した上記データの格納先のことです。
+なお、カスタマイズ設定の場合はそちらの設定を確認してください。</p>
+<div class="section" id="api-console">
+<h2>2.1. API/Console サーバ<a class="headerlink" href="#api-console" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API/Console サーバのインストール手順については、<a class="reference external" href="../server/index.html">モバイルバックエンド基盤 サーバ利用手順書</a> を参照してください。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">データとその格納先</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>バイナリ</td>
+<td><ul class="first last simple">
+<li>/opt/tomcat/webapps/api.war</li>
+<li>/opt/tomcat/webapps/api</li>
+<li>/opt/tomcat/webapps/console.war</li>
+<li>/opt/tomcat/webapps/console</li>
+<li>/opt/nebula/baas-admin.jar</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>設定ファイル</td>
+<td><ul class="first last simple">
+<li>/etc/baas/*.xml</li>
+<li>/etc/baas/logback.properties</li>
+<li>/etc/td-agent/conf.d/baas-system.conf  (注1)</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>ログ</td>
+<td><ul class="first last simple">
+<li>/var/log/baas/*</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>DBデータ</td>
+<td><ul class="first last simple">
+<li>MongoDB内の、baas* で始まる全てのDB</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>注1：Fluentd サーバ利用時のみ存在</li>
+</ul>
+</div>
+<div class="section" id="sse-push">
+<h2>2.2. SSE Push サーバ<a class="headerlink" href="#sse-push" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>SSE Push サーバのインストール手順については、<a class="reference external" href="../ssepush-server/index.html">SSE Push サーバ利用手順書</a> を参照してください。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">データとその格納先</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>バイナリ</td>
+<td><ul class="first last simple">
+<li>/opt/tomcat/webapps/ssepush.war</li>
+<li>/opt/tomcat/webapps/ssepush</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>設定ファイル</td>
+<td><ul class="first last simple">
+<li>/etc/ssepush/*.xml</li>
+<li>/etc/ssepush/logback.properties</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>ログ</td>
+<td><ul class="first last simple">
+<li>/var/log/ssepush/*</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cloudfn">
+<h2>2.3. Cloudfn サーバ<a class="headerlink" href="#cloudfn" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Cloudfn サーバのインストール手順については、<a class="reference external" href="../cloudfunctions-server/index.html">Cloudfn サーバ利用手順書</a> を参照してください。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">項目</th>
+<th class="head">データとその格納先</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>バイナリ</td>
+<td><ul class="first last simple">
+<li>/opt/cloudfn/*</li>
+<li>/var/cloudfn/*</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>設定ファイル</td>
+<td><ul class="first last simple">
+<li>/etc/baas/cloudfn-server-manager-config.yaml</li>
+<li>/etc/baas/cloudfn-server-manager-logback.properties</li>
+<li>/etc/td-agent/conf.d/baas-cloudfn.conf  (注1)</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>ログ</td>
+<td><ul class="first last simple">
+<li>/var/log/cloudfn/*</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>注1：Fluentd サーバ利用時のみ存在</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="servers_tuning.html" class="btn btn-neutral float-right" title="3. サーバのチューニング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mws_ports.html" class="btn btn-neutral" title="1. 各サーバのミドルウェア・使用ポート" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+.. _app_create:
+
+アプリケーション作成
+====================
+
+.. http:post:: /1/_sysadm/(tenantId)/apps
+
+    アプリケーションを作成する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+    :reqheader Content-Type: application/json, application/yaml のいずれか
+
+    :parameter string tenantId: テナントID
+
+    :statuscode 200: 正常に作成した
+    :statuscode 400: リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当テナントが存在しない
+    :statuscode 409: 同一アプリケーションIDが存在している
+    :statuscode 415: Content-Type 不正
+
+    :>json string app._id: アプリケーションID
+    :>json string app.name: アプリケーション名
+    :>json string app.appKey: アプリケーションキー
+    :>json string app.masterKey: マスターキー
+    :>json string app.description: 説明文
+    :>json boolean app.enabled: アプリケーションの有効フラグ
+    :>json string app.gcmKey: GCM/FCM キー
+    :>json boolean app.allowClientPush: クライアント Push 許可フラグ
+
+
+    **リクエストボディ**
+
+    JSONもしくはYAML形式で記述されたアプリケーション設定を指定する。
+
+    YAML形式によるリクエストの例を以下に示す。
+
+    .. code-block:: yaml
+
+        app:
+          name: app01
+          description: app01
+          appKey: kkXPlgXdKMbI549ebFapDc37pzhXtj5qRsaqikLF
+          masterKey: 9YGU3JgrCBYH8FAzmot3zMgJM1lJAAqf7voqXwQI
+          enabled: true
+          gcmKey: ''
+          allowClientPush: false
+
+    以下に設定可能なプロパティを示す。
+
+    .. list-table::
+       :header-rows: 1
+       :widths: 20, 40, 30, 10
+
+       * - プロパティ
+         - 名称
+         - デフォルト値
+         - レスポンス
+       * - _id
+         - アプリケーションID
+         - サーバ側で採番される
+         - 表示
+       * - name
+         - アプリケーション名
+         - 必須
+         - 表示
+       * - appKey
+         - アプリケーションキー
+         - サーバ側で採番される
+         - 表示
+       * - masterKey
+         - マスターキー
+         - サーバ側で採番される
+         - 表示
+       * - description
+         - 説明文
+         - 空
+         - 表示
+       * - enabled
+         - アプリケーションの有効フラグ
+         - true
+         - 表示
+       * - gcmKey
+         - GCM/FCMキー
+         - 空
+         - 表示
+       * - allowClientPush
+         - クライアントPush許可フラグ
+         - false
+         - 表示
+
+    **レスポンスボディ**
+
+    作成したアプリケーション情報を含む JSON データが返却される。
+
+    以下に例を示す。
+
+    .. code-block:: javascript
+
+        {
+          "app": {
+            "_id": "52116f01ac521e1742000003",
+            "name": " app01",
+            "description": "app01",
+            "appKey": "kkXPlgXdKMbI549ebFapDc37pzhXtj5qRsaqikLF",
+            "masterKey": "9YGU3JgrCBYH8FAzmot3zMgJM1lJAAqf7voqXwQI",
+            "enabled": true,
+            "gcmKey": "",
+            "allowClientPush": false
+          }
+        }
+
+    **注意事項**
+
+    * システム管理者権限が必要。
+    * アプリケーション名は必須フィールドである。
+    * 必須フィールド以外のフィールド省略時は、デフォルト値を設定する。

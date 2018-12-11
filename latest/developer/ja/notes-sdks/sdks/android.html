@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.4. Android SDK &mdash; NEC BaaS Notes 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2.5. JavaScript SDK" href="javascript.html" />
+    <link rel="prev" title="2.3. ファイルストレージ" href="file_storage.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> NEC BaaS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../support.html">1. 品質保証範囲</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. SDK</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="user.html">2.1. ユーザ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html">2.2. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.3. ファイルストレージ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.4. Android SDK</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#android-5-1-1">2.4.1. Android 5.1.1 使用時の注意点</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">対策</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">2.5. JavaScript SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dotnet.html">2.6. .NET SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html">2.7. Push</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">2.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="offline.html">2.9. オフライン・同期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_limit.html">2.10. 文字種・文字列長制約</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparison_table.html">2.11. SDKの機能比較表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">3. 改訂履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NEC BaaS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">2. SDK</a> &raquo;</li>
+        
+      <li>2.4. Android SDK</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="android-sdk">
+<h1>2.4. Android SDK<a class="headerlink" href="#android-sdk" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="android-5-1-1">
+<h2>2.4.1. Android 5.1.1 使用時の注意点<a class="headerlink" href="#android-5-1-1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Android 5.1.1 の特定環境で、メモリリークが発生する可能性があります</p>
+<ul class="simple">
+<li>具体的には、SDE for SmartDevice に組み込み、WebView を使用する場合。</li>
+<li>Android 5 の ART に関連して、ネイティブヒープがリークすることを確認しています。<ul>
+<li>モバイルバックエンド基盤の API を連続発行し続ける状態で、1時間に100KB程度。</li>
+</ul>
+</li>
+<li>Android の ART / WebView の潜在バグと思われます。</li>
+<li>Android 4.x および 6.0 環境では問題はありません。</li>
+</ul>
+<div class="section" id="id1">
+<h3>対策<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>通常利用で問題になることはないと思われますが、Android 5.1.1 + WebView 環境での利用時には注意が必要です。
+問題になるようであれば、1日に1回程度アプリを再起動するなどの対策を行って下さい。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="javascript.html" class="btn btn-neutral float-right" title="2.5. JavaScript SDK" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="file_storage.html" class="btn btn-neutral" title="2.3. ファイルストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

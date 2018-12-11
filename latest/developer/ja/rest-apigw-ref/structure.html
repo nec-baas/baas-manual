@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. データ構造 &mdash; REST API Reference (APIGW/Cloud Functions) 6.5.1 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="6. API Gateway" href="apigw/index.html" />
+    <link rel="prev" title="4. 共通定義" href="common.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Reference (APIGW/Cloud Functions)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                6.5.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common.html">4. 共通定義</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. データ構造</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">5.2. API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operation">5.3. Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-table">5.4. ファンクションテーブル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">5.5. ファンクション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">5.6. コード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5.7. 環境</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apigw/index.html">6. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis/index.html">7. API 管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">8. コード管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">9. Function 管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logs/index.html">10. ログ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html">11. 備考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">12. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Reference (APIGW/Cloud Functions)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. データ構造</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. データ構造<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>5.1. 概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<a class="reference internal image-reference" href="_images/class-diagram.png"><img alt="_images/class-diagram.png" src="_images/class-diagram.png" style="width: 762.0px; height: 651.6px;" /></a>
+</div>
+<div class="section" id="api">
+<h2>5.2. API<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>API は Swagger 2.0 (OpenAPI 2.0)仕様 JSON または YAML で定義する。</p>
+</div>
+<div class="section" id="operation">
+<h2>5.3. Operation<a class="headerlink" href="#operation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Swagger内のOperation Objectで定義する。パス名とHTTPメソッド名で特定される。</p>
+<p>Operation はoperationId属性を持つ。ファンクションを指定する場合、operationId は必須属性である。operationIdにはファンクションなどを識別する識別名を記載する。</p>
+<ul>
+<li><p class="first">ファンクションを指定する場合、識別名は &quot;function:Function名&quot; と記述する</p>
+<blockquote>
+<div><ul class="simple">
+<li>&quot;function:&quot; は省略可能</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>ベンダ拡張属性として、1) トップレベル、2) Path、3) Operation のそれぞれに ACL 属性を指定できる（複数指定した場合は後者が優先）。
+ACL 属性は &quot;x-acl&quot; 属性に設定し、値にはAPI を実行可能なユーザID・グループ名の一覧を配列で指定する(グループ名は先頭に &quot;g:&quot; プレフィクスを付ける)。
+ACL属性を省略した場合は、権限チェックは行われない。</p>
+<p>例を以下に示す(この例は Operation に ACL を指定している)。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/sayHello</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">operationId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">function:sayHello</span>
+      <span class="l l-Scalar l-Scalar-Plain">x-acl</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">g:authenticated</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-table">
+<span id="id3"></span><h2>5.4. ファンクションテーブル<a class="headerlink" href="#function-table" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファンクションテーブルは JSON または YAML 形式で定義する。
+キーにファンクション名、値にファンクション定義を指定する。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;{function-name-1}&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* Function */</span> <span class="p">},</span>
+  <span class="s2">&quot;{function-name-2}&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* Function */</span> <span class="p">},</span>
+  <span class="c1">//…</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>5.5. ファンクション<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファンクション定義は JSON または YAML で定義する。code属性、handler属性、env属性を持つ。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* Code */</span> <span class="p">},</span>
+  <span class="s2">&quot;handler&quot;</span><span class="o">:</span> <span class="s2">&quot;{handler-spec-string}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;env&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* Env */</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>5.6. コード<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>コード定義は JSON または YAML で定義する。bucket属性、file属性を持つ。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;bucket&quot;</span><span class="o">:</span> <span class="s2">&quot;{nebula-filestorage-bucket-name}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;file&quot;</span><span class="o">:</span> <span class="s2">&quot;{file-name}&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>5.7. 環境<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>環境は JSON または YAML で定義する。spec属性、timeout属性、memorySize属性を持つ。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;spec&quot;</span><span class="o">:</span> <span class="s2">&quot;env-spec-string&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;timeout&quot;</span><span class="o">:</span> <span class="mi">600</span> <span class="cm">/* seconds */</span><span class="p">,</span>
+  <span class="s2">&quot;memorySize&quot;</span><span class="o">:</span> <span class="mi">128</span> <span class="cm">/* mebi bytes */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="apigw/index.html" class="btn btn-neutral float-right" title="6. API Gateway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="common.html" class="btn btn-neutral" title="4. 共通定義" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

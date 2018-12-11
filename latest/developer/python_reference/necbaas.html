@@ -1,0 +1,1455 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>necbaas package &mdash; NEC BaaS Python SDK 7.5.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="NEC BaaS Python SDK Reference" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> NEC BaaS Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">necbaas package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas.apigw">necbaas.apigw module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas.buckets">necbaas.buckets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas.file_bucket">necbaas.file_bucket module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas.group">necbaas.group module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas.object_bucket">necbaas.object_bucket module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas.service">necbaas.service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas.user">necbaas.user module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-necbaas">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NEC BaaS Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>necbaas package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/necbaas.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="necbaas-package">
+<h1>necbaas package<a class="headerlink" href="#necbaas-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-necbaas.apigw">
+<span id="necbaas-apigw-module"></span><h2>necbaas.apigw module<a class="headerlink" href="#module-necbaas.apigw" title="Permalink to this headline">¶</a></h2>
+<p>API Gateway module</p>
+<dl class="class">
+<dt id="necbaas.apigw.Apigw">
+<em class="property">class </em><code class="descclassname">necbaas.apigw.</code><code class="descname">Apigw</code><span class="sig-paren">(</span><em>service</em>, <em>apiname</em>, <em>method</em>, <em>subpath=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/apigw.html#Apigw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.apigw.Apigw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>API Gateway instance.
+Create this instance for each API (apiname, method and subpath)</p>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">necbaas</span><span class="o">.</span><span class="n">Apigw</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="s2">&quot;api1&quot;</span><span class="p">,</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;a/b/c&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>apiname</strong> (<em>str</em>) – API name</li>
+<li><strong>method</strong> (<em>str</em>) – Method (GET/POST/PUT/DELETE)</li>
+<li><strong>subpath</strong> (<em>str</em>) – Sub-path (optional)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="necbaas.apigw.Apigw.service">
+<code class="descname">service</code><a class="headerlink" href="#necbaas.apigw.Apigw.service" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Service</em> – Service</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.apigw.Apigw.apiname">
+<code class="descname">apiname</code><a class="headerlink" href="#necbaas.apigw.Apigw.apiname" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – API name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.apigw.Apigw.method">
+<code class="descname">method</code><a class="headerlink" href="#necbaas.apigw.Apigw.method" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Method (GET/POST/PUT/DELETE)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.apigw.Apigw.subpath">
+<code class="descname">subpath</code><a class="headerlink" href="#necbaas.apigw.Apigw.subpath" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Sub-path (optional)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.apigw.Apigw.execute">
+<code class="descname">execute</code><span class="sig-paren">(</span><em>data=None</em>, <em>json=None</em>, <em>query=None</em>, <em>headers=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/apigw.html#Apigw.execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.apigw.Apigw.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute API Gateway.
+Return value is ‘Response’ object of ‘requests’ library.</p>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">26.3</span><span class="p">})</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>  <span class="c1"># get status code</span>
+<span class="n">json</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>  <span class="c1"># response body of JSON as dict</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>any</em>) – Request body, in bytes or file-like object. This overrides ‘json’ argument. (optional)</li>
+<li><strong>json</strong> (<em>dict</em>) – Request body of JSON. (optional)</li>
+<li><strong>query</strong> (<em>dict</em>) – Query parameters. (optional)</li>
+<li><strong>headers</strong> (<em>dict</em>) – Headers. (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response of ‘requests’ library.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Response</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-necbaas.buckets">
+<span id="necbaas-buckets-module"></span><h2>necbaas.buckets module<a class="headerlink" href="#module-necbaas.buckets" title="Permalink to this headline">¶</a></h2>
+<p>Bucket manager module</p>
+<dl class="class">
+<dt id="necbaas.buckets.Buckets">
+<em class="property">class </em><code class="descclassname">necbaas.buckets.</code><code class="descname">Buckets</code><span class="sig-paren">(</span><em>service</em>, <em>bucket_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/buckets.html#Buckets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.buckets.Buckets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Bucket Manager</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>bucket_type</strong> (<em>str</em>) – Bucket type, “object” or “file”.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="necbaas.buckets.Buckets.service">
+<code class="descname">service</code><a class="headerlink" href="#necbaas.buckets.Buckets.service" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Service</em> – Service</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.buckets.Buckets.bucket_type">
+<code class="descname">bucket_type</code><a class="headerlink" href="#necbaas.buckets.Buckets.bucket_type" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Bucket type, “object” or “file”.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.buckets.Buckets.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/buckets.html#Buckets.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.buckets.Buckets.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query bucket.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) – Bucket name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Bucket info</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.buckets.Buckets.query">
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/buckets.html#Buckets.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.buckets.Buckets.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query buckets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of bucket info</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.buckets.Buckets.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/buckets.html#Buckets.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.buckets.Buckets.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove bucket.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) – Bucket name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Bucket info</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.buckets.Buckets.upsert">
+<code class="descname">upsert</code><span class="sig-paren">(</span><em>name</em>, <em>desc=''</em>, <em>acl=None</em>, <em>content_acl=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/buckets.html#Buckets.upsert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.buckets.Buckets.upsert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create/Update bucket.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) – Bucket name</li>
+<li><strong>desc</strong> (<em>str</em>) – Description (mandatory for update)</li>
+<li><strong>acl</strong> (<em>dict</em>) – Bucket ACL (mandatory for update)</li>
+<li><strong>content_acl</strong> (<em>dict</em>) – Content ACL (mandatory for update)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-necbaas.file_bucket">
+<span id="necbaas-file-bucket-module"></span><h2>necbaas.file_bucket module<a class="headerlink" href="#module-necbaas.file_bucket" title="Permalink to this headline">¶</a></h2>
+<p>File bucket module</p>
+<dl class="class">
+<dt id="necbaas.file_bucket.FileBucket">
+<em class="property">class </em><code class="descclassname">necbaas.file_bucket.</code><code class="descname">FileBucket</code><span class="sig-paren">(</span><em>service</em>, <em>bucket_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>File Bucket</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>bucket_name</strong> (<em>str</em>) – Bucket name</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="necbaas.file_bucket.FileBucket.service">
+<code class="descname">service</code><a class="headerlink" href="#necbaas.file_bucket.FileBucket.service" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Service</em> – Service</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.file_bucket.FileBucket.bucket_name">
+<code class="descname">bucket_name</code><a class="headerlink" href="#necbaas.file_bucket.FileBucket.bucket_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Bucket name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.file_bucket.FileBucket.create">
+<code class="descname">create</code><span class="sig-paren">(</span><em>filename</em>, <em>data</em>, <em>content_type='application/octet-stream'</em>, <em>acl=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload and create new file.
+To replace existing file, use ‘update()’.</p>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/data/data1.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">bucket</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="s2">&quot;data1.dat&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">]})</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) – Filename</li>
+<li><strong>data</strong> (<em>any</em>) – File data in bytes or file-like object.</li>
+<li><strong>content_type</strong> (<em>str</em>) – Content-Type (default=application/octet-stream)</li>
+<li><strong>acl</strong> (<em>dict</em>) – ACL (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.file_bucket.FileBucket.download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>filename</em>, <em>stream=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download file.</p>
+<p class="rubric">Example</p>
+<p>Example 1 without streaming:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;file1.json&quot;</span><span class="p">)</span>
+<span class="n">binary</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>   <span class="c1"># get binary content</span>
+<span class="c1">#text = r.text       # get text content</span>
+<span class="c1">#json = r.json()     # get json content</span>
+</pre></div>
+</div>
+<p>Example2 with streaming:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">bucket</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;file2.zip&quot;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+    <span class="c1"># Do things with the response here</span>
+</pre></div>
+</div>
+<p>For details of streaming support,
+see <a class="reference external" href="http://docs.python-requests.org/en/master/user/advanced/#streaming-requests">http://docs.python-requests.org/en/master/user/advanced/#streaming-requests</a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) – Filename</li>
+<li><strong>stream</strong> (<em>bool</em>) – Stream flag (optional, default=False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response (requests library)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Response</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.file_bucket.FileBucket.get_metadata">
+<code class="descname">get_metadata</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket.get_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket.get_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get file metadata.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) – File name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">File Metadata</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.file_bucket.FileBucket.query">
+<code class="descname">query</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query file list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of file metadata JSON</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.file_bucket.FileBucket.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) – Filename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Response JSON (empty JSON)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.file_bucket.FileBucket.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>filename</em>, <em>data</em>, <em>content_type='application/octet-stream'</em>, <em>meta_etag=None</em>, <em>file_etag=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update and replace file body.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) – File name</li>
+<li><strong>data</strong> (<em>any</em>) – File data in bytes or file-like object.</li>
+<li><strong>content_type</strong> (<em>str</em>) – Content-Type</li>
+<li><strong>meta_etag</strong> (<em>str</em>) – File metadata ETag (optional)</li>
+<li><strong>file_etag</strong> (<em>str</em>) – File body ETag (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.file_bucket.FileBucket.update_metadata">
+<code class="descname">update_metadata</code><span class="sig-paren">(</span><em>filename</em>, <em>meta</em>, <em>etag=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/file_bucket.html#FileBucket.update_metadata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.file_bucket.FileBucket.update_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update file metadata</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) – File name</li>
+<li><strong>meta</strong> (<em>dict</em>) – File metadata (JSON)</li>
+<li><strong>etag</strong> (<em>str</em>) – ETag of file metadata (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Updated file metadata</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-necbaas.group">
+<span id="necbaas-group-module"></span><h2>necbaas.group module<a class="headerlink" href="#module-necbaas.group" title="Permalink to this headline">¶</a></h2>
+<p>Group module</p>
+<dl class="class">
+<dt id="necbaas.group.Group">
+<em class="property">class </em><code class="descclassname">necbaas.group.</code><code class="descname">Group</code><span class="sig-paren">(</span><em>service</em>, <em>group_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/group.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.group.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>group_name</strong> (<em>str</em>) – Group name</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="necbaas.group.Group.service">
+<code class="descname">service</code><a class="headerlink" href="#necbaas.group.Group.service" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Service</em> – Service</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.group.Group.group_name">
+<code class="descname">group_name</code><a class="headerlink" href="#necbaas.group.Group.group_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Group name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.group.Group.add_members">
+<code class="descname">add_members</code><span class="sig-paren">(</span><em>users=None</em>, <em>groups=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/group.html#Group.add_members"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.group.Group.add_members" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add members in group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>users</strong> (<em>list</em>) – List of user ID to add (optional)</li>
+<li><strong>groups</strong> (<em>list</em>) – List of group name to add (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Group info</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.group.Group.get">
+<code class="descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/group.html#Group.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.group.Group.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Group info</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.group.Group.query">
+<em class="property">static </em><code class="descname">query</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/group.html#Group.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.group.Group.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query groups.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of group info</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.group.Group.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/group.html#Group.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.group.Group.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Response json</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.group.Group.remove_members">
+<code class="descname">remove_members</code><span class="sig-paren">(</span><em>users=None</em>, <em>groups=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/group.html#Group.remove_members"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.group.Group.remove_members" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove members in group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>users</strong> (<em>list</em>) – List of user ID to remove (optional)</li>
+<li><strong>groups</strong> (<em>list</em>) – List of group name to remove (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Group info</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.group.Group.upsert">
+<code class="descname">upsert</code><span class="sig-paren">(</span><em>users=None</em>, <em>groups=None</em>, <em>acl=None</em>, <em>etag=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/group.html#Group.upsert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.group.Group.upsert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create/Update group.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>users</strong> (<em>list</em>) – List of user ID belonging to group (optional)</li>
+<li><strong>groups</strong> (<em>list</em>) – List of group name belonging to group (optional)</li>
+<li><strong>acl</strong> (<em>dict</em>) – ACL (optional)</li>
+<li><strong>etag</strong> (<em>str</em>) – ETag (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-necbaas.object_bucket">
+<span id="necbaas-object-bucket-module"></span><h2>necbaas.object_bucket module<a class="headerlink" href="#module-necbaas.object_bucket" title="Permalink to this headline">¶</a></h2>
+<p>JSON Object bucket module</p>
+<dl class="class">
+<dt id="necbaas.object_bucket.ObjectBucket">
+<em class="property">class </em><code class="descclassname">necbaas.object_bucket.</code><code class="descname">ObjectBucket</code><span class="sig-paren">(</span><em>service</em>, <em>bucket_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>JSON Object Storage Bucket.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>bucket_name</strong> (<em>str</em>) – Bucket name</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="necbaas.object_bucket.ObjectBucket.service">
+<code class="descname">service</code><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.service" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Service</em> – Service</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.object_bucket.ObjectBucket.bucket_name">
+<code class="descname">bucket_name</code><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.bucket_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Bucket name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.aggregate">
+<code class="descname">aggregate</code><span class="sig-paren">(</span><em>pipeline</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregation operation</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;$lookup&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}},</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;allowDiskUse&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pipeline</strong> (<em>list</em>) – List of aggregation pipeline stage</li>
+<li><strong>options</strong> (<em>dist</em>) – Aggregation option parameter (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of aggregation results</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.batch">
+<code class="descname">batch</code><span class="sig-paren">(</span><em>requests</em>, <em>soft_delete=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Batch operation</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">requests</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;insert&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">}},</span>
+    <span class="p">{</span><span class="s2">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;insert&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}}</span>
+<span class="p">]</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">requests</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>requests</strong> (<em>list</em>) – List of batch requests</li>
+<li><strong>soft_delete</strong> (<em>bool</em>) – Soft delete (optional, default=False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of batch results</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert JSON Object</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">acl</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span> <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">]}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span> <span class="s2">&quot;ACL&quot;</span><span class="p">:</span> <span class="n">acl</span><span class="p">})</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>dict</em>) – Data (JSON)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Response JSON</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.query">
+<code class="descname">query</code><span class="sig-paren">(</span><em>where=None</em>, <em>order=None</em>, <em>skip=0</em>, <em>limit=None</em>, <em>projection=None</em>, <em>delete_mark=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query objects in this bucket.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;orange&quot;</span><span class="p">},</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;-updatedAt&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>where</strong> (<em>dict</em>) – Query conditions (JSON) (optional)</li>
+<li><strong>order</strong> (<em>str</em>) – Sort conditions (optional)</li>
+<li><strong>skip</strong> (<em>int</em>) – Skip count (optional, default=0)</li>
+<li><strong>limit</strong> (<em>int</em>) – Limit count (optional)</li>
+<li><strong>projection</strong> (<em>dict</em>) – Projection (JSON) (optional)</li>
+<li><strong>delete_mark</strong> (<em>bool</em>) – Include soft deleted data (optional, default=False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of JSON objects</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.query_with_count">
+<code class="descname">query_with_count</code><span class="sig-paren">(</span><em>where=None</em>, <em>order=None</em>, <em>skip=0</em>, <em>limit=None</em>, <em>projection=None</em>, <em>delete_mark=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.query_with_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.query_with_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query objects in this bucket (with count query).</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">query_with_count</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;product_name&quot;</span><span class="p">:</span> <span class="s2">&quot;orange&quot;</span><span class="p">},</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;-updatedAt&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>where</strong> (<em>dict</em>) – Query conditions (JSON) (optional)</li>
+<li><strong>order</strong> (<em>str</em>) – Sort conditions (optional)</li>
+<li><strong>skip</strong> (<em>int</em>) – Skip count (optional, default=0)</li>
+<li><strong>limit</strong> (<em>int</em>) – Limit count (optional)</li>
+<li><strong>projection</strong> (<em>dict</em>) – Projection (JSON) (optional)</li>
+<li><strong>delete_mark</strong> (<em>bool</em>) – Include soft deleted data (optional, default=False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Tuple of list of JSON objects and total count of query.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">(list, count)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>oid</em>, <em>soft_delete=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove one JSON Object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>oid</strong> (<em>str</em>) – Object ID</li>
+<li><strong>soft_delete</strong> (<em>bool</em>) – Soft delete (optional, default=False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.remove_with_query">
+<code class="descname">remove_with_query</code><span class="sig-paren">(</span><em>where=None</em>, <em>soft_delete=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.remove_with_query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.remove_with_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove multiple JSON Objects</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>where</strong> (<em>dict</em>) – Query condition (optional)</li>
+<li><strong>soft_delete</strong> (<em>bool</em>) – Soft delete (optional, default=False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.object_bucket.ObjectBucket.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>oid</em>, <em>data</em>, <em>etag=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/object_bucket.html#ObjectBucket.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.object_bucket.ObjectBucket.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update JSON Object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>oid</strong> (<em>str</em>) – ID of Object</li>
+<li><strong>data</strong> (<em>dict</em>) – Data (JSON)</li>
+<li><strong>etag</strong> (<em>str</em>) – ETag (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-necbaas.service">
+<span id="necbaas-service-module"></span><h2>necbaas.service module<a class="headerlink" href="#module-necbaas.service" title="Permalink to this headline">¶</a></h2>
+<p>BaaS access service module</p>
+<dl class="class">
+<dt id="necbaas.service.Service">
+<em class="property">class </em><code class="descclassname">necbaas.service.</code><code class="descname">Service</code><span class="sig-paren">(</span><em>param=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/service.html#Service"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.service.Service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>BaaS access service class.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">necbaas</span><span class="o">.</span><span class="n">Service</span><span class="p">({</span>
+    <span class="s2">&quot;baseUrl&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.example.com/api&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tenantId&quot;</span><span class="p">:</span> <span class="s2">&quot;tenant1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appId&quot;</span><span class="p">:</span> <span class="s2">&quot;0123456789abcdef&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;appKey&quot;</span><span class="p">:</span> <span class="s2">&quot;0123456789abcdef&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;proxy&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;http&quot;</span><span class="p">:</span> <span class="s2">&quot;proxy.example.com:8080&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;https&quot;</span><span class="p">:</span> <span class="s2">&quot;proxy.example.com:8080&quot;</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>param</strong> (<em>dict</em>) – <p>Parameters, must have following dict format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">baseUrl</span><span class="p">:</span> <span class="n">Base</span> <span class="n">URL</span> <span class="n">of</span> <span class="n">BaaS</span> <span class="n">API</span> <span class="n">Server</span> <span class="p">(</span><span class="n">ex</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="p">)</span> <span class="p">(</span><span class="n">mandatory</span><span class="p">)</span>
+<span class="n">tenantId</span><span class="p">:</span> <span class="n">Tenant</span> <span class="n">ID</span> <span class="ow">or</span> <span class="n">Tenant</span> <span class="n">Name</span> <span class="p">(</span><span class="n">mandatory</span><span class="p">)</span>
+<span class="n">appId</span><span class="p">:</span> <span class="n">App</span> <span class="n">ID</span> <span class="p">(</span><span class="n">mandatory</span><span class="p">)</span>
+<span class="n">appKey</span><span class="p">:</span> <span class="n">App</span> <span class="n">Key</span> <span class="p">(</span><span class="ow">or</span> <span class="n">Master</span> <span class="n">Key</span><span class="p">)</span> <span class="p">(</span><span class="n">mandatory</span><span class="p">)</span>
+<span class="n">proxy</span><span class="p">:</span> <span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+    <span class="n">http</span><span class="p">:</span> <span class="n">Http</span> <span class="n">Proxy</span> <span class="p">(</span><span class="n">host</span><span class="p">:</span><span class="n">port</span><span class="p">)</span>
+    <span class="n">https</span><span class="p">:</span> <span class="n">Https</span> <span class="n">Proxy</span> <span class="p">(</span><span class="n">host</span><span class="p">:</span><span class="n">port</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="necbaas.service.Service.param">
+<code class="descname">param</code><a class="headerlink" href="#necbaas.service.Service.param" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – Service parameters, passed by constructor argument.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.service.Service.session_token">
+<code class="descname">session_token</code><a class="headerlink" href="#necbaas.service.Service.session_token" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Session Token</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.service.Service.session_token_expire">
+<code class="descname">session_token_expire</code><a class="headerlink" href="#necbaas.service.Service.session_token_expire" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em> – Session Token expire time (unix epoch seconds)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.service.Service.verify_server_cert">
+<code class="descname">verify_server_cert</code><a class="headerlink" href="#necbaas.service.Service.verify_server_cert" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> – Verify server cert (default: True)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.service.Service.logger">
+<code class="descname">logger</code><a class="headerlink" href="#necbaas.service.Service.logger" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>logging.Logger</em> – Logger. You can change log level with setLevel()</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.service.Service.delete_session_token_file">
+<em class="property">static </em><code class="descname">delete_session_token_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/service.html#Service.delete_session_token_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.service.Service.delete_session_token_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete session token file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.service.Service.execute_rest">
+<code class="descname">execute_rest</code><span class="sig-paren">(</span><em>method</em>, <em>path</em>, <em>query=None</em>, <em>data=None</em>, <em>json=None</em>, <em>headers=None</em>, <em>stream=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/service.html#Service.execute_rest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.service.Service.execute_rest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call REST API.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is low level and internal method, so you should not use this.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>method</strong> (<em>str</em>) – HTTP method name</li>
+<li><strong>path</strong> (<em>str</em>) – Path. The part after ‘/1/{tenantId}’ of full path.</li>
+<li><strong>query</strong> (<em>dict</em>) – Query parameters in dictionary.</li>
+<li><strong>data</strong> (<em>data</em>) – Request body, in dict (form-encoded), bytes or file-like object.
+This overrides ‘json’ argument.</li>
+<li><strong>json</strong> (<em>dict</em>) – Request JSON in dictionary.</li>
+<li><strong>headers</strong> (<em>dict</em>) – headers</li>
+<li><strong>stream</strong> (<em>bool</em>) – Stream flag</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Response</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.service.Service.load_session_token">
+<code class="descname">load_session_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/service.html#Service.load_session_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.service.Service.load_session_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load session token from file.
+If session token file does not exist, session token is cleared.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.service.Service.save_config">
+<code class="descname">save_config</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/service.html#Service.save_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.service.Service.save_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save configuration to file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – file path</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.service.Service.save_session_token">
+<code class="descname">save_session_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/service.html#Service.save_session_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.service.Service.save_session_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save session token to file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.service.Service.verify_session_token">
+<code class="descname">verify_session_token</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/service.html#Service.verify_session_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.service.Service.verify_session_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify session token in instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-necbaas.user">
+<span id="necbaas-user-module"></span><h2>necbaas.user module<a class="headerlink" href="#module-necbaas.user" title="Permalink to this headline">¶</a></h2>
+<p>User module</p>
+<dl class="class">
+<dt id="necbaas.user.User">
+<em class="property">class </em><code class="descclassname">necbaas.user.</code><code class="descname">User</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="necbaas.user.User.username">
+<code class="descname">username</code><a class="headerlink" href="#necbaas.user.User.username" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Username</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.user.User.email">
+<code class="descname">email</code><a class="headerlink" href="#necbaas.user.User.email" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – E-mail address</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.user.User.password">
+<code class="descname">password</code><a class="headerlink" href="#necbaas.user.User.password" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Password</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="necbaas.user.User.options">
+<code class="descname">options</code><a class="headerlink" href="#necbaas.user.User.options" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em> – Options</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.user.User.get">
+<em class="property">static </em><code class="descname">get</code><span class="sig-paren">(</span><em>service</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get user info.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>user_id</strong> (<em>str</em>) – User ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">User info</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.user.User.login">
+<em class="property">static </em><code class="descname">login</code><span class="sig-paren">(</span><em>service</em>, <em>username=None</em>, <em>email=None</em>, <em>password=None</em>, <em>params=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login</p>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># login with username</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">necbaas</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;user1&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;Passw0rD&quot;</span><span class="p">)</span>
+
+<span class="c1"># login with email</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">necbaas</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;user1@example.com&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;Passw0rD&quot;</span><span class="p">)</span>
+
+<span class="c1"># login with dict</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">necbaas</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;Passw0rD&quot;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>username</strong> (<em>str</em>) – User name (mandatory, if both email/params is not specified)</li>
+<li><strong>email</strong> (<em>str</em>) – E-mail (mandatory, if both username/params is not specified)</li>
+<li><strong>password</strong> (<em>str</em>) – Password (mandatory, if params is not specified)</li>
+<li><strong>params</strong> (<em>dict</em>) – dictionary. The parameter is encoded in JSON and sent to server.
+Usually contains username or email, and password. (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.user.User.logout">
+<em class="property">static </em><code class="descname">logout</code><span class="sig-paren">(</span><em>service</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logout</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Response JSON in dictionary</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.user.User.query">
+<em class="property">static </em><code class="descname">query</code><span class="sig-paren">(</span><em>service</em>, <em>username=None</em>, <em>email=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Query user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>username</strong> (<em>str</em>) – Username (optional)</li>
+<li><strong>email</strong> (<em>str</em>) – E-mail (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of user info</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.user.User.register">
+<code class="descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.register"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register user.
+Specify username, email, password and options properties.</p>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">user</span> <span class="o">=</span> <span class="n">necbaas</span><span class="o">.</span><span class="n">User</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+<span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span>
+<span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;foo@example.com&quot;</span>
+<span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;Passw0rD&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">register</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Registration info (JSON)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dist</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.user.User.remove">
+<em class="property">static </em><code class="descname">remove</code><span class="sig-paren">(</span><em>service</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>user_id</strong> (<em>str</em>) – User ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="necbaas.user.User.reset_password">
+<em class="property">static </em><code class="descname">reset_password</code><span class="sig-paren">(</span><em>service</em>, <em>username=None</em>, <em>email=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.reset_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.reset_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset password.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>service</strong> (<a class="reference internal" href="#necbaas.service.Service" title="necbaas.service.Service"><em>Service</em></a>) – Service</li>
+<li><strong>username</strong> (<em>str</em>) – Username (optional)</li>
+<li><strong>email</strong> (<em>str</em>) – E-mail (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Response JSON</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="necbaas.user.User.update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>user_id</em>, <em>etag=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/necbaas/user.html#User.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#necbaas.user.User.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>str</em>) – User ID</li>
+<li><strong>etag</strong> (<em>str</em>) – ETag (optional)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">User info (JSON)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dist</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-necbaas">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-necbaas" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="NEC BaaS Python SDK Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, NEC Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'7.5.0',
+            LANGUAGE:'en',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

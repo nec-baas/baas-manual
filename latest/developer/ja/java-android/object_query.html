@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. オブジェクトストレージ:クエリ &mdash; Java/Android SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="9. オブジェクトの集計" href="object_aggregation.html" />
+    <link rel="prev" title="7. JSONオブジェクトストレージ" href="object_storage.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Java/Android SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. SDKセットアップ手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Java API の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">7. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. オブジェクトストレージ:クエリ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.1. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">8.2. クエリ条件の指定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">8.2.1. 論理演算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">8.2.2. オフラインバケットに対するクエリの制限事項</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">8.3. ソート順序の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">8.4. スキップ数・検索上限数の指定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#query-ptrojection">8.5. プロジェクション</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object_aggregation.html">9. オブジェクトの集計</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_storage.html">10. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_offline.html">11. オフライン機能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_gateway.html">12. API Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">13. マイグレーションガイド</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">14. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java/Android SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>8. オブジェクトストレージ:クエリ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>8. オブジェクトストレージ:クエリ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>8.1. オブジェクトのクエリ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトのクエリは、バケットに対して query() を呼び出すことで行います。</p>
+<p>以下の例では、全件検索を行っています。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbQuery</span><span class="o">();</span>
+<span class="n">bucket</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">query</span><span class="o">,</span>  <span class="k">new</span> <span class="n">NbListCallback</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;</span> <span class="n">objects</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 成功時の処理。</span>
+        <span class="c1">// objects に検索結果が渡される。</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+<p>クエリ条件は、NbQuery クラスを使用して指定します。
+NbQuery を生成し、メソッドを呼び出して条件を追加していきます。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">クエリ件数上限はデフォルトで100件となっています。
+一回のクエリで 100件以上のデータを取得したい場合は、件数上限を明示的に指定する必要があります。</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>8.2. クエリ条件の指定<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索条件には NbClause を使用します。以下に例を示します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbClause</span> <span class="n">clause</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbClause</span><span class="o">();</span>
+
+<span class="n">clause</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;foo&quot;</span><span class="o">);</span> <span class="c1">// 一致条件</span>
+<span class="n">clause</span><span class="o">.</span><span class="na">lessThan</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span> <span class="c1">// 比較条件</span>
+<span class="n">clause</span><span class="o">.</span><span class="na">in</span><span class="o">(</span><span class="s">&quot;prefecture&quot;</span><span class="o">,</span> <span class="s">&quot;Tokyo&quot;</span><span class="o">,</span> <span class="s">&quot;Kanagawa&quot;</span><span class="o">,</span> <span class="s">&quot;Saitama&quot;</span><span class="o">);</span> <span class="c1">// 配列検索</span>
+<span class="n">clause</span><span class="o">.</span><span class="na">regex</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">,</span> <span class="s">&quot;^[a-c].*&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span> <span class="c1">// 正規表現一致</span>
+
+<span class="n">NbQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbQuery</span><span class="o">();</span>
+<span class="n">query</span><span class="o">.</span><span class="na">setClause</span><span class="o">(</span><span class="n">clause</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>条件指定メソッドは this を返すので、
+上記 clause 生成は以下のように記述することができます。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbClause</span> <span class="n">clause</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbClause</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;foo&quot;</span><span class="o">);</span>
+    <span class="o">.</span><span class="na">lessThan</span><span class="o">(</span><span class="s">&quot;age&quot;</span><span class="o">,</span> <span class="mi">30</span><span class="o">);</span>
+    <span class="o">.</span><span class="na">in</span><span class="o">(</span><span class="s">&quot;prefecture&quot;</span><span class="o">,</span> <span class="s">&quot;Tokyo&quot;</span><span class="o">,</span> <span class="s">&quot;Kanagawa&quot;</span><span class="o">,</span> <span class="s">&quot;Saitama&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">regex</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">,</span> <span class="s">&quot;^[a-c].*&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<div class="section" id="id4">
+<h3>8.2.1. 論理演算<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>論理演算 (and, or) で複数の NbClause を結合することが可能です。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbClause</span> <span class="n">clause1</span> <span class="o">=</span> <span class="o">...;</span>
+<span class="n">NbClause</span> <span class="n">clause2</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">NbClause</span> <span class="n">clause</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbClause</span><span class="o">();</span>
+<span class="n">clause</span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="n">clause1</span><span class="o">,</span> <span class="n">clause2</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>not 演算子を用いることで、特定のキーに対する条件式を反転することができます。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 以下は !(score1 &gt; 80) &amp;&amp; (score2 &gt; 70) という意味</span>
+<span class="c1">// score1 フィールドが存在しないオブジェクトにもヒットするが、</span>
+<span class="c1">// score2 フィールドが存在しないオブジェクトにはヒットしない。</span>
+<span class="n">clause</span><span class="o">.</span><span class="na">greaterThan</span><span class="o">(</span><span class="s">&quot;score1&quot;</span><span class="o">,</span> <span class="mi">80</span><span class="o">).</span><span class="na">not</span><span class="o">(</span><span class="s">&quot;score1&quot;</span><span class="o">).</span><span class="na">greaterThan</span><span class="o">(</span><span class="s">&quot;score2&quot;</span><span class="o">,</span> <span class="mi">70</span><span class="o">);</span>
+
+
+<span class="c1">// 以下は (score1 &lt;= 80) &amp;&amp; (score2 &gt; 70) という意味</span>
+<span class="c1">// 上記と似ているが、score1 フィールドが存在しないオブジェクトにはヒットしない点が異なる。</span>
+<span class="n">clause</span><span class="o">.</span><span class="na">lessThanOrEqual</span><span class="o">(</span><span class="s">&quot;score1&quot;</span><span class="o">,</span> <span class="mi">80</span><span class="o">).</span><span class="na">greaterThan</span><span class="o">(</span><span class="s">&quot;score2&quot;</span><span class="o">,</span> <span class="mi">70</span><span class="o">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>8.2.2. オフラインバケットに対するクエリの制限事項<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オフラインバケット(レプリカモード、ローカルモード)に対するクエリを
+発行することも可能ですが、オンラインモードバケットに比べると
+いくつかの制限があります。</p>
+<ul class="simple">
+<li>パラメータに null を指定した場合の動作は保証されません</li>
+<li>比較演算 (greaterThan など)はスカラ値(数値・文字列)に対してしか動作保証されません</li>
+<li>配列に対するスカラ値を指定した配列内検索はサポートされません。代わりに NbClause.in() を使用して下さい。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>8.3. ソート順序の指定<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ソート順序は、setSortOrders() で指定します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="o">.</span><span class="na">setSortOrders</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="s">&quot;-age&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>ソートキーを引数に指定します。</p>
+<ul class="simple">
+<li>デフォルトのソート順序は昇順です。キーの先頭に &quot;-&quot; を付与すると、降順でソートします。</li>
+<li>複数設定した場合は、先に指定したものが優先となります。</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>8.4. スキップ数・検索上限数の指定<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索におけるスキップ数・上限数は、それぞれ setSkipCount(), setLimit() で指定します。</p>
+<p>以下の例では、100件目から最大10件を読むという指定になります。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="o">.</span><span class="na">setSkipCount</span><span class="o">(</span><span class="mi">100</span><span class="o">).</span><span class="na">setLimit</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>なお、上限数の値はデフォルトで 100 となっています。
+上限数を無限大(制限なし)にしたい場合は -1 を指定します。</p>
+<p>スキップ数・上限数を指定した際に、全ヒット件数を合わせて取得したい場合は setCountQuery() を使用します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">query</span><span class="p">.</span><span class="nx">setCountQuery</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>さらに クエリには queryWithCount() を使用します。
+コールバックインタフェースの型には NbCountCallback を指定します。
+クエリ成功時のコールバック関数の第二引数に全ヒット件数が渡されます。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbQuery</span><span class="o">();</span>
+<span class="n">query</span><span class="o">.</span><span class="na">setSkipCount</span><span class="o">(</span><span class="mi">100</span><span class="o">).</span><span class="na">setLimit</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+<span class="n">query</span><span class="o">.</span><span class="na">setCountQuery</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">// 全件数取得</span>
+<span class="n">bucket</span><span class="o">.</span><span class="na">queryWithCount</span><span class="o">(</span><span class="n">query</span><span class="o">,</span>  <span class="k">new</span> <span class="n">NbCountCallback</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;</span> <span class="n">objects</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 成功時の処理。</span>
+        <span class="c1">// objects に検索結果が渡される。</span>
+        <span class="c1">// setCountQuery(true) を指定した場合、num に全ヒット件数が入る。</span>
+        <span class="c1">// それ以外の場合は num は -1。</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">上限数を指定するとヒット件数が上限に達した時点で検索が打ち切られますが、
+setCountQuery(true) を指定すると上限数にかかわらず全検索を行うため検索に要する時間が増加します。</p>
+</div>
+</div>
+<div class="section" id="query-ptrojection">
+<span id="id8"></span><h2>8.5. プロジェクション<a class="headerlink" href="#query-ptrojection" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>検索結果に含まれるオブジェクトのフィールドを制限したい場合は、 NbQuery に projection を JSON 形式で指定します。
+特定のフィールドのみを取得したい場合は、以下のように指定します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NbQuery</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbQuery</span><span class="o">();</span>
+<span class="n">NbJSONObject</span> <span class="n">projectionJson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NbJSONObject</span><span class="o">();</span>
+<span class="n">projectionJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+<span class="n">query</span><span class="o">.</span><span class="na">setProjection</span><span class="o">(</span><span class="n">projectionJson</span><span class="o">);</span>
+
+<span class="n">bucket</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">query</span><span class="o">,</span>  <span class="k">new</span> <span class="n">NbCallback</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">NbObject</span><span class="o">&gt;</span> <span class="n">objects</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 成功時の処理</span>
+        <span class="c1">// objects に検索結果が渡される</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFailure</span><span class="o">(</span><span class="kt">int</span> <span class="n">statusCode</span><span class="o">,</span> <span class="n">NbErrorInfo</span> <span class="n">errorInfo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 失敗時の処理</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、 &quot;id&quot; と指定したフィールド(&quot;name&quot;)のみを含むオブジェクトが取得されます。</p>
+<p>逆に、特定のフィールドのみ抑制したい場合は、以下のように指定します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">projectionJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>上記を指定した場合、 &quot;id&quot; と、指定したフィールド(&quot;name&quot;)以外のフィールドを含むオブジェクトが取得されます。</p>
+<p>&quot;id&quot; はデフォルトで付与されますが、省きたい場合は以下のように指定します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">projectionJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+<span class="n">projectionJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>上記を指定した場合は、指定したフィールド(&quot;name&quot;)のみを含むオブジェクトが取得されます。</p>
+<p>入れ子構造になっているフィールドを指定する場合は、以下のように指定します。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">projectionJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;parent.child&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>また、 array フィールドに対して、 MongoDB と同様に以下の演算子を使用することも可能です。</p>
+<ul class="simple">
+<li>$elemMatch</li>
+<li>$slice</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">&quot;$&quot;, &quot;$meta&quot; 演算子は対象外です。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="object_aggregation.html" class="btn btn-neutral float-right" title="9. オブジェクトの集計" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_storage.html" class="btn btn-neutral" title="7. JSONオブジェクトストレージ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
