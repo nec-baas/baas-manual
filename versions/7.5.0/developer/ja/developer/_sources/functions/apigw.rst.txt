@@ -1,9 +1,0 @@
-============
-API Gateway
-============
-
-API Gateway機能は、Swaggerでユーザ独自のカスタムREST APIを定義することができます。
-
-定義したAPIからCloud Functionsを呼び出したり、他のシステムに接続する等、多様な機能を提供します。
-
-API Gatewayの詳細については「 `API Gateway 開発ガイド <../../apigw/index.html>`_ 」をご覧ください。

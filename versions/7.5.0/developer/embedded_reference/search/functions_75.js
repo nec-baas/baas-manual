@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['uploadnewfile',['UploadNewFile',['../classnecbaas_1_1NbFileBucket.html#ada6f1fc6e34836477ed5d38277747333',1,'necbaas::NbFileBucket::UploadNewFile(const std::string &amp;file_name, const std::string &amp;file_path, const std::string &amp;content_type, const NbAcl &amp;acl, bool cache_disable=false)'],['../classnecbaas_1_1NbFileBucket.html#a4f4c8de48af6b7bc907a9fdda1e507a5',1,'necbaas::NbFileBucket::UploadNewFile(const std::string &amp;file_name, const std::string &amp;file_path, const std::string &amp;content_type, bool cache_disable=false)']]],
-  ['uploadupdatefile',['UploadUpdateFile',['../classnecbaas_1_1NbFileBucket.html#afc7b58f0ca17cbda172825e0014ffd51',1,'necbaas::NbFileBucket::UploadUpdateFile(const std::string &amp;file_path, const NbFileMetadata &amp;metadata)'],['../classnecbaas_1_1NbFileBucket.html#a36ab6f7fbb91011bb6683e9ee4a9a1ee',1,'necbaas::NbFileBucket::UploadUpdateFile(const std::string &amp;file_name, const std::string &amp;file_path, const std::string &amp;content_type, const std::string &amp;meta_etag, const std::string &amp;file_etag)']]]
-];
