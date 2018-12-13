@@ -174,9 +174,9 @@
 <a class="reference internal image-reference" href="_images/architecture.png"><img alt="_images/architecture.png" src="_images/architecture.png" style="width: 672.0px; height: 503.99999999999994px;" /></a>
 <p>Cloud Functions呼び出しは以下のような順序で実行されます。</p>
 <ol class="arabic simple">
-<li>クライアントアプリからモバイルバックエンド基盤サーバ(図中の &quot;Nebula&quot;) に対し REST API でCloud Functions実行要求を行います。</li>
+<li>クライアントアプリからモバイルバックエンド基盤サーバ(図中の &quot;BaaS&quot;) に対し REST API でCloud Functions実行要求を行います。</li>
 <li>モバイルバックエンド基盤サーバは、RabbitMQ 経由でサーバマネージャに実行要求を転送します。</li>
-<li>サーバマネージャは、Docker コンテナを起動し、コンテナ内で動作するロジックサーバ(図中の &quot;Node Logic Server&quot;)に HTTP で実行要求を送ります。</li>
+<li>サーバマネージャは、Docker コンテナを起動し、コンテナ内で動作するロジックサーバ(図中の &quot;Logic Server&quot;)に HTTP で実行要求を送ります。</li>
 <li>ロジックサーバはユーザコードを呼び出し処理を実行し、応答を返します。</li>
 <li>応答は RabbitMQ 経由でモバイルバックエンド基盤サーバに返却され、クライアントアプリまで返却されます。</li>
 </ol>

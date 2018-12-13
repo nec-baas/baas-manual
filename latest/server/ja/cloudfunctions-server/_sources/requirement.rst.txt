@@ -9,7 +9,7 @@ Cloud Functionsサーバの動作には以下の環境が必要です。
 * OS: CentOS 7 以上または RHEL 7 以上
 * OpenJDK 8, OpenJDK 11 または Oracle JDK 8
 * `RabbitMQ`_ 3.7 以上
-* `Docker`_ 1.12.1 以上
+* `Docker`_ 1.12.1 以上 (Dockerレスモードの場合は不要)
 * `fluentd`_ fluentd v1.0 / td-agent 3.1.x 以上
 
 .. attention::
