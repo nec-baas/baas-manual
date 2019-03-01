@@ -197,6 +197,12 @@ Swagger 定義ファイルは YAML または JSON ファイルとして作成し
 <p>リクエストパラメータ、クエリパラメータ、リクエスト/レスポンスヘッダ・ボディなどは原則パススルーされます。
 変換したい場合は、request や response に変換規則を記述する形となります。
 詳細は後述します。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>BASIC認証を伴うHTTPリクエストを、HTTP Proxy機能で取り扱う場合、
+v7.5.0より前のバージョンと、v7.5.0以降で動作に非互換性があります。</p>
+<p class="last">詳しくは <a class="reference external" href="migration.html">マイグレーションガイド</a> を参照してください。</p>
+</div>
 </div>
 
 
@@ -219,7 +225,7 @@ Swagger 定義ファイルは YAML または JSON ファイルとして作成し
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation
+        &copy; Copyright 2013-2019, NEC Corporation
 
     </p>
   </div>

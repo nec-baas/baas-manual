@@ -13,6 +13,8 @@
     :statuscode 200: 正常取得
     :statuscode 401: 認証エラー
 
+    :parameter string where: クエリ条件 (JSON文字列)
+
     :>json array results: インスタレーションの配列
 
     **レスポンスボディの例**

@@ -94,18 +94,22 @@
 <li class="toctree-l1"><a class="reference internal" href="xproxy.html">9. Swagger ベンダ拡張 リファレンス</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">10. CLIツール コマンドリファレンス</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">11. マイグレーションガイド</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-7-0-0">11.1. ver 6.5.0 → 7.0.0 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">11.1.1. テンプレート記法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#x-auth-appkey">11.1.2. x-auth-appkey ベンダ拡張</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-7-5-0">11.1. ver 7.0.0 → 7.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-api-gateway-http-proxy">11.1.1. BASIC認証対応に伴う API Gateway HTTP Proxy 機能の後方非互換性</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-0-6-5-0">11.2. ver 6.0.0 → 6.5.0 での変更点</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#api">11.2.1. デベロッパーコンソール: API 定義編集機能追加</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#json-patch-json-merge-patch">11.2.2. JSON Patch / JSON Merge Patch 対応</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rabbitmq">11.2.3. RabbitMQ ボディ変換対応</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">11.2.4. テンプレート記法</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#http-proxy-uri">11.2.5. HTTP Proxy 時の URI 相対パス記法追加</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#http-proxy">11.2.6. HTTP Proxy 大容量データ転送時の効率改善</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-7-0-0">11.2. ver 6.5.0 → 7.0.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">11.2.1. テンプレート記法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#x-auth-appkey">11.2.2. x-auth-appkey ベンダ拡張</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-0-0-6-5-0">11.3. ver 6.0.0 → 6.5.0 での変更点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api">11.3.1. デベロッパーコンソール: API 定義編集機能追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json-patch-json-merge-patch">11.3.2. JSON Patch / JSON Merge Patch 対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rabbitmq">11.3.3. RabbitMQ ボディ変換対応</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">11.3.4. テンプレート記法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#http-proxy-uri">11.3.5. HTTP Proxy 時の URI 相対パス記法追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#http-proxy">11.3.6. HTTP Proxy 大容量データ転送時の効率改善</a></li>
 </ul>
 </li>
 </ul>
@@ -176,10 +180,21 @@
 <h1>11. マイグレーションガイド<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>本章では、API Gateway の以前のバージョンからの
 API の変更点や移行方法について説明します。</p>
+<div class="section" id="ver-7-0-0-7-5-0">
+<h2>11.1. ver 7.0.0 → 7.5.0 での変更点<a class="headerlink" href="#ver-7-0-0-7-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="basic-api-gateway-http-proxy">
+<h3>11.1.1. BASIC認証対応に伴う API Gateway HTTP Proxy 機能の後方非互換性<a class="headerlink" href="#basic-api-gateway-http-proxy" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>モバイルバックエンド基盤v7.5.0からBASIC認証が導入されました。
+それに伴い、API Gateway HTTP Proxy 機能の一部が後方非互換になっています。</p>
+<p>BASIC認証のためのAurhotizationヘッダを伴うHTTPリクエストについて、
+従来はモバイルバックエンド基盤でのBASIC認証は実施されず、そのままHTTP Proxy先へと転送できました。
+しかし、v7.5.0以降ではモバイルバックエンド基盤にてBASIC認証が実施されます。</p>
+</div>
+</div>
 <div class="section" id="ver-6-5-0-7-0-0">
-<h2>11.1. ver 6.5.0 → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-0-7-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>11.2. ver 6.5.0 → 7.0.0 での変更点<a class="headerlink" href="#ver-6-5-0-7-0-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="id2">
-<h3>11.1.1. テンプレート記法<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.2.1. テンプレート記法<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テンプレートに引き渡される Model に以下のキーを追加しました。</p>
 <ul class="simple">
 <li>request.tenantId   : テナントID</li>
@@ -188,31 +203,31 @@ API の変更点や移行方法について説明します。</p>
 <p>詳細は <a class="reference internal" href="mapping.html#templating"><span class="std std-ref">テンプレート記法</span></a> を参照してください。</p>
 </div>
 <div class="section" id="x-auth-appkey">
-<h3>11.1.2. x-auth-appkey ベンダ拡張<a class="headerlink" href="#x-auth-appkey" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.2.2. x-auth-appkey ベンダ拡張<a class="headerlink" href="#x-auth-appkey" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Swagger ベンダ拡張に、x-auth-appkey を追加しました。
 アプリケーションキー認証を無効化することが可能になります。</p>
 </div>
 </div>
 <div class="section" id="ver-6-0-0-6-5-0">
-<h2>11.2. ver 6.0.0 → 6.5.0 での変更点<a class="headerlink" href="#ver-6-0-0-6-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>11.3. ver 6.0.0 → 6.5.0 での変更点<a class="headerlink" href="#ver-6-0-0-6-5-0" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="section" id="api">
-<h3>11.2.1. デベロッパーコンソール: API 定義編集機能追加<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.3.1. デベロッパーコンソール: API 定義編集機能追加<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ブラウザを使用してデベロッパーコンソール上で直接 API 定義(Swagger定義)の
 投入・編集・削除が行えるようになりました。</p>
 </div>
 <div class="section" id="json-patch-json-merge-patch">
-<h3>11.2.2. JSON Patch / JSON Merge Patch 対応<a class="headerlink" href="#json-patch-json-merge-patch" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.3.2. JSON Patch / JSON Merge Patch 対応<a class="headerlink" href="#json-patch-json-merge-patch" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>HTTP リクエスト/レスポンスボディ内の JSON を JSON Patch (RFC 6902), JSON Merge Patch (RFC 7386) で
 書き換えできるようになりました。</p>
 <p>詳細は <a class="reference internal" href="mapping.html#body-transform"><span class="std std-ref">ボディ変換規則</span></a> を参照してください。</p>
 </div>
 <div class="section" id="rabbitmq">
-<h3>11.2.3. RabbitMQ ボディ変換対応<a class="headerlink" href="#rabbitmq" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.3.3. RabbitMQ ボディ変換対応<a class="headerlink" href="#rabbitmq" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RabbitMQ についても HTTP と同様ボディの変換が行えるようになりました。
 詳細は <a class="reference internal" href="mapping.html#body-transform"><span class="std std-ref">ボディ変換規則</span></a> を参照してください。</p>
 </div>
 <div class="section" id="id3">
-<h3>11.2.4. テンプレート記法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.3.4. テンプレート記法<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>テンプレートに引き渡される Model に以下のキーを追加しました。</p>
 <ul class="simple">
 <li>request.sessionToken : セッショントークンの値</li>
@@ -220,13 +235,13 @@ API の変更点や移行方法について説明します。</p>
 <p>詳細は <a class="reference internal" href="mapping.html#templating"><span class="std std-ref">テンプレート記法</span></a> を参照してください。</p>
 </div>
 <div class="section" id="http-proxy-uri">
-<h3>11.2.5. HTTP Proxy 時の URI 相対パス記法追加<a class="headerlink" href="#http-proxy-uri" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.3.5. HTTP Proxy 時の URI 相対パス記法追加<a class="headerlink" href="#http-proxy-uri" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>HTTP Proxy の x-proxy に、relativePath 記法を追加しました。
 詳細は <a class="reference internal" href="xproxy.html#xproxy"><span class="std std-ref">x-proxy</span></a> を参照してください。</p>
 <p>転送先サーバ URI を相対パスで指定できるようになっています。</p>
 </div>
 <div class="section" id="http-proxy">
-<h3>11.2.6. HTTP Proxy 大容量データ転送時の効率改善<a class="headerlink" href="#http-proxy" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>11.3.6. HTTP Proxy 大容量データ転送時の効率改善<a class="headerlink" href="#http-proxy" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>従来の実装では、API Gateway (HTTP Proxy) でデータを転送する際、データ(HTTP Body)を一旦メモリ上に
 すべてロードしてから転送を実施するようになっていました(Store and Forward方式)。
 このため、データが大容量の場合はメモリの消費量が多くなっていました。</p>
@@ -259,7 +274,7 @@ API の変更点や移行方法について説明します。</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation
+        &copy; Copyright 2013-2019, NEC Corporation
 
     </p>
   </div>

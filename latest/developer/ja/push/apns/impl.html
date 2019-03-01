@@ -180,7 +180,9 @@
 <p>AppDelegate 実装ファイル内の application:didFinishLaunchingWithOptions: メソッド内に、
 Push 通知を受けるための登録処理を追加します。</p>
 <p>以下のようにコードを追加してください。iOS10未満とiOS10以降で実装が異なるので注意してください。</p>
-<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
+<div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span>
+      <span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
+
     <span class="c1">// その他の処理</span>
 
     <span class="c1">// Push受信用の処理</span>
@@ -188,8 +190,10 @@ Push 通知を受けるための登録処理を追加します。</p>
     <span class="k">if</span> <span class="p">([</span><span class="n">pi</span> <span class="nl">isOperatingSystemAtLeastVersion</span><span class="p">:(</span><span class="n">NSOperatingSystemVersion</span><span class="p">){</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">}])</span> <span class="p">{</span>
         <span class="c1">// iOS 10 以降</span>
         <span class="n">UNUserNotificationCenter</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">UNUserNotificationCenter</span> <span class="n">currentNotificationCenter</span><span class="p">];</span>
-        <span class="n">UNAuthorizationOptions</span> <span class="n">options</span> <span class="o">=</span> <span class="n">UNAuthorizationOptionAlert</span> <span class="o">|</span> <span class="n">UNAuthorizationOptionAlert</span> <span class="o">|</span> <span class="n">UNAuthorizationOptionSound</span><span class="p">;</span>
-        <span class="p">[</span><span class="n">c</span> <span class="nl">requestAuthorizationWithOptions</span><span class="p">:</span><span class="n">options</span> <span class="nl">completionHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">granted</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">UNAuthorizationOptions</span> <span class="n">options</span> <span class="o">=</span> <span class="n">UNAuthorizationOptionAlert</span>
+            <span class="o">|</span> <span class="n">UNAuthorizationOptionAlert</span> <span class="o">|</span> <span class="n">UNAuthorizationOptionSound</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">c</span> <span class="nl">requestAuthorizationWithOptions</span><span class="p">:</span><span class="n">options</span> <span class="nl">completionHandler</span><span class="p">:</span>
+                <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">granted</span><span class="p">,</span> <span class="bp">NSError</span> <span class="o">*</span> <span class="n">_Nullable</span> <span class="n">error</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
                 <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;requestAuthorizationWithOptions error: %@&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
                 <span class="k">return</span><span class="p">;</span>
@@ -203,26 +207,25 @@ Push 通知を受けるための登録処理を追加します。</p>
         <span class="p">}];</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="c1">// iOS 8 - 9</span>
-        <span class="n">UIUserNotificationType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">UIUserNotificationTypeAlert</span> <span class="o">|</span> <span class="n">UIUserNotificationTypeBadge</span> <span class="o">|</span> <span class="n">UIUserNotificationTypeSound</span><span class="p">;</span>
-        <span class="bp">UIUserNotificationSettings</span> <span class="o">*</span><span class="n">setting</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIUserNotificationSettings</span> <span class="nl">settingsForTypes</span><span class="p">:</span><span class="n">type</span> <span class="nl">categories</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+        <span class="n">UIUserNotificationType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">UIUserNotificationTypeAlert</span>
+            <span class="o">|</span> <span class="n">UIUserNotificationTypeBadge</span> <span class="o">|</span> <span class="n">UIUserNotificationTypeSound</span><span class="p">;</span>
+        <span class="bp">UIUserNotificationSettings</span> <span class="o">*</span><span class="n">setting</span> <span class="o">=</span>
+            <span class="p">[</span><span class="bp">UIUserNotificationSettings</span> <span class="nl">settingsForTypes</span><span class="p">:</span><span class="n">type</span> <span class="nl">categories</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
         <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="nl">registerUserNotificationSettings</span><span class="p">:</span><span class="n">setting</span><span class="p">];</span>
+        <span class="p">[[</span><span class="bp">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">registerForRemoteNotifications</span><span class="p">];</span>
     <span class="p">}</span>
 
     <span class="c1">// その他の処理</span>
 
     <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="c1">// iOS10未満の場合</span>
-<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didRegisterUserNotificationSettings:</span><span class="p">(</span><span class="bp">UIUserNotificationSettings</span> <span class="o">*</span><span class="p">)</span><span class="nv">notificationSettings</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">application</span> <span class="n">registerForRemoteNotifications</span><span class="p">];</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 <p>また、OS側からデバイストークンを受け取るため、application:didRegisterForRemoteNotificationsWithDeviceToken: メソッドを追加します。
 このメソッド内で、受け取ったデバイストークンを MBaaS 側に登録します。</p>
 <div class="highlight-objective-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Device Token 受領処理</span>
-<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didRegisterForRemoteNotificationsWithDeviceToken:</span><span class="p">(</span><span class="bp">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">deviceToken</span> <span class="p">{</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="bp">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didRegisterForRemoteNotificationsWithDeviceToken:</span>
+      <span class="p">(</span><span class="bp">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">deviceToken</span> <span class="p">{</span>
     <span class="n">NBPushInstallation</span> <span class="o">*</span><span class="n">installation</span> <span class="o">=</span> <span class="p">[</span><span class="n">NBPushInstallation</span> <span class="n">currentInstallation</span><span class="p">];</span>
     <span class="p">[</span><span class="n">installation</span> <span class="nl">setDeviceTokenFromData</span><span class="p">:</span><span class="n">deviceToken</span><span class="p">];</span>
 
@@ -348,7 +351,7 @@ Push 通知を受けるための登録処理を以下のように変更します
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation
+        &copy; Copyright 2013-2019, NEC Corporation
 
     </p>
   </div>

@@ -458,11 +458,11 @@ JSON Patch よりもシンプルに記述できますが、フィールド名変
   <span class="l l-Scalar l-Scalar-Plain">uri</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://example.com/</span>
   <span class="l l-Scalar l-Scalar-Plain">response</span><span class="p p-Indicator">:</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">20.</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">status</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
-      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">status</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
+        <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">.*</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">status</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
-      <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">status</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">500</span>
+        <span class="l l-Scalar l-Scalar-Plain">headers</span><span class="p p-Indicator">:</span>
 </pre></div>
 </div>
 <p>レスポンスマッピングは、ステータスコード毎に異なる変換規則を指定できます。</p>
@@ -472,7 +472,7 @@ JSON Patch よりもシンプルに記述できますが、フィールド名変
 <p class="last">バージョン v5 ⇒ v6 で規則の記述形式が変更になりましたので注意してください。
 v5 では配列ではありませんでしたが、v6 では優先順位を明確にするため配列となっています。</p>
 </div>
-<p>各規則は、ステータスコードをキー、変換規則を値にした JSON オブジェクトとして記述します。</p>
+<p>各規則は、ステータスコードをキー、変換規則(JSONオブジェクト)を値にした JSON オブジェクトとして記述します。</p>
 <p>ステータスコードは正規表現で表現します。
 上記例では 200系ステータスとそれ以外の２通りで変換規則を記述しています。
 なお、合致するステータスコードがなかった場合は、レスポンスはそのままパススルーされます。</p>
@@ -535,7 +535,7 @@ BaaS サーバのメモリを大量に消費します。100MBなど大きいデ�
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2013-2018, NEC Corporation
+        &copy; Copyright 2013-2019, NEC Corporation
 
     </p>
   </div>

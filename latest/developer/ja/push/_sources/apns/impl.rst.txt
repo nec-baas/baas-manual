@@ -21,7 +21,9 @@ Push 通知を受けるための登録処理を追加します。
 
 .. code-block:: objective-c
 
-    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
+          (NSDictionary *)launchOptions {
+
         // その他の処理
 
         // Push受信用の処理
@@ -29,8 +31,10 @@ Push 通知を受けるための登録処理を追加します。
         if ([pi isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]) {
             // iOS 10 以降
             UNUserNotificationCenter *c = [UNUserNotificationCenter currentNotificationCenter];
-            UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionAlert | UNAuthorizationOptionSound;
-            [c requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            UNAuthorizationOptions options = UNAuthorizationOptionAlert
+                | UNAuthorizationOptionAlert | UNAuthorizationOptionSound;
+            [c requestAuthorizationWithOptions:options completionHandler:
+                    ^(BOOL granted, NSError * _Nullable error) {
                 if (error) {
                     NSLog(@"requestAuthorizationWithOptions error: %@", error);
                     return;
@@ -44,19 +48,17 @@ Push 通知を受けるための登録処理を追加します。
             }];
         } else {
             // iOS 8 - 9
-            UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-            UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+            UIUserNotificationType type = UIUserNotificationTypeAlert
+                | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+            UIUserNotificationSettings *setting =
+                [UIUserNotificationSettings settingsForTypes:type categories:nil];
             [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
         }
 
         // その他の処理
 
         return YES;
-    }
-
-    // iOS10未満の場合
-    - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
-        [application registerForRemoteNotifications];
     }
 
 また、OS側からデバイストークンを受け取るため、application:didRegisterForRemoteNotificationsWithDeviceToken: メソッドを追加します。
@@ -65,7 +67,8 @@ Push 通知を受けるための登録処理を追加します。
 .. code-block:: objective-c
 
     // Device Token 受領処理
-    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:
+          (NSData *)deviceToken {
         NBPushInstallation *installation = [NBPushInstallation currentInstallation];
         [installation setDeviceTokenFromData:deviceToken];
 
