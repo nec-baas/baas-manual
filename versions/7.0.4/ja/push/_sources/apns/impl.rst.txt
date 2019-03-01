@@ -10,37 +10,60 @@ Pushを受信するための実装
 アプリを起動する際に、デバイストークンの取得を行う処理が必要になります。
 
 AppDelegate 実装ファイル内の application:didFinishLaunchingWithOptions: メソッド内に、
-Push 通知を受けるための登録処理を追加します。以下のようにコードを追加してください。
+Push 通知を受けるための登録処理を追加します。
+
+以下のようにコードを追加してください。iOS10未満とiOS10以降で実装が異なるので注意してください。
 
 .. code-block:: objective-c
 
-    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:
+          (NSDictionary *)launchOptions {
+
         // その他の処理
 
         // Push受信用の処理
-        UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-        UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:type categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        NSProcessInfo *pi = [NSProcessInfo processInfo];
+        if ([pi isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]) {
+            // iOS 10 以降
+            UNUserNotificationCenter *c = [UNUserNotificationCenter currentNotificationCenter];
+            UNAuthorizationOptions options = UNAuthorizationOptionAlert
+                | UNAuthorizationOptionAlert | UNAuthorizationOptionSound;
+            [c requestAuthorizationWithOptions:options completionHandler:
+                    ^(BOOL granted, NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"requestAuthorizationWithOptions error: %@", error);
+                    return;
+                }
+                if (granted) {
+                    // ユーザが Push 通知を許可するとここに来る
+                    dispatch_async(dispatch_get_main_queue(), ^ {
+                        [[UIApplication sharedApplication] registerForRemoteNotifications];
+                    });
+                }
+            }];
+        } else {
+            // iOS 8 - 9
+            UIUserNotificationType type = UIUserNotificationTypeAlert
+                | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+            UIUserNotificationSettings *setting =
+                [UIUserNotificationSettings settingsForTypes:type categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:setting];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        }
 
         // その他の処理
 
         return YES;
     }
 
-また、OS側からデバイストークンを受け取るため、
-AppDelegate に application:didRegisterUserNotificationSettings: と application:didRegisterForRmoteNotificationsWithDeviceToken: 
-メソッドを追加します。
-
+また、OS側からデバイストークンを受け取るため、application:didRegisterForRemoteNotificationsWithDeviceToken: メソッドを追加します。
 このメソッド内で、受け取ったデバイストークンを MBaaS 側に登録します。
 
 .. code-block:: objective-c
 
-    - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
-        [application registerForRemoteNotifications];
-    }
-
-    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Device Token 受領処理
+    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:
+          (NSData *)deviceToken {
         NBPushInstallation *installation = [NBPushInstallation currentInstallation];
         [installation setDeviceTokenFromData:deviceToken];
 
