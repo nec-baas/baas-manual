@@ -1,0 +1,154 @@
+.. include:: ../common/linkdef.rst
+
+==========================
+公開サーバのセットアップ
+==========================
+
+下記内容は、 公開サーバとして Node-RED 検証環境を構築する場合のインストール手順です。 NECCI (RHEL7.1)　向けのセットアップを想定しています。検証/テスト環境を構築する場合等、必要な方のみ参照してください。
+(他 OS 環境の場合は、注釈に記載のURLを参照してください)
+
+事前準備
+==================
+
+開発環境のセットアップに記載の 「:ref:`dev-setting-preparation`」 を参照してください。
+    
+Node-RED のインストール
+========================
+
+開発環境のセットアップに記載の  「:ref:`dev-setting-installation`」  を参照してください。
+
+Node-RED の起動確認
+=====================
+
+開発環境のセットアップに記載の 「:ref:`dev-setting-startup`」 を参照してください。
+
+
+.. note::
+    Node-RED を公開サーバとして利用する場合、環境によっては Linux のファイアーウォール設定でポート開放を行う必要があります。詳細は後述の  「:ref:`server-setting-firewall`」 を参照してください。
+    
+NEC BaaS ノードのインストール
+==============================
+
+開発環境のセットアップに記載の  「:ref:`dev-setting-baas-node`」  を参照してください。
+
+Node-RED の自動起動
+=====================
+
+.. note::
+    本節以降は必要に応じて実施してください。
+    
+Node-RED を自動起動(サービス化)する方法はいくつかありますが、以下では PM2 を使用する例を記載します。
+PM2 は Node.js アプリ向けのプロセス管理ツール(サービスアプリ)です。
+
+PM2 をインストールします。
+
+.. code-block:: bash
+
+    $ sudo npm install -g pm2
+
+Node-RED を自動起動するため、以下設定を行ってください。
+
+.. code-block:: bash
+
+    $ pm2 start /usr/bin/node-red -- -v   
+    ※ PM2 に node-red アプリの位置を指定(which node-red コマンドで確認)
+    
+.. attention::
+
+    メモリ使用量に制約がある環境で Node-RED を動作させる場合は、 Node-RED が動作する Node.js プロセスにパラメータを渡す必要があります。以下は ヒープサイズ 制限を 128MB とした場合の例です。
+    
+    $ pm2 start /usr/bin/node-red --node-args="--max-old-space-size=128" -- -v
+     
+
+以下のコマンドを実行して画面に表示される指示に従ってください。
+
+.. code-block:: bash
+
+    $ pm2 save
+    $ pm2 startup
+
+systemd を利用するには以下のようにします。以下を実行後、画面に表示される指示に従ってください。
+
+.. code-block:: bash
+
+    $ pm2 startup systemd               
+  
+.. note::
+    root 以外のユーザアカウントで PM2 をインストールした場合は、手動で
+    /etc/init.d/pm2-init.sh ファイルを修正する必要があります。
+    export PM2_HOME="/root/.pm2"　を export PM2_HOME="/home/{youruser}/.pm2"
+    のように修正します。
+    ( systemd 等を使用しない場合は、上記修正が必要となる場合があります)
+
+.. note::
+    詳細は `Node-REDドキュメント`_ の「起動」を参照してください。
+
+設定完了後、サーバの再起動等を行い、 Node-RED が自動起動することを確認してください。
+
+pm2 でよく使用するコマンドを以下に記載します。
+
+.. code-block:: bash
+
+    $ pm2 list              
+    ※ 監視対象の Node.js アプリ一覧表示。 
+    
+    $ pm2 start node-red              
+    ※ 既に PM2 に Node-RED が登録済みの場合は上記で開始。
+    
+    $ pm2 restart node-red              
+    ※ Node-RED を再起動。
+    
+    $ pm2 stop node-red              
+    ※ Node-RED を停止。 
+
+    $ pm2 delete node-red              
+    ※ PM2 に登録された Node-RED を解除。 
+    
+プロキシの設定
+==================
+
+開発環境のセットアップに記載の  「:ref:`dev-setting-proxy`」 を参照してください。
+
+.. _server-setting-firewall:
+
+ファイアウォールの設定
+======================
+
+Node-RED を公開サーバとして利用する場合(外部ネットワークからのアクセスを想定)、利用環境によっては Linux のファイアーウォール設定でポート開放を行う必要があります。
+以下は RHEL7(CentOS7) の環境で 1880/TCP ポートの開放を行う場合の例です。 
+
+* [--permanent]　を付けると再起動後も設定が維持されます。
+* 以下は公開サーバ( zone が public )の場合の例です。 zone を個別に設定する場合は適宜変更してください。詳細は `Fedora Wikiサイト`_ を参照してください。
+
+.. code-block:: bash
+
+    $ sudo firewall-cmd --get-active-zones # interfaces に割り当てられている zone を確認。 public 等が表示される 
+    $ sudo firewall-cmd --list-all --zone=public # 許可されているサービス/ポートの一覧表示
+    $ sudo firewall-cmd --zone=public --add-port=1880/tcp --permanent  # ゾーンpublicにTCPポート1880を永久に追加
+    $ sudo firewall-cmd --reload  # 設定を反映
+    
+削除する場合は以下となります。
+    
+.. code-block:: bash
+
+    $ sudo firewall-cmd --remove-port=1880/tcp --zone=public --permanent  # ゾーンpublicにTCPポート1880を永久に削除
+    $ sudo firewall-cmd --reload  # 設定を反映
+    
+Node-RED の環境設定
+====================
+
+開発環境のセットアップに記載の  「:ref:`dev-setting-nodered-env`」 を参照してください。
+
+その他
+=========
+ 
+PM2 のアンインストール方法
+
+.. code-block:: bash
+
+    $ sudo npm uninstall -g pm2
+    
+上記以外のアンインストール方法は、開発環境のセットアップに記載の 「:ref:`dev-setting-others`」 を参照してください。
+
+
+

@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NEC BaaS REST API Reference &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>NEC BaaS REST API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nec-baas-rest-api-reference">
+<h1>NEC BaaS REST API Reference<a class="headerlink" href="#nec-baas-rest-api-reference" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notations.html">2. 表記について</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notations.html#api">2.1. APIパスの表記</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notations.html#acl">2.2. ACL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notations.html#id6">2.3. 仮想バケット名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notations.html#id7">2.4. その他の表記</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">3. 認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#id2">3.1. アプリケーション認証</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#user-auth">3.2. ユーザ認証</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="common.html">4. 共通定義</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="common.html#json">4.1. JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#json-property-names">4.2. JSONプロパティ名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#id4">4.3. 日付の表記</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#id5">4.4. エラー通知</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#http">4.5. HTTP ヘッダ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html#id9">4.6. クエリパラメータ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">5. ユーザ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/register.html">5.1. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/login.html">5.2. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/logout.html">5.3. ログアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/update.html">5.4. ユーザ情報変更 (パスワード変更を含む)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/delete.html">5.5. ユーザ削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/password_reset.html">5.6. パスワードリセット要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/find.html">5.7. ユーザ情報の検索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/read.html">5.8. ユーザ情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/current.html">5.9. 自ユーザ情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/batch.html">5.10. バッチオペレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/saml_start.html">5.11. SAML認証開始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/oidc_start.html">5.12. OpenID Connect 認証開始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/oidc_get_link.html">5.13. OpenID Connect リンク情報取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/oidc_delete_link.html">5.14. OpenID Connect リンク情報削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group/index.html">6. グループ管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="group/create.html">6.1. グループの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group/upsert.html">6.2. グループの変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group/find.html">6.3. グループ一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group/read.html">6.4. グループの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group/delete.html">6.5. グループの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group/add_members.html">6.6. 所属ユーザ・グループの追加</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group/delete_members.html">6.7. 所属ユーザ・グループの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bucket/index.html">7. バケット管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bucket/upsert.html">7.1. バケットの作成・更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/find.html">7.2. バケット一覧取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/read.html">7.3. バケット情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/delete.html">7.4. バケットの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/create_index.html">7.5. インデックスの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/read_index.html">7.6. インデックス一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/delete_index.html">7.7. インデックスの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/create_shard_key.html">7.8. シャードキーの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bucket/read_shard_key.html">7.9. シャードキーの取得</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="object/index.html">8. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="object/create.html">8.1. オブジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/read.html">8.2. オブジェクトの読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/query.html">8.3. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/long_query.html">8.4. オブジェクトのロングクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/update.html">8.5. オブジェクトの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/delete.html">8.6. オブジェクトの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/query_delete.html">8.7. オブジェクトの一括削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/batch.html">8.8. バッチオペレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object/aggregate.html">8.9. オブジェクトの集計(Aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="file/index.html">9. ファイルストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="file/create.html">9.1. ファイルの新規アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/update.html">9.2. ファイルの更新アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/download.html">9.3. ファイルのダウンロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/find.html">9.4. ファイル一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/read_meta.html">9.5. ファイルメタデータの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/update_meta.html">9.6. ファイルメタデータの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/delete.html">9.7. ファイルの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/publish.html">9.8. ファイルの公開</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/unpublish.html">9.9. ファイルの公開解除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file/download_published.html">9.10. 公開ファイルのダウンロード</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="push/index.html">10. Push通知</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="push/upsert.html">10.1. インスタレーションの登録・再登録</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push/read.html">10.2. インスタレーション情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push/update.html">10.3. インスタレーションの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push/delete.html">10.4. インスタレーションの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push/find.html">10.5. インスタレーションの検索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push/send.html">10.6. Push送信</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">11. 管理系API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="admin/info.html">11.1. サーバ情報取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin/health.html">11.2. ヘルスチェック</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin/apistats.html">11.3. API統計情報取得</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="events/index.html">12. イベント駆動</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="events/create_update.html">12.1. サブスクリプションの作成・更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events/read.html">12.2. サブスクリプションの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events/list.html">12.3. サブスクリプションの一覧取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events/delete.html">12.4. サブスクリプションの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events/deleteAll.html">12.5. サブスクリプションの全削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">13. 改版履歴</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-7-5-0-2018-10-11">13.1. ver 7.5.0 : 2018/10/11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-7-0-2-2017-12-26">13.2. ver 7.0.2: 2017/12/26</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-7-0-1-2017-10-19">13.3. ver 7.0.1: 2017/10/19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-7-0-0-2017-9-28">13.4. ver 7.0.0: 2017/9/28</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changes.html#ver-6-5-0-2017-9-27">13.5. ver 6.5.0: 2017/9/27</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">検索ページ</span></a></li>
+</ul>
+<p><a class="reference external" href="../../index.html">Back to manual index</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="1. はじめに" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

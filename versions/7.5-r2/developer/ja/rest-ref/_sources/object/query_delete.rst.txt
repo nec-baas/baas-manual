@@ -1,0 +1,52 @@
+.. _object_query_delete:
+
+オブジェクトの一括削除
+===========================
+
+.. http:delete:: /1/(tenantId)/objects/(bucketName)
+
+    条件に合致するオブジェクトを一括削除する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+
+    :parameter string bucketName: バケット名
+
+    :query string where: 削除条件( :ref:`object_query` の where と同じ)
+    :query int deleteMark: 論理削除を行う場合は1
+
+    :statuscode 200: 正常終了
+    :statuscode 400: パラメータ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当バケットが存在しない
+
+    :>json string result: 削除結果
+    :>json int deletedObjects: 削除されたオブジェクトの個数
+
+    **クエリパラメータの詳細**
+
+    whereで条件指定した場合、その条件とACLを満たすオブジェクトが削除される。
+
+    whereを指定しない場合、ACLを満たす全てのオブジェクトが削除対象となる。
+
+    deleteMark を 1 にした場合、対象のオブジェクトを一括で論理削除状態にする。
+    updatedAt,etag は自動更新される。既に論理削除状態となっているオブジェクトは対象外となる。
+
+    **レスポンスボディの例**
+
+    レスポンスには、以下のように削除したオブジェクトの個数がJSON形式で返却される。
+
+    .. code-block:: json
+
+        {
+          "result":"ok",
+          "deletedObjects":3
+        }
+
+    削除対象が見つからない場合のレスポンスは、正常終了で削除個数0となる。
+
+    **注意事項**
+
+    * バケットcontentACLと対象オブジェクトの delete 権限が必要

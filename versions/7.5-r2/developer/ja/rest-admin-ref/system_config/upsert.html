@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11.1. システム設定更新 &mdash; REST API Reference (Administration) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="11.2. システム設定情報取得" href="read.html" />
+    <link rel="prev" title="11. システム設定操作" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference (Administration)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">5. 管理者ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenants/index.html">6. テナント操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">7. アプリケーション操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">8. 管理者操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tenant_developers/index.html">9. テナント所属管理者操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">10. ライセンスキー操作</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">11. システム設定操作</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11.1. システム設定更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">11.2. システム設定情報取得</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">12. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference (Administration)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">11. システム設定操作</a> &raquo;</li>
+        
+      <li>11.1. システム設定更新</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="system-config-upsert">
+<span id="id1"></span><h1>11.1. システム設定更新<a class="headerlink" href="#system-config-upsert" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="put">
+<dt id="put--1-_sysadm-_-systemconfig">
+<code class="descname">PUT </code><code class="descname">/1/_sysadm/_/systemconfig</code><a class="headerlink" href="#put--1-_sysadm-_-systemconfig" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>システム設定を更新する</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Developer-Token</em> -- 管理者用セッショントークン（必須）</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- application/json, application/yaml のいずれか</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>systemConfig</strong> (<em>object</em>) -- システム設定</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常登録した</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- 権限エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">415 Unsupported Media Type</a> -- Content-Type 不正</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>リクエストボディ</strong></p>
+<p>JSON もしくは YAML 形式で記述された更新データを指定する。</p>
+<p>YAML形式によるリクエストの例を以下に示す。</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">systemConfig</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">apiBaseUrl</span><span class="p p-Indicator">:</span> <span class="s">&#39;https://api.example.com/api&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">apiInternalBaseUrl</span><span class="p p-Indicator">:</span> <span class="s">&#39;http://10.0.0.5/api&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">consoleBaseUrl</span><span class="p p-Indicator">:</span> <span class="s">&#39;http://baas.example.com/console&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">consoleHelpUrl</span><span class="p p-Indicator">:</span> <span class="s">&#39;http://baas.example.com/manual/index.html&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">ssePushPublicUri</span><span class="p p-Indicator">:</span> <span class="s">&#39;https://api.example.com/ssepush/events&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">systemKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">examplesystemkey</span>
+  <span class="l l-Scalar l-Scalar-Plain">allowSelfSignup</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="l l-Scalar l-Scalar-Plain">mongoDefaultQueryTimeoutInSec</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class="l l-Scalar l-Scalar-Plain">amqpAddrs</span><span class="p p-Indicator">:</span> <span class="s">&#39;localhost:5672&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">amqpUsername</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span>
+  <span class="l l-Scalar l-Scalar-Plain">amqpPassword</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">rabbitmq</span>
+  <span class="l l-Scalar l-Scalar-Plain">amqpVhost</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+  <span class="l l-Scalar l-Scalar-Plain">smtpHost</span><span class="p p-Indicator">:</span> <span class="s">&#39;http://smtp.host.example.com&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">smtpPort</span><span class="p p-Indicator">:</span> <span class="s">&#39;25&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">smtpUsername</span><span class="p p-Indicator">:</span> <span class="s">&#39;&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">smtpPassword</span><span class="p p-Indicator">:</span> <span class="s">&#39;&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">mailFrom</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">admin@example.com</span>
+  <span class="l l-Scalar l-Scalar-Plain">proxyHost</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">proxy.example.com</span>
+  <span class="l l-Scalar l-Scalar-Plain">proxyPort</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+  <span class="l l-Scalar l-Scalar-Plain">nonProxyHosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">localhost;127.0.0.1;*test.com</span>
+  <span class="l l-Scalar l-Scalar-Plain">noChargeKey</span><span class="p p-Indicator">:</span> <span class="s">&#39;&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">clientCertServerKey</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">aaaaaaaa-1234-5678-9abc-abcddefghijk</span>
+  <span class="l l-Scalar l-Scalar-Plain">fileMaxSize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+</pre></div>
+</div>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="30%" />
+<col width="40%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">プロパティ</th>
+<th class="head">名称</th>
+<th class="head">型</th>
+<th class="head">レスポンス</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>apiBaseUrl</td>
+<td>APIサーバ ベースURI</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>apiInternalBaseUrl</td>
+<td>APIサーバ 内部向けベースURI</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>consoleBaseUrl</td>
+<td>コンソールサーバ ベースURI</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>consoleHelpUrl</td>
+<td>デベロッパーコンソール ヘルプURL</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>ssePushPublicUri</td>
+<td>SSE Push サーバ 公開URI</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>systemKey</td>
+<td>システムキー</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>allowSelfSignup</td>
+<td>セルフサインアップ許可</td>
+<td>真偽値（boolean）</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>mongoDefaultQueryTimeoutInSec</td>
+<td>MongoDB デフォルトクエリタイムアウト</td>
+<td>数値</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>amqpAddrs</td>
+<td>AMQPサーバアドレス</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>amqpUsername</td>
+<td>AMQPサーバ接続認証ユーザ名</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>amqpPassword</td>
+<td>AMQPサーバ接続認証パスワード</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>amqpVhost</td>
+<td>AMQP Vhost</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>smtpHost</td>
+<td>SMTPサーバホスト</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>smtpPort</td>
+<td>SMTPサーバポート番号</td>
+<td>数値</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>smtpUsername</td>
+<td>SMTP認証ユーザ名</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>smtpPassword</td>
+<td>SMTP認証パスワード</td>
+<td>文字列</td>
+<td>非表示</td>
+</tr>
+<tr class="row-even"><td>mailFrom</td>
+<td>メール送信Fromメールアドレス</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>proxyHost</td>
+<td>プロキシサーバホスト</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>proxyPort</td>
+<td>プロキシサーバポート番号</td>
+<td>数値</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>nonProxyHosts</td>
+<td>プロキシ例外リスト</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>noChargeKey</td>
+<td>課金迂回キー</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-odd"><td>clientCertServerKey</td>
+<td>クライアント証明書認証 サーバーキー</td>
+<td>文字列</td>
+<td>表示</td>
+</tr>
+<tr class="row-even"><td>fileMaxSize</td>
+<td>ファイルストレージ ファイル最大サイズ（MB）</td>
+<td>数値</td>
+<td>表示</td>
+</tr>
+</tbody>
+</table>
+<p><strong>レスポンスボディ</strong></p>
+<p>作成したシステム設定情報を含む JSON データが返却される。</p>
+<p>例を以下に示す。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;systemConfig&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;apiBaseUrl&quot;</span><span class="o">:</span> <span class="s2">&quot;https://example.com/api&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;apiInternalBaseUrl&quot;</span><span class="o">:</span> <span class="s2">&quot;http://localhost:8080/api&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ssePushPublicUri&quot;</span><span class="o">:</span> <span class="s2">&quot;https://example.com/ssepush/events&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;systemKey&quot;</span><span class="o">:</span> <span class="s2">&quot;systemkey&quot;</span><span class="p">,</span>
+    <span class="cm">/*…*/</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>システム管理者権限が必要。</li>
+<li>リクエストボディで指定するフィールドのみを更新する。</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="read.html" class="btn btn-neutral float-right" title="11.2. システム設定情報取得" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="11. システム設定操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

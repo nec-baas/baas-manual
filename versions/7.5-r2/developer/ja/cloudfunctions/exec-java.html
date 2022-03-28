@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.4. カスタムAPIの実行 &mdash; Cloud Functions Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="5.5. ユーザコードからのモバイルバックエンド基盤の利用" href="use-nebula-java.html" />
+    <link rel="prev" title="5.3. API/ファンクション定義の登録" href="api-function-java.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. 開発環境のセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project-dir.html">3. プロジェクトディレクトリの作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodejs.html">4. Node.js での開発</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="java.html">5. Java での開発</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project-java.html">5.1. Java プロジェクトのセットアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-java.html">5.2. Cloud Functionsコード実装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-function-java.html">5.3. API/ファンクション定義の登録</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.4. カスタムAPIの実行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#curl-api">5.4.1. curl によるカスタム API の実行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#javascript-sdk-api">5.4.2. JavaScript SDK からのカスタム API の実行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">バイナリレスポンスの受信</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="use-nebula-java.html">5.5. ユーザコードからのモバイルバックエンド基盤の利用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context-java.html">5.6. コンテキスト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">6. 認証・セキュリティ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="others.html">7. その他補足情報</a></li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">8. 制限事項</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="java.html">5. Java での開発</a> &raquo;</li>
+        
+      <li>5.4. カスタムAPIの実行</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api">
+<h1>5.4. カスタムAPIの実行<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここまでの手続きでCloud Functionsを実行できる環境が整いました。
+実際にCloud Functionsを実行してみます。</p>
+<div class="section" id="curl-api">
+<h2>5.4.1. curl によるカスタム API の実行<a class="headerlink" href="#curl-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>curl コマンドを使用してカスタム API を呼び出します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -X GET <span class="se">\</span>
+  -H <span class="s2">&quot;X-Application-Id: {appId}&quot;</span> <span class="se">\</span>
+  -H <span class="s2">&quot;X-Application-Key: {appKey}&quot;</span> <span class="se">\</span>
+  https://<span class="o">{</span>server<span class="o">}</span>/api/1/<span class="o">{</span>tenantId<span class="o">}</span>/api/hello/sayHello?name<span class="o">=</span>Taro_Nichiden
+</pre></div>
+</div>
+<p>応答として {&quot;message&quot;: &quot;Hello world, Taro_Nichiden!!&quot; } が表示されれば正常に動作しています。</p>
+</div>
+<div class="section" id="javascript-sdk-api">
+<h2>5.4.2. JavaScript SDK からのカスタム API の実行<a class="headerlink" href="#javascript-sdk-api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>JavaScript SDK からカスタム API を実行することができます。
+(JS SDK v6.0.0 以上が必要です)。</p>
+<p>以下に例を示します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// カスタムAPIインスタンスを生成する</span>
+<span class="kd">var</span> <span class="nx">sayHello</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">CustomApi</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;sayHello&quot;</span><span class="p">);</span>
+
+<span class="c1">// APIを呼び出す</span>
+<span class="nx">sayHello</span><span class="p">.</span><span class="nx">execute</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Taro_Nichiden&quot;</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>API呼び出し結果はテキストで引き渡されます。
+JSON に変換する場合は JSON.parse() を行ってください。</p>
+<div class="section" id="id1">
+<h3>バイナリレスポンスの受信<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>レスポンスをテキストではなくバイナリで受け取りたい場合は、以下のように setBinaryResponse() を呼び出してください。
+結果は Blob (ブラウザの場合) または Buffer (Node.jsの場合) で渡されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// カスタムAPIインスタンスを生成する</span>
+<span class="kd">var</span> <span class="nx">sayHello</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">CustomApi</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;sayHello&quot;</span><span class="p">).</span><span class="nx">setBinaryResponse</span><span class="p">();</span>
+
+<span class="c1">// APIを呼び出す</span>
+<span class="nx">sayHello</span><span class="p">.</span><span class="nx">execute</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Taro_Nichiden&quot;</span><span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// result は Blob または Buffer</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// エラー時の処理</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>ブラウザでバイナリでデータを受け取る場合、エラー発生時はステータスコードのみが取得可能です。
+(ステータステキストやレスポンステキストは取得不可)。これは XHR (XMLHttpRequest) の制限です。</p>
+<p class="last">Node.js でバイナリデータを受け取る場合、エラー発生時はレスポンスボディは err.data に格納されます。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="use-nebula-java.html" class="btn btn-neutral float-right" title="5.5. ユーザコードからのモバイルバックエンド基盤の利用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api-function-java.html" class="btn btn-neutral" title="5.3. API/ファンクション定義の登録" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

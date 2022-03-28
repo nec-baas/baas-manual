@@ -1,0 +1,103 @@
+======================
+オブジェクトストレージ
+======================
+
+ここではオブジェクトストレージの利用方法について説明します。
+
+オブジェクトバケット
+====================
+
+オブジェクトバケットは Nebula.ObjectBucket クラスインスタンスとして生成します。
+コンストラクタにはバケット名を渡します。
+
+オブジェクトのクエリ操作などにはバケットが必ず必要になります。
+
+.. code-block:: javascript
+
+    var bucket = new Nebula.ObjectBucket("TodoTutorial1");
+
+オブジェクトの追加
+==================
+
+オブジェクトを保存するには、オブジェクトバケットの save() を呼び出します。
+
+引数には保存したいオブジェクトを JSON で指定します。
+
+.. code-block:: javascript
+
+    var obj = {description: "Foo Bar"};
+    bucket.save(obj)
+        .then(function(object) {
+            // 成功時の処理
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+アクセス制御
+============
+
+オブジェクト単位でアクセス制御を行うことができます。
+オブジェクトの ACL プロパティに設定を記述することで、アクセス権を指定できます。
+
+.. code-block:: javascript
+
+    var obj = {
+        description: "Foo Bar",
+        ACL: {
+            "owner": "オーナID",
+            "r": ["ユーザID", "g:グループ名"],
+            "w": ["ユーザID"],
+            "u": [],
+            "d": [],
+            "admin": []
+        }
+    };
+
+ACL の詳細については「デベロッパーマニュアル」の「セキュリティ:ACL」の節をご覧ください。
+
+オブジェクトの更新
+==================
+
+オブジェクトを更新するには、追加の場合と同じく、オブジェクトバケットの save() を呼び出します。
+
+引数には更新したいオブジェクトを JSON で指定します。
+その際、更新対象のオブジェクトにオブジェクトIDを指定する必要があります。
+
+※ オブジェクトIDの指定がない場合、更新ではなく追加になります。
+
+.. code-block:: javascript
+
+    var obj = {
+        "_id"  : "オブジェクトID", // 更新の場合は必須
+        "description" : "Bar"
+    }
+
+    bucket.save(obj)
+        .then(function(object) {
+            // 成功時の処理
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+オブジェクトの削除
+==================
+
+オブジェクトを削除するには、 オブジェクトバケットの remove() を呼び出します。
+
+remove() の引数には、削除対象のオブジェクトIDを指定します。
+
+.. code-block:: javascript
+
+    bucket.remove("オブジェクトID")
+        .then(function(objid) {
+            // 成功時の処理
+            // objid: オブジェクトID
+        })
+        .catch(function(error) {
+            // 失敗時の処理
+        });
+
+
+

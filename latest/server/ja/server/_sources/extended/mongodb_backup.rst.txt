@@ -1,0 +1,188 @@
+.. _mongodb_backup:
+
+=================================
+MongoDB のバックアップ・リストア
+=================================
+
+.. include:: ../../common/linkdef.rst
+
+MongoDB のデータバックアップ、リストアを行う方法について説明します。
+
+MongoDBのバックアップには、いくつかの方法があります。
+以下が代表的な方法です。
+
+* :ref:`storage_snapshot`
+* :ref:`mongodump_backup`
+* :ref:`mongo_file_backup`
+
+.. attention::
+
+  データの喪失や不整合が発生する危険性があります。
+  `MongoDB Backup Methods`_ を参照し、事前に環境に応じた詳細な手順、方法を検討してください。
+  特にレプリカセット、シャーディングを使用している場合、以下の手順が適用できない場合があります。
+
+  またバックアップ、リストアをおこなう前に、モバイルバックエンド基盤サーバを停止してから作業を行います。
+  停止、開始には、以下のコマンドを使用します。
+
+  .. code-block:: bash
+
+    # 停止
+    # サービス名はインストール済みのTomcatにあわせて変更してください
+    $ sudo systemctl stop tomcat8.service
+    # 開始
+    $ sudo systemctl start tomcat8.service
+
+.. _storage_snapshot:
+
+ストレージのスナップショット
+=============================
+
+ファイルシステムのスナップショットが取得できる環境では、その利用を推奨します。
+差分バックアップや、世代管理、また不具合発生時のリカバリも容易です。
+
+AWSであれば、Amazon EBS スナップショットが使用できます。
+
+.. _mongodump_backup:
+
+mongodumpによるバックアップ
+===========================
+
+mongodumpを使用したバックアップの方法を説明します。
+
+mongodump、mongorestoreの使用方法の詳細は、 以下を参照してください。
+
+* `Back Up and Restore with MongoDB Tools`_
+* `mongodump`_
+* `mongorestore`_
+
+バックアップ、リストアを行う際は、MongoDBへの書き込みは行わないでください。
+
+全てのデータのバックアップ
+----------------------------
+
+MongoDBに格納されるデータを全てバックアップする場合は、以下のコマンドを使用します。
+
+::
+
+  $ mongodump --out (出力先ディレクトリ)
+
+一部データのバックアップ
+---------------------------
+
+MongoDBに、複数のアプリケーションのデータを格納している環境では、
+モバイルバックエンド基盤のデータベースのみをバックアップすることができます。
+
+モバイルバックエンド基盤が使用するデータベースは、 **"baas_"** のプレフィクスを付与しています。
+
+::
+
+  $ mongo
+  > show dbs
+  admin                                         0.000GB
+  baas_development                              0.002GB # 共通の設定情報
+  baas_development_5a83bf6e09ff5614202e34ee     0.002GB # テナント毎のドキュメント(末尾はテナントID)
+  baas_development_5b56786109ff56049b66fa6e     0.000GB
+  baas_development_fs_5a83bf6e09ff5614202e34ee  0.251GB # テナント毎のファイル
+  baas_development_fs_5b56786109ff56049b66fa6e  0.000GB
+  baas_log                                      0.001GB # システムログ
+  ...
+
+  # "development"部分は運用プロファイルに応じた文字列が使用されます
+
+バックアップ対象のDB毎に以下のコマンドを使用します。
+
+::
+
+  $ mongodump --db (データベース名) --out (出力先ディレクトリ)
+
+データのリストア
+--------------------
+
+mongodumpでバックアップしたデータをリストアする場合、mongorestoreを使用します。
+バックアップで指定したディレクトリを、引数に指定してください。
+
+::
+
+  $ mongorestore (入力元ディレクトリ)
+
+.. attention::
+
+  mongorestoreは、バックアップしたドキュメントを、データベースに挿入して復元します。
+  復元先のデータベースに、元データが残った状態でリストアを行うと、重複してドキュメントが登録されてしまいます。
+
+  以下の例を参考に、リストア対象のDBを削除してからリストアを行ってください。
+
+  ::
+
+    $ mongo
+    > use baas_development
+    switched to db baas_development
+    > db.dropDatabase()
+    { "dropped" : "baas_development", "ok" : 1 }
+
+  また--drop オプションを指定すると、バックアップに含まれるコレクションをリストア先から削除、
+  その後データをリストアします。
+  バックアップに含まれていないコレクションは削除されません。
+
+  ::
+
+    $ mongorestore --drop (入力元ディレクトリ)
+
+.. note::
+
+  mongorestoreでリストアを行うと、インデックスの再構築などの処理が行われます。
+  特にドキュメントの量が多い場合、リストア直後の性能が低下する場合があります。
+
+.. _mongo_file_backup:
+
+MongoDBのデータファイルのバックアップ
+======================================
+
+ストレージに保存されているデータファイルを、コピーしてバックアップします。
+
+バックアップデータの確認
+----------------------------
+
+MongoDBのストレージエンジンの生成するファイルをバックアップします。
+
+MongoDBのデータディレクトリは、 コンフィギュレーションの"storage"を参照して確認します。
+
+::
+
+  $ cat /etc/mongod.conf
+
+  ...
+    storage:
+      dbPath: "/var/lib/mongo"
+
+データのバックアップ
+-----------------------
+
+バックアップするには、該当ディレクトリのファイルを全てコピーして保存します。
+不整合の発生を防止するため、バックアップを開始する前にMongoDBを停止します。
+
+.. code-block:: bash
+
+  # mongodbの停止
+  $ sudo systemctl stop mongod.service
+  # ディレクトリのバックアップ
+  $ sudo tar zcvf ./mongodb-backup.tar.gz /var/lib/mongo/*
+
+データのリストア
+--------------------
+
+リストアを行う場合、該当ディレクトリのファイルを全て削除してからファイルを展開します。
+
+.. code-block:: bash
+
+  # 既存ファイルの削除
+  $ sudo rm -rf /var/lib/mongo/*
+  # ファイルの展開
+  $ sudo tar zxvf ./mongodb-backup.tar.gz -C /var/lib/
+  # mongodbの開始
+  $ sudo systemctl start mongod.service
+
+.. attention::
+
+  バックアップしたファイルのオーナーを変更すると、正しくリストアができません。
+  バックアップ時のオーナーと一致させて下さい。

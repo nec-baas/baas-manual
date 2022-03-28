@@ -1,0 +1,31 @@
+.. include:: ../common/linkdef.rst
+
+===================
+はじめに
+===================
+
+本文書は、モバイルバックエンド基盤 API Gateway 開発ガイドです。
+
+API Gateway とは
+=================
+
+モバイルバックエンド基盤 API Gateway は以下の機能を持っています。
+
+* ユーザが定義したカスタム REST API を定義することができます。
+* 定義した REST API から、Cloud Functions機能を呼び出すことができます。
+* 定義した REST API から、他の Web サービスを Proxy 呼び出しすることができます。
+* 定義した REST API から、RabbitMQサーバにメッセージを送受信することができます。
+
+REST API の定義は、 `Swagger`_ で記述します。
+Swagger 定義ファイルをモバイルバックエンド基盤サーバにアップロードすることで、
+REST API が使用できるようになります。
+
+Cloud Functions機能の詳細については、
+`Cloud Functions開発ガイド <../cloudfunctions/index.html>`_ を参照してください。
+
+用語の定義
+==========
+
+本マニュアルでは以下の用語定義を使用します。
+
+* API(またはカスタムAPI) : 利用者が定義した REST API。Swagger で記述。

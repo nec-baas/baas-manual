@@ -1,0 +1,68 @@
+.. _events_list:
+
+サブスクリプションの一覧取得
+==============================
+
+.. http:delete:: /1/(tenantId)/event/subscriptions
+
+    サブスクリプションを一覧を取得する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+
+    :query int skip: スキップカウント
+    :query int limit: 検索数上限
+
+    :statuscode 200: 正常終了
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 500: その他
+
+    **リクエストボディ**
+
+    無し。
+
+    **レスポンスボディ**
+
+    レスポンスボディの例:
+
+    .. code-block:: json
+
+        {
+          "results": [
+            {
+              "name": "photo-event",
+              "source": {
+                "type": "fileStorage"
+              },
+              "filter": {
+                "bucketName": "photos",
+                "action": { "$in": ["file.created", "file.updated"] }
+              },
+              "handler": {
+                "type": "cloudFunction",
+                "functionName": "makeThumbnail"
+              },
+              "createdAt": "2018-03-05T18:26:17.000Z",
+              "updatedAt": "2018-03-05T18:26:18.000Z",
+              "etag":"db812a46-319c-4535-92a0-236ce04b2636"
+            },
+            {
+              "name": "hourly-event",
+              "source": {
+                "type": "scheduler"
+              },
+              "filter": {
+                "schedule": "hourly"
+              },
+              "handler": {
+                "type": "cloudFunction",
+                "functionName": "collectGarbage"
+              },
+              "createdAt": "2018-03-05T18:26:30.000Z",
+              "updatedAt": "2018-03-05T18:26:31.000Z",
+              "etag":"d3b9423f-b786-480c-885a-d466b0816f8a"
+            }
+          ]
+        }

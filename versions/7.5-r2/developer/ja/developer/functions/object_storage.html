@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.4. JSONオブジェクトストレージ &mdash; Developer Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="2.5. ファイルストレージ" href="file_storage.html" />
+    <link rel="prev" title="2.3. グループ管理機能" href="group_management.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. 機能ガイド</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="application.html">2.1. テナントとアプリケーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_management.html">2.2. ユーザ管理・認証機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group_management.html">2.3. グループ管理機能</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.4. JSONオブジェクトストレージ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">2.4.1. JSONオブジェクトストレージの概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">2.4.2. オブジェクトバケット</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id22">バケット運用のベストプラクティス</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">バケットのアクセス制御</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">2.4.3. バケットの操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">2.4.4. オブジェクトの作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json-spec">2.4.5. JSON仕様について</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">2.4.6. アクセス制御</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#acl">ACL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">ACL無効化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#json-encryption">2.4.7. データ暗号化</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id30">暗号化対象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">暗号アルゴリズム・鍵について</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32">注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">2.4.8. オブジェクトの更新</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id36">楽観ロック</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">2.4.9. オブジェクトの検索（クエリ)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id38">クエリ式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id39">ソート条件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">検索件数上限・スキップ数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">2.4.10. インデックス</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id42">2.4.11. 集計(Aggregation)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id44">ACLアクセス制御</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sort">$sort使用時の注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#batch">2.4.12. バッチオペレーション</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transaction">2.4.13. トランザクション</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.5. ファイルストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl.html">2.6. セキュリティ : ACL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cors.html">2.7. Cross Origin Resource Sharing (CORS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_offline.html">2.8. オフライン機能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html">2.9. Push通知</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apigw.html">2.10. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud_func.html">2.11. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">2.12. イベント駆動</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admin.html">2.13. 管理者向け機能</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../limits.html">3. 制限値・スレショルド・文字制約</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">2. 機能ガイド</a> &raquo;</li>
+        
+      <li>2.4. JSONオブジェクトストレージ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="json">
+<h1>2.4. JSONオブジェクトストレージ<a class="headerlink" href="#json" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id20">
+<h2>2.4.1. JSONオブジェクトストレージの概要<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトストレージは、JSON 形式でのオブジェクトを保存、検索、読み出しすることができるデータベースです。
+アプリケーションで扱うほとんどのデータ（ファイルデータ以外）は、オブジェクトストレージに格納することができます。</p>
+<p>オブジェクトストレージは、リレーショナルデータベースとは異なり、スキーマレスデータベースです。
+複雑な構造(ネストした構造、配列など)をそのまま格納することができますし、スキーマの変更も容易です。</p>
+<p>また、JSON形式でそのままデータを扱うことができますので、特に JavaScript との親和性は非常に良いものとなっています。</p>
+</div>
+<div class="section" id="id21">
+<h2>2.4.2. オブジェクトバケット<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトストレージを利用するにあたっては、「バケット」の概念を理解する必要があります。
+バケットは、BaaS のデータを格納する入れ物（箱）のことです。
+JSON オブジェクトを格納するバケットを、特に「オブジェクトバケット」と呼びます。</p>
+<p>バケットとは、リレーショナルデータベースでいうところの「テーブル」に該当する概念です
+（JSONオブジェクトはテーブルの１行に相当します）。</p>
+<p>リレーショナルデータベースと異なり、バケットには事前にスキーマを定義する必要はありません。
+任意の種類の JSON オブジェクトを格納することも可能です。
+しかし、通常は用途や種類別にそれぞれ個別にバケットを用意したほうが、管理や検索が容易になります。</p>
+<p>例えば、以下の図に示すように、商品マスタ、在庫、顧客、伝票、などごとにバケットを分けるのが良いでしょう。</p>
+<img alt="../_images/object_storage.png" src="../_images/object_storage.png" />
+<div class="section" id="id22">
+<h3>バケット運用のベストプラクティス<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>上述した通り、バケットは用途や種類別に個別に作成することを推奨します。</p>
+<p>バケットをユーザ毎に作ることは避けて下さい。
+バケットは種類別にのみ作成し、全ユーザのデータを用途・種類別にバケットに格納するようにします。
+そして、ユーザごとのデータの分離は、ACLで行うようにしてください。</p>
+<p>このようにする理由は以下のとおりです。</p>
+<ul class="simple">
+<li>プログラムの実装が容易</li>
+<li>ユーザ間のデータ共有が容易</li>
+<li>ユーザ毎にバケットを作成すると、ユーザ数が増えた時にバケット数の上限に達してしまう可能性がある。</li>
+</ul>
+<p>バケットは、アプリケーションの開発時にすべて事前に作成・設定を行っておき、
+それぞれのアプリケーションからは個別にはバケットは作成しないことを推奨します。</p>
+</div>
+<div class="section" id="id23">
+<h3>バケットのアクセス制御<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>バケットには以下二種類の ACL があります。
+これらの ACL は、デベロッパーコンソールで設定可能です。</p>
+<ul class="simple">
+<li>バケットACL : バケットそのものを操作するときのアクセス制御を行うACL。</li>
+<li>コンテンツACL : バケットの内容(オブジェクト)にアクセスするときのアクセス制御を行うACL。</li>
+</ul>
+<p>また、バケットに格納されるオブジェクト毎に個別にACLを付与し、アクセス制御を行うことができます。
+バケット単位で、オブジェクト単位ACLを無効化することも可能です( <a class="reference internal" href="acl.html#acl-less"><span class="std std-ref">ACLレスバケット</span></a> )。</p>
+<p>ACL については後述します。</p>
+</div>
+</div>
+<div class="section" id="id24">
+<h2>2.4.3. バケットの操作<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>バケットの操作（作成・削除・ACL変更)は、デベロッパーコンソール上で行うことができます。</p>
+<p>また、一部の SDK はバケットの作成、変更、削除用の API を提供しています。</p>
+</div>
+<div class="section" id="id25">
+<h2>2.4.4. オブジェクトの作成<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトバケットには JSON 形式のオブジェクトを格納することができます。</p>
+<p>オブジェクトは、典型的には以下のような形式になります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;521c36d4ac521e1ffa000007&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">80.0</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;01234567890&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;w&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:authenticated&quot;</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T05:19:16.000Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>任意の形の JSON データを格納することができますが、このうちいくつかの
+プロパティについては予約プロパティとなっています。具体的には
+以下のプロパティです。</p>
+<ul class="simple">
+<li>'_id' : オブジェクトを一意に識別する ID （プライマリキー）です。通常は、データ挿入時にサーバ側が自動で採番します。</li>
+<li>'ACL' : アクセス制御リストです。</li>
+<li>'createdAt : オブジェクトの作成時刻です。</li>
+<li>'updatedAt : オブジェクトの更新時刻です。</li>
+</ul>
+</div>
+<div class="section" id="json-spec">
+<span id="id26"></span><h2>2.4.5. JSON仕様について<a class="headerlink" href="#json-spec" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>JSONには <a class="reference external" href="https://github.com/mongodb/specifications/blob/master/source/extended-json.rst">MongoDB Extended JSON仕様</a> を
+使用することができます (v7.0以降)。
+これを利用して、日付・タイムスタンプ・バイナリなどのデータをそのままの型で格納することが可能です。</p>
+<p>Extended JSON には Canonical, Relaxed の２つのフォーマットがあります。保存時には Canonical, Relaxed いずれの形式でも受け付けますが、
+取得時には常に Relaxed 形式で返却します。Canonical/Relaxed は、数値と日付型の表記の違いがあります。
+以下に例を示します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Canonical</span>
+<span class="p">{</span>
+  <span class="nx">a</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$numberInt&quot;</span><span class="o">:</span> <span class="s2">&quot;2147483647&quot;</span><span class="p">}</span> <span class="p">,</span>
+  <span class="nx">b</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$numberLong&quot;</span><span class="o">:</span> <span class="s2">&quot;9223372036854775807&quot;</span><span class="p">},</span>
+  <span class="nx">c</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$numberDouble&quot;</span><span class="o">:</span> <span class="s2">&quot;300.5&quot;</span><span class="p">}</span>
+  <span class="nx">d</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$date&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$numberLong&quot;</span><span class="o">:</span> <span class="s2">&quot;1514732400000&quot;</span><span class="p">}}</span>
+<span class="p">}</span>
+<span class="c1">// Relaxed</span>
+<span class="p">{</span>
+  <span class="nx">a</span><span class="o">:</span> <span class="mi">2147483647</span><span class="p">,</span>
+  <span class="nx">b</span><span class="o">:</span> <span class="mi">9223372036854775807</span><span class="p">,</span>
+  <span class="nx">c</span><span class="o">:</span> <span class="mf">300.5</span><span class="p">,</span>
+  <span class="nx">d</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$date&quot;</span><span class="o">:</span> <span class="s2">&quot;2018-01-01T00:00:00.000Z&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>保存時に Relaxed フォーマットを使用する場合、JSON に記述する数値の型は自動的に判定されます。
+具体的には、32bit整数型、64bit整数型、倍精度浮動小数点型(符号1bit, 指数部11bit, 仮数部52bit)のいずれかに自動判定されます。</p>
+<p>なお、JavaScript で数値を扱う場合は、すべて倍精度浮動小数点型に丸められる点に注意が必要です。
+64bit整数型を扱いたい場合は、文字列として格納する必要があります。</p>
+<p>また、&quot;_id&quot; フィールドの値は、MongoDB 保存時に ObjectId 型に自動変換されます。
+24文字の hex 文字列は自動的に ObjectId に変換されます。それ以外のものは変換されません。
+&quot;_id&quot; フィールドがオブジェクトまたは配列の場合、その中身についても再帰的に変換されます。</p>
+</div>
+<div class="section" id="id27">
+<h2>2.4.6. アクセス制御<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトには個別に ACL (Access Control List)を設定することで、アクセス制御
+を行うことができます。ACLの詳細については <a class="reference internal" href="acl.html#acl"><span class="std std-ref">セキュリティ : ACL</span></a> の節で説明しています。
+ここでは概要のみ説明します。</p>
+<div class="section" id="acl">
+<h3>ACL<a class="headerlink" href="#acl" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ACL は、オブジェクト作成時に 'ACL' キーを指定することで設定します。</p>
+<p>ACL キー内の 'owner' キーに、オブジェクトのオーナのユーザIDを指定します。
+オーナはオブジェクトの読み書きの権限がすべて与えられます。</p>
+<p>ACL キー内の 'r' に読み込み可能なユーザ一覧、'w' に書き込み・削除
+可能なユーザ一覧を配列で指定します。</p>
+<p>また、グループ名を指定することも可能です。グループ名を指定する場合は
+&quot;g:groupA&quot; のように先頭に &quot;g:&quot; を付与してください。</p>
+<p>なお、ログイン済み全ユーザを表す &quot;authenticated&quot; グループと、
+未ログインユーザ全員を表す &quot;anonymous&quot; グループも使用できます。</p>
+<p>ユーザ・グループ、いずれかの条件に合致すると、オブジェクトへのアクセスが
+許可されます。また、バケットのコンテンツACLでのアクセス権も必要です。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;score&quot;</span><span class="o">:</span><span class="mi">80</span><span class="p">,</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;52116f01ac521e1742000001&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;w&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:groupA&quot;</span><span class="p">],</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>上記の例では、誰でも読み込み可能で、書き込みは groupA が可能。
+オーナとなる 52116f01ac521e1742000001 ユーザはすべて可能という指定となります。</p>
+<p>なお、ACL を指定せずにオブジェクトを作成した場合は、以下のような動作となります。</p>
+<ul class="simple">
+<li>ログイン状態でオブジェクトを作成すると、そのユーザIDでのみ読み書き可能な状態でオブジェクトが作成されます。</li>
+<li>未ログイン状態でオブジェクトを作成すると、誰でも読み書き可能な状態でオブジェクトが作成されます。</li>
+</ul>
+</div>
+<div class="section" id="id28">
+<h3>ACL無効化<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>バケット単位に、オフジェクト単位 ACL を無効化することができます。
+詳細は <a class="reference internal" href="acl.html#acl-less"><span class="std std-ref">ACLレスバケット</span></a> を参照してください。</p>
+</div>
+</div>
+<div class="section" id="json-encryption">
+<span id="id29"></span><h2>2.4.7. データ暗号化<a class="headerlink" href="#json-encryption" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDB 内のデータ保護を目的として、オブジェクト内の一部フィールドを暗号化して MongoDB に保存することが可能です。</p>
+<div class="section" id="id30">
+<h3>暗号化対象<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>&quot;_protected&quot; フィールドに設定されたデータが暗号化対象となります。</p>
+<p>保存時に自動的に暗号化され、読み出し時に自動的に復号化されますので、
+利用者は暗号化の手順を意識する必要はありません。</p>
+<p>&quot;_protected&quot; フィールドには、JSON オブジェクト型でデータを設定してください。値や文字列等のデータを設定することはできません。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span>  <span class="c1">// 暗号化されない</span>
+    <span class="s2">&quot;_protected&quot;</span><span class="o">:</span> <span class="p">{</span>
+       <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;25&quot;</span> <span class="c1">// 暗号化される</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>なお、JSONオブジェクトのトップレベルの &quot;_protected&quot; フィールドのみが暗号化対象となります。
+ネストされた JSON オブジェクト内の &quot;_protected&quot; フィールドは暗号化対象外です。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;person&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;_protected&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Bar&quot;</span><span class="p">}</span> <span class="c1">// ここは暗号化されない</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;_protected&quot;</span><span class="o">:</span> <span class="s2">&quot;message&quot;</span> <span class="c1">// JSONオブジェクトでない場合は保存時にエラーとなる</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id31">
+<h3>暗号アルゴリズム・鍵について<a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>暗号化のアルゴリズムには AES を使用します。鍵長は 128bit です。</p>
+<p>暗号鍵はテナント毎に1個自動生成されます。
+暗号鍵は別の固定鍵で暗号化され、マスターデータベース内に格納されます。</p>
+</div>
+<div class="section" id="id32">
+<h3>注意事項<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id33">
+<h4>クエリ時の注意<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>クエリ時には、暗号化されたフィールドを検索キーに指定することはできません。
+上記の例では、&quot;name&quot; は検索キーに使用できますが、&quot;_protected.age&quot; は使用できません。</p>
+<p>なお、検索キーに指定しても REST API 自体はエラーにはなりませんが、期待した検索結果は返却されません。</p>
+</div>
+<div class="section" id="id34">
+<h4>更新時の注意<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>暗号化フィールドを部分更新することはできません。
+部分更新しようとした場合は 400 Bad Request エラーとなります。</p>
+<p>暗号化フィールド以外の部分更新は可能です。
+また、全更新については暗号化フィールドを含んでいても更新可能です。</p>
+</div>
+<div class="section" id="aggregation">
+<h4>Aggregation時の注意<a class="headerlink" href="#aggregation" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>暗号化フィールドを Aggregation 操作対象に含めることはできません。
+含めてもエラーにはなりませんが、期待通りの結果は返却されません。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id35">
+<h2>2.4.8. オブジェクトの更新<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトの更新には、フルアップデートと部分更新の２通りの方法があります。</p>
+<p>フルアップデートでは、サーバ上にあるオブジェクト内のすべてのプロパティが上書きされます。
+(更新しようとしたオブジェクトに含まれないプロパティは削除されます)。
+ただし、_id の値は変更されません。</p>
+<p>部分更新では、オブジェクトの一部のフィールドだけを更新することができます。
+この際、MongoDB の更新演算子を利用すると、アトミックに値を増減するなどの操作を行うことができます。</p>
+<div class="section" id="id36">
+<h3>楽観ロック<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトの ETag を使用することで、更新時に楽観ロックをかけることが可能です。</p>
+<p>楽観ロックは以下のように動作します。</p>
+<ul class="simple">
+<li>オブジェクトを新規保存すると、サーバ側でオブジェクト内に &quot;etag&quot; フィールドが自動的に追加され、ETag 値が付与されます。ETag 値はランダムに生成される文字列(UUID)です。</li>
+<li>オブジェクトを更新する際に ETag 値をサーバに送信すると、サーバで自動的に ETag 値の照合が行われます。<ul>
+<li>ETag 値が同一の場合は正常に保存され、ETag 値は新しい値に更新されます。</li>
+<li>異なっている場合は、他のユーザがオブジェクトを既に更新しているとみなされ、409 Conflict エラーとなり更新は保存されません。</li>
+</ul>
+</li>
+</ul>
+<p>なお、各 SDK では、オブジェクト更新時に自動的に ETag 値をサーバに送信するようになっていますので、楽観ロックが常にかかるようになっています。</p>
+</div>
+</div>
+<div class="section" id="id37">
+<h2>2.4.9. オブジェクトの検索（クエリ)<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>バケットからオブジェクトを検索する際、様々な条件を付与して検索を行うことができます。</p>
+<ul class="simple">
+<li>クエリ式 (JSON) による検索</li>
+<li>ソート条件の指定</li>
+<li>検索件数上限の指定</li>
+<li>検索結果のスキップ数の指定</li>
+</ul>
+<div class="section" id="id38">
+<h3>クエリ式<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>オブジェクトストレージのバックエンドには MongoDB を使用しており、
+MongoDB のクエリ式はほぼそのまますべて使用することができます。</p>
+<p>特定のプロパティに対して完全一致させたい場合は、JSON でキーと値を指定します。
+複数プロパティを指定した場合は、AND条件となり、すべての条件が合致したオブジェクトだけが検索されます。
+以下の例では、name が &quot;Foo&quot; かつ age が 34 となるオブジェクトのみが検索されます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span><span class="mi">34</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>比較を行う場合は、以下の演算子を利用できます。</p>
+<ul class="simple">
+<li>$lt, $gt : Less Than / Greater Than</li>
+<li>$lte, $gte : Less or Equal / Greater of Equal</li>
+<li>$ne : Not equal to</li>
+</ul>
+<p>例) score が 70 超のものを選択したい場合</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gt&quot;</span><span class="p">:</span> <span class="mi">70</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>その他、以下の演算子が使用できます。これらは MongoDB のクエリがそのまま使用できます。
+詳細は <a class="reference external" href="http://docs.mongodb.org/manual/reference/operator/query/">Query and Projection Operators</a> を参照してください。</p>
+<ul class="simple">
+<li>$in : 指定した配列の値のいずれかと一致するかチェック</li>
+<li>$nin : $in の否定条件</li>
+<li>$all : 指定した配列の値のすべてが含まれるかチェック</li>
+<li>$regex : 正規表現</li>
+<li>$exists : 特定プロパティの存在チェック</li>
+<li>$not : 論理演算(否定)</li>
+<li>$and : 論理演算(AND)</li>
+<li>$or : 論理演算(OR)</li>
+<li>$nor : 論理演算(NOR)</li>
+</ul>
+<p>例をいくつか示します。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// prefecture が tokyo または kanagawa</span>
+<span class="p">{</span> <span class="s2">&quot;prefecture&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;$in&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;tokyo&quot;</span><span class="p">,</span> <span class="s2">&quot;kanagawa&quot;</span><span class="p">]</span> <span class="p">}}</span>
+
+<span class="c1">// tag に ssl と security が両方含まれる</span>
+<span class="p">{</span> <span class="s2">&quot;tag&quot;</span> <span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;$all&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;ssl&quot;</span><span class="p">,</span> <span class="s2">&quot;security&quot;</span><span class="p">]</span> <span class="p">}}</span>
+
+<span class="c1">// company が a で始まり jp で終わる</span>
+<span class="p">{</span> <span class="s2">&quot;company&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;$regex&quot;</span><span class="o">:</span> <span class="s2">&quot;^a.*jp$&quot;</span> <span class="p">}}</span>
+
+<span class="c1">// quantity が 20 以下、または price が 100以上。</span>
+<span class="p">{</span> <span class="s2">&quot;$or&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="s2">&quot;quantity&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;$lte&quot;</span><span class="o">:</span> <span class="mi">20</span> <span class="p">}</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;$gte&quot;</span><span class="o">:</span> <span class="mi">100</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id39">
+<h3>ソート条件<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>特定のフィールドを指定してソート(昇順・降順)を行うことができます。</p>
+<p>複数のソート条件を指定することも可能です。
+この場合、先に指定したソート条件のほうが優先されます。</p>
+<p>具体的な指定方法は、各SDKのリファレンスを参照してください。</p>
+</div>
+<div class="section" id="id40">
+<h3>検索件数上限・スキップ数<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>検索件数の上限(limit)およびスキップ数(skip)を指定することができます。</p>
+<p>例えば検索ヒット件数(全件数)が 300 件であった場合、
+skip に 50、limit に 100 を指定していると、50件目～149件目までのデータが返却されます。</p>
+<p>具体的な指定方法は、各SDKのリファレンスを参照してください。</p>
+</div>
+</div>
+<div class="section" id="id41">
+<h2>2.4.10. インデックス<a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトのクエリを高速化するため、特定のプロパティに対してインデックスを設定することができます。
+また、複数のプロパティにまたがった複合インデックスを設定することも可能です。</p>
+<p>インデックス設定は、デベロッパコンソールから行うことができます。</p>
+</div>
+<div class="section" id="id42">
+<span id="index-0"></span><span id="id43"></span><h2>2.4.11. 集計(Aggregation)<a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDB の集計(Aggregation)処理を行うことができます。
+RDB でいうところの LEFT OUTER JOIN, GROUP BY, SUM, COUNT などの処理を行うことができます。</p>
+<p>詳細は <a class="reference external" href="https://docs.mongodb.com/manual/aggregation/">MongoDB Aggregation</a> を参照してください。</p>
+<p>使用することができるコマンドは以下のとおりです。</p>
+<ul class="simple">
+<li>$match</li>
+<li>$lookup</li>
+<li>$limit</li>
+<li>$skip</li>
+<li>$sort</li>
+<li>$group</li>
+<li>$bucket</li>
+<li>$bucketAuto</li>
+<li>$count</li>
+<li>$project</li>
+<li>$addFields</li>
+</ul>
+<p>$lookup 内 pipeline で使用できる stage は以下のものに限定されます。</p>
+<ul class="simple">
+<li>$match</li>
+<li>$project</li>
+<li>$limit</li>
+<li>$skip</li>
+<li>$sort</li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">$lookup, $addFields を使用する場合は、サーバ側で MongoDB 3.4 以上を使用している必要があります。
+さらに $lookup 内で pipeline を使用する場合は、サーバ側で MongoDB 3.6 以上を使用している必要があります。</p>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">$lookup を使用する際に _id フィールドとの照合を行う場合は、_id フィールドの型が ObjectId 型になっている点に注意してください。照合先フィールド名が _id ではない場合、Extended JSON の &quot;$oid&quot; を使用し照合先も ObjectId 型に揃える必要があります。</p>
+</div>
+<div class="section" id="id44">
+<h3>ACLアクセス制御<a class="headerlink" href="#id44" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Aggregation を実行する際には、ACL のアクセス制御が適切に行われるようにするため、
+BaaSサーバ側で Aggregation Pipeline 内に適宜 ACL 制御用のコマンドが挿入されます。</p>
+<p>具体的には、以下のような操作が行われます。</p>
+<ul class="simple">
+<li>pipeline の先頭に、該当バケット内ドキュメントに対する ACL 制約を行うための $match が挿入されます。</li>
+<li>$lookup の直後に、参照先バケット内ドキュメントに対する ACL 制約を行うための $addFields / $filter が挿入されます。</li>
+</ul>
+</div>
+<div class="section" id="sort">
+<h3>$sort使用時の注意事項<a class="headerlink" href="#sort" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Aggregation で <a class="reference external" href="https://docs.mongodb.com/manual/reference/operator/aggregation/sort/">$sort</a> に
+複数のキーを指定する場合は注意が必要です。</p>
+<p>$sort で複数キーを指定する場合は JSON 内に複数のフィールドを指定することになりますが、
+JSON の仕様ではフィールドの順序が保証されないため、期待したとおりのソート順序にならない場合があります。</p>
+<p>APIサーバは JSON のフィールド順序を維持するようになっていますが、クライアント側は利用する環境によって
+JSONの順序が維持されない場合があります。具体的には以下のようになります。</p>
+<ul class="simple">
+<li>Java/Android SDK: フィールド順が維持されます。</li>
+<li>JavaScript SDK: フィールド順は保証されません。</li>
+<li>.NET SDK: フィールド順は保証されません。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="batch">
+<span id="id46"></span><h2>2.4.12. バッチオペレーション<a class="headerlink" href="#batch" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>複数オブジェクトを同時に追加・更新・削除できます。</p>
+<p>オペレーションは配列形式でリクエストボディに設定し、送信すると、サーバはこの配列の先頭から順に処理を実行します。
+処理結果は、レスポンスボディにセットされ、一括で返却されます。</p>
+<p>詳細な利用方法については、<a class="reference external" href="../../rest-ref/index.html">REST API リファレンス</a> の JSONオブジェクトストレージ ⇒ バッチオペレーションを参照ください。</p>
+</div>
+<div class="section" id="transaction">
+<span id="id47"></span><h2>2.4.13. トランザクション<a class="headerlink" href="#transaction" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>MongoDB 4.0 のトランザクション機能を使用して、全オペレーションをアトミックに処理することが可能です。</p>
+<p>トランザクションを行う場合は、バッチオペレーションを使用する必要があります。</p>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<dl class="last docutils">
+<dt>トランザクション機能を使用する場合は以下の条件が必要です。</dt>
+<dd><ul class="first last simple">
+<li>MongoDB 4.0 以上かつレプリカセット構成が必要</li>
+<li>レプリカセット全メンバのfeatureCompatibilityVersionは4.0以上に設定されていること</li>
+<li>MongoDB 4.0 のシャーディング環境では利用不可</li>
+</ul>
+</dd>
+</dl>
+</div>
+<p>詳細な利用方法については、<a class="reference external" href="../../rest-ref/index.html">REST API リファレンス</a> の JSONオブジェクトストレージ ⇒ バッチオペレーションを参照ください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="file_storage.html" class="btn btn-neutral float-right" title="2.5. ファイルストレージ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="group_management.html" class="btn btn-neutral" title="2.3. グループ管理機能" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

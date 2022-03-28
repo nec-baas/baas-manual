@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. はじめに &mdash; Event Subscription Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="2. イベント" href="event.html" />
+    <link rel="prev" title="NEC BaaS Event Subscription Developer Guide" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Event Subscription Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. はじめに</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">1.1. イベント駆動とは</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id22">1.1.1. イベント検知</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">1.1.2. イベントフィルタリング</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">1.1.3. イベントハンドリング</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">1.2. イベント駆動の利用方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">1.3. 用語の定義</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id27">1.4. 動作環境</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="event.html">2. イベント</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html">3. イベントサブスクリプション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">4. イベントサブスクリプションとクラウドファンクションの登録</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloudfn.html">5. イベント処理用クラウドファンクションの実装</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Event Subscription Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. はじめに</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>1. はじめに<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>本文書は、モバイルバックエンド基盤 イベント駆動の開発ガイドです。</p>
+<p>本文書では、イベント駆動の開発方法・
+実行方法について解説します。</p>
+<div class="section" id="id21">
+<h2>1.1. イベント駆動とは<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>モバイルバックエンド基盤 イベント駆動は、モバイルバックエンド基盤サーバ上で発生した各種のイベントを契機にして、クラウドファンクションを起動する機能です。
+以下3つのサブ機能から成り立っています。</p>
+<div class="section" id="id22">
+<h3>1.1.1. イベント検知<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>モバイルバックエンド基盤内で発生したイベントを検知する機能です。</p>
+<p>以下の2種類のイベントを検知できます。</p>
+<ul class="simple">
+<li>ファイルストレージイベント</li>
+<li>スケジューライベント</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3>1.1.2. イベントフィルタリング<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>検知したイベントをフィルタリングする機能です。</p>
+</div>
+<div class="section" id="id24">
+<h3>1.1.3. イベントハンドリング<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>イベントを処理する機能です。</p>
+<p>検知・フィルタリングしたイベントをクラウドファンクション機能にて処理できます。</p>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>1.2. イベント駆動の利用方法<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>下記2点をモバイルバックエンド基盤サーバに登録することで、イベント駆動を利用できます。</p>
+<ul class="simple">
+<li>イベントサブスクリプション</li>
+<li>イベント処理用クラウドファンクション</li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h2>1.3. 用語の定義<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>本マニュアルでは以下の用語定義を使用します。</p>
+<ul class="simple">
+<li>イベント: モバイルバックエンド基盤内で発生した事象を、JSON形式で表現・通知するもの。</li>
+<li>イベントサブスクリプション: ユーザが設定する、イベント検知・フィルタリング・ハンドリングという、イベント駆動の一連の流れ。JSON形式・YAML形式で定義する。</li>
+</ul>
+</div>
+<div class="section" id="id27">
+<h2>1.4. 動作環境<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>イベント駆動の開発には、イベントハンドラを作成するために、クライアント側にクラウドファンクションの開発環境が必要です。</p>
+<ul class="simple">
+<li><a class="reference external" href="../cloudfunctions/index.html">NEC BaaS Cloud Functions Developer Guide</a></li>
+</ul>
+<p>イベント駆動の動作には、以下のサーバが必要になります。</p>
+<ul class="simple">
+<li><a class="reference external" href="../../../server/ja/server/index.html">モバイルバックエンド基盤サーバ</a></li>
+<li><a class="reference external" href="../../../server/ja/cloudfunctions-server/index.html">Cloud Functionsサーバ</a></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">イベント駆動を利用する際には、モバイルバックエンド基盤サーバのDBとして、MongoDB 3.6以降が必須です。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">MongoDB サーバのレプリカセットを有効にする必要があります。
+これは、イベント駆動機能が、内部的に MongoDB の Change Streams 機能に依存しているためです。
+詳細は、MongoDB のマニュアル <a class="reference external" href="https://docs.mongodb.com/manual/changeStreams/">Change Streams</a> を参照してください。
+なお、MongoDBサーバが１台構成であっても、レプリカセットを有効にすることは可能です。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">MongoDBをシャーディング有効で動作させている場合、イベント駆動は利用できません。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="event.html" class="btn btn-neutral float-right" title="2. イベント" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="NEC BaaS Event Subscription Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.15. テナント設定 - テンプレート &mdash; Developer Console User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.16. テナント設定 - OpenID Connect設定" href="tenant_config_oidc.html" />
+    <link rel="prev" title="4.14. テナント設定 - 特殊バケットのACL設定" href="tenant_config_acl.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../login.html">2. ログイン</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system/index.html">3. システム管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. テナント管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="abstract.html">4.1. テナント管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application.html">4.2. アプリケーション管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">4.3. ユーザ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group.html">4.4. グループ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object.html">4.5. オブジェクトバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file.html">4.6. ファイルバケット管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apigw.html">4.7. API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">4.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html">4.9. Event Subscription</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_stats.html">4.10. API統計情報</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html">4.11. テナント管理者管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_basic.html">4.12. テナント設定 - 基本設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_storage.html">4.13. テナント設定 - 外部ストレージ設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_acl.html">4.14. テナント設定 - 特殊バケットのACL設定</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.15. テナント設定 - テンプレート</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">概要</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">テンプレートパラメータ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_oidc.html">4.16. テナント設定 - OpenID Connect設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant_config_client_cert.html">4.17. テナント設定 - クライアント証明書</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. テナント管理</a> &raquo;</li>
+        
+      <li>4.15. テナント設定 - テンプレート</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4.15. テナント設定 - テンプレート<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ユーザ管理機能で利用するメールや Web ページのテンプレートを編集することができます。</p>
+<div class="section" id="id2">
+<h2>概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>下記の Freemarker テンプレートを編集することができます。</p>
+<ul class="simple">
+<li>メールテンプレート<ul>
+<li>パスワードリセットメール</li>
+<li>ユーザ登録確認メール</li>
+<li>ユーザ更新確認メール</li>
+<li>ユーザ登録・更新完了通知メール</li>
+</ul>
+</li>
+<li>Webページテンプレート<ul>
+<li>パスワードリセットページ</li>
+<li>パスワードリセット完了ページ</li>
+<li>ユーザ登録・更新確認ページ</li>
+<li>ユーザ登録・更新確認ページ(パスワード更新付き)</li>
+<li>ユーザ登録・更新完了ページ</li>
+</ul>
+</li>
+</ul>
+<p>メールテンプレートは件名と本文、 Web ページはページ内容(HTML)を編集できます。</p>
+</div>
+<div class="section" id="id3">
+<h2>テンプレートパラメータ<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>下記のパラメータを使用することができます。
+例えば ${tenantname} と指定することでテンプレートにテナント名を入れることができます。</p>
+<ul class="simple">
+<li>tenantname: テナント名</li>
+<li>appname: アプリケーション名</li>
+<li>url: 各テンプレートで使用する URL</li>
+<li>username: ユーザ名</li>
+<li>email: メールアドレス</li>
+<li>status: ユーザの有効/無効状態(Enabled/Disabled)</li>
+<li>token: パスワードリセットトークン、ユーザ登録・更新確認トークン</li>
+<li>message: メッセージ文</li>
+</ul>
+<p>各テンプレートで使用可能なパラメータは下記です。</p>
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><div class="first last line-block">
+<div class="line">テンプレート</div>
+</div>
+</th>
+<th class="head"><div class="first last line-block">
+<div class="line">使用可能パラメータ</div>
+</div>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">パスワードリセットメール</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">tenantname</div>
+<div class="line">appname</div>
+<div class="line">url (本文に必須)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">ユーザ登録確認メール</div>
+<div class="line">ユーザ更新確認メール</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">tenantname</div>
+<div class="line">appname</div>
+<div class="line">email</div>
+<div class="line">url (本文に必須)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">ユーザ登録・更新完了通知メール</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">username</div>
+<div class="line">email</div>
+<div class="line">status</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="first last line-block">
+<div class="line">パスワードリセットページ</div>
+<div class="line">ユーザ登録・更新確認ページ</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">url (必須)</div>
+<div class="line">token (必須)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="first last line-block">
+<div class="line">パスワードリセット完了ページ</div>
+<div class="line">ユーザ登録・更新完了ページ</div>
+</div>
+</td>
+<td><div class="first last line-block">
+<div class="line">message</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>メールテンプレートについては件名、本文の両方に上記パラメータが使用できます。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tenant_config_oidc.html" class="btn btn-neutral float-right" title="4.16. テナント設定 - OpenID Connect設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tenant_config_acl.html" class="btn btn-neutral" title="4.14. テナント設定 - 特殊バケットのACL設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

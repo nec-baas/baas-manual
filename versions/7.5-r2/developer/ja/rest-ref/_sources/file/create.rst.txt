@@ -1,0 +1,153 @@
+.. _file_create:
+
+ファイルの新規アップロード
+============================
+
+.. http:post:: /1/(tenantId)/files/(bucketName)/(fileName)
+
+    ファイルを新規アップロードする。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+    :reqheader X-ACL: ACL(オプション)
+    :reqheader X-Meta-Options: メタデータの Options (オプション)
+    :reqheader Content-Type: ファイルの Content-Type (必須)
+
+    :parameter string bucketName: バケット名
+    :parameter string fileName: ファイル名
+
+    :query boolean cacheDisabled: キャッシュ禁止フラグ
+
+    :statuscode 200: 正常登録した
+    :statuscode 400: パラメータ・リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: バケットが存在しない
+    :statuscode 409: ファイル名重複(duplicate_filename)、ファイル(論理削除データ)がロック中（file_locked）
+    :statuscode	413: ファイルサイズ制限超過
+    :statuscode 507: ファイルストレージの容量上限オーバー
+
+    :>json string reasonCode: 409 Conflict の場合のエラー原因コード
+    :>json object detail: 409 Conflict の場合のエラーデータ
+
+    **リクエスト**
+
+    リクエストボディにファイルデータ本体を格納する。
+
+    ACL は X-ACL ヘッダで指定する。ACL は以下の例のように JSON 形式の文字列で指定する。
+
+    .. code-block:: json
+
+        { "owner":"xxxxx", "r": ["xxx"], "w": ["xxx"], "u": [], "d":[], "admin":[] }
+
+    * ACL を指定しなかった場合は、以下の ACL が自動的に設定される。指定した場合でも owner がない場合は owner は自動設定される。
+    * ログイン済みの場合: 全フィールドが空。オーナ(作成ユーザ)のみがアクセス可。
+    * 未ログイン状態の場合 : r, w に "g:anonymous" が設定され、誰でも読み書き可。
+
+    ファイルのメタデータにユーザ定義のメタ情報(options)を含める場合は、X-Meta-Options ヘッダで指定する。
+    X-Meta-Optionsは以下の例のようにJSON形式の文字列で指定する。
+
+    .. code-block:: json
+
+        { "owner":"日電 太郎", "fileVersion": "1.0.0" }
+
+    filename には、UTF-8文字列をURLエンコードしたものを指定できる。filename の長さは、UTF-8で900バイトを上限とする。なお、以下の文字は使用できない。
+
+    * 制御文字 (U+0000～U+001F)
+    * " (U+0022)
+    * \* (U+002A)
+    * / (U+002F)
+    * : (U+003A)
+    * < (U+003C)
+    * > (U+003E)
+    * ? (U+003F)
+    * バックスラッシュ (U+005C)
+    * \| (U+007C)
+    * DEL (U+007F)
+
+    クエリパラメータにキャッシュ禁止フラグを指定(cacheDisabled=true)した場合、キャッシュ禁止フラグがONになる。
+
+    **レスポンス**
+
+    レスポンスボディには、作成したファイルのメタデータを含む JSON 文字列が返却される。
+
+    以下にレスポンスボディの例を示す。
+    ETagはメタデータとファイル本体で別に管理される。
+
+    .. code-block:: javascript
+
+        {
+            "_id": "533d31c43cbc3dd2d0b32cd1", // メタデータのオブジェクトID
+            "filename": "hello.txt",
+            "contentType": "text/plain",
+            "length": 12,
+            "ACL": { /* ACL */ },
+            "createdAt": "2013-08-27T04:37:30.000Z",
+            "updatedAt": "2013-08-27T04:37:30.000Z",
+            "metaETag": "8c92c97e-01a7-11e4-9598-53792c688d1b",
+            "fileETag": "8c92c97e-01a7-11e4-9598-53792c688d1c",
+            "cacheDisabled": false, // キャッシュ禁止フラグ（デフォルトfalse）
+            "options": {
+                "owner": "日電 太郎",
+                "fileVersion": "1.0.0"
+            }
+        }
+
+    409 Conflict の場合は以下の形式のJSONデータが返却される
+
+    .. code-block:: javascript
+
+        {
+            "reasonCode": "etag_mismatch"
+            "detail": {
+                "_id": "533d31c43cbc3dd2d0b32cd1",
+                "filename": "hello.txt",
+                "contentType": "text/plain",
+                "length": 12,
+                "ACL": { /* ACL */ },
+                "createdAt": "2013-08-27T04:37:30.000Z",
+                "updatedAt": "2013-08-27T04:37:30.000Z",
+                "metaETag": "8c92c97e-01a7-11e4-9598-53792c688d1b",
+                "fileETag": "8c92c97e-01a7-11e4-9598-53792c688d1c",
+                "cacheDisabled": false,
+                "publicUrl": http://.... ,
+                "options": {
+                    "owner": "日電 太郎",
+                    "fileVersion": "1.0.0"
+                }
+            }
+        }
+
+    * reasonCode: 原因を示すコード。以下のいずれか
+
+      - "duplicate_key": データ重複。バケットに設定したインデックスのユニーク制約による。
+      - "duplicate_filename": ファイル名重複。ファイル作成時に指定したファイル名が存在する。
+      - "etag_mismatch": 更新・削除処理でETagが不一致
+      - "file_locked": ファイルがロック中
+    * detail: エラーに関するデータ
+
+    detail の内容は、各reasonCodeに対して、下記内容となる。
+
+    .. list-table::
+       :header-rows: 1
+
+       * - reasonCode
+         - detail
+       * - duplicate_key
+         - "Duplicate Key" (文字列)
+       * - duplicate_filename
+         - "Duplicate File Name" (文字列)
+       * - etag_mismatch
+         - サーバ側のメタデータ (JSON形式)
+       * - file_locked
+         - "File is locked" (文字列)
+
+    **注意事項**
+
+    * ファイルの ACL は X-ACL ヘッダで設定することに注意。
+    * 同一名称のファイルがあった場合、409 Conflict エラーとなる。
+    * 論理削除データ("_deleted" フィールドがtrue)と同じファイル名の場合は論理削除データに上書きし、"deleted" フィールドをfalseにリセットする。
+    * バケットcontentACLの create 権限が必要。
+
+

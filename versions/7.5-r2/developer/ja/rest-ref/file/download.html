@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.3. ファイルのダウンロード &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="9.4. ファイル一覧の取得" href="find.html" />
+    <link rel="prev" title="9.2. ファイルの更新アップロード" href="update.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">9. ファイルストレージ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create.html">9.1. ファイルの新規アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">9.2. ファイルの更新アップロード</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9.3. ファイルのダウンロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">9.4. ファイル一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read_meta.html">9.5. ファイルメタデータの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_meta.html">9.6. ファイルメタデータの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">9.7. ファイルの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publish.html">9.8. ファイルの公開</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unpublish.html">9.9. ファイルの公開解除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_published.html">9.10. 公開ファイルのダウンロード</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">9. ファイルストレージ</a> &raquo;</li>
+        
+      <li>9.3. ファイルのダウンロード</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-download">
+<span id="id1"></span><h1>9.3. ファイルのダウンロード<a class="headerlink" href="#file-download" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="get">
+<dt id="get--1-(tenantId)-files-(bucketName)-(fileName)">
+<code class="descname">GET </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/files/</code><span class="sig-paren">(</span><em>bucketName</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em>fileName</em><span class="sig-paren">)</span><a class="headerlink" href="#get--1-(tenantId)-files-(bucketName)-(fileName)" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ファイルをダウンロードする。</p>
+<p>Range 指定による部分ダウンロードをサポートする。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- アプリケーションキー(必須)</li>
+<li><em>X-Session-Token</em> -- セッショントークン(オプション)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7233#section-3.1">Range</a> -- Range指定(オプション)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7232#section-3.1">If-Match</a> -- 前提条件指定 (オプション)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7233#section-3.2">If-Range</a> -- 前提条件指定(オプション。Range ヘッダ指定時にのみ指定可能)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bucketName</strong> (<em>string</em>) -- バケット名</li>
+<li><strong>fileName</strong> (<em>string</em>) -- ファイル名</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常に受け付けた</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.7">206 Partial Content</a> -- 指定部分ダウンロードを正常に受け付けた</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- ヘッダ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- 権限エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> -- 該当バケットまたはデータが存在しない</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> -- ファイルがロック中（file_locked）</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.13">412 Precondition Failed</a> -- 前提条件(If-Match)の評価失敗</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.17">416 Requested Range Not Satisfiable</a> -- Range指定不正</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response Headers:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><em>Content-Disposition</em> -- attachment; filename='ファイル名'</li>
+<li><em>X-Content-Length</em> -- ファイルサイズ(バイト数)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7230#section-3.3.2">Content-Length</a> -- 206応答時は指定レンジのバイト数。200応答時はファイル全体のバイト数。</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7232#section-2.3">ETag</a> -- ファイルのETag（fileETag）。ETag値はダブルクオーテーションで囲む形式。</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7233#section-2.3">Accept-Ranges</a> -- &quot;bytes&quot; (Range 転送のサポート可能通知)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7233#section-4.2">Content-Range</a> -- 206 応答時はレンジ表記。416 応答時は不正レンジ表記。</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>レスポンス</strong></p>
+<p>正常時はファイルデータがレスポンスボディに返却される。</p>
+<p>409 Conflict 時は原因をJSONテキスト形式で返す。</p>
+<p>レスポンスは、Content-Length ヘッダ付きで返される場合と、Chunked エンコーディング(Content-Length ヘッダなし、Transfer-Encoding: Chunked)で返される場合がある。</p>
+<ul class="simple">
+<li>いずれの場合も、ダウンロードされるファイルサイズは X-Content-Length ヘッダで取得できる。</li>
+<li>Content-Length ヘッダが指定された場合<ul>
+<li>ファイルの部分ダウンロードの場合は、Content-Length ヘッダの値は指定Rangeのデータのバイト数となる</li>
+<li>ファイルの全体ダウンロードの場合は、X-Content-Length ヘッダの値は Content-Length ヘッダの値と同一となる。</li>
+</ul>
+</li>
+</ul>
+<p>Chunked エンコーディングを使用中に、サーバ側異常でファイルがダウンロード中に削除された場合:</p>
+<ul class="simple">
+<li>ダウンロードは途中で中断される(エラーにはならない)。</li>
+<li>この場合は、ダウンロードされたデータサイズと X-Content-Length を比較し、一致していない場合はクライアント側でエラーとすること。</li>
+</ul>
+<p><strong>部分ダウンロード(Range)</strong></p>
+<p>RFC 7233の規定に従い、Rangeヘッダに指定する範囲にはデータのバイト開始位置と終了位置を指定する(0オリジン)。</p>
+<ul class="simple">
+<li>例えば、ファイル全ての範囲の指定には、&quot;0-&quot; または &quot;0-(ファイルサイズ-1)&quot; を使用する。</li>
+<li>Rangeヘッダは単一Range指定のみをサポートする。複数Range指定があった場合はヘッダ指定不正とみなし、400 Bad Requestを返す。</li>
+</ul>
+<p>以下に例を示す。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 開始位置と終了位置の指定（指定位置間のデータ）</span>
+<span class="n">Range</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="mi">101</span><span class="o">-</span><span class="mi">200</span>
+<span class="c1"># 開始位置のみ指定（指定位置から、データの終了位置までのデータ）</span>
+<span class="n">Range</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="mi">101</span><span class="o">-</span>
+<span class="c1">#　最後のバイト数指定（データの終了位置から、指定バイトまでのデータ）</span>
+<span class="n">Range</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=-</span><span class="mi">200</span>
+<span class="c1"># 複数Range範囲の指定は不可</span>
+<span class="n">Range</span><span class="p">:</span> <span class="nb">bytes</span><span class="o">=</span><span class="mi">101</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="o">-</span><span class="mi">500</span>
+</pre></div>
+</div>
+<p>If-Match ヘッダの値は、ETag（ファイルのETag）のみをサポートする。</p>
+<ul class="simple">
+<li>単一指定のみをサポートする。複数指定と全指定（*）をサポートしない。</li>
+<li>強い形式の比較のみをサポートする。弱い(W/&quot;…&quot;)形式の比較をサポートしない。</li>
+<li>RFCに従い、ETag値の形式はダブルクオーテーションで囲む。</li>
+<li>ただし、ダブルクオーテーションが無くても、設定可能</li>
+</ul>
+<p>例:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>If-Match: “123456789”
+If-Match: 123456789
+</pre></div>
+</div>
+<p>ETag 値と不一致の場合は、412 Precondition Failedで応答する。If-MatchはIf-Rangeより先に評価される。</p>
+<p>If-RangeヘッダはRangeヘッダが存在する場合に限り設定が可能。</p>
+<ul class="simple">
+<li>Rangeヘッダが存在しない場合は無視される。</li>
+<li>If-Range ヘッダの値は、ETagのみをサポートする。ETag値の形式と設定方法はIf-Matchと同様。</li>
+<li>ETag 値と一致する場合は、206で応答する。ETtag 値と不一致の場合は200で応答し、Rangeヘッダを無視し、ファイルの全データを返却する。</li>
+</ul>
+<p>Content-Range レスポンスヘッダには、返却データのRangeが通知される。:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 206 Partial Content 応答の場合、返却データの「開始位置-終了位置/データ長」を通知する</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Range</span><span class="p">:</span> <span class="nb">bytes</span> <span class="mi">0</span><span class="o">-</span><span class="mi">100</span><span class="o">/</span><span class="mi">500</span>
+
+<span class="c1"># 指定Range不正（416 Range Not Satisfiable の応答）の場合、</span>
+<span class="c1"># Range不正を示す「アスタリスク （ &quot;*&quot; ）/データ長」で通知する</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Range</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">*/</span><span class="mi">500</span>
+</pre></div>
+</div>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>バケットcontentACLと対象ファイルの read 権限が必要。</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="find.html" class="btn btn-neutral float-right" title="9.4. ファイル一覧の取得" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="update.html" class="btn btn-neutral" title="9.2. ファイルの更新アップロード" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+.. _function_list:
+
+ファンクション一覧の取得
+========================
+
+.. http:get:: /1/(tenantId)/functions
+
+    ファンクション一覧を取得する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+
+    :statuscode 200: 正常にAPIを取得した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 504: タイムアウトエラー
+
+    **レスポンス**
+
+    リクエスト成功時はファンクションテーブル定義JSON。
+    ファンクションテーブル定義については :ref:`function_table` を参照。
+    登録時のフォーマットに関わらず、常に JSON 形式に変換して返却する。
+
+    エラー時は JSON 形式でエラー通知される。Content-Type ヘッダは "application/json" となる。

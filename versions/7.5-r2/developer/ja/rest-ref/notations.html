@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 表記について &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. 認証" href="auth.html" />
+    <link rel="prev" title="1. はじめに" href="intro.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 表記について</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api">2.1. APIパスの表記</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acl">2.2. ACL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.2.1. ACLの基本表記</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2.2. データに対する ACL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.2.3. バケットに対する ACL 表記</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.2.4. ACLに関するその他表記</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">2.3. 仮想バケット名</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">2.4. その他の表記</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>2. 表記について</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 表記について<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="api">
+<h2>2.1. APIパスの表記<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>BaaS REST API エンドポイント URI は以下のように定義する。</p>
+<blockquote>
+<div><a class="reference external" href="https://">https://</a><em>APIサーバホスト名</em>/api/<em>バージョン番号</em>/<em>テナントID</em>/<em>サービス種別</em></div></blockquote>
+<ul class="simple">
+<li>APIサーバホスト名、および &quot;/api/&quot; までのパスは、システム毎に異なる。</li>
+<li>バージョン番号は、本 REST API 仕様では &quot;1&quot; 固定。</li>
+<li>テナントIDは、テナントを一意に識別するテナントIDまたはテナント名</li>
+<li>サービス種別は、REST API の種別を識別する文字列。</li>
+</ul>
+<p>以下 API の説明時には、上記のうちバージョン番号より後ろのパスのみを表記する。</p>
+</div>
+<div class="section" id="acl">
+<h2>2.2. ACL<a class="headerlink" href="#acl" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ACL は、グループ、オブジェクトストレージ(バケット、オブジェクト)、ファイルストレージ(バケット、ファイル)などに付与し、アクセス制限を行うためのものである。ACLには、対象データのオーナ、読み書き可能なユーザ・グループ、管理ユーザ・グループのリストを記述する。</p>
+<p>ACL の表記は基本的に共通のため、ここで表記方法について説明する。</p>
+<div class="section" id="id2">
+<h3>2.2.1. ACLの基本表記<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ACL は JSON で以下のように記述する。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;514af36644f9cb2eb8000001&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;r&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+    <span class="nt">&quot;w&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span><span class="p">,</span> <span class="s2">&quot;g:group1&quot;</span> <span class="p">],</span>
+    <span class="nt">&quot;c&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:group2&quot;</span> <span class="p">],</span>
+    <span class="nt">&quot;u&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;g:group2&quot;</span> <span class="p">],</span>
+    <span class="nt">&quot;d&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;admin&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000004&quot;</span><span class="p">,</span> <span class="s2">&quot;g:group3&quot;</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>ACL は、以下の情報から構成される。</p>
+<ul>
+<li><p class="first">&quot;owner&quot;: 対象のオーナとなるユーザID</p>
+<blockquote>
+<div><ul class="simple">
+<li>ownerは以下 r, w, c, u, d, admin 権限を包含する(バケットに対する ACL の場合は admin 権限のみを包含する)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">&quot;r”: 対象に対する read 可能なユーザID/グループ名の一覧</p>
+</li>
+<li><p class="first">&quot;w”: 対象に対する write 可能なユーザID/グループ名の一覧。&quot;w&quot; は以下の属性を包含する。</p>
+<blockquote>
+<div><ul class="simple">
+<li>&quot;c”: 対象に対する create(追加)可能なユーザID/グループ名の一覧 (contentACLのみ)</li>
+<li>&quot;u”: 対象に対する update(更新)可能なユーザID/グループ名の一覧</li>
+<li>&quot;d” 対象に対する delete(削除)可能なユーザID/グループ名の一覧</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">&quot;admin”: 本ACLを変更可能なユーザID/グループ名の一覧</p>
+</li>
+</ul>
+<p>ACL 内でグループを記述するときは、グループ名の先頭に &quot;g:&quot; プレフィクスを付与する。また、以下の特殊なグループ名を定義する。</p>
+<ul class="simple">
+<li>&quot;authenticated&quot; : ログイン認証された全ユーザを表す</li>
+<li>&quot;anonymous&quot; : ログインしていないユーザを含む全ユーザを表す</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>2.2.2. データに対する ACL<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ACL は JSON 形式で表記し、対象の JSON 内に埋め込む。以下にオブジェクトストレージのオブジェクトデータに埋め込む場合の例を示す。以下のように、ACL は &quot;ACL&quot; キー内に埋め込む。
+ただし、オーナとなるユーザが設定されていない場合は、owner フィールドは存在しない。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;xxxxxxx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;itemName&quot;</span><span class="o">:</span> <span class="s2">&quot;Computer 12345&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="o">:</span> <span class="mi">120000</span><span class="p">,</span>
+    <span class="s2">&quot;date&quot;</span><span class="o">:</span> <span class="s2">&quot;2014-03-04&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;r&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;w&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;u&quot;</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;d&quot;</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;admin&quot;</span> <span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>2.2.3. バケットに対する ACL 表記<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>また、対象がバケットの場合は、バケットそのものに対する ACL と、バケットの中身に対する contentACL の２つを埋め込む形となる。
+contentACL には owner および admin フィールドは存在しない。また  c フィールドが追加されている。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;BucketName&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;r&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;w&quot;</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;u&quot;</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;d&quot;</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;admin&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;contentACL&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;r&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;g:authenticated&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;w&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;514af36644f9cb2eb8000002&quot;</span><span class="p">,</span> <span class="s2">&quot;514af36644f9cb2eb8000003&quot;</span> <span class="p">],</span>
+        <span class="s2">&quot;c&quot;</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;u&quot;</span><span class="o">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;d&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>2.2.4. ACLに関するその他表記<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>本仕様書では、以下のような記述を用いる。</p>
+<ul class="simple">
+<li>read 権限が必要 ⇒ ACL の &quot;r&quot; で許可されていること。</li>
+<li>create 権限が必要 ⇒ ACL の &quot;w&quot; または &quot;c&quot; で許可されていること。</li>
+<li>update 権限が必要 ⇒ ACL の &quot;w&quot; または &quot;u&quot; で許可されていること。</li>
+<li>delete 権限が必要 ⇒ ACL の &quot;w&quot; または &quot;d&quot; で許可されていること。</li>
+<li>admin 権限が必要 ⇒ ACL の &quot;admin&quot; で許可されていること。</li>
+</ul>
+<p>なお対象がバケット以外（オブジェクトやファイルなど）の場合、対象の owner には上記権限は自動的に付与される。また対象がバケットの場合、対象の owner には admin 権限が自動的に付与される。
+このような場合、owner 権限については明記しない。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>2.3. 仮想バケット名<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ユーザ管理、グループ管理については、以下の２つの仮想バケットがある。</p>
+<ul class="simple">
+<li>&quot;_USERS&quot; : ユーザの読み取り・追加・変更・削除に関するバケットコンテンツ ACL を保持する。</li>
+<li>&quot;_GROUPS&quot; : グループの読み取り・追加・変更・削除に関するバケットコンテンツ ACL を保持する。</li>
+</ul>
+<p>バケット管理については、以下の仮想バケットがある。</p>
+<ul class="simple">
+<li>&quot;_ROOT&quot; : バケットの追加に関するバケットコンテンツ ACL を保持する。</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>2.4. その他の表記<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>'(' と ')' で囲まれた表記は、それぞれ以下のように読み替えること。</p>
+<ul>
+<li><p class="first">(tenantId) : テナントIDまたはテナント名。</p>
+<blockquote>
+<div><ul class="simple">
+<li>テナントIDは、テナント作成時に割り当てられるユニークなIDで、デベロッパーコンソール上で確認できる。</li>
+<li>テナントIDは、MongoDBの ObjectID の文字列表記である。これは16進数表記24文字の文字列である (例: &quot;514af36644f9cb2eb8000002&quot;)</li>
+<li>テナント名は、テナント作成時に指定する文字列である。</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">(appId) : アプリケーションID。アプリケーション毎に割り当てられるユニークなID。</p>
+<ul class="simple">
+<li>アプリケーションIDは、アプリケーション作成時に割り当てられ、デベロッパーコンソール上で確認できる。</li>
+<li>テナントID同様、MongoDB の ObjectID の文字列表記である。</li>
+</ul>
+</li>
+<li><p class="first">(appKey) : アプリケーションキー。アプリケーション毎に割り当てられる秘密キー。アプリケーションID同様、アプリケーション作成時に割り当てられ、デベロッパーコンソール上で確認できる。</p>
+</li>
+<li><p class="first">(bucketName) : バケット名</p>
+<ul class="simple">
+<li>バケット名の詳細は <a class="reference internal" href="bucket/index.html#bucket"><span class="std std-ref">バケット管理</span></a> を参照。</li>
+</ul>
+</li>
+<li><p class="first">(userName) : ユーザ名</p>
+<ul class="simple">
+<li>ユーザ名の詳細は <a class="reference internal" href="user/index.html#user"><span class="std std-ref">ユーザ管理</span></a> を参照。</li>
+</ul>
+</li>
+<li><p class="first">(groupName) : グループ名</p>
+<ul class="simple">
+<li>グループ名の詳細は <a class="reference internal" href="group/index.html#group"><span class="std std-ref">グループ管理</span></a> を参照。</li>
+<li>以下のグループ名は予約グループ名のためグループ作成・変更・削除はできない。<ul>
+<li>authenticated</li>
+<li>anonymous</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="auth.html" class="btn btn-neutral float-right" title="3. 認証" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="1. はじめに" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

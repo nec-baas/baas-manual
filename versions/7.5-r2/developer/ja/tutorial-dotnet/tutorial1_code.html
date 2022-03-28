@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. チュートリアル1 : TODOアプリの実装 &mdash; Tutorials (.NET) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="4. チュートリアル2 : ログイン機能とアクセス制御" href="tutorial2.html" />
+    <link rel="prev" title="2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)" href="tutorial1.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (.NET)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. チュートリアル1 : TODOアプリの実装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nec-baas-net-sdk">3.1. NEC BaaS .NET SDK ライブラリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mainwindow">3.2. MainWindow クラス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">3.2.1. 初期化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.2.2. イベント処理</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#todoviewmodel">3.3. TodoViewModel クラス</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.3.1. バケットの取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3.3.2. Todo の取得</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.3.3. Todo の追加</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">3.3.4. Todo の削除</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">4. チュートリアル2 : ログイン機能とアクセス制御</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial4.html">5. チュートリアル4 : TODOアプリ (オフライン対応)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (.NET)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. チュートリアル1 : TODOアプリの実装</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="todo">
+<h1>3. チュートリアル1 : TODOアプリの実装<a class="headerlink" href="#todo" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではチュートリアル1の実装について解説します。</p>
+<div class="section" id="nec-baas-net-sdk">
+<h2>3.1. NEC BaaS .NET SDK ライブラリ<a class="headerlink" href="#nec-baas-net-sdk" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NEC BaaS .NET SDK を利用するためには、アプリケーションに SDK のライブラリファイル
+群を追加する必要があります (チュートリアルではすでにセットアップ済みです)</p>
+<p>手順については、「NEC BaaS .NET SDK ガイド」の <a class="reference external" href="../dotnet/setup.html">SDKセットアップ手順</a> をご参照ください。</p>
+</div>
+<div class="section" id="mainwindow">
+<h2>3.2. MainWindow クラス<a class="headerlink" href="#mainwindow" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id1">
+<h3>3.2.1. 初期化<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MainWindow クラスの中で SDK の初期化処理を行います。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nf">MainWindow</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">InitializeComponent</span><span class="p">();</span>
+
+    <span class="c1">//Initialize Nebula</span>
+    <span class="kt">var</span> <span class="n">service</span> <span class="p">=</span> <span class="n">NbService</span><span class="p">.</span><span class="n">GetInstance</span><span class="p">();</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">TenantId</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">AppId</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">AppKey</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">EndpointUrl</span> <span class="p">=</span> <span class="s">&quot;https://api.example.com/api&quot;</span><span class="p">;</span>
+
+    <span class="c1">//以下省略</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>SDK を初期化するには、NbService クラスのインスタンスを取得し、以下のプロパティを設定します。</p>
+<ul class="simple">
+<li>テナントID</li>
+<li>アプリケーションID</li>
+<li>アプリケーションキー</li>
+<li>エンドポイントURL</li>
+</ul>
+<p>エンドポイントURLは、お使いのサーバによって異なりますので、管理者に問い合わせてください。</p>
+<p>また、サーバにアクセスするクラスである TodoViewModel クラス(後述)を生成します。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">TodoViewModel</span> <span class="n">_viewModel</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TodoViewModel</span><span class="p">();</span>
+<span class="n">DataContext</span> <span class="p">=</span> <span class="n">_viewModel</span>
+
+<span class="c1">// 初期表示</span>
+<span class="n">_viewModel</span><span class="p">.</span><span class="n">Reload</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>3.2.2. イベント処理<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>チュートリアル1では、Todo 追加・削除するためのイベント処理を定義しています。
+画面上の Add ボタンが押された際に TodoViewModel クラス(後述)の Todo 追加処理を呼び出します。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">private</span> <span class="k">void</span> <span class="nf">AddButton_Click</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">RoutedEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Todo の追加</span>
+    <span class="n">_viewModel</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">TodoTextBox</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
+    <span class="n">TodoTextBox</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>また、Todo が選択された状態でキーボード上の Delete キーが押された際には TodoViewModel クラス(後述)の Todo 削除処理を呼び出します。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">private</span> <span class="k">async</span> <span class="k">void</span> <span class="nf">TodoListBox_keyDown</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">KeyEventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Key</span> <span class="p">!=</span> <span class="n">Key</span><span class="p">.</span><span class="n">Delete</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Delete キー以外は何もしない</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">var</span> <span class="n">idx</span> <span class="p">=</span> <span class="n">TodoListBox</span><span class="p">.</span><span class="n">SelectedIndex</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// not selected</span>
+
+    <span class="c1">// 選択されている Todo を削除</span>
+    <span class="n">_viewModel</span><span class="p">.</span><span class="n">RemoveAt</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="todoviewmodel">
+<h2>3.3. TodoViewModel クラス<a class="headerlink" href="#todoviewmodel" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>TodoViewModel クラスは、サーバにアクセスし、取得したデータ( Todo )を View に提供するクラスです。</p>
+<div class="section" id="id3">
+<h3>3.3.1. バケットの取得<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>コンストラクタでバケットを取得します。ここでは、&quot;TodoTutorial1&quot; という名前のバケットのインスタンスを生成しています。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="n">NbObjectBucket</span><span class="p">&lt;</span><span class="n">NbObject</span><span class="p">&gt;</span> <span class="n">_bucket</span> <span class="p">=</span> <span class="k">new</span> <span class="n">NbObjectBucket</span><span class="p">&lt;</span><span class="n">NbObject</span><span class="p">&gt;(</span><span class="s">&quot;TodoTutorial1&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>生成したインスタンスは、今後の処理で利用します。</p>
+</div>
+<div class="section" id="id4">
+<h3>3.3.2. Todo の取得<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>バケットに格納されている Todo を取得し、View に表示します。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">async</span> <span class="k">void</span> <span class="nf">Reload</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Todo をすべて取得し updatedAt でソート</span>
+    <span class="kt">var</span> <span class="n">todos</span> <span class="p">=</span> <span class="k">await</span> <span class="n">_bucket</span><span class="p">.</span><span class="n">QueryAsync</span><span class="p">(</span><span class="k">new</span> <span class="n">NbQuery</span><span class="p">().</span><span class="n">OrderBy</span><span class="p">(</span><span class="s">&quot;updatedAt&quot;</span><span class="p">));</span>
+    <span class="n">IList</span><span class="p">&lt;</span><span class="n">NbObject</span><span class="p">&gt;</span> <span class="n">_todos</span> <span class="p">=</span> <span class="n">todos</span><span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+    <span class="c1">// View に反映</span>
+    <span class="n">OnPropertyChanged</span><span class="p">(</span><span class="s">&quot;TodoTexts&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Todo データは、NbObjectBucket.QueryAsync() を使用して取得できます。クエリ(取得条件)は NbQuery クラスのインスタンスとして作成します。 クエリでは、検索するオブジェクトの絞込み、ソート条件の指定、スキップ件数・件数上限の指定などが可能です。 ここでは更新日時(updatedAt)フィールド昇順で、全件取得するというクエリを作成しています。</p>
+<p>取得した Todo データは、NbObject のリストとして保存します。</p>
+</div>
+<div class="section" id="id5">
+<h3>3.3.3. Todo の追加<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Add ボタン押下により、Todo を追加します。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">async</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// NbObject 作成</span>
+    <span class="kt">var</span> <span class="n">obj</span> <span class="p">=</span> <span class="n">_bucket</span><span class="p">.</span><span class="n">NewObject</span><span class="p">();</span>
+    <span class="c1">// アクセス制限無し</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">Acl</span> <span class="p">=</span> <span class="n">NbAcl</span><span class="p">.</span><span class="n">CreateAclForAnonymous</span><span class="p">();</span>
+    <span class="c1">// description に Todo 文字列を設定</span>
+    <span class="n">obj</span><span class="p">[</span><span class="s">&quot;description&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="n">text</span><span class="p">;</span>
+
+    <span class="c1">// Todo 保存</span>
+    <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="k">await</span> <span class="n">obj</span><span class="p">.</span><span class="n">SaveAsync</span><span class="p">();</span>
+    <span class="c1">// Todo 表示</span>
+    <span class="n">Reload</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>まず、NbObjectBucket.NewObject() を使用して NbObject を作成し、Todo 文字列を設定します。</p>
+<p>Todo の保存は、SaveAsync() を使用します。これによりサーバにデータが保存されます。</p>
+</div>
+<div class="section" id="id6">
+<h3>3.3.4. Todo の削除<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Todo を選択した状態で Delete ボタン押下により、Todo を削除します。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="k">async</span> <span class="k">void</span> <span class="nf">RemoveAt</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// 選択している Todo (NbObject)を削除する</span>
+    <span class="k">await</span> <span class="n">_todos</span><span class="p">[</span><span class="n">index</span><span class="p">].</span><span class="n">DeleteAsync</span><span class="p">();</span>
+
+    <span class="c1">// 配列からも削除</span>
+    <span class="n">_todos</span><span class="p">.</span><span class="n">RemoveAt</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+    <span class="c1">// View に反映</span>
+    <span class="n">OnPropertyChanged</span><span class="p">(</span><span class="s">&quot;TodoTexts&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>削除は、DeleteAsync() を使用します。これによりサーバからデータが削除されます。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial2.html" class="btn btn-neutral float-right" title="4. チュートリアル2 : ログイン機能とアクセス制御" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial1.html" class="btn btn-neutral" title="2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

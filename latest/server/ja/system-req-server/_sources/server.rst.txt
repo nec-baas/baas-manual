@@ -7,25 +7,21 @@
 
 APIサーバ、デベロッパーコンソールサーバの動作環境は以下の通り。
 
-* OS: CentOS 7 または Red Hat Enterprise Linux 7 または Windows Server 2016
+* OS: CentOS 7 または Red Hat Enterprise Linux 7 / 8 または Windows Server 2016
 * OpenJDK 8, OpenJDK 11 または Oracle JDK 8
-* APサーバ: Tomcat 8.5.32 以上 (9.0.10 以上推奨)
-* DBサーバ: MongoDB 3.6 以上 (4.0以上推奨)
+* APサーバ: Tomcat 8.5.32 以上 (9.0.58 以上推奨), 10未満
+* DBサーバ: MongoDB 4.0 以上 (4.4 以上推奨)
 
 .. attention::
 
    Oracle JDK 11 でも動作可能ですが、保証外とさせていただきます。
-
-.. note::
-
-   トランザクション機能を使用する場合は、MongoDB 4.0 以上が必要です。
 
 SSE Push サーバ
 ===============
 
 基本サーバの動作環境に加え以下のものが必要。
 
-* RabbitMQサーバ: 3.7 以上
+* RabbitMQサーバ: 3.9 以上
 
 Cloud Functions サーバ
 =======================
@@ -33,7 +29,7 @@ Cloud Functions サーバ
 全構成共通
 -----------
 
-* OS: CentOS 7 または Red Hat Enterprise Linux 7
+* OS: CentOS 7 または Red Hat Enterprise Linux 7 / 8
 * OpenJDK 8, OpenJDK 11 または Oracle JDK 8
 * RabbitMQ 3.7 以上
 * fluentd v1.0 / td-agent 3.1.x 以上

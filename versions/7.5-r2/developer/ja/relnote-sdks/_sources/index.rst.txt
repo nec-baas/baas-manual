@@ -1,0 +1,15 @@
+NEC BaaS SDKs Release Note
+==========================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+
+   intro
+   new_features
+   changes
+   structure
+   usage
+   caution

@@ -1,0 +1,46 @@
+.. _file_delete:
+
+ファイルの削除
+==================
+
+.. http:delete:: /1/(tenantId)/files/(bucketName)/(fileName)
+
+    ファイル1件を削除する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+
+    :parameter string bucketName: バケット名
+    :parameter string fileName: ファイル名
+
+    :query string metaETag: メタデータETag値
+    :query string fileETag: ファイルETag値
+    :query int deleteMark: 論理削除を行う場合は 1
+
+    :statuscode 200: 正常に削除した
+    :statuscode 400: パラメータ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当バケットまたはファイルが存在しない
+    :statuscode 409: ファイルがロック中（file_locked）、ETag 不一致（etag_mismatch）
+
+    **リクエスト**
+
+    metaETagとfileETag で ETag 値を指定した場合、サーバ側データの ETag 値との比較が行われ、一致しなかった場合は 409 Conflict が返却される。
+
+    deleteMark を 1 に指定した場合、論理削除する。
+    実メタデータは削除せず削除マークを true に設定する。updatedAt および metaETag, fileETagは更新される。
+    サーバ側でファイル本体は削除されるが、メタデータは削除されずに残る。
+
+    **レスポンスボディ**
+
+    通常削除の場合、レスポンスなし（空のJSON）。
+
+    論理削除の場合(deleteMark=1)、削除マークしたオブジェクト情報を含むJSONデータ。
+
+    409 Conflict の場合はその原因をJSON形式で返す。
+
+    **注意事項**
+
+    * バケットcontentACLと対象ファイルの delete 権限が必要。

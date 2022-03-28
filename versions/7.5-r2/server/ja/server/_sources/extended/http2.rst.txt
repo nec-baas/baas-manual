@@ -1,0 +1,109 @@
+===================
+HTTP/2使用手順
+===================
+
+.. include:: ../../common/linkdef.rst
+
+ここでは HTTP/2を使用する場合の、サーバ設定の例を示します。
+
+Tomcat Native Libraryのインストール
+====================================
+
+はじめに
+---------
+
+TomcatでHTTP/2を使用する場合、Apache Tomcat Native Libraryの導入が必要です。
+
+ソースコードのビルドが必要となるため、gccをインストールしておきます。
+
+::
+
+  # yum install gcc
+
+また関連ライブラリ(APR/OpenSSL)をインストールします。
+
+::
+
+  # yum install apr-devel openssl-devel
+
+Tomcat Nativeのビルド
+----------------------
+
+Tomcat Nativeのソースは、Tomcatインストール時に、"${CATALINA_HOME}/bin/tomcat-native.tar.gz" に格納されます。
+
+`Apache Tomcat Native Library`_ から最新のソースをダウンロードすることもできます。
+
+
+上記のファイルを解凍し、ビルド・インストールを行います。
+パスは環境に合わせて指定してください。
+
+::
+
+  # tar zxvf tomcat-native.tar.gz
+  # cd ./tomcat-native-xx.xx.xx-src/native/
+  # ./configure --with-java-home=$JAVA_HOME #JDKのインストールディレクトリ \ 
+                --prefix=$CATALINA_HOME     #Tomcatのインストールディレクトリ
+  # make && make install
+
+.. note::
+
+  ビルド環境に依存するため、エラー発生時はエラーメッセージを参考に、
+  適切なパスを指定してください。
+
+  configure実行時に、APR/OpenSSLを自動的に検出できない場合、以下オプションを使用して直接指定することができます。
+
+    * --with-apr=xxxxx
+    * --with-ssl=xxxxx
+
+  詳細は、`Apache Tomcat Native Library`_ を参照して下さい。
+  
+インストール完了後、$CATALINA_HOME/lib/ にビルドしたファイル(libtcnative-\*) が
+コピーされていることを確認してください。
+
+Tomcat Connectorの設定
+=======================
+
+HTTP/2を使用する際は、TomcatのConnectorに設定を追加する必要があります。
+一般的に、httpsのConnectorを使用します。
+
+https使用時の設定に加え、以下の2点を変更します。
+
+* protocolに、"Http11AprProtocol" を指定する
+* UpgradeProtocol にHttp2Protocolを指定する
+
+以下はConnectorの設定例です。
+
+各要素は、使用する環境に応じて設定を行ってください。
+パラメータ、設定方法の詳細は、 `Apache Tomcat 8 Configuration Reference`_  を参照して下さい。
+
+::
+
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11AprProtocol"
+           maxThreads="500"
+           SSLEnabled="true"
+           scheme="https"
+           secure="true"
+           defaultSSLHostConfigName="localhost">
+        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol"/>
+        <SSLHostConfig hostName="localhost"
+                   caCertificateFile="${catalina.base}/conf/certs/cacert.pem"
+                   certificateVerificationDepth="5"
+                   protocols="+TLSv1+TLSv1.1+TLSv1.2">
+            <Certificate certificateKeyFile="${catalina.base}/conf/certs/server_localhost.key"
+                       certificateFile="${catalina.base}/conf/certs/server_localhost.pem"
+                       type="RSA"/>
+        </SSLHostConfig>
+    </Connector>
+
+
+.. hint::
+
+  HTTP/2とHTTP/1.1を比較の上、採用を検討して下さい。
+  用途や環境により、パフォーマンスに大きな差が発生します。
+
+  一般的に、HTTP/2は以下のような条件に適しています。
+
+  * サーバ・クライアント間のターンアラウンドタイムが大きい
+  * 単一クライアントから、連続して多数のリクエストを行う
+  * サーバのTCPポート数に制限がある
+

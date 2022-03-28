@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. ファイルストレージ &mdash; Embedded SDK Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="9. 制限事項" href="restrictions.html" />
+    <link rel="prev" title="7. オブジェクトストレージ:クエリ" href="object_query.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Embedded SDK Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">2. インストール手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialize.html">3. 初期化処理の実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">4. NEC BaaS Embedded SDK の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_storage.html">6. オブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_query.html">7. オブジェクトストレージ:クエリ</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. ファイルストレージ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.1. バケットの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">8.2. ファイルの新規アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">8.3. アクセス制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">8.4. ファイル一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">8.5. ファイルのダウンロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">8.6. ファイルの削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="restrictions.html">9. 制限事項</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Embedded SDK Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>8. ファイルストレージ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>8. ファイルストレージ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここではファイルストレージの利用方法について説明します。</p>
+<div class="section" id="id2">
+<h2>8.1. バケットの取得<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NEC BaaS Embedded SDKではサーバへのバケットの生成はサポートしていないため、事前にデベロッ
+パーコンソールなどから該当のバケットを作成しておきます。</p>
+<p>ファイル一覧操作などにはバケットが必要になります。
+以下のようにファイルバケットのインスタンスを生成します。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NbFileBucket</span> <span class="nf">bucket</span><span class="p">(</span><span class="n">service1</span><span class="p">,</span> <span class="s">&quot;bucketName&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>8.2. ファイルの新規アップロード<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルを新規アップロードするには、NbFileBucket の UploadNewFile() を使用します。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NbResult</span><span class="o">&lt;</span><span class="n">NbFileMetadata</span><span class="o">&gt;</span> <span class="n">uploadResult</span> <span class="o">=</span>  <span class="n">bucket</span><span class="p">.</span><span class="n">UploadNewFile</span><span class="p">(</span><span class="s">&quot;test_file.txt&quot;</span><span class="p">,</span>
+                                                              <span class="s">&quot;~/test_file.txt&quot;</span><span class="p">,</span>
+                                                              <span class="s">&quot;text/plain&quot;</span><span class="p">,</span>
+                                                              <span class="n">NbAcl</span><span class="o">::</span><span class="n">CreateAclForAnonymous</span><span class="p">());</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">uploadResult</span><span class="p">.</span><span class="n">IsSuccess</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// 処理成功</span>
+    <span class="c1">// uploadしたファイルのメタデータを取得</span>
+    <span class="n">NbFileMetadata</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">uploadResult</span><span class="p">.</span><span class="n">GetSuccessData</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 処理失敗</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>UploadNewFile() には、ファイル名、ファイルパス、Content-Type、ACL、キャッシュ禁止フラグ(オプション)を渡します。</p>
+</div>
+<div class="section" id="id4">
+<h2>8.3. アクセス制御<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイル単位でアクセス制御を行うことができます。</p>
+<p>アクセス制御には、オブジェクトストレージと同様に NbACL クラスを使用します。</p>
+</div>
+<div class="section" id="id5">
+<h2>8.4. ファイル一覧の取得<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>バケット内のファイル一覧の取得には、NbFileBucket.GetFiles() を呼び出すことで行います。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NbResult</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NbFileMetadata</span><span class="o">&gt;&gt;</span> <span class="n">resultFiles</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">GetFiles</span><span class="p">(</span><span class="nb">false</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">resultFiles</span><span class="p">.</span><span class="n">IsSuccess</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// 処理成功</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">aFile</span> <span class="p">:</span> <span class="n">resultFiles</span><span class="p">.</span><span class="n">GetSuccessData</span><span class="p">())</span> <span class="p">{</span>
+        <span class="c1">// 各メタデータの参照</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 処理失敗</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>第一引数publishedがtrueの場合、公開設定をされているファイルのみを取得します。
+また第二引数deleteMarkがtrueの場合、削除マークが付与されたファイルを含め、検索対象とします。</p>
+</div>
+<div class="section" id="id6">
+<h2>8.5. ファイルのダウンロード<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルのダウンロードには、NbFileBucket.DownloadFile() を使用します。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NbResult</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">downloadResult</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">DownloadFile</span><span class="p">(</span><span class="s">&quot;test_file.txt&quot;</span><span class="p">,</span>
+                                                   <span class="s">&quot;./download_test_file.txt&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">downloadResult</span><span class="p">.</span><span class="n">IsSuccess</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// 処理成功</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 処理失敗</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>8.6. ファイルの削除<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルを削除するには NbFileBucket.DeleteFile() を使用します。
+通常はGetFiles()等で取得したメタデータを使用してファイルを指定します。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">NbResult</span><span class="o">&lt;</span><span class="n">NbJsonObject</span><span class="o">&gt;</span> <span class="n">deleteResult</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">DeleteFile</span><span class="p">(</span><span class="n">metaData</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">deleteResult</span><span class="p">.</span><span class="n">IsSuccess</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// 処理成功</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 処理失敗</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>第二引数がtrueの場合、メタデータに削除マークを付与します。後からファイルの情報を参照することができます。処理結果には更新されたメタデータが格納されます。</p>
+<p>falseの場合、メタデータを完全に消去します。処理結果は空となります。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="restrictions.html" class="btn btn-neutral float-right" title="9. 制限事項" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="object_query.html" class="btn btn-neutral" title="7. オブジェクトストレージ:クエリ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

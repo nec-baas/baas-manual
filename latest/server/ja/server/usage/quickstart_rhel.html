@@ -1,70 +1,39 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<html class="writer-html4" lang="ja" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>3.2. クイックスタート (RHEL 7, CentOS 7) &mdash; Server User Guide 7.5.0 ドキュメント</title>
-  
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.2. クイックスタート (RHEL 7/8, CentOS 7) &mdash; Server User Guide 7.5.0 ドキュメント</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
     <link rel="next" title="3.3. クイックスタート (Windows Server 2016)" href="quickstart_windows.html" />
     <link rel="prev" title="3.1. 用語の定義" href="glossary.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
-
-          
+        <div class="wy-side-nav-search" >
             <a href="../index.html" class="icon icon-home"> Server User Guide
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
                 7.5.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -72,23 +41,13 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">3. 基本利用手順</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="glossary.html">3.1. 用語の定義</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. クイックスタート (RHEL 7, CentOS 7)</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. クイックスタート (RHEL 7/8, CentOS 7)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ulimit">3.2.1. ulimit の設定</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#selinux">3.2.2. SELinux の無効化</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jdk">3.2.3. JDK のインストール</a><ul>
@@ -119,71 +78,33 @@
 <li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Server User Guide</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">3. 基本利用手順</a> &raquo;</li>
-        
-      <li>3.2. クイックスタート (RHEL 7, CentOS 7)</li>
-    
-    
+      <li>3.2. クイックスタート (RHEL 7/8, CentOS 7)</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="rhel-7-centos-7">
-<h1>3.2. クイックスタート (RHEL 7, CentOS 7)<a class="headerlink" href="#rhel-7-centos-7" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>ここでは、BaaS APIサーバ/コンソールサーバ を RHEL 7, CentOS 7 にインストール・起動する手順を説明します。</p>
+             
+  <div class="section" id="rhel-7-8-centos-7">
+<h1>3.2. クイックスタート (RHEL 7/8, CentOS 7)<a class="headerlink" href="#rhel-7-8-centos-7" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ここでは、BaaS APIサーバ/コンソールサーバ を RHEL 7/8, CentOS 7 にインストール・起動する手順を説明します。</p>
 <p>なお、Ansible を使って自動デプロイするための Playbook を別途提供していますので、こちらをお使いいただくことを推奨します。
 Ansible Playbook は <a class="reference external" href="https://nec-baas.github.io/downloads.html">こちら</a> から入手できます。</p>
 <p>以下は Ansible Playbook を使わず手動でインストールする場合の手順となります。</p>
@@ -204,11 +125,15 @@ permissive または disabled に変更し、再起動を行って下さい。</
 </div>
 <div class="section" id="jdk">
 <h2>3.2.3. JDK のインストール<a class="headerlink" href="#jdk" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>OpenJDK 8 以上、または Oracle Java SE Development Kit (JDK) 8 以上をインストールしてください。</p>
+<p>OpenJDK 8 / 11、または Oracle Java SE Development Kit (JDK) 8 / 11 をインストールしてください。</p>
 <div class="section" id="openjdk">
 <h3>OpenJDK を使用する場合<a class="headerlink" href="#openjdk" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>以下手順で OpenJDK をインストールしてください。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo yum install java-1.8.0-openjdk-headless
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># RHEL 7 / CentOS 7</span>
+$ sudo yum install java-1.8.0-openjdk-headless
+
+<span class="c1"># RHEL 8</span>
+$ sudo dnf install java-1.8.0-openjdk-headless
 </pre></div>
 </div>
 </div>
@@ -218,25 +143,25 @@ permissive または disabled に変更し、再起動を行って下さい。</
 から Oracle JDK の RPM ファイルをダウンロードしてください。</p>
 <p>インストール手順は以下の通りです。
 (Java のアップデートがされている場合は、バージョンの値は適宜修正してください)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo yum localinstall jdk-8u181-linux-x64.rpm
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo yum localinstall jdk-8u301-linux-x64.rpm
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="id21">
 <h2>3.2.4. Tomcat のインストール<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>Tomcat 8.5 以上(推奨は 9) をインストールします。</p>
+<p>Tomcat 9 をインストールします。</p>
 <p>Tomcat を実行するユーザを作成します。</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo useradd --no-create-home -s /bin/bash tomcat
 </pre></div>
 </div>
 <p>下記のコマンドでTomcatのバイナリを取得し、/opt/tomcat にインストールしてください。
 Tomcat のバージョン番号は適宜読み替えてください。</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -O http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.tar.gz
-$ tar -xzvf ./apache-tomcat-9.0.11.tar.gz
-$ sudo mv  ./apache-tomcat-9.0.11 /opt/apache-tomcat-9.0.11
-$ sudo chown -R tomcat:tomcat /opt/apache-tomcat-9.0.11
-$ sudo ln -s /opt/apache-tomcat-9.0.11 /opt/tomcat
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -O http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.55/bin/apache-tomcat-9.0.55.tar.gz
+$ tar -xzvf ./apache-tomcat-9.0.55.tar.gz
+$ sudo mv  ./apache-tomcat-9.0.55 /opt/apache-tomcat-9.0.55
+$ sudo chown -R tomcat:tomcat /opt/apache-tomcat-9.0.55
+$ sudo ln -s /opt/apache-tomcat-9.0.55 /opt/tomcat
 </pre></div>
 </div>
 <div class="section" id="tomcat-service-config">
@@ -284,17 +209,17 @@ $ sudo systemctl start tomcat.service
 </div>
 <div class="section" id="id23">
 <h2>3.2.5. MongoDB のインストール<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>MongoDB 3.6 以上(推奨は 4.0 以上)をインストールします。</p>
+<p>MongoDB 4.0 以上をインストールします。</p>
 <p><a class="reference external" href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/">Install MongoDB on Red Hat</a> の手順に従い、インストールを行ってください。</p>
 <p>詳細な手順は以下のとおりです。
 まず、/etc/yum.repos.d/ ディレクトリに mongodb-org-(MongoDBバージョン).repo ファイルを作成します。
-以下の例は MongoDB 4.0 の場合の例です。</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[mongodb-org-4.0]</span>
+以下の例は MongoDB 4.4 の場合の例です。</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[mongodb-org-4.4]</span>
 <span class="na">name</span><span class="o">=</span><span class="s">MongoDB Repository</span>
-<span class="na">baseurl</span><span class="o">=</span><span class="s">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/</span>
+<span class="na">baseurl</span><span class="o">=</span><span class="s">https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.4/x86_64/</span>
 <span class="na">gpgcheck</span><span class="o">=</span><span class="s">1</span>
 <span class="na">enabled</span><span class="o">=</span><span class="s">1</span>
-<span class="na">gpgkey</span><span class="o">=</span><span class="s">https://www.mongodb.org/static/pgp/server-4.0.asc</span>
+<span class="na">gpgkey</span><span class="o">=</span><span class="s">https://www.mongodb.org/static/pgp/server-4.4.asc</span>
 </pre></div>
 </div>
 <p>ついで、MongoDB をインストールします。</p>
@@ -351,59 +276,29 @@ $ sudo cp console.war /opt/tomcat/webapps
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="quickstart_windows.html" class="btn btn-neutral float-right" title="3.3. クイックスタート (Windows Server 2016)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="glossary.html" class="btn btn-neutral" title="3.1. 用語の定義" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="glossary.html" class="btn btn-neutral float-left" title="3.1. 用語の定義" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart_windows.html" class="btn btn-neutral float-right" title="3.3. クイックスタート (Windows Server 2016)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2013-2018, NEC Corporation
-
-    </p>
+    <p>&#169; Copyright 2013-2022, NEC Corporation.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
-        <script type="text/javascript" src="../_static/analytics.js"></script>
-        <script type="text/javascript" src="../_static/translations.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });

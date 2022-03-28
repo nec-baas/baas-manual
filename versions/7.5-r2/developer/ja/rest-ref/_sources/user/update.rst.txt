@@ -1,0 +1,147 @@
+.. _user_update:
+
+ユーザ情報変更 (パスワード変更を含む)
+======================================
+
+.. http:put:: /1/(tenantId)/users/(userId)
+
+    パスワード変更を含む、ユーザ情報を変更する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン (必須、ただしマスターキー使用時は不要)
+    :reqheader Content-Type: application/json
+
+    :parameter string userId: ユーザID
+
+    :query string etag: ETag値
+
+    :<json string username: ユーザ名
+    :<json string email: E-mailアドレス
+    :<json string password: パスワード
+    :<json object options: オプション情報
+    :<json boolean enabled: 有効フラグ
+
+    :statuscode 200: 正常に変更した
+    :statuscode 400: パラメータ/リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当ユーザが存在しない。
+    :statuscode 409: username, E-mail アドレスが衝突している、ETag 不一致（etag_mismatch）、更新が衝突した(request_conflicted)
+    :statuscode 415: Content-Type 不正
+
+    :>json string _id: ユーザID
+    :>json string username: ユーザ名
+    :>json string email: E-mail アドレス
+    :>json array groups: ユーザが所属する全グループの一覧 (authenticated, anonymous は含まず)
+    :>json object options: オプション情報
+    :>json string createdAt: ユーザ作成日時
+    :>json string updatedAt: ユーザ更新日時
+    :>json string lastLoginAt: 最終ログイン日時。マスターキー使用時のみ返却する。
+    :>json string etag: 新規作成・更新の度に変更される固有値
+    :>json boolean federated: 外部認証連携有無
+    :>json string primaryLinkedUserId: OpenID Connect認証でユーザ自動生成時のリンクユーザID
+    :>json boolean clientCertUser: クライアント証明書認証ユーザフラグ
+    :>json boolean enabled: 有効フラグ
+    :>json string reasonCode: エラー時の原因コード
+    :>json object detail: エラーに関するデータ
+
+    **リクエストボディ**
+
+    リクエストボディには JSON 形式で記述されたユーザ情報を設定する。
+
+    username, email, password, options, enabled を指定 (すべてオプション。指定しなかったものは変更されない)
+    optionsフィールドには、JSON形式で記述された任意のオブジェクトを指定できる。
+
+    **リクエストボディの例**
+
+    .. code-block:: json
+
+        {
+            "username": "tarou",
+            "email": "nichiden.tarou@example.com",
+            "password": "Passw0rd",
+            "options": {
+              "displayName": "日電 太郎",
+              "division": "日電事業部"
+            },
+            "enabled": true
+        }
+
+    **レスポンスボディ**
+
+    レスポンスボディには、変更したユーザ情報を含む JSON データが返る。
+
+    更新が成功した場合、etag フィールドに、更新された ETag 値が格納される
+    (データの内容に変更がない場合であっても、常に updatedAt とetag 値は更新される)。
+    本人確認メール送信設定が有効の場合は、空のユーザ情報を返す。
+
+    **エラーレスポンス**
+
+    エラー時には JSON で以下の内容が返却される。
+
+    * reasonCode: 原因を示すコード
+
+      - duplicate_key: データ重複。バケットに設定したインデックスのユニーク制約による。
+      - etag_mismatch: 	更新・削除処理でETagが不一致
+      - request_conflicted: 更新・削除処理で衝突
+    * detail: エラーに関するデータ
+
+    detail は、各reasonCodeに対して、下記内容を返却する。
+
+    .. list-table::
+        :header-rows: 1
+        :widths: 30, 70
+
+        * - reasonCode
+          - detail
+        * - duplicate_key
+          - "Duplicate Key" (文字列)
+        * - etag_mismatch
+          - サーバ側のユーザ情報を含むJSON データ (JSON形式)
+        * - request_conflicted
+          - "Updating conflicted" (文字列)
+
+    409 Conflict の場合の例を示す。
+
+    .. code-block:: javascript
+
+        {
+          "reasonCode": "etag_mismatch"
+          "detail": {
+            "_id": "52116f01ac521e1742000001",
+            "username": "foo",
+            "email": "foo@example.com",
+            "options": {
+              "displayName": "日電 太郎",
+              "division": "日電事業部"
+            },
+            "createdAt": "2013-08-27T04:37:30.000Z",
+            "updatedAt": "2013-08-27T04:37:30.000Z",
+            "lastLoginAt": "2013-08-27T04:37:30.000Z", // マスターキー使用時のみ返却
+            "etag": "8c92c97e-01a7-11e4-9598-53792c688d1b",
+            "federated": false,
+            "clientCertUser": false,
+            "primaryLinkedUserId":null,
+            "enabled": true
+          }
+        }
+
+    **注意事項**
+
+    * 変更が可能なのは自ユーザのみである。ただし、マスターキーを使用した場合どのユーザの情報でも変更可能。
+    * _USERS バケットのcontentACLに対する権限は不要。
+    * username、email、passwordのポリシはサインアップと同様。
+    * Conflictの場合はその原因をJSON形式で返す
+    * 外部認証(LDAP等)連携ユーザに対しては、本機能は使用できない。使用した場合は403エラーを返却する。
+    * クライアント証明書ユーザに対しては、Eメールとパスワードの更新は無視される。
+    * 本人確認メール設定が有効の場合、本API実行時にユーザ更新はされない。API実行後に、更新前のE-mailアドレス宛に送られる本人確認メールの内容に従い更新を行うこと。
+    * 本人通知メール設定が有効の場合、更新後、更新後ユーザのE-mailアドレス宛に、本人通知メールが送信される。E-mailアドレスを更新した場合は、更新前ユーザのアドレスにも送信される。
+    * マスターキーを指定した場合は、本人確認メールは送信されない。
+    * パスワードを設定した場合、該当ユーザのセッショントークンはすべて無効化される。
+    * 有効フラグ(enabled)
+
+      - ユーザの有効/無効を変更できる。無効(false)に設定した場合は、該当ユーザがBaaSにログインすることができなくなる。
+      - マスターキーを使用した場合のみ変更が可能。(ユーザ無効の状態の場合はログインができず、自ユーザでのAPI実行が不可能)
+    * 変更時に、所属グループからの削除やPushインスタレーションの更新などの処理は行わない。「所属ユーザ・グループの追加/削除API」や、「インスタレーションの更新/削除API」などを必要に応じて実行すること。
+

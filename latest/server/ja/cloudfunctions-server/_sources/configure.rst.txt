@@ -102,19 +102,15 @@ Docker を使用する場合のサンプルを以下に示します。
         cmd: java -jar /opt/emitter/cloudfn-java-server.jar
 
       node: # latest
-        repoTag: necbaas/node-logic-server:8
+        repoTag: necbaas/node-logic-server:14
         volume:/opt/cloudfn/node-server/package
         cmd: node /opt/emitter/bin/server.js
 
-      node8:
-        repoTag: necbaas/node-logic-server:8
+      node14:
+        repoTag: necbaas/node-logic-server:14
         volume:/opt/cloudfn/node-server/package
         cmd: node /opt/emitter/bin/server.js
 
-      node6:
-        repoTag: necbaas/node-logic-server:6
-        volume:/opt/cloudfn/node-server/package
-        cmd: node /opt/emitter/bin/server.js
 
 Docker を使用しない場合(Dockerレス)の例を示します。
 

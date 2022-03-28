@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.4. システム設定 &mdash; Developer Console User Manual 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3.5. SAML KeyStore" href="saml_keyStore.html" />
+    <link rel="prev" title="3.3. 管理者管理" href="administrator.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Developer Console User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. デベロッパーコンソールの概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../login.html">2. ログイン</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. システム管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="abstract.html">3.1. システム管理機能について</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tenant/index.html">3.2. テナント管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="administrator.html">3.3. 管理者管理</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. システム設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">一般設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">データベース設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">デベロッパーコンソール設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">メール設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">プロキシサーバ設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-config-client-cert">クライアント証明書設定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">ファイルストレージ設定</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="saml_keyStore.html">3.5. SAML KeyStore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html">3.6. ライセンス</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systemlog.html">3.7. システムログ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tenant/index.html">4. テナント管理</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Developer Console User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">3. システム管理</a> &raquo;</li>
+        
+      <li>3.4. システム設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>3.4. システム設定<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>「システム設定」はシステム全体に関わる設定を行うことができます。
+システム設定はシステム管理者のみが行うことができます。</p>
+<p>システム設定は、画面右上の「管理」の「システム設定」にあります。</p>
+<p>設定可能な項目は以下の通りです。</p>
+<div class="section" id="id21">
+<h2>一般設定<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>APIサーバベースURI<ul>
+<li>APIサーバの外部向け URIです。</li>
+<li>設定例 ⇒ <a class="reference external" href="https://api.example.com/api">https://api.example.com/api</a></li>
+<li>本 URI はユーザのパスワードリセット時などで送信されるメールに記載されるベース URI として使用されます。
+通常、Internet からアクセス可能な URI としてください。</li>
+</ul>
+</li>
+<li>APIサーバ内部向けベースURI<ul>
+<li>APIサーバの内部向け URIです。</li>
+<li>設定例 ⇒ <a class="reference external" href="http://10.0.0.5/api">http://10.0.0.5/api</a></li>
+<li>本 URI は、Cluod Functions サーバから API 呼び出しを行う際に使用されます。
+したがって、Cloud Functions サーバから到達可能な URL とする必要があります。</li>
+</ul>
+</li>
+<li>SSE Push サーバ公開 URI:<ul>
+<li>SSE Push サーバの外部向け URIです。</li>
+<li>設定例 ⇒ <a class="reference external" href="https://api.example.com/ssepush/events">https://api.example.com/ssepush/events</a></li>
+<li>クライアントから見た SSE Push サーバの URI (末尾の /events まで含む)を指定してください。</li>
+<li>詳細は <a class="reference external" href="../../push/index.html">Push通知ガイド</a> の「SSE Push サーバセットアップ」の節を参照してください。</li>
+</ul>
+</li>
+<li>システムキー<ul>
+<li>システムキーはシステムログを REST API で取得する際に使用します。</li>
+<li>一種のパスフレーズですので、容易に類推できない文字列を設定してください。</li>
+<li>設定は省略可能です。省略した場合は、システムログを REST API で取得する機能は無効化されます。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2>データベース設定<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>MongoDBデフォルトクエリタイムアウト<ul>
+<li>MongoDB に対するオブジェクトストレージのクエリタイムアウト時間を指定します。
+本タイムアウト時間は MongoDB サーバ側でのクエリ実行タイムアウトです。</li>
+<li>0以下の値を指定した場合は、タイムアウトは設定されません。</li>
+<li>REST API でタイムアウト時間を指定した場合は、REST API パラメータのほうが優先されます。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h2>デベロッパーコンソール設定<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>コンソールサーバベースURI<ul>
+<li>コンソールサーバの外部向け URI です。</li>
+<li>設定例 ⇒ <a class="reference external" href="https://console.example.com/console">https://console.example.com/console</a></li>
+<li>本 URI はデベロッパーのパスワードリセット時に送信されるメールに記載されるベース URI として使用されます。
+通常、Internet からアクセス可能な URI としてください。</li>
+</ul>
+</li>
+<li>コンソールセルフサインアップ許可<ul>
+<li>デベロッパーコンソールのセルフサインアップ機能の有効設定を行います。</li>
+<li>デフォルトは「禁止」です(セキュリティ上、禁止で運用することを推奨します)</li>
+</ul>
+</li>
+<li>デベロッパーコンソール ヘルプ URL<ul>
+<li>本 URL は、デベロッパーコンソール画面右上の「ヘルプ」のリンク先となります。</li>
+<li>「デベロッパーコンソール利用ガイド」の URL などを指定してください。</li>
+<li>指定しなくても動作上問題はありませんが、ヘルプは使用できません。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h2>メール設定<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>メール送信に関する設定を行います。</p>
+<ul class="simple">
+<li>SMTPサーバ: SMTPサーバホスト名</li>
+<li>SMTPサーバポート番号: SMTPサーバのポート番号。通常は 25 を指定してください。</li>
+<li>SMTP認証ユーザ名: 認証不要な場合は空欄。</li>
+<li>SMTP認証パスワード: 認証不要な場合は空欄。</li>
+<li>メール送信Fromメールアドレス: メール送信時の From に指定するメールアドレスを指定します。</li>
+</ul>
+<p>なお、BaaS サーバは、以下のようなケースでメールを送信します。</p>
+<ul class="simple">
+<li>REST API で、パスワードリセット用メールを送信する。</li>
+<li>デベロッパコンソールから、パスワードリセットメールを送信する。</li>
+<li>デベロッパコンソールから、デベロッパの招待メールを送信する。</li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h2>プロキシサーバ設定<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>プロキシサーバの設定を行います。</p>
+<p>ここで設定したプロキシサーバは、S3互換外部ファイルストレージアクセス時やOpenID Connect連携時に使用されます。</p>
+<ul class="simple">
+<li>プロキシサーバホスト: プロキシサーバのホスト名を指定します。</li>
+<li>プロキシサーバポート番号: プロキシサーバのポート番号を指定します。</li>
+<li>プロキシ例外リスト<ul>
+<li>プロキシサーバを経由しないホストを指定します。</li>
+<li>設定例 ⇒ localhost;127.0.0.1;*test.com</li>
+<li>ホストの区切りには改行も使用可能です。</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="system-config-client-cert">
+<span id="id26"></span><h2>クライアント証明書設定<a class="headerlink" href="#system-config-client-cert" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>クライアント証明書認証使用時に、リクエスト送信元のリバースプロキシを検証するための、サーバーキーを設定します。
+リバースプロキシに設定した値（X-SSL-Validate-Token ヘッダの値）と同一のキーを設定します。</p>
+<p>一種のパスフレーズですので、容易に類推できない文字列を設定してください。</p>
+<p>詳細は <a class="reference external" href="../../auth/clientcert/haproxy.html">HAProxyの設定手順</a> を参照してください。</p>
+</div>
+<div class="section" id="id28">
+<h2>ファイルストレージ設定<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルストレージに関する設定を行います。</p>
+<ul class="simple">
+<li>ファイルの最大サイズ(メガバイト)<ul>
+<li>ファイルストレージにアップロードできるファイルの最大サイズを指定します（単位：MByte）。</li>
+<li>デフォルトは 100MB です。</li>
+<li>AWS S3 にファイルデータを格納する場合、本設定を適用せず、AWS S3 の上限まで格納可能です。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="saml_keyStore.html" class="btn btn-neutral float-right" title="3.5. SAML KeyStore" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="administrator.html" class="btn btn-neutral" title="3.3. 管理者管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. チュートリアル4 : TODOアプリ (オフライン対応) &mdash; Tutorials (.NET) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="4. チュートリアル2 : ログイン機能とアクセス制御" href="tutorial2.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (.NET)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ (オブジェクトストレージ)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_code.html">3. チュートリアル1 : TODOアプリの実装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">4. チュートリアル2 : ログイン機能とアクセス制御</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. チュートリアル4 : TODOアプリ (オフライン対応)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">5.1. 新規アプリケーションを作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.2. バケットの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">5.3. サンプルコードの変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">5.4. サンプルの実行</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (.NET)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5. チュートリアル4 : TODOアプリ (オフライン対応)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="todo">
+<h1>5. チュートリアル4 : TODOアプリ (オフライン対応)<a class="headerlink" href="#todo" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>このチュートリアルでは、オフライン機能に対応したToDoアプリを作成します。</p>
+<a class="reference internal image-reference" href="_images/tutorial4.png"><img alt="_images/tutorial4.png" class="align-center" src="_images/tutorial4.png" style="width: 450px;" /></a>
+<ul class="simple">
+<li>Todo 項目を入力して追加したり、削除することができます。</li>
+<li>オフライン状態で Todo の追加・削除ができます。</li>
+<li>Todo は端末内のローカルデータベースに暗号化して保存されます。</li>
+<li>Sync ボタンを押すと、サーバのオブジェクトストレージと同期します。</li>
+<li>本アプリは Windows 端末上で動作するアプリで、 C# で作成します。</li>
+</ul>
+<div class="section" id="id1">
+<h2>5.1. 新規アプリケーションを作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>まず、 チュートリアル1と同様に、新規アプリケーションを作成します。</p>
+<p>アプリケーションの作成方法は、 <a class="reference external" href="../devconsole/index.html">デベロッパーコンソール利用ガイド</a> を参照してください。</p>
+<p>アプリの作成が完了すると、アプリの詳細情報が表示されます。
+ここで表示される「テナントID」「アプリケーションID」「アプリケーションキー」は
+アプリケーションの認証に使用する秘密情報です。
+この3つは後ほど使用しますので、メモしておいてください。</p>
+</div>
+<div class="section" id="id3">
+<h2>5.2. バケットの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Todo 情報を格納するための「バケット」を作成します。チュートリアル1と同じバケットを使用しますので、作成済みの場合は飛ばしてください。</p>
+<p>画面左の「オブジェクトバケット」⇒「追加」をクリックして、バケットを追加します。</p>
+<a class="reference internal image-reference" href="_images/create_bucket.png"><img alt="_images/create_bucket.png" class="align-center" src="_images/create_bucket.png" style="width: 450px;" /></a>
+<p>バケット名は &quot;TodoTutorial1&quot; としてください。(「4」ではなく「1」です。)</p>
+<p>また、バケットのアクセス権限を変更し、誰でも(anonymousユーザ)バケットを読み書きできるようにします。
+(デフォルトでは、認証ユーザしかバケットを読み書きできないようになっています）</p>
+<p>「バケットACL」の r の行が &quot;g:authenticated&quot; となっていますので、
+これを &quot;g:anonymous&quot; に変更してください。</p>
+<p>また、「コンテンツACL」の r と w の行が &quot;g:authenticated&quot; となっていますので、
+こちらも &quot;g:anonymous&quot; に変更してください。</p>
+</div>
+<div class="section" id="id4">
+<h2>5.3. サンプルコードの変更<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>チュートリアル4のサンプルコードを設定し、実際に動作させてみます。</p>
+<p>まず、Visual Studio から tutorial4 を開きます。
+「ファイル」⇒「開く」⇒「プロジェクト/ソリューション」を選択し、
+tutorial4 ディレクトリにある tutorial4.sln を開いてください。</p>
+<p>次に、 tutorial4/tutorial4 ディレクトリにある MainWindow.xaml.cs ファイルを開き、 MainWindow() に記載の定義を以下のように変更します。</p>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nf">MainWindow</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">InitializeComponent</span><span class="p">();</span>
+
+    <span class="c1">//Initialize Nebula</span>
+    <span class="kt">var</span> <span class="n">service</span> <span class="p">=</span> <span class="n">NbService</span><span class="p">.</span><span class="n">GetInstance</span><span class="p">();</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">TenantId</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">AppId</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">AppKey</span> <span class="p">=</span> <span class="s">&quot;...&quot;</span><span class="p">;</span>
+    <span class="n">service</span><span class="p">.</span><span class="n">EndpointUrl</span> <span class="p">=</span> <span class="s">&quot;https://api.example.com/api&quot;</span><span class="p">;</span>
+
+    <span class="c1">//Enable offline</span>
+    <span class="n">NbOfflineService</span><span class="p">.</span><span class="n">EnableOfflineService</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="s">&quot;1234567890&quot;</span><span class="p">);</span>
+
+    <span class="c1">//以下省略</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>TenantId には テナントIDを設定してください。</li>
+<li>AppId にアプリケーションIDを設定してください。</li>
+<li>AppKey にアプリケーションキーを設定してください。</li>
+<li>EndpointUrl には、 NEC BaaS API サーバの URL を指定してください。</li>
+<li>NbOfflineService.EnableOfflineServiceの第2引数に暗号化パスワードを設定してください。</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>5.4. サンプルの実行<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Visual Studio 上で、「ビルド」⇒「ソリューションのビルド」を選択し、
+ビルドを実行します。</p>
+<p>ビルドが成功すると、 tutorial4/tutorial4/bin/Debug に
+tutorial4.exe が作成されますので、タブルクリックして実行します。</p>
+<a class="reference internal image-reference" href="_images/launch.png"><img alt="_images/launch.png" class="align-center" src="_images/launch.png" style="width: 450px;" /></a>
+<p>この時点ではまだローカルにデータが無いため、何も表示されません。画面下部の Sync ボタンを押し、サーバと同期してください。サーバ側の Todo データがダウンロードされ表示されます。</p>
+<a class="reference internal image-reference" href="_images/tutorial4.png"><img alt="_images/tutorial4.png" class="align-center" src="_images/tutorial4.png" style="width: 450px;" /></a>
+<p>画面下部のフォームに文字列を入力し、 Add ボタンを押すと、Todo が追加されます。ここでは「週報作成」という Todo を追加しました。まだ Sync ボタンは押さないでください。</p>
+<a class="reference internal image-reference" href="_images/add.png"><img alt="_images/add.png" class="align-center" src="_images/add.png" style="width: 450px;" /></a>
+<p>次に、デベロッパーコンソール上のオブジェクトバケット一覧画面で、”TodoTutorial1” の「データ」を参照します。画面右上の「カラムの表示」から「description」を選択してください。</p>
+<a class="reference internal image-reference" href="_images/console.png"><img alt="_images/console.png" class="align-center" src="_images/console.png" style="width: 700px;" /></a>
+<p>先ほど追加した Todo データ(週報作成)はサーバ側に反映されていないことが分かります。</p>
+<p>次に、アプリの Sync ボタンを押下します。これにより、サーバ側と Todo データを同期します。</p>
+<p>再びデベロッパーコンソール上のオブジェクトバケット一覧画面で、”TodoTutorial1” の「データ」を参照します。</p>
+<a class="reference internal image-reference" href="_images/sync.png"><img alt="_images/sync.png" class="align-center" src="_images/sync.png" style="width: 700px;" /></a>
+<p>同期を行いましたので、サーバ側に Todo (週報作成)が反映されたことが分かります。</p>
+<p>このように、ローカルで一時的に処理を行いたいときや、ネットワークが一時的に利用できないときなどにおいて、オフラインで処理を行うことができます。</p>
+<p>なお、Todo を選択し、Delete キーを押下すると、削除となります。ここでは、Todo の追加に関する同期を行いましたが、削除も同様に同期することができますので試してみてください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tutorial2.html" class="btn btn-neutral" title="4. チュートリアル2 : ログイン機能とアクセス制御" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

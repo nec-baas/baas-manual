@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.10.1. Web アプリケーション &mdash; Authentication Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="6.10.2. Native アプリケーション (C#)" href="devel-native-dotnet.html" />
+    <link rel="prev" title="6.10. アプリケーションの開発" href="devel.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../local.html">3. ローカル認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../saml/index.html">5. ADFS / SAML 認証</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. OpenID Connect 認証</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">6.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">6.2. 用語</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_oidc_user.html">6.3. OIDC 認証ユーザ作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="account_link.html">6.4. アカウントリンク情報の設定、取得、削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequence.html">6.5. 動作概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_system.html">6.6. システムの事前設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_tenant.html">6.7. テナントの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="op.html">6.8. OpenID Connectプロバイダ (OP) 側の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_tenant.html">6.9. テナント設定</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="devel.html">6.10. アプリケーションの開発</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">6.10.1. Web アプリケーション</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#openid-connect">OpenID Connect 認証開始</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">OpenID Connect 認証完了時の処理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#baas">BaaS サーバへのログイン</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="devel-native-dotnet.html">6.10.2. Native アプリケーション (C#)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="devel-native-android.html">6.10.3. Native アプリケーション (Android)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="attention.html">6.11. 注意事項</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">6. OpenID Connect 認証</a> &raquo;</li>
+        
+          <li><a href="devel.html">6.10. アプリケーションの開発</a> &raquo;</li>
+        
+      <li>6.10.1. Web アプリケーション</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="web">
+<h1>6.10.1. Web アプリケーション<a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>JavaScript を使った OpenID Connect 認証方法を記載します。</p>
+<p>大きく分けて、以下の3つの処理を実装します。</p>
+<ul class="simple">
+<li>OpenID Connect 認証開始 REST API の実行</li>
+<li>OpenID Connect 認証完了時の処理</li>
+<li>BaaS サーバへのログイン</li>
+</ul>
+<div class="section" id="openid-connect">
+<h2>OpenID Connect 認証開始<a class="headerlink" href="#openid-connect" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>OpenID Connect 認証開始の REST API を実行します。
+リクエストパラメータに、ランディングページの URL を指定します。</p>
+<p>REST API の URI は、以下のとおりです。</p>
+<blockquote>
+<div>{endpointUri}/1/{tenantId}/auth/oidc/start?op={op}&amp;redirect={redirectUri}&amp;scope={scope}&amp;createUser={true|false}&amp;sessionToken={sessionToken}</div></blockquote>
+<ul class="simple">
+<li>op、redirectUri は必須です。</li>
+<li>op は連携する OpenID Connectプロバイダを指定します。設定可能な値は以下の通りです。<ul>
+<li>google: Google</li>
+<li>adfs: ADFS (Windows Server 2016)</li>
+<li>other: OpenAM</li>
+</ul>
+</li>
+<li>OIDC認証ユーザを作成する場合は、createUser=true を指定してください。</li>
+<li>作成済ユーザとのアカウントリンク設定をする場合は、sessionToken にリンクさせたいユーザのセッショントークンを指定してください。</li>
+<li>scope はオプションです。取得したい属性情報(OpenID Connectスコープ)を指定します。必ず &quot;openid&quot; が含まれている必要があります。</li>
+</ul>
+<p>redirectUri, scope については、いずれもURIエンコードが必要な点に注意してください。</p>
+<p>以下にサンプルコードを示します。</p>
+<p>例： index.html</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+
+function convertAbsUrl(src) {
+    return $(&quot;&lt;a&gt;&quot;).attr(&quot;href&quot;, src).get(0).href;
+}
+
+// op が Google の場合
+function startOidcToGoogle() {
+    var redirectUri = convertAbsUrl(&quot;./landing.html&quot;);
+
+    // REST API 実行 (ページ移動)
+    var startUri = &lt;EndpointUri&gt; + &quot;/1/&quot; + &lt;tenantId&gt; + &quot;/auth/oidc/start?op=google&amp;redirect=&quot; + encodeURIComponent(redirectUri) + &quot;&amp;createUser=true&quot;;
+    document.location.href = startUri;
+};
+
+// op が ADFS, scope を指定する場合
+function startOidcToAdfs() {
+    var redirectUri = convertAbsUrl(&quot;./landing.html&quot;);
+    var startUri = &lt;EndpointUri&gt; + &quot;/1/&quot; + &lt;tenantId&gt; +  &quot;/auth/oidc/start?op=adfs&amp;redirect=&quot; + encodeURIComponent(redirectUri) + &quot;&amp;scope=&quot; + encodeURIComponent(&quot;openid profile email&quot;) + &quot;&amp;createUser=true&quot;;
+    document.location.href = startUri;
+};
+
+// op が Other(OpenAM) の場合
+function startOidcToOther() {
+    var redirectUri = convertAbsUrl(&quot;./landing.html&quot;);
+
+    // REST API 実行 (ページ移動)
+    var startUri = &lt;EndpointUri&gt; + &quot;/1/&quot; + &lt;tenantId&gt; + &quot;/auth/oidc/start?op=other&amp;redirect=&quot; + encodeURIComponent(redirectUri) + &quot;&amp;createUser=true&quot;;
+    document.location.href = startUri;
+};
+
+&lt;/script&gt;
+
+&lt;a href=&quot;#&quot; onclick=&quot;startOidcToGoogle();&quot;&gt;Start authentication (Google)&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; onclick=&quot;startOidcToAdfs();&quot;&gt;Start authentication (ADFS)&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;#&quot; onclick=&quot;startOidcToOther();&quot;&gt;Start authentication (Other)&lt;/a&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>OpenID Connect 認証完了時の処理<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>OpenID Connect 認証が完了すると、指定したリダイレクト URI (ランディングページ)にリダイレクトされます。
+リダイレクト URI は以下のようにワンタイムトークンがクエリパラメータに格納された形になります。</p>
+<blockquote>
+<div><a class="reference external" href="file:///home/test/landing.html?token=123456789abcdef">file:///home/test/landing.html?token=123456789abcdef</a></div></blockquote>
+<p>ランディングページ(例： landing.html) はあらかじめ用意しておきます。</p>
+<p>リダイレクト URI からワンタイムトークンを取り出します。
+以下にサンプルコードを示します。</p>
+<p>例： landing.html</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+
+$(function() {
+    // クエリパラメータからワンタイムトークンを取得
+    var getOneTimeToken = function() {
+        var query = document.location.search.substring(1);
+        var params = query.split(&#39;&amp;&#39;);
+        for (var i = 0; i &lt; params.length; i++) {
+            var el = params[i].split(&#39;=&#39;);
+            var name = decodeURIComponent(el[0]);
+            if (name === &quot;token&quot;) {
+                return decodeURIComponent(el[1]);
+            }
+        }
+        return null;
+    };
+
+    var oneTimeToken = getOneTimeToken();
+
+    // BaaS サーバへのログイン実装(下記参照)
+    ・・・
+});
+
+&lt;/script&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="baas">
+<h2>BaaS サーバへのログイン<a class="headerlink" href="#baas" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>JavaScript SDK のログイン API を使い、ワンタイムトークンを指定してログインします。</p>
+<p>サーバからセッショントークンが払いだされ、以降は本セッショントークンで認証が行われます。
+以下にサンプルコードを示します。</p>
+<p>例： landing.html</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+
+$(function() {
+    // OpenID Connect 認証完了時の処理 (上記参照)
+    ・・・
+
+    // Nebula 初期化
+    Nebula.initialize(NebulaConfig);
+
+    // ワンタイムトークンを指定
+    var userInfo = {
+        token: oneTimeToken
+    };
+
+    // ログイン
+    Nebula.User.login(userInfo)
+        .then(function(user) {
+            // login ok
+            $(&quot;#result&quot;).text(&quot;Login succeeded: username=&quot; + user.username);
+        })
+        .catch(function(err) {
+            // login failure
+            $(&quot;#result&quot;).text(&quot;Login failed: &quot; + err);
+        });
+});
+
+&lt;/script&gt;
+
+Result:&lt;br/&gt;
+&lt;div id=&quot;result&quot;&gt;&lt;/div&gt;
+</pre></div>
+</div>
+<p>NebulaConfig には接続先のBaaS設定情報を指定してください。</p>
+<p>詳しくは JavaScript SDK マニュアルを参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="devel-native-dotnet.html" class="btn btn-neutral float-right" title="6.10.2. Native アプリケーション (C#)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="devel.html" class="btn btn-neutral" title="6.10. アプリケーションの開発" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

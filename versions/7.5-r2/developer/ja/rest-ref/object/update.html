@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8.5. オブジェクトの更新 &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="8.6. オブジェクトの削除" href="delete.html" />
+    <link rel="prev" title="8.4. オブジェクトのロングクエリ" href="long_query.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. JSONオブジェクトストレージ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create.html">8.1. オブジェクトの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">8.2. オブジェクトの読み込み</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">8.3. オブジェクトのクエリ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="long_query.html">8.4. オブジェクトのロングクエリ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.5. オブジェクトの更新</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#object-update-partial">8.5.1. 部分更新</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#object-update-full">8.5.2. 完全上書き</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">8.6. オブジェクトの削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_delete.html">8.7. オブジェクトの一括削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch.html">8.8. バッチオペレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html">8.9. オブジェクトの集計(Aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">8. JSONオブジェクトストレージ</a> &raquo;</li>
+        
+      <li>8.5. オブジェクトの更新</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="object-update">
+<span id="id1"></span><h1>8.5. オブジェクトの更新<a class="headerlink" href="#object-update" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="put">
+<dt id="put--1-(tenantId)-objects-(bucketName)-(objectId)">
+<code class="descname">PUT </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/objects/</code><span class="sig-paren">(</span><em>bucketName</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="headerlink" href="#put--1-(tenantId)-objects-(bucketName)-(objectId)" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>オブジェクトを更新する。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- アプリケーションキー(必須)</li>
+<li><em>X-Session-Token</em> -- セッショントークン(オプション)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- &quot;application/json&quot;</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bucketName</strong> (<em>string</em>) -- バケット名</li>
+<li><strong>objectId</strong> (<em>string</em>) -- オブジェクトID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>requestToken</strong> (<em>string</em>) -- リクエストトークン</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常終了</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ・リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- 権限エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> -- 該当バケットまたはデータが存在しない</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> -- 更新が衝突した（request_conflicted）、データ重複（duplicate_key）、ETag 不一致（etag_mismatch）</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.14">413 Request Entity Too Large</a> -- オブジェクトサイズ制限超過</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">415 Unsupported Media Type</a> -- Content-Type 不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> -- シャードキーの制約によるエラー。その他。</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>リクエストボディ</strong></p>
+<p>リクエストボディに JSON 形式の更新データを格納する。</p>
+<p>リクエストボディの指定方法によって、<a class="reference internal" href="#object-update-partial"><span class="std std-ref">部分更新</span></a> または <a class="reference internal" href="#object-update-full"><span class="std std-ref">完全上書き</span></a> が可能。</p>
+<p>ETag 値を指定した場合、サーバ側データとの ETag 値が照合される。
+一致していなかった場合、409 Conflict エラーが返却される。
+レスポンスには、サーバ側のオブジェクト情報を含む JSON データが返却される。
+またサーバ側データが削除済みマークされていた場合でも更新することはできる。</p>
+<p>サーバ負荷への影響が大きいため、update処理では再送処理対応(requestToken)をサポートしない。
+(サーバ側で処理済みのオブジェクトに対して再送があった場合、Conflictとして処理される）</p>
+<p><strong>レスポンスボディ</strong></p>
+<p>更新したオブジェクト情報を含むJSON データがレスポンスボディで返却される。</p>
+<p>更新が成功した場合、etag フィールドに更新された ETag 値が格納される(データの内容に変更がない場合であっても、常に updatedAt とetag 値は更新される)。
+409 Conflictの場合はその原因をJSON形式で返す。</p>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>バケットcontentACLと対象オブジェクトの update 権限が必要</li>
+<li>対象オブジェクトの ACL の変更を伴う場合、admin 権限も必要。</li>
+<li>バケットcontentACL、および対象オブジェクトのread権限が無くても、上記のレスポンスが返却される。</li>
+<li>&quot;_protected&quot; フィールドは部分更新できない。</li>
+</ul>
+</dd></dl>
+
+<div class="section" id="object-update-partial">
+<span id="id2"></span><h2>8.5.1. 部分更新<a class="headerlink" href="#object-update-partial" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトの一部のみを更新する方法。</p>
+<p>以下は、score を 80 に変更する例。 指定していないフィールドは変更されない。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>MongoDB の $set 演算子を使用することも可能。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;$set&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>$inc 演算子を使用すると、インクリメントを行うことができる。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;$inc&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;score&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>他に、 MongoDB の更新演算子 がすべて使用できる。</p>
+<p>なお部分更新した場合、&quot;updatedAt&quot; は現在時刻で自動更新される。
+&quot;createdAt&quot; は指定しない場合は元の値が保持される。明示的に指定する場合は変更可能だが、正しい日付形式を指定しなければならない。
+&quot;_id&quot; は更新できない。</p>
+<p>更新データに &quot;_protected&quot;（暗号フィールド）を含む場合は部分更新できない。
+暗号フィールドを更新する場合は完全上書きで更新すること。
+なお、更新対象のオブジェクトに &quot;_protected&quot; が含まれている場合でも、&quot;_protected&quot; フィールドを更新しない場合は部分更新可能である。</p>
+</div>
+<div class="section" id="object-update-full">
+<span id="id3"></span><h2>8.5.2. 完全上書き<a class="headerlink" href="#object-update-full" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オブジェクトを完全に上書きする場合は $full_update 演算子を指定する。
+ACL は省略不可。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;$full_update&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Bar&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="mi">90</span><span class="p">,</span>
+        <span class="nt">&quot;ACL&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;owner&quot;</span><span class="p">:</span> <span class="s2">&quot;xxxxx&quot;</span><span class="p">,</span> <span class="nt">&quot;r&quot;</span><span class="p">:[</span><span class="s2">&quot;authenticated&quot;</span><span class="p">],</span> <span class="nt">&quot;w&quot;</span><span class="p">:[</span><span class="s2">&quot;authenticated&quot;</span><span class="p">]}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>&quot;updatedAt&quot; は現在時刻に自動更新される。</p>
+<p>&quot;createdAt&quot; を指定しなかった場合は、変更前の値が維持される。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="delete.html" class="btn btn-neutral float-right" title="8.6. オブジェクトの削除" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="long_query.html" class="btn btn-neutral" title="8.4. オブジェクトのロングクエリ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

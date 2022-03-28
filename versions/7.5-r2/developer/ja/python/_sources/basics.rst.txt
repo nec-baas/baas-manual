@@ -1,0 +1,44 @@
+.. include:: ../common/linkdef.rst
+
+==============================
+NEC BaaS Python SDK API の基本
+==============================
+
+同期呼び出し
+============
+
+NEC BaaS Python SDK の API は、他 SDK と異なり全て同期呼び出しとなります。
+API の処理結果は、メソッドの返り値で受け取る形になります。
+
+以下に、オブジェクトをクエリする場合の例を示します。
+本例では "score" が "30" 未満のオブジェクトを検索します。
+
+.. code-block:: python
+
+    # バケットインスタンス取得
+    bucket = baas.ObjectBucket(service, "ApiBasic1")
+
+    # クエリ発行、結果は返り値で返却される
+    results = bucket.query(where={"score": {"$lt": 30}})
+
+    # 結果表示
+    for result in results:
+        print("name={}, score={}".format(result["name"], result["score"]))
+
+エラーの扱い
+============
+
+REST API 呼び出しでエラーが発生した場合、`requests.exceptions.HTTPError` が raise されます。
+ステータスコードやレスポンスボディは HTTPError から取得できます。例を以下に示します。
+
+.. code-block:: python
+
+    from requests import HTTPError
+
+    try:
+        # some operations...
+    except HTTPError as e:
+        status = e.response.status_code  # status code
+        body = e.response.text  # response body as text
+
+HTTPError の詳細は、 `requests`_ を参照してください。

@@ -1,0 +1,54 @@
+.. include:: ../common/linkdef.rst
+
+.. _api_gateway:
+
+============
+API Gateway
+============
+
+ここでは、API Gateway に登録したカスタム REST API を呼び出す方法について説明します。
+
+Apigw インスタンスの生成
+==========================
+
+API 呼び出し前に Apigw インスタンスを生成します。
+以下に例を示します。
+
+.. code-block:: python
+
+    say_hello = baas.Apigw(service, "hello", "POST", "sayHello");
+
+コンストラクタには4つの引数を指定します。
+
+* 第1引数: Service を指定します。
+* 第2引数: カスタムAPIの名前を指定します
+* 第3引数: HTTP メソッドを文字列で指定します。GET, POST, PUT, DELETE のいずれかを指定します。
+* 第4引数: カスタムAPI のサブパスを指定します。
+
+API の実行
+==========
+
+APIを呼び出すには `execute()` を使用します。
+
+.. code-block:: python
+
+    response = say_hello.execute(json={"name": "Taro Nichiden"})
+
+リクエストデータの指定
+-----------------------
+
+execute の引数には、サーバに引き渡すデータを指定します。
+以下のキーワード引数を指定できます。
+
+* data: リクエストボディ(POST/PUT時のみ)。bytes または file-like オブジェクトを指定します。
+* json: リクエストボディ(POST/PUT時のみ)に JSON データを dict で指定します。
+* query: クエリパラメータを dict で指定します。
+* headers: ヘッダを dict で指定します。
+
+レスポンスデータの受信
+----------------------
+
+API呼び出しが成功した場合は、返り値に `requests`_ ライブラリの `Response` が返ります。
+
+ここから、ステータスコード、ヘッダ、レスポンスボディなどを取得できます。
+詳細は `requests`_ のドキュメントを参照してください。

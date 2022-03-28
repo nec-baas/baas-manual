@@ -1,0 +1,114 @@
+============================
+Native アプリケーション (C#)
+============================
+
+.NET(C#) による OpenID Connect 認証の実装方法を記載します。
+
+大きく分けて、以下の4つの処理を実装します。
+
+* OpenID Connect 認証結果を受け取るためのリスナーを作成
+* OpenID Connect 認証開始 REST API の実行
+* OpenID Connect 認証完了時の処理
+* BaaS サーバへのログイン
+
+リスナー登録
+============
+
+OpenID Connect 認証結果を受け取るための HTTP リスナー(1種のローカルWebサーバ)を作成します。
+
+.. code-block:: csharp
+
+            string redirectUri = "http://localhost:8080/receiveToken/";
+
+            // HTTPリスナー作成
+            HttpListener listener = new HttpListener();
+            listener.Prefixes.Clear();
+            listener.Prefixes.Add(redirectUri);
+
+            // リスナー開始
+            listener.Start();
+
+OpenID Connect の認証が完了すると、指定したリダイレクトURL に対して認証サーバからHTTPリダイレクトで認証結果が転送されますので、
+これを HTTP リスナーで受け取れるようにします。
+
+リダイレクトURLは ``http://localhost:`` で開始する必要があります。
+ポート番号やパスは任意です。
+
+OpenID Connect認証開始
+======================
+
+ブラウザを起動して OpenID Connect 認証開始の REST API を実行します。
+
+REST API の URI は、以下のとおりです。
+
+    ``{endpointUri}/1/{tenantId}/auth/oidc/start?op={op}&redirect={redirectUri}&scope={scope}&createUser={true|false}&sessionToken={sessionToken}``
+
+* op、redirectUri は必須です。
+* op は連携する OpenID Connectプロバイダを指定します。設定可能な値は以下の通りです。
+
+  - google: Google
+  - adfs: ADFS (Windows Server 2016)
+  - other: OpenAM
+
+* redirectUri には、上述したリダイレクトURLを指定してください。
+* OIDC認証ユーザを作成する場合は、createUser=true を指定してください。
+* 作成済ユーザとのアカウントリンク設定をする場合は、sessionToken にリンクさせたいユーザのセッショントークンを指定してください。
+* scope はオプションです。取得したい属性情報(OpenID Connectスコープ)を指定します。必ず "openid" が含まれている必要があります。
+
+redirectUri, scope については、いずれもURIエンコードが必要な点に注意してください。
+
+
+以下にサンプルコードを示します。
+
+.. code-block:: csharp
+
+            string encodeUri = System.Web.HttpUtility.UrlEncode(redirectUri);
+
+            string scope = "{Scope値}"
+            string encodeScope = string.IsNullOrEmpty(scope) ? "" : System.Web.HttpUtility.UrlEncode(scope);
+
+            // ブラウザを起動して REST API 実行
+            string path = <EndpointUrl> + "/1/" + <tenantId> + "/auth/oidc/start" + "?redirect=" + encodeUri + "&op=" + <op> + "&createUser=true";
+            path = encodeScope.Length == 0 ? path : path + "&scope=" + encodeScope;
+            System.Diagnostics.Process.Start(path);
+
+OpenID Connect認証完了時の処理
+==============================
+
+OpenID Connect 認証が完了すると、指定したリダイレクト URI にリダイレクトされます。
+リダイレクト URI は以下のようにワンタイムトークンがクエリパラメータに格納された形になります。
+
+    ``http://localhost:8080/receiveToken?token=123456789abcdef``
+
+リダイレクト URI からワンタイムトークンを取り出します。
+以下にサンプルコードを示します。
+
+.. code-block:: csharp
+
+            // リクエスト待ち
+            HttpListenerContext context = listener.GetContext();
+
+            // リクエスト取得
+            HttpListenerRequest req = context.Request;
+
+            // リクエスト文字列取得
+            string reqStr = req.RawUrl;
+
+            // ワンタイムトークン取得
+            string onetimeToken = req.QueryString.Get("token");
+
+BaaS サーバへのログイン
+=======================
+
+ワンタイムトークンを指定してログインします。
+
+サーバからセッショントークンが払いだされ、以降は本セッショントークンで認証が行われます。
+以下にサンプルコードを示します。
+
+.. code-block:: csharp
+
+            // ログイン用のパラメータ作成
+            var param = new NbUser.LoginParam() { Token = onetimeToken };
+
+            // ログイン
+            var user = await NbUser.LoginAsync(param, service);

@@ -1,0 +1,31 @@
+.. _api_delete:
+
+カスタムAPIの削除
+=================
+
+.. http:delete:: /1/(tenantId)/apigw/apis/(apiName)
+
+    カスタムAPIを削除する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+
+    :parameter string apiName: API名
+
+    :statuscode 200: 正常にAPIを削除した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: APIが存在しない
+    :statuscode 504: タイムアウトエラー
+
+    **レスポンス**
+
+    リクエスト成功時は以下。
+
+    .. code-block:: json
+
+        {
+            "result":"ok"
+        }
+
+    エラー時は JSON 形式でエラー通知される。Content-Type ヘッダは "application/json" となる。

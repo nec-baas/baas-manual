@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>9.8. ファイルの公開 &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="9.9. ファイルの公開解除" href="unpublish.html" />
+    <link rel="prev" title="9.7. ファイルの削除" href="delete.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">9. ファイルストレージ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create.html">9.1. ファイルの新規アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">9.2. ファイルの更新アップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download.html">9.3. ファイルのダウンロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">9.4. ファイル一覧の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read_meta.html">9.5. ファイルメタデータの取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_meta.html">9.6. ファイルメタデータの更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">9.7. ファイルの削除</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9.8. ファイルの公開</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unpublish.html">9.9. ファイルの公開解除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_published.html">9.10. 公開ファイルのダウンロード</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">9. ファイルストレージ</a> &raquo;</li>
+        
+      <li>9.8. ファイルの公開</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-publish">
+<span id="id1"></span><h1>9.8. ファイルの公開<a class="headerlink" href="#file-publish" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="put">
+<dt id="put--1-(tenantId)-files-(bucketName)-(fileName)-publish">
+<code class="descname">PUT </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/files/</code><span class="sig-paren">(</span><em>bucketName</em><span class="sig-paren">)</span><code class="descname">/</code><span class="sig-paren">(</span><em>fileName</em><span class="sig-paren">)</span><code class="descname">/publish</code><a class="headerlink" href="#put--1-(tenantId)-files-(bucketName)-(fileName)-publish" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>ファイル1件を公開する。</p>
+<p>公開されたファイルには一意な URL が付与され、一切のアクセス制限なく読み込みアクセスができるので、
+a タグの href 属性や img タグの src 属性に指定できるようになる。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- アプリケーションキー(必須)</li>
+<li><em>X-Session-Token</em> -- セッショントークン(オプション)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bucketName</strong> (<em>string</em>) -- バケット名</li>
+<li><strong>fileName</strong> (<em>string</em>) -- ファイル名</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Query Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>metaETag</strong> (<em>string</em>) -- メタデータETag値</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常終了した</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ・リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- 権限エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> -- 該当バケットまたはファイルが存在しない</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10">409 Conflict</a> -- ファイルがロック中（file_locked）、ETag 不一致（etag_mismatch）、データ重複(duplicate_key)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>_id</strong> (<em>string</em>) -- ファイルID</li>
+<li><strong>filename</strong> (<em>string</em>) -- ファイル名</li>
+<li><strong>contentType</strong> (<em>string</em>) -- Content-Type</li>
+<li><strong>length</strong> (<em>int</em>) -- ファイルサイズ</li>
+<li><strong>ACL</strong> (<em>object</em>) -- ACL</li>
+<li><strong>createdAt</strong> (<em>string</em>) -- 作成日時</li>
+<li><strong>updatedAt</strong> (<em>string</em>) -- 更新日時</li>
+<li><strong>metaETag</strong> (<em>string</em>) -- メタデータETag</li>
+<li><strong>fileETag</strong> (<em>string</em>) -- ファイルETag</li>
+<li><strong>cacheDisabled</strong> (<em>boolean</em>) -- キャッシュ無効フラグ</li>
+<li><strong>publicUrl</strong> (<em>string</em>) -- 公開URL</li>
+<li><strong>options</strong> (<em>object</em>) -- オプション</li>
+<li><strong>_deleted</strong> (<em>boolean</em>) -- 論理削除フラグ</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>レスポンス</strong></p>
+<p>更新したメタデータ(JSON)がレスポンスボディで返却される。</p>
+<p>成功した場合、metaETag フィールドに更新された ETag 値（metaETag）が格納される
+(データの内容に変更がない場合であっても、常に updatedAt とmetaETag 値は更新される)。</p>
+<p>409 Conflictの場合はその原因をJSON形式で返す。</p>
+<p>以下レスポンスボディの例を示す。
+publicUrl に公開 URL が格納される。また、metaETag が更新される。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;533d31c43cbc3dd2d0b32cd1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;filename&quot;</span><span class="o">:</span> <span class="s2">&quot;hello.txt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;contentType&quot;</span><span class="o">:</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;length&quot;</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="s2">&quot;ACL&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*ACL*/</span> <span class="p">},</span>
+  <span class="s2">&quot;createdAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;2013-08-27T04:37:30.000Z&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metaETag&quot;</span><span class="o">:</span> <span class="s2">&quot;8c92c97e-01a7-11e4-9598-53792c688d1b&quot;</span><span class="p">,</span> <span class="c1">// 更新される</span>
+  <span class="s2">&quot;fileETag&quot;</span><span class="o">:</span> <span class="s2">&quot;8c92c97e-01a7-11e4-9598-53792c688d1c&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;cacheDisabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;publicUrl&quot;</span><span class="o">:</span> <span class="s2">&quot;http://xxxx/yyyyy/hello.txt&quot;</span><span class="p">,</span> <span class="c1">// 公開URL</span>
+  <span class="s2">&quot;options&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="s2">&quot;日電 太郎&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;fileVersion&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>更新が成功した場合、metaETag フィールドに更新された ETag 値（metaETag）が格納される
+(データの内容に変更がない場合であっても、常に updatedAt とmetaETag 値は更新される)。</p>
+<p>409 Conflictの場合はその原因をJSON形式で返す。</p>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>すでに公開中のファイルを再公開しても URL は変更されない。</li>
+<li>バケット contentACL の update 権限が必要。</li>
+<li>対象ファイルの admin権限が必要。</li>
+<li>バケットcontentACL、および対象ファイルのread権限が無くても、上記のレスポンスが返却される。</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="unpublish.html" class="btn btn-neutral float-right" title="9.9. ファイルの公開解除" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="delete.html" class="btn btn-neutral" title="9.7. ファイルの削除" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

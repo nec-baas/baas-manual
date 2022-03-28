@@ -1,0 +1,4209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Class: User</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AclGroup.html">AclGroup</a></li><li><a href="AclPermission.html">AclPermission</a></li><li><a href="Nebula.html">Nebula</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AccountLink.html">AccountLink</a></li><li><a href="Acl.html">Acl</a></li><li><a href="BatchRequest.html">BatchRequest</a></li><li><a href="Clause.html">Clause</a></li><li><a href="CustomApi.html">CustomApi</a></li><li><a href="FileBucket.html">FileBucket</a></li><li><a href="FileMetadata.html">FileMetadata</a></li><li><a href="Group.html">Group</a></li><li><a href="HttpRequest.html">HttpRequest</a></li><li><a href="NebulaService.html">NebulaService</a></li><li><a href="ObjectBucket.html">ObjectBucket</a></li><li><a href="ObjectQuery.html">ObjectQuery</a></li><li><a href="PushSender.html">PushSender</a></li><li><a href="PushSender.ApnsFields.html">PushSender.ApnsFields</a></li><li><a href="PushSender.GcmFields.html">PushSender.GcmFields</a></li><li><a href="PushSender.SseFields.html">PushSender.SseFields</a></li><li><a href="User.html">User</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: User</h1>
+<section>
+
+<header>
+    
+        <h2>
+        User
+        </h2>
+        
+            <div class="class-description"><p>ユーザ管理 クラス</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="User"><span class="type-signature"></span>new User()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザオブジェクトを生成する。</p>
+<p><p>
+生成しただけの状態では、まだサーバには登録されていない。ユーザ登録は <a href="User.html#register">User#register</a> で実施する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>新規ユーザオブジェクトのインスタンス</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var user = new Nebula.User();</pre>
+
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="_id">
+    <h4 id="_id"><span class="type-signature"></span>_id<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>ユーザID</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="clientCertUser">
+    <h4 id="clientCertUser"><span class="type-signature"></span>clientCertUser<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>クライアント証明書認証ユーザの場合は true<br>
+(ブラウザ、またはNode.jsのみ対応)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="createdAt">
+    <h4 id="createdAt"><span class="type-signature"></span>createdAt<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>作成日時</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="email">
+    <h4 id="email"><span class="type-signature"></span>email<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>E-mail アドレス</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="etag">
+    <h4 id="etag"><span class="type-signature"></span>etag<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>ETag</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="expire">
+    <h4 id="expire"><span class="type-signature"></span>expire<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>セッショントークン有効期限(unix time [秒])</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="federated">
+    <h4 id="federated"><span class="type-signature"></span>federated<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>外部認証連携有りの場合は true<br>
+(ブラウザ、またはNode.jsのみ対応)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>false</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="groups">
+    <h4 id="groups"><span class="type-signature"></span>groups<span class="type-signature"> :Array.&lt;String></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>所属グループ一覧 (read only)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="lastLoginAt">
+    <h4 id="lastLoginAt"><span class="type-signature"></span>lastLoginAt<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>最終ログイン日時</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="options">
+    <h4 id="options"><span class="type-signature"></span>options<span class="type-signature"> :Object</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>オプション (JSON)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="password">
+    <h4 id="password"><span class="type-signature"></span>password<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>パスワード</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="primaryLinkedUserId">
+    <h4 id="primaryLinkedUserId"><span class="type-signature"></span>primaryLinkedUserId<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>プライマリリンクユーザID<br>
+OpenID Connect認証でユーザ自動生成時のリンクユーザID<br>
+(ブラウザ、またはNode.jsのみ対応)</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>null</li>
+		</ul>
+	</dd>
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="sessionToken">
+    <h4 id="sessionToken"><span class="type-signature"></span>sessionToken<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>セッショントークン</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="updatedAt">
+    <h4 id="updatedAt"><span class="type-signature"></span>updatedAt<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>更新日時</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="username">
+    <h4 id="username"><span class="type-signature"></span>username<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>ユーザ名</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".current"><span class="type-signature">&lt;static> </span>current(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>カレントユーザ取得</p>
+<p><p>
+・カレント（ログイン中）のユーザを取得する。<br>
+・本情報はクライアントにキャッシュされている情報のため、サーバの最新情報とは一致しない場合がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック (Deprecated)</p>
+<pre>
+・callbacks は、成功時と失敗時の応答コールバックを指定する。
+  callbacks 引数は後方互換性維持のためにのみ存在するので、通常指定する必要はない。
+    {
+        success : function(user) {
+            // 成功時の処理
+        },
+        error : function(error) {
+            // 失敗時の処理
+        }
+    }
+・処理が成功した場合、success コールバックを呼び出す。引数は、返り値と同じ。
+・本 API は失敗することはないため、error が呼ばれることはない。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>ユーザオブジェクトのインスタンス。カレントユーザが存在しない場合は null が返る。</p>
+<p><p>
+返り値に設定されるプロパティは以下のとおり。</p>
+<ul>
+    <li>_id          : ユーザID
+    <li>sessionToken : セッショントークン
+    <li>expire       : セッショントークン有効期限 (unix time [秒])
+</ul>
+以下の情報はオフライン機能無効時のみ取得可
+<ul>
+    <li>username     : ユーザ名
+    <li>email        : E-mailアドレス
+    <li>options      : オプション
+    <li>groups       : 所属グループ一覧
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="User.html">User</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".delete"><span class="type-signature">&lt;static> </span>delete()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザ削除 (Deprecated)</p>
+<p><p>
+本APIは Deprecated である。<a href="User.html#.remove">User.remove</a>を使用すること。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li>since v4.0.1</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".deleteAccountLink"><span class="type-signature">&lt;static> </span>deleteAccountLink(user, linkedUserId, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>OpenID Connectリンク情報削除</p>
+<p><p>
+・ユーザに設定された OpenID Connect リンク情報を削除する。<br>
+・本 API はオフラインモードでは使用できない。<br></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>リンク情報削除するユーザオブジェクトのインスタンス。<br>
+null は指定できない。<br>
+リンク情報削除に必要なインスタンスのプロパティは、以下の通り。</p>
+<p><ul>
+    <li>_id : リンク情報削除するユーザのID
+</ul></p>
+<p><p>
+カレントユーザ以外のリンク情報を削除する場合は、SDK 初期化時のアプリケーションキーにアプリケーションのマスターキーを指定すること。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>linkedUserId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>削除するリンクユーザID。<br>
+null は指定できない。<br>
+user の primaryLinkedUserId と一致した場合は、例外をスローする。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+  success の引数は無し。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>v6.5.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".getAccountLinks"><span class="type-signature">&lt;static> </span>getAccountLinks(user, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>OpenID Connectリンク情報取得</p>
+<p><p>
+・ユーザに設定された OpenID Connect リンク情報を取得する。<br>
+・本 API はオフラインモードでは使用できない。<br></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>リンク情報取得するユーザオブジェクトのインスタンス。<br>
+null は指定できない。<br>
+リンク情報取得に必要なインスタンスのプロパティは、以下の通り。</p>
+<p><ul>
+    <li>_id : リンク情報取得するユーザのID
+</ul></p>
+<p><p>
+カレントユーザ以外のリンク情報を取得する場合は、SDK 初期化時のアプリケーションキーにアプリケーションのマスターキーを指定すること。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(links)
+            links : リンク情報 (Nebula.AccountLink インスタンス) の配列
+            リンク情報が存在しない場合は、空が返る。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>v6.5.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".login"><span class="type-signature">&lt;static> </span>login(userInfo, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ログイン</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ユーザ情報。
+JSON 形式で指定する。null は指定できない。</p>
+<p><pre>
+    {
+        &quot;email&quot;         : &quot;<a href="mailto:foo@example.com">foo@example.com</a>&quot;,
+        &quot;password&quot;      : &quot;passwOrd&quot;
+    }
+ </pre></p>
+<p><pre>
+    {
+        &quot;token&quot;         : &quot;TOKEN&quot;
+    }
+ </pre>
+ <ul>
+    <li>email       : E-mailアドレス（※）
+    <li>username    : ユーザ名（※）
+    <li>token       : ワンタイムトークン（※）
+    <li>password    : パスワード（E-mailアドレス、ユーザ名指定時は必須）
+  </ul>
+ (Y) email か username か token のいずれかを指定する。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(user)
+            user : ログインしたユーザオブジェクトのインスタンス
+            処理の成功により、以下のユーザオブジェクトのプロパティが格納される
+                (プロパティ名)
+                _id          : ログインしたユーザのID
+                sessionToken : セッショントークン
+                expire       : ログインの有効期限 (unix time [秒])
+                (以下の情報はオフライン機能無効時のみ取得可)
+                username     : ユーザ名
+                email        : E-mail
+                options      : オプション情報(JSON)
+                groups       : ユーザが所属するグループ名の配列
+                createdAt    : ユーザの作成日時
+                updatedAt    : ユーザの更新日時
+                lastLoginAt  : ユーザの最終ログイン日時
+                etag         : ETag
+                federated    : 外部認証連携有無
+                primaryLinkedUserId : プライマリリンクユーザID
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".logout"><span class="type-signature">&lt;static> </span>logout(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ログアウト</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success()
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".query"><span class="type-signature">&lt;static> </span>query(conditions, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザ検索</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>conditions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>検索条件。<p>
+JSON 形式で指定する。省略した場合は全件検索となる。
+検索用プロパティは以下の通り。</p>
+<p><ul>
+    <li>_id        : ユーザのID（※）
+    <li>email      : E-mailアドレス（※）
+    <li>username   : ユーザ名（※）
+    <li>skip       : スキップカウント
+    <li>limit      : 件数上限(0は無制限、デフォルトは100)
+    <li>countQuery : 全件検索時に全件数をカウントする場合は true (デフォルトは false)
+</ul>
+(※) _id かemail かusername のいずれか1つを指定する。
+いずれも指定しない場合は全件検索となる。
+全件検索時は skip/limit で検索範囲を指定する。
+(ただし skip/limit はオフライン有効時は無効)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    conditions.countQuery が false の場合、success の書式は以下の通りとなる。
+        success(users)
+            users : 取得したユーザオブジェクトインスタンスの配列
+            処理の成功により、配列毎に以下のユーザオブジェクトのプロパティが更新される
+                (プロパティ名)
+                username    : ユーザ名
+                email       : E-mailアドレス
+                options     : オプション
+                groups      : 所属グループ一覧 (注: '_id' を指定して検索した場合のみ。オフライン機能有効時は無効。)
+                createdAt   : ユーザ登録日付
+                updatedAt   : 最終更新日付
+                lastLoginAt : 最終ログイン日時(マスターキー使用時のみ)
+                etag        : ETag
+                federated   : 外部認証連携有無
+                primaryLinkedUserId : プライマリリンクユーザID
+
+    conditions.countQuery が true の場合、success の書式は以下の通りとなる。
+        success(json)
+            json.users : 取得したユーザオブジェクトインスタンスの配列。内容は上記 users と同じ。
+            json.count : 全件数
+
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".queryCurrent"><span class="type-signature">&lt;static> </span>queryCurrent(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>カレントユーザ取得(サーバ問合せ)</p>
+<p><p>
+・カレント（ログイン中）のユーザを取得する。サーバへの問い合わせが発生する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(user)
+            user : ユーザオブジェクトのインスタンス。
+            カレントユーザが存在しない場合は、null が返る。
+        　　user に設定されるプロパティは以下のとおり。
+                (プロパティ名)
+                _id         : ユーザID
+                username    : ユーザ名
+                email       : E-mailアドレス
+                options     : オプション
+                groups      : 所属グループ一覧 (注: '_id' を指定して検索した場合のみ。オフライン機能有効時は無効。)
+                createdAt   : ユーザ登録日時
+                updatedAt   : 最終更新日時
+                lastLoginAt : 最終ログイン日時
+                etag        : ETag
+                federated   : 外部認証連携有無
+                primaryLinkedUserId : プライマリリンクユーザID
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".remove"><span class="type-signature">&lt;static> </span>remove(user, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザを削除する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>削除するユーザオブジェクトのインスタンス。
+user にnull は指定できない。
+ユーザ削除に必要なインスタンスのプロパティは、以下の通り。</p>
+<p><ul>
+    <li>_id : 更新するユーザのID
+</ul>
+ユーザID は、ユーザ登録が成功した場合にSDK がユーザプロパティに設定する。</p>
+<p><p>
+カレントユーザ以外を削除する場合は、SDK 初期化時のアプリケーションキーにアプリケーションのマスターキーを指定すること。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success()
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>v4.0.1</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".resetPassword"><span class="type-signature">&lt;static> </span>resetPassword(userInfo, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザパスワードリセット</p>
+<p><p>
+・ユーザパスワードのリセットを行う。<br>
+・ユーザパスワードのリセットは一定の時間内にリクエストできる回数に制限がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ユーザ情報。
+JSON 形式で指定する。null は指定できない。
+以下いずれかのプロパティを指定すること。</p>
+<ul>
+    <li>email       : E-mailアドレス
+    <li>username    : ユーザ名
+</ul></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success()
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".saveCurrent"><span class="type-signature">&lt;static> </span>saveCurrent(userInfo)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>カレントユーザ強制設定</p>
+<p><p>
+・カレント（ログイン中）のユーザを強制設定する。<br>
+・すでにカレントユーザが存在する(ログイン中)の場合は、指定したプロパティだけが上書きされる。<br>
+・本情報はクライアントにキャッシュされる。<br>
+・本 API はオフラインモードでは使用できない。<br>
+・本 API は通常のアプリケーションで使用するべきものではない。<br></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ユーザ情報(JSON)。null を指定した場合は、カレントユーザを削除する。</p>
+<p><p>
+userInfo の書式は以下の通りとする。
+指定したプロパティだけが上書き設定される。</p>
+<ul>
+    <li>_id          : ユーザID
+    <li>sessionToken : セッショントークン
+    <li>expire       : セッショントークン有効期限 (unix time [秒])
+    <li>username     : ユーザ名
+    <li>email        : E-mailアドレス
+    <li>options      : オプション
+    <li>groups       : 所属グループ一覧
+</ul></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".update"><span class="type-signature">&lt;static> </span>update(user, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザ情報更新</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>user</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="User.html">User</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>更新するユーザオブジェクトのインスタンス。</p>
+<p><p>
+user にnull は指定できない。
+更新に必要なインスタンスのプロパティは、以下の通り。</p>
+<p><ul>
+    <li>_id      : 更新するユーザのID（※）
+    <li>email    : 更新するE-mailアドレス（オプション）
+    <li>password : 更新するパスワード（オプション）
+    <li>username : 更新するユーザ名（オプション）
+    <li>options  : オプション(オプション)　optionsには、JSON形式で記述された任意のオブジェクトを指定できる。
+</ul>
+(※) ユーザID は、ユーザ登録が成功した場合にSDK がユーザプロパティに設定する。</p>
+<p><p>
+カレントユーザ以外を更新する場合は、SDK 初期化時のアプリケーションキーにアプリケーションのマスターキーを指定すること。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(user)
+            user : 更新したユーザオブジェクトのインスタンス
+            処理の成功により、以下のユーザオブジェクトのプロパティが更新される
+                (プロパティ名)
+                username    : 更新されたユーザ名
+                email       : 更新されたE-mailアドレス
+                updatedAt   : 最終更新日付
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="get"><span class="type-signature"></span>get(property)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザプロパティ取得 (Deprecated)</p>
+<p><p>
+・ユーザオブジェクトのプロパティを取得する。<br>
+・取得可能なプロパティの詳細は、各メソッドの説明を参照のこと。<br>
+・本メソッドは deprecated である。各フィールドの getter を直接使用すること。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロパティ名。
+指定可能なプロパティ名は以下のとおり(APIによって取得可能なプロパティは異なる)。</p>
+<ul>
+    <li>_id :         ユーザID
+    <li>username:     ユーザ名
+    <li>email:        E-mailアドレス
+    <li>password:     パスワード
+    <li>options:      オプション情報 (JSON)
+    <li>groups:       所属グループ一覧 (配列)
+    <li>createdAt:    ユーザ登録日時
+    <li>updatedAt:    ユーザ更新日時
+    <li>sessionToken: セッショントークン
+    <li>expire:       セッショントークン有効期限(unix time [秒])
+    <li>clientCertUser: クライアント証明書ユーザ (ブラウザ、またはNode.jsのみ対応)
+    <li>federated:    外部認証連携有無
+    <li>primaryLinkedUserId: プライマリリンクユーザID
+</ul></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd class="yes-def tag-deprecated">
+        <ul class="dummy">
+            <li>Yes</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>value プロパティ値</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="register"><span class="type-signature"></span>register(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザを登録する。</p>
+<p><p>
+ユーザ登録に必要なユーザプロパティは、以下の通り。</p>
+<ul>
+    <li>email     : E-mailアドレス（必須）
+    <li>password  : パスワード（必須）
+    <li>username  : ユーザ名（オプション）
+    <li>options   : オプション(オプション)。JSON形式で記述された任意のオブジェクトを指定できる。
+</ul>
+ クライアント証明書認証用のユーザの登録を行う場合のユーザプロパティは以下の通りとする
+ clientCertUserをtrueに設定した場合、email/passwordは無視する。
+ (ブラウザ、またはNode.jsのみ対応)
+<ul>
+    <li>username          : ユーザ名（必須）
+    <li>clientCertUser    : クライアント証明書ユーザ trueを設定すること(必須)
+    <li>options           : オプション(オプション) optionsには、JSON形式で記述された任意のオブジェクトを指定できる。
+ </ul>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック。</p>
+<p><p>
+処理が成功した場合、success の呼び出しにて通知する。
+なお、処理が成功した状態ではまだログインは実施していない。
+引数は以下の通り。</p>
+<pre>
+    user : ユーザオブジェクトのインスタンス
+    処理の成功により、以下のユーザオブジェクトのプロパティが追加格納される
+        (プロパティ名)
+        _id         : 登録したユーザのID
+        createdAt   : 登録日付
+        updatedAt   : 最終更新日付
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="set"><span class="type-signature"></span>set(property, value)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ユーザプロパティ設定 (Deprecated)</p>
+<p><p>
+・ユーザオブジェクトのプロパティを設定する。<br>
+・設定可能なプロパティの詳細は、各メソッドの説明を参照のこと。<br>
+・本メソッドは deprecated である。各フィールドの setter を直接使用すること。<br></p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>property</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロパティ名。
+指定可能なプロパティ名は以下のとおり。</p>
+<ul>
+    <li>_id :         ユーザID
+    <li>username:     ユーザ名
+    <li>email:        E-mailアドレス
+    <li>password:     パスワード
+    <li>options:      オプション情報 (JSON)
+    <li>createdAt:    ユーザ登録日時
+    <li>updatedAt:    ユーザ更新日時
+    <li>sessionToken: セッショントークン
+    <li>expire:       セッショントークン有効期限(unix time [秒])
+    <li>clientCertUser: クライアント証明書ユーザ (ブラウザ、またはNode.jsのみ対応)
+    <li>federated:    外部認証連携有無
+    <li>primaryLinkedUserId: プライマリリンクユーザID
+</ul></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>プロパティ値</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd class="yes-def tag-deprecated">
+        <ul class="dummy">
+            <li>Yes</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="User.html">User</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018-09-20T09:45:53+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

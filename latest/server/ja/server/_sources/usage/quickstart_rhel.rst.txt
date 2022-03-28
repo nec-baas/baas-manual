@@ -1,10 +1,10 @@
-=====================================
-クイックスタート (RHEL 7, CentOS 7)
-=====================================
+======================================
+クイックスタート (RHEL 7/8, CentOS 7)
+======================================
 
 .. include:: ../../common/linkdef.rst
 
-ここでは、BaaS APIサーバ/コンソールサーバ を RHEL 7, CentOS 7 にインストール・起動する手順を説明します。
+ここでは、BaaS APIサーバ/コンソールサーバ を RHEL 7/8, CentOS 7 にインストール・起動する手順を説明します。
 
 なお、Ansible を使って自動デプロイするための Playbook を別途提供していますので、こちらをお使いいただくことを推奨します。 
 Ansible Playbook は `こちら <https://nec-baas.github.io/downloads.html>`_ から入手できます。
@@ -32,7 +32,7 @@ permissive または disabled に変更し、再起動を行って下さい。
 JDK のインストール
 ===================
 
-OpenJDK 8 以上、または Oracle Java SE Development Kit (JDK) 8 以上をインストールしてください。
+OpenJDK 8 / 11、または Oracle Java SE Development Kit (JDK) 8 / 11 をインストールしてください。
 
 OpenJDK を使用する場合
 ----------------------
@@ -41,7 +41,11 @@ OpenJDK を使用する場合
 
 .. code-block:: bash
 
+  # RHEL 7 / CentOS 7
   $ sudo yum install java-1.8.0-openjdk-headless
+
+  # RHEL 8
+  $ sudo dnf install java-1.8.0-openjdk-headless
 
 Oracle Java SE Development Kit を使用する場合
 -----------------------------------------------------
@@ -54,12 +58,12 @@ Oracle の `Java SE Downloads`_
 
 .. code-block:: bash
 
- $ sudo yum localinstall jdk-8u181-linux-x64.rpm
+ $ sudo yum localinstall jdk-8u301-linux-x64.rpm
 
 Tomcat のインストール
 =====================
 
-Tomcat 8.5 以上(推奨は 9) をインストールします。
+Tomcat 9 をインストールします。
 
 Tomcat を実行するユーザを作成します。
 
@@ -72,11 +76,11 @@ Tomcat のバージョン番号は適宜読み替えてください。
 
 .. code-block:: bash
 
-  $ curl -O http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.11/bin/apache-tomcat-9.0.11.tar.gz
-  $ tar -xzvf ./apache-tomcat-9.0.11.tar.gz
-  $ sudo mv  ./apache-tomcat-9.0.11 /opt/apache-tomcat-9.0.11
-  $ sudo chown -R tomcat:tomcat /opt/apache-tomcat-9.0.11
-  $ sudo ln -s /opt/apache-tomcat-9.0.11 /opt/tomcat
+  $ curl -O http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.55/bin/apache-tomcat-9.0.55.tar.gz
+  $ tar -xzvf ./apache-tomcat-9.0.55.tar.gz
+  $ sudo mv  ./apache-tomcat-9.0.55 /opt/apache-tomcat-9.0.55
+  $ sudo chown -R tomcat:tomcat /opt/apache-tomcat-9.0.55
+  $ sudo ln -s /opt/apache-tomcat-9.0.55 /opt/tomcat
 
 .. _tomcat_service_config:
 
@@ -132,22 +136,22 @@ server.xml の設定
 MongoDB のインストール
 ======================
 
-MongoDB 3.6 以上(推奨は 4.0 以上)をインストールします。
+MongoDB 4.0 以上をインストールします。
 
 `Install MongoDB on Red Hat`_ の手順に従い、インストールを行ってください。
 
 詳細な手順は以下のとおりです。
 まず、/etc/yum.repos.d/ ディレクトリに mongodb-org-(MongoDBバージョン).repo ファイルを作成します。
-以下の例は MongoDB 4.0 の場合の例です。
+以下の例は MongoDB 4.4 の場合の例です。
 
 .. code-block:: ini
 
-   [mongodb-org-4.0]
+   [mongodb-org-4.4]
    name=MongoDB Repository
-   baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+   baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.4/x86_64/
    gpgcheck=1
    enabled=1
-   gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+   gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
 
 ついで、MongoDB をインストールします。
 

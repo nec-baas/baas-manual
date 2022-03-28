@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. チュートリアル2 : ログイン機能とアクセス制御 &mdash; Tutorials (JavaScript) 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="5. チュートリアル3 : アルバムアプリ" href="tutorial3.html" />
+    <link rel="prev" title="3. チュートリアル1 : TODOアプリの実装" href="tutorial1_code.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Tutorials (JavaScript)
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">2. チュートリアル1 : TODOアプリ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial1_code.html">3. チュートリアル1 : TODOアプリの実装</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. チュートリアル2 : ログイン機能とアクセス制御</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. サンプルの実行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.2. ディレクトリ構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">4.3. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">4.4. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">4.5. アプリ本体</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">4.5.1. ログインチェック</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4.5.2. ログアウト</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">4.5.3. 保存データのアクセス制御</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial3.html">5. チュートリアル3 : アルバムアプリ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Tutorials (JavaScript)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4. チュートリアル2 : ログイン機能とアクセス制御</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>4. チュートリアル2 : ログイン機能とアクセス制御<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>チュートリアル2では、チュートリアル1の Todo アプリにユーザ登録・ログイン機能を追加します。</p>
+<p>また、チュートリアル1ではデータは全員で共有していましたが、本チュートリアルでは
+ユーザはそれぞれのユーザ毎に別々に管理するようにします。</p>
+<div class="section" id="id2">
+<h2>4.1. サンプルの実行<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>チュートリアル1と同じように、デベロッパコンソールからアプリケーションを新たに作成し、
+config.js に設定を行って下さい。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">NebulaConfig</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;tenant&quot;</span><span class="o">:</span> <span class="s2">&quot;5657fe61240d3e15d40acd37&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;appId&quot;</span><span class="o">:</span> <span class="s2">&quot;56ea65bb240d3e27263af479&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;appKey&quot;</span><span class="o">:</span> <span class="s2">&quot;KPQOlhm949cN6s1cXNsSRFwh8qUTKh8KE81SCFC7&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;baseUri&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.example.com/api/&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;offline&quot;</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">&quot;debugMode&quot;</span><span class="o">:</span> <span class="s2">&quot;debug&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>また、デベロッパコンソールから、オブジェクトバケットを作成します。
+バケット名は &quot;TodoTutorial2&quot; としてください。なお、ACL はデフォルトのまま
+(認証ユーザのみ読み書き可能)で構いません。</p>
+<p>index.html をブラウザで開くと、ログイン・サインアップ画面が表示されます。
+最初にサインアップを行って下さい。E-mail アドレスとパスワード(8文字以上)を入力してサインアップします。</p>
+<p>サインアップが完了したらログインを行って下さい。チュートリアル１と同様のアプリ画面が表示されます。
+データを入れて動作を確認したら、ログアウトしてください。</p>
+<p>ログイン画面に戻りますので、今度は違うユーザ名でサインアップを行い、ログインしてみてください。
+入力するデータはユーザ毎に異なるものになっていることを確認してください。</p>
+</div>
+<div class="section" id="id3">
+<h2>4.2. ディレクトリ構成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>チュートリアル2 のソースは以下のようなディレクトリ構成になっています。</p>
+<ul class="simple">
+<li>index.html : ログイン画面</li>
+<li>signup.html : サインアップ画面</li>
+<li>reset_password.html : パスワードリセット画面</li>
+<li>app.html : アプリケーション画面の HTML ファイル (チュートリアル1 の index.html と同じ)</li>
+<li>js<ul>
+<li>baas.js : NEC BaaS JavaScript ライブラリ</li>
+<li>config.js : 設定用 JavaScript</li>
+<li>login.js : ログイン処理</li>
+<li>signup.js : サインアップ処理</li>
+<li>reset_password.js : パスワードリセット処理</li>
+<li>application.js : Todoアプリ JavaScript</li>
+</ul>
+</li>
+<li>css<ul>
+<li>style.css : スタイルシート</li>
+<li>login.css : ログイン画面のスタイルシート</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>4.3. サインアップ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サインアップは signup.html と signup.js で行っています。
+処理本体は signup 関数にあります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">signup</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#email&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#password&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">password_confirmation</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#password_confirm&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">password</span> <span class="o">!==</span> <span class="nx">password_confirmation</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Passwords does not match.&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">();</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="nx">email</span><span class="p">);</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
+    <span class="nx">user</span><span class="p">.</span><span class="nx">register</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;User registered.&quot;</span><span class="p">);</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;index.html&quot;</span><span class="p">;</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+            <span class="nx">clear</span><span class="p">();</span>
+        <span class="p">})</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>サインアップを行うには、まず Nebula.User クラスのインスタンスを生成します。
+set() を使用して email と password をセットし、register() を呼び出すと
+ユーザ登録が実行されます。登録が成功すると、.then() が実行されます。</p>
+</div>
+<div class="section" id="id5">
+<h2>4.4. ログイン<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログイン処理は index.html と login.js の２つのファイルで行っています。
+処理本体は login 関数にあります。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">login</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#email&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#password&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">userInfo</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="nx">email</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="o">:</span> <span class="nx">password</span> <span class="p">};</span>
+    <span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">userInfo</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;app.html&quot;</span><span class="p">;</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+        <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>ログインは Nebula.User.login() で行います。
+引数には JSON 形式で email と password を渡します。</p>
+<p>ログインが成功すると .then() が実行されます。
+ここでは app.html にページ遷移します。</p>
+</div>
+<div class="section" id="id6">
+<h2>4.5. アプリ本体<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>アプリケーション本体はチュートリアル1と同様に application.js に記述しています。</p>
+<p>application.js の基本的な構造はチュートリアル1とほぼ同じですが、ログイン関連で
+いくつかの違いがあります。</p>
+<div class="section" id="id7">
+<h3>4.5.1. ログインチェック<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>初期化処理時にログインチェックを行っています。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 初期化(ログインチェック)</span>
+<span class="nx">init</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+    <span class="c1">// ログインチェック</span>
+    <span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">current</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;index.html&quot;</span><span class="p">;</span> <span class="c1">// 未ログイン</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span> <span class="c1">// ユーザ情報保存</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">initApp</span><span class="p">();</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;index.html&quot;</span><span class="p">;</span> <span class="c1">// 未ログイン</span>
+        <span class="p">});</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>Nebula.User.current() を呼び出すと、現在ログイン中のユーザを取得できます。</p>
+<p>この値が null の場合はログインしていない状態なので、index.html にページ遷移します。
+ログインしている場合は、ユーザ情報を self.user に保存し、initApp() を呼び出します。</p>
+<p>initApp() の処理はチュートリアル1の init() の処理とほぼ同じ(ログアウトボタン処理のみが異なる)です。</p>
+</div>
+<div class="section" id="id8">
+<h3>4.5.2. ログアウト<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ログアウト処理は以下のように実装しています。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ログアウト処理</span>
+<span class="nx">logout</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Nebula</span><span class="p">.</span><span class="nx">User</span><span class="p">.</span><span class="nx">logout</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;index.html&quot;</span><span class="p">;</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&quot;index.html&quot;</span><span class="p">;</span>
+        <span class="p">})</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>ログアウト処理は、Nebula.User.logout() で行います。
+引数には User を渡します。</p>
+<p>ここではログアウトが完了したら index.html に遷移するようにしています。</p>
+</div>
+<div class="section" id="id9">
+<h3>4.5.3. 保存データのアクセス制御<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>データの保存処理は、addTodo で行っており、処理はチュートリアル１と全く同じです。</p>
+<p>しかし、ログイン状態で作成されるデータは、ログイン中のユーザのみがアクセス可能な
+ACL が自動的に設定されます。具体的には以下のような ACL が設定されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">owner</span><span class="o">:</span> <span class="s2">&quot;オーナのユーザID&quot;</span><span class="p">,</span>
+    <span class="nx">r</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">w</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">c</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">u</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">d</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">admin</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>このため、他のユーザが作成したデータは、同一のバケットに入っていても不可視になります。
+また、変更することもできません。</p>
+<p>なお、チュートリアル１のように未ログイン状態でデータを作成した場合は、
+以下のように誰でも読み書き可能な状態の ACL が自動的に設定されます。</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nx">r</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span> <span class="nx">w</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;g:anonymous&quot;</span><span class="p">],</span> <span class="nx">c</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">u</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">d</span><span class="o">:</span> <span class="p">[],</span> <span class="nx">admin</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial3.html" class="btn btn-neutral float-right" title="5. チュートリアル3 : アルバムアプリ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial1_code.html" class="btn btn-neutral" title="3. チュートリアル1 : TODOアプリの実装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

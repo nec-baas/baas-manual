@@ -17,3 +17,4 @@
    mongodb_upgrade
    mongodb_cluster
    mongodb_atlas
+   mongodb_backup

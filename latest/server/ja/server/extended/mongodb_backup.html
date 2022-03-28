@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="ja" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.11. MongoDB のバックアップ・リストア &mdash; Server User Guide 7.5.0 ドキュメント</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="6. マイグレーションガイド" href="../migration.html" />
+    <link rel="prev" title="5.10. MongoDB Atlas" href="mongodb_atlas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          </a>
+              <div class="version">
+                7.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configure/index.html">4. コンフィグレーション</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. 詳細手順</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clitool.html">5.1. コマンドラインツール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contextpath.html">5.2. コンテキストパスの変更</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiserver.html">5.3. 複数サーバ構成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loadbalancer.html">5.4. ロードバランサ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="revproxy.html">5.5. ロードバランサ/リバースプロキシとHTTP通信(サーバ証明書)の設定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sslcert.html">5.6. サーバ証明書の作成手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http2.html">5.7. HTTP/2使用手順</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb_upgrade.html">5.8. MongoDBをアップグレードする際の注意</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb_cluster.html">5.9. MongoDBクラスタ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mongodb_atlas.html">5.10. MongoDB Atlas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.11. MongoDB のバックアップ・リストア</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#storage-snapshot">5.11.1. ストレージのスナップショット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mongodump-backup">5.11.2. mongodumpによるバックアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id23">全てのデータのバックアップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">一部データのバックアップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">データのリストア</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mongo-file-backup">5.11.3. MongoDBのデータファイルのバックアップ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">バックアップデータの確認</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">データのバックアップ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">データのリストア</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">5. 詳細手順</a> &raquo;</li>
+      <li>5.11. MongoDB のバックアップ・リストア</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="mongodb">
+<span id="mongodb-backup"></span><h1>5.11. MongoDB のバックアップ・リストア<a class="headerlink" href="#mongodb" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>MongoDB のデータバックアップ、リストアを行う方法について説明します。</p>
+<p>MongoDBのバックアップには、いくつかの方法があります。
+以下が代表的な方法です。</p>
+<ul class="simple">
+<li><a class="reference internal" href="#storage-snapshot"><span class="std std-ref">ストレージのスナップショット</span></a></li>
+<li><a class="reference internal" href="#mongodump-backup"><span class="std std-ref">mongodumpによるバックアップ</span></a></li>
+<li><a class="reference internal" href="#mongo-file-backup"><span class="std std-ref">MongoDBのデータファイルのバックアップ</span></a></li>
+</ul>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>データの喪失や不整合が発生する危険性があります。
+<a class="reference external" href="https://docs.mongodb.com/manual/core/backups/">MongoDB Backup Methods</a> を参照し、事前に環境に応じた詳細な手順、方法を検討してください。
+特にレプリカセット、シャーディングを使用している場合、以下の手順が適用できない場合があります。</p>
+<p>またバックアップ、リストアをおこなう前に、モバイルバックエンド基盤サーバを停止してから作業を行います。
+停止、開始には、以下のコマンドを使用します。</p>
+<div class="last highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 停止</span>
+<span class="c1"># サービス名はインストール済みのTomcatにあわせて変更してください</span>
+$ sudo systemctl stop tomcat8.service
+<span class="c1"># 開始</span>
+$ sudo systemctl start tomcat8.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="storage-snapshot">
+<span id="id21"></span><h2>5.11.1. ストレージのスナップショット<a class="headerlink" href="#storage-snapshot" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルシステムのスナップショットが取得できる環境では、その利用を推奨します。
+差分バックアップや、世代管理、また不具合発生時のリカバリも容易です。</p>
+<p>AWSであれば、Amazon EBS スナップショットが使用できます。</p>
+</div>
+<div class="section" id="mongodump-backup">
+<span id="id22"></span><h2>5.11.2. mongodumpによるバックアップ<a class="headerlink" href="#mongodump-backup" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>mongodumpを使用したバックアップの方法を説明します。</p>
+<p>mongodump、mongorestoreの使用方法の詳細は、 以下を参照してください。</p>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.mongodb.com/manual/tutorial/backup-and-restore-tools/">Back Up and Restore with MongoDB Tools</a></li>
+<li><a class="reference external" href="https://docs.mongodb.com/manual/reference/program/mongodump/">mongodump</a></li>
+<li><a class="reference external" href="https://docs.mongodb.com/manual/reference/program/mongorestore/">mongorestore</a></li>
+</ul>
+<p>バックアップ、リストアを行う際は、MongoDBへの書き込みは行わないでください。</p>
+<div class="section" id="id23">
+<h3>全てのデータのバックアップ<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MongoDBに格納されるデータを全てバックアップする場合は、以下のコマンドを使用します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongodump --out (出力先ディレクトリ)
+</pre></div>
+</div>
+</div>
+<div class="section" id="id24">
+<h3>一部データのバックアップ<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MongoDBに、複数のアプリケーションのデータを格納している環境では、
+モバイルバックエンド基盤のデータベースのみをバックアップすることができます。</p>
+<p>モバイルバックエンド基盤が使用するデータベースは、 <strong>&quot;baas_&quot;</strong> のプレフィクスを付与しています。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongo
+&gt; show dbs
+admin                                         0.000GB
+baas_development                              0.002GB # 共通の設定情報
+baas_development_5a83bf6e09ff5614202e34ee     0.002GB # テナント毎のドキュメント(末尾はテナントID)
+baas_development_5b56786109ff56049b66fa6e     0.000GB
+baas_development_fs_5a83bf6e09ff5614202e34ee  0.251GB # テナント毎のファイル
+baas_development_fs_5b56786109ff56049b66fa6e  0.000GB
+baas_log                                      0.001GB # システムログ
+...
+
+# &quot;development&quot;部分は運用プロファイルに応じた文字列が使用されます
+</pre></div>
+</div>
+<p>バックアップ対象のDB毎に以下のコマンドを使用します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongodump --db (データベース名) --out (出力先ディレクトリ)
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h3>データのリストア<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>mongodumpでバックアップしたデータをリストアする場合、mongorestoreを使用します。
+バックアップで指定したディレクトリを、引数に指定してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongorestore (入力元ディレクトリ)
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p>mongorestoreは、バックアップしたドキュメントを、データベースに挿入して復元します。
+復元先のデータベースに、元データが残った状態でリストアを行うと、重複してドキュメントが登録されてしまいます。</p>
+<p>以下の例を参考に、リストア対象のDBを削除してからリストアを行ってください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongo
+&gt; use baas_development
+switched to db baas_development
+&gt; db.dropDatabase()
+{ &quot;dropped&quot; : &quot;baas_development&quot;, &quot;ok&quot; : 1 }
+</pre></div>
+</div>
+<p>また--drop オプションを指定すると、バックアップに含まれるコレクションをリストア先から削除、
+その後データをリストアします。
+バックアップに含まれていないコレクションは削除されません。</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ mongorestore --drop (入力元ディレクトリ)
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">mongorestoreでリストアを行うと、インデックスの再構築などの処理が行われます。
+特にドキュメントの量が多い場合、リストア直後の性能が低下する場合があります。</p>
+</div>
+</div>
+</div>
+<div class="section" id="mongo-file-backup">
+<span id="id26"></span><h2>5.11.3. MongoDBのデータファイルのバックアップ<a class="headerlink" href="#mongo-file-backup" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ストレージに保存されているデータファイルを、コピーしてバックアップします。</p>
+<div class="section" id="id27">
+<h3>バックアップデータの確認<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>MongoDBのストレージエンジンの生成するファイルをバックアップします。</p>
+<p>MongoDBのデータディレクトリは、 コンフィギュレーションの&quot;storage&quot;を参照して確認します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat /etc/mongod.conf
+
+...
+  storage:
+    dbPath: &quot;/var/lib/mongo&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h3>データのバックアップ<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>バックアップするには、該当ディレクトリのファイルを全てコピーして保存します。
+不整合の発生を防止するため、バックアップを開始する前にMongoDBを停止します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># mongodbの停止</span>
+$ sudo systemctl stop mongod.service
+<span class="c1"># ディレクトリのバックアップ</span>
+$ sudo tar zcvf ./mongodb-backup.tar.gz /var/lib/mongo/*
+</pre></div>
+</div>
+</div>
+<div class="section" id="id29">
+<h3>データのリストア<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>リストアを行う場合、該当ディレクトリのファイルを全て削除してからファイルを展開します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 既存ファイルの削除</span>
+$ sudo rm -rf /var/lib/mongo/*
+<span class="c1"># ファイルの展開</span>
+$ sudo tar zxvf ./mongodb-backup.tar.gz -C /var/lib/
+<span class="c1"># mongodbの開始</span>
+$ sudo systemctl start mongod.service
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">バックアップしたファイルのオーナーを変更すると、正しくリストアができません。
+バックアップ時のオーナーと一致させて下さい。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mongodb_atlas.html" class="btn btn-neutral float-left" title="5.10. MongoDB Atlas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../migration.html" class="btn btn-neutral float-right" title="6. マイグレーションガイド" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2013-2022, NEC Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.10. バッチオペレーション &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="5.11. SAML認証開始" href="saml_start.html" />
+    <link rel="prev" title="5.9. 自ユーザ情報の取得" href="current.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">4. 共通定義</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. ユーザ管理</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="register.html">5.1. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="login.html">5.2. ログイン</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logout.html">5.3. ログアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">5.4. ユーザ情報変更 (パスワード変更を含む)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete.html">5.5. ユーザ削除</a></li>
+<li class="toctree-l2"><a class="reference internal" href="password_reset.html">5.6. パスワードリセット要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="find.html">5.7. ユーザ情報の検索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="read.html">5.8. ユーザ情報の取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="current.html">5.9. 自ユーザ情報の取得</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.10. バッチオペレーション</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saml_start.html">5.11. SAML認証開始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc_start.html">5.12. OpenID Connect 認証開始</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc_get_link.html">5.13. OpenID Connect リンク情報取得</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oidc_delete_link.html">5.14. OpenID Connect リンク情報削除</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">13. 改版履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">5. ユーザ管理</a> &raquo;</li>
+        
+      <li>5.10. バッチオペレーション</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-batch">
+<span id="id1"></span><h1>5.10. バッチオペレーション<a class="headerlink" href="#user-batch" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<dl class="post">
+<dt id="post--1-(tenantId)-users-_batch">
+<code class="descname">POST </code><code class="descname">/1/</code><span class="sig-paren">(</span><em>tenantId</em><span class="sig-paren">)</span><code class="descname">/users/_batch</code><a class="headerlink" href="#post--1-(tenantId)-users-_batch" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>複数ユーザを同時に追加・更新・削除する。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Headers:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><em>X-Application-Id</em> -- アプリケーションID(必須)</li>
+<li><em>X-Application-Key</em> -- マスターキー(必須)</li>
+<li><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> -- application/json</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Request JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<em>array</em>) -- オペレーションの配列</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> -- 正常実行した</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> -- パラメータ/リクエストボディ不正</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> -- 認証エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a> -- 権限エラー</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16">415 Unsupported Media Type</a> -- Content-Type 不正</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Response JSON Object:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>results</strong> (<em>array</em>) -- オペレーション実行結果の配列</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>リクエストボディ</strong></p>
+<p>リクエストボディの例を示す。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;requests&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;insert&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;xxxxxxxx&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;tarou&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;nichiden.tarou@example.com&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;Passw0rd&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;groups&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="s2">&quot;group2&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;日電 太郎&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;division&quot;</span><span class="p">:</span> <span class="s2">&quot;日電事業部&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;clientCertUser&quot;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;update&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;yyyyyyyy&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;etag&quot;</span><span class="p">:</span> <span class="s2">&quot;ff123cc6-01a9-11e4-9be6-d39577f35b51&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;tarou&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;nichiden.tarou@example.com&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;Passw0rd&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;options&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;日電 太郎&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;division&quot;</span><span class="p">:</span> <span class="s2">&quot;日電事業部&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;op&quot;</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;zzzzzzzz&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;etag&quot;</span><span class="p">:</span> <span class="s2">&quot;11b6cedc-01aa-11e4-88f1-0b3208ae4242&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>データは &quot;requests&quot; に配列で指定する。サーバ側ではこの配列の先頭から順に処理が実行される。</p>
+<p>各要素には以下の要素を指定する。</p>
+<ul class="simple">
+<li>op : 操作 (必須)<ul>
+<li>insert(追加), update(更新), delete(削除) のいずれかを指定</li>
+</ul>
+</li>
+<li>_id : 操作対象ユーザのユーザID<ul>
+<li>update, delete の場合は必須</li>
+<li>insert の場合は不要</li>
+</ul>
+</li>
+<li>etag : ユーザ情報のETag (オプション)<ul>
+<li>update, delete の場合は、ETag の指定が可能。指定した場合は、楽観ロックが実施される(サーバ側ユーザ情報と ETag 照合がされる)。</li>
+</ul>
+</li>
+<li>user : ユーザ情報<ul>
+<li>insert の場合は、<a class="reference internal" href="register.html#user-signup"><span class="std std-ref">サインアップ</span></a> のリクエストボディで指定するユーザ情報と同様<ul>
+<li>ユーザID(&quot;_id&quot;)の指定が可能。指定した場合は、指定したユーザIDでユーザ登録される。</li>
+</ul>
+</li>
+<li>update の場合は、<a class="reference internal" href="update.html#user-update"><span class="std std-ref">ユーザ情報変更 (パスワード変更を含む)</span></a> のリクエストボディで指定するユーザ情報と同様<ul>
+<li>指定したフィールドのみが更新される</li>
+</ul>
+</li>
+<li>delete の場合は、本フィールドは不要</li>
+<li>groups : 所属グループ (オプション)<ul>
+<li>insert の場合のみ指定可能</li>
+<li>登録するユーザを所属させるグループ名を指定</li>
+<li>既に作成済みのグループを指定すること</li>
+</ul>
+</li>
+<li>clientCertUser : クライアント証明書ユーザフラグ(boolean)<ul>
+<li>insert の場合のみ指定可能</li>
+<li>クライアント証明書認証を行うユーザを登録する場合は true をセットすること</li>
+<li>true の場合は、username は必須、email, password は不要</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>レスポンスボディの例</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;results&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*USER*/</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;conflict&quot;</span><span class="p">,</span>
+      <span class="s2">&quot; reasonCode &quot;</span><span class="o">:</span> <span class="s2">&quot; etag_mismatch &quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*USER*/</span> <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;serverError&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;result&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;etag&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;updatedAt&quot;</span><span class="o">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/*USER*/</span> <span class="p">},</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>results 配列に、リクエスト時のオペレーションに対応した個数の JSON データが格納される。
+また、この並び順はリクエストの配列の順番に対応している。データには以下のフィールドが設定される。</p>
+<ul class="simple">
+<li>result : 実行結果。以下のいずれか。<ul>
+<li>ok : 正常に操作が完了した。</li>
+<li>conflict : 衝突が発生した。</li>
+<li>notFound : 該当ユーザが存在しない</li>
+<li>badRequest : リクエスト不正</li>
+<li>forbidden : 権限不正</li>
+<li>serverError : その他のエラー</li>
+</ul>
+</li>
+<li>reasonCode : conflictの理由。Resultがconflictの場合のみ付加。以下のいずれか。<ul>
+<li>unspecified : 不明（初期値）</li>
+<li>request_conflicted : 更新・削除処理衝突（更新･削除中に該当ユーザに変更発生）</li>
+<li>duplicate_key : ユニーク制約エラー（重複エラー）</li>
+<li>etag_mismatch : ETagが衝突（比較エラー）</li>
+</ul>
+</li>
+<li>_id : ユーザID。insertでエラーとなった場合は付加されない。</li>
+<li>etag : 更新後の ETag 値</li>
+<li>updatedAt : 更新時刻</li>
+<li>user :<ul>
+<li>resultがokの場合: 更新されたユーザ情報。作成・更新・削除 API のレスポンスボディと同じもの。</li>
+<li>エラーの場合: &quot;etag_mismatch&quot; の場合のみユーザ情報が格納され、それ以外の場合はなし。</li>
+</ul>
+</li>
+</ul>
+<p><strong>注意事項</strong></p>
+<ul class="simple">
+<li>insert とupdate (パスワード更新)の場合は、処理に時間がかかるため、一度のバッチにおけるユーザ数の上限を100件程度とすることを推奨する。</li>
+<li>ユーザ登録・更新時の本人確認、本人通知メールは送信しない。</li>
+<li>その他の注意事項についてはオペレーション(op)により、サインアップ(insert)、ユーザ情報変更(update)、ユーザ削除(delete)の節の注意事項を参照のこと。</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="saml_start.html" class="btn btn-neutral float-right" title="5.11. SAML認証開始" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="current.html" class="btn btn-neutral" title="5.9. 自ユーザ情報の取得" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

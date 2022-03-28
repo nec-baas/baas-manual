@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.4. ロギング設定 &mdash; Server User Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="4.5. fluentd を利用したロギング" href="fluentd.html" />
+    <link rel="prev" title="4.3. その他の設定" href="configure.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Server User Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system.html">2. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">3. 基本利用手順</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. コンフィグレーション</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="profile.html">4.1. プロファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_file.html">4.2. 設定ファイル</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">4.3. その他の設定</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.4. ロギング設定</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">4.4.1. ログ出力場所</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#config-loglevel">4.4.2. ログ設定</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id23">ログレベル</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">ログ出力タイプ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">ログ出力ディレクトリ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">4.4.3. ログフォーマット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">4.4.4. fluentd の利用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fluentd.html">4.5. fluentd を利用したロギング</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extended/index.html">5. 詳細手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">6. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Server User Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">4. コンフィグレーション</a> &raquo;</li>
+        
+      <li>4.4. ロギング設定</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id20">
+<h1>4.4. ロギング設定<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id21">
+<h2>4.4.1. ログ出力場所<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>標準状態では、MBaaS サーバのログは Tomcat のログファイルである catalina.out
+ファイルにテキストで書きだされます。</p>
+<p>API サーバの場合、ログには以下の情報が出力されます。</p>
+<ul class="simple">
+<li>日付</li>
+<li>時刻</li>
+<li>ログレベル (INFO, DEBUG など)</li>
+<li>アクセス元IPアドレス</li>
+<li>アプリケーションID (該当する場合)</li>
+<li>ユーザID (該当する場合)</li>
+<li>logger名 (通常は実装クラス名)</li>
+<li>ログメッセージ</li>
+</ul>
+<p>コンソールサーバの場合、ログには以下の情報が出力されます。</p>
+<ul class="simple">
+<li>日付</li>
+<li>時刻</li>
+<li>ログレベル</li>
+<li>アクセス元IPアドレス</li>
+<li>デベロッパメールアドレス (該当する場合)</li>
+<li>logger名</li>
+<li>ログメッセージ</li>
+</ul>
+</div>
+<div class="section" id="config-loglevel">
+<span id="id22"></span><h2>4.4.2. ログ設定<a class="headerlink" href="#config-loglevel" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ロギングは <a class="reference external" href="https://logback.qos.ch/">logback</a> を使用して行われています。
+logback の設定は、プロパティファイルで指定することができるようになっています。</p>
+<p>プロパティファイルは、以下いずれかの場所に配置することができます。</p>
+<ul class="simple">
+<li>/etc/baas/logback.properties</li>
+<li>c:/NEC/BaaS/etc/logback.properties (Windowsの場合)</li>
+<li>~/.baas/logback.properties</li>
+</ul>
+<p>以下に設定例を示します。</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># ログレベル
+logback.level=INFO
+
+# ログ出力タイプ
+logback.types=STDOUT,FILE,FLUENT
+
+# ログ出力ディレクトリ
+logback.logdir=/var/log/baas
+
+# fluentd サーバ
+logback.fluent.host=localhost
+logback.fluent.port=24224
+</pre></div>
+</div>
+<div class="section" id="id23">
+<h3>ログレベル<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>logback のログレベルはデフォルトで INFO に設定されています。</p>
+<p>logback.level= にレベルを指定します。指定できる値は TRACE, DEBUG, INFO, WARN, ERROR, ALL, OFF のいずれかです。</p>
+</div>
+<div class="section" id="id24">
+<h3>ログ出力タイプ<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>ログ出力タイプには STDOUT, FILE, FLUENT のいずれか１つ以上をカンマ区切りで指定します。</p>
+<ul class="simple">
+<li>STDOUT : 標準出力にログを出力します (Tomcat の場合は catalina.out などに出力)</li>
+<li>FILE : ファイルに出力します。出力先ディレクトリは logback.logdir で指定します。</li>
+<li>FLUENT : fluentd にログを出力します (後述)</li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h3>ログ出力ディレクトリ<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>logback.types に FILE を指定した場合、logback.logdir で指定したディレクトリに
+ログファイルが出力されます。ログファイルは、日時で自動的にローテートされます。</p>
+<p>logback.logdir を指定しなかった場合のデフォルト値は、Windows では C:/NEC/BaaS/log、
+それ以外では /var/log/baas となります。</p>
+<p>ローテートパターンを変更したい場合は、logback-common.xml ファイルに記述されている
+RollingFileAppender 設定を直接編集してください。</p>
+</div>
+</div>
+<div class="section" id="id26">
+<h2>4.4.3. ログフォーマット<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ログフォーマットは、logback の設定である logback.xml ファイルで設定します。</p>
+<p>logback.xml は、アプリケーションの WEB-INF/classes/logback.xml に格納されています。</p>
+<p>なお、ソースコード上では、logback.xml は以下２箇所にあります。</p>
+<ul class="simple">
+<li>${SRCROOT}/api/src/main/resources/logback.xml (APIサーバ)</li>
+<li>${SRCROOT}/console/src/main/resources/logback.xml (デベロッパコンソールサーバ)</li>
+</ul>
+<p>以下のように pattern 変数にフォーマットを指定します。</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;variable</span> <span class="na">name=</span><span class="s">&quot;pattern&quot;</span> <span class="na">value=</span><span class="s">&quot;%d{yy-MM-dd HH:mm:ss.SSS} %-5level ip=%X{remoteIp} app=%X{appId} usr=%X{userId} %logger{0} - %msg%n&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h2>4.4.4. fluentd の利用<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>標準状態では、ログは各 AP サーバ、デベロッパコンソールサーバ毎に個別に出力されます。</p>
+<p>fluentd を使用すると、ログを一箇所に集約したり、出力先を MongoDB にしたりといった
+ことが可能になります。</p>
+<p>fluentd を使用する方法については、 <a class="reference internal" href="fluentd.html#use-fluentd"><span class="std std-ref">fluentd を利用したロギング</span></a> を参照してください。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fluentd.html" class="btn btn-neutral float-right" title="4.5. fluentd を利用したロギング" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configure.html" class="btn btn-neutral" title="4.3. その他の設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

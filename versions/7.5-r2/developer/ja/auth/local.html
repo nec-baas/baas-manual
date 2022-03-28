@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. ローカル認証 &mdash; Authentication Developer Guide 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="4. LDAP / ActiveDirectory 連携" href="ldap.html" />
+    <link rel="prev" title="2. アプリケーションキー認証" href="appkey.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Authentication Developer Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. 認証機能の概要</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appkey.html">2. アプリケーションキー認証</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. ローカル認証</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 概要</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.2. ユーザの識別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">3.3. サインアップ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">3.4. 認証方式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api">3.4.1. APIログイン認証</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic">3.4.2. Basic認証</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">3.5. パスワードリセット</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ldap.html">4. LDAP / ActiveDirectory 連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="saml/index.html">5. ADFS / SAML 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oidc/index.html">6. OpenID Connect 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clientcert/index.html">7. クライアント証明書認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="private_ca.html">8. (参考)プライベートCAの構築・運用手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Authentication Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3. ローカル認証</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>3. ローカル認証<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>3.1. 概要<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ローカル認証はモバイルバックエンド基盤の保持するユーザデータベースを用いてログイン認証を行う方式です。</p>
+<p>ローカル認証では、ユーザのサインアップ、ログイン、ログアウト、情報取得、更新、削除、パスワードリセットの機能を提供します。</p>
+</div>
+<div class="section" id="id3">
+<h2>3.2. ユーザの識別<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ローカル認証では、ユーザの識別に「ユーザ名」または「E-mailアドレス」のいずれかまたは両方を使用します。
+また、認証ではパスワードを用います。</p>
+<p>内部ではそれぞれのユーザに自動的にユニークな「ユーザID」が割り当てられます。
+ユーザIDは &quot;54d47018aea788df195e8666&quot; のような24文字の文字列です。</p>
+</div>
+<div class="section" id="id4">
+<h2>3.3. サインアップ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サインアップ API を用いて、ユーザの登録を行うことができます。登録には上記の
+「ユーザ名」「E-mailアドレス」のいずれかまたは両方と、「パスワード」を指定して行います。</p>
+</div>
+<div class="section" id="id5">
+<h2>3.4. 認証方式<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>認証方式には、REST API によるログイン認証と、Basic認証があります。</p>
+<div class="section" id="api">
+<h3>3.4.1. APIログイン認証<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>APIログイン認証では、ログインAPIを使用呼び出して認証を行います。
+認証時に ID(ユーザ名または E-mailアドレス)とパスワードをサーバに提示します。</p>
+<p>認証が完了すると、BaaSサーバは「セッショントークン」という文字列が払い出されます。
+クライアントは以後の API 呼び出しで X-Session-Token HTTP ヘッダにセッショントークンを指定することで
+API を利用することができます。</p>
+</div>
+<div class="section" id="basic">
+<span id="basic-auth"></span><h3>3.4.2. Basic認証<a class="headerlink" href="#basic" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Basic 認証を使用する場合は、各 API の呼び出し時に毎回IDとパスワードをサーバに提示します。</p>
+<p>具体的には、Authorization HTTP ヘッダにユーザ名とパスワードを指定して API を呼び出します。
+(E-mailアドレスは使用できません)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Authorization</span><span class="p">:</span> <span class="n">Basic</span> <span class="p">[</span><span class="s2">&quot;ユーザ名:パスワード&quot;</span><span class="n">をBase64エンコードした文字列</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">注意</p>
+<p class="last">Basic認証は、性質上API呼び出しのたびにパスワード照合(ストレッチング付きのパスワードハッシュ計算を含む)
+を行うため、APIログイン認証に比べて性能が低下します。(毎回数百ms程度の遅延が発生する場合があります)</p>
+</div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>3.5. パスワードリセット<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>パスワードリセット API を用いてパスワードリセットを行うことができます。</p>
+<p>パスワードリセットを行うと、該当ユーザにパスワードリセット確認の E-mail が送付されます。
+メール上の URL をクリックするとブラウザでパスワードリセット画面が表示され、リセット操作を行うことができます。</p>
+<p>メール文面やリセット画面(HTML)は、カスタマイズすることが可能です。
+デベロッパーコンソールの「テナント設定」⇒「テンプレート」でテンプレートを編集できます。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ldap.html" class="btn btn-neutral float-right" title="4. LDAP / ActiveDirectory 連携" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="appkey.html" class="btn btn-neutral" title="2. アプリケーションキー認証" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+.. _events_create_update:
+
+サブスクリプションの作成・更新
+==============================
+
+.. http:put:: /1/(tenantId)/event/subscriptions/(name)
+
+    サブスクリプションを作成・更新する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: マスターキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+    :reqheader Content-Type: "application/json", "application/yaml"
+
+    :parameter string name: サブスクリプション名
+
+    :statuscode 200: 正常終了
+    :statuscode 400: パラメータ・リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 409: ETag不一致(etag_mismatch)
+    :statuscode 415: Content-Type 不正
+    :statuscode 500: その他
+
+    **リクエストボディ**
+
+    リクエストボディには、JSON/YAML形式で記述されたサブスクリプションを指定する。
+
+    以下に例を示す。
+
+    .. code-block:: json
+
+        {
+          "name": "photo-event",
+          "source": {
+            "type": "fileStorage"
+          },
+          "filter": {
+            "bucketName": "photos",
+            "action": { "$in": ["file.created", "file.updated"] }
+          },
+          "handler": {
+            "type": "cloudFunction",
+            "functionName": "makeThumbnail"
+          }
+        }
+
+    .. note::
+
+        パスパラメータの ``name`` と、JSON/YAMLで記述したサブスクリプション内の ``name`` 要素の値は、一致しなくてはならない。
+        不一致の場合、400エラーとなる。
+
+    **レスポンスボディ**
+
+    レスポンスボディの例:
+
+    .. code-block:: json
+
+        {"result": "ok"}

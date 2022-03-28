@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>13. 改版履歴 &mdash; REST API Reference 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="12.5. サブスクリプションの全削除" href="events/deleteAll.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> REST API Reference
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. はじめに</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notations.html">2. 表記について</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">3. 認証</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common.html">4. 共通定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">5. ユーザ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group/index.html">6. グループ管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bucket/index.html">7. バケット管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object/index.html">8. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file/index.html">9. ファイルストレージ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="push/index.html">10. Push通知</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin/index.html">11. 管理系API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events/index.html">12. イベント駆動</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">13. 改版履歴</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-5-0-2018-10-11">13.1. ver 7.5.0 : 2018/10/11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-2-2017-12-26">13.2. ver 7.0.2: 2017/12/26</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-1-2017-10-19">13.3. ver 7.0.1: 2017/10/19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-7-0-0-2017-9-28">13.4. ver 7.0.0: 2017/9/28</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ver-6-5-0-2017-9-27">13.5. ver 6.5.0: 2017/9/27</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">REST API Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>13. 改版履歴</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>13. 改版履歴<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="ver-7-5-0-2018-10-11">
+<h2>13.1. ver 7.5.0 : 2018/10/11<a class="headerlink" href="#ver-7-5-0-2018-10-11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>フォーマットを PDF から HTML に変更</li>
+<li><a class="reference internal" href="auth.html#basic-auth"><span class="std std-ref">Basic認証</span></a> 追加</li>
+<li><a class="reference internal" href="object/index.html#object-storage"><span class="std std-ref">JSONオブジェクトストレージ</span></a><ul>
+<li>フィールド暗号化機能追加<ul>
+<li><a class="reference internal" href="common.html#json-property-names"><span class="std std-ref">JSONプロパティ名</span></a> - _projected フィールド追加</li>
+<li><a class="reference internal" href="object/query.html#object-query"><span class="std std-ref">オブジェクトのクエリ</span></a>: _protected フィールド追加</li>
+<li><a class="reference internal" href="object/update.html#object-update"><span class="std std-ref">オブジェクトの更新</span></a></li>
+<li><a class="reference internal" href="object/batch.html#object-batch"><span class="std std-ref">バッチオペレーション</span></a></li>
+<li><a class="reference internal" href="object/aggregate.html#object-aggregate"><span class="std std-ref">オブジェクトの集計(Aggregation)</span></a></li>
+<li><a class="reference internal" href="push/index.html#push"><span class="std std-ref">Push通知</span></a><ul>
+<li><a class="reference internal" href="push/upsert.html#push-upsert"><span class="std std-ref">インスタレーションの登録・再登録</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MongoDB トランザクション機能対応<ul>
+<li><a class="reference internal" href="object/batch.html#object-batch"><span class="std std-ref">バッチオペレーション</span></a>: トランザクション機能を追加</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="file/index.html#file-storage"><span class="std std-ref">ファイルストレージ</span></a><ul>
+<li>Range 指定による部分ダウンロード対応<ul>
+<li><a class="reference internal" href="file/download.html#file-download"><span class="std std-ref">ファイルのダウンロード</span></a></li>
+<li><a class="reference internal" href="file/download_published.html#file-download-published"><span class="std std-ref">公開ファイルのダウンロード</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="bucket/index.html#bucket"><span class="std std-ref">バケット管理</span></a><ul>
+<li>ACLレスバケット機能(noAcl)追加</li>
+<li>インデックスキー・シャードキー更新APIを追加</li>
+</ul>
+</li>
+<li><a class="reference internal" href="user/index.html#user"><span class="std std-ref">ユーザ管理</span></a><ul>
+<li><a class="reference internal" href="user/register.html#user-signup"><span class="std std-ref">サインアップ</span></a>: ID指定による登録をサポート</li>
+<li><a class="reference internal" href="user/batch.html#user-batch"><span class="std std-ref">バッチオペレーション</span></a> 追加</li>
+<li>ユーザ無効化機能追加<ul>
+<li>全レスポンスに、有効フラグフィールド(&quot;enabled&quot;)を追加</li>
+<li>無効化機能の仕様を追記<ul>
+<li><a class="reference internal" href="user/login.html#user-login"><span class="std std-ref">ログイン</span></a></li>
+<li><a class="reference internal" href="user/update.html#user-update"><span class="std std-ref">ユーザ情報変更 (パスワード変更を含む)</span></a></li>
+<li><a class="reference internal" href="user/find.html#user-find"><span class="std std-ref">ユーザ情報の検索</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="user/update.html#user-update"><span class="std std-ref">ユーザ情報変更 (パスワード変更を含む)</span></a>: パスワード変更時に該当ユーザの全セッショントークンを無効化</li>
+</ul>
+</li>
+<li><a class="reference internal" href="admin/apistats.html#admin-apistats"><span class="std std-ref">API統計情報取得</span></a><ul>
+<li>tenantId パス/クエリパラメータ重複してもエラーとしない</li>
+</ul>
+</li>
+<li><a class="reference internal" href="events/index.html#events"><span class="std std-ref">イベント駆動</span></a> 追加</li>
+</ul>
+</div>
+<div class="section" id="ver-7-0-2-2017-12-26">
+<h2>13.2. ver 7.0.2: 2017/12/26<a class="headerlink" href="#ver-7-0-2-2017-12-26" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>オブジェクトの集計(Aggregation) API を追加</li>
+<li>MongoDB Extended JSON について追記</li>
+</ul>
+</div>
+<div class="section" id="ver-7-0-1-2017-10-19">
+<h2>13.3. ver 7.0.1: 2017/10/19<a class="headerlink" href="#ver-7-0-1-2017-10-19" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>エラー通知: ステータスコード503の要因にライセンス違反を追加</li>
+<li>バケットの作成・更新のレスポンスコード403にバケット数制限超過を追加</li>
+<li>以下APIのレスポンスコードに413 Request Entity Too Large ステータスコードを追加<ul>
+<li>オブジェクトの作成 (Create)</li>
+<li>オブジェクトの更新</li>
+<li>ファイルの新規アップロード</li>
+<li>ファイルの更新アップロード</li>
+</ul>
+</li>
+<li>バッチオペレーションの実行結果にrequestEntityTooLargeを追加</li>
+</ul>
+</div>
+<div class="section" id="ver-7-0-0-2017-9-28">
+<h2>13.4. ver 7.0.0: 2017/9/28<a class="headerlink" href="#ver-7-0-0-2017-9-28" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>API統計情報取得 API追加</li>
+</ul>
+</div>
+<div class="section" id="ver-6-5-0-2017-9-27">
+<h2>13.5. ver 6.5.0: 2017/9/27<a class="headerlink" href="#ver-6-5-0-2017-9-27" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li>クライアント証明書認証対応</li>
+<li>OpenID Connect認証対応<ul>
+<li>UserにprimaryLinkedUserIdフィールドを追加</li>
+<li>OpenID Connect認証開始 API 追加</li>
+<li>リンク情報取得API追加</li>
+<li>リンク情報削除API追加</li>
+<li>ユーザ: サインアップの注意事項追記</li>
+<li>ユーザ: ログインの補足・注意事項追記</li>
+</ul>
+</li>
+<li>ファイルストレージ<ul>
+<li>ユーザ定義メタ情報の付与</li>
+</ul>
+</li>
+<li>グループ管理<ul>
+<li>グループ名に使用できる文字から '/' を除外</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="events/deleteAll.html" class="btn btn-neutral" title="12.5. サブスクリプションの全削除" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

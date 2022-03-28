@@ -1,0 +1,100 @@
+.. include:: ../common/linkdef.rst
+
+==================
+ファイルストレージ
+==================
+
+ここではファイルストレージの利用方法について説明します。
+
+ファイルバケット
+================
+
+ファイルバケットは、`baas.FileBucket` クラスのインスタンスで表現します。
+コンストラクタの引数には Service と バケット名を渡します。
+
+ファイル操作にはバケットが必ず必要になります。
+
+.. code-block:: python
+
+    bucket = baas.FileBucket(service, "FileBucket1");
+
+ファイルの新規アップロード(保存)
+=================================
+
+ファイルを新規アップロードするには、FileBucket の `create()` を使用します。
+
+`create()` にはファイル名、データ本体、Content-Type、ACLなどを指定します。
+返り値にはファイルメタデータ(dict)が返ります。
+
+.. code-block:: python
+
+    data = "TEST DATA"
+    meta = bucket.create("test1.txt", data.encode(), content_type="text/plain")
+
+データ本体には、bytes や file-like オブジェクトを指定できます。
+
+ファイルを開いて streaming でアップロードする例を示します。
+
+.. code-block:: python
+
+    with open("sample.jpg", "rb") as f:
+        meta = bucket.create("sample.jpg", f, content_type="image/jpeg")
+
+ファイルの open 時には "b" (binary) オプションを付けるようにしてください。
+
+アクセス制御
+------------
+
+ファイル単位でアクセス制御を行うことができます。
+
+アクセス制御を行う場合には、`create()` の acl キーワード引数に ACL を設定します。
+ACL は Nebula.Acl クラスインスタンスとして生成します。
+
+.. code-block:: python
+
+   acl = {
+       "owner": "...",
+       "r": [...],
+       "w": [...],
+       "u": [...],
+       "d": [...],
+       "admin": [...]
+   });
+   meta = bucket.create("test1.txt", data.encode(), content_type="text/plain", acl=acl)
+
+ファイルのダウンロード
+======================
+
+ファイルをダウンロードするには `download()` を使用します。
+デフォルトでは、データはメモリ上にロードされます。
+
+返り値は `requests`_ ライブラリの `Response` 型となります。
+データを取得するには、content, text, json() のいずれかを利用します。
+
+.. code-block:: python
+
+    resp = bucket.download("test1.txt")
+    binary = r.content  # get binary content
+    #text = r.text  # text content
+    #json = r.json()  # json content
+
+ストリーミングでダウンロードすることも可能です。
+この場合は stream 引数を True に指定してください。
+
+.. code-block:: python
+
+    with bucket.download("file2.zip", stream=True) as r:
+        for chunk in r.iter_chunk():
+            # ...
+
+詳細は `requests`_ の "Streaming Requests" を参照してください。
+
+ファイル一覧の取得
+==================
+
+バケット内のファイル一覧の取得には、`query()` を呼び出すことで行います。
+結果はメタデータ(dict)の配列として返ります。
+
+.. code-block:: python
+
+    files = bucket.query()

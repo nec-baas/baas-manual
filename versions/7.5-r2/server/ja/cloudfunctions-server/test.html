@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. 動作確認 &mdash; Cloud Functions Server User Manual 7.5.1 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="8. ログ" href="logs.html" />
+    <link rel="prev" title="6. 設定" href="configure.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cloud Functions Server User Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">1. イントロダクション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirement.html">2. 必要環境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_configuration.html">3. システム構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dist.html">4. 配布物の構成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_manual.html">5. インストール手順</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">6. 設定</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. 動作確認</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.1. テナント・アプリの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nebula-cli">7.2. Nebula CLI のインストール</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">7.3. サンプルコードのチェックアウト</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cli">7.4. CLI 設定ファイルの作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api">7.5. API定義・ファンクション定義・コードのアップロード</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">7.6. カスタム API の実行テスト</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logs.html">8. ログ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">9. マイグレーションガイド</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cloud Functions Server User Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7. 動作確認</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="test">
+<span id="id1"></span><h1>7. 動作確認<a class="headerlink" href="#test" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>サンプルコードを使用して動作を確認します。</p>
+<p>以下の確認はすべてクライアント PC から実施してください。</p>
+<div class="section" id="id2">
+<h2>7.1. テナント・アプリの作成<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>動作確認用に、モバイルバックエンド基盤上にテナント・アプリが必要になります。</p>
+<p>デベロッパーコンソールにログインし、テナント・アプリを作成してください。
+(既存のテナント・アプリを使用しても構いません)</p>
+</div>
+<div class="section" id="nebula-cli">
+<h2>7.2. Nebula CLI のインストール<a class="headerlink" href="#nebula-cli" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>CLI ツールが必要になります。
+「デベロッパーマニュアル」の「Cloud Functions開発ガイド」を参照して CLI をインストールしてください。</p>
+</div>
+<div class="section" id="id3">
+<h2>7.3. サンプルコードのチェックアウト<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サンプルの Cloud Functions コードを別途配布していますので、取得・展開してください。</p>
+<p>以下のテストは、展開後に作成される sample1 ディレクトリ内で実施します。</p>
+</div>
+<div class="section" id="cli">
+<h2>7.4. CLI 設定ファイルの作成<a class="headerlink" href="#cli" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下手順で nebula_config.json ファイルを作成します。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nebula init-config
+</pre></div>
+</div>
+<p>エディタでファイルを編集し、テナントID/アプリID/マスターキーなどの情報を設定してください。</p>
+</div>
+<div class="section" id="api">
+<h2>7.5. API定義・ファンクション定義・コードのアップロード<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下手順で API 定義とファンクション定義をサーバにアップロードします。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nebula create-api api.yaml
+$ nebula create-function <span class="k">function</span>.yaml
+</pre></div>
+</div>
+<p>以下手順でコードのパッケージングとアップロードを行います。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm pack
+$ nebula create-code
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>7.6. カスタム API の実行テスト<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>カスタム API の実行テストを行います。</p>
+<p>test-api-sample.shをtest-api.shにリネームし、エディタで開き baseUri, tenant, appId, appKey の値を設定してください。</p>
+<p>test-api.sh を実行すると、カスタム API の呼び出しが行われ、結果が表示されます。
+以下のような表示がされていれば、正常に動作しています。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Hello world, John Doe !!!&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logs.html" class="btn btn-neutral float-right" title="8. ログ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="configure.html" class="btn btn-neutral" title="6. 設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2018, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="_static/analytics.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

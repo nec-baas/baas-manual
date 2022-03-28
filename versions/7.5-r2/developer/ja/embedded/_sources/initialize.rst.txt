@@ -1,0 +1,78 @@
+================
+初期化処理の実装
+================
+
+NbService の生成
+====================
+
+Nebula API を呼び出すには、最初に NbService クラスのインスタンスを生成する必要があります。
+
+NbService の生成には NbService::CreateService() を使用します。
+
+.. code-block:: c++
+
+        using namespace necbaas;
+
+        std::shared_ptr<NbService> service =
+                            NbService::CreateService("http://testurl.co.jp:8080",
+                                                     "testTenandId",
+                                                     "testAppId",
+                                                     "testAppKey");
+
+
+NbServiceはNebulaサーバとの通信に必要なリソースを管理します。
+このため各種インスタンスの生成の前に作成します。
+以下の引数を設定します。
+
+* テナントID
+* アプリケーションID
+* アプリケーションキー
+* エンドポイントURI
+* Proxy設定(option)
+
+テナントID、アプリケーションID・キーについては、デベロッパコンソールで作成した値を設定します。
+エンドポイントURIは、APIサーバのベースURIです。これはシステム毎に異なりますので、サーバ運用者に確認してください。通常は "https\://ホスト名/api/" のような形式になります。
+
+.. note::
+    NbServiceは、多くのインスタンスの引数として共通に使用されます。
+    このためアプリケーション全体で参照できるクラスに配置することを推奨します。
+
+
+マルチテナント
+-------------------------------------
+
+複数のテナントにアクセスしたい場合は、複数のNbServiceを作成します。
+NbServiceはインスタンス毎に独立しており、指定のテナントへのアクセスを行うことができます。
+
+.. code-block:: c++
+
+    // テナント1アクセス用のインスタンス
+    std::shared_ptr<NbService> service1 = 
+                          NbService::CreateService("http://endpoint1.co.jp:8080",
+                                                   "tenantId_1",
+                                                   "applicationId_1",
+                                                   "applicationKey_1");
+    // テナント2アクセス用のインスタンス
+    std::shared_ptr<NbService> service2 = 
+                          NbService::CreateService("http://endpoint2.co.jp:8081",
+                                                   "tenantId_2",
+                                                   "applicationId_2",
+                                                   "applicationKey_2");
+
+
+ログの設定
+=================
+
+ログは以下の3種別があり、NbLoggerのAPIを使用してそれぞれ出力有無を変更することができます。
+全てのログは標準出力に出力されます。
+
+デバッグビルドでビルドした場合、初期状態でログをすべて出力します。
+リリースモードの場合はログを出力しません。
+
+.. code-block:: c++
+
+    NbLogger::SetDebugLogEnabled(true);  // デバッグログ (SDK内のデバッグ用ログ)
+    NbLogger::SetRestLogEnabled(true);   // RESTログ (サーバとの通信ログ)
+    NbLogger::SetErrorLogEnabled(true);  // Errorログ (処理失敗などのエラーに関するログ)
+
+

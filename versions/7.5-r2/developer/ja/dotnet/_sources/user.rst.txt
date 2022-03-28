@@ -1,0 +1,115 @@
+==========
+ユーザ管理
+==========
+
+ここではユーザ管理機能の利用方法について説明します。
+
+サインアップ
+============
+
+ユーザを新規登録します。
+
+.. code-block:: csharp
+
+    NbUser user = new NbUser();
+
+    // ユーザ名とE-mail アドレスを設定
+    // (Email は必須、ユーザ名はオプション)
+    user.Username = "taro_nichiden";
+    user.Email = "taro@example.com";
+
+    // サインアップ実行
+    var user = await user.SignUpAsync(password);
+
+まずはじめに NbUser のインスタンスを取得します。
+
+つぎに、username と email を設定し、SignUpAsync() を呼び出してサインアップを行います。
+登録が成功すると、登録された NbUser のインスタンスが返却されます。
+
+.. _login:
+
+ログイン
+========
+
+.. code-block:: csharp
+
+    // username でログインする場合
+    var user = await NbUser.LoginWithUsernameAsync(username, password);
+
+    // email でログインする場合
+    var user = await NbUser.LoginWithEmailAsync(email, password);
+
+ログインが完了すると、ログイン状態(セッショントークン)がメモリ上に保存されます。
+
+.. _onetime_token_login:
+
+ワンタイムトークンログイン
+==========================
+
+SAML/OIDCを使用したワンタイムトークンログインは以下のように実施します。
+
+.. code-block:: csharp
+
+    // ログイン用のパラメータ作成
+    var param = new NbUser.LoginParam() { Token = onetimeToken };
+    
+    // ログイン
+    var user = await NbUser.LoginAsync(param, service);
+
+SAML/OIDCログインについては、 `認証機能ガイド <../auth/index.html>`_
+の「ADFS/SAML認証」および「OpenID Connect認証」の「アプリケーションの開発」
+⇒「Nativeアプリケーション(C#)」を参照してください。
+
+ログイン状態の取得
+==================
+
+ユーザがログイン状態かどうかは IsLoggedIn() で確認できます。
+
+.. code-block:: csharp
+
+   if (NbUser.IsLoggedIn()) {
+       // ログイン中
+   }
+
+ログアウト
+==========
+
+ログアウトは LogoutAsync() で行います。
+
+.. code-block:: csharp
+
+    await NbUser.LogoutAsync();
+
+パスワードリセット
+===================
+
+.. code-block:: csharp
+
+    // username でリセットする場合
+    await NbUser.ResetPasswordWithUsernameAsync(username);
+
+    // email でリセットする場合
+    await NbUser.ResetPasswordWithEmailAsync(email);
+
+username と email のいずれかを使ってパスワードをリセットします。
+パスワードリセットを実行すると、確認メールがユーザに送信されます。
+
+オフラインログイン
+==================
+
+オフラインログイン機能を使用する場合は、NbUser の代わりに NbOfflineUser クラスを
+使用して下さい。
+
+以下に例を示します。
+
+.. code-block:: csharp
+
+    var user = await NbOfflineUser.LoginWithUsernameAsync(username, password, LoginMode.Auto);
+
+第3引数に LoginMode を指定します。LoginMode には以下のいずれかの値を使用できます。
+
+* LoginMode.Online : オンラインログインを行います。ログインに成功すると、ログインキャッシュが作成されます。
+* LoginMode.Offline : オフラインログインを行います。ログインキャッシュが予め作成されている必要があります。
+* LoginMode.Auto : ネットワークが接続されていればオンラインログイン、接続されていなければオフラインログインを行います。
+
+

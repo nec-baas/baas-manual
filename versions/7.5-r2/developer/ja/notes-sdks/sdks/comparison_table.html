@@ -1,0 +1,1265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2.11. SDKの機能比較表 &mdash; NEC BaaS Notes 7.5.0 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="3. 改訂履歴" href="../changes.html" />
+    <link rel="prev" title="2.10. 文字種・文字列長制約" href="string_limit.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> NEC BaaS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                7.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../support.html">1. 品質保証範囲</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. SDK</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="user.html">2.1. ユーザ管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_storage.html">2.2. JSONオブジェクトストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_storage.html">2.3. ファイルストレージ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="android.html">2.4. Android SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">2.5. JavaScript SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dotnet.html">2.6. .NET SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="push.html">2.7. Push</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloudfn.html">2.8. Cloud Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="offline.html">2.9. オフライン・同期</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_limit.html">2.10. 文字種・文字列長制約</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.11. SDKの機能比較表</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.11.1. ユーザ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.11.2. グループ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.11.3. バケット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.11.4. オブジェクトストレージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.11.5. オブジェクトストレージ (オフライン)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.11.6. ファイルストレージ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#push">2.11.7. Push</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-gateway">2.11.8. API Gateway</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.11.9. 全般</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">3. 改訂履歴</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NEC BaaS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">2. SDK</a> &raquo;</li>
+        
+      <li>2.11. SDKの機能比較表</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sdk">
+<h1>2.11. SDKの機能比較表<a class="headerlink" href="#sdk" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.11.1. ユーザ<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>認証機能(ログイン・ログアウトなど)</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>ユーザ管理機能(登録・パスワードリセットなど)</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>楽観ロック(オンライン)</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>オプションフィールド</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>ユーザ検索</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>SAML/OpenID Connect認証</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>クライアント証明書認証</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h2>2.11.2. グループ<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>基本機能(CRUD)</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>楽観ロック(オンライン)</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>メンバ追加・削除API</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>本APIがない場合は、グループのフルアップデートで代用。</td>
+</tr>
+<tr class="row-odd"><td>グループ追加専用API(POST)</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>従来の追加更新API(PUT)でグループ作成は可能だが、作成・更新の区別がされない。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h2>2.11.3. バケット<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>バケット管理</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>△(注)</td>
+<td>◯</td>
+<td>×</td>
+<td>注: 作成・削除のみ。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2>2.11.4. オブジェクトストレージ<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>基本機能(CRUD)</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>バッチリクエスト</td>
+<td>◯(注)</td>
+<td>◯(注)</td>
+<td>×</td>
+<td>×</td>
+<td>◯(注)</td>
+<td>◯</td>
+<td>×</td>
+<td>注:オンラインのみ</td>
+</tr>
+<tr class="row-even"><td>一括削除/条件削除</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>プロジェクション</td>
+<td>◯(注)</td>
+<td>◯(注)</td>
+<td>◯</td>
+<td>×</td>
+<td>◯(注)</td>
+<td>◯</td>
+<td>◯</td>
+<td>注:オンラインのみ</td>
+</tr>
+<tr class="row-even"><td>楽観ロック(ETag)</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>論理削除含むクエリ</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>物理削除</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>論理削除</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>削除動作のデフォルト値</td>
+<td>論理</td>
+<td>論理</td>
+<td>物理のみ</td>
+<td>物理のみ</td>
+<td>論理</td>
+<td>物理</td>
+<td>論理</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Aggregation</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h2>2.11.5. オブジェクトストレージ (オフライン)<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>オフラインオブジェクト全般</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>◯(注)</td>
+<td>×</td>
+<td>×</td>
+<td>注:ストアアプリ、WindowsPhoneは除く</td>
+</tr>
+<tr class="row-odd"><td>レプリカモード</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯(注)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>注:.NETではオフラインバケットという名称</td>
+</tr>
+<tr class="row-even"><td>ローカルモード</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>衝突解決ポリシ:サーバ/クライアント優先</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>衝突解決ポリシ:マニュアル</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>衝突解決ポリシ:ロジック指定</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>オフライン部分更新</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>オフライン楽観ロック(ETag)</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>ローカルオブジェクトACL制御</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>ローカルバケットContentACL制御</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>セッションタイムアウト判定</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>オフライン状態でもセッショントークンのタイムアウトをチェックする機能</td>
+</tr>
+<tr class="row-odd"><td>ログインキャッシュ期間設定</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>セッションタイムアウトとは別にログインキャッシュ有効時間を設定できる機能</td>
+</tr>
+<tr class="row-even"><td>JSONインデックス</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>オフラインバケットに対して、JSONフィールドのインデックスを設定する機能</td>
+</tr>
+<tr class="row-odd"><td>分割同期</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>同期オブジェクト数が多い場合に、複数回に分割して同期を行う機能</td>
+</tr>
+<tr class="row-even"><td>DB暗号化</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>SDKによって暗号化方式は異なる</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h2>2.11.6. ファイルストレージ<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>基本機能(アップロード・ダウンロード)</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>ファイルシステムアクセス</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>クライアントのローカルファイルシステムにアクセスする機能</td>
+</tr>
+<tr class="row-even"><td>ブラウザ File API</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>◯(注)</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>×</td>
+<td>×</td>
+<td>注: ファイルの扱いは blob のみ、ブラウザ依存</td>
+</tr>
+<tr class="row-odd"><td>楽観ロック(ETag)</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>論理削除含むクエリ</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>◯(注)</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>注: 常に論理削除も読み込む</td>
+</tr>
+<tr class="row-odd"><td>物理削除</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>論理削除</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="push">
+<h2>2.11.7. Push<a class="headerlink" href="#push" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FCM受信</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>APNS受信</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>SSE Push受信</td>
+<td>◯</td>
+<td>◯</td>
+<td>△ (注)</td>
+<td>×</td>
+<td>◯</td>
+<td>×</td>
+<td>×</td>
+<td>注: Node.js のみ。ブラウザは参考実装。</td>
+</tr>
+<tr class="row-odd"><td>Push送信</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯ (注)</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>注: iOS は対 SSE Push 送信機能なし</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="api-gateway">
+<h2>2.11.8. API Gateway<a class="headerlink" href="#api-gateway" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>API Gateway 呼び出し</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h2>2.11.9. 全般<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">機能</th>
+<th class="head">Android</th>
+<th class="head">Java</th>
+<th class="head">JS</th>
+<th class="head">iOS</th>
+<th class="head">.NET</th>
+<th class="head">Python</th>
+<th class="head">Embedded</th>
+<th class="head">備考</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>マルチテナント対応 API</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>×</td>
+<td>◯</td>
+<td>◯</td>
+<td>◯</td>
+<td>1アプリから複数テナントを操作する機能</td>
+</tr>
+<tr class="row-odd"><td>SSL自己署名証明書</td>
+<td>◯</td>
+<td>◯</td>
+<td>△（注1）</td>
+<td>◯ (注2)</td>
+<td>◯ (注3)</td>
+<td>◯</td>
+<td>×</td>
+<td><dl class="first last docutils">
+<dt>自己署名証明書を使用するサーバに接続する機能(セキュリティ上は利用は推奨しない)</dt>
+<dd>(注1) 基本対応（ブラウザ,またはAndroid OSに依存）
+(注2) iOSはアプリ側で対応可
+(注3) Windowsに証明書設定することで対応可</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td>Proxy設定</td>
+<td>×</td>
+<td>◯ (注2)</td>
+<td>◯ (注1)</td>
+<td>×</td>
+<td>◯ (注2)</td>
+<td>◯</td>
+<td>◯</td>
+<td><dl class="first last docutils">
+<dt>(注1) Node.js のみ</dt>
+<dd>(注2) システム設定に依存</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../changes.html" class="btn btn-neutral float-right" title="3. 改訂履歴" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="string_limit.html" class="btn btn-neutral" title="2.10. 文字種・文字列長制約" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2019, NEC Corporation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-116465316-2"></script>
+        <script type="text/javascript" src="../_static/analytics.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
