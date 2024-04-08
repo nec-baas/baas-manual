@@ -1,0 +1,27 @@
+NEC BaaS Authentication Developer Guide
+=======================================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 3
+   :numbered: 3
+
+   intro           
+   appkey
+   local
+   ldap
+   saml/index
+   oidc/index
+   clientcert/index
+   private_ca
+   migration
+
+Index
+-----
+
+* :ref:`genindex`
+* :ref:`search`
+
+.. include:: ../common/back_to_index.rst

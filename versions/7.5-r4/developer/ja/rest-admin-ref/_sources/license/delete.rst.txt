@@ -1,0 +1,31 @@
+.. _license_delete:
+
+ライセンスキー削除
+==================
+
+.. http:delete:: /1/_sysadm/_/licensekey
+
+    ライセンスキーを削除する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+
+    :statuscode 200: 正常に削除した
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: ライセンスキーが登録されていない
+
+    :>json string result: 実行結果
+
+    **レスポンスボディ**
+
+    リクエスト成功時は以下。
+
+    .. code-block:: json
+
+        {
+          "result":"ok"
+        }
+
+    **注意事項**
+
+    * システム管理者権限が必要。

@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: nb_service.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_67ddc83a51c7c70dde674a18e8d37b86.html">necbaas</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">nb_service.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="nb__service_8h.html">説明を見る。</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * COPYRIGHT (C) 2017 NEC CORPORATION</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * ALL RIGHTS RESERVED BY NEC CORPORATION,  THIS PROGRAM</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * MUST BE USED SOLELY FOR THE PURPOSE FOR WHICH IT WAS</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * FURNISHED BY NEC CORPORATION,  NO PART OF THIS PROGRAM</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * MAY BE REPRODUCED OR DISCLOSED TO OTHERS,  IN ANY FORM</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * WITHOUT THE PRIOR WRITTEN PERMISSION OF NEC CORPORATION.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * NEC CONFIDENTIAL AND PROPRIETARY</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#ifndef NECBAAS_NBSERVICE_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define NECBAAS_NBSERVICE_H</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;necbaas/internal/nb_session_token.h&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;necbaas/internal/nb_rest_executor.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;necbaas/internal/nb_rest_executor_pool.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;necbaas/internal/nb_http_request_factory.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>necbaas {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classnecbaas_1_1NbService.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classnecbaas_1_1NbService.html">NbService</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;   <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;NbService&gt; <a class="code" href="classnecbaas_1_1NbService.html#aebac5bb11e8b3d8361ff88e2c9b1d2bf">CreateService</a>(<span class="keyword">const</span> std::string &amp;endpoint_url, <span class="keyword">const</span> std::string &amp;tenant_id,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                                                    <span class="keyword">const</span> std::string &amp;app_id, <span class="keyword">const</span> std::string &amp;app_key,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                                    <span class="keyword">const</span> std::string &amp;proxy = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbService.html#aa921c76e7c4417be564c8ad1db620732">SetDebugLogEnabled</a>(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbService.html#abf62410da7df2f6456ec253716e83884">SetErrorLogEnabled</a>(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbService.html#a06813f72cda3a6716f8bed9f18a53a4d">SetRestLogEnabled</a>(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classnecbaas_1_1NbService.html#a93ff35d926ab3c419d17ee9d984f82b6">~NbService</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbService.html#a4a30c78f1d353b6848d48d34543ba693">GetAppId</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbService.html#a684b6ae8d00889d4a1213ef5cdeed1f2">GetAppKey</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbService.html#ae576ff3bb0b9d0c33ce79b768222741b">GetEndpointUrl</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbService.html#a86316d1d057d0fde76e6f763f9c58d20">GetTenantId</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">const</span> std::string &amp;<a class="code" href="classnecbaas_1_1NbService.html#a890750231aba822b0da46d6be745ad8c">GetProxy</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    NbSessionToken <a class="code" href="classnecbaas_1_1NbService.html#a09a52b08f2485f10bc595530d86a9b8d">GetSessionToken</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbService.html#a841fb7af9cf33baabc499b9865cb8aad">SetSessionToken</a>(<span class="keyword">const</span> NbSessionToken &amp;token);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbService.html#a1c012d9a49044d8ae65fdd85dc88a769">ClearSessionToken</a>();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbHttpResponse&gt;</a> <a class="code" href="classnecbaas_1_1NbService.html#aa65ed8effd5ea45971865c0e28ea0866">ExecuteRequest</a>(std::function&lt;NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, <span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbHttpResponse&gt;</a> <a class="code" href="classnecbaas_1_1NbService.html#a4aa14f7e54ff1db7abf2469683568c33">ExecuteFileDownload</a>(std::function&lt;NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request,</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                                                 <span class="keyword">const</span> std::string &amp;file_path, <span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbHttpResponse&gt;</a> <a class="code" href="classnecbaas_1_1NbService.html#a219b275bcc16cee1bdc73e4205d24c8b">ExecuteFileUpload</a>(std::function&lt;NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request,</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                                               <span class="keyword">const</span> std::string &amp;file_path, <span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;   <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    std::string app_id_;                    </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    std::string app_key_;                   </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    std::string endpoint_url_;              </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    std::string tenant_id_;                 </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    std::string proxy_;                     </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    NbSessionToken session_token_;          </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    NbRestExecutorPool rest_executor_pool_; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    std::mutex session_token_mutex_;        </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;   <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <a class="code" href="classnecbaas_1_1NbService.html#a2a81370b827f9a8e447e40808d8cce6a">NbService</a>(<span class="keyword">const</span> std::string &amp;endpoint_url, <span class="keyword">const</span> std::string &amp;tenant_id, <span class="keyword">const</span> std::string &amp;app_id,</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;              <span class="keyword">const</span> std::string &amp;app_key, <span class="keyword">const</span> std::string &amp;proxy);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keyword">virtual</span> NbRestExecutor *<a class="code" href="classnecbaas_1_1NbService.html#adc2b6adeb49260001cc5d93a9b92d3eb">PopRestExecutor</a>();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classnecbaas_1_1NbService.html#ae0a4253ec325b3000f64c1bc99686ee6">PushRestExecutor</a>(NbRestExecutor *executor);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    NbHttpRequestFactory <a class="code" href="classnecbaas_1_1NbService.html#a7b6e908916912770ade342c977635743">GetHttpRequestFactory</a>();</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbHttpResponse&gt;</a> <a class="code" href="classnecbaas_1_1NbService.html#a700a78c14fc4df275e2dd7e876c2e730">ExecuteCommon</a>(</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        std::function&lt;NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request,</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        std::function&lt;<a class="code" href="classnecbaas_1_1NbResult.html">NbResult&lt;NbHttpResponse&gt;</a>(NbRestExecutor *, <span class="keyword">const</span> NbHttpRequest &amp;)&gt; executor_method);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;};</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}  <span class="comment">// namespace necbaas</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor">#endif  // NECBAAS_NBSERVICE_H</span></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a684b6ae8d00889d4a1213ef5cdeed1f2"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a684b6ae8d00889d4a1213ef5cdeed1f2">necbaas::NbService::GetAppKey</a></div><div class="ttdeci">const std::string &amp; GetAppKey() const </div><div class="ttdoc">アプリケーションキー取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a86316d1d057d0fde76e6f763f9c58d20"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a86316d1d057d0fde76e6f763f9c58d20">necbaas::NbService::GetTenantId</a></div><div class="ttdeci">const std::string &amp; GetTenantId() const </div><div class="ttdoc">テナントID取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a09a52b08f2485f10bc595530d86a9b8d"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a09a52b08f2485f10bc595530d86a9b8d">necbaas::NbService::GetSessionToken</a></div><div class="ttdeci">NbSessionToken GetSessionToken()</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_aebac5bb11e8b3d8361ff88e2c9b1d2bf"><div class="ttname"><a href="classnecbaas_1_1NbService.html#aebac5bb11e8b3d8361ff88e2c9b1d2bf">necbaas::NbService::CreateService</a></div><div class="ttdeci">static std::shared_ptr&lt; NbService &gt; CreateService(const std::string &amp;endpoint_url, const std::string &amp;tenant_id, const std::string &amp;app_id, const std::string &amp;app_key, const std::string &amp;proxy=&quot;&quot;)</div><div class="ttdoc">サービスインスタンス生成. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html"><div class="ttname"><a href="classnecbaas_1_1NbService.html">necbaas::NbService</a></div><div class="ttdoc">MBaaS サービスクラス. </div><div class="ttdef"><b>Definition:</b> nb_service.h:29</div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a700a78c14fc4df275e2dd7e876c2e730"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a700a78c14fc4df275e2dd7e876c2e730">necbaas::NbService::ExecuteCommon</a></div><div class="ttdeci">NbResult&lt; NbHttpResponse &gt; ExecuteCommon(std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, std::function&lt; NbResult&lt; NbHttpResponse &gt;(NbRestExecutor *, const NbHttpRequest &amp;)&gt; executor_method)</div><div class="ttdoc">REST実行(共通処理). </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a1c012d9a49044d8ae65fdd85dc88a769"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a1c012d9a49044d8ae65fdd85dc88a769">necbaas::NbService::ClearSessionToken</a></div><div class="ttdeci">void ClearSessionToken()</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_adc2b6adeb49260001cc5d93a9b92d3eb"><div class="ttname"><a href="classnecbaas_1_1NbService.html#adc2b6adeb49260001cc5d93a9b92d3eb">necbaas::NbService::PopRestExecutor</a></div><div class="ttdeci">virtual NbRestExecutor * PopRestExecutor()</div><div class="ttdoc">REST Executor 取り出し. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a93ff35d926ab3c419d17ee9d984f82b6"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a93ff35d926ab3c419d17ee9d984f82b6">necbaas::NbService::~NbService</a></div><div class="ttdeci">virtual ~NbService()</div><div class="ttdoc">デストラクタ. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a06813f72cda3a6716f8bed9f18a53a4d"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a06813f72cda3a6716f8bed9f18a53a4d">necbaas::NbService::SetRestLogEnabled</a></div><div class="ttdeci">static void SetRestLogEnabled(bool flag)</div><div class="ttdoc">ロギング設定（RESTログ）. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_aa921c76e7c4417be564c8ad1db620732"><div class="ttname"><a href="classnecbaas_1_1NbService.html#aa921c76e7c4417be564c8ad1db620732">necbaas::NbService::SetDebugLogEnabled</a></div><div class="ttdeci">static void SetDebugLogEnabled(bool flag)</div><div class="ttdoc">ロギング設定（デバッグログ）. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbResult_html"><div class="ttname"><a href="classnecbaas_1_1NbResult.html">necbaas::NbResult</a></div><div class="ttdoc">REST API処理結果クラス. </div><div class="ttdef"><b>Definition:</b> nb_result.h:32</div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a2a81370b827f9a8e447e40808d8cce6a"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a2a81370b827f9a8e447e40808d8cce6a">necbaas::NbService::NbService</a></div><div class="ttdeci">NbService(const std::string &amp;endpoint_url, const std::string &amp;tenant_id, const std::string &amp;app_id, const std::string &amp;app_key, const std::string &amp;proxy)</div><div class="ttdoc">コンストラクタ. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_aa65ed8effd5ea45971865c0e28ea0866"><div class="ttname"><a href="classnecbaas_1_1NbService.html#aa65ed8effd5ea45971865c0e28ea0866">necbaas::NbService::ExecuteRequest</a></div><div class="ttdeci">NbResult&lt; NbHttpResponse &gt; ExecuteRequest(std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, int timeout)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_ae0a4253ec325b3000f64c1bc99686ee6"><div class="ttname"><a href="classnecbaas_1_1NbService.html#ae0a4253ec325b3000f64c1bc99686ee6">necbaas::NbService::PushRestExecutor</a></div><div class="ttdeci">virtual void PushRestExecutor(NbRestExecutor *executor)</div><div class="ttdoc">REST Executor 返却. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a4aa14f7e54ff1db7abf2469683568c33"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a4aa14f7e54ff1db7abf2469683568c33">necbaas::NbService::ExecuteFileDownload</a></div><div class="ttdeci">NbResult&lt; NbHttpResponse &gt; ExecuteFileDownload(std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, const std::string &amp;file_path, int timeout)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a890750231aba822b0da46d6be745ad8c"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a890750231aba822b0da46d6be745ad8c">necbaas::NbService::GetProxy</a></div><div class="ttdeci">const std::string &amp; GetProxy() const </div><div class="ttdoc">Proxy URL取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_ae576ff3bb0b9d0c33ce79b768222741b"><div class="ttname"><a href="classnecbaas_1_1NbService.html#ae576ff3bb0b9d0c33ce79b768222741b">necbaas::NbService::GetEndpointUrl</a></div><div class="ttdeci">const std::string &amp; GetEndpointUrl() const </div><div class="ttdoc">Endpoint URI 取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a219b275bcc16cee1bdc73e4205d24c8b"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a219b275bcc16cee1bdc73e4205d24c8b">necbaas::NbService::ExecuteFileUpload</a></div><div class="ttdeci">NbResult&lt; NbHttpResponse &gt; ExecuteFileUpload(std::function&lt; NbHttpRequest(NbHttpRequestFactory &amp;)&gt; create_request, const std::string &amp;file_path, int timeout)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a7b6e908916912770ade342c977635743"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a7b6e908916912770ade342c977635743">necbaas::NbService::GetHttpRequestFactory</a></div><div class="ttdeci">NbHttpRequestFactory GetHttpRequestFactory()</div><div class="ttdoc">HTTPリクエストファクトリ取得. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a841fb7af9cf33baabc499b9865cb8aad"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a841fb7af9cf33baabc499b9865cb8aad">necbaas::NbService::SetSessionToken</a></div><div class="ttdeci">virtual void SetSessionToken(const NbSessionToken &amp;token)</div><div class="ttdoc">[内部処理用] </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_abf62410da7df2f6456ec253716e83884"><div class="ttname"><a href="classnecbaas_1_1NbService.html#abf62410da7df2f6456ec253716e83884">necbaas::NbService::SetErrorLogEnabled</a></div><div class="ttdeci">static void SetErrorLogEnabled(bool flag)</div><div class="ttdoc">ロギング設定（エラーログ）. </div></div>
+<div class="ttc" id="classnecbaas_1_1NbService_html_a4a30c78f1d353b6848d48d34543ba693"><div class="ttname"><a href="classnecbaas_1_1NbService.html#a4a30c78f1d353b6848d48d34543ba693">necbaas::NbService::GetAppId</a></div><div class="ttdeci">const std::string &amp; GetAppId() const </div><div class="ttdoc">アプリケーションID取得. </div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

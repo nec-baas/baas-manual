@@ -1,0 +1,6 @@
+はじめに
+========
+
+本文書は、モバイルバックエンド基盤 REST API (API Gateway/Cloud Functions編)のリファレンスである。
+
+本文書では API Gateway/Cloud Functions関連各機能毎の REST API の具体的な仕様について定める。

@@ -1,0 +1,46 @@
+.. _object_read:
+
+オブジェクトの読み込み
+=======================
+
+.. http:get:: /1/(tenantId)/objects/(bucketName)/(objectId)
+
+    オブジェクトを取得する。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+
+    :parameter string bucketName: バケット名
+    :parameter string objectId: オブジェクトID
+
+    :query string deleteMark: 1を指定すると削除マークされたデータを読み込む
+
+    :statuscode 200: 正常終了
+    :statuscode 400: パラメータ・リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: バケットが存在しない
+
+    **レスポンスボディ**
+
+    取得したオブジェクトが JSON 形式で返却される。
+
+    deleteMark パラメータに 1 を指定した場合、削除マークされたデータも読み込まれる。
+    削除マークされたデータは、以下のように "_deleted" フィールドに true が設定されている。
+
+    .. code-block:: json
+
+        {
+          "_id": "521c36d4ac521e1ffa000007",
+          "name": "Foo",
+          "ACL": {
+            "owner": "xxxxx",
+            "r": ["g:authenticated"],
+            "w": ["g:authenticated"],
+          },
+          "createdAt": "2013-08-27T05:19:16.000Z",
+          "updatedAt": "2013-08-27T05:19:16.000Z",
+          "etag": "8c92c97e-01a7-11e4-9598-53792c688d1b",
+          "_deleted": true
+        }

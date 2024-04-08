@@ -1,0 +1,216 @@
+========================
+Pushを受信するための実装
+========================
+
+.. include:: ../../common/linkdef.rst
+
+BaaS を使用してFCM を受信するサンプル・アプリケーションを `GitHub <https://github.com/nec-baas/fcm-sample-android>`_ にて公開しています。
+
+また、FCM の `Firebase Cloud Messaging`_  も参考にしてください。
+
+Firebase および FCM SDK の設定
+==============================
+
+Firebase を Android プロジェクトに追加してください。
+
+手順は `Android プロジェクトに Firebase を追加する`_
+を参照してください。
+
+具体的には以下の手順が必要になります。
+
+* Firebase console で Firebase プロジェクトを作成します。
+* console 上で Android アプリに Firebase を追加します。
+* google-services.json ファイルをダウンロードし、プロジェクトのモジュールフォルダに追加します。
+* ルートレベルの build.gradle を変更し、dependencies に google-services を追加します。
+* モジュールの build.gradle を変更し、google-services プラグインを有効化します。
+
+FCM SDK の設定
+===============
+
+FCM のライブラリ依存関係を追加します。
+
+build.gradle に以下の dependency を追加します。
+使用するバージョンについては FCM のサイトを確認してください。
+
+.. code-block:: groovy
+
+    dependencies {
+        compile 'com.google.firebase:firebase-messaging:10.0.1'
+    }
+
+Android Manifest の設定
+========================
+
+Android Manifest を開き、以下の設定を行って下さい。
+
+Service の追加
+--------------
+
+Service を２つ追加します。
+application タグ内に以下を追加します。
+
+ここで指定している FCMInstanceIdService および FCMListenerService は後ほど実装します。
+（名称は適宜変更して構いません)
+
+.. code-block:: xml
+
+        <service android:name=".MyInstanceIDListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!-- FirebaseMessagingService -->
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+.. _fcm_register_token:
+
+Registration Token の受信・保存とモバイルバックエンド基盤サーバへの登録
+========================================================================
+
+アプリを初回インストール・実行したタイミングで Registration Token が通知されますので、
+これを保存します。
+
+Registration Token は FirebaseInstanceIdService を継承したサービスで受信します。
+ここでは MyInstanceIDListenerService という名前でサービスを実装します。
+
+.. code-block:: java
+
+ public class MyInstanceIDListenerService extends FirebaseInstanceIdService {
+     private static final String TAG = MyInstanceIDListenerService.class.getSimpleName();
+     private static final String CHANNEL = "demo";
+
+     @Override
+     public void onTokenRefresh() {
+         // Token を受け取る
+         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+         Log.d(TAG, "Refreshed token: " + refreshedToken);
+
+         registerInstallation(refreshedToken);
+     }
+
+     // BaaS サーバへインスタレーションを登録する
+     public static synchronized void registerInstallation(String refreshedToken) {
+         NbFcmPushInstallation installation = NbFcmPushInstallation.getCurrentInstallation();
+
+         // Token をインスタレーションに保存
+         installation.saveRegistrationToken(refreshedToken);
+
+         // チャネル設定
+         Set<String> channels = new HashSet<>();
+         channels.add(CHANNEL);
+         installation.setChannels(channels);
+
+         // 送信可能ユーザ・グループ設定
+         // ここでは誰からのPush通知も受け付ける
+         Set<String> allowedSenders = new HashSet<>();
+         allowedSenders.add("g:anonymous");
+         installation.setAllowedSenders(allowedSenders);
+
+         // インスタレーションを BaaS サーバへ登録する
+         installation.save(new NbFcmPushInstallationCallback() {
+             @Override
+             public void onSuccess(NbFcmPushInstallation nbGCMPushInstallation) {
+                 Log.i(TAG, "save succeeded.");
+             }
+
+             @Override
+             public void onFailure(int status, NbErrorInfo nbErrorInfo) {
+                 Log.e(TAG, nbErrorInfo.getReason());
+             }
+         });
+     }
+ }
+
+Token を受け取ると onTokenRefresh() が呼ばれますので、ここで Token を取り出します。
+
+ついで、モバイルバックエンド基盤サーバに Registration Token を登録します。
+インスタレーションに Registration Token、チャネルや送信可能ユーザ・グループをセットした上で
+``save`` を実施してください。これにより、モバイルバックエンド基盤サーバへの登録が実行されます。
+
+
+ユーザの紐付け
+==============
+
+インスタレーションは、インスタレーション保存のタイミングでログイン中だったユーザに紐付けられます。
+
+紐付けを変更したい場合は、ログイン操作・ログアウト操作の完了時に、
+あらためてインスタレーションの保存処理を行う必要があります。
+
+Messaging Service の実装
+=========================
+
+メッセージを受信するための Messaging Service を実装します。
+FirebaseMessagingService を継承します。
+
+FCM Push を受け取ると、onMessageReceived() が呼び出されます。
+
+以下のコードはサンプルです。適宜修正してください。
+このサンプルでは、受信したメッセージを Notification を使って
+ステータスバー領域に通知するようにしています。
+
+.. code-block:: java
+
+  public class MyFirebaseMessagingService extends FirebaseMessagingService {
+      private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
+
+      @Override
+      public void onMessageReceived(RemoteMessage message) {
+          // データ取り出し
+          Map<String, String> data = message.getData();
+          showNotification(data);
+      }
+
+      // Notification を表示する
+      private void showNotification(Map<String, String> data) {
+         String title = data.get("title");
+         String message = data.get("message");
+         String uri = data.get("uri");
+
+         new Notification.Builder(this);
+         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+         builder.setWhen(System.currentTimeMillis())
+                 .setTicker(title)
+                 .setContentTitle(title)
+                 .setContentText(message)
+                 .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE)
+                 .setSmallIcon(R.mipmap.ic_launcher);
+
+         if (Build.VERSION.SDK_INT > 20) {
+             // Lollipop 以降。Heads Up Notification を使用。
+             builder.setCategory(Notification.CATEGORY_SERVICE)
+                     .setPriority(Notification.PRIORITY_HIGH);
+         }
+
+         Notification notification = builder.build();
+
+         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+         manager.notify(0, notification);
+     }
+ }
+
+Push 通知データは RemoteMessage の getData() で取得します。データの内容は以下のとおりです。
+
+* title : タイトル
+* message : メッセージ本文
+* uri : URI
+
+.. note::
+
+   FCM Push メッセージのペイロードには「通知(Notification)」と「データ(Data)」
+   の二種類がありますが、モバイルバックエンド基盤でサポートしているのは「データ」
+   のみとなります。
+   詳細は `高度なメッセージングオプション`_ を参照してください。
+
+備考: クライアントアプリケーションからのPush送信
+================================================
+
+クライアントアプリケーションから，Pushを送信できます．
+
+詳細は， :ref:`send_push_java` を参照してください．
+
+

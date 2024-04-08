@@ -1,0 +1,57 @@
+.. _developer_update:
+
+管理者情報更新
+==============
+
+.. http:put:: /1/_sysadm/_/developers/(developerId)
+
+    管理者を登録する
+
+    :reqheader X-Developer-Token: 管理者用セッショントークン（必須）
+    :reqheader Content-Type: application/json, application/yaml のいずれか
+
+    :parameter string developerId: 管理者ID
+
+    :<json string developer.name: 名前（必須）
+    :<json string developer.email: E-Mail（必須）
+    :<json string developer.password: パスワード（必須）
+    :<json string developer.oldPassword: 変更前パスワード(オプション)
+    :<json boolean developer.forceChangePassword: 次回ログイン時パスワード強制変更フラグ（オプション）
+    :<json boolean developer.isSysAdmin: システム管理者の有効フラグ（オプション）
+
+    :statuscode 200: 正常に更新した
+    :statuscode 400: リクエストボディ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: 該当管理者ユーザが存在しない
+    :statuscode 409: 該当E-mailが存在している。
+    :statuscode 415: Content-Type 不正
+
+    **リクエスト**
+
+    JSON もしくは YAML 形式で記述された更新データ。
+
+    システム管理者権限以外でパスワード変更する場合は oldPassword の指定必須。
+
+    YAML形式による管理者ユーザフラグを更新するリクエストの例を以下に示す。
+
+    .. code-block:: yaml
+
+        developer:
+          isSysAdmin: true
+
+    **レスポンス**
+
+    更新した管理者情報を含む JSON データ。
+
+    形式は :ref:`developer_create` レスポンスと同様。
+
+    **注意事項**
+
+    * システム管理者権限以外では、ログイン管理者の情報のみ更新可能。
+    * 以下のフィールドはシステム管理者権限でのみ更新可能。
+
+      - forceChangePassword
+      - isSysAdmin
+    * "_id" は更新不可。
+    * システム管理者権限以外でパスワードを変更する場合は、リクエストボディに変更前パスワード“oldPassword”が必要。

@@ -1,0 +1,269 @@
+============================
+API/ファンクション定義の登録
+============================
+
+作成したコードをカスタムAPIから呼び出すためには、API定義とファンクション定義の登録が必要です。
+
+.. index::
+   single: API定義
+   single: Swagger
+
+API定義の作成
+=============
+
+カスタム API 定義は Swagger 定義ファイルとして作成します。
+Swagger 定義ファイルは YAML または JSON ファイルとして作成します。
+
+hello-api.yaml という名前で以下の内容のファイルを作成してください。
+
+.. code-block:: yaml
+
+    swagger: '2.0'
+    basePath: /hello
+    produces:
+      - application/json
+    paths:
+      /sayHello:
+        get:
+          operationId: sayHello
+          summary: Hello world
+
+basePath に指定された "hello" が API の識別子(API名)となります。
+
+API内に任意の個数のオペレーションを定義することができます。
+ここでは /sayHello サブパスに対して GET メソッドの API を定義しています。
+
+operationId には、後述するファンクション名を指定する必要があります。
+
+.. attention::
+
+   basePath や path に指定するパス文字列について、いくつかの制約事項があります。
+   詳細は :ref:`path_string_restrictions` を参照してください。
+
+URI へのマッピング
+------------------
+
+BaaS サーバに対する実際の URI は以下のような対応となります。
+/api/1/{tenantId}/api までは固定となっており、これ以下の階層を API 名と
+サブパスで定義できます。
+
+::
+
+    http://{servername}/api/1/{tenantId}/api/{apiname}/{subpath}
+
+
+上記例の sayHello の場合は、以下の REST API に対応します。
+
+.. code-block:: text
+
+    GET http://{servername}/api/1/{tenantId}/api/hello/sayHello
+
+.. note::
+
+  APサーバ側で context path を変更している場合は、
+  先頭の /api 部分が異なりますので、適宜読み替えてください。
+
+basePath に関する注意事項
+-------------------------
+
+basePath の値は、CLI から API 定義をサーバに登録するときにのみ参照されます。
+具体的には basePath の末端部分の名称が API 名としてサーバに登録されます。
+(それより前の部分は何を記述しても無視されます)
+
+したがって、以下の basePath はすべて　API 名 "hello" として認識します。
+
+* /hello
+* /api/hello
+* /api/1/tenant1/api/hello
+
+.. attention::
+
+  サーバに登録後は、basePath は一切参照されません。
+  URI は API名とサブパスのみから決定されます。
+
+Swagger 定義と BaaS サーバの URI を完全に一致させたい場合は、
+host に BaaS サーバのホスト名を、
+basePath に "/api/1/{*tenantId*}/api/{*apiname*}" を指定してください。
+
+パステンプレート
+----------------
+
+サブパスには、Swagger 仕様で定められるパステンプレートが使用できます。
+パステンプレートは '{', '}' で記述します。
+
+たとえば、サブパスに '/products/{id}' と記述すると、'/products/a' や
+'/products/b' などのリクエストにもマッチします。
+
+テンプレートにマッチした部分の値は、パスパラメータとして clientContext に
+に引き渡され、ユーザコードから参照することができます。
+
+clientContext については :ref:`clientContext(Node.js) <clientContextNode>`
+または :ref:`clientContext(Java) <clientContextJava>` を参照してください。
+
+.. _path_string_restrictions:
+
+パス使用可能文字列の制約
+-------------------------
+
+basePath 末尾の API 名については、使用できる文字列に制限があります。
+
+* 1文字目は1バイト英数字とアンダースコアのみが使用可能。
+* 2文字目以降はこれに加えてハイフンが使用可能。
+* API名は1文字以上です。
+
+サブパスについては、'/' で区切られるそれぞれのパス要素について以下の制約があります。
+
+* 各パス要素は固定文字列もしくはパステンプレートにします。
+* パステンプレートはパラメータ名を '{', '}' を囲んだものです。
+* 固定文字列、パラメータ名はともに、1文字目は1バイト英数字とアンダースコアのみが使用可能、2文字目以降はこれに加えてハイフンとピリオドが使用可能です。
+* パステンプレートの前後に文字を追加することはできません。
+
+なお、サブパスは必ず '/' で開始しなければならず、末尾は '/' であってはなりません。
+ただし、例外的に '/' 1文字は許可されます。
+
+サブパスの例をいくつか示します。
+
+============= ======  ==========================
+パス          判定    備考
+============= ======  ==========================
+/             OK
+/a            OK
+/a/b/c        OK
+/a/{b.c}/_d   OK
+a/b           NG      先頭が '/' でない
+/a/b/         NG      末尾が '/' になっている
+/a+b          NG      使用禁止文字
+/.a           NG      先頭にピリオドは使用不可
+/-a           NG      先頭にハイフンは使用不可
+/a/{b         NG      パステンプレートが不正
+/a/b{c}       NG      パステンプレートが不正
+============= ======  ==========================
+
+.. _create_function_def:
+
+ファンクション定義の作成
+========================
+
+ファンクションは、カスタム API とコードのひも付け定義です。
+ファンクションも YAML または JSON で記述します。
+
+hello-function.yml という名前でファイルを作成してください。
+
+Node.js の場合:
+
+.. code-block:: yaml
+
+  # ファンクション名
+  sayHello:
+    # コード指定
+    code:
+      bucket: CUSTOM_CODE
+      file: hello-1.0.0.tgz
+
+    # ハンドラ名
+    handler: sayHello
+
+    # 実行環境
+    env:
+      spec: node
+      timeout: 600
+      memorySize: 256
+
+Java の場合:
+
+.. code-block:: yaml
+
+  # ファンクション名
+  sayHello:
+    # コード指定
+    code:
+      bucket: CUSTOM_CODE
+      file: hello-1.0.0.tgz
+    # ハンドラ名
+    handler: com.example.Hello::sayHello
+    # 実行環境
+    env:
+      spec: java
+      timeout: 600
+      memorySize: 512
+
+"sayHello" がファンクション名となります。これは上述した API 定義内の operationId
+と合わせる必要があります。
+
+.. attention::
+
+   ファンクション名に指定できるのは1バイト英数字と '_' のみです。
+   記号は使用できません。
+
+* code : 実行するコードを指定します。値は、前節で登録したコードに合わせます。
+
+  - bucket : コードを格納したファイルバケット名
+  - file : コードのファイル名。Node.js の場合はファイルの拡張子は "tgz"、Java の場合は "tgz"。
+
+* handler: 実行するハンドラ名を指定します
+
+  - Node.js の場合は、export したハンドラ名を記述します。
+  - Java の場合は、"パッケージ名.クラス名::メソッド名" を記述します。
+
+* env : コードを実行するときの環境を指定します
+
+  - spec : 実行環境のスペック名
+  - timeout : リクエストタイムアウト(秒)
+  - memorySize : Dockerコンテナに割り当てるメモリサイズ(MB) (Dockerレス構成時は無効)
+
+スペック名はコードを実行する環境のスペックを一意に識別するもので、
+起動する Docker コンテナ名やサーバプログラムの格納位置などの指定に使用されます。
+スペック名は Cloud Functions サーバ側で設定した名称に合わせてください。
+
+* Node.js の場合は、"node" がデフォルトです。
+* Java の場合は、"java" がデフォルトです。
+
+スペックの詳細は `Cloud Functionsサーバ 利用手順書 <../../../server/ja/cloudfunctions-server/index.html>`_ の「設定」の章を参照してください。
+
+.. attention::
+
+  ver 7.5 より、スペックのデフォルト値が "node6"/"java8" から "node"/"java" と
+  バージョン番号を指定しない形式に変更になりました。本形式はサーバにインストールされて
+  いる最新版を指すようになっています。
+
+  従来のバージョン番号を指定する形式も引き続き利用可能です。
+  利用可能な設定値は Cloud Functions サーバの設定値に依存します。
+
+.. attention::
+
+  memorySize は Docker レス構成時は無効です。
+
+  また、memorySize は Docker コンテナに割り当てられるメモリサイズですので、
+  Node.js や Java VM の起動時オプションで指定するメモリサイズ指定とは関係ありません。
+
+  起動時オプションを変更したい場合は、サーバマネージャ設定ファイル内のコマンドライン指定を変更する必要があります。
+  詳細は、`Cloud Functionsサーバ 利用手順書 <../../../server/ja/cloudfunctions-server/index.html>`_
+  の「サーバーマネージャ設定ファイル」を参照ください。
+
+API定義とファンクション定義の登録
+=================================
+
+以下手順で API 定義とファンクション定義をサーバに登録します。
+
+CLIを使用する場合
+-----------------
+
+.. code-block:: bash
+
+    $ nebula create-api hello-api.yml
+    $ nebula create-function hello-function.yml
+
+API・ファンクションの一覧はそれぞれ "nebula list-apis", "nebula export-functions" で確認できます。
+
+API・ファンクションを削除したい場合はそれぞれ "nebula delete-api <API名>", "nebula delete-function <function名>" です。 
+
+デベロッパーコンソールを使用する場合
+------------------------------------
+
+ブラウザを使用してデベロッパーコンソールから API定義、ファンクション定義を登録することも可能です。
+
+デベロッパーコンソールにログイン後、画面左メニューの「API Gateway」、「Cloud Functions」⇒「Functions」から、それぞれ API定義、ファンクション定義の管理画面に入ることができます。
+
+「追加」ボタンを押して、定義を登録します。定義ファイルの内容を画面上でコピー・ペーストで入力することで定義を投入できます。
+
+

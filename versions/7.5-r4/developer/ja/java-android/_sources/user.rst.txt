@@ -1,0 +1,158 @@
+============
+ユーザ管理
+============
+
+ここではユーザ管理機能の利用方法について説明します。
+
+サインアップ
+=============
+
+ユーザを新規登録します。
+
+.. code-block:: java
+
+    NbUser user = new NbUser();
+
+    // ユーザ名とE-mail アドレスを設定
+    user.setUsername(username);
+    user.setEmail(email);
+
+    // サインアップ実行
+    user.register(password, new NbCallback<NbUser>() {
+        @Override
+        public void onSuccess(NbUser user) {
+            Log.d(TAG, "User registered");
+        }
+        @Override
+        public void onFailure(int status, NbErrorInfo errorInfo) {
+            Log.d(TAG, "Failed : " + status);
+        }
+    });
+
+まずはじめに NbUser のインスタンスを取得します。
+
+つぎに、username と email を設定し、register() を呼び出してサインアップを行います。
+username はオプションですが、email は必須となります。
+
+ログイン
+=========
+
+ログインには NbUser の login() を使用します。
+
+.. code-block:: java
+
+    // ログイン処理
+    NbUser.LoginParam param = new NbUser.LoginParam().email(email).password(password);
+    NbUser.login(param, new NbCallback<NbUser>() {
+        @Override
+        public void onSuccess(NbUser user_login) {
+            ...
+        }
+        @Override
+        public void onFailure(int status, NbErrorInfo errorInfo) {
+            ...
+        }
+    });
+
+LoginParam にはユーザ名、E-mailアドレスのいずれ一方と、パスワードを設定します。
+
+ログインが完了すると、ログイン状態(セッショントークン)がストレージに保存されます。
+
+.. note::
+
+   セッショントークンには有効期限があります。
+   有効期限が切れると、自動的に未ログイン状態となります。
+   セッショントークンの有効時間はデベロッパコンソールで変更可能です（デフォルトは24時間)。
+
+ログイン状態の取得
+==================
+
+ユーザがログイン状態かどうかは isLoggedIn() で確認できます。
+
+.. code-block:: java
+
+   if (NbUser.isLoggedIn()) {
+       // ログイン中
+   }
+
+.. note::
+
+   セッショントークンが有効期限切れの場合は false が返ります。
+   後述するオフライン機能を使用している場合は、ログインキャッシュの有効時間の影響も受けます。
+
+ログアウト
+===========
+
+ログアウトは logout() で行います。
+
+.. code-block:: java
+
+    NbUser.logout(new NbCallback<NbUser>() {
+        @Override
+        public void onSuccess(NbUser user) {
+            ...
+        }
+
+        @Override
+        public void onFailure(int status, NbErrorInfo errorInfo) {
+            ...
+        }
+    });
+
+パスワードリセット
+==================
+
+パスワードリセットは resetPassword() で行います。
+username と email はいずれか一方のみを指定します（もう一方は null)。
+
+.. code-block:: java
+
+    NbUser().resetPassword(username, email, NbResultCallback() {
+        @Override
+        public void onSuccess() {
+            ...
+        }
+
+        @Override
+        public void onFailure(int status, NbErrorInfo errorInfo) {
+            ...
+        }
+    });
+
+
+クライアント証明書認証
+=======================
+
+クライアント証明書認証を使用すると、ユーザはログインを明示的に行わずに、認証済みユーザとして各種APIを使用することができます。
+
+サービス生成前に、NbService.setClientCertificate() で証明書の設定を行います。
+引数にクライアント証明書(PKCS#12形式)、証明書のパスフレーズを指定します。
+
+.. code-block:: java
+
+    InputStream certificate;
+    try {
+        certificate = new FileInputStream(CLIENT_CERT_FILE);
+        NbService.setClientCertificate(certificate, PASSWORD, null);
+    } catch (Exception e) {
+        // error
+    } finally {
+        // close stream
+    }
+
+.. note::
+    サーバ側でログインの状態を管理するため、login(),logout(),isLoggedIn()などは使用しません。
+
+    自ユーザ情報の取得が必要な場合、NbUser.refreshCurrentUser()を使用してサーバに問い合わせを行います。
+
+.. note::
+    クライアント証明書認証を使用するためには、事前にサーバの環境構築、設定が必要となります。
+
+    詳細は `クライアント証明書認証 <../auth/clientcert/index.html>`_ を参照してください。
+
+    また、Tomcatで直接認証を行う場合、クライアント証明書の期限切れ等の問題があると
+    TLSのセッション確立ができません。
+    クライアントは通信失敗として扱い、ステータスコード500のエラーが返却されます。
+
+    クライアント証明書を使用した場合にのみ通信ができない場合、サーバの設定とあわせ、証明書に問題が無いかご確認下さい。
+

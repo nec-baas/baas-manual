@@ -1,0 +1,58 @@
+===========
+はじめに
+===========
+
+.. include:: ../common/linkdef.rst
+
+本マニュアルでは、Android ネイティブアプリケーション向けの
+チュートリアルを提示します。
+
+チュートリアルのソースコード
+============================
+
+チュートリアルのソースコード一式は Github で配布していますので、
+こちらから入手してください。
+
+URL は https://github.com/nec-baas/baas-tutorials-android です。
+
+ビルドに必要な環境
+==================
+
+Android の開発環境(Android Studio / Android SDK)が必要になります。
+
+詳細は `Android Studio / Android SDK`_ のサイトを参照してください。
+
+また、SDK のインストール時には、以下のコンポーネントのインストールが必要になります。
+
+* Android SDK Tools
+* Android SDK Platform-tools
+* Android SDK Build tools (最新のもの)
+* SDK Platform v22
+* Android Support Repository
+* Google Repository
+
+Android Studio へのインポート手順
+=================================
+
+Android Studio を起動し、File → Import Project を選択し、各チュートリアルの
+ディレクトリを指定してインポートしてください。
+
+Gradle proxy 設定
+=================
+
+Proxy が必要な環境で開発を行う場合は、Gradle の Proxy 設定が必要になります。
+
+各プロジェクトの　gradle/gradle.properties もしくは ~/.gradle
+(Windows の場合は c:\Users\[ユーザ名]\.gradle) ディレクトリ内に gradle.properties
+ファイルを作成し、以下の内容で Proxy の設定を記述してください。
+
+::
+
+    systemProp.http.proxyHost=[Proxyホスト名]
+    systemProp.http.proxyPort=[Proxyポート番号]
+    systemProp.https.proxyHost=[Proxyホスト名]
+    systemProp.https.proxyPort=[Proxyポート番号]
+
+詳細は `Configure Android Studio`_ の "Android Plugin for Gradle HTTP proxy settings" を参照してください。
+
+

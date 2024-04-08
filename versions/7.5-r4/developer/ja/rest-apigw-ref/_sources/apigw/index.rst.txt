@@ -1,0 +1,10 @@
+.. _apigw:
+
+============
+API Gateway
+============
+
+.. toctree::
+   :maxdepth: 1
+
+   apigw

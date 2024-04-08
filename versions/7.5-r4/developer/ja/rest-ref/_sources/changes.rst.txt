@@ -1,0 +1,99 @@
+========
+改版履歴
+========
+
+ver 7.5.0 : 2018/10/11
+----------------------
+
+* フォーマットを PDF から HTML に変更
+* :ref:`basic_auth` 追加
+* :ref:`object_storage`
+
+  - フィールド暗号化機能追加
+
+    - :ref:`json_property_names` - _projected フィールド追加
+    - :ref:`object_query`: _protected フィールド追加
+    - :ref:`object_update`
+    - :ref:`object_batch`
+    - :ref:`object_aggregate`
+    - :ref:`push`
+
+      - :ref:`push_upsert`
+
+  - MongoDB トランザクション機能対応
+
+    - :ref:`object_batch`: トランザクション機能を追加
+* :ref:`file_storage`
+
+  - Range 指定による部分ダウンロード対応
+
+    - :ref:`file_download`
+    - :ref:`file_download_published`
+* :ref:`bucket`
+
+  - ACLレスバケット機能(noAcl)追加
+  - インデックスキー・シャードキー更新APIを追加
+* :ref:`user`
+
+  - :ref:`user_signup`: ID指定による登録をサポート
+  - :ref:`user_batch` 追加
+  - ユーザ無効化機能追加
+
+    - 全レスポンスに、有効フラグフィールド("enabled")を追加
+    - 無効化機能の仕様を追記
+
+      - :ref:`user_login`
+      - :ref:`user_update`
+      - :ref:`user_find`
+  - :ref:`user_update`: パスワード変更時に該当ユーザの全セッショントークンを無効化
+* :ref:`admin_apistats`
+
+  - tenantId パス/クエリパラメータ重複してもエラーとしない
+
+* :ref:`events` 追加
+
+ver 7.0.2: 2017/12/26
+----------------------
+
+* オブジェクトの集計(Aggregation) API を追加
+* MongoDB Extended JSON について追記
+
+ver 7.0.1: 2017/10/19
+----------------------
+
+* エラー通知: ステータスコード503の要因にライセンス違反を追加
+* バケットの作成・更新のレスポンスコード403にバケット数制限超過を追加
+* 以下APIのレスポンスコードに413 Request Entity Too Large ステータスコードを追加
+
+  - オブジェクトの作成 (Create)
+  - オブジェクトの更新
+  - ファイルの新規アップロード
+  - ファイルの更新アップロード
+* バッチオペレーションの実行結果にrequestEntityTooLargeを追加
+
+ver 7.0.0: 2017/9/28
+---------------------
+
+* API統計情報取得 API追加
+
+ver 6.5.0: 2017/9/27
+---------------------
+
+* クライアント証明書認証対応
+* OpenID Connect認証対応
+
+  - UserにprimaryLinkedUserIdフィールドを追加
+  - OpenID Connect認証開始 API 追加
+  - リンク情報取得API追加
+  - リンク情報削除API追加
+  - ユーザ: サインアップの注意事項追記
+  - ユーザ: ログインの補足・注意事項追記
+* ファイルストレージ
+
+  - ユーザ定義メタ情報の付与
+* グループ管理
+
+  - グループ名に使用できる文字から '/' を除外
+
+
+

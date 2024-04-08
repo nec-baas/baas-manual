@@ -1,0 +1,62 @@
+.. _use_nebula_nodejs:
+
+================================================
+ユーザコードからのモバイルバックエンド基盤の利用
+================================================
+
+モバイルバックエンド基盤の呼び出し
+===================================
+
+ユーザコードからモバイルバックエンド基盤の機能を呼び出すことができます。
+
+ハンドラの第二引数 context の Nebula プロパティに、
+JavaScript SDK の初期化済みモバイルバックエンド基盤ハンドルが格納されていますので、
+これを使用してモバイルバックエンド基盤を呼び出します。
+
+以下、例を示します。この例は単純にオブジェクトストレージを全件検索して
+その結果を返すものです。
+
+.. code-block:: javascript
+
+    exports.queryObjectStorage = (event, context) => {
+        const Nebula = context.Nebula;
+
+        const bucket = new Nebula.ObjectBucket("bucket1");
+        bucket.query(new Nebula.ObjectQuery())
+            .then((objects) => {
+                context.succeed({results: objects});
+            })
+            .catch((error) => {
+                context.fail(error);
+            });
+    }
+
+.. attention::
+
+   context.Nebula に設定されるアプリケーションキーは、
+   API Gateway クライアントから指定される X-Application-Key の値にかかわらず
+   (マスターキーではない)通常のアプリケーションキーとなります。
+   マスターキーを使用したい場合は、以下「マスターキーの強制使用」を参照してください。
+
+ユーザ認証・ACL
+===============
+
+上記の Nebula プロパティには、カスタム API 呼び出し時のユーザ情報（セッショントークン)が格納されています。
+
+このため、上記のコード実行時にはカスタム API 呼び出しユーザと同じアクセス制御が適用されます。
+
+認証の詳細については :ref:`auth` を参照してください。
+
+マスターキーの強制使用
+======================
+
+カスタム API 呼び出し時のユーザ情報を使わず、強制的にマスターキーを使用するように実装することもできます。
+これを行う場合は、API呼び出し前に以下のようにします。
+
+.. code-block:: javascript
+
+    context.Nebula.setAppKey(context.clientContext.nebula.masterKey);
+
+context.clientContext.nebula.masterKey にはマスターキーの情報が入っています。
+Nebula.setAppKey() を呼び出すことでキーを強制的にマスターキーに変更して実行します。
+

@@ -1,0 +1,7087 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Class: ObjectBucket</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AclGroup.html">AclGroup</a></li><li><a href="AclPermission.html">AclPermission</a></li><li><a href="Nebula.html">Nebula</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AccountLink.html">AccountLink</a></li><li><a href="Acl.html">Acl</a></li><li><a href="BatchRequest.html">BatchRequest</a></li><li><a href="Clause.html">Clause</a></li><li><a href="CustomApi.html">CustomApi</a></li><li><a href="FileBucket.html">FileBucket</a></li><li><a href="FileMetadata.html">FileMetadata</a></li><li><a href="Group.html">Group</a></li><li><a href="HttpRequest.html">HttpRequest</a></li><li><a href="NebulaService.html">NebulaService</a></li><li><a href="ObjectBucket.html">ObjectBucket</a></li><li><a href="ObjectQuery.html">ObjectQuery</a></li><li><a href="PushSender.html">PushSender</a></li><li><a href="PushSender.ApnsFields.html">PushSender.ApnsFields</a></li><li><a href="PushSender.GcmFields.html">PushSender.GcmFields</a></li><li><a href="PushSender.SseFields.html">PushSender.SseFields</a></li><li><a href="User.html">User</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html">Global</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: ObjectBucket</h1>
+<section>
+
+<header>
+    
+        <h2>
+        ObjectBucket
+        </h2>
+        
+            <div class="class-description"><p>オブジェクトバケット</p></div>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="ObjectBucket"><span class="type-signature"></span>new ObjectBucket(name, mode)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ObjectBucket インスタンスを生成する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>バケットの名前</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>バケットモード。</p>
+<p><p>
+バケットモードには、以下のいずれかを指定する。</p>
+<p><ul>
+  <li>Nebula.BUCKET_MODE_ONLINE ： オンラインモード
+  <li>Nebula.BUCKET_MODE_REPLICA： レプリカモード
+  <li>Nebula.BUCKET_MODE_LOCAL ： ローカルモード
+</ul>
+modeを省略した場合や上記以外が指定された場合は、オンラインモードとして処理する。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;bucket1&quot;);</pre>
+
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id=".CONFLICT_POLICY_CLIENT">
+    <h4 id=".CONFLICT_POLICY_CLIENT"><span class="type-signature">&lt;static, constant> </span>CONFLICT_POLICY_CLIENT<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>衝突解決ポリシ: クライアント優先</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".CONFLICT_POLICY_MANUAL">
+    <h4 id=".CONFLICT_POLICY_MANUAL"><span class="type-signature">&lt;static, constant> </span>CONFLICT_POLICY_MANUAL<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>衝突解決ポリシ: 手動解決(ユーザ通知)</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".CONFLICT_POLICY_SERVER">
+    <h4 id=".CONFLICT_POLICY_SERVER"><span class="type-signature">&lt;static, constant> </span>CONFLICT_POLICY_SERVER<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>衝突解決ポリシ: サーバ優先</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".SYNC_ERROR_OVERLAP_ID">
+    <h4 id=".SYNC_ERROR_OVERLAP_ID"><span class="type-signature">&lt;static, constant> </span>SYNC_ERROR_OVERLAP_ID<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>同期エラー: ID衝突</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".SYNC_ERROR_PULL">
+    <h4 id=".SYNC_ERROR_PULL"><span class="type-signature">&lt;static, constant> </span>SYNC_ERROR_PULL<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>同期エラー: PULLエラー</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".SYNC_ERROR_PUSH">
+    <h4 id=".SYNC_ERROR_PUSH"><span class="type-signature">&lt;static, constant> </span>SYNC_ERROR_PUSH<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>同期エラー: PUSHエラー</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".SYNC_ERROR_PUSH_RESYNCING">
+    <h4 id=".SYNC_ERROR_PUSH_RESYNCING"><span class="type-signature">&lt;static, constant> </span>SYNC_ERROR_PUSH_RESYNCING<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>同期エラー: PUSHエラー後、同期リトライ中</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".SYNC_ERROR_UNDEFINED">
+    <h4 id=".SYNC_ERROR_UNDEFINED"><span class="type-signature">&lt;static, constant> </span>SYNC_ERROR_UNDEFINED<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>同期エラー: その他のエラー</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id=".useLongQuery">
+    <h4 id=".useLongQuery"><span class="type-signature">&lt;static> </span>useLongQuery<span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>true に設定すると、クエリはすべて longQuery 扱いとなる。
+  デフォルトは false。</p>
+    </div>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>5.0.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".getBucketList"><span class="type-signature">&lt;static> </span>getBucketList(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットのバケット名一覧を取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(bucketList)
+            bucketList : バケットの名前の配列
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">callbacks = {
+         success: function(bucketList) {....},
+         error: function(error) {....}
+     };
+     Nebula.ObjectBucket.getBucketList(callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".getLocalBucketList"><span class="type-signature">&lt;static> </span>getLocalBucketList(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>ローカル上に保存されているオブジェクトバケットのバケット名一覧を取得する.
+     本APIはオフラインのみで利用可能</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(bucketList)
+            bucketList : バケットの名前の配列
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">callbacks = {
+         success: function(bucketList) {....},
+         error: function(error) {....}
+     };
+     Nebula.ObjectBucket.getLocalBucketList(callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".loadBucket"><span class="type-signature">&lt;static> </span>loadBucket(name, callbacks, mode)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットを取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>取得するバケットの名前</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(bucket)
+            bucket : Nebula.ObjectBucketのインスタンス
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(err)
+            err : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ,
+                 "data"          : 取得に失敗したバケットの名前(nameと同じ)
+             }
+</pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>バケットモード</p>
+<p><p>
+バケットモードには、以下のいずれかを指定する。</p>
+<p><ul>
+  <li>Nebula.BUCKET_MODE_ONLINE ： オンラインモード
+  <li>Nebula.BUCKET_MODE_REPLICA： レプリカモード
+  <li>Nebula.BUCKET_MODE_LOCAL ： ローカルモード
+</ul>
+modeを省略した場合や上記以外が指定された場合は、オンラインモードとして処理する。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。
+     ただし、modeを指定する場合は、callbacksにnullを指定すること(省略不可)</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">callbacks = {
+         success: function(bucket) {....},
+         error: function(err) {....}
+     };
+     Nebula.ObjectBucket.loadBucket(&quot;Books&quot;, callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".sync"><span class="type-signature">&lt;static> </span>sync(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>すべてのオブジェクトバケットの一括同期を実行する。(オフライン専用)
+     <p>
+     処理の進捗はsetSyncEventListener()で指定されたコールバックにて通知する。
+     各バケットごとにsetSyncScope()を使用して同期範囲を設定すること。
+     同期範囲が設定されていないバケットは、同期されない。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・callbacks は、成功時と失敗時の応答コールバックを指定する。
+  callbacks は本メソッドに対する処理結果であり、同期イベントはsetSyncEventListener()で指定されたコールバックにて通知する点に注意。
+・処理が成功した場合、success の呼び出しにて通知する。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">Nebula.ObjectBucket.sync({
+         success: function() {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="aggregate"><span class="type-signature"></span>aggregate(pipeline, options, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>集計(Aggregation)を実行する (オンライン専用)。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pipeline</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;JsonObject></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Aggregation Pipeline JSON配列</p>
+<pre>
+複数のアイテムに対して $sort を実行する場合は、以下のように単一アイテムの $sort を複数連結すること。
+$sort に複数のアイテムを記載した場合は、ソート順序が保証されない。
+[
+    { "$sort": { "item1": 1 } },
+    { "$sort": { "item2": -1 } },
+    { "$sort": { "item3": 1 } }
+]
+</pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">JsonObject</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>オプション</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>コールバック</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>7.0.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Array.&lt;JsonObject>></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+    var pipeline = [ { &quot;$lookup&quot;: { ... } }, ... ];
+    var options = {};
+    bucket.aggregate(pipeline, options)
+        .then(function(objects) {
+        ...</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="batch"><span class="type-signature"></span>batch(request, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>バッチリクエストを実行する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>request</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="BatchRequest.html">BatchRequest</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>バッチリクエスト</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>応答コールバック</p>
+<pre>
+・バッチ処理が一部でも成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(result)
+            result : バッチ応答(JSON)。応答フォーマットは REST API 仕様書を参照のこと。
+            'results'プロパティに結果が格納される。
+            これに加え、'failedCount'プロパティに処理失敗したリクエストの数が格納される。
+
+・バッチ処理全体が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(error)
+            error : エラー要因がJSON 形式で返る。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>v4.0.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// リクエスト生成
+    var req = new Nebula.BatchRequest();
+    // 追加オブジェクト設定
+    req.addInsertRequest({&quot;name&quot;: &quot;Taro Nichiden&quot;, &quot;score&quot;: 70});
+    req.addInsertRequest({&quot;name&quot;: &quot;Hanako Nichiden&quot;, &quot;score&quot;: 80});
+    // バッチリクエスト実行
+    bucket.batch(req).then(function(result) {...});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットからオブジェクトを削除する (Deprecated)<p>
+本APIは Deprecated である。<a href="ObjectBucket.html#remove">ObjectBucket#remove</a> を使用すること。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li>since v4.0.1</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="deleteBucket"><span class="type-signature"></span>deleteBucket(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットを削除する.
+     バケットを削除する場合、事前にバケット内に格納されている全データを削除しておく必要がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(bucket)
+            bucket : Nebula.ObjectBucket インスタンス
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(err)
+            err : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ,
+                 "data"          : Nebula.ObjectBucket インスタンス
+             }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;Person&quot;);
+     ....
+     callbacks = {
+         success: function(bucket) {....},
+         error: function(bucket, err) {....}
+     };
+     bucket.deleteBucket(callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getAcl"><span class="type-signature"></span>getAcl()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットのACLを取得する。
+     <p>
+     オブジェクトバケットのACLを取得するには、loadBucket()を使用してサーバのバケット情報をロードしておく必要がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>オブジェクトバケットのACL</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Acl.html">Acl</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var acl = bucket.getAcl();</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getBucketMode"><span class="type-signature"></span>getBucketMode()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>バケットモードを取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>バケットモード</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var bucketMode = bucket.getBucketMode();</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getBucketName"><span class="type-signature"></span>getBucketName()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケット名を取得する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>オブジェクトバケット名</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var bucketName = bucket.getBucketName();</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getContentAcl"><span class="type-signature"></span>getContentAcl()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットのコンテンツACLを取得する。
+     <p>オブジェクトバケットのコンテンツACLを取得するには、loadBucket()を使用してサーバのバケット情報をロードしておく必要がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>オブジェクトバケットのコンテンツACL</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Acl.html">Acl</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var acl = bucket.getAcl();</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getDescription"><span class="type-signature"></span>getDescription()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットの「説明文」を取得する。
+     <p>
+     オブジェクトバケットの「説明文」を取得するには、loadBucket()を使用してサーバのバケット情報をロードしておく必要がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>オブジェクトバケットに設定されている「説明文」</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var description = bucket.getDescription();</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getIndexFromLocal"><span class="type-signature"></span>getIndexFromLocal(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットに設定されているインデックスを取得する(オフライン専用)。
+     本APIはオフラインのみで利用可能</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(index)
+            index : インデックス情報(インデックス情報はJSON)
+・インデックス情報は以下のように格納される
+     {
+         "index": [{"name": "key1", "type": "string"}, {"name": "Key2", "type": "number"}]
+     }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;Books&quot;, Nebula.BUCKET_MODE_REPLICA);;
+     ....
+     callbacks = {
+         success: function(index) {....},
+         error: function(err) {....}
+     };
+     bucket.getIndexFromLocal(callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getLastSyncTime"><span class="type-signature"></span>getLastSyncTime(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>最終同期日時を取得する。(オフライン専用)
+     一度も同期していない場合、nullを返す。
+     本APIは、バケットモードがレプリカモードのバケットに対して呼び出すこと。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(lastSyncTime)
+            lastSyncTime : 最終同期日時。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(....);
+     ....
+     bucket.getLastSyncTime( {
+         success: function(lastSyncTime) {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getResolveConflictPolicy"><span class="type-signature"></span>getResolveConflictPolicy(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>衝突解決ポリシを取得する(オフライン専用)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(policy)
+            policy : 衝突解決ポリシ。以下のいずれかの値。
+                     Nebula.ObjectBucket.CONFLICT_POLICY_CLIENT ： クライアント優先で解決
+                     Nebula.ObjectBucket.CONFLICT_POLICY_SERVER ： サーバ優先で解決
+                     Nebula.ObjectBucket.CONFLICT_POLICY_MANUAL ： ユーザ通知
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(....);
+     ....
+     bucket.getResolveConflictPolicy( {
+         success: function(policy) {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getSyncScope"><span class="type-signature"></span>getSyncScope(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>同期範囲を取得する（オフライン専用)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(scope)
+            scope : 取得した同期範囲。Nebula.ObjectQueryのインスタンス。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;Books&quot;, Nebula.BUCKET_MODE_REPLICA);
+     bucket.getSyncScope( {
+         success: function(scope) {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="load"><span class="type-signature"></span>load(objectId, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットからオブジェクトを読み込む</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>objectId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>オブジェクトID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(object)
+            object : 読み込んだオブジェクト(JSON)
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(err)
+            err : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ
+                 "data"          : 読み込みに失敗したオブジェクトID
+             }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     callbacks = {
+         success: function(object) {....},
+         error: function(objectId, err) {....}
+     };
+     bucket.load(&quot;object_id&quot;, callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="longQuery"><span class="type-signature"></span>longQuery(aQuery, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットからオブジェクトを検索する。
+    <a href="ObjectBucket.html#query">ObjectBucket#query</a> と同じだが、クエリサイズの制限はない。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>aQuery</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ObjectQuery.html">ObjectQuery</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ObjectQuery インスタンス</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>5.0.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Promise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="longQueryWithCount"><span class="type-signature"></span>longQueryWithCount(aQuery, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットからオブジェクトを検索する(クエリ件数付き)
+    queryWithCount() と同じだが、クエリサイズの制限はない。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>aQuery</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ObjectQuery.html">ObjectQuery</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Nebula.ObjectQuery インスタンス</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>5.0.0</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>Promise</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="query"><span class="type-signature"></span>query(aQuery, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットからオブジェクトを検索する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>aQuery</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ObjectQuery.html">ObjectQuery</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Nebula.ObjectQuery インスタンス</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(objects)
+            objects : オブジェクト(JSON)の配列
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var query = new Nebula.ObjectQuery();
+     ....
+     callbacks = {
+         success: function(objects) {....},
+         error: function(err) {....}
+     };
+     bucket.query(query, callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="queryWithCount"><span class="type-signature"></span>queryWithCount(aQuery, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットからオブジェクトを検索する(クエリ件数付き)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>aQuery</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ObjectQuery.html">ObjectQuery</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ObjectQuery インスタンス</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(result)
+            result.objects : オブジェクト(JSON)の配列
+            result.count   : 検索条件に合致したオブジェクトの総数
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var query = new Nebula.ObjectQuery();
+     ....
+     callbacks = {
+         success: function(result) {....},
+         error: function(err) {....}
+     };
+     bucket.query(query, callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="remove"><span class="type-signature"></span>remove(objectId, callbacks, etag)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットからオブジェクトを削除する</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>objectId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>オブジェクトID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(objectId)
+            objectId : 削除に成功したオブジェクトID
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(err)
+            err : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ
+                 "data"          : 削除に失敗したオブジェクトID
+             }
+</pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>etag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>オブジェクトに含まれるETag値。
+     <p>
+     ETag値は、オブジェクトを新規保存した場合にサーバで追加され、
+     オブジェクトを更新する度にサーバで変更される固有値である。
+     <p>
+     ETag値は、オブジェクトの &quot;etag&quot;プロパティに格納される。
+     etagを指定すると、サーバに保存されているオブジェクトのETag値と照合される。
+     <p>
+     一致しなかった場合は、データ衝突として「409 Conflict」エラーとなり、オブジェクトは削除されない。
+     etagを指定しなかった場合、または、nullを指定した場合は、ETag値は照合されずオブジェクトは無条件で削除される。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>v4.0.1</li>
+		</ul>
+	</dd>
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     callbacks = {
+         success: function(object) {....},
+         error: function(objectId, err) {....}
+     };
+     bucket.remove(&quot;object_id&quot;, callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="removeCacheBucket"><span class="type-signature"></span>removeCacheBucket(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>キャッシュデータを削除する。(オフライン専用)
+     オフライン用データベースに保存されたバケットとバケットに保存されたオブジェクトの情報を削除する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(....);
+     ....
+     bucket.removeCacheBucket({
+         success: function() {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="resolveConflict"><span class="type-signature"></span>resolveConflict(objectId, resolve)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>衝突を解決する(オフライン専用)。
+     同期イベントの衝突通知(onSyncConflicted)で指定されたObjectBucketインスタンスに対して実行する。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>objectId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>衝突解決するオブジェクトのID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>resolve</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>衝突解決方法</p>
+<pre>
+・objectId には、衝突解決対象のオブジェクトのIDを指定する。
+・resolve には、以下のいずれかの衝突解決方法を指定する。
+     Nebula.ObjectBucket.RESOLVE_CLIENT  ： クライアント優先で解決
+     Nebula.ObjectBucket.RESOLVE_SERVER  ： サーバ優先で解決
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(....);
+     ....
+      Nebula.ObjectBucket.setSyncEventListener({
+         onSyncStart: function(targetBucket) {
+             ....
+         },
+         onSyncCompleted: function(targetBucket, objectIds) {
+             ....
+         },
+         onSyncConflicted: function(bucket, client, server) {
+             ....
+             bucket.resolveConflict(objectId, Nebula.ObjectBucket.RESOLVE_CLIENT);
+         },
+         onResolveConflict: function(resolveObject, resolve) {
+             ....
+         },
+         onSyncError: function(errorCode, errorObject) {
+             ....
+         }
+     });
+     ....
+     bucket.syncBucket({
+         success: function() {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="save"><span class="type-signature"></span>save(object, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットへオブジェクトを保存する.</p>
+<p><p>
+オブジェクトにETag値が含まれる場合、サーバに保存されているオブジェクトのETag値と照合される。
+一致しなかった場合は、データ衝突として「409 Conflict」エラーとなり、オブジェクトは更新されない。</p>
+<p><p>
+ETag値は、オブジェクトを新規保存した場合にサーバで追加され、
+オブジェクトを更新する度にサーバで変更される固有値である。
+ETag値は、オブジェクトの &quot;etag&quot;プロパティに格納される。
+オブジェクトの新規保存の場合は、etagがないため必ず保存される。</p>
+<p><p>
+すでに存在するオブジェクトを保存する場合、オブジェクトに指定したフィールドのみが更新される。
+指定しないフィールドは更新されない(フィールドは削除されずそのまま残る)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>保存するオブジェクト</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(object)
+            object : 保存に成功したオブジェクト(JSON)
+                     新規オブジェクトの場合は、以下のフィールドが追加される。
+                         _id : オブジェクトID
+                         createdAt : 作成日時
+                         updatedAt : 更新日時
+                         ACL : このオブジェクトのACL。指定しなかった場合は追加される
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(err)
+            err : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ,
+                 "data"          : 保存に失敗したオブジェクトID
+             }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     var myObj = {....};
+     ....
+     callbacks = {
+         success: function(object) {....},
+         error: function(object, err) {....}
+     };
+     bucket.save(myObj, callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="saveBucket"><span class="type-signature"></span>saveBucket(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットを保存する.
+     バケットはテナント毎に作成される。同一テナント内では同一名称のバケットを複数作成できない。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+    success の書式は以下の通りとする。
+        success(bucket)
+            bucket : Nebula.ObjectBucket インスタンス
+・処理が失敗した場合は、error の呼び出しにて通知する。
+    error の書式は以下の通りとする。
+        error(err)
+            err : エラー要因がJSON 形式で返る。
+             {
+                 "status"        : ステータスコード,
+                 "statusText"    : エラーメッセージ,
+                 "responseText"  : レスポンスメッセージ,
+                 "data"          : Nebula.ObjectBucket インスタンス
+             }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;Person&quot;);
+     ....
+     callbacks = {
+         success: function(bucket) {....},
+         error: function(bucket, err) {....}
+     };
+     bucket.saveBucket(callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setAcl"><span class="type-signature"></span>setAcl(acl)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットのACLを設定する。</p>
+<p><p>
+本メソッドを呼び出しただけでは、サーバに格納されているオブジェクトバケットは更新されない。
+サーバと同期するには、saveBucket()を呼び出す必要がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>acl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Acl.html">Acl</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Nebula.ACL のインスタンス</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="ObjectBucket.html">ObjectBucket</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     var acl = new Nebula.Acl();
+     ....
+     acl.addEntry(....);
+     ....
+     bucket.setAcl(acl);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setContentAcl"><span class="type-signature"></span>setContentAcl(acl)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットのコンテンツACLを設定する。
+     <p>本メソッドを呼び出しただけでは、サーバに格納されているオブジェクトバケットは更新されない。
+     サーバと同期するには、saveBucket()を呼び出す必要がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>acl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Acl.html">Acl</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Nebula.ACL のインスタンス</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>this</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="ObjectBucket.html">ObjectBucket</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     var acl = new Nebula.Acl();
+     ....
+     acl.addEntry(....);
+     ....
+     bucket.setContentAcl(acl);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setDescription"><span class="type-signature"></span>setDescription(description)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットに「説明文」を設定する。
+     <p>
+     本メソッドを呼び出しただけでは、サーバに格納されているオブジェクトバケットは更新されない。
+     サーバと同期するには、saveBucket()を呼び出す必要がある。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>description</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>オブジェクトバケットの「説明文」</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = ....;
+     ....
+     bucket.setDescription(&quot;このバケットの説明文&quot;);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setIndexToLocal"><span class="type-signature"></span>setIndexToLocal(index, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>オブジェクトバケットにインデックス設定する(オフライン専用)。
+     本APIはオフラインのみで利用可能</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>インデックス情報
+     インデックス情報は以下のようにJSONで指定する
+     <pre>
+     {
+         &quot;index&quot;: [{&quot;name&quot;: &quot;key1&quot;, &quot;type&quot;: &quot;string&quot;}, {&quot;name&quot;: &quot;key2&quot;, &quot;type&quot;: &quot;number&quot;}]
+     }
+     </pre>
+     ・index にはインデックスを設定するキー名と型を指定する。型は文字列で&quot;string&quot;,&quot;boolean&quot;,&quot;number&quot;のいずれかを指定する。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・処理が成功した場合、success の呼び出しにて通知する。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;Books&quot;, Nebula.BUCKET_MODE_REPLICA);
+     ....
+     index = {
+         &quot;index&quot;: [{&quot;name&quot;: &quot;key1&quot;, &quot;type&quot;: &quot;string&quot;}, {&quot;name&quot;: &quot;key2&quot;, &quot;type&quot;: &quot;number&quot;}]
+     };
+     callbacks = {
+         success: function() {....},
+         error: function(err) {....}
+     };
+     bucket.setIndexToLocal(index, callbacks);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setResolveConflictPolicy"><span class="type-signature"></span>setResolveConflictPolicy(policy, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>衝突解決ポリシを設定する(オフライン専用)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>policy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>設定する衝突解決ポリシ</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・policy は、以下のいずれかの衝突解決ポリシを指定する。
+     Nebula.ObjectBucket.CONFLICT_POLICY_CLIENT ： クライアント優先で解決
+     Nebula.ObjectBucket.CONFLICT_POLICY_SERVER ： サーバ優先で解決
+     Nebula.ObjectBucket.CONFLICT_POLICY_MANUAL ： ユーザ通知
+・処理が成功した場合、success の呼び出しにて通知する。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(....);
+     var policy = ....
+     ....
+     bucket.setResolveConflictPolicy(policy {
+         success: function() {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setSyncEventListener"><span class="type-signature"></span>setSyncEventListener(listener)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>同期イベントリスナを登録する(オフライン専用)</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>listener</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>同期イベントを受け取るイベントリスナ</p>
+<pre>
+・listener は、各同期イベント発生時のコールバックを指定する。
+     {
+         onSyncStart : function(targetBucket) {
+             // 同期開始時に呼び出される
+             // targetBucket : 同期対象のバケット名
+         },
+         onSyncCompleted : function(targetBucket, objectIds) {
+             // 同期完了時に呼び出される
+             // targetBucket : 同期が完了したバケット名
+             // objectIds    : 同期が完了したオブジェクトIDの配列
+         },
+         onSyncConflicted : function(bucket, client, server) {
+             // 衝突発生時に呼び出される
+             // bucket    : 衝突が発生したバケットのNebula.ObjectBucketインスタンス(衝突解決時に使用)
+             // client    : クライアント側の衝突データ
+             // server    : サーバ側の衝突データ
+         },
+         onResolveConflict : function(resolveObject, resolve) {
+             // データの衝突の解決時に呼び出される
+             // resolveObject : 解決に使用したデータ
+             // resolve       : 解決方法
+         },
+         onSyncError : function(errorCode, errorObject) {
+             // 同期処理中のエラー発生時に呼び出される
+             // errorCode    : エラー種別
+                 //  Nebula.ObjectBucket.SYNC_ERROR_PULL           ： 同期処理のPULLエラー
+                 //  Nebula.ObjectBucket.SYNC_ERROR_PUSH           ： 同期処理のPUSHエラー
+                 //  Nebula.ObjectBucket.SYNC_ERROR_PUSH_RESYNCING ： 同期処理のpushエラー後に、同期リトライ中
+                 //  Nebula.ObjectBucket.SYNC_ERROR_OVERLAP_ID     ： 同期処理のID重複エラー
+             // errorObject  : エラーが発生したオブジェクト
+         },
+    }
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;Books&quot;, Nebula.BUCKET_MODE_REPLICA);
+     bucket.setSyncEventListener({
+         onSyncStart: function(targetBucket) {
+             ....
+         },
+         onSyncCompleted: function(targetBucket, objectIds) {
+             ....
+         },
+         onSyncConflicted: function(bucket, client, server) {
+             ....
+         },
+         onResolveConflict: function(resolveObject, resolve) {
+             ....
+         },
+         onSyncError: function(errorCode, errorObject) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setSyncScope"><span class="type-signature"></span>setSyncScope(scope, callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>同期範囲を設定する(オフライン専用)。
+     同期するには、本APIを呼び出して同期範囲を設定すること。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>設定する同期範囲。Nebula.ObjectQueryのインスタンス。</p>
+<pre>
+     ・Nebula.ObjectQueryのインスタンスで同期範囲として有効なものは、検索条件(setClause()メソッドでセット)のみである。
+       検索条件以外のその他(検索上限数やスキップカウントなど)は無効。
+     ・nullを指定した場合は、設定されている同期範囲を削除する。
+     ・すべてのオブジェクトを同期範囲にする場合は、インスタンスを生成しただけの空のNebula.ObjectQueryのインスタンスを指定する。
+</pre></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・scope は、Nebula.ObjectQueryのインスタンスを指定する。
+・処理が成功した場合、success の呼び出しにて通知する。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(&quot;Books&quot;, Nebula.BUCKET_MODE_REPLICA);
+     var clause = Nebula.Clause.greaterThan(&quot;number&quot;, 99);
+     var scope = new Nebula.ObjectQuery();
+     scope.setClause(clause);
+     ...
+     bucket.setSyncScope(scope, {
+         success: function() {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="syncBucket"><span class="type-signature"></span>syncBucket(callbacks)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>同期を実行する(オフライン専用)。
+     特定のオブジェクトバケットに対し同期を行う。処理の進捗はsetSyncEventListener()で指定されたコールバックにて通知する。
+     setSyncScope()を使用して同期範囲を設定すること。同期範囲を設定しない場合、エラーとなり同期されない。
+     本APIは、バケットモードがレプリカモードのバケットに対して呼び出すこと。</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>callbacks</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Callbacks">Callbacks</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>成功時と失敗時の応答コールバック</p>
+<pre>
+・callbacks は、成功時と失敗時の応答コールバックを指定する。
+  callbacks は本メソッドに対する処理結果であり、同期イベントはsetSyncEventListener()で指定されたコールバックにて通知する点に注意。
+・処理が成功した場合、success の呼び出しにて通知する。
+</pre></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <p>callbacksを指定しなかった場合、Promiseオブジェクトを返す。callback指定時は返り値なし(undefined)。</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var bucket = new Nebula.ObjectBucket(....);
+     ....
+     bucket.syncBucket({
+         success: function() {
+             ....
+         },
+         error: function(err) {
+             ....
+         }
+     });</pre>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2018-09-20T09:45:53+09:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

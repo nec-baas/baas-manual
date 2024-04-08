@@ -1,0 +1,59 @@
+==============
+OpenAM 13.0.0
+==============
+
+概要
+======
+
+OpenAM はオープンソースの認証・フェデレーションサーバです。
+OpenID Connect にも対応しております。
+
+OpeAM のインストール、起動、管理アカウントの登録は完了しているものとします。
+以下は、OpenAM 13.0.0 での手順となります。
+
+.. attention::
+
+   OpenAM のホストは、半角英数字、ハイフン、ピリオドで構成されるようにしてください。アンダースコアを使用しないでください。
+
+Provider の設定 
+-----------------
+
+1) ブラウザで OpenAM の管理コンソールに管理アカウントでログインする
+2) Top Level Realm＞Configure OAuth Provider＞Configure OpenID Connect を選択 
+3) 右上の「Create」を選択
+
+Agent の設定
+--------------
+
+1) 画面左の「Agents」を選択
+2) 「OAuth 2.0/OpenID Connect Client」タグを選択
+3) Agentの「New」を選択
+4) Name、Password などを入力し、右上の「Create」を選択
+    **ここで入力したName、Passwordは記憶しておく**
+5) 上で作成した Agent を選択、デフォルトから以下の項目を入力・変更する 
+    * Redirection URIs
+        {endpointUri}/1/{tenantId}/auth/oidc/auth_resp
+            ※ {endpointUri} は デベロッパーコンソールのシステム設定で、APIサーバベース URI に設定した URI
+    * Scope(s)
+        address、phone、openid、profile、email　※ 一つずつ入力して、「Add」を選択
+    * Public Key Selector
+        JWKs
+
+6) デフォルトが以下の通りであることを確認する
+    * Token Endpoint Authentication Method
+        client_secret_basic
+    * ID Token Signed Response Algorithm
+        RS256
+
+.. note::
+
+  ID Token Signed Response Algorithm : HS256 にも対応していますが、その場合、4. で登録する Password は32バイト以上必要です。
+
+7) 画面右上の「Save」を選択
+
+4. で記憶した値は以下で使用します。
+
+* Name: デベロッパーコンソール画面に設定する Client ID となります。
+* Password: デベロッパーコンソール画面に設定する Client Secret となります。
+
+詳細は、`テナント設定 - OpenID Connect設定 <../../devconsole/tenant/tenant_config_oidc.html>`_ を参照してください。

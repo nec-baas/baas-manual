@@ -1,0 +1,86 @@
+=============================
+各サーバのデータとその格納先
+=============================
+
+各サーバ（API/Console/SSE Push/Cloud Functions（以下 Cloudfn））のデータとその格納先について説明します。
+
+サーバのデータとは、以下データのことです。
+
+* バイナリ： サーバソフトウェアの実行ファイル
+* 設定ファイル: サーバ動作時に必要な設定ファイル
+* ログ: サーバ動作時に生成されたログファイル
+* DB データ: MongoDB内に格納したユーザデータとログデータなど
+
+データの格納先とは、各サーバマニュアルのンストール手順に記載した上記データの格納先のことです。
+なお、カスタマイズ設定の場合はそちらの設定を確認してください。
+
+API/Console サーバ
+===================
+
+API/Console サーバのインストール手順については、`モバイルバックエンド基盤 サーバ利用手順書 <../server/index.html>`_ を参照してください。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30, 70
+
+   * - 項目
+     - データとその格納先
+   * - バイナリ
+     - - /opt/tomcat/webapps/api.war
+       - /opt/tomcat/webapps/api
+       - /opt/tomcat/webapps/console.war
+       - /opt/tomcat/webapps/console
+       - /opt/nebula/baas-admin.jar
+   * - 設定ファイル
+     - - /etc/baas/\*.xml
+       - /etc/baas/logback.properties
+       - /etc/td-agent/conf.d/baas-system.conf  (注1)
+   * - ログ
+     - - /var/log/baas/\*
+   * - DBデータ
+     - - MongoDB内の、baas\* で始まる全てのDB
+
+* 注1：Fluentd サーバ利用時のみ存在
+
+SSE Push サーバ
+===================
+
+SSE Push サーバのインストール手順については、`SSE Push サーバ利用手順書 <../ssepush-server/index.html>`_ を参照してください。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30, 70
+
+   * - 項目
+     - データとその格納先
+   * - バイナリ
+     - - /opt/tomcat/webapps/ssepush.war
+       - /opt/tomcat/webapps/ssepush
+   * - 設定ファイル
+     - - /etc/ssepush/\*.xml
+       - /etc/ssepush/logback.properties
+   * - ログ
+     - - /var/log/ssepush/\*
+
+Cloudfn サーバ
+===================
+
+Cloudfn サーバのインストール手順については、`Cloudfn サーバ利用手順書 <../cloudfunctions-server/index.html>`_ を参照してください。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30, 70
+
+   * - 項目
+     - データとその格納先
+   * - バイナリ
+     - - /opt/cloudfn/\*
+       - /var/cloudfn/\*
+   * - 設定ファイル
+     - - /etc/baas/cloudfn-server-manager-config.yaml
+       - /etc/baas/cloudfn-server-manager-logback.properties
+       - /etc/td-agent/conf.d/baas-cloudfn.conf  (注1)
+   * - ログ
+     - - /var/log/cloudfn/\*
+
+* 注1：Fluentd サーバ利用時のみ存在

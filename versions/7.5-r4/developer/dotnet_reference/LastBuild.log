@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2015.10.10.0" projectFile="C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\NebulaOfflineDocs.shfbproj" started="2018/03/16 17:40:53">
+<buildStep step="Initializing">
+Finding tools...
+The Sandcastle tools are located in &#39;C:\Program Files\EWSoftware\Sandcastle Help File Builder\&#39;
+Locating components in the following folder(s):
+    C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new
+    C:\ProgramData\EWSoftware\Sandcastle Help File Builder\Components and Plug-Ins\
+    C:\Program Files\EWSoftware\Sandcastle Help File Builder\
+Framework reflection data location: C:\Program Files\EWSoftware\Sandcastle Help File Builder\Data\.NETPortable
+Using presentation style &#39;VS2013&#39; located in &#39;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013&#39;
+Loading and initializing plug-ins...
+Assembly Binding Redirection Version 2015.10.10.0
+Copyright &#169; 2006-2015, Eric Woodruff, All Rights Reserved
+Version Builder Version 2015.10.10.0
+Copyright &#169; 2006-2015, Eric Woodruff, All Rights Reserved
+Lightweight Website Style Version 2015.10.10.0
+Copyright &#169; 2006-2015, Eric Woodruff, All Rights Reserved
+Portions Copyright &#169; 2014, Sam Harwell, All Rights Reserved
+</buildStep>
+<buildStep step="ClearWorkFolder">
+Clearing working folder...
+-------------------------------
+Clearing any prior web/markdown output...
+</buildStep>
+<buildStep step="ValidatingDocumentationSources">
+Validating and copying documentation source information
+Source: C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Offline\bin\Debug\Nec.Nebula.Offline.dll
+    Found assembly &#39;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Offline\bin\Debug\Nec.Nebula.Offline.dll&#39;
+Source: C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Offline\bin\Debug\Nec.Nebula.Offline.xml
+
+Copying XML comments files
+    C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Offline\bin\Debug\Nec.Nebula.Offline.XML -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Nec.Nebula.Offline.XML
+</buildStep>
+<buildStep step="GenerateSharedContent">
+Generating shared content files (ja-JP, 日本語 (日本))...
+SHFB: Warning BE0003: Sandcastle shared content for the &#39;ja-JP, 日本語 (日本)&#39; language could not be found.  Using &#39;en-US, English (US)&#39; defaults.
+<plugIn name="Version Builder" behavior="After" priority="1000">
+Removing standard version information items from shared content file
+Adding version information items from plug-in settings
+</plugIn><plugIn name="Lightweight Website Style" behavior="After" priority="1000">
+</plugIn>    Last step completed in 00:00:00.3860
+</buildStep>
+<buildStep step="GenerateApiFilter">
+Generating API filter for MRefBuilder...
+    Last step completed in 00:00:00.0580
+</buildStep>
+<buildStep step="GenerateReflectionInfo">
+Generating reflection information...
+<plugIn name="Assembly Binding Redirection" behavior="Before" priority="1000">
+Adding ignored assembly names to assembly resolver configuration:
+    BusinessObjects.Licensing.KeycodeDecoder
+    Microsoft.VisualStudio.TestTools.UITest.Playback
+    System.Runtime
+</plugIn>[C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe - GenerateRefInfo.proj]
+2018/03/16 17:41:10 にビルドを開始しました。
+ノード 1 上のプロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\GenerateRefInfo.proj&quot; (既定のターゲット)。
+PrepareForBuild:
+  ディレクトリ &quot;obj\Debug\&quot; を作成しています。
+GenerateRefInfo:
+  MRefBuilder (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Loaded 1 assemblies for reflection and 0 dependency assemblies.
+MRefBuilder : warning : Ignoring unresolved assembly reference: System.Runtime (System.Runtime, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a) required by Nec.Nebula.Core [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\GenerateRefInfo.proj]
+  Wrote information on 2 namespaces, 11 types, and 72 members
+  &quot;reflection.org&quot; から &quot;reflection.all&quot; へファイルをコピーしています。
+  XslTransform (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Applying XSL transformation &#39;C:\Program Files\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\MergeDuplicates.xsl&#39;.
+プロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\GenerateRefInfo.proj&quot; (既定のターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:23.47
+    Last step completed in 00:00:24.4064
+</buildStep>
+<buildStep step="TransformReflectionInfo">
+Transforming reflection output...
+<plugIn name="Version Builder" behavior="Before" priority="1000">
+
+Performing partial builds on prior version projects
+
+Building C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\NebulaCoreDocs.shfbproj
+Initializing
+ValidatingDocumentationSources
+GenerateSharedContent
+GenerateApiFilter
+GenerateReflectionInfo
+Completed
+Creating Version Builder configuration file
+Adding Version Builder parameters to TransformManifest.proj
+</plugIn>[C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe - TransformManifest.proj]
+2018/03/16 17:41:41 にビルドを開始しました。
+ノード 1 上のプロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\TransformManifest.proj&quot; (既定のターゲット)。
+TransformManifest:
+  VersionBuilder (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Indexing version &#39;SHFB_VBPI_DF534B3&#39; using file &#39;5D442F52.ver&#39;.
+  Indexing version &#39;SHFB_VBPI_72624F40&#39; using file &#39;249EB6C4.ver&#39;.
+  Indexed 470 entities in 2 versions.
+  XslTransform (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Applying XSL transformation &#39;C:\Program Files\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\ApplyVSDocModel.xsl&#39;.
+  &quot;reflection.xml&quot; から &quot;reflection.nofilenames&quot; へファイルをコピーしています。
+  XslTransform (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Applying XSL transformation &#39;C:\Program Files\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\AddFilenames.xsl&#39;.
+    Unique name M_Nec_Nebula_NbAcl__ctor_1 generated for M:Nec.Nebula.NbAcl.#ctor(Nec.Nebula.NbJsonObject)
+    Unique name M_Nec_Nebula_NbAcl_CreateAclFor_1 generated for M:Nec.Nebula.NbAcl.CreateAclFor(System.String)
+    Unique name M_Nec_Nebula_NbAclBase__ctor_1 generated for M:Nec.Nebula.NbAclBase.#ctor(Nec.Nebula.NbJsonObject)
+    Unique name M_Nec_Nebula_NbException__ctor_1 generated for M:Nec.Nebula.NbException.#ctor(Nec.Nebula.NbStatusCode,System.String)
+    Unique name M_Nec_Nebula_NbFileBucket_DeleteFileAsync_1 generated for M:Nec.Nebula.NbFileBucket.DeleteFileAsync(System.String)
+    Unique name M_Nec_Nebula_NbFileBucket_UploadUpdateFileAsync_1 generated for M:Nec.Nebula.NbFileBucket.UploadUpdateFileAsync(System.Byte[],System.String,System.String,System.String,System.String)
+    Unique name M_Nec_Nebula_NbHttpException__ctor_1 generated for M:Nec.Nebula.NbHttpException.#ctor(System.Net.Http.HttpResponseMessage)
+    Unique name M_Nec_Nebula_NbHttpException__ctor_2 generated for M:Nec.Nebula.NbHttpException.#ctor(System.Net.HttpStatusCode)
+    Unique name M_Nec_Nebula_NbHttpException__ctor_3 generated for M:Nec.Nebula.NbHttpException.#ctor(System.Net.HttpStatusCode,System.String)
+    Unique name M_Nec_Nebula_NbHttpException__ctor_4 generated for M:Nec.Nebula.NbHttpException.#ctor(System.String)
+    Unique name M_Nec_Nebula_NbHttpException__ctor_5 generated for M:Nec.Nebula.NbHttpException.#ctor(System.String,System.Exception)
+    Unique name M_Nec_Nebula_NbJsonArray__ctor_1 generated for M:Nec.Nebula.NbJsonArray.#ctor(System.Collections.Generic.IEnumerable{System.Object})
+    Unique name M_Nec_Nebula_NbObject__ctor_1 generated for M:Nec.Nebula.NbObject.#ctor(System.String,Nec.Nebula.NbJsonObject,Nec.Nebula.NbService)
+    Unique name M_Nec_Nebula_NbObject__ctor_2 generated for M:Nec.Nebula.NbObject.#ctor(System.String,Nec.Nebula.NbService)
+    Unique name M_Nec_Nebula_NbUser_IsAclAccessibleForDelete_1 generated for M:Nec.Nebula.NbUser.IsAclAccessibleForDelete(Nec.Nebula.NbUser,Nec.Nebula.NbAcl)
+    Unique name M_Nec_Nebula_NbUser_IsAclAccessibleForRead_1 generated for M:Nec.Nebula.NbUser.IsAclAccessibleForRead(Nec.Nebula.NbUser,Nec.Nebula.NbAcl)
+    Unique name M_Nec_Nebula_NbUser_IsAclAccessibleForUpdate_1 generated for M:Nec.Nebula.NbUser.IsAclAccessibleForUpdate(Nec.Nebula.NbUser,Nec.Nebula.NbAcl)
+    Unique name M_Nec_Nebula_NbOfflineObject__ctor_1 generated for M:Nec.Nebula.NbOfflineObject.#ctor(System.String,Nec.Nebula.NbJsonObject,Nec.Nebula.NbService)
+    Unique name M_Nec_Nebula_NbOfflineObject__ctor_2 generated for M:Nec.Nebula.NbOfflineObject.#ctor(System.String,Nec.Nebula.NbService)
+  XslTransform (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Applying XSL transformation &#39;C:\Program Files\EWSoftware\Sandcastle Help File Builder\ProductionTransforms\ReflectionToManifest.xsl&#39;.
+プロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\TransformManifest.proj&quot; (既定のターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:09.19
+    Last step completed in 00:00:16.8057
+</buildStep>
+<buildStep step="GenerateNamespaceSummaries">
+Generating namespace summary information...
+    Last step completed in 00:00:00.0580
+</buildStep>
+<buildStep step="GenerateInheritedDocumentation">
+Generating inherited documentation...
+[C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe - GenerateInheritedDocs.proj]
+Sandcastle Help File Builder and Tools, version 2015.10.10.0
+Copyright c 2006-2015, Eric Woodruff, All Rights Reserved
+E-Mail: Eric@EWoodruff.us
+
+Reflection information will be retrieved from &#39;reflection.xml&#39;
+Inherited documentation will be written to &#39;_InheritedDocs_.xml&#39;
+Indexing C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETCore\v4.5\ja\*.xml
+Indexing C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\668F8E01\Nec.Nebula.Core.XML
+Indexing C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Nec.Nebula.Offline.XML
+Indexed 13536 members in 57 file(s).  2 file(s) to scan for &lt;inheritdoc /&gt; tags.
+Merging inherited documentation...
+
+
+Documentation merged successfully
+    Last step completed in 00:00:02.8103
+</buildStep>
+<buildStep step="CopyConceptualContent">
+Copying conceptual content...
+Copying standard token shared content file...
+Checking for other token files...
+Checking for code snippets files...
+Copying images and creating the media map file...
+Generating conceptual topic files
+    Parsing topic file &#39;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\shfb\Conceptual.aml&#39;
+    C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\shfb\Conceptual.aml -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\ddueXml\ec5993a3-c372-4ee8-85fa-6cb9a8a6493a.xml
+    Last step completed in 00:00:00.2230
+</buildStep>
+<buildStep step="CreateConceptualTopicConfigs">
+Creating conceptual topic configuration files...
+    Companion files
+    _ContentMetadata_.xml
+    ConceptualManifest.xml
+    Last step completed in 00:00:00.1050
+</buildStep>
+<buildStep step="CopyAdditionalContent">
+Copying additional content files...
+No additional content to copy
+    Last step completed in 00:00:00.0110
+</buildStep>
+<buildStep step="MergeTablesOfContents">
+Merging conceptual and additional tables of contents...
+    Last step completed in 00:00:00.0090
+</buildStep>
+<buildStep step="GenerateIntermediateTableOfContents">
+Generating intermediate table of contents file...
+[C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe - GenerateIntermediateTOC.proj]
+2018/03/16 17:41:54 にビルドを開始しました。
+ノード 1 上のプロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\GenerateIntermediateTOC.proj&quot; (既定のターゲット)。
+GenerateIntermediateTOC:
+  XslTransform (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Applying XSL transformation &#39;C:\Program Files\EWSoftware\Sandcastle Help File Builder\\ProductionTransforms\CreateVSToc.xsl&#39;.
+プロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\GenerateIntermediateTOC.proj&quot; (既定のターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:00.23
+Generating conceptual content intermediate TOC file...
+    Last step completed in 00:00:00.4510
+</buildStep>
+<buildStep step="CreateBuildAssemblerConfigs">
+Creating Sandcastle configuration files...
+    sandcastle.config
+    conceptual.config
+    Last step completed in 00:00:01.5322
+</buildStep>
+<buildStep step="MergeCustomConfigs">
+Merging custom build component configurations
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\sandcastle.config
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\conceptual.config
+    Removing unused ExampleComponent.
+    Last step completed in 00:00:00.0090
+</buildStep>
+<buildStep step="BuildConceptualTopics">
+Building conceptual help topics...
+[C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe - BuildConceptualTopics.proj]
+2018/03/16 17:41:56 にビルドを開始しました。
+ノード 1 上のプロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildConceptualTopics.proj&quot; (既定のターゲット)。
+BuildConceptualTopics:
+  BuildAssembler (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Loading configuration...
+  Processing topics...
+  Processed 1 topic(s)
+  CopyFromIndexComponent: &quot;metadata&quot; in-memory cache entries used: 1 of 15.
+プロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildConceptualTopics.proj&quot; (既定のターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:13.29
+    Last step completed in 00:00:13.5244
+</buildStep>
+<buildStep step="BuildReferenceTopics">
+Building reference help topics...
+[C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe - BuildReferenceTopics.proj]
+2018/03/16 17:42:09 にビルドを開始しました。
+ノード 1 上のプロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj&quot; (既定のターゲット)。
+BuildReferenceTopics:
+  BuildAssembler (v2015.10.10.0)
+  Copyright c 2006-2015, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright c 2006-2015, Eric Woodruff, All Rights Reserved.
+  Loading configuration...
+  Processing topics...
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.NbApiGateway.RemoveHeader(System.String)] Missing &lt;returns&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [P:Nec.Nebula.NbRestResponseBase.Headers] MSDN web service failed.  No further look ups will be performed for this build. [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : Reason: 接続が切断されました: 維持される必要があった接続が、サーバーによって切断されました。 [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.NbService.ChangeDatabasePassword(System.String)] Missing &lt;param name=&quot;newPassword&quot;/&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.NbUser._LoginAsyncOnline(Nec.Nebula.NbUser.LoginParam,Nec.Nebula.NbService)] Missing &lt;summary&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.NbUser._LoginAsyncOnline(Nec.Nebula.NbUser.LoginParam,Nec.Nebula.NbService)] Missing &lt;returns&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.NbUser._LoginAsyncOnline(Nec.Nebula.NbUser.LoginParam,Nec.Nebula.NbService)] Missing &lt;param name=&quot;param&quot;/&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.NbUser._LoginAsyncOnline(Nec.Nebula.NbUser.LoginParam,Nec.Nebula.NbService)] Missing &lt;param name=&quot;service&quot;/&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:Nec.Nebula.NbOfflineObjectBucket`1] Unknown reference link target &#39;M:Nec.Nebula.NbObjectBucketBase`1.BatchAsync(System.Void,Nec.Nebula.NbBatchResult)&#39;. [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [T:Nec.Nebula.NbOfflineObjectBucket`1] Unknown reference link target &#39;M:Nec.Nebula.NbObjectBucketBase`1.QueryAsync(System.Void)&#39;. [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [Methods.T:Nec.Nebula.NbOfflineObjectBucket`1] Unknown reference link target &#39;M:Nec.Nebula.NbObjectBucketBase`1.BatchAsync(System.Void,Nec.Nebula.NbBatchResult)&#39;. [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [Methods.T:Nec.Nebula.NbOfflineObjectBucket`1] Unknown reference link target &#39;M:Nec.Nebula.NbObjectBucketBase`1.QueryAsync(System.Void)&#39;. [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [Overload:Nec.Nebula.NbOfflineObjectBucket`1.QueryAsync] Unknown reference link target &#39;M:Nec.Nebula.NbObjectBucketBase`1.QueryAsync(System.Void)&#39;. [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ResolveReferenceLinksComponent: [Overload:Nec.Nebula.NbOfflineObjectBucket`1.BatchAsync] Unknown reference link target &#39;M:Nec.Nebula.NbObjectBucketBase`1.BatchAsync(System.Void,Nec.Nebula.NbBatchResult)&#39;. [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.Internal.NbSessionInfo.IsAvailable] Missing &lt;returns&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.Internal.NbSessionInfo.Set(System.String,System.Int64,Nec.Nebula.NbUser)] Missing &lt;param name=&quot;sessionToken&quot;/&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.Internal.NbSessionInfo.Set(System.String,System.Int64,Nec.Nebula.NbUser)] Missing &lt;param name=&quot;expire&quot;/&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+BuildAssembler : warning : ShowMissingComponent: [M:Nec.Nebula.Internal.NbSessionInfo.Set(System.String,System.Int64,Nec.Nebula.NbUser)] Missing &lt;param name=&quot;currentUser&quot;/&gt; documentation [C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj]
+  Processed 555 topic(s)
+  17 warning(s)
+  CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 8 of 15.
+  CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 5 of 30.
+プロジェクト &quot;C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\BuildReferenceTopics.proj&quot; (既定のターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:26.74
+    Last step completed in 00:00:27.0607
+</buildStep>
+<buildStep step="CombiningIntermediateTocFiles">
+Combining conceptual and API intermediate TOC files...
+    Last step completed in 00:00:00.0220
+</buildStep>
+<buildStep step="ExtractingHtmlInfo">
+Extracting HTML info for HTML Help 1 and/or website...
+[C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe - ExtractHtmlInfo.proj]
+Sandcastle Help File Builder and Tools, version 2015.10.10.0
+Copyright c 2006-2015, Eric Woodruff, All Rights Reserved
+E-Mail: Eric@EWoodruff.us
+
+Using LCID &#39;1041&#39;, code page &#39;932&#39;, encoding charset &#39;shift-jis&#39;.
+
+Processing website files in C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website
+Processed 556 HTML files
+Sorting keywords and generating See Also indices
+Saving website keyword index to C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\WebKI.xml
+Saving website table of contents to C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\WebTOC.xml
+    Last step completed in 00:00:35.3995
+</buildStep>
+<buildStep step="CopyStandardHelpContent">
+Copying standard help content...
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\AlertCaution.png -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\AlertCaution.png
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\AlertNote.png -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\AlertNote.png
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\AlertSecurity.png -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\AlertSecurity.png
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\CFW.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\CFW.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\CodeExample.png -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\CodeExample.png
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\favicon.ico -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\favicon.ico
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privclass.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privclass.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privdelegate.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privdelegate.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privenumeration.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privenumeration.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privevent.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privevent.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privextension.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privextension.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privfield.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privfield.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privinterface.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privinterface.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privmethod.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privmethod.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privproperty.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privproperty.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\privstructure.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\privstructure.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protclass.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protclass.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protdelegate.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protdelegate.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protenumeration.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protenumeration.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protevent.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protevent.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protextension.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protextension.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protfield.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protfield.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protinterface.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protinterface.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protmethod.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protmethod.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protoperator.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protoperator.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protproperty.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protproperty.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\protstructure.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\protstructure.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubclass.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubclass.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubdelegate.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubdelegate.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubenumeration.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubenumeration.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubevent.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubevent.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubextension.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubextension.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubfield.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubfield.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubinterface.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubinterface.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubmethod.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubmethod.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\puboperator.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\puboperator.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubproperty.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubproperty.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\pubstructure.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\pubstructure.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\SectionCollapsed.png -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\SectionCollapsed.png
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\SectionExpanded.png -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\SectionExpanded.png
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\slMobile.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\slMobile.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\static.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\static.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\icons\xna.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\xna.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\scripts\branding.js -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\scripts\branding.js
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-cs-CZ.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-cs-CZ.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-de-DE.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-de-DE.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-en-US.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-en-US.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-es-ES.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-es-ES.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-fr-FR.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-fr-FR.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-Help1.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-Help1.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-HelpViewer.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-HelpViewer.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-it-IT.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-it-IT.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-ja-JP.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-ja-JP.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-ko-KR.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-ko-KR.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-pl-PL.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-pl-PL.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-pt-BR.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-pt-BR.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-ru-RU.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-ru-RU.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-tr-TR.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-tr-TR.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-Website.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-Website.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-zh-CN.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-zh-CN.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding-zh-TW.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding-zh-TW.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\styles\branding.css -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\styles\branding.css
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\index.html -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\index.html
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\search.html -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\search.html
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\SearchHelp.aspx -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\SearchHelp.aspx
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\SearchHelp.inc.php -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\SearchHelp.inc.php
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\SearchHelp.php -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\SearchHelp.php
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\Web.Config -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\Web.Config
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\icons\Search.png -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\Search.png
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\icons\TocClose.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\TocClose.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\icons\TocCollapsed.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\TocCollapsed.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\icons\TocExpanded.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\TocExpanded.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\icons\TocOpen.gif -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\icons\TocOpen.gif
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\scripts\branding-Website.js -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\scripts\branding-Website.js
+C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\packages\EWSoftware.SHFB.2015.10.10.0\tools\PresentationStyles\VS2013\Web\scripts\jquery-1.11.0.min.js -&gt; C:\ICF_AutoCapsule_Disabled\source\baas-client-dotnet_new\Help\Working\Output\Website\scripts\jquery-1.11.0.min.js
+    Last step completed in 00:00:09.9860
+</buildStep>
+<buildStep step="GenerateHelpFormatTableOfContents">
+Generating website table of contents file...
+    Last step completed in 00:00:00.0010
+</buildStep>
+<buildStep step="GenerateFullTextIndex">
+Generating full-text index for the website...
+
+<plugIn name="Lightweight Website Style" behavior="After" priority="1000">
+Adding lightweight search and TOC elements to each topic...
+</plugIn>    Last step completed in 00:00:08.6729
+</buildStep>
+<buildStep step="CopyingWebsiteFiles">
+Copying website files to output folder...
+
+Copied 500 files
+Copied 933 files for the website content
+    Last step completed in 00:00:20.8281
+</buildStep>
+<buildStep step="CleanIntermediates">
+Removing intermediate files...
+    Last step completed in 00:00:00.2810
+</buildStep>
+<buildStep step="Completed">
+
+Build completed successfully at 2018/03/16 17:43:51.  Total time: 00:02:58.2718
+
+</buildStep>
+</shfbBuild>

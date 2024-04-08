@@ -1,0 +1,200 @@
+======================
+ファイルストレージ
+======================
+
+ファイル URL
+============
+
+ファイルの URL は以下のような形式となります。
+
+::
+
+ https://{server}/api/1/{tenant}/files/{bucket}/{filename}
+
+server はサーバホスト、tenant はテナントIDまたはテナント名、
+bucket にはバケット名、filename にはファイル名が入ります。
+バケット名、ファイル名いずれも '/' を含めることはできません。
+
+ファイルバケットの作成
+======================
+
+ファイルの登録の前に、ファイルバケットを作成しておく必要があります。
+
+バケットの作成はデベロッパーコンソールで行うことができます。
+また、REST API や各 SDK から実行することも可能です。
+
+ファイルアップロード
+====================
+
+PUT メソッドを使ってファイルをアップロードします。
+同一名のファイルがあった場合、上書きされます。
+
+::
+
+ curl -X POST \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  -H "Content-Type: text/plain" \
+  -H "X-ACL: {'r': ['g:anonymous'], 'w': ['g:anonymous']}" \
+  --data-binary @hello.txt \
+  https://{server}/api/1/{tenant}/files/bucket1/hello.txt
+
+* この例では hello.txt という名前のファイルからデータを読み込みアップロードします。
+* Content-Type ヘッダで、コンテンツタイプを指定してください。
+
+JSON で結果が返却されます。
+
+::
+
+  { "filename": "hello.txt", "contentType": "text/plain", "length":12 }
+
+アクセス制御
+============
+
+ファイル単位で ACL の設定が可能です。
+
+ファイルアップロード時に "X-ACL" ヘッダで ACL を指定できます。
+
+なお、ACL を指定せずにファイルをアップロードした場合は、以下のような動作となります。
+
+* X-Session-Token ヘッダでセッショントークンを送信した状態でファイルを作成すると、そのユーザIDでのみ読み書き可能な状態でファイルが作成されます。
+* X-Session-Token ヘッダが送信されない状態でファイルを作成した場合、アプリケーション認証のみで誰でも読み書き可能な状態でファイルが作成されます。
+
+
+ファイル一覧の取得
+==================
+
+バケット内のファイル一覧を取得します。
+::
+
+ curl -X GET \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  https://{server}/api/1/{tenant}/files/bucket1
+
+ファイル一覧は、JSON の results フィールドに配列で格納されます。
+
+::
+
+  {
+    "results": [
+      {
+        "filename": "hello.txt",
+        "contentType": "text/plain",
+        "length": 12
+      }
+    ]
+  }
+
+ファイルメタデータの取得
+========================
+
+ファイルURLの末尾に "/meta" を指定してメタデータを取得します。
+
+::
+
+ curl -X GET \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  -H "Accept: application/json" \
+  https://{server}/api/1/{tenant}/files/bucket1/hello.txt/meta
+
+メタデータはJSON 形式で得られます。
+::
+
+  {
+    "filename": "hello.txt",
+    "contentType": "text/plain",
+    "length": 12
+  }
+
+ファイルメタデータの更新
+========================
+
+メタデータや ACL を更新する場合は、
+URL の末尾に "/meta" を指定し、
+変更したい内容を JSON で指定します。
+ACL を変更したい場合は X-ACL ヘッダで指定します。
+
+::
+
+ curl -X PUT \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  -H "X-ACL: {'r': ['g:anonymous'], 'w': ['g:anonymous']}" \
+  -H "Accept: application/json" \
+  -H "Content-Type: appliation/json" \
+  -d '{"filename":"hello2.txt"}' \
+  https://{server}/api/1/{tenant}/files/bucket1/hello.txt/meta
+
+なお、メタデータについて変更が可能なのはファイル名と Content-Typeのみです。
+すでに変更先のファイル名が存在している場合は、エラーとなります。
+
+ファイルのダウンロード
+======================
+
+ファイルURLを指定してファイル本体をダウンロードします。
+
+::
+
+ curl -X GET \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  https://{server}/api/1/{tenant}/files/bucket1/hello.txt
+
+ファイルの削除
+==============
+
+DELETE メソッドを使用してファイルを削除します。
+::
+
+ curl -X DELETE \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  https://{server}/api/1/{tenant}/files/bucket1/hello.txt
+
+ファイルの公開
+==============
+
+ファイルを一般公開することができます。
+
+ファイルURLの末尾に "/publish" をつけて PUT します。
+::
+
+ curl -X PUT \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  -H "Accept: application/json" \
+  https://{server}/api/1/{tenant}/files/bucket1/hello.txt/publish
+
+公開を行うと、戻り値でファイルのメタデータが JSON で返却されます。
+公開用の URL は、メタデータの "publicUrl" に格納されます。
+::
+
+  {
+    "filename": "hello.txt",
+    "contentType": "text/plain",
+    "length": 12,
+    "publicUrl": "https://{server}/api/1/{tenant}/files/__published/xxxxxxx/hello.txt"
+  }
+
+公開用 URL にはアクセス制限は一切適用されません。
+また、X-Application-Id, X-Application-Key ヘッダなしで読み込み可能です。
+したがって、HTML の a タグや img タグで直接 URL を指定して
+リソースをダウンロードすることができます。
+
+すでに公開されたファイルを再度公開した場合、同一の URL が返却されます。
+なお、公開解除してその後で再度公開を行った場合は、URL は変更されます。
+
+ファイルの公開解除
+==================
+
+ファイルURLの末尾に "/publish" をつけて DELETE すると、ファイルを公開解除します。
+::
+
+ curl -X DELETE \
+  -H "X-Application-Id: {app_id}" \
+  -H "X-Application-Key: {app_key}" \
+  -H "Accept: application/json" \
+  https://{server}/api/1/{tenant}/files/bucket1/hello.txt/publish
+

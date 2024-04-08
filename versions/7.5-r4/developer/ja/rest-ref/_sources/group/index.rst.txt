@@ -1,0 +1,18 @@
+.. _group:
+
+==============
+グループ管理
+==============
+
+.. toctree::
+   :maxdepth: 1
+
+   create
+   upsert
+   find
+   read
+   delete
+   add_members
+   delete_members
+
+

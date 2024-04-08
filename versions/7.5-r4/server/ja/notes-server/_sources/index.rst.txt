@@ -1,0 +1,18 @@
+NEC BaaS サーバご利用にあたっての注意事項
+===========================================
+
+Table of contents
+-----------------
+
+.. toctree::
+   :numbered: 3
+   :maxdepth: 3
+
+   deploy
+   api
+   db
+   push
+   cloudfn
+   api_redundancy
+   changes
+

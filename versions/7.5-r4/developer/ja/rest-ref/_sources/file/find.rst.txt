@@ -1,0 +1,80 @@
+.. _file_find:
+
+ファイル一覧の取得
+============================
+
+.. http:get:: /1/(tenantId)/files/(bucketName)
+
+    ファイル一覧（メタデータ一覧）をダウンロードする。
+
+    :reqheader X-Application-Id: アプリケーションID(必須)
+    :reqheader X-Application-Key: アプリケーションキー(必須)
+    :reqheader X-Session-Token: セッショントークン(オプション)
+
+    :parameter string bucketName: バケット名
+
+    :query int published: 1を指定すると公開済みファイル一覧のみ取得となる
+    :query int deleteMark: 1を指定すると、論理削除ファイルも含む
+
+    :statuscode 200: 正常に受け付けた
+    :statuscode 400: ヘッダ不正
+    :statuscode 401: 認証エラー
+    :statuscode 403: 権限エラー
+    :statuscode 404: バケットが存在しない
+
+    :>json array results: ファイルメタデータの配列
+    :>json string currentTime: サーバ現在時刻
+
+    **クエリパラメータの詳細**
+
+    published パラメータに 1 を指定した場合、公開されたファイルのメタデータのみが読み込まれる。
+
+    deleteMark パラメータに 1 を指定した場合、論理削除されたメタデータも読み込まれる。
+    削除マークされたデータは、"_deleted" フィールドに true が設定されている。
+
+    **レスポンス**
+
+    レスポンスボディの例を示す。
+    各ファイルのメタデータは JSON 配列で results に格納される。
+
+    .. code-block:: json
+
+        {
+          "currentTime": "2014-11-18T07:34:22:242Z",
+          "results": [
+            {
+              "_id": "533d31c43cbc3dd2d0b32cd1",
+              "filename": "hello.txt",
+              "contentType": "text/plain",
+              "length": 12,
+              "ACL": { },
+              "createdAt": "2013-08-27T04:37:30.000Z",
+              "updatedAt": "2013-08-27T04:37:30.000Z",
+              "metaETag": "8c92c97e-01a7-11e4-9598-53792c688d1b",
+              "fileETag": "8c92c97e-01a7-11e4-9598-53792c688d1c",
+              "cacheDisabled": false,
+              "publicUrl": "http://....",
+              "options": {
+                "owner": "日電 太郎",
+                "fileVersion": "1.0.0"
+              }
+            }
+          ]
+        }
+
+    メタデータには以下の情報が含まれる。
+
+    * _id: メタデータのID
+    * filename : ファイル名
+    * contentType : Content-Type
+    * length: ファイルサイズ (バイト数)
+    * ACL: ACL
+    * 作成日時
+    * 更新日時
+    * metaETag: メタデータのETag
+    * fileETag: ファイル本体のETag
+    * cacheDisabled: キャッシュ禁止フラグ
+    * publicUrl : 公開 URL (ファイルが公開されている場合)
+    * _deleted: 削除フラグ(deleteMark パラメータに 1 を指定した場合のみ表示)
+    * options: ユーザ定義メタ情報(オプション)
+

@@ -1,0 +1,193 @@
+==================
+ライブラリの初期化
+==================
+
+SDK の利用を行う前に、SDKの初期化処理を行います。
+
+ブラウザ利用時
+===============
+
+.. code-block:: javascript
+
+   $(function() {
+       var NebulaConfig = {
+           "tenant": "53c379dc4b54a455b6777730",
+           "appId": "53c379fa4b54a455b6777734",
+           "appKey": "ZmoFlxp3Klr11GZbyV11UsroMsAgMWyxncEHKuLJ",
+           "baseUri": "https://api.example.com/api",
+           "offline" : false,
+           "debugMode": "release"
+       };
+
+       Nebula.initialize(NebulaConfig);
+   });
+
+初期化には Nebula.initialize() を使用します。
+この API は、Nebula の各機能を呼び出す前に必ず最初に１度だけ実施する必要があります。
+
+Nebula.initialize() には、設定情報を引き渡します。
+以下の情報を指定する必要があります。
+
+
+* tenant: テナントID
+* appId: アプリケーションID
+* appKey: アプリケーションキー
+* baseUri: APIサーバのベースURI
+
+  - パスの '/api' まで含むため注意してください
+* offline: オフラインモード。
+
+  - "false" を設定してください。
+
+* debugMode: デバッグモード。
+
+  - 通常時は "release"、デバッグ時は "debug" に設定してください。
+  - "debug" に設定すると、デバッグログが JavaScript コンソールに出力されます。
+
+マルチテナント機能を使用する場合の初期化手順については、 :ref:`multitenant` を参照してください。
+
+.. index::
+   single: Node.js
+
+Node.js 利用時
+==============
+
+.. code-block:: javascript
+
+   const Nebula = require('@nec-baas/jssdk').Nebula;
+
+   const NebulaConfig = {
+       "tenant": "53c379dc4b54a455b6777730",
+       "appId": "53c379fa4b54a455b6777734",
+       "appKey": "ZmoFlxp3Klr11GZbyV11UsroMsAgMWyxncEHKuLJ",
+       "baseUri": "https://api.example.com/api",
+       "offline" : false,
+       "debugMode": "release"
+   };
+
+   Nebula.initialize(NebulaConfig);
+
+@nec-baas/jssdk モジュールを require でロードして 'Nebula' に代入してください。
+
+その後、initialize() を呼び出して初期化します。この API は NEC BaaS サーバの各機能を呼び出す前に必ず最初に一度だけ実施する必要があります。
+
+設定情報の内容はブラウザを使用する場合と同じです。
+
+マルチテナント機能を使用する場合の初期化手順については、 :ref:`multitenant` を参照してください。
+
+プロキシを使用する場合の設定
+-----------------------------
+
+Node.js でプロキシサーバを使用する場合は、Nebula の初期化前に以下の処理を実行してください。
+
+.. code-block:: javascript
+
+    // HTTPS の場合
+    Nebula.setHttpsProxy({host: プロキシサーバホスト名, port: ポート番号});
+
+.. code-block:: javascript
+
+    // HTTP の場合
+    Nebula.setHttpProxy({host: プロキシサーバホスト名, port: ポート番号});
+
+HTTP/2を使用する場合の設定
+-----------------------------
+
+.. attention::
+
+    HTTP/2を使用する場合、Node.js v8.4以降を使用します。
+
+Node.jsでHTTP/2を使用する場合は、Nebula の初期化前に以下の処理を実行してください。
+
+.. code-block:: javascript
+
+    // HTTP/2を使用する場合
+    Nebula.setHttp2(true);
+
+HTTP/2の設定は、サービス毎に切り替えることができます。
+複数のサービスを生成し、それぞれ上記のAPIをコールします。
+詳細は :ref:`multitenant` を参照して下さい。
+
+.. note::
+    * 設定を有効にする場合、HTTP/2に対応したサーバを使用して下さい。
+      HTTP/1.1のみ対応するサーバとは通信できません。
+    * HTTP/2使用時、プロキシは使用できません。
+    * HTTP/2使用時は一定期間セッションを維持し、再利用します。
+      証明書の設定等を変更する場合、セッションを切断してからパラメータを変更します。
+
+    .. code-block:: javascript
+
+        // 指定したサーバとのセッションを切断する
+        Nebula.HttpRequest.closeHttp2Session('https://http2.server.com:8443');
+        // 全てのHTTP/2セッションを切断する
+        Nebula.HttpRequest.closeHttp2Session();
+
+    * HTTP/2は以下のような環境に適しています。
+
+      - クライアント-サーバ間のターンアラウンドタイムが大きい
+      - 1台のクライアントから、短時間に多数のリクエストが発生する
+      - TCPのセッション数に制限がある
+
+      事前にアプリケーション、システム環境の検討、HTTP/1.1との性能比較を行って下さい。
+
+
+TypeScript を使用する場合
+==========================
+
+JavaScript ではなく TypeScript を使用する場合は、以下のようにして Nebula 
+モジュールを import してください。
+
+.. code-block:: typescript
+
+   import { Nebula } from "nebula";
+
+初期化手順は前述の通り(Nebula.initialize())です。
+
+.. _allow_self_signed_certificate:
+
+自己署名証明書を使用する場合の設定
+==================================
+
+.. warning::
+
+   本設定は、セキュリティリスクが高くなるため実運用時の利用は推奨できません。
+   正規の証明書を使用するようにしてください。
+
+サーバ側で HTTPS 自己署名証明書を使用している場合、SSL証明書の検証でエラーとなります。
+これをスキップする方法を説明します。
+
+ブラウザの場合
+--------------
+
+ブラウザ使用時は、ブラウザ側に証明書をインポートする必要があります。
+
+Node.js の場合
+--------------
+
+環境変数 NODE_TLS_REJECT_UNAUTHORIZED に 0 を設定して起動することで、
+証明書の検証を回避できます。
+
+プロキシ未使用時は、NebulaConfigの“allowSelfSignedCertificate” をtrue に設定することでも証明書検証を回避することができます。
+
+以下のように初期化パラメータで "allowSelfSignedCertificate" をtrue に設定してください。
+
+.. code-block:: javascript
+
+       var NebulaConfig = {
+           "tenant": "53c379dc4b54a455b6777730",
+           "appId": "53c379fa4b54a455b6777734",
+           "appKey": "ZmoFlxp3Klr11GZbyV11UsroMsAgMWyxncEHKuLJ",
+           "baseUri": "https://api.example.com/api",
+           "offline" : false,
+           "debugMode": "release",
+           "allowSelfSignedCert": true  // この行を追加
+       };
+
+       Nebula.initialize(NebulaConfig);
+
+プロキシ使用時は、Nebula.setHttpsProxy()のoptionとして、{ rejectUnauthorized: false }を設定します。
+
+.. code-block:: javascript
+
+     Nebula.setHttpsProxy({host: 'proxysv.example.com', port: 8080}, {rejectUnauthorized: false});
+

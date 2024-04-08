@@ -1,0 +1,801 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>NEC mBaaS Embedded SDK: クラス necbaas::NbUser</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">NEC mBaaS Embedded SDK
+   &#160;<span id="projectnumber">6.2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 作成： Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>メインページ</span></a></li>
+      <li><a href="namespaces.html"><span>ネームスペース</span></a></li>
+      <li class="current"><a href="annotated.html"><span>クラス</span></a></li>
+      <li><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>構成</span></a></li>
+      <li><a href="classes.html"><span>構成索引</span></a></li>
+      <li><a href="hierarchy.html"><span>クラス階層</span></a></li>
+      <li><a href="functions.html"><span>構成メンバ</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全て</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>クラス</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>ネームスペース</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>ファイル</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>関数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>変数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>列挙型</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>列挙型の値</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacenecbaas.html">necbaas</a></li><li class="navelem"><a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public メソッド</a> &#124;
+<a href="#pub-static-methods">Static Public メソッド</a> &#124;
+<a href="classnecbaas_1_1NbUser-members.html">すべてのメンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">クラス necbaas::NbUser</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ユーザクラス.  
+ <a href="classnecbaas_1_1NbUser.html#details">[詳細]</a></p>
+
+<p><code>#include &quot;<a class="el" href="nb__user_8h_source.html">necbaas/nb_user.h</a>&quot;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public メソッド</h2></td></tr>
+<tr class="memitem:af6383ea5d79ad3631d29ce9626d3895c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#af6383ea5d79ad3631d29ce9626d3895c">NbUser</a> ()</td></tr>
+<tr class="memdesc:af6383ea5d79ad3631d29ce9626d3895c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#af6383ea5d79ad3631d29ce9626d3895c">[詳細]</a><br/></td></tr>
+<tr class="separator:af6383ea5d79ad3631d29ce9626d3895c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa63b645b5188b826cba82bf28f5c39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a5fa63b645b5188b826cba82bf28f5c39">NbUser</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service)</td></tr>
+<tr class="memdesc:a5fa63b645b5188b826cba82bf28f5c39"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ.  <a href="#a5fa63b645b5188b826cba82bf28f5c39">[詳細]</a><br/></td></tr>
+<tr class="separator:a5fa63b645b5188b826cba82bf28f5c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b3ea2324e43d618d48966fe48499ee6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a2b3ea2324e43d618d48966fe48499ee6">~NbUser</a> ()</td></tr>
+<tr class="memdesc:a2b3ea2324e43d618d48966fe48499ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ.  <a href="#a2b3ea2324e43d618d48966fe48499ee6">[詳細]</a><br/></td></tr>
+<tr class="separator:a2b3ea2324e43d618d48966fe48499ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841277ca00bd75c7418d0b6f0ae6cb14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a841277ca00bd75c7418d0b6f0ae6cb14">SetUserEntity</a> (const NbUserEntity &amp;entity)</td></tr>
+<tr class="memdesc:a841277ca00bd75c7418d0b6f0ae6cb14"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>[内部処理用]</b>  <a href="#a841277ca00bd75c7418d0b6f0ae6cb14">[詳細]</a><br/></td></tr>
+<tr class="separator:a841277ca00bd75c7418d0b6f0ae6cb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac314764ba8c439297a0b5026099d455e"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#ac314764ba8c439297a0b5026099d455e">GetUserName</a> () const </td></tr>
+<tr class="memdesc:ac314764ba8c439297a0b5026099d455e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ユーザ名取得.  <a href="#ac314764ba8c439297a0b5026099d455e">[詳細]</a><br/></td></tr>
+<tr class="separator:ac314764ba8c439297a0b5026099d455e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab69805405acbf3cbead93b7cd6dcb351"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#ab69805405acbf3cbead93b7cd6dcb351">GetEmail</a> () const </td></tr>
+<tr class="memdesc:ab69805405acbf3cbead93b7cd6dcb351"><td class="mdescLeft">&#160;</td><td class="mdescRight">E-mail取得.  <a href="#ab69805405acbf3cbead93b7cd6dcb351">[詳細]</a><br/></td></tr>
+<tr class="separator:ab69805405acbf3cbead93b7cd6dcb351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b8d8767264b15494c16c2592cef0178"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a0b8d8767264b15494c16c2592cef0178">GetOptions</a> () const </td></tr>
+<tr class="memdesc:a0b8d8767264b15494c16c2592cef0178"><td class="mdescLeft">&#160;</td><td class="mdescRight">オプション取得.  <a href="#a0b8d8767264b15494c16c2592cef0178">[詳細]</a><br/></td></tr>
+<tr class="separator:a0b8d8767264b15494c16c2592cef0178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac23784db35a383219aa8890fdac822d1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#ac23784db35a383219aa8890fdac822d1">GetGroups</a> () const </td></tr>
+<tr class="memdesc:ac23784db35a383219aa8890fdac822d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">所属グループ取得.  <a href="#ac23784db35a383219aa8890fdac822d1">[詳細]</a><br/></td></tr>
+<tr class="separator:ac23784db35a383219aa8890fdac822d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae0723dacd9e975a0e12a2f8f23127ce"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#aae0723dacd9e975a0e12a2f8f23127ce">GetUserId</a> () const </td></tr>
+<tr class="memdesc:aae0723dacd9e975a0e12a2f8f23127ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">ユーザID取得.  <a href="#aae0723dacd9e975a0e12a2f8f23127ce">[詳細]</a><br/></td></tr>
+<tr class="separator:aae0723dacd9e975a0e12a2f8f23127ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8acc4e508abd6387323841d6add17227"><td class="memItemLeft" align="right" valign="top">std::tm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a8acc4e508abd6387323841d6add17227">GetCreatedTime</a> () const </td></tr>
+<tr class="memdesc:a8acc4e508abd6387323841d6add17227"><td class="mdescLeft">&#160;</td><td class="mdescRight">ユーザ作成日時取得.  <a href="#a8acc4e508abd6387323841d6add17227">[詳細]</a><br/></td></tr>
+<tr class="separator:a8acc4e508abd6387323841d6add17227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf6b2c945efef719c89f332efd779ba5"><td class="memItemLeft" align="right" valign="top">std::tm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#acf6b2c945efef719c89f332efd779ba5">GetUpdatedTime</a> () const </td></tr>
+<tr class="memdesc:acf6b2c945efef719c89f332efd779ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ユーザ更新日時取得.  <a href="#acf6b2c945efef719c89f332efd779ba5">[詳細]</a><br/></td></tr>
+<tr class="separator:acf6b2c945efef719c89f332efd779ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public メソッド</h2></td></tr>
+<tr class="memitem:a0234bb56643660172d1e62f0b21bc7a4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a0234bb56643660172d1e62f0b21bc7a4">LoginWithUsername</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service, const std::string &amp;username, const std::string &amp;password, int timeout=kRestTimeoutDefault)</td></tr>
+<tr class="memdesc:a0234bb56643660172d1e62f0b21bc7a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログイン(ユーザ名).  <a href="#a0234bb56643660172d1e62f0b21bc7a4">[詳細]</a><br/></td></tr>
+<tr class="separator:a0234bb56643660172d1e62f0b21bc7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77641345861c3ac580c8693a53848a1b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a77641345861c3ac580c8693a53848a1b">LoginWithEmail</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service, const std::string &amp;email, const std::string &amp;password, int timeout=kRestTimeoutDefault)</td></tr>
+<tr class="memdesc:a77641345861c3ac580c8693a53848a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログイン(E-mail).  <a href="#a77641345861c3ac580c8693a53848a1b">[詳細]</a><br/></td></tr>
+<tr class="separator:a77641345861c3ac580c8693a53848a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2ec213d6df8a8b9282ed11aaec24c5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt; <a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#aca2ec213d6df8a8b9282ed11aaec24c5">Logout</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service, int timeout=kRestTimeoutDefault)</td></tr>
+<tr class="memdesc:aca2ec213d6df8a8b9282ed11aaec24c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログアウト.  <a href="#aca2ec213d6df8a8b9282ed11aaec24c5">[詳細]</a><br/></td></tr>
+<tr class="separator:aca2ec213d6df8a8b9282ed11aaec24c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78cd172208ca6207f57a05b52bd56439"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a78cd172208ca6207f57a05b52bd56439">IsLoggedIn</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service)</td></tr>
+<tr class="memdesc:a78cd172208ca6207f57a05b52bd56439"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログイン状態確認.  <a href="#a78cd172208ca6207f57a05b52bd56439">[詳細]</a><br/></td></tr>
+<tr class="separator:a78cd172208ca6207f57a05b52bd56439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3264220679ccb6940d09426029c0603f"><td class="memItemLeft" align="right" valign="top">static std::time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a3264220679ccb6940d09426029c0603f">GetSessionTokenExpiration</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service)</td></tr>
+<tr class="memdesc:a3264220679ccb6940d09426029c0603f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログイン有効期限取得.  <a href="#a3264220679ccb6940d09426029c0603f">[詳細]</a><br/></td></tr>
+<tr class="separator:a3264220679ccb6940d09426029c0603f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad06109497d92de40b6fd8bdcce4a6050"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#ad06109497d92de40b6fd8bdcce4a6050">GetSessionToken</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service)</td></tr>
+<tr class="memdesc:ad06109497d92de40b6fd8bdcce4a6050"><td class="mdescLeft">&#160;</td><td class="mdescRight">セッショントークン取得.  <a href="#ad06109497d92de40b6fd8bdcce4a6050">[詳細]</a><br/></td></tr>
+<tr class="separator:ad06109497d92de40b6fd8bdcce4a6050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d4275285bdf6fdba2c1a3f08526bf9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a87d4275285bdf6fdba2c1a3f08526bf9">GetCurrentUser</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service)</td></tr>
+<tr class="memdesc:a87d4275285bdf6fdba2c1a3f08526bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログインユーザ情報取得.  <a href="#a87d4275285bdf6fdba2c1a3f08526bf9">[詳細]</a><br/></td></tr>
+<tr class="separator:a87d4275285bdf6fdba2c1a3f08526bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a626425b42d1663b87f619d2758cf6534"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a626425b42d1663b87f619d2758cf6534">ExportCurrentLogin</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service)</td></tr>
+<tr class="memdesc:a626425b42d1663b87f619d2758cf6534"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログインユーザのExport.  <a href="#a626425b42d1663b87f619d2758cf6534">[詳細]</a><br/></td></tr>
+<tr class="separator:a626425b42d1663b87f619d2758cf6534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a506ee521c8bb2d4f5b801c0b7de160d9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacenecbaas.html#af6eaff8b039e27b9d005db78c474d115">NbResultCode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnecbaas_1_1NbUser.html#a506ee521c8bb2d4f5b801c0b7de160d9">ImportCurrentLogin</a> (const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;service, const std::string &amp;import)</td></tr>
+<tr class="memdesc:a506ee521c8bb2d4f5b801c0b7de160d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログインユーザのImport.  <a href="#a506ee521c8bb2d4f5b801c0b7de160d9">[詳細]</a><br/></td></tr>
+<tr class="separator:a506ee521c8bb2d4f5b801c0b7de160d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">説明</h2>
+<div class="textblock"><p>ユーザクラス. </p>
+<p>ユーザ情報の管理、認証を行うクラス.<br/>
+</p>
+<p><b>本クラスのインスタンスはスレッドセーフではない</b> </p>
+</div><h2 class="groupheader">コンストラクタとデストラクタ</h2>
+<a class="anchor" id="af6383ea5d79ad3631d29ce9626d3895c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbUser::NbUser </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<a class="anchor" id="a5fa63b645b5188b826cba82bf28f5c39"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbUser::NbUser </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンストラクタ. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b3ea2324e43d618d48966fe48499ee6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">necbaas::NbUser::~NbUser </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ. </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数</h2>
+<a class="anchor" id="a626425b42d1663b87f619d2758cf6534"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string necbaas::NbUser::ExportCurrentLogin </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログインユーザのExport. </p>
+<p>現在ログインしているユーザの情報をExportする。<br/>
+ ログインしていない場合は、空の文字列が返る。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>Exportデータ </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8acc4e508abd6387323841d6add17227"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tm necbaas::NbUser::GetCreatedTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ユーザ作成日時取得. </p>
+<p>std::tm の tm_year が 0 の場合は無効データ。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>ユーザ作成日時(UTC) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a87d4275285bdf6fdba2c1a3f08526bf9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a> necbaas::NbUser::GetCurrentUser </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログインユーザ情報取得. </p>
+<p>現在ログインしているユーザの情報を取得する(キャッシュから読み出す)<br/>
+ 未ログイン状態の場合は、ユーザ名等が全て空のNbUserオブジェクト </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>ユーザ情報 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab69805405acbf3cbead93b7cd6dcb351"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbUser::GetEmail </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>E-mail取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>E-mail </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac23784db35a383219aa8890fdac822d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; necbaas::NbUser::GetGroups </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>所属グループ取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>グループコンテナ </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0b8d8767264b15494c16c2592cef0178"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classnecbaas_1_1NbJsonObject.html">NbJsonObject</a>&amp; necbaas::NbUser::GetOptions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>オプション取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>オプション </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad06109497d92de40b6fd8bdcce4a6050"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const std::string necbaas::NbUser::GetSessionToken </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>セッショントークン取得. </p>
+<p>ログイン中のセッショントークンを取得する。<br/>
+ 未ログイン状態の場合は、空文字が返る。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>セッショントークン </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3264220679ccb6940d09426029c0603f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::time_t necbaas::NbUser::GetSessionTokenExpiration </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログイン有効期限取得. </p>
+<p>ログインの有効期限を取得する。<br/>
+ 未ログイン状態の場合は、0 が返る。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>ログイン有効期限（UNIX Time） </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acf6b2c945efef719c89f332efd779ba5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::tm necbaas::NbUser::GetUpdatedTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ユーザ更新日時取得. </p>
+<p>std::tm の tm_year が 0 の場合は無効データ。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>ユーザ更新日時(UTC) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aae0723dacd9e975a0e12a2f8f23127ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbUser::GetUserId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ユーザID取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>ユーザID </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac314764ba8c439297a0b5026099d455e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string&amp; necbaas::NbUser::GetUserName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ユーザ名取得. </p>
+<dl class="section return"><dt>戻り値</dt><dd>ユーザ名 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a506ee521c8bb2d4f5b801c0b7de160d9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespacenecbaas.html#af6eaff8b039e27b9d005db78c474d115">NbResultCode</a> necbaas::NbUser::ImportCurrentLogin </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>import</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログインユーザのImport. </p>
+<p>現在ログインしているユーザの情報をimportする。<br/>
+ Exportしたデータを入力することで強制的にログイン状態を書き換える。<br/>
+ セッショントークンが空文字列の場合は、パラメータエラーを返す。<br/>
+ セッショントークンの有効期限が切れている場合は、有効期限切れのエラーを返す。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">import</td><td>Importデータ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>処理結果 </dd></dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"><a class="el" href="namespacenecbaas.html#af6eaff8b039e27b9d005db78c474d115a1552abc6b874fb233f8f02d858ff66a7">NbResultCode::NB_OK</a></td><td>Import成功 </td></tr>
+    <tr><td class="paramname"><a class="el" href="namespacenecbaas.html#af6eaff8b039e27b9d005db78c474d115aa33b35442740d234d46c1ce2cff30647">NbResultCode::NB_ERROR_INVALID_ARGUMENT</a></td><td>パラメータエラー </td></tr>
+    <tr><td class="paramname"><a class="el" href="namespacenecbaas.html#af6eaff8b039e27b9d005db78c474d115a4294960135348c87fc85e487144d4cad">NbResultCode::NB_ERROR_SESSION_EXPIRED</a></td><td>セッショントークン有効期限切れ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a78cd172208ca6207f57a05b52bd56439"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool necbaas::NbUser::IsLoggedIn </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログイン状態確認. </p>
+<p>ログイン状態の確認を行う。<br/>
+ セッショントークンの有効期限が切れている場合も未ログインとなる。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>確認結果 </dd></dl>
+<dl class="retval"><dt>戻り値</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>ログイン中 </td></tr>
+    <tr><td class="paramname">false</td><td>未ログイン </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a77641345861c3ac580c8693a53848a1b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt;<a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a>&gt; necbaas::NbUser::LoginWithEmail </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>email</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>kRestTimeoutDefault</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログイン(E-mail). </p>
+<p>Nebulaサービスへログインを行う。<br/>
+ NbServiceインスタンスに対して1ログインのみ有効である。<br/>
+ ログインに成功した場合は、ログアウトするか 次のログイン処理が成功するまでログイン状態が維持される。<br/>
+ E-mailアドレスまたはパスワードが空文字の場合はパラメータエラーを返す。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">email</td><td>E-mailアドレス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">password</td><td>パスワード </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>RESTタイムアウト(秒) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>処理結果 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0234bb56643660172d1e62f0b21bc7a4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt;<a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a>&gt; necbaas::NbUser::LoginWithUsername </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>username</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>kRestTimeoutDefault</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログイン(ユーザ名). </p>
+<p>Nebulaサービスへログインを行う。<br/>
+ NbServiceインスタンスに対して1ログインのみ有効である。<br/>
+ ログインに成功した場合は、ログアウトするか 次のログイン処理が成功するまでログイン状態が維持される<br/>
+ ユーザネームまたはパスワードが空文字の場合はパラメータエラーを返す。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">username</td><td>ユーザ名 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">password</td><td>パスワード </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>RESTタイムアウト(秒) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>処理結果 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aca2ec213d6df8a8b9282ed11aaec24c5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classnecbaas_1_1NbResult.html">NbResult</a>&lt;<a class="el" href="classnecbaas_1_1NbUser.html">NbUser</a>&gt; necbaas::NbUser::Logout </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classnecbaas_1_1NbService.html">NbService</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>service</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeout</em> = <code>kRestTimeoutDefault</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログアウト. </p>
+<p>セッショントークンを破棄し、ログイン状態を解除する。<br/>
+ 未ログインの場合は、未ログインエラーを返す。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">service</td><td>サービスインスタンス </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeout</td><td>RESTタイムアウト(秒) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>処理結果。成功時はNbUserのユーザIDのみ有効。 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a841277ca00bd75c7418d0b6f0ae6cb14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void necbaas::NbUser::SetUserEntity </td>
+          <td>(</td>
+          <td class="paramtype">const NbUserEntity &amp;&#160;</td>
+          <td class="paramname"><em>entity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><b>[内部処理用]</b> </p>
+
+</div>
+</div>
+<hr/>このクラスの説明は次のファイルから生成されました:<ul>
+<li><a class="el" href="nb__user_8h_source.html">nb_user.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+作成： &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.5
+</small></address>
+</body>
+</html>

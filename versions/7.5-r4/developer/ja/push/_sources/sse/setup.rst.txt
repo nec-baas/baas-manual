@@ -1,0 +1,21 @@
+========
+SSE Push
+========
+
+SSE Push (Server Sent Events Push) について
+===========================================
+
+SSE Push は、W3C で標準化されている Server Sent Events に基づく Push サーバおよび Push クライアントライブラリです。
+APNs や GCM には依存していませんので、イントラネット内でも利用することができます。
+
+.. _ssepush_setup:
+
+SSE Push サーバのセットアップ
+=============================
+
+SSE Push を使用するためには、以下のサーバを立ち上げる必要があります。
+
+* SSE Push サーバ
+* RabbitMQ サーバ
+
+詳細は `SSE Push サーバ 利用手順書 <../../../../server/ja/ssepush-server/index.html>`_ を参照してください。

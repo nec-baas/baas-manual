@@ -1,0 +1,150 @@
+=======
+初期化
+=======
+
+SDK の利用を行う前に、初期化処理を行います。
+
+Python SDK のインポート
+=======================
+
+NEC BaaS Python SDK は `necbaas` パッケージとしてインストールされています。
+import 文でインポートを行ってください。
+
+.. code-block:: python
+
+    import necbaas as baas
+
+`necbaas` のままでも良いのですが、長いのでここでは `baas` という別名でインポートしています。
+以後の説明でもこの別名で説明します。
+
+Serviceインスタンスの生成
+=========================
+
+Python SDK を利用するには、baas.Service クラスのインスタンスを生成する必要があります。
+以下に例を示します。
+
+.. code-block:: python
+
+    params = {
+        "baseUrl": "https://api.example.com/api",
+        "tenantId": "mytenant",
+        "appId": "123456789abcdef123456",
+        "appKey": "123456789abcdef123456",
+        "proxy": {
+            "http": "proxy.example.com:8080",
+            "https": "proxy.example.com:8443"
+        }
+    }
+    service = baas.Service(params)
+
+baas.Service() の引数に、パラメータを指定します。パラメータには以下の指定を行ってください。
+
+* baseUrl: BaaS APIサーバのエンドポイントURI
+* tenantId: テナントIDまたはテナント名
+* appId: アプリケーションID
+* appKey: アプリケーションキー
+
+プロキシを使用する必要がある場合は、proxy に指定を行ってください。
+
+なお、Service のインスタンスは任意の個数生成して使い分けすることができます。
+
+BaaSサーバ接続先自動設定
+========================
+
+BaaS サーバへ接続するための設定情報は、設定ファイルから自動でロードすることが可能です。
+設定ファイルが存在する場合は、Service インスタンスはパラメータ無しで生成できます。
+
+.. code-block:: python
+
+    service = baas.Service()
+
+設定ファイルは YAML 形式で作成します。以下に例を示します。
+
+.. code-block:: yaml
+
+    baseUrl: https://api.example.com/api
+    tenantId: mytenant
+    appId: 123456789abcdef123456
+    appKey: 123456789abcdef123456
+    proxy:
+        http: proxy.example.com:8080
+        https: proxy.example.com:8443
+
+設定ファイルの名称を `python_config.yaml` とし、以下いずれかのディレクトリへ格納してください。
+両ディレクトリへファイルを格納した場合は、ホームディレクトリ下のファイルを採用します。
+
+* `~/.baas/python/`
+* `/etc/baas/python/`
+
+また、Service インスタンスに設定されている接続情報をファイルに書き出すことも可能です。
+書き出し先のファイル名は引数で指定します。
+
+.. code-block:: python
+
+    service.save_config(os.path.expanduser("~/.baas/python/python_config.yaml"))
+
+自己署名証明書を使用する場合の設定
+==================================
+
+.. warning::
+
+   本設定は、セキュリティリスクが高くなるため実運用時の利用は推奨できません。
+   正規の証明書を使用するようにしてください。
+
+サーバ側で HTTPS 自己署名証明書を使用している場合、SSL証明書の検証でエラーとなります。
+これをスキップするには、以下のように baas.Service の verify_server_cert の値を False に設定してください。
+
+.. code-block:: python
+
+    service.verify_server_cert = False
+
+セッショントークン管理
+=======================
+
+セッショントークンは、ファイルへの保存、読み出し、および削除が可能です。
+保存ファイルは`~/.baas/python/session_token.json`へ格納されます。
+
+.. code-block:: python
+
+    # セッショントークン保存
+    service.save_session_token()
+    
+    # セッショントークン読み出し
+    service.load_session_token()
+
+    # セッショントークン削除
+    baas.Service.delete_session_token_file()
+
+また、Serviceインスタンスに設定されているセッショントークンの検証が行えます。
+セッショントークン未設定、有効期限切れの場合はraiseされます。
+
+.. code-block:: python
+
+    # セッショントークン検証
+    service.verify_session_token()
+
+ログ出力設定
+============
+
+baas.Service インスタンスの `logger` に Logger が設定されています。
+デフォルトではログレベルが WARNING に設定されていますが、これを DEBUG に変更することで、
+HTTP通信時の情報(メソッド、URI、ステータスコード)がログ表示することができます。
+
+なお、Service の生成前に、`logging.basicConfig()` を実行して Logger 設定を行っておく
+必要がありますので、注意してください。
+
+以下に設定手順を示します。
+
+.. code-block:: python
+
+    import necbaas as baas
+    import logging
+
+    # 基本設定
+    logging.basicConfig(level=logging.WARNING)
+
+    # baas.Service 生成
+    service = baas.Service({...})
+
+    # ログレベルを DEBUG に設定。
+    service.logger.setLevel(logging.DEBUG)
